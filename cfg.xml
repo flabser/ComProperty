@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<nextbase>
+    <name>Nopanic</name>
+    <adminapp mode="on"/>
+    <hostname>localhost</hostname>
+    <port>3838</port>
+    <webserver>
+        <version>7</version>
+        <webservices mode="OFF"/>
+    </webserver>
+    <ssl mode="OFF">
+        <port>38789</port>
+        <keypass>123456</keypass>
+        <keystore>c:\tmp\ssl\aikonamedia.jks</keystore>
+        <clientauth mode="OFF">
+            <truststorepass>123456</truststorepass>
+            <truststorefile>c:\tmp\ssl\truststore.jks</truststorefile>
+        </clientauth>
+    </ssl>
+    <applications>
+        <app>
+            <name mode="on">Structure</name>
+        </app>
+        <app>
+            <name mode="on">Accountant</name>
+        </app>
+        <app>
+            <name mode="on">Workspace</name>
+        </app>
+        <app>
+            <name mode="on">MonitoringSubsystem</name>
+        </app>
+        <app>
+            <name mode="on">Glossary</name>
+        </app>
+        <app>
+            <name mode="on">RegistrySubsystem</name>
+        </app>
+        <app>
+            <name mode="on">PropertyLeasingSubsystem</name>
+        </app>
+    </applications>
+    <logging>
+        <verbose>true</verbose>
+    </logging>
+    <mailagent mode="ON">
+        <smtphost>192.168.0.1</smtphost>
+        <defaultsender>info@flabs.kz</defaultsender>
+    </mailagent>
+    <instmsgagent>
+        <xmppserver>172.16.251.13</xmppserver>
+        <xmpplogin>support@zion</xmpplogin>
+        <xmpppwd>support</xmpppwd>
+    </instmsgagent>
+    <debug mode="ON"></debug>
+
+    <externalhost>
+        <host id="ump" type="WEB_SERVICES_PROVIDER">127.0.0.1:15045</host>
+        <host id="ord" type="DOMINO_DATA_PROVIDER" server="zion" db="ComProperty/ord.nsf" user="developer" pwd="123">zion.flabs.loc:63148</host>
+    </externalhost>
+</nextbase>
