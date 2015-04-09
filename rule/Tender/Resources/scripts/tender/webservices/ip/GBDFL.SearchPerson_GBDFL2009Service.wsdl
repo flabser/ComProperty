@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="GBDFL2009HttpService" targetNamespace="http://service.gbdfl.shep.nit/Binding"
+                  xmlns:Port_0="http://service.gbdfl.shep.nit" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:this="http://service.gbdfl.shep.nit/Binding">
+  <wsdl:import namespace="http://service.gbdfl.shep.nit" location="GBDFL2009Service.wsdl">
+    </wsdl:import>
+  <wsdl:binding name="GBDFL2009ServiceHttpBinding" type="Port_0:GBDFL2009Service">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPersonByDocument">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPersonByDocumentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonByDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonByFIO">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPersonByFIORequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonByFIOResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonByIIN">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPersonByIINRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonByIINResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GBDFL2009Service">
+    <wsdl:port name="GBDFL2009ServiceBinding" binding="this:GBDFL2009ServiceHttpBinding">
+      <soap:address location="http://http.shep157:80/GBDFL.SearchPersonWeb/sca/GBDFL2009Service"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

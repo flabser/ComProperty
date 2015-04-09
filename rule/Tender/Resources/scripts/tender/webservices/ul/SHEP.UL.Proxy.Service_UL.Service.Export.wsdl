@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UL.Service.Export_GbdulDataServiceHttp_Service"
+                  targetNamespace="http://www.epam.com/kaz-shp2/api/GbdulDataService/Binding"
+                  xmlns:Port_0="http://www.epam.com/kaz-shp2/api/GbdulDataService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:this="http://www.epam.com/kaz-shp2/api/GbdulDataService/Binding">
+  <wsdl:import namespace="http://www.epam.com/kaz-shp2/api/GbdulDataService" location="GbdulDataService.wsdl">
+    </wsdl:import>
+  <wsdl:binding name="UL.Service.Export_GbdulDataServiceHttpBinding" type="Port_0:GbdulDataService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getJurInfoByBin">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getJurInfoByBinRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getJurInfoByBinResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkJurNameExists">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="checkJurNameExistsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkJurNameExistsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkStatus">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="checkStatusRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="systemFailure">
+        <soap:fault name="systemFailure" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="userFailure">
+        <soap:fault name="userFailure" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="checkAffiliatedPerson">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="checkAffiliatedPersonRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkAffiliatedPersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="systemFailure">
+        <soap:fault name="systemFailure" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="userFailure">
+        <soap:fault name="userFailure" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UL.Service.Export_GbdulDataServiceHttpService">
+    <wsdl:port name="UL.Service.Export_GbdulDataServiceHttpPort" binding="this:UL.Service.Export_GbdulDataServiceHttpBinding">
+      <soap:address location="http://http.shep157:80/SHEP.UL.Proxy.ServiceWeb/sca/UL.Service.Export"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
