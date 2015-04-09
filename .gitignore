@@ -1,0 +1,17 @@
+# Compiled source #
+###################
+*.class
+
+# Application resources #
+/system_data/
+/backup/
+/indicators/
+#Idea resources#
+###################
+.idea
+cfg.xml 
+ 
+# Logs #
+######################
+*.log
+/logs/
