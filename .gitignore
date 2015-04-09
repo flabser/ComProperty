@@ -3,15 +3,22 @@
 *.class
 
 # Application resources #
+#########################
 /system_data/
 /backup/
 /indicators/
-#Idea resources#
-###################
+/tmp/
+/rule/*/global.xml
+/rule/*/global.dat
+
+# Idea resources #
+##################
 .idea
-cfg.xml 
- 
+cfg.xml
+*.iml
+/out/ 
+/.svn/ 
 # Logs #
-######################
+########
 *.log
 /logs/
