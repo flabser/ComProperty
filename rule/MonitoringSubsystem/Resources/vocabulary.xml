@@ -1,0 +1,2365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vocabulary primary="RUS">
+	<sentence mode="on" keyword="Отсутствует соединение с сервером">
+		<entry lang="KAZ">Сервермен байланыс орнатылмаған</entry>
+		<entry lang="ENG">No connection to the server</entry>
+		<entry lang="CHN">没有连接到服务器</entry>
+	</sentence>
+	<sentence mode="on" keyword="Поиск">
+		<entry lang="KAZ">Іздеу</entry>
+		<entry lang="ENG">Search</entry>	
+        <entry lang="CHN"></entry>		
+	</sentence>
+	<sentence mode="on" keyword="Свойства пользователя">
+		<entry lang="KAZ">Қолданушының қасиеттерi</entry>
+		<entry lang="ENG">Properties of the user</entry>
+		<entry lang="CHN">該物業的用戶。 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Удалено успешно">
+		<entry lang="KAZ">Жазба өшірілді</entry>
+		<entry lang="ENG">Removed successfully</entry>
+		<entry lang="CHN">成功删除 </entry>
+	</sentence>
+		<sentence mode="on" keyword="Ошибка удаления">
+		<entry lang="KAZ">Жою қателігі</entry>
+		<entry lang="ENG">Failure to remove</entry>
+		<entry lang="CHN">如果不及时取出 </entry>
+	</sentence>
+			<sentence mode="on" keyword="Удалено">
+		<entry lang="KAZ">Өшірілді</entry>
+		<entry lang="ENG">Removed</entry>
+		<entry lang="CHN">成功删除 </entry>
+	</sentence>
+		<sentence mode="on" keyword="Не удалено">
+		<entry lang="KAZ">Өшірілмеді</entry>
+		<entry lang="ENG">Not removed</entry>
+		<entry lang="CHN">未刪除 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Документ отмечен как прочтенный">
+		<entry lang="KAZ">Құжат оқылған болып белгіленді</entry>
+		<entry lang="ENG">Document is marked as read</entry>
+		<entry lang="CHN">文件標記為 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Идет сохранение документа...">
+		<entry lang="KAZ">Құжаттың сақталуы жүріп жатыр...</entry>
+		<entry lang="ENG">Saving document...</entry>
+		<entry lang="CHN">這份文件已獲救 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Пожалуйста ждите... Идет сохранение документа">
+		<entry lang="KAZ">Күте тұрыңыз... Құжаттың сақталуы жүріп жатыр</entry>
+		<entry lang="ENG">Please wait... There is a saving of the document</entry>
+		<entry lang="CHN">請稍候. 保存一個文件 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Документ сохранен">
+		<entry lang="KAZ">Құжат сақталды</entry>
+		<entry lang="ENG">The document is saved</entry>
+		<entry lang="CHN">該文件被保存</entry>
+	</sentence>
+		<sentence mode="on" keyword="От">
+		<entry lang="KAZ">Бастап</entry>
+		<entry lang="ENG">From</entry>
+		<entry lang="CHN">從 </entry>
+	</sentence>
+	<sentence mode="on" keyword="с">
+		<entry lang="KAZ">күні</entry>
+		<entry lang="ENG">from</entry>
+		<entry lang="CHN">的,</entry>
+	</sentence>
+	<sentence mode="on" keyword="по">
+		<entry lang="KAZ">дейін</entry>
+		<entry lang="ENG">to</entry>
+		<entry lang="CHN">關於 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Очистить">
+		<entry lang="KAZ">Тазалау</entry>
+		<entry lang="ENG">Clear</entry>
+		<entry lang="CHN">清潔  </entry>
+	</sentence>
+	<sentence mode="on" keyword="Очистить корзину">
+		<entry lang="KAZ">Кәрзеңкені тазалау</entry>
+		<entry lang="ENG">Clear Recycle Bin</entry>
+		<entry lang="CHN">清空回收站 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Периодичность обновления видов">
+		<entry lang="KAZ">Жаңару аралығы</entry>
+		<entry lang="ENG">Periodicity of updating of types</entry>
+		<entry lang="CHN">更新數據的頻率 </entry>
+	</sentence>
+				<sentence mode="on" keyword="Старый пароль">
+		<entry lang="KAZ">Ескі құпия сөз</entry>
+		<entry lang="ENG">Old password</entry>	
+        <entry lang="CHN">旧密码</entry>		
+	</sentence>
+				<sentence mode="on" keyword="Новый пароль">
+		<entry lang="KAZ">Жаңа құпия сөз</entry>
+		<entry lang="ENG">New password</entry>	
+        <entry lang="CHN">新密码</entry>		
+	</sentence>
+				<sentence mode="on" keyword="Повтор нового пароля">
+		<entry lang="KAZ">Жаңа құпия сөзді қайталау</entry>
+		<entry lang="ENG">Repeat new password</entry>	
+        <entry lang="CHN">重复新密码</entry>		
+	</sentence>
+	<sentence mode="on" keyword="Группы">
+		<entry lang="KAZ">Топтар</entry>
+		<entry lang="ENG">Groups</entry>
+		<entry lang="CHN">工作組 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Группы пользователей">
+		<entry lang="KAZ">Қолданушылардың топтары</entry>
+		<entry lang="ENG">Groups of users</entry>
+		<entry lang="CHN">該組的用戶 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Повтор пароля">
+		<entry lang="KAZ">Құпия сөзді қайталау</entry>
+		<entry lang="ENG">Password repetition</entry>
+		<entry lang="CHN">重復密碼: </entry>
+	</sentence>
+		<sentence mode="on" keyword="Новый департамент">
+		<entry lang="KAZ">Жаңа департамент</entry>
+		<entry lang="ENG">New department</entry>
+		<entry lang="CHN">新部 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Новый сотрудник">
+		<entry lang="KAZ">Жаңа қызметкер</entry>
+		<entry lang="ENG">New employee</entry>
+		<entry lang="CHN">一個新的工作人員 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Восстановить">
+		<entry lang="KAZ">Қалпына келтіру</entry>
+		<entry lang="ENG">Recover</entry>
+		<entry lang="CHN">恢復 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Помощь">
+		<entry lang="KAZ">Көмек</entry>
+		<entry lang="ENG">Help</entry>
+		<entry lang="CHN">援助 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Избранные">
+		<entry lang="KAZ">Таңдалғандар</entry>
+		<entry lang="ENG">Favorites</entry>
+		<entry lang="CHN">收藏</entry>
+	</sentence>
+	<sentence mode="on" keyword="Роль пользователя">
+		<entry lang="KAZ">Қолданушының рөлi</entry>
+		<entry lang="ENG">Role of the user</entry>
+		<entry lang="CHN">用户角色</entry>
+	</sentence>
+		<sentence mode="on" keyword="Отмена">
+		<entry lang="KAZ">Болдырмау</entry>
+		<entry lang="ENG">Cancel</entry>
+		<entry lang="CHN">廢除 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Предупреждение">
+		<entry lang="KAZ">Ескерту</entry>
+		<entry lang="ENG">Warning</entry>
+		<entry lang="CHN">預防 </entry>
+	</sentence>
+		<sentence mode="on" keyword="Внимание">
+		<entry lang="KAZ">Назар аударыңыз</entry>
+		<entry lang="ENG">Attention</entry>
+		<entry lang="CHN">預防 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Оставить комментарий ответа?">
+		<entry lang="KAZ">Жауаптың түсiнiктемесін қалдырасыз ма?</entry>
+		<entry lang="ENG">To leave the answer comment?</entry>
+		<entry lang="CHN">評論答覆? </entry>
+	</sentence>
+	<sentence mode="on" keyword="нет">
+		<entry lang="KAZ">жоқ</entry>
+		<entry lang="ENG">no</entry>
+		<entry lang="CHN">無  </entry>
+	</sentence>
+	<sentence mode="on" keyword="да">
+		<entry lang="KAZ">иә</entry>
+		<entry lang="ENG">yes</entry>
+		<entry lang="CHN">是否  </entry>
+	</sentence>
+	<sentence mode="on" keyword="часов">
+		<entry lang="KAZ">сағат</entry>
+		<entry lang="ENG">hours</entry>
+		<entry lang="CHN">時間  </entry>
+	</sentence>
+		<sentence mode="on" keyword="Найти">
+		<entry lang="KAZ">Табу</entry>
+		<entry lang="ENG">Find</entry>
+		<entry lang="CHN">找到</entry>
+	</sentence>
+	<sentence mode="on" keyword="Завершить работу">
+		<entry lang="KAZ">Жұмысты аяқтау</entry>
+		<entry lang="ENG">Logout</entry>
+		<entry lang="CHN">退出</entry>
+	</sentence>
+	<sentence mode="on" keyword="Количество документов в виде">
+		<entry lang="KAZ">Көрінетін құжаттардың саны</entry>
+		<entry lang="ENG">An amount of documents is in a kind</entry>
+		<entry lang="CHN">表单中的文件数量</entry>
+	</sentence>
+		<sentence mode="on" keyword="Cтраница">
+		<entry lang="KAZ">Бет</entry>
+		<entry lang="ENG">Pages</entry>
+		<entry lang="CHN">页面</entry>
+	</sentence>
+	<sentence mode="on" keyword="Документов">
+		<entry lang="KAZ">Құжаттар саны</entry>
+		<entry lang="ENG">Documents</entry>
+		<entry lang="CHN">文件</entry>
+	</sentence>
+		<sentence mode="on" keyword="Обновлено">
+		<entry lang="KAZ">Жаңартылды</entry>
+		<entry lang="ENG">Updated</entry>
+		<entry lang="CHN">更新</entry>
+	</sentence>
+		<sentence mode="on" keyword="поиск">
+		<entry lang="KAZ">іздеу</entry>
+		<entry lang="ENG">search</entry>
+		<entry lang="CHN">搜索</entry>
+	</sentence>
+		<sentence mode="on" keyword="Запомнить пароль">
+		<entry lang="KAZ">Құпия сөзді есте сақтау</entry>
+		<entry lang="ENG">Remember password</entry>
+		<entry lang="CHN">记住密码</entry>
+	</sentence>
+	<sentence mode="on" keyword="Пользователь">
+		<entry lang="KAZ">Қолданушы</entry>
+		<entry lang="ENG">Username</entry>
+		<entry lang="CHN">用户</entry>
+	</sentence>
+	<sentence mode="on" keyword="Пароль">
+		<entry lang="KAZ">Құпия сөз</entry>
+		<entry lang="ENG">Password</entry>
+		<entry lang="CHN">密码</entry>
+	</sentence>
+	<sentence mode="on" keyword="Войти">
+		<entry lang="KAZ">Кіру</entry>
+		<entry lang="ENG">Login</entry>
+		<entry lang="CHN">进入</entry>
+	</sentence>
+	<sentence mode="on" keyword="Сохраненный">
+		<entry lang="KAZ">Сақталған құжат</entry>
+		<entry lang="ENG">Saved document</entry>
+		<entry lang="CHN">保存</entry>
+	</sentence>
+	<sentence mode="on" keyword="Редактирование">
+		<entry lang="KAZ">Өңдеу</entry>
+		<entry lang="ENG">Editing</entry>
+		<entry lang="CHN">编辑</entry>
+	</sentence>
+	<sentence mode="on" keyword="Закрыть">
+		<entry lang="KAZ">Жабу</entry>
+		<entry lang="ENG">Close</entry>
+		<entry lang="CHN">关闭</entry>
+	</sentence>
+	<sentence mode="on" keyword="Основные свойства">
+		<entry lang="KAZ">Негізгі қасиеттері</entry>
+		<entry lang="ENG">Basic properties</entry>
+		<entry lang="CHN">基本性能</entry>
+	</sentence>
+	<sentence mode="on" keyword="Свойства">
+		<entry lang="KAZ">Қасиеттері</entry>
+		<entry lang="ENG">Properties</entry>
+		<entry lang="CHN">物业</entry>
+	</sentence>
+	<sentence mode="on" keyword="Подписал ">
+		<entry lang="KAZ">Қол қойды</entry>
+		<entry lang="ENG">Signed by</entry>
+		<entry lang="CHN">签署</entry>
+	</sentence>
+		<sentence mode="on" keyword="Вложения">
+		<entry lang="KAZ">Тіркемелер</entry>
+		<entry lang="ENG">Attachments</entry>
+		<entry lang="CHN">嵌入</entry>
+	</sentence>
+	<sentence mode="on" keyword="Прикрепить">
+		<entry lang="KAZ">Тіркеу</entry>
+		<entry lang="ENG">Attach</entry>
+		<entry lang="CHN">附上</entry>
+	</sentence>
+	<sentence mode="on" keyword="Ход исполнения">
+		<entry lang="KAZ">Орындалу барысы</entry>
+		<entry lang="ENG">Implementing progress</entry>
+		<entry lang="CHN">当然，执行</entry>
+	</sentence>
+	<sentence mode="on" keyword="Автор">
+		<entry lang="KAZ">Автор</entry>
+		<entry lang="ENG">Author</entry>
+		<entry lang="CHN">笔者</entry>
+	</sentence>
+			<sentence mode="on" keyword="Страница">
+		<entry lang="KAZ">Бет</entry>
+		<entry lang="ENG">Page</entry>
+		<entry lang="CHN">首页</entry>
+	</sentence>
+	<sentence mode="on" keyword="страница">
+		<entry lang="KAZ">бет</entry>
+		<entry lang="ENG">page</entry>
+		<entry lang="CHN">首页</entry>
+	</sentence>
+	<sentence mode="on" keyword="из">
+		<entry lang="KAZ">ішінен</entry>
+		<entry lang="ENG">of</entry>
+		<entry lang="CHN">的</entry>
+	</sentence>
+		<sentence mode="on" keyword="Дополнительно">
+		<entry lang="KAZ">Қосымша</entry>
+		<entry lang="ENG">More</entry>
+		<entry lang="CHN">此外</entry>
+	</sentence>
+	<sentence mode="on" keyword="Файлы">
+		<entry lang="KAZ">Файлдар</entry>
+		<entry lang="ENG">Files</entry>
+		<entry lang="CHN">档</entry>
+	</sentence>
+	<sentence mode="on" keyword="Состояние документа">
+		<entry lang="KAZ">Құжаттың күйі</entry>
+		<entry lang="ENG">Status of document</entry>
+		<entry lang="CHN">文件的状态</entry>
+	</sentence>
+	<sentence mode="on" keyword="Информация о прочтении">
+		<entry lang="KAZ">Оқу туралы мәлiмет</entry>
+		<entry lang="ENG">Information of read</entry>
+		<entry lang="CHN">信息就讀 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Права доступа">
+		<entry lang="KAZ">Рұқсат алудың құқықтары</entry>
+		<entry lang="ENG">Permissions</entry>
+		<entry lang="CHN">权限</entry>
+	</sentence>
+	<sentence mode="on" keyword="Выберите файл">
+		<entry lang="KAZ">Файлды таңдаңыз</entry>
+		<entry lang="ENG">Select file</entry>
+		<entry lang="CHN">选择文件</entry>
+	</sentence>
+	<sentence mode="on" keyword="Файл не выбран">
+		<entry lang="KAZ">Файл таңдалмады</entry>
+		<entry lang="ENG">File is not selected</entry>
+		<entry lang="CHN">该文件未被选中</entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить">
+		<entry lang="KAZ">Қосу</entry>
+		<entry lang="ENG">Add</entry>
+		<entry lang="CHN">加</entry>
+	</sentence>
+	<sentence mode="on" keyword="Удалить">
+		<entry lang="KAZ">Жою</entry>
+		<entry lang="ENG">Delete</entry>
+		<entry lang="CHN">删除</entry>
+	</sentence>
+	<sentence mode="on" keyword="Открыть">
+		<entry lang="KAZ">Ашу</entry>
+		<entry lang="ENG">Open</entry>
+		<entry lang="CHN">开放</entry>
+	</sentence>
+	<sentence mode="on" keyword="Тип">
+		<entry lang="KAZ">Түрі</entry>
+		<entry lang="ENG">Type</entry>
+		<entry lang="CHN">类型</entry>
+	</sentence>
+		<sentence mode="on" keyword="Обзор">
+		<entry lang="KAZ">Шолу</entry>
+		<entry lang="ENG">Review</entry>
+		<entry lang="CHN">檢討</entry>
+	</sentence>
+	<sentence mode="on" keyword="Коментарий">
+		<entry lang="KAZ">Түсініктеме</entry>
+		<entry lang="ENG">Comment</entry>
+		<entry lang="CHN">评论</entry>
+	</sentence>
+		<sentence mode="on" keyword="Только для чтения">
+		<entry lang="KAZ">Тек оқу үшін</entry>
+		<entry lang="ENG">Reading only</entry>
+		<entry lang="CHN">只读</entry>
+	</sentence>
+		<sentence mode="on" keyword="Новый документ">
+		<entry lang="KAZ">Жаңа құжат</entry>
+		<entry lang="ENG">New document</entry>
+		<entry lang="CHN">新的文档</entry>
+	</sentence>
+	<sentence mode="on" keyword="Новая группа">
+		<entry lang="KAZ">Жаңа топ</entry>
+		<entry lang="ENG">New group</entry>
+		<entry lang="CHN">新的组</entry>
+	</sentence>
+	<sentence mode="on" keyword="Группа пользователей">
+		<entry lang="KAZ">Қолданушылардың тобы</entry>
+		<entry lang="ENG">User group</entry>
+		<entry lang="CHN">新的组</entry>
+	</sentence>
+	<sentence mode="on" keyword="Новая роль">
+		<entry lang="KAZ">Жаңа рөл</entry>
+		<entry lang="ENG">New role</entry>
+		<entry lang="CHN">新角色</entry>
+	</sentence>
+			<sentence mode="on" keyword="Новый">
+		<entry lang="KAZ">Жаңа</entry>
+		<entry lang="ENG">New</entry>
+		<entry lang="CHN">新</entry>
+	</sentence>
+		<sentence mode="on" keyword="Удалить документ">
+		<entry lang="KAZ">Құжатты жою</entry>
+		<entry lang="ENG">Delete document</entry>
+		<entry lang="CHN">删除的文件</entry>
+	</sentence>
+		<sentence mode="on" keyword="Содержание отчета">
+		<entry lang="KAZ">Есептеменің мазмұны</entry>
+		<entry lang="ENG">Report Content</entry>
+		<entry lang="CHN">报告内容</entry>
+	</sentence>
+	<sentence mode="on" keyword="Содержание">
+		<entry lang="KAZ">Мазмұны</entry>
+		<entry lang="ENG">Content</entry>
+		<entry lang="CHN">内容</entry>
+	</sentence>
+		<sentence mode="on" keyword="Сохранить и закрыть">
+		<entry lang="KAZ">Сақтау және жабу</entry>
+		<entry lang="ENG">Save and close</entry>
+		<entry lang="CHN">保存并关闭</entry>
+	</sentence>
+			<sentence mode="on" keyword="Сохранить">
+		<entry lang="KAZ">Сақтау</entry>
+		<entry lang="ENG">Save</entry>
+		<entry lang="CHN">保存</entry>
+	</sentence>
+	<sentence mode="on" keyword="Примечание">
+		<entry lang="KAZ">Ескерту</entry>
+		<entry lang="ENG">Note</entry>
+		<entry lang="CHN">注意：</entry>
+	</sentence>
+		<sentence mode="on" keyword="дата">
+		<entry lang="KAZ">дата</entry>
+		<entry lang="ENG">date</entry>
+		<entry lang="CHN">日期</entry>
+	</sentence>
+	<sentence mode="on" keyword="Дата">
+		<entry lang="KAZ">Дата</entry>
+		<entry lang="ENG">Date</entry>
+		<entry lang="CHN">日期</entry>
+	</sentence>
+		<sentence mode="on" keyword="Сотрудник">
+		<entry lang="KAZ">Қызметкер</entry>
+		<entry lang="ENG">Employee</entry>
+		<entry lang="CHN">雇员</entry>
+	</sentence>
+	<sentence mode="on" keyword="Департамент">
+		<entry lang="KAZ">Бөлім</entry>
+		<entry lang="ENG">Department</entry>
+		<entry lang="CHN">部</entry>
+	</sentence>
+	<sentence mode="on" keyword="Должность">
+		<entry lang="KAZ">Қызмет</entry>
+		<entry lang="ENG">Position</entry>
+		<entry lang="CHN">文章</entry>
+	</sentence>
+	<sentence mode="on" keyword="Сокращенное имя">
+		<entry lang="KAZ">Қысқартылған есімі</entry>
+		<entry lang="ENG">Short name</entry>
+		<entry lang="CHN">简称</entry>
+	</sentence>
+	<sentence mode="on" keyword="Полное имя">
+		<entry lang="KAZ">Толық есімі</entry>
+		<entry lang="ENG">Full name</entry>
+		<entry lang="CHN">全名</entry>
+	</sentence>
+	<sentence mode="on" keyword="Notes-адрес">
+		<entry lang="KAZ">Notes-мекен</entry>
+		<entry lang="ENG">Notes-adress</entry>
+		<entry lang="CHN">Notes地址</entry>
+	</sentence>
+	<sentence mode="on" keyword="Язык интерфейса">
+		<entry lang="KAZ">Интерфейс тілі</entry>
+		<entry lang="ENG">Interface language</entry>
+		<entry lang="CHN">语言</entry>
+	</sentence>
+	<sentence mode="on" keyword="Интерфейс">
+		<entry lang="KAZ">Интерфейс</entry>
+		<entry lang="ENG">interface</entry>
+		<entry lang="CHN">它的界面 </entry>
+	</sentence>
+		<sentence mode="on" keyword="Район/регион">
+		<entry lang="KAZ">Аудан/аймақ</entry>
+		<entry lang="ENG">Area/region</entry>
+		<entry lang="CHN">区/地区</entry>
+	</sentence>
+	<sentence mode="on" keyword="Телефон">
+		<entry lang="KAZ">Телефон</entry>
+		<entry lang="ENG">Phone</entry>
+		<entry lang="CHN">电话</entry>
+	</sentence>
+	<sentence mode="on" keyword="Роли">
+		<entry lang="KAZ">Рөлдер</entry>
+		<entry lang="ENG">Roles</entry>
+		<entry lang="CHN">電郵通知 </entry>
+	</sentence>
+	<sentence mode="on" keyword="Категория">
+		<entry lang="KAZ">Санат</entry>
+		<entry lang="ENG">Category</entry>
+		<entry lang="CHN">分类</entry>
+	</sentence>
+	<sentence mode="on" keyword="Kомментарий">
+		<entry lang="KAZ">Түсініктеме</entry>
+		<entry lang="ENG">Comment</entry>
+		<entry lang="CHN">评论</entry>
+	</sentence>
+		<sentence mode="on" keyword="комментарий">
+		<entry lang="KAZ">түсініктеме</entry>
+		<entry lang="ENG">comments</entry>
+		<entry lang="CHN">评论</entry>
+	</sentence>
+	<sentence mode="on" keyword="Код">
+		<entry lang="KAZ">Код</entry>
+		<entry lang="ENG">Code</entry>
+		<entry lang="CHN">代码</entry>
+	</sentence>
+		<sentence mode="on" keyword="Роли пользователей">
+		<entry lang="KAZ">Қолданушылардың рөлдерi</entry>
+		<entry lang="ENG">User roles</entry>
+		<entry lang="CHN">用户角色</entry>
+	</sentence>
+		<sentence mode="on" keyword="Язык документа">
+		<entry lang="KAZ">Құжат тiлі</entry>
+		<entry lang="ENG">Document language</entry>
+		<entry lang="CHN">文档语言</entry>
+	</sentence>
+	<sentence mode="on" keyword="Чужой компьютер">
+		<entry lang="KAZ">Бөгде компьютер</entry>
+		<entry lang="ENG">Another's computer</entry>
+		<entry lang="CHN">别人的电脑</entry>
+	</sentence>
+	<sentence mode="on" keyword="Корзина">
+		<entry lang="KAZ">Кәрзеңке</entry>
+		<entry lang="ENG">Recycle Bin</entry>
+		<entry lang="CHN">篮</entry>
+	</sentence>
+	<sentence mode="on" keyword="Отчеты">
+		<entry lang="KAZ">Есептемелер</entry>
+		<entry lang="ENG">Reports</entry>
+		<entry lang="CHN">篮</entry>
+	</sentence>
+	<sentence mode="on" keyword="Отчет">
+		<entry lang="KAZ">Есептеме</entry>
+		<entry lang="ENG">Report</entry>
+		<entry lang="CHN">篮</entry>
+	</sentence>
+	<sentence mode="on" keyword="Задания">
+		<entry lang="KAZ">Тапсырмалар</entry>
+		<entry lang="ENG">Job</entry>
+		<entry lang="CHN">工作</entry>
+	</sentence>
+	<sentence mode="on" keyword="Сформировать отчет">
+		<entry lang="KAZ">Есептемені құрастыру</entry>
+		<entry lang="ENG">Generate a report</entry>
+		<entry lang="CHN">生成报告</entry>
+	</sentence>
+	<sentence mode="on" keyword="Тип файла отчета">
+		<entry lang="KAZ">Есептеме файлының түрi</entry>
+		<entry lang="ENG">File type report</entry>
+		<entry lang="CHN">文件类型报告</entry>
+	</sentence>
+	<sentence mode="on" keyword="Открыть отчет">
+		<entry lang="KAZ">Есептемені ашу</entry>
+		<entry lang="ENG">Open the report</entry>
+		<entry lang="CHN">對</entry>
+	</sentence>
+	<sentence mode="on" keyword="в программе по умолчанию">
+		<entry lang="KAZ">Үндеместік программасында</entry>
+		<entry lang="ENG">In the program by default</entry>
+		<entry lang="CHN">在默认</entry>
+	</sentence>
+	<sentence mode="on" keyword="в окне браузера">
+		<entry lang="KAZ">браузер терезесінде</entry>
+		<entry lang="ENG">in browser window</entry>
+		<entry lang="CHN">在浏览器窗口</entry>
+	</sentence>
+	<sentence mode="on" keyword="На регистрацию">
+		<entry lang="KAZ">Тiркеуге</entry>
+		<entry lang="ENG">To register</entry>
+		<entry lang="CHN">登记</entry>
+	</sentence>
+	<sentence mode="on" keyword="Справочники">
+		<entry lang="KAZ">Анықтамалар</entry>
+		<entry lang="ENG">References</entry>
+		<entry lang="CHN">参考文献</entry>
+	</sentence>
+	<sentence mode="on" keyword="Название">
+		<entry lang="KAZ">Атауы</entry>
+		<entry lang="ENG">Name</entry>
+		<entry lang="CHN">名称</entry>
+	</sentence>
+	<sentence mode="on" keyword="Сокращенное название">
+		<entry lang="KAZ">Қысқартылған атауы</entry>
+		<entry lang="ENG">Short name</entry>
+		<entry lang="CHN">短名称</entry>
+	</sentence>
+	<sentence mode="on" keyword="Организация">
+		<entry lang="KAZ">Мекеме</entry>
+		<entry lang="ENG">Organization</entry>
+		<entry lang="CHN">组织</entry>
+	</sentence>
+	<sentence mode="on" keyword="Все">
+		<entry lang="KAZ">Барлығы</entry>
+		<entry lang="ENG">All</entry>
+		<entry lang="CHN">所有</entry>
+	</sentence>
+		<sentence mode="on" keyword="Отправить">
+		<entry lang="KAZ">Жіберу</entry>
+		<entry lang="ENG">Send</entry>
+		<entry lang="CHN">问责</entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Код" не заполнено'>
+		<entry lang="KAZ">"Код" жолы толтырылмады</entry>
+		<entry lang="ENG">"Code" is not filled</entry>
+		<entry lang="CHN">“項目組織”空“</entry>
+	</sentence>
+	<sentence mode="on" keyword="Сохранение">
+		<entry lang="KAZ">Сақталу</entry>
+		<entry lang="ENG">Saving</entry>
+		<entry lang="CHN">保存</entry>
+	</sentence>
+		<sentence mode="on" keyword="c">
+		<entry lang="KAZ">бастап</entry>
+		<entry lang="ENG">From</entry>
+		<entry lang="CHN">從</entry>
+	</sentence>
+	<sentence mode="on" keyword="по">
+		<entry lang="KAZ">дейін</entry>
+		<entry lang="ENG">to</entry>
+		<entry lang="CHN">上</entry>
+	</sentence>
+		<sentence mode="on" keyword="Кем прочтен">
+		<entry lang="KAZ">Кім оқыған</entry>
+		<entry lang="ENG">By whom it is read</entry>
+		<entry lang="CHN">誰讀</entry>
+	</sentence>
+			<sentence mode="on" keyword="Новый город">
+		<entry lang="KAZ">Жаңа қала</entry>
+		<entry lang="ENG">New city</entry>
+		<entry lang="CHN">新鎮</entry>
+	</sentence>
+		<sentence mode="on" keyword="Прочтен">
+		<entry lang="KAZ">Оқылды</entry>
+		<entry lang="ENG">Read</entry>	
+        <entry lang="CHN">閱讀</entry>		
+	</sentence>
+		<sentence mode="on" keyword="Выберите значение">
+		<entry lang="KAZ">Мәнін таңдаңыз</entry>
+		<entry lang="ENG">Select the value</entry>	
+        <entry lang="CHN">處理日期 </entry>		
+	</sentence>
+		<sentence mode="on" keyword="Успешно удалено">
+		<entry lang="KAZ">Сәтті жойылды</entry>
+		<entry lang="ENG">Successfully deleted</entry>	
+        <entry lang="CHN">成功删除 </entry>		
+	</sentence>
+	<sentence mode="on" keyword="день">
+		<entry lang="KAZ">күн</entry>
+		<entry lang="ENG">day</entry>	
+        <entry lang="CHN">天</entry>		
+	</sentence>
+	<sentence mode="on" keyword="часа">
+		<entry lang="KAZ">сағат</entry>
+		<entry lang="ENG">hours</entry>	
+        <entry lang="CHN">小时 </entry>		
+	</sentence>
+		<sentence mode="on" keyword="№">
+		<entry lang="KAZ">№</entry>
+		<entry lang="ENG">№</entry>	
+        <entry lang="CHN">№</entry>		
+	</sentence>
+	<sentence mode="on" keyword="Вернуться к списку документов">
+		<entry lang="KAZ">Құжаттар тізіміне оралу</entry>
+		<entry lang="ENG">Return to the list of documents</entry>	
+        <entry lang="CHN">備份的文件清單</entry>		
+	</sentence>
+	<sentence mode="on" keyword="мин">
+		<entry lang="KAZ">мин</entry>
+		<entry lang="ENG">min</entry>
+		<entry lang="CHN">分钟</entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить комментарий к вложению?">
+		<entry lang="KAZ">Тіркемеге түсініктеме қосу керек пе?</entry>
+		<entry lang="ENG">Add a comment to attachment?</entry>
+		<entry lang="CHN">添加評論投資？</entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить комментарий">
+		<entry lang="KAZ">Тіркемеге түсініктеме қосу</entry>
+		<entry lang="ENG">Add comments to the attachment</entry>
+		<entry lang="CHN">添加評論投資？</entry>
+	</sentence>
+			<sentence mode="on" keyword="Удаление завершено успешно">
+		<entry lang="KAZ">Жою сәтті аяқталды</entry>
+		<entry lang="ENG">Removal completed successfully</entry>
+		<entry lang="CHN">刪除成功完成</entry>
+	</sentence>
+		<sentence mode="on" keyword="Укажите имя файла для вложения">
+		<entry lang="KAZ">Тіркелетін файлды таңдаңыз</entry>
+		<entry lang="ENG">Please, select the file for attachment</entry>
+		<entry lang="CHN">显示附件的文件名</entry>
+	</sentence>
+		<sentence mode="on" keyword="Заполните строку поиска">
+		<entry lang="KAZ">Іздеу қатарын толтырыңыз</entry>
+		<entry lang="ENG">Fill the search field</entry>
+		<entry lang="CHN">在搜索框中填寫</entry>
+	</sentence>
+		<sentence mode="on" keyword="Посмотреть свойства текущего пользователя">
+		<entry lang="KAZ">Ағымдағы қолданушының қасиеттерін көру</entry>
+		<entry lang="ENG">View the properties current user</entry>
+		<entry lang="CHN">查看當前用戶的屬性</entry>
+	</sentence>
+		<sentence mode="on" keyword="Удалить файл">
+		<entry lang="KAZ">Файлды жою</entry>
+		<entry lang="ENG">Delete file</entry>
+		<entry lang="CHN">刪除文件</entry>
+	</sentence>
+		<sentence mode="on" keyword="Срок хранения">
+		<entry lang="KAZ">Сақтау мерзімі</entry>
+		<entry lang="ENG">Storage period</entry>
+		<entry lang="CHN">貯存壽命</entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты коммунальной собственности">
+		<entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество">
+		<entry lang="KAZ">Жылжымалы мүлік</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Мебель">
+		<entry lang="KAZ">Жиһаз</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Животные">
+		<entry lang="KAZ">Жануарлар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Инвентарь">
+		<entry lang="KAZ">Инвентарь</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Нематериальные активы">
+		<entry lang="KAZ">Материалды емес активтер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Государственные пакеты акций">
+		<entry lang="KAZ">Мемлекеттік акциялар пакеті</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Долевое участие в ТОО">
+		<entry lang="KAZ">ЖШС-гі үлесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Балансодержатель">
+		<entry lang="KAZ">Теңгерім ұстаушы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Наименование Гос. учреждения (каз.)">
+		<entry lang="KAZ">Мем. мекеменің атауы (қаз.)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="БИН Коммунальных Гос. учреждений">
+		<entry lang="KAZ">Коммуналды Мем. мекемелердің БСН</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Инвентарный номер">
+		<entry lang="KAZ">Инвентарлы нөмір</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Описание объекта">
+		<entry lang="KAZ">Объектінің сипаттамасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Код права на имущество">
+		<entry lang="KAZ">Мүлікке құқықтың коды</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Дата принятия на баланс">
+		<entry lang="KAZ">Балансқа алу датасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Область">
+		<entry lang="KAZ">Облыс</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Город">
+		<entry lang="KAZ">Қала</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Район">
+		<entry lang="KAZ">Аудан</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Улица">
+		<entry lang="KAZ">Көше</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Количество">
+		<entry lang="KAZ">Саны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Первоначальная стоимость">
+		<entry lang="KAZ">Бастапқы құны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оценочная стоимость">
+		<entry lang="KAZ">Бағалау құны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Остаточная стоимость">
+		<entry lang="KAZ">Қалдықтық құн</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Предельная норма амортизации">
+		<entry lang="KAZ">Амортизацияның шекті мөлшері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Основание поступления в Гос. собственность">
+		<entry lang="KAZ">Мемлекеттік меншікке өту негізі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Основание поступления на баланс">
+		<entry lang="KAZ">Балансқа өту негізі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Основание снятия с баланса">
+		<entry lang="KAZ">Баланстан алу негізі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Модель">
+		<entry lang="KAZ">Үлгісі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Цвет">
+		<entry lang="KAZ">Түсі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Ширина">
+		<entry lang="KAZ">Ені</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Высота">
+		<entry lang="KAZ">Биіктігі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Глубина">
+		<entry lang="KAZ">Тереңдігі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Год выпуска">
+		<entry lang="KAZ">Шығарылған жылы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Изменение первоначальной стоимости">
+		<entry lang="KAZ">Бастапқы құнының өзгеруі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Ремонт">
+		<entry lang="KAZ">Жөндеу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Обесценение">
+		<entry lang="KAZ">Құнсыздану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Накопленная амортизация">
+		<entry lang="KAZ">Қорланған өтемпұл</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Износ">
+		<entry lang="KAZ">Тозу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Наличие обременения">
+		<entry lang="KAZ">Ауыртпалықтың болуы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Залог">
+		<entry lang="KAZ">Кепіл</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Арест по решению суда">
+		<entry lang="KAZ">Сот шешімі бойынша тыйым салу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Юридическое притязание">
+		<entry lang="KAZ">Заңды талап ету</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Инвентарный номер" не заполнено.'>
+		<entry lang="KAZ">"Инвентарлы нөмір" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Описание объекта" не заполнено.'>
+		<entry lang="KAZ">"Объектінің сипаттамасы" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Тип (Класс по назначению)">
+		<entry lang="KAZ">Тип (Тағайындау бойынша сынып)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Порода">
+		<entry lang="KAZ">Тұқымы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Возраст">
+		<entry lang="KAZ">Жасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Вес">
+		<entry lang="KAZ">Салмағы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Окрас">
+		<entry lang="KAZ">Реңі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Обесценение">
+		<entry lang="KAZ">Құнсыздану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Год выпуска">
+		<entry lang="KAZ">Шығарылған жылы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование">
+		<entry lang="KAZ">Құрал-жабдық</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Школьное оборудование">
+		<entry lang="KAZ">Мектеп құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Офисное оборудование">
+		<entry lang="KAZ">Кеңсе құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Компьютерное оборудование и орг. техника">
+		<entry lang="KAZ">Компьютер құрал-жабдығы және ұйымдастыру техникасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Медицинское оборудование">
+		<entry lang="KAZ">Медицина құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Кухонное оборудование">
+		<entry lang="KAZ">Асүй құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование гражданской обороны">
+		<entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Мощность">
+		<entry lang="KAZ">Қуаттылығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Недвижимое имущество">
+		<entry lang="KAZ">Жылжымайтын мүлік</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Здания(Отдельностоящие)">
+		<entry lang="KAZ">Ғимараттар (Бөлек тұрған)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Помещения">
+		<entry lang="KAZ">Ғимараттар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Строения">
+		<entry lang="KAZ">Құрылыстар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Жилые объекты">
+		<entry lang="KAZ">Тұрғын үй объектісі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Земля">
+		<entry lang="KAZ">Жер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Памятники истории и культуры">
+		<entry lang="KAZ">Тарих пен мәдениет ескерткіштері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Назначение">
+		<entry lang="KAZ">Тағайындау</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Территориальное расположение объекта">
+		<entry lang="KAZ">Объектінің территориялық орналасуы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Число этажей">
+		<entry lang="KAZ">Қабаттар саны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Общая площадь">
+		<entry lang="KAZ">Жалпы ауданы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Полезная площадь">
+		<entry lang="KAZ">Пайдалы ауданы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Материал постройки">
+		<entry lang="KAZ">Құрылыстың материалы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Тип строения">
+		<entry lang="KAZ">Құрылыстың түрі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Год постройки">
+		<entry lang="KAZ">Соғылған жылы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Наличие подвала">
+		<entry lang="KAZ">Жертөленің болуы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт">
+		<entry lang="KAZ">Транспорт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Автомашины">
+		<entry lang="KAZ">Автокөліктер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Легковые">
+		<entry lang="KAZ">Жеңіл автокөліктер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Грузовые">
+		<entry lang="KAZ">Жүк тасымалдағыш</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Дежурный">
+		<entry lang="KAZ">Кезекші</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Служебный">
+		<entry lang="KAZ">Қызметтік</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Санитарный транспорт">
+		<entry lang="KAZ">Санитарлық транспорт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Пассажирский транспорт">
+		<entry lang="KAZ">Жолаушылар транспорты</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Автобусы">
+		<entry lang="KAZ">Автобустар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Троллейбусы">
+		<entry lang="KAZ">Троллейбустар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Трамваи">
+		<entry lang="KAZ">Трамвайлар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Водный транспорт">
+		<entry lang="KAZ">Су транспорты</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Таксопарк">
+		<entry lang="KAZ">Таксопарк</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Специальная техника">
+		<entry lang="KAZ">Арнайы техника</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Мотоциклы">
+		<entry lang="KAZ">Мотоциклдер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Номер двигателя">
+		<entry lang="KAZ">Қозғалтқыш нөмірі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Номер кузова">
+		<entry lang="KAZ">Қораптың нөмірі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Марка(модель)">
+		<entry lang="KAZ">Марка (моделі)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Мощность двигателя">
+		<entry lang="KAZ">Қозғалтқыш қуаты</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объем двигателя">
+		<entry lang="KAZ">Қозғалтқыш көлемі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Вид топлива">
+		<entry lang="KAZ">Жанармай түрі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Расход ГСМ на 100 км">
+		<entry lang="KAZ">100 км-ге ЖЖМ шығыны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Пробег">
+		<entry lang="KAZ">Жүрген жолы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Нормативный срок эксплуатации">
+		<entry lang="KAZ">Пайдаланудың нормалық мерзімі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Состояние">
+		<entry lang="KAZ">Жағдайы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Масса без нагрузки">
+		<entry lang="KAZ">Жүксіз массасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Разрешенная максимальная нагрузка">
+		<entry lang="KAZ">Рұқсат етілген максималды жүк</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Количество пассажирских мест">
+		<entry lang="KAZ">Жолаушылар орнының саны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Количество пассажирских мест (час пик)">
+		<entry lang="KAZ">Жолаушылар орнының саны (қарбалас уақытта)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты">
+		<entry lang="KAZ">Стратегиялық объектілер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты государственного природно-заповедного фонда">
+		<entry lang="KAZ">Мемлекеттік табиғи-қорық қорларының объектілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Специальные сооружения">
+		<entry lang="KAZ">Арнайы құрылыстар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Бомбоубежища">
+		<entry lang="KAZ">Бомбадан сақтанатын жер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Заводы">
+		<entry lang="KAZ">Зауыттар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Комбинаты">
+		<entry lang="KAZ">Комбинаттар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Аэропорты">
+		<entry lang="KAZ">Әуежайлар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Подземные и надземные переходы">
+		<entry lang="KAZ">Жер үсті мен асты өткелдері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Площадь земельного участка">
+		<entry lang="KAZ">Жер бөлігінің ауданы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Биллборды">
+		<entry lang="KAZ">Биллбордтар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Электрические столбы">
+		<entry lang="KAZ">Электр бағаналары</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Сети">
+		<entry lang="KAZ">Желілер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Электрические">
+		<entry lang="KAZ">Электр</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Тепловые">
+		<entry lang="KAZ">Жылу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Газовые">
+		<entry lang="KAZ">Газ</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Водопровод и канализация">
+		<entry lang="KAZ">Сутартқыш және кәріз жүйесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Арычные">
+		<entry lang="KAZ">Арық</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Дороги">
+		<entry lang="KAZ">Жолдар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Парковки">
+		<entry lang="KAZ">Көлік тұрақтар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Мониторинг объектов коммунальной собственности">
+		<entry lang="KAZ">Коммуналды меншік объектілерін бақылау</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Регистрационные документы">
+		<entry lang="KAZ">Тіркеу құжаттары</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество - мебель">
+		<entry lang="KAZ">Жылжымалы мүлік - жиһаз</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество - Животные">
+		<entry lang="KAZ">Жылжымалы мүлік - Жануарлар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Вид">
+		<entry lang="KAZ">Түр</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество - Государственные пакеты акций">
+		<entry lang="KAZ">Жылжымалы мүлік - Мемлекеттік акциялар пакеті</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество - прочее">
+		<entry lang="KAZ">Жылжымалы мүлік - басқалары</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество - инвентарь">
+		<entry lang="KAZ">Жылжымалы мүлік - инвентарь</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Движимое имущество - Долевое участие в ТОО">
+		<entry lang="KAZ">Жылжымалы мүлік - ЖШС-гі үлесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование - Школьное оборудование">
+		<entry lang="KAZ">Құрал-жабдық - Мектеп құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование - Офисное оборудование">
+		<entry lang="KAZ">Құрал-жабдық - Кеңсе құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование - Компьютерное оборудование и орг. техника">
+		<entry lang="KAZ">Құрал-жабдық - Компьютер құрал-жабдығы және ұйымдастыру техникасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование - Медицинское оборудование">
+		<entry lang="KAZ">Құрал-жабдық - Медицина құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование - Кухонное оборудование">
+		<entry lang="KAZ">Құрал-жабдық - Асүй құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оборудование - Оборудование гражданской обороны">
+		<entry lang="KAZ">Құрал-жабдық - Азаматтық қорғаныс құрал-жабдығы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Недвижимое имущество - Здание">
+		<entry lang="KAZ">Жылжымайтын мүлік - Ғимараттар (Бөлек тұрған)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Недвижимое имущество - Помещение">
+		<entry lang="KAZ">Жылжымайтын мүлік - Ғимараттар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Недвижимое имущество - Строение">
+		<entry lang="KAZ">Жылжымайтын мүлік - Құрылыстар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Недвижимое имущество - Жилой объект">
+		<entry lang="KAZ">Жылжымайтын мүлік - Тұрғын үй объектісі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Недвижимое имущество - Земля">
+		<entry lang="KAZ">Жылжымайтын мүлік - Жер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Памятники истории и культуры">
+		<entry lang="KAZ">Жылжымайтын мүлік - Тарих пен мәдениет ескерткіштері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Балансодержатель" не заполнено.'>
+		<entry lang="KAZ">"Теңгерім ұстаушы" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Легковой автомобиль">
+		<entry lang="KAZ">Транспорт - Жеңіл автокөлік</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Грузовой автомобиль">
+		<entry lang="KAZ">Транспорт - Жүк тасымалдағыш</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Дежурный транспорт">
+		<entry lang="KAZ">Транспорт - Кезекші транспорт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Служебный транспорт">
+		<entry lang="KAZ">Транспорт - Қызметтік транспорт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Санитарный транспорт">
+		<entry lang="KAZ">Транспорт - Санитарлық транспорт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Автобус">
+		<entry lang="KAZ">Транспорт - Автобус</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Троллейбус">
+		<entry lang="KAZ">Транспорт - Троллейбус</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Трамвай">
+		<entry lang="KAZ">Транспорт - Трамвай</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Водный транспорт">
+		<entry lang="KAZ">Транспорт - Су транспорты</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Такси">
+		<entry lang="KAZ">Транспорт - Такси</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Специальная техника">
+		<entry lang="KAZ">Транспорт - Арнайы техника</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Транспорт - Мотоцикл">
+		<entry lang="KAZ">Транспорт - Мотоцикл</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Объекты государственного природно-заповедного фонда">
+		<entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық қорларының объектілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Бомбоубежища">
+		<entry lang="KAZ">Стратегиялық объектілер - Бомбадан сақтанатын жер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Завод">
+		<entry lang="KAZ">Стратегиялық объектілер - Зауыт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Комбинат">
+		<entry lang="KAZ">Стратегиялық объектілер - Комбинат</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Аэропорт">
+		<entry lang="KAZ">Стратегиялық объектілер - Әуежай</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Стратегические объекты - Подземные и надземные переходы">
+		<entry lang="KAZ">Стратегиялық объектілер - Жер үсті мен асты өткелдері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Биллборды">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Биллбордтар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Электрические столбы">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Электр бағаналары</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Электрические сети">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Электр желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Тепловые сети">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Жылу желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Газовые сети">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Газ желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Водопровод и канализация">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Сутартқыш және кәріз жүйесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Арычные сети">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Арық желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Дороги">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Жолдар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Парковки">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Көлік тұрақтар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты по типу права на имущество">
+		<entry lang="KAZ">Мүлікке құқықтың типіне байланысты объектілер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Доверительное управление">
+		<entry lang="KAZ">Мүлікті сенімгерлікпен басқару</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Безвозмездное пользование">
+		<entry lang="KAZ">Өтеусіз пайдалану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Концессия">
+		<entry lang="KAZ">Концессия</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Собственность">
+		<entry lang="KAZ">Меншік</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Хозяйственное ведение">
+		<entry lang="KAZ">Шаруашылық жүргізу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Оперативное управление">
+		<entry lang="KAZ">Жедел басқару</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Вклад в уставной капитал">
+		<entry lang="KAZ">Жарғылық капиталға салым</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Распоряжение">
+		<entry lang="KAZ">Билік ету</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Ответственное хранение">
+		<entry lang="KAZ">Жауапкершілікпен сақтау</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объекты, закрепленные за управлением">
+		<entry lang="KAZ">Басқаруға бекітілген объектілер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Оперативное пользование">
+		<entry lang="KAZ">Жедел пайдалану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Временное безвозмездное пользование">
+		<entry lang="KAZ">Уақытша өтеусіз пайдалану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Постановления">
+		<entry lang="KAZ">Қаулылар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+				<sentence mode="on" keyword="Постановление">
+		<entry lang="KAZ">Қаулы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Договора и доп.соглашения">
+		<entry lang="KAZ">Келісім-шарттар мен қосымша келісулер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Уведомления">
+		<entry lang="KAZ">Хабарламалар</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Регистрация объектов">
+		<entry lang="KAZ">Объектілерді тіркеу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Окончание срока действия договора">
+		<entry lang="KAZ">Келісім-шарт мерзімінің аяқталуы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Регистрация постановления">
+		<entry lang="KAZ">Қаулыны тіркеу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Регистрация договора">
+		<entry lang="KAZ">Келісім-шартты тіркеу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Рег. №">
+		<entry lang="KAZ">Тіркеу. №</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Наименование постановления ">
+		<entry lang="KAZ">Қаулының атауы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Дата регистрации ">
+		<entry lang="KAZ">Тіркеу датасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Ввод в действие ">
+		<entry lang="KAZ">Жұмысқа енгізу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Статус">
+		<entry lang="KAZ">Статус</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Договор">
+		<entry lang="KAZ">Келісім-шарт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Ввод в действие и срок">
+		<entry lang="KAZ">Жұмысқа енгізу және мерзімі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Наименование Гос. учреждения (рус.)">
+		<entry lang="KAZ">Мемлекеттік мекеменің атауы (орысша)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Адрес места нахождения объекта">
+		<entry lang="KAZ">Объектінің орналасу мекен-жайы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Дом">
+		<entry lang="KAZ">Үй</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Квартира">
+		<entry lang="KAZ">Пәтер</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Капитальный">
+		<entry lang="KAZ">Күрделі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Реконструкция">
+		<entry lang="KAZ">Қайта құру</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Тип имущества">
+		<entry lang="KAZ">Мүліктің типі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Электрические сети">
+		<entry lang="KAZ">Электр желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Тепловые сети">
+		<entry lang="KAZ">Жылу желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Газовые сети">
+		<entry lang="KAZ">Газ желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Арычные сети">
+		<entry lang="KAZ">Арық желілері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Отчет объекты инженерной инфраструктуры">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Отчет стратегические объекты">
+		<entry lang="KAZ">Стратегиялық объектілер есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Отчет транспорт">
+		<entry lang="KAZ">Транспорт есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Санитарный">
+		<entry lang="KAZ">Санитарлық</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Здания">
+		<entry lang="KAZ">Ғимараттар (үйлер)</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Памятники истории и архитектуры">
+		<entry lang="KAZ">Тарих пен архитектура ескерткіштері</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Отчет оборудование">
+		<entry lang="KAZ">Құрал-жабдық есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Отчет недвижимое имущество">
+		<entry lang="KAZ">Жылжымайтын мүлік есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Аренда">
+		<entry lang="KAZ">Жалдама</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Временное безвозмездное пользование">
+		<entry lang="KAZ">Уақытша өтеусіз пайдалану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+				<sentence mode="on" keyword="Вклад в уставной капитал - Доверительное управление">
+		<entry lang="KAZ">Жарғылық капиталға салым - Мүлікті сенімгерлікпен басқару</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Вклад в уставной капитал - Хозяйственное ведение">
+		<entry lang="KAZ">Жарғылық капиталға салым - Шаруашылық жүргізу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Вклад в уставной капитал - Оперативное пользование">
+		<entry lang="KAZ">Жарғылық капиталға салым - Жедел пайдалану</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить договор">
+		<entry lang="KAZ">Келісім-шарт қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Регистр. номер">
+		<entry lang="KAZ">Тіркеу нөмірі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Активно">
+		<entry lang="KAZ">Белсенді</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+				<sentence mode="on" keyword="Неактивно">
+		<entry lang="KAZ">Белсенді емес</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить постановление">
+		<entry lang="KAZ">Қаулы қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Новое постановление">
+		<entry lang="KAZ">Жаңа қаулы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+				<sentence mode="on" keyword='Поле "Наименование постановления" не заполнено.'>
+		<entry lang="KAZ">"Қаулының атауы" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword='Поле "Дата регистрации" не заполнено.'>
+		<entry lang="KAZ">"Тіркеу датасы" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword='Поле "Организация" не заполнено.'>
+		<entry lang="KAZ">"Мекеме" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+				<sentence mode="on" keyword="Новый договор">
+		<entry lang="KAZ">Жаңа келісім-шарт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Наименование договора">
+		<entry lang="KAZ">Келісім-шарттың атауы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Дата истечения срока договора">
+		<entry lang="KAZ">Келісім-шарт мерзімінің аяқталу датасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+				<sentence mode="on" keyword='Поле "Наименование договора" не заполнено.'>
+		<entry lang="KAZ">"Келісім-шарттың атауы" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword='Поле "Дата истечения срока договора" не заполнено.'>
+		<entry lang="KAZ">"Келісім-шарт мерзімінің аяқталу датасы" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Уведомление отправлено">
+		<entry lang="KAZ">Хабарлама жіберілді</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Уведомить об окончании действия договора">
+		<entry lang="KAZ">Келісім-шарттың аяқталуы туралы хабарлау</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Архив">
+		<entry lang="KAZ">Мұрағат</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Прочее">
+		<entry lang="KAZ">Басқалары</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Сформировать документ в pdf">
+		<entry lang="KAZ">Құжатты pdf-ке шығару</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить акт">
+		<entry lang="KAZ">Акт қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Наименование">
+		<entry lang="KAZ">Атауы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить новую мебель">
+		<entry lang="KAZ">Жаңа жиһаз қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Наименование" не заполнено.'>
+		<entry lang="KAZ">"Атауы" жолы толтырылмады.</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword='Поле "Первоначальная стоимость" не заполнено.'>
+		<entry lang="KAZ">"Бастапқы құны" жолы толтырылмады</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить прочее">
+		<entry lang="KAZ">Басқаларын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить новый спорт. инвентарь">
+		<entry lang="KAZ">Жаңа спорт. инвентарь қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить новое животное">
+		<entry lang="KAZ">Жаңа жануар қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить школьное оборудование">
+		<entry lang="KAZ">Мектеп құрал-жабдығын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить офисное оборудование">
+		<entry lang="KAZ">Кеңсе құрал-жабдығын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить компьютерное оборудование">
+		<entry lang="KAZ">Компьютер құрал-жабдығын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить медицинское оборудование">
+		<entry lang="KAZ">Медицина құрал-жабдығын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить кухонное оборудование">
+		<entry lang="KAZ">Асүй құрал-жабдығын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить оборудование гражданской обороны">
+		<entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить государственные пакеты акций">
+		<entry lang="KAZ">Мемлекеттік акциялар пакетін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Номинальная стоимость">
+		<entry lang="KAZ">Атаулы құны</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Форма акций">
+		<entry lang="KAZ">Акцияның формасы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Вид акций">
+		<entry lang="KAZ">Акцияның түрі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Реестродержатель">
+		<entry lang="KAZ">Тізім иесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить долевое участие в ТОО">
+		<entry lang="KAZ">ЖШС-гі үлесін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить здание">
+		<entry lang="KAZ">Ғимарат қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить строение">
+		<entry lang="KAZ">Құрылыс қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить жилой объект">
+		<entry lang="KAZ">Тұрғын үй объектісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить земельный участок">
+		<entry lang="KAZ">Жер телімін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить памятник истории(культуры)">
+		<entry lang="KAZ">Тарих (мәдениет) ескерткішін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить легковой автомобиль">
+		<entry lang="KAZ">Жеңіл автокөлік қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить грузовой автомобиль">
+		<entry lang="KAZ">Жүк тасымалдағыш автокөлік қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить дежурный транспорт">
+		<entry lang="KAZ">Кезекші транспорт қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить служебный транспорт">
+		<entry lang="KAZ">Қызметтік транспорт қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить санитарный транспорт">
+		<entry lang="KAZ">Санитарлық транспорт қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить автобус">
+		<entry lang="KAZ">Автобус қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить троллейбус">
+		<entry lang="KAZ">Троллейбус қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить трамвай">
+		<entry lang="KAZ">Трамвай қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить водный транспорт">
+		<entry lang="KAZ">Су транспортын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить такси">
+		<entry lang="KAZ">Такси қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить специальную технику">
+		<entry lang="KAZ">Арнайы техника қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить мотоцикл">
+		<entry lang="KAZ">Мотоцикл қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Гос №">
+		<entry lang="KAZ">Мем №</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="№ тех. паспорта">
+		<entry lang="KAZ">Тех. құжат №</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Отличное">
+		<entry lang="KAZ">Өте жақсы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Хорошее">
+		<entry lang="KAZ">Жақсы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Удовлетворительное">
+		<entry lang="KAZ">Қанағаттанарлық</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить объект фонда">
+		<entry lang="KAZ">Қор объектісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить бомбоубежище">
+		<entry lang="KAZ">Бомбадан сақтанатын жер қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить завод">
+		<entry lang="KAZ">Зауыт қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить комбинат">
+		<entry lang="KAZ">Комбинат қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Добавить аэропорт">
+		<entry lang="KAZ">Әуежай қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить надземный(подземный) переход">
+		<entry lang="KAZ">Жер үсті мен асты өткелдерін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить биллборд">
+		<entry lang="KAZ">Биллборд қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить электрический столб">
+		<entry lang="KAZ">Электр бағанасын қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить электрическую сеть">
+		<entry lang="KAZ">Электр желісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить тепловую сеть">
+		<entry lang="KAZ">Жылу желісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить газовую сеть">
+		<entry lang="KAZ">Газ желісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить водопровод(канализацию)">
+		<entry lang="KAZ">Сутартқыш және кәріз желісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить арычную сеть">
+		<entry lang="KAZ">Арық желісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить дорогу">
+		<entry lang="KAZ">Жол қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Добавить парковку">
+		<entry lang="KAZ">Көлік тұрақ қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Описание">
+		<entry lang="KAZ">Сипаттама</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Наименование акта">
+		<entry lang="KAZ">Акттың атауы</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Наименование акта" не заполнено.'>
+		<entry lang="KAZ">"Акттың атауы" жолы толтырылмады.</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Новый акт">
+		<entry lang="KAZ">Жаңа акт</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Время прочтения">
+		<entry lang="KAZ">Оқу уақыты</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Отчет оборудование">
+		<entry lang="KAZ">Құрал-жабдық есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Отчет недвижимое имущество">
+		<entry lang="KAZ">Жылжымайтын мүлік есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Отчет объекты инженерной инфраструктуры">
+		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Отчет платежный календарь">
+		<entry lang="KAZ">Төлем күнтізбесі есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Отчет транспорт">
+		<entry lang="KAZ">Транспорт есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+			<sentence mode="on" keyword="Отчет стратегические объекты">
+		<entry lang="KAZ">Стратегиялық объектілер есептемесі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Номер договора">
+		<entry lang="KAZ">Келісім-шарттың нөмірі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Объект">
+		<entry lang="KAZ">Объект</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Техническое состояние объекта на момент сдачи">
+		<entry lang="KAZ">Тапсыру мезетіндегі объектінің техникалық күйі</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Дата регистрации акта">
+		<entry lang="KAZ">Актіні тіркеу күні</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Сдал: Должность, Ф.И.О">
+		<entry lang="KAZ">Тапсырды: Лауазымы, Аты-жөні</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="Принял: Должность, Ф.И.О">
+		<entry lang="KAZ">Қабылдады: Лауазымы, Аты-жөні</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Техническое состояние объекта на момент сдачи" не заполнено.'>
+		<entry lang="KAZ">"Тапсыру мезетіндегі объектінің техникалық күйі" жолы толтырылмады.</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword='Поле "Дата регистрации акта" не заполнено.'>
+		<entry lang="KAZ">"Актіні тіркеу күні" жолы толтырылмады.</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword='Поле "Сдал" не заполнено.'>
+		<entry lang="KAZ">"Тапсырды" жолы толтырылмады.</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword='Поле "Принял" не заполнено.'>
+		<entry lang="KAZ">"Қабылдады" жолы толтырылмады.</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="Добавить акт приема-передачи">
+		<entry lang="KAZ">Қабылдау-тапсыру актісін қосу</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="">
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="">
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="">
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="">
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="">
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="">
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+</vocabulary>
+
+

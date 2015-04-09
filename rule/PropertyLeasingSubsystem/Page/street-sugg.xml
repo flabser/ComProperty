@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="page" id="street-sugg" mode="on" history="off">
+	<description>Поиск улиц</description>
+	<caching>NO_CACHING</caching>
+	<element mode="ON" type="SCRIPT">
+		<name>view_content</name>
+		<events>
+			<doscript source="file">page.leasing_DocsList.street_sugg</doscript>
+		</events>
+	</element>
+</rule>

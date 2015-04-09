@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="page" id="activate_contractor" mode="on" history="off" >
+	<description></description>
+	<caching>NO_CACHING</caching>
+    <element mode="ON" type="SCRIPT">
+        <name>script_processor</name>
+        <events>
+            <doscript source="file">structure.page.activatecontractor.DoScript</doscript>
+        </events>
+    </element>
+</rule>
