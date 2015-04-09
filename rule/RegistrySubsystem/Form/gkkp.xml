@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="form" id="gkkp" mode="on">
+	<description>Казённые Предприятия</description>
+	<xsltfile>forms/organization.xsl</xsltfile>
+	<doctype>main</doctype>
+	<events>
+		<queryopen source="file">form.gkkp.QueryOpen</queryopen>
+		<querysave source="file">form.gkkp.QuerySave</querysave>
+	</events> 
+	<caption name="close" source="KEYWORD">Закрыть</caption>
+	<caption name="properties" source="KEYWORD">Свойства</caption>
+	<caption name="attachments" source="KEYWORD">Вложения</caption>
+	<caption name="content" source="KEYWORD">Содержание</caption>
+	<caption name="date" source="KEYWORD">дата</caption>
+	<caption name="control" source="KEYWORD">Контроль</caption>
+	<caption name="saved" source="KEYWORD">Сохраненный</caption>
+	<caption name="newdoc" source="KEYWORD">Новый документ</caption>
+	<caption name="editing" source="KEYWORD">Редактирование</caption>
+	<caption name="readonly" source="KEYWORD">Только для чтения</caption>
+	<caption name="modenotdefined" source="KEYWORD">Режим не определен</caption>
+	<caption name="delattach" source="KEYWORD">Удалить</caption>
+	<caption name="openattach" source="KEYWORD">Открыть</caption>
+	<caption name="briefcontent" source="KEYWORD">Краткое содержание</caption>
+	<caption name="logout" source="KEYWORD">Завершить работу</caption>
+	<caption name="cancel" source="KEYWORD">Отмена</caption>
+	<caption name="changeview" source="KEYWORD">Изменить вид</caption>
+	<caption name="commentcaption" source="KEYWORD">Комментарий</caption>
+	<caption name="searchcaption" source="KEYWORD">поиск</caption>
+	<caption name="files" source="KEYWORD">Регистрационные документы</caption>
+	<caption name="additional" source="KEYWORD">Дополнительно</caption>
+	<caption name="statusdoc" source="KEYWORD">Состояние документа</caption>
+	<caption name="permissions" source="KEYWORD">Права доступа</caption>
+	<caption name="infofread" source="KEYWORD">Информация о прочтении</caption>
+	<caption name="infofreaders" source="KEYWORD">Кем прочтен</caption>
+	<caption name="new" source="KEYWORD">Новое</caption>
+	<caption name="category" source="KEYWORD">Категория</caption>
+	<caption name="help" source="KEYWORD">Помощь</caption>
+	<caption name="documentsavedcaption" source="KEYWORD">Документ сохранен</caption>
+	<caption name="documentmarkread" source="KEYWORD">Документ отмечен как прочтенный</caption>
+	<caption name="taskvn" source="KEYWORD">Номер</caption>
+	<caption name="status" source="KEYWORD">Статус</caption>
+	<caption name="dvn" source="KEYWORD">от</caption>
+	<caption name="author" source="KEYWORD">Автор</caption>
+	<caption name="comment" source="KEYWORD">Примечание</caption>
+	<caption name="saving" source="KEYWORD">Сохранение</caption>
+	<caption name="showfilename" source="KEYWORD">Укажите имя файла для вложения</caption>
+	<caption name="addcomment" source="KEYWORD">Добавить комментарий к вложению?</caption>
+	<caption name="warning" source="KEYWORD">Предупреждение</caption>
+	<caption name="whomread" source="KEYWORD">Кем прочтен</caption>
+	<caption name="timeofreading" source="KEYWORD">Время прочтения</caption>
+	<caption name="attention" source="KEYWORD">Внимание</caption>
+	<caption name="add_comment" source="KEYWORD">Добавить комментарий</caption>
+	<caption name="delete_file" source="KEYWORD">Удалить файл</caption>
+	<caption name="comments" source="KEYWORD">комментарий</caption>
+	<caption name ="view_userprofile" source ="KEYWORD">Посмотреть свойства текущего пользователя</caption>
+	
+	<caption name ="orgfullname" source ="KEYWORD">Полное наименование учреждения</caption>
+	<caption name ="orgfullnamekaz" source ="KEYWORD">Наименование учреждения на казахском языке</caption>
+	<caption name ="fulllegaladdress" source ="KEYWORD">Полный юридический  адрес</caption>
+	<caption name ="fullactualaddress" source ="KEYWORD">Полный фактический адрес</caption>
+	<caption name ="phone" source ="KEYWORD">Контактные телефоны</caption>
+	<caption name ="fax" source ="KEYWORD">Факс</caption>
+	<caption name ="email" source ="KEYWORD">Электронный адрес</caption>
+	<caption name ="bin" source ="KEYWORD">БИН (ИИН)</caption>
+	<caption name ="rukfullname" source ="KEYWORD">Ф.И.О руководителя</caption>
+	<caption name ="glavbuhfullname" source ="KEYWORD">Ф.И.О главного бухгалтера</caption>
+	<caption name ="okpo" source ="KEYWORD">Идентификационный код по ОКПО</caption>
+	<caption name ="oked" source ="KEYWORD">Вид деятельности по ОКЭД</caption>
+	<caption name ="orgregdate" source ="KEYWORD">Дата гос. регистрации</caption>
+	<caption name ="orgregnumber" source ="KEYWORD">Номер гос. регистрации</caption>
+	<caption name ="regdateorder" source ="KEYWORD">Дата постановления РК о создании (реорганизации)</caption>
+	<caption name ="numberorder" source ="KEYWORD">Номер постановления РК о создании (реорганизации)</caption>
+	<caption name ="typeactivity" source ="KEYWORD">Вид деятельности в соответствии с учредительными документами</caption>
+	<caption name ="stuffcount" source ="KEYWORD">Численность штата</caption>
+	<caption name ="privilege" source ="KEYWORD">Льгота</caption>
+	
+	
+	
+	
+	<caption name ="namerus" source ="KEYWORD">Наименование Гос. учреждения (рус.)</caption>
+	<caption name ="namekaz" source ="KEYWORD">Наименование Гос. учреждения (каз.)</caption>
+	<caption name ="invnumber" source ="KEYWORD">Инвентарный номер</caption>
+	<caption name ="description" source ="KEYWORD">Описание объекта</caption>
+	<caption name ="propertycode" source ="KEYWORD">Код права на имущество</caption>
+	<caption name ="acceptancedate" source ="KEYWORD">Дата принятия на баланс</caption>
+	<caption name ="address" source ="KEYWORD">Адрес места нахождения объекта</caption>
+	<caption name ="region" source ="KEYWORD">Область</caption>
+	<caption name ="city" source ="KEYWORD">Город</caption>
+	<caption name ="district" source ="KEYWORD">Район</caption>
+	<caption name ="street" source ="KEYWORD">Улица</caption>
+	<caption name ="home" source ="KEYWORD">Дом</caption>
+	<caption name ="appartament" source ="KEYWORD">Квартира</caption>
+	<caption name ="regdoc" source ="KEYWORD">Регистрационные документы</caption>
+	<caption name ="originalcost" source ="KEYWORD">Первоначальная стоимость</caption>
+	<caption name ="estimatedcost" source ="KEYWORD">Оценочная стоимость</caption>
+	<caption name ="residualcost" source ="KEYWORD">Остаточная стоимость</caption>
+	<caption name ="receiptbasisingproperty" source ="KEYWORD">Основание поступления в Гос. собственность</caption>
+	<caption name ="receiptbasisinbalance" source ="KEYWORD">Основание поступления на баланс</caption>
+	<caption name ="cumulativedepreciation" source ="KEYWORD">Накопленная амортизация</caption>
+	<caption name ="deterioration" source ="KEYWORD">Износ</caption>
+	<caption name ="repair" source ="KEYWORD">Ремонт</caption>
+	
+	<caption name ="orderofremovalfrombalance" source ="KEYWORD">Основание снятия с баланса</caption>
+	<caption name ="сhangeoriginalcost" source ="KEYWORD">Изменение первоначальной стоимости</caption>
+	<caption name ="capital" source ="KEYWORD">Капитальный</caption>
+	<caption name ="reconstruction" source ="KEYWORD">Реконструкция</caption>
+	<caption name ="depreciating" source ="KEYWORD">Обесценение</caption>
+	<caption name ="overloadingexistence" source ="KEYWORD">Наличие обременения</caption>
+	<caption name ="pledge" source ="KEYWORD">Залог</caption>
+	<caption name ="arrestingbyacourtdecision" source ="KEYWORD">Арест по решению суда</caption>
+	<caption name ="legalclaim" source ="KEYWORD">Юридическое притязание</caption>
+	
+	<caption name ="indexinvestments" source ="KEYWORD">Показатели инвестиций</caption>
+	<caption name ="profitability" source ="KEYWORD">Рентабельность</caption>
+	<caption name ="laborproductivity" source ="KEYWORD">Производительность труда</caption>
+    <caption name ="for_reg" source ="KEYWORD">Для регистрации</caption>
+	
+	<glossary mode="on" id="oked" source="query">
+		<description>Вид деятельности ОКЭД</description>
+		<value>oked</value>
+	</glossary>
+	<glossary mode="on" id="kvd" source="query">
+		<description>Вид деятельности нанимателя</description>
+		<value>kvd</value>
+	</glossary>
+</rule>

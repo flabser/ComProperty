@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><rule id="Structure" mode="on" type="global">
+	<description>Структура</description>
+	<orgname>ТОО "Avanti"</orgname>
+	<liccount>100</liccount>
+	<logo>structure_small.png</logo>
+	<database autodeploy="ON">
+		<name>Structure</name>
+        <driver>org.postgresql.Driver</driver>
+        <url>jdbc:postgresql://localhost/PropertyObjects</url>
+        <username/>
+        <password/>
+<!--		<driver>net.sourceforge.jtds.jdbc.Driver</driver>
+		<url>jdbc:jtds:sqlserver://172.16.251.8:1433/WTS_NEW</url>
+		<username/>
+		<password/>
+	<connectionid>Ly0jeQIUf0k=@@@5UA3t6yvILpWlHp+lZnkKg==</connectionid>-->
+    <connectionid>xDlS6QholpWL/yUMyHxuOw==@@@IFcZh7bmHeE=</connectionid></database>
+	<daemons>
+		<cyclecontrol>
+			<scheduler>
+				<mininterval daysofweek="WORKWEEK,">360</mininterval>
+			</scheduler>
+		</cyclecontrol>
+		<timewaiting>
+			<scheduler>
+				<mininterval daysofweek="WORKWEEK,">360</mininterval>
+			</scheduler>
+		</timewaiting>
+		<recalculator>
+			<scheduler>
+				<mininterval daysofweek="WORKWEEK,">360</mininterval>
+			</scheduler>
+		</recalculator>
+	</daemons>
+	<entrypoint>Provider?type=static&amp;id=start</entrypoint>
+    <defaultredirecturl>Provider?type=page&amp;id=structure</defaultredirecturl>
+	<langs>
+		<entry id="RUS" isprimary="1">Русский</entry>
+		<entry id="KAZ">Казакша</entry>
+		<!-- <entry id="ENG">English</entry> -->
+		<!-- <entry id="CHN">中国</entry> -->
+	</langs>
+	<skins>
+		<entry default="on" id="classic" path="./webapps/Structure/classic/xsl">Classic</entry>
+	</skins>
+	<roles>
+		<entry id="administrator"/>		
+	</roles>
+	<markdelaysec>5</markdelaysec>
+
+	<eds mode="OFF">
+		<keypass/>
+		<keystore/>
+	</eds>
+
+</rule>

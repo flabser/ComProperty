@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="form" id="engineeringInfrastructure_report" mode="on">
+	<description>Отчеты - Объекты инженерной инфраструктуры</description>
+	<xsltfile>forms/engineeringInfrastructure_report.xsl</xsltfile>
+	<doctype>main</doctype>
+	<!-- <events>
+		<queryopen source="file">form.airport.QueryOpen</queryopen>
+		<querysave source="file">form.airport.QuerySave</querysave>
+	</events>  -->
+	<caption name="close" source="KEYWORD">Закрыть</caption>
+	<caption name="properties" source="KEYWORD">Свойства</caption>
+	<caption name="attachments" source="KEYWORD">Вложения</caption>
+	<caption name="content" source="KEYWORD">Содержание</caption>
+	<caption name="date" source="KEYWORD">дата</caption>
+	<caption name="control" source="KEYWORD">Контроль</caption>
+	<caption name="saved" source="KEYWORD">Сохраненный</caption>
+	<caption name="newdoc" source="KEYWORD">Новый документ</caption>
+	<caption name="editing" source="KEYWORD">Редактирование</caption>
+	<caption name="readonly" source="KEYWORD">Только для чтения</caption>
+	<caption name="modenotdefined" source="KEYWORD">Режим не определен</caption>
+	<caption name="delattach" source="KEYWORD">Удалить</caption>
+	<caption name="openattach" source="KEYWORD">Открыть</caption>
+	<caption name="briefcontent" source="KEYWORD">Краткое содержание</caption>
+	<caption name="logout" source="KEYWORD">Завершить работу</caption>
+	<caption name="cancel" source="KEYWORD">Отмена</caption>
+	<caption name="changeview" source="KEYWORD">Изменить вид</caption>
+	<caption name="commentcaption" source="KEYWORD">Комментарий</caption>
+	<caption name="searchcaption" source="KEYWORD">поиск</caption>
+	<caption name="files" source="KEYWORD">Регистрационные документы</caption>
+	<caption name="additional" source="KEYWORD">Дополнительно</caption>
+	<caption name="statusdoc" source="KEYWORD">Состояние документа</caption>
+	<caption name="permissions" source="KEYWORD">Права доступа</caption>
+	<caption name="infofread" source="KEYWORD">Информация о прочтении</caption>
+	<caption name="infofreaders" source="KEYWORD">Кем прочтен</caption>
+	<caption name="new" source="KEYWORD">Новое</caption>
+	<caption name="category" source="KEYWORD">Категория</caption>
+	<caption name="help" source="KEYWORD">Помощь</caption>
+	<caption name="documentsavedcaption" source="KEYWORD">Документ сохранен</caption>
+	<caption name="documentmarkread" source="KEYWORD">Документ отмечен как прочтенный</caption>
+	<caption name="taskvn" source="KEYWORD">Номер</caption>
+	<caption name="status" source="KEYWORD">Статус</caption>
+	<caption name="dvn" source="KEYWORD">от</caption>
+	<caption name="author" source="KEYWORD">Автор</caption>
+	<caption name="comment" source="KEYWORD">Примечание</caption>
+	<caption name="saving" source="KEYWORD">Сохранение</caption>
+	<caption name="showfilename" source="KEYWORD">Укажите имя файла для вложения</caption>
+	<caption name="addcomment" source="KEYWORD">Добавить комментарий к вложению?</caption>
+	<caption name="warning" source="KEYWORD">Предупреждение</caption>
+	<caption name="whomread" source="KEYWORD">Кем прочтен</caption>
+	<caption name="timeofreading" source="KEYWORD">Время прочтения</caption>
+	<caption name="attention" source="KEYWORD">Внимание</caption>
+	<caption name="add_comment" source="KEYWORD">Добавить комментарий</caption>
+	<caption name="delete_file" source="KEYWORD">Удалить файл</caption>
+	<caption name="comments" source="KEYWORD">комментарий</caption>
+	<caption name ="view_userprofile" source ="KEYWORD">Посмотреть свойства текущего пользователя</caption>
+	<caption name ="bin" source ="KEYWORD">БИН Коммунальных Гос. учреждений</caption>
+	<caption name ="namerus" source ="KEYWORD">Наименование Гос. учреждения (рус.)</caption>
+	<caption name ="namekaz" source ="KEYWORD">Наименование Гос. учреждения (каз.)</caption>
+	<caption name ="invnumber" source ="KEYWORD">Инвентарный номер</caption>
+	<caption name ="description" source ="KEYWORD">Описание объекта</caption>
+	<caption name ="propertycode" source ="KEYWORD">Код права на имущество</caption>
+	<caption name ="acceptancedate" source ="KEYWORD">Дата принятия на баланс</caption>
+	<caption name ="address" source ="KEYWORD">Адрес места нахождения объекта</caption>
+	<caption name ="region" source ="KEYWORD">Область</caption>
+	<caption name ="city" source ="KEYWORD">Город</caption>
+	<caption name ="district" source ="KEYWORD">Район</caption>
+	<caption name ="street" source ="KEYWORD">Улица</caption>
+	<caption name ="home" source ="KEYWORD">Дом</caption>
+	<caption name ="appartament" source ="KEYWORD">Квартира</caption>
+	<caption name ="regdoc" source ="KEYWORD">Регистрационные документы</caption>
+	<caption name ="originalcost" source ="KEYWORD">Первоначальная стоимость</caption>
+	<caption name ="estimatedcost" source ="KEYWORD">Оценочная стоимость</caption>
+	<caption name ="residualcost" source ="KEYWORD">Остаточная стоимость</caption>
+	<caption name ="receiptbasisingproperty" source ="KEYWORD">Основание поступления в Гос. собственность</caption>
+	<caption name ="receiptbasisinbalance" source ="KEYWORD">Основание поступления на баланс</caption>
+	<caption name ="cumulativedepreciation" source ="KEYWORD">Накопленная амортизация</caption>
+	<caption name ="deterioration" source ="KEYWORD">Износ</caption>
+	<caption name ="repair" source ="KEYWORD">Ремонт</caption>
+	
+	<caption name ="totalarea" source ="KEYWORD">Общая площадь</caption>
+	<caption name ="landarea" source ="KEYWORD">Площадь земельного участка</caption>
+	<caption name ="material" source ="KEYWORD">Материал постройки</caption>
+	<caption name ="yearconstruction" source ="KEYWORD">Год постройки</caption>
+
+	<caption name ="orderofremovalfrombalance" source ="KEYWORD">Основание снятия с баланса</caption>
+	<caption name ="сhangeoriginalcost" source ="KEYWORD">Изменение первоначальной стоимости</caption>
+	<caption name ="capital" source ="KEYWORD">Капитальный</caption>
+	<caption name ="reconstruction" source ="KEYWORD">Реконструкция</caption>
+	<caption name ="depreciating" source ="KEYWORD">Обесценение</caption>
+	
+	<caption name ="ktr" source ="KEYWORD">Территориальное расположение объекта</caption>
+	<caption name ="balanceholder" source ="KEYWORD">Балансодержатель</caption>
+	
+	<caption name ="from" source ="KEYWORD">c</caption>
+	<caption name ="to" source ="KEYWORD">по</caption>
+	<caption name ="reportfiletype" source ="KEYWORD">Тип файла отчета</caption>
+	<caption name ="propertytype" source ="KEYWORD">Тип имущества</caption>
+	<caption name ="fillingreport" source ="KEYWORD">Сформировать отчет</caption>
+	<caption name ="billboard" source ="KEYWORD">Биллборды</caption>
+	<caption name ="columns" source ="KEYWORD">Электрические столбы</caption>
+	<caption name ="electricnetworks" source ="KEYWORD">Электрические сети</caption>
+	<caption name ="thermalnetworks" source ="KEYWORD">Тепловые сети</caption>
+	<caption name ="gas" source ="KEYWORD">Газовые сети</caption>
+	<caption name ="watersystem" source ="KEYWORD">Водопровод и канализация</caption>
+	<caption name ="drain" source ="KEYWORD">Арычные сети</caption>
+	<caption name ="road" source ="KEYWORD">Дороги</caption>
+	<caption name ="parking" source ="KEYWORD">Парковки</caption>
+	<glossary mode="on" id="region" source="query">
+		<description>Область</description>
+		<value>region</value>
+	</glossary>
+	<glossary mode="on" id="city" source="query">
+		<description>Город</description>
+		<value>city</value>
+	</glossary>
+	<glossary mode="on" id="district" source="query">
+		<description>Район</description>
+		<value>district</value>
+	</glossary>
+	<glossary mode="on" id="propertycode" source="query">
+		<description>Код права на имущество</description>
+		<value>propertycode</value>
+	</glossary>
+</rule>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="form" id="schoolequipment" mode="on">
+	<description>Оборудование - Школьное оборудование</description>
+	<xsltfile>forms/schoolequipment.xsl</xsltfile>
+	<doctype>main</doctype>
+	<events>
+		<queryopen source="file">tender.form.schoolequipment.QueryOpen</queryopen>
+		<querysave source="file">tender.form.schoolequipment.QuerySave</querysave>
+	</events> 
+	<caption name="close" source="KEYWORD">Закрыть</caption>
+	<caption name="properties" source="KEYWORD">Свойства</caption>
+	<caption name="attachments" source="KEYWORD">Вложения</caption>
+	<caption name="content" source="KEYWORD">Содержание</caption>
+	<caption name="date" source="KEYWORD">дата</caption>
+	<caption name ="objectname" source ="KEYWORD">Наименование</caption>
+	<caption name="saved" source="KEYWORD">Сохраненный</caption>
+	<caption name="newdoc" source="KEYWORD">Новый документ</caption>
+	<caption name="editing" source="KEYWORD">Редактирование</caption>
+	<caption name="readonly" source="KEYWORD">Только для чтения</caption>
+	<caption name="modenotdefined" source="KEYWORD">Режим не определен</caption>
+	<caption name="delattach" source="KEYWORD">Удалить</caption>
+	<caption name="openattach" source="KEYWORD">Открыть</caption>
+	<caption name="briefcontent" source="KEYWORD">Краткое содержание</caption>
+	<caption name="logout" source="KEYWORD">Завершить работу</caption>
+	<caption name="cancel" source="KEYWORD">Отмена</caption>
+	<caption name="changeview" source="KEYWORD">Изменить вид</caption>
+	<caption name="commentcaption" source="KEYWORD">Комментарий</caption>
+	<caption name="searchcaption" source="KEYWORD">поиск</caption>
+	<caption name="files" source="KEYWORD">Регистрационные документы</caption>
+	<caption name="additional" source="KEYWORD">Дополнительно</caption>
+	<caption name="statusdoc" source="KEYWORD">Состояние документа</caption>
+	<caption name="permissions" source="KEYWORD">Права доступа</caption>
+	<caption name="infofread" source="KEYWORD">Информация о прочтении</caption>
+	<caption name="infofreaders" source="KEYWORD">Кем прочтен</caption>
+	<caption name="new" source="KEYWORD">Новое</caption>
+	<caption name="category" source="KEYWORD">Категория</caption>
+	<caption name="help" source="KEYWORD">Помощь</caption>
+	<caption name="documentsavedcaption" source="KEYWORD">Документ сохранен</caption>
+	<caption name="documentmarkread" source="KEYWORD">Документ отмечен как прочтенный</caption>
+	<caption name="taskvn" source="KEYWORD">Номер</caption>
+	<caption name="status" source="KEYWORD">Статус</caption>
+	<caption name="dvn" source="KEYWORD">от</caption>
+	<caption name="author" source="KEYWORD">Автор</caption>
+	<caption name="comment" source="KEYWORD">Примечание</caption>
+	<caption name="saving" source="KEYWORD">Сохранение</caption>
+	<caption name="showfilename" source="KEYWORD">Укажите имя файла для вложения</caption>
+	<caption name="addcomment" source="KEYWORD">Добавить комментарий к вложению?</caption>
+	<caption name="warning" source="KEYWORD">Предупреждение</caption>
+	<caption name="whomread" source="KEYWORD">Кем прочтен</caption>
+	<caption name="timeofreading" source="KEYWORD">Время прочтения</caption>
+	<caption name="attention" source="KEYWORD">Внимание</caption>
+	<caption name="add_comment" source="KEYWORD">Добавить комментарий</caption>
+	<caption name="delete_file" source="KEYWORD">Удалить файл</caption>
+	<caption name="comments" source="KEYWORD">комментарий</caption>
+	<caption name ="view_userprofile" source ="KEYWORD">Посмотреть свойства текущего пользователя</caption>
+	<caption name ="bin" source ="KEYWORD">БИН Коммунальных Гос. учреждений</caption>
+	<caption name ="namerus" source ="KEYWORD">Наименование Гос. учреждения (рус.)</caption>
+	<caption name ="namekaz" source ="KEYWORD">Наименование Гос. учреждения (каз.)</caption>
+	<caption name ="invnumber" source ="KEYWORD">Инвентарный номер</caption>
+	<caption name ="description" source ="KEYWORD">Описание объекта</caption>
+	<caption name ="propertycode" source ="KEYWORD">Код права на имущество</caption>
+	<caption name ="acceptancedate" source ="KEYWORD">Дата принятия на баланс</caption>
+	<caption name ="address" source ="KEYWORD">Адрес места нахождения объекта</caption>
+	<caption name ="region" source ="KEYWORD">Область</caption>
+	<caption name ="city" source ="KEYWORD">Город</caption>
+	<caption name ="district" source ="KEYWORD">Район</caption>
+	<caption name ="street" source ="KEYWORD">Улица</caption>
+	<caption name ="home" source ="KEYWORD">Дом</caption>
+	<caption name ="appartament" source ="KEYWORD">Квартира</caption>
+	<caption name ="regdoc" source ="KEYWORD">Регистрационные документы</caption>
+	<caption name ="originalcost" source ="KEYWORD">Первоначальная стоимость</caption>
+	<caption name ="balancecost" source ="KEYWORD">Балансовая стоимость</caption>
+	<caption name ="estimatedcost" source ="KEYWORD">Оценочная стоимость</caption>
+	<caption name ="residualcost" source ="KEYWORD">Остаточная стоимость</caption>
+	<caption name ="receiptbasisingproperty" source ="KEYWORD">Основание поступления в Гос. собственность</caption>
+	<caption name ="receiptbasisinbalance" source ="KEYWORD">Основание поступления на баланс</caption>
+	<caption name ="cumulativedepreciation" source ="KEYWORD">Накопленная амортизация</caption>
+	<caption name ="deterioration" source ="KEYWORD">Износ</caption>
+	<caption name ="repair" source ="KEYWORD">Ремонт</caption>
+	
+	<caption name ="model" source ="KEYWORD">Модель</caption>
+	<caption name ="color" source ="KEYWORD">Цвет</caption>
+	<caption name ="amount" source ="KEYWORD">Количество</caption>
+	<caption name ="power" source ="KEYWORD">Мощность</caption>
+	<caption name ="yearrelease" source ="KEYWORD">Год выпуска</caption>
+	
+	<caption name ="orderofremovalfrombalance" source ="KEYWORD">Основание снятия с баланса</caption>
+	<caption name ="сhangeoriginalcost" source ="KEYWORD">Изменение первоначальной стоимости</caption>
+	<caption name ="capital" source ="KEYWORD">Капитальный</caption>
+	<caption name ="reconstruction" source ="KEYWORD">Реконструкция</caption>
+	<caption name ="depreciating" source ="KEYWORD">Обесценение</caption>
+	<caption name ="overloadingexistence" source ="KEYWORD">Наличие обременения</caption>
+	<caption name ="pledge" source ="KEYWORD">Залог</caption>
+	<caption name ="arrestingbyacourtdecision" source ="KEYWORD">Арест по решению суда</caption>
+	<caption name ="legalclaim" source ="KEYWORD">Юридическое притязание</caption>
+	<caption name ="balanceholder" source ="KEYWORD">Балансодержатель</caption>
+	
+	
+	<caption name ="limitdepreciation" source ="KEYWORD">Предельная норма амортизации</caption>
+	<caption name ="limitdepreciationtitle" source ="KEYWORD">Введите предельную норму амортизации в % (Значение от 0 до 100)</caption>
+	<caption name ="invnumbertitle" source ="KEYWORD">Введите инвентарный номер. Если значение поля «Количество» больше одного, введите инвентарные номера каждого объекта через «;»</caption>
+	<caption name ="objectnametitle" source ="KEYWORD">Введите наименование оборудования</caption>
+	<caption name ="descriptiontitle" source ="KEYWORD">Введите спецификацию(описание) объекта</caption>
+	<caption name ="amounttitle" source ="KEYWORD">Введите кол-во однотипных объектов (1,2,3,4,5…)</caption>
+	<caption name ="originalcosttitle" source ="KEYWORD">Введите стартовую(первоначальную) стоимость объекта</caption>
+	<caption name ="balancecosttitle" source ="KEYWORD">Введите балансовую стоимость объекта</caption>
+	<caption name ="estimatedcosttitle" source ="KEYWORD">Введите рыночную стоимость объекта</caption>
+	<caption name ="residualcosttitle" source ="KEYWORD">Введите сумму остаточной стоимости</caption>
+	<caption name ="receiptbasisingpropertytitle" source ="KEYWORD">Укажите документы, на основании которых объект поступил в Гос. Собственность</caption>
+	<caption name ="receiptbasisinbalancetitle" source ="KEYWORD">Укажите документы, на основании которых  объект поступил на баланс</caption>
+	<caption name ="orderofremovalfrombalancetitle" source ="KEYWORD">Укажите документы, на основании  которых объект был снят с баланса</caption>
+	<caption name ="modeltitle" source ="KEYWORD">Укажите модель объекта</caption>
+	<caption name ="colortitle" source ="KEYWORD">Укажите цвет объекта</caption>
+	<caption name ="depreciatingtitle" source ="KEYWORD">Укажите процент обесценения</caption>
+	<caption name ="cumulativedepreciationtitle" source ="KEYWORD">Введите значение накопленной амортизации</caption>
+	<caption name ="deteriorationtitle" source ="KEYWORD">Укажите процент износа</caption>
+
+	<caption name ="quantitypassengerseatstitle" source ="KEYWORD">Введите количество пассажирских мест</caption>
+	<caption name ="quantitypassengerseats_rhstitle" source ="KEYWORD">Введите разрешенное количество пассажиров в час пик</caption>
+	<caption name ="widthtitle" source ="KEYWORD">Укажите ширину объекта в милиметрах</caption>
+	<caption name ="heighttitle" source ="KEYWORD">Укажите высоту объекта в милиметрах</caption>
+	<caption name ="depthtitle" source ="KEYWORD">Укажите глубину объекта в милиметрах</caption>
+	<caption name ="yearreleasetitle" source ="KEYWORD">Укажите год выпуска в формате ГГГГ: 1993, 2005, 2012…</caption>
+
+	<caption name ="powertitle" source ="KEYWORD">Укажите мощность объекта (с указанием единицы измерения (Вт, кВт и т.д.)</caption>
+	
+	<caption name ="assignmenttitle" source ="KEYWORD">Укажите назначение объекта</caption>
+	<caption name ="countfloorstitle" source ="KEYWORD">Введите количество этажей (1,2,3,4,5…)</caption>
+	<caption name ="totalareatitle" source ="KEYWORD">Введите числовое значение (м2)</caption>
+	<caption name ="usefulareatitle" source ="KEYWORD">Введите числовое значение (м2)</caption>
+	<caption name ="landareatitle" source ="KEYWORD">Введите числовое значение (м2)</caption>
+	<caption name ="yearconstructiontitle" source ="KEYWORD">Укажите год постройки в формате ГГГГ: 1993, 2005, 2012…</caption>
+	<caption name ="сellarexistencetitle" source ="KEYWORD">Указать, если в наличии</caption>
+	
+	<caption name ="enginenumbertitle" source ="KEYWORD">Введите серийный номер двигателя</caption>
+	<caption name ="bodynumbertitle" source ="KEYWORD">Введите серийный номер кузова</caption>
+	<caption name ="grnztitle" source ="KEYWORD">Введите гос. регистрационный номер объекта. Пример: А 310 NVN, kz 032 ALA/02</caption>
+	<caption name ="srtstitle" source ="KEYWORD">Укажите номер тех. паспорта</caption>
+	<caption name ="modeltitle" source ="KEYWORD">Укажите модель объекта согласно тех. паспорта</caption>
+	<caption name ="powerenginetitle" source ="KEYWORD">Укажите мощность двигателя согласно тех. паспорта</caption>
+	<caption name ="volumeenginetitle" source ="KEYWORD">Укажите объем двигателя согласно тех. паспорта</caption>
+	<caption name ="fueltypetitle" source ="KEYWORD">Укажите вид расходуемого топлива: дизель, бензин АИ 92, АИ 95 и т.д.</caption>
+	<caption name ="expenditurefueltitle" source ="KEYWORD">Укажите значение расхода топлива</caption>
+	<caption name ="carruntitle" source ="KEYWORD">Введите наработанный километраж</caption>
+	<caption name ="normperiodmaintenancetitle" source ="KEYWORD">Укажите нормативный срок службы объекта</caption>
+	<caption name ="weightwithoutloadtitle" source ="KEYWORD">Укажите массу объекта без нагрузки</caption>
+	<caption name ="maxloadtitle" source ="KEYWORD">Укажите значение разрешенной максимальной нагрузки на объект</caption>
+	<glossary mode="on" id="region" source="query">
+		<description>Область</description>
+		<value>region</value>
+	</glossary>
+	<glossary mode="on" id="city" source="query">
+		<description>Город</description>
+		<value>city</value>
+	</glossary>
+	<glossary mode="on" id="district" source="query">
+		<description>Район</description>
+		<value>district</value>
+	</glossary>
+	<glossary mode="on" id="propertycode" source="query">
+		<description>Код права на имущество</description>
+		<value>propertycode</value>
+	</glossary>
+</rule>

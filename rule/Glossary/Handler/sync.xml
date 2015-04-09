@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><rule app="" id="sync" isvalid="true" mode="ON" type="HANDLER">
+    <description/>
+    <rununderuser source="STATIC" type="TEXT">[observer]</rununderuser>
+    <trigger>SCHEDULER</trigger>
+    <scheduler mode="ON">
+        <mininterval daysofweek="WORKWEEK">1440</mininterval>
+        <starttime>1:31</starttime>
+        <nextstart>01:07</nextstart>
+    </scheduler>
+    <events>
+        <trigger source="file">handler.sync.Trigger</trigger>
+    </events>
+</rule>
