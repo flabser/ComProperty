@@ -17,7 +17,7 @@ class DoScript extends _DoScript {
         def db = session.getCurrentDatabase()
         String keyword = formData.getEncodedValueSilently("keyword")
         def col = db.getCollectionOfGlossaries("viewtext1 ~* '$keyword'" +
-                " and (form='region' or form='city' or form='district' or form ='street')", page, 15);
+                " and form in ('region', 'city', 'district', 'street')", page, 15);
         getActionBar(session, lang);
         setContent(col)
         def keywordTag = new _Tag("keyword", keyword)
