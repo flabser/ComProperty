@@ -292,6 +292,24 @@
                                         <tr>
                                             <td class="fc"></td>
                                             <td>
+                                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=Анкета.docx" >Анкета.docx</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"></td>
+                                            <td>
+                                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=Пример_EXCEL_файла.xlsx" >Пример excel файла.xlsx</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"></td>
+                                            <td>
+                                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=инструкция по загрузки.docx" >Инструкция по загрузке.docx</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"></td>
+                                            <td>
                                                 <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=инструкция по загрузки.docx" >Инструкция по загрузке.docx</a>
                                             </td>
                                         </tr>
