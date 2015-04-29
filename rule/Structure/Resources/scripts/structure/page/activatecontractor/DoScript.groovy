@@ -24,6 +24,7 @@ class DoScript extends _DoScript{
         emp.setStatus(_EmployerStatusType.HIRED);
         emp.clearEnabledAppsList();
         emp.addEnabledApp(new _UserApplicationProfile("Accountant","0"));
+        emp.addEnabledApp(new _UserApplicationProfile("MonitoringSubsystem","0"));
         emp.setListOfRoles(["contractor#Accountant"] as String[]);
         emp.setViewText("active",2)
         emp.save()
