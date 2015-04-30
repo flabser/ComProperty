@@ -154,207 +154,325 @@
 							<div display="block"  id="property" width="100%">
 								<br/>
 	      	    				<table width="80%" border="0" style="margin-top:8px">
-				 					<tr>
-										<td class="fc">
-											<xsl:value-of select="document/captions/department/@caption"/> :
-										</td>
-										<td>
-											<table>
-												<tr>
-													<td class="td_noteditable" style="width:500px">
-														<xsl:if test="document/@editmode != 'edit'">
-															<xsl:attribute name="class">td_noteditable</xsl:attribute>
-														</xsl:if>
-														<xsl:if test="document/fields/department != '0'">
-															<xsl:value-of select="document/fields/department"/>
-														</xsl:if>&#xA0;
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>					
-									<tr>
-										<td class="fc">
-											<xsl:value-of select="document/captions/postid/@caption"/> :
-										</td>
-										<td>
-											<table>
-												<tr>
-													<td class="td_noteditable" style="width:500px">
-														<xsl:if test="document/@editmode != 'edit'">
-															<xsl:attribute name="class">td_noteditable</xsl:attribute>
-														</xsl:if>
-														<xsl:value-of select="document/fields/post"/>&#xA0;
-													</td>
-												</tr>
-											</table>
-										</td>
-						    		</tr>
-						    		<tr>
-										<td class="fc">
-											<xsl:value-of select="document/captions/shortname/@caption"/> :
-										</td>
-										<td>
-											<table>
-												<tr>
-													<td class="td_noteditable" style="width:500px">
-														<xsl:if test="document/@editmode != 'edit'">
-															<xsl:attribute name="class">td_noteditable</xsl:attribute>
-														</xsl:if>
-														<xsl:value-of select="document/fields/shortname"/>&#xA0;
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>					
-					        		<tr>
-										<td class="fc">
-											<xsl:value-of select="document/captions/fullname/@caption"/> :
-										</td>
-										<td>
-											<table>
-												<tr>
-													<td class="td_noteditable" style="width:500px">
-														<xsl:if test="document/@editmode != 'edit'">
-															<xsl:attribute name="class">td_noteditable</xsl:attribute>
-														</xsl:if>
-														<xsl:value-of select="document/fields/fullname"/>&#xA0;
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>		
-						    		<tr>
-										<td class="fc">ID :</td>
-										<td>
-											<input  style="width:500px;" class="td_editable" name="userid" value="{document/fields/userid}">
-												<xsl:if test="document/@editmode != 'edit'">
-													<xsl:attribute name="class">td_noteditable</xsl:attribute>
-												</xsl:if>
-											</input>
-										</td>
-									</tr>		
-									<tr>
-										<td class="fc"><xsl:value-of select="document/captions/oldpassword/@caption"/> :</td>
-										<td>
-											<input style="width:300px;" class="td_editable" id="oldpwd" name="oldpwd" type="password" autocomplete="off">
-												<xsl:if test="document/@editmode != 'edit'">
-													<xsl:attribute name="class">td_noteditable</xsl:attribute>
-												</xsl:if>
-											</input>
-										</td>
-									</tr>
-									<tr>
-										<td class="fc"><xsl:value-of select="document/captions/newpassword/@caption"/> :</td>
-										<td>
-											<input style="width:300px;" id="newpwd" name="pwd" type="password" class="td_editable" autocomplete="off">
-												<xsl:if test="document/@editmode != 'edit'">
-													<xsl:attribute name="class">td_noteditable</xsl:attribute>
-												</xsl:if>
-											</input>
-										</td>
-									</tr>
-									<tr>
-										<td class="fc"><xsl:value-of select="document/captions/repeatnewpassword/@caption"/> :</td>
-										<td>
-											<input style="width:300px;" id="newpwd2"  name="pwd2" type="password" class="td_editable" autocomplete="off">
-												<xsl:if test="document/@editmode != 'edit'">
-													<xsl:attribute name="class">td_noteditable</xsl:attribute>
-												</xsl:if>
-											</input>
-										</td>
-									</tr>
-									<tr>
-										<td class="fc">Instant Messenger address :</td>
-										<td>
-											<input style="width:300px" name="instmsgaddress" type="text" class="td_editable" value="{document/fields/instmsgaddress}">
-												<xsl:if test="document/@editmode != 'edit'">
-													<xsl:attribute name="class">td_noteditable</xsl:attribute>
-												</xsl:if>
-											</input>
-											<span style="vertical-align:middle;">
-												<xsl:choose>
-													<xsl:when test="document/fields/instmsgstatus = 'false'">
-														<img src="/SharedResources/img/iconset/bullet_red.png" title="Instant Messenger off"/>
-													</xsl:when>
-													<xsl:when test="document/fields/instmsgstatus = 'true'">
-														<img src="/SharedResources/img/iconset/bullet_gren.png" title="Instant Messenger on"/>
-													</xsl:when>
-													<xsl:otherwise>
-														<img src="/SharedResources/img/iconset/bullet_red.png" title="Instant Messenger off"/>
-													</xsl:otherwise>
-												</xsl:choose>
-											</span>
-										</td>
-									</tr>		
-				            		<tr>
-										<td class="fc">E-mail :</td>
-										<td width="69%">
-											<input style="width:300px" id="email" name="email" type="text" class="td_editable" value="{document/fields/email}">
-												<xsl:if test="document/@editmode != 'edit'">
-													<xsl:attribute name="class">td_noteditable</xsl:attribute>
-												</xsl:if>
-											</input>
-										</td>
-									</tr>	
-				            		<tr>
-										<td class="fc"><xsl:value-of select="document/captions/role/@caption"/> :</td>
-										<td>
-											<table>
-												<xsl:for-each select="document/fields/role[not(entry)]">
-													<xsl:variable name="role" select="."/>
-													<xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
-														<tr>
-															<td style="width:500px;" class="td_noteditable">
-																<xsl:if test="../../../../document/@editmode != 'edit'">
-																	<xsl:attribute name="class">td_noteditable</xsl:attribute>
-																</xsl:if>
-																<xsl:value-of select="."/>
-																
-																<xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
-																	<input type="hidden" name="role" value="{.}"/>
-																</xsl:if>
-															</td>
-														</tr>
-													</xsl:if>
-												</xsl:for-each>
-												<xsl:for-each select="document/fields/role/entry">
-													<xsl:variable name="role" select="."/>
-													<xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
-														<tr>
-															<td style="width:500px;" class="td_noteditable">
-																<xsl:if test="../../../../document/@editmode != 'edit'">
-																	<xsl:attribute name="class">td_noteditable</xsl:attribute>
-																</xsl:if>
-																<xsl:value-of select="."/>
-																
-																<xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
-																	<input type="hidden" name="role" value="{.}"/>
-																</xsl:if>
-															</td>
-														</tr>
-													</xsl:if>
-												</xsl:for-each>
-											</table>
-										</td>
-									</tr>	
-				            		<tr>
-										<td class="fc"><xsl:value-of select="document/captions/group/@caption"/> :</td>
-										<td width="69%">
-											<table>
-												<xsl:for-each select="document/fields/group/entry">
-												<tr>
-													<td style="width:500px" class="td_noteditable">
-														<xsl:if test="../../../../document/@editmode != 'edit'">
-															<xsl:attribute name="class">td_noteditable</xsl:attribute>
-														</xsl:if>
-														<xsl:value-of select="."/>
-													</td>
-												</tr>
-												</xsl:for-each>
-											</table>
-										</td>
-									</tr>	
+                                    <xsl:if test ="document/fields/form = 'responsibleperson'">
+                                        <!-- ФИО -->
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/fio/@caption"/>&#xA0;:
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{document/fields/fullname}" style="width:500px;" class="td_editable" name="fio">
+                                                    <!--<xsl:if test="$editmode != 'edit'">-->
+                                                    <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                                    <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    <xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+                                                    <!--</xsl:if>-->
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <!-- Логин -->
+                                        <tr>
+                                            <td class="fc">
+                                                Логин&#xA0;:
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{document/fields/userid}" style="width:300px;" class="td_editable" name="login">
+                                                    <!--<xsl:if test="$editmode != 'edit'">-->
+                                                    <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                                    <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    <xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+                                                    <!--</xsl:if>-->
+                                                </input>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Пароль -->
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/password/@caption"/>&#xA0;:
+                                            </td>
+                                            <td>
+                                                <input type="password" value="" style="width:300px;" class="td_editable" name="password">
+                                                    <xsl:if test="$editmode != 'edit'">
+                                                        <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                        <xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <!-- Повтор пароля -->
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/reenterpassword/@caption"/>&#xA0;:
+                                            </td>
+                                            <td>
+                                                <input type="password" value="{document/fields/reenterpassword}" style="width:300px;" class="td_editable" name="reenterpassword">
+                                                    <xsl:if test="$editmode != 'edit'">
+                                                        <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                        <xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <!-- 	Контактный телефон -->
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/phone/@caption"/>&#xA0;:
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{document/fields/phone}" style="width:400px;" class="td_editable" name="phone">
+                                                    <xsl:if test="$editmode != 'edit'">
+                                                        <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                        <xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <!-- 	Электронный адрес-->
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/email/@caption"/>&#xA0;:
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{document/fields/email}" style="width:300px;" class="td_editable" name="email">
+                                                    <xsl:if test="$editmode != 'edit'">
+                                                        <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                        <xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc" style="padding-top:5px">
+                                                <font style="vertical-align:top">
+                                                    <xsl:value-of select="document/captions/orgname/@caption"/> :
+                                                </font>
+                                            </td>
+
+                                            <td style="padding-top:5px">
+                                                <table id="institutiontbl" style="border-spacing:0px 3px; margin-top:-3px">
+                                                    <tr>
+                                                        <td style="width:600px;" class="td_editable">
+                                                            <xsl:if test="$editmode != 'edit'">
+                                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                            </xsl:if>
+                                                            <xsl:value-of select="document/fields/institutionname"/>&#xA0;
+                                                            <span style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'><font><xsl:value-of select="document/fields/institution/@attrval"/></font></span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <input type="hidden" value="{document/fields/institution}" id="institution" name="institution"/>
+                                                <input type="hidden" value="{document/captions/institution/@caption}" id="institutioncaption"/>
+                                            </td>
+                                        </tr>
+                                    </xsl:if>
+                                    <xsl:if test ="document/fields/form != 'responsibleperson'">
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/department/@caption"/> :
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td class="td_noteditable" style="width:500px">
+                                                            <xsl:if test="document/@editmode != 'edit'">
+                                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                            </xsl:if>
+                                                            <xsl:if test="document/fields/department != '0'">
+                                                                <xsl:value-of select="document/fields/department"/>
+                                                            </xsl:if>&#xA0;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/postid/@caption"/> :
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td class="td_noteditable" style="width:500px">
+                                                            <xsl:if test="document/@editmode != 'edit'">
+                                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                            </xsl:if>
+                                                            <xsl:value-of select="document/fields/post"/>&#xA0;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/shortname/@caption"/> :
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td class="td_noteditable" style="width:500px">
+                                                            <xsl:if test="document/@editmode != 'edit'">
+                                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                            </xsl:if>
+                                                            <xsl:value-of select="document/fields/shortname"/>&#xA0;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc">
+                                                <xsl:value-of select="document/captions/fullname/@caption"/> :
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td class="td_noteditable" style="width:500px">
+                                                            <xsl:if test="document/@editmode != 'edit'">
+                                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                            </xsl:if>
+                                                            <xsl:value-of select="document/fields/fullname"/>&#xA0;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc">ID :</td>
+                                            <td>
+                                                <input  style="width:500px;" class="td_editable" name="userid" value="{document/fields/userid}">
+                                                    <xsl:if test="document/@editmode != 'edit'">
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"><xsl:value-of select="document/captions/oldpassword/@caption"/> :</td>
+                                            <td>
+                                                <input style="width:300px;" class="td_editable" id="oldpwd" name="oldpwd" type="password" autocomplete="off">
+                                                    <xsl:if test="document/@editmode != 'edit'">
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"><xsl:value-of select="document/captions/newpassword/@caption"/> :</td>
+                                            <td>
+                                                <input style="width:300px;" id="newpwd" name="pwd" type="password" class="td_editable" autocomplete="off">
+                                                    <xsl:if test="document/@editmode != 'edit'">
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"><xsl:value-of select="document/captions/repeatnewpassword/@caption"/> :</td>
+                                            <td>
+                                                <input style="width:300px;" id="newpwd2"  name="pwd2" type="password" class="td_editable" autocomplete="off">
+                                                    <xsl:if test="document/@editmode != 'edit'">
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc">Instant Messenger address :</td>
+                                            <td>
+                                                <input style="width:300px" name="instmsgaddress" type="text" class="td_editable" value="{document/fields/instmsgaddress}">
+                                                    <xsl:if test="document/@editmode != 'edit'">
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                                <span style="vertical-align:middle;">
+                                                    <xsl:choose>
+                                                        <xsl:when test="document/fields/instmsgstatus = 'false'">
+                                                            <img src="/SharedResources/img/iconset/bullet_red.png" title="Instant Messenger off"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="document/fields/instmsgstatus = 'true'">
+                                                            <img src="/SharedResources/img/iconset/bullet_gren.png" title="Instant Messenger on"/>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <img src="/SharedResources/img/iconset/bullet_red.png" title="Instant Messenger off"/>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc">E-mail :</td>
+                                            <td width="69%">
+                                                <input style="width:300px" id="email" name="email" type="text" class="td_editable" value="{document/fields/email}">
+                                                    <xsl:if test="document/@editmode != 'edit'">
+                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                    </xsl:if>
+                                                </input>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"><xsl:value-of select="document/captions/role/@caption"/> :</td>
+                                            <td>
+                                                <table>
+                                                    <xsl:for-each select="document/fields/role[not(entry)]">
+                                                        <xsl:variable name="role" select="."/>
+                                                        <xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
+                                                            <tr>
+                                                                <td style="width:500px;" class="td_noteditable">
+                                                                    <xsl:if test="../../../../document/@editmode != 'edit'">
+                                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                                    </xsl:if>
+                                                                    <xsl:value-of select="."/>
+
+                                                                    <xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
+                                                                        <input type="hidden" name="role" value="{.}"/>
+                                                                    </xsl:if>
+                                                                </td>
+                                                            </tr>
+                                                        </xsl:if>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="document/fields/role/entry">
+                                                        <xsl:variable name="role" select="."/>
+                                                        <xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
+                                                            <tr>
+                                                                <td style="width:500px;" class="td_noteditable">
+                                                                    <xsl:if test="../../../../document/@editmode != 'edit'">
+                                                                        <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                                    </xsl:if>
+                                                                    <xsl:value-of select="."/>
+
+                                                                    <xsl:if test="/request/document/glossaries/roles/entry[ison='ON'][name = $role]">
+                                                                        <input type="hidden" name="role" value="{.}"/>
+                                                                    </xsl:if>
+                                                                </td>
+                                                            </tr>
+                                                        </xsl:if>
+                                                    </xsl:for-each>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fc"><xsl:value-of select="document/captions/group/@caption"/> :</td>
+                                            <td width="69%">
+                                                <table>
+                                                    <xsl:for-each select="document/fields/group/entry">
+                                                    <tr>
+                                                        <td style="width:500px" class="td_noteditable">
+                                                            <xsl:if test="../../../../document/@editmode != 'edit'">
+                                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                                            </xsl:if>
+                                                            <xsl:value-of select="."/>
+                                                        </td>
+                                                    </tr>
+                                                    </xsl:for-each>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </xsl:if>
 	                 			</table>
 	                 			<br/>
 	           				</div>
