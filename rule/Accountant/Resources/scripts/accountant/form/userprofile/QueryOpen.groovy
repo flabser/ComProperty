@@ -1,5 +1,8 @@
 package accountant.form.userprofile
 
+import kz.nextbase.script.struct._Employer
+import kz.nextbase.script.struct._EmployerStatusType
+
 import java.util.Map
 import kz.nextbase.script.*
 import kz.nextbase.script.actions.*
@@ -17,34 +20,55 @@ class QueryOpen extends _FormQueryOpen {
 
 	@Override
 	public void doQueryOpen(_Session ses, _Document doc, _WebFormData webFormData, String lang) {
-	
-		def emp = ses.getCurrentAppUser()
-		def nav = ses.getPage("outline", webFormData)
-		publishElement(nav)
-		
-		def actionBar = new _ActionBar(ses)
-		
-		if(doc.getEditMode() == _DocumentModeType.EDIT){
-			actionBar.addAction(new _Action(getLocalizedWord("Сохранить и закрыть",lang),getLocalizedWord("Сохранить и закрыть",lang),_ActionType.SAVE_AND_CLOSE))
-		}
-		
-		actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
-		publishElement(actionBar)
+        def user = ses.getCurrentAppUser()
 
-		publishValue("title",getLocalizedWord("Сотрудник ", lang))
-		publishValue("post", emp.getPostID(), emp.getPost())
-		def dep = emp.getMainDepartment();
-		publishValue("department", dep.getShortName())
-		publishValue("userid",emp.getValueString("userid"))
-		publishValue("countdocinview",emp.getValueString("countdocinview"))
-		publishValue("lang",emp.getValueString("lang"))
-		publishEmployer("skin",doc.getValueString("skin"))
-		publishValue("email",doc.getValueString("email"))
-		publishValue("shortname",emp.getValueString("shortname"))
-		publishEmployer("fullname", emp.getUserID())
-		publishValue("instmsgaddress",doc.getValueString("instmsgaddress"))
-		publishValue("group", emp.getListOfGroups())
-		publishValue("role", emp.getListOfRoles())
-	}
+        def emp  = (_Employer)doc;
+        publishValue("title",getLocalizedWord("Ответственные лица по загрузке объектов", lang) + " - " + emp.getFullName())
+        publishValue("form", emp.getDocumentForm());
+        publishValue("fullname", emp.getFullName())
+        publishValue("userid", emp.getUserID())
+        publishValue("email", emp.getEmail())
+        publishValue("instmsgaddress", emp.getInstMessengerAddr())
+        def org = emp.getOrganization();
+        publishValue("organization", org.getShortName())
+        def dep = emp.getMainDepartment();
+        publishValue("depid", dep.getValueString("shortName"))
+        publishValue("role", emp.getListOfRoles())
+        if(user.hasRole("supervisor")){
+            publishValue("issupervisor", "1")
+        }
+        publishValue("phone", emp.getPhone())
+        publishValue("comment", emp.getComment())
+        publishValue("group", emp.getListOfGroups())
+        def apps = new HashSet();
+        for(def userprof : emp.getEnabledApps()){
+            apps.add(userprof.appName);
+        }
+        publishValue("apps", apps)
+        publishValue("post", emp.getPostID(), emp.getPost())
+        def birthDate = emp.getBirthDate();
+        if (birthDate) {
+            def bd = _Helper.getDateAsStringShort(birthDate)
+            if (bd) publishValue("birthdate", bd)
+        }
 
+        if (emp.getStatus() == _EmployerStatusType.FIRED){
+            publishValue("fired", "1")
+        }
+
+        publishValue("institutionname", emp.getShortName());
+        publishValue("institution", emp.getObl());
+
+
+        def actionBar = ses.createActionBar();
+        if (user.hasRole(["supervisor", "struct_keeper"]) ){
+            //  actionBar.addAction(new _Action(getLocalizedWord("Сохранить и закрыть",lang),getLocalizedWord("Сохранить и закрыть",lang),_ActionType.SAVE_AND_CLOSE))
+            if(emp.getStatus() == _EmployerStatusType.FIRED)
+                actionBar.addAction(new _Action(getLocalizedWord("Подтвердить",lang),getLocalizedWord("Подтвердить",lang), "activate"))
+            actionBar.addAction(new _Action(getLocalizedWord("Отправить уведомления",lang),getLocalizedWord("Подтвердить",lang), "send_notification"))
+        }
+
+        actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
+        publishElement(actionBar)
+    }
 }
