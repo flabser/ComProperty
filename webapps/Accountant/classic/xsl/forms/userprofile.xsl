@@ -261,7 +261,11 @@
                                                                 <xsl:attribute name="class">td_noteditable</xsl:attribute>
                                                             </xsl:if>
                                                             <xsl:value-of select="document/fields/institutionname"/>&#xA0;
-                                                            <span style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'><font><xsl:value-of select="document/fields/institution/@attrval"/></font></span>
+                                                            <xsl:if test="(document/fields/org_link)">
+                                                                <span style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'>
+                                                                    <a href="/RegistrySubsystem/{document/fields/org_link}&amp;redirect=account" alt="Изменение данных об учреждении"><img src="/SharedResources/img/iconset/pencil_go.png" style="width:16px;padding-left:4px"/></a>
+                                                                </span>
+                                                            </xsl:if>
                                                         </td>
                                                     </tr>
                                                 </table>
