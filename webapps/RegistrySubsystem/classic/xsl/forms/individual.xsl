@@ -304,7 +304,7 @@
 											</td>
 										</tr>
 										<!--  Вид деятельности по ОКЭД -->
-										<tr>
+										<!--<tr>
 											<td class="fc" style="padding-top:5px">
 												<xsl:value-of select="document/captions/oked/@caption"/> :
 											</td>
@@ -331,6 +331,20 @@
 												<xsl:if test="$editmode !='edit'">
 													<input type="hidden" name="oked" value="{document/fields/oked/@attrval}"/>
 												</xsl:if>
+											</td>
+										</tr>-->
+										<tr>
+											<td class="fc">
+												<xsl:value-of select="document/captions/oked/@caption"/>&#xA0;:
+											</td>
+											<td>
+												<input type="text" value="{document/fields/oked}" style="width:500px;" class="td_editable" name="oked">
+													<xsl:if test="$editmode != 'edit'">
+														<xsl:attribute name="readonly">readonly</xsl:attribute>
+														<xsl:attribute name="class">td_noteditable</xsl:attribute>
+														<xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
+													</xsl:if>
+												</input>
 											</td>
 										</tr>
 										<!-- 	Дата Гос. регистрации -->
