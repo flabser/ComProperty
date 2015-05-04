@@ -32,12 +32,14 @@ class QuerySave extends _FormQuerySave {
 		doc.addStringField("rukfullname", webFormData.getValueSilently("rukfullname"))
 		doc.addStringField("glavbuhfullname", webFormData.getValueSilently("glavbuhfullname"))
 		doc.addStringField("okpo", webFormData.getValueSilently("okpo"))
-		doc.addNumberField("oked", webFormData.getNumberValueSilently("oked", 0))
+		doc.addStringField("oked", webFormData.getValueSilently("oked"))
+		doc.addStringField("typeactivity", webFormData.getValueSilently("typeactivity"))
+		/*doc.addNumberField("oked", webFormData.getNumberValueSilently("oked", 0))*/
 		doc.addStringField("orgregdate", webFormData.getValueSilently("orgregdate"))
 		doc.addStringField("orgregnumber", webFormData.getValueSilently("orgregnumber"))
 		doc.addStringField("regdateorder", webFormData.getValueSilently("regdateorder"))
 		doc.addStringField("numberorder", webFormData.getValueSilently("numberorder"))
-		doc.addNumberField("typeactivity", webFormData.getNumberValueSilently("typeactivity", 0))
+		/*doc.addNumberField("typeactivity", webFormData.getNumberValueSilently("typeactivity", 0))*/
 		doc.addStringField("stuffcount", webFormData.getValueSilently("stuffcount"))
 		doc.addStringField("privilege",webFormData.getValueSilently("privilege"))
         doc.addStringField("registration",webFormData.getValueSilently("registration"))

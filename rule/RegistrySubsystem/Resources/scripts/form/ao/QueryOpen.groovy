@@ -60,12 +60,14 @@ class QueryOpen extends _FormQueryOpen {
 		publishValue("rukfullname",doc.getValueString("rukfullname"))
 		publishValue("glavbuhfullname",doc.getValueString("glavbuhfullname"))
 		publishValue("okpo",doc.getValueString("okpo"))
-        if(doc.getField('oked')){
+		publishValue("oked",doc.getValueString("oked"))
+		publishValue("typeactivity",doc.getValueString("typeactivity"))
+        /*if(doc.getField('oked')){
             publishGlossaryValue("oked",doc.getValueGlossary("oked"))
         }
         if(doc.getField('typeactivity')){
             publishGlossaryValue("typeactivity",doc.getValueGlossary("typeactivity"))
-        }
+        }*/
 		publishValue("orgregdate",doc.getValueString("orgregdate"))
 		publishValue("orgregnumber",doc.getValueString("orgregnumber"))
 		publishValue("regdateorder",doc.getValueString("regdateorder"))
