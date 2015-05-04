@@ -58,7 +58,10 @@ class QueryOpen extends _FormQueryOpen {
 
         publishValue("institutionname", emp.getShortName());
         publishValue("institution", emp.getObl());
-
+        try{
+            def orgDoc = ses.getCurrentDatabase().getDocumentByID(emp.getObl());
+            publishValue("org_link", orgDoc.getURL());
+        }catch(Exception e){}
 
         def actionBar = ses.createActionBar();
         if (user.hasRole(["supervisor", "struct_keeper"]) ){
