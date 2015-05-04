@@ -7,7 +7,12 @@
 	<events>
 		<queryopen source="file">accountant.form.userprofile.QueryOpen</queryopen>
 	</events>
-
+    <save>
+        <field mode="on">
+            <value source="webformfield">historyvis</value>
+            <docfield>historyvis</docfield>
+        </field>
+    </save>
 	<caption name="close" source="KEYWORD">Закрыть</caption> 
 	<caption name="saveandclose" source="KEYWORD">Сохранить и закрыть</caption> 
 	<caption name="properties" source="KEYWORD">Свойства</caption>

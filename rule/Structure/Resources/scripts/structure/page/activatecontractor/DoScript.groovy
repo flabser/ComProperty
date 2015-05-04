@@ -4,6 +4,7 @@ import kz.nextbase.script._Session
 import kz.nextbase.script._WebFormData
 import kz.nextbase.script.events._DoScript
 import kz.nextbase.script.mail._Memo
+import kz.nextbase.script.struct._Employer
 import kz.nextbase.script.struct._EmployerStatusType
 import kz.nextbase.script.struct._UserApplicationProfile
 
@@ -25,11 +26,22 @@ class DoScript extends _DoScript{
         emp.clearEnabledAppsList();
         emp.addEnabledApp(new _UserApplicationProfile("Accountant","0"));
         emp.addEnabledApp(new _UserApplicationProfile("MonitoringSubsystem","0"));
+        emp.addEnabledApp(new _UserApplicationProfile("RegistrySubsystem","0"));
         emp.setListOfRoles(["contractor#Accountant"] as String[]);
+        emp.setListOfRoles(["contractor#RegistrySubsystem"] as String[]);
+
         emp.setViewText("active",2)
         emp.save()
         setRedirectURL(session.getURLOfLastPage())
 
+        try{
+            def org = emp.getObl()
+            def doc = cdb.getDocumentByID(org);
+            doc.addEditor(emp.getUserID());
+            doc.save("[supervisor]");
+        }catch(Exception e){
+            log("не удалось открыть доступ на редактирование учреждения id=${emp.getObl()} для userid=${emp.getUserID()}")
+        }
         try{
 
             def recipients = emp.getEmail()
