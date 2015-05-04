@@ -96,7 +96,14 @@
 	<!--кнопка закрыть-->
 	<xsl:template name="cancel">
 		<button title= "{document/captions/close/@hint}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="canceldoc">
-			<xsl:attribute name="onclick">javascript:<xsl:value-of select="document/actionbar/action[@id = 'close']/js"/></xsl:attribute>
+			<xsl:choose>
+                <xsl:when test="contains(/request/@querystring, 'redirect=account')">
+                    <xsl:attribute name="onclick">javascript:window.location.href = "/Accountant/Provider?type=edit&amp;element=userprofile&amp;id=userprofile"</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="onclick">javascript:<xsl:value-of select="document/actionbar/action[@id = 'close']/js"/></xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
 			<span>
 				<img src="/SharedResources/img/classic/icons/cross.png" class="button_img"/>
 				<font style="font-size:12px; vertical-align:top"><xsl:value-of select="document/captions/close/@caption"/></font>
