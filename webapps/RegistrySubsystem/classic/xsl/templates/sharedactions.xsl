@@ -18,8 +18,13 @@
 	
 	<xsl:template name="save">
 		<xsl:if test="document/actionbar/action[@id='save_and_close']/@mode = 'ON'">
+            <xsl:variable name="red_url"><xsl:choose>
+                    <xsl:when test="contains(/request/@querystring, 'redirect=account')">javascript:window.location.href = "/Accountant/Provider?type=edit&amp;element=userprofile&amp;id=userprofile"</xsl:when>
+                    <xsl:otherwise></xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
 			<button title="{document/actionbar/action [@id='save_and_close']/@hint}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="btnsavedoc">
-				<xsl:attribute name="onclick">javascript:SaveFormJquery('<xsl:value-of select="/request/history/entry[@type = 'page'][last()]"/>')</xsl:attribute>
+				<xsl:attribute name="onclick">javascript:SaveFormJquery('<xsl:value-of select="$red_url"/>')</xsl:attribute>
 				<span>
 					<img src="/SharedResources/img/classic/icons/disk.png" class="button_img"/>
 					<font style="font-size:12px; vertical-align:top"><xsl:value-of select="document/actionbar/action [@id='save_and_close']/@caption"/></font>

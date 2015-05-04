@@ -358,7 +358,7 @@ function SaveFormJquery(redirecturl) {
 		data: $("form").serialize(),
 		success:function (xml){ 
 			$(document).unbind("keydown")
-			var redir = $(xml).find('redirect').text() || redirecturl;
+			var redir = redirecturl !="" ? redirecturl : $(xml).find('redirect').text();
 			$(xml).find('response').each(function(){
 				var st=$(this).attr('status');
 				msgtext=$(xml).find('message[id=1]').text();
