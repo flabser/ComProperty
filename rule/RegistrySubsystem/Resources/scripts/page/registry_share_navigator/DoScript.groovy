@@ -15,7 +15,7 @@ class DoScript extends _DoScript {
 		def outline = new _Outline("", "", "outline")
 
 
-		if (user.hasRole("registrator")){
+		if (user.hasRole("registrator") || user.hasRole("contractor")){
 			def registermunicipal_outline = new _Outline(getLocalizedWord("Реестр Коммунальных Государственных предприятий и учреждений",lang), getLocalizedWord("Реестр Коммунальных Государственных предприятий и учреждений",lang), "registermunicipal")
 				registermunicipal_outline.addEntry(new _OutlineEntry(getLocalizedWord("Коммунальные Государственные Учреждения",lang), getLocalizedWord("Коммунальные Государственные Учреждения",lang), "kgu", "Provider?type=page&id=kgu"))
 				registermunicipal_outline.addEntry(new _OutlineEntry(getLocalizedWord("Предприятия на праве Хозяйственного Ведения",lang), getLocalizedWord("Коммунальные Государственные Предприятия на праве Хозяйственного Ведения",lang), "kgp", "Provider?type=page&id=kgp"))
