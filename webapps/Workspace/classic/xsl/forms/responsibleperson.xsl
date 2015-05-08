@@ -304,7 +304,7 @@
                                         <tr>
                                             <td class="fc"></td>
                                             <td>
-                                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=инструкция по загрузки.docx" >Инструкция по загрузке.docx</a>
+                                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=инструкция по загрузки.docx" >Инструкция по загрузки.docx</a>
                                             </td>
                                         </tr>
                                         <tr>
