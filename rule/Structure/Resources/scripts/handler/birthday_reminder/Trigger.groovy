@@ -17,6 +17,7 @@ class Trigger extends _DoScheduledHandler {
     public int doHandler(_Session session) {
 
         def memo
+        def memo_test
         def calendar = Calendar.getInstance()
         def month = calendar.get(Calendar.MONTH)
         def day = calendar.get(Calendar.DAY_OF_MONTH)
