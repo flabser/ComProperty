@@ -14,8 +14,6 @@ class PostSave extends _FormPostSave {
         def cdb = ses.getCurrentDatabase();
         def srtuct = ses.getStructure();
 
-
-       /*
         def pdoc = doc.getParentDocument()
 
         // если уже есть тендер
@@ -49,7 +47,7 @@ class PostSave extends _FormPostSave {
             pdoc.setViewText("tender", 7);
             pdoc.addStringField("tender", tender.getID());
             println pdoc.save("[supervisor]");
-            println("tender created");
+            println("tender opened id='${pdoc.getID()}'");
 
             // уведомление
             String body = "<b>Извещение о проведении тендера</b> на аренду объекта: ${pdoc.getViewText()}" +
@@ -59,6 +57,6 @@ class PostSave extends _FormPostSave {
             def memo = new _Memo("Извещение о проведении тендера","Извещение о проведении тендера", body, tender, false);
             def ma = ses.getMailAgent();
             ma.sendMail(emails,memo)
-        }   */
+        }
     }
 }
