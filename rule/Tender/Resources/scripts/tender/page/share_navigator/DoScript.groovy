@@ -33,12 +33,12 @@ class DoScript extends _DoScript {
 			
 		//}
 		//if (user.hasRole("user")){
-			def notifications_outline = new _Outline(getLocalizedWord("Уведомления",lang), getLocalizedWord("Уведомления",lang), "notifications_outline")
+			/*def notifications_outline = new _Outline(getLocalizedWord("Уведомления",lang), getLocalizedWord("Уведомления",lang), "notifications_outline")
 			notifications_outline.addEntry(new _OutlineEntry(getLocalizedWord("Уведомления",lang), getLocalizedWord("Уведомления",lang), "notification", "Provider?type=page&id=notification&page=0"))
 			outline.addOutline(notifications_outline)
-			list.add(notifications_outline)
+			list.add(notifications_outline)     */
 		//}
-		
+		/*
 		if (user.hasRole("registrator")){
 			
 			def reg = new _Outline(getLocalizedWord("На регистрацию",lang), getLocalizedWord("На регистрацию",lang), "tenders")
@@ -46,7 +46,7 @@ class DoScript extends _DoScript {
 			reg.addEntry(new _OutlineEntry(getLocalizedWord("Тендеры",lang), getLocalizedWord("Тендеры",lang), "reg_tenders", "Provider?type=page&id=reg_tenders&page=0"))
 			outline.addOutline(reg)
 			list.add(reg)
-		}
+		}  */
 		
 		/*def add_outline = new _Outline(getLocalizedWord("Прочее",lang), getLocalizedWord("Прочее",lang), "add")
 		add_outline.addEntry(new _OutlineEntry(getLocalizedWord("Корзина",lang), getLocalizedWord("Корзина",lang), "recyclebin", "Provider?type=page&id=recyclebin"))
