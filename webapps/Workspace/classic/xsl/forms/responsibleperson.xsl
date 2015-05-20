@@ -141,7 +141,13 @@
 														<xsl:attribute name="class">td_noteditable</xsl:attribute>
 														<xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
 													</xsl:if>
+                                                    <xsl:if test="$editmode = 'edit'">
+                                                        <xsl:attribute name="onblur">javascript:checkLogin(this.value)</xsl:attribute>
+                                                    </xsl:if>
 												</input>
+                                                <xsl:if test="document/@status = 'new'">
+                                                    <span style="padding-left:5px"><img  id="loginStatusImg" src="/SharedResources/img/iconset/cross.png" style="width:10px; opacity:0.5" /></span>
+                                                </xsl:if>
 											</td>
 										</tr>
 										<!-- Пароль -->

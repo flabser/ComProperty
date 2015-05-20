@@ -52,7 +52,7 @@
 		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.tabs.min.js"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.button.min.js"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/tiptip/jquery.tipTip.js"/>
-		<script type="text/javascript" src="classic/scripts/form.js?ver=3"/>
+		<script type="text/javascript" src="classic/scripts/form.js?ver=3"></script>
 		<script type="text/javascript" src="classic/scripts/coord.js?ver=3"/>
 		<script type="text/javascript" src="classic/scripts/dialogs.js?ver=3"/>
 		<script type="text/javascript" src="classic/scripts/outline.js?ver=3"/>

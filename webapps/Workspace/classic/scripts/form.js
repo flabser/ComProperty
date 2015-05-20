@@ -483,11 +483,11 @@ function SaveFormJquery(redirecturl) {
 					if (msgtext.length==0){
 						msgtext = "Ошибка сохранения"
 					}
-
+                    /*
                     if($(xml).find('message').text() == "Data engine error"){
                         msgtext = "Пользователь " + $("input[name='login']").val() + " уже существует.<br/>"
                         msgtext += "Выберите другой логин"
-                    }
+                    } */
 
                     if($(xml).text() =="FORMDATA_INCORRECT. field=email")
                         msgtext = "Введен некорректный электронный адрес"
@@ -1343,4 +1343,31 @@ function enableCheckByIINButton(el){
         $("#checkButtonImg").attr("src", "/SharedResources/img/iconset/tick_gray.png")
         $("#checkButtonImg").attr("class", "unchecked");
     }
+}
+
+function checkLogin(login){
+    login = login.trim();
+    if(login == "")
+        return false;
+    $.ajax({
+        type: "get",
+        async:true,
+        url: 'Provider?type=page&id=check_userid&login='+ login,
+        success:function (xml){
+
+            if($(xml).find("isLoginFree").text() == "true"){
+                $("#loginStatusImg").attr("src", "/SharedResources/img/iconset/tick.png").removeAttr("title")
+                $("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled").removeAttr("title");
+            }else{
+                $("#loginStatusImg").attr("src", "/SharedResources/img/iconset/cross.png")
+                $("#loginStatusImg").attr("title","Данный логин уже существует, выберите другой")
+                $("#btnsavedoc").attr("title", "Данный логин уже существует, выберите другой");
+                $("#btnsavedoc").attr("disabled", "disabled").addClass("ui-state-disabled");
+
+            }
+        }, error:function (xhr, ajaxOptions, thrownError){
+            infoDialog("Ошибка при проверке логина")
+            disableblockform();
+        }
+    });
 }
