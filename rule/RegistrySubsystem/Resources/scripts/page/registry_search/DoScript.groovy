@@ -11,9 +11,11 @@ class DoScript extends _DoScript {
 		def page = formData.getNumberValueSilently("page", 1);
 		def db = session.getCurrentDatabase()
         def condition = "form in ('kgu', 'kgp', 'gkkp', 'ao', 'too', 'ao', 'individuals', 'legalentities')";
+        String[] filters = ["","", "","","","", condition]
 		//def col = db.search(formData.getValue("keyword"), page as int)
-        def col = db.getCollectionOfDocuments("($condition) and viewtext ~* '${formData.getEncodedValueSilently("keyword")}'",
-                page, false);
+       // def col = db.getCollectionOfDocuments("($condition) and viewtext ~* '${formData.getEncodedValueSilently("keyword")}'",
+        //        page, false);
+        def col = db.search(formData.getValue("keyword"), page, filters)
 		setContent(col)
        // setContent(new _XMLDocument(new _Tag("keyword", formData.getEncodedValueSilently("keyword"))))
 	}
