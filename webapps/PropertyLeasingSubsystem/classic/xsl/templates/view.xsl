@@ -417,45 +417,45 @@
 			</table>
 		</xsl:if>
 	</xsl:template>
-	
-	<xsl:template name="prepagelistsearch">
-		<xsl:if test="page/view_content/query/@maxpage !=1">
-			<table class="pagenavigator">
-				<xsl:variable name="curpage" select="//query/@currentpage"/>
-				<xsl:variable name="prevpage" select="$curpage -1 "/>
-				<xsl:variable name="beforecurview" select="substring-before(@id,'.')"/> 
-            	<xsl:variable name="aftercurview" select="substring-after(@id,'.')"/> 
-            	<xsl:variable name="keyword" select="//query/@keyword"/> 
-				<tr>
-					<xsl:if test="//query/@currentpage>1">
-						<td>
-							<a href="">
-								<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',1)</xsl:attribute>
-								<font style="font-size:12px">&lt;&lt;</font>
-							</a>&#xA0;
-						</td>
-						<td>
-							<a href="">
-								<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$prevpage"/>)</xsl:attribute>
-								<font style="font-size:12px">&lt;</font>
-							</a>&#xA0;
-						</td>
-					</xsl:if>
-					<xsl:call-template name="pagenavigSearch"/>
-					<xsl:if test="//query/@maxpage > 15">
-						<xsl:variable name="beforecurview" select="substring-before(@id,'.')"/> 
-                		<xsl:variable name="aftercurview" select="substring-after(@id,'.')"/> 
-						<td>
-							<select>
-								<xsl:attribute name="onChange">javascript:doSearch('<xsl:value-of select="$keyword"/>',this.value)</xsl:attribute>
-			 					<xsl:call-template name="combobox"/>
-			 				</select>
-			 			</td>
-					</xsl:if>
-				</tr>
-			</table>
-		</xsl:if>
-	</xsl:template>
+
+    <xsl:template name="prepagelistsearch">
+        <xsl:if test="//query/@maxpage !=1">
+            <table class="pagenavigator">
+                <xsl:variable name="curpage" select="//query/@currentpage"/>
+                <xsl:variable name="prevpage" select="$curpage -1 "/>
+                <xsl:variable name="beforecurview" select="substring-before(@id,'.')"/>
+                <xsl:variable name="aftercurview" select="substring-after(@id,'.')"/>
+                <xsl:variable name="keyword" select="//query/@keyword"/>
+                <tr>
+                    <xsl:if test="//query/@currentpage>1">
+                        <td>
+                            <a href="">
+                                <xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',1)</xsl:attribute>
+                                <font style="font-size:12px">&lt;&lt;</font>
+                            </a>&#xA0;
+                        </td>
+                        <td>
+                            <a href="">
+                                <xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$prevpage"/>)</xsl:attribute>
+                                <font style="font-size:12px">&lt;</font>
+                            </a>&#xA0;
+                        </td>
+                    </xsl:if>
+                    <xsl:call-template name="pagenavigSearch"/>
+                    <xsl:if test="//query/@maxpage > 15">
+                        <xsl:variable name="beforecurview" select="substring-before(@id,'.')"/>
+                        <xsl:variable name="aftercurview" select="substring-after(@id,'.')"/>
+                        <td>
+                            <select>
+                                <xsl:attribute name="onChange">javascript:doSearch('<xsl:value-of select="$keyword"/>',this.value)</xsl:attribute>
+                                <xsl:call-template name="combobox"/>
+                            </select>
+                        </td>
+                    </xsl:if>
+                </tr>
+            </table>
+        </xsl:if>
+    </xsl:template>
 	
 <!--	навигатор по страницам -->
 	<xsl:template name="pagenavig">
@@ -653,203 +653,203 @@
    			</xsl:otherwise>
   		 </xsl:choose>
  	 </xsl:template>
- 	 
- 	 <xsl:template name="pagenavigSearch">
- 		<xsl:param name="i" select="1"/>  <!-- счетчик количества страниц отображаемых в навигаторе  -->
- 		<xsl:param name="n" select="15"/> <!-- количество страниц отображаемых в навигаторе -->
-  		<xsl:param name="z" select="//query/@maxpage -14"/>
-  		<xsl:param name="f" select="15"/>
- 		<xsl:param name="c" select="//query/@currentpage"/> <!-- текущая страница в виде -->
- 		<xsl:param name="startnum" select="//query/@currentpage - 7"/> 
-  		<xsl:param name="d" select="//query/@maxpage - 14"/>	<!-- переменная для вычисления начального номера страницы в навигаторе  -->
-  		<xsl:param name="currentpage" select="//query/@currentpage"/>
-  		<xsl:param name="maxpage" select="//query/@maxpage"/>
-  		<xsl:param name="nextpage" select="$currentpage + 1"/>
-  		<xsl:param name="prevpage" select="$currentpage - 1"/>
-  		<xsl:param name="curview" select="@id"/> 
-  		<xsl:param name="keyword" select="//query/@keyword"/> 
-  		<xsl:param name="direction" select="//query/@direction"/> 
-		<xsl:choose>
-			<xsl:when test="$maxpage>15">
-				<xsl:choose>
-					<xsl:when test="$maxpage - $currentpage &lt; 7">
-						<xsl:if test="$i != $n+1">
-							<xsl:if test="$z &lt; $maxpage + 1">
-								<td>
-									<a href="">
-   										<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$z"/>)</xsl:attribute>
-   			 								<font style="font-size:12px">
-    											<xsl:if test="$z=$currentpage">
-    												<xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
-    											</xsl:if>
-    											<xsl:value-of select="$z"/>
-    										</font>
-   									</a>&#xA0;
-								</td>
-							</xsl:if>
-      						<xsl:call-template name="pagenavigSearch">
-	        					<xsl:with-param name="i" select="$i + 1"/>
-	        					<xsl:with-param name="n" select="$n"/>
-	        					<xsl:with-param name="z" select="$z+1"/>
-      						</xsl:call-template>
-						</xsl:if>
-						<xsl:if test="$currentpage != $maxpage">
-							<xsl:if test="$i = $n+1">
-		 						<td>
-     								<a href="">
-      									<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$nextpage"/>)</xsl:attribute>
-      									<font style="font-size:12px"> > </font>
-      								</a>
-      							</td>
-       							<td>
-       								<a href="">
-       									<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$maxpage"/>)</xsl:attribute>
-       									<font style="font-size:12px; margin-left:7px"> >> </font>
-       								</a> 
-						        </td>
-							</xsl:if>
-   						</xsl:if>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:choose>
-							<xsl:when test="$currentpage &lt; 7">
-								<xsl:if test="$i=1">
-									<xsl:if test="$currentpage = 1">
-										<td>
-											&#xA0;&#xA0;&#xA0;&#xA0;	
-										</td>
-										<td>
-											&#xA0;&#xA0;&#xA0;
-										</td>
-									</xsl:if>
-								</xsl:if>
-								<xsl:if test="$i != $n+1">
-									<xsl:if test="$i &lt; $maxpage + 1">
-										<td>
-											<a href="">
-   				 								<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$i"/>)</xsl:attribute>
-												<font style="font-size:12px">
-    												<xsl:if test="$i=$currentpage">
-    													<xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
-    												</xsl:if>
-    												<xsl:value-of select="$i"/>
-    											</font>
-						   					</a>&#xA0;
-										</td>
-									</xsl:if>
-      								<xsl:call-template name="pagenavigSearch">
-	        							<xsl:with-param name="i" select="$i + 1"/>
-	        							<xsl:with-param name="n" select="$n"/>
-	        							<xsl:with-param name="c" select="$c+1"/>
-      								</xsl:call-template>
-      							</xsl:if>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:if test="$i != $n+1">
-									<xsl:if test="$i &lt; $maxpage + 1">
-										<xsl:if test="$startnum !=0">
-											<td>
-												<a href="">
-   				 									<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$startnum"/>)</xsl:attribute>
-													<font style="font-size:12px">
-    													<xsl:if test="$startnum=$currentpage">
-    														<xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
-    													</xsl:if>
-    													<xsl:value-of select="$startnum"/>
-    												</font>
-						   						</a>&#xA0;
-											</td>
-										</xsl:if>
-									</xsl:if>
-									<xsl:if test="$startnum != 0">
-      									<xsl:call-template name="pagenavigSearch">
-											<xsl:with-param name="i" select="$i + 1"/>
-	        								<xsl:with-param name="n" select="$n"/>
-	        								<xsl:with-param name="c" select="$c+1"/>
-	        								<xsl:with-param name="startnum" select="$c - 6"/>
-      									</xsl:call-template>
-      								</xsl:if>
-									<xsl:if test="$startnum = 0">
-      									<xsl:call-template name="pagenavigSearch">
-										<xsl:with-param name="i" select="$i"/>
-	        							<xsl:with-param name="n" select="$n"/>
-	        							<xsl:with-param name="c" select="$c+1"/>
-	        							<xsl:with-param name="startnum" select="$c - 6"/>
-      								</xsl:call-template>
-      							</xsl:if>
-      						</xsl:if>
-						</xsl:otherwise>
-					</xsl:choose>
-						<xsl:if test="$currentpage != $maxpage">
-							<xsl:if test="$i = $n+1">
-		 						<td>
-      								<a href="">
-     									<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$nextpage"/>)</xsl:attribute>
-     									<font style="font-size:12px"> > </font>
-     								</a>
-							    </td>
-       							<td>
-       								<a href="">
-       									<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$maxpage"/>)</xsl:attribute>
-       									<font style="font-size:12px; margin-left:7px"> >> </font>
-       								</a> 
-							    </td>
-							</xsl:if>
-  						</xsl:if>
-						
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="$i=1">
-					<xsl:if test="$currentpage = 1">
-						<td>
-							&#xA0;&#xA0;&#xA0;&#xA0;	
-						</td>
-						<td>
-							&#xA0;&#xA0;&#xA0;
-						</td>
-					</xsl:if>
-				</xsl:if>
-				<xsl:if test="$i != $n+1">
-					<xsl:if test="$i &lt; $maxpage + 1">
-						<td>
-							<a href="">
-   								<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$i"/> )</xsl:attribute>
-   			 					<font style="font-size:12px">
-    								<xsl:if test="$i=$currentpage">
-    									<xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
-    								</xsl:if>
-    								<xsl:value-of select="$i"/>
-    							</font>
-						    </a>&#xA0;
-						</td>
-					</xsl:if>
-      				<xsl:call-template name="pagenavigSearch">
-	        			<xsl:with-param name="i" select="$i + 1"/>
-	        			<xsl:with-param name="n" select="$n"/>
-	        			<xsl:with-param name="c" select="$c+1"/>
-      				</xsl:call-template>
-				</xsl:if>
-				<xsl:if test="$currentpage != $maxpage">
-					<xsl:if test="$i = $n+1">
-						<td>
-      						<a href="">
-      							<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>', <xsl:value-of select="$nextpage"/>)</xsl:attribute>
-      							<font style="font-size:12px"> > </font>
-      						</a>
-					    </td>
-       					<td>
-       						<a href="">
-       							<xsl:attribute name="href">javascript:doSearch('<xsl:value-of select="$keyword"/>',<xsl:value-of select="$maxpage"/> );</xsl:attribute>
-       							<font style="font-size:12px; margin-left:7px"> >> </font>
-       						</a> 
-						</td>
-					</xsl:if>
-   				</xsl:if>
-   			</xsl:otherwise>
-  		 </xsl:choose>
- 	 </xsl:template>
+
+    <xsl:template name="pagenavigSearch">
+        <xsl:param name="i" select="1"/>  <!-- счетчик количества страниц отображаемых в навигаторе  -->
+        <xsl:param name="n" select="15"/> <!-- количество страниц отображаемых в навигаторе -->
+        <xsl:param name="z" select="//query/@maxpage -14"/>
+        <xsl:param name="f" select="15"/>
+        <xsl:param name="c" select="//query/@currentpage"/> <!-- текущая страница в виде -->
+        <xsl:param name="startnum" select="//query/@currentpage - 7"/>
+        <xsl:param name="d" select="//query/@maxpage - 14"/>	<!-- переменная для вычисления начального номера страницы в навигаторе  -->
+        <xsl:param name="currentpage" select="//query/@currentpage"/>
+        <xsl:param name="maxpage" select="//query/@maxpage"/>
+        <xsl:param name="nextpage" select="$currentpage + 1"/>
+        <xsl:param name="prevpage" select="$currentpage - 1"/>
+        <xsl:param name="curview" select="@id"/>
+        <xsl:param name="keyword" select="//search/@search"/>
+        <xsl:param name="direction" select="//query/@direction"/>
+        <xsl:choose>
+            <xsl:when test="$maxpage>15">
+                <xsl:choose>
+                    <xsl:when test="$maxpage - $currentpage &lt; 7">
+                        <xsl:if test="$i != $n+1">
+                            <xsl:if test="$z &lt; $maxpage + 1">
+                                <td>
+                                    <a href="">
+                                        <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$z'/>"</xsl:attribute>
+                                        <font style="font-size:12px">
+                                            <xsl:if test="$z=$currentpage">
+                                                <xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
+                                            </xsl:if>
+                                            <xsl:value-of select="$z"/>
+                                        </font>
+                                    </a>&#xA0;
+                                </td>
+                            </xsl:if>
+                            <xsl:call-template name="pagenavigSearch">
+                                <xsl:with-param name="i" select="$i + 1"/>
+                                <xsl:with-param name="n" select="$n"/>
+                                <xsl:with-param name="z" select="$z+1"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="$currentpage != $maxpage">
+                            <xsl:if test="$i = $n+1">
+                                <td>
+                                    <a href="">
+                                        <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$nextpage'/>"</xsl:attribute>
+                                        <font style="font-size:12px"> > </font>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$maxpage'/>"</xsl:attribute>
+                                        <font style="font-size:12px; margin-left:7px"> >> </font>
+                                    </a>
+                                </td>
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="$currentpage &lt; 7">
+                                <xsl:if test="$i=1">
+                                    <xsl:if test="$currentpage = 1">
+                                        <td>
+                                            &#xA0;&#xA0;&#xA0;&#xA0;
+                                        </td>
+                                        <td>
+                                            &#xA0;&#xA0;&#xA0;
+                                        </td>
+                                    </xsl:if>
+                                </xsl:if>
+                                <xsl:if test="$i != $n+1">
+                                    <xsl:if test="$i &lt; $maxpage + 1">
+                                        <td>
+                                            <a href="">
+                                                <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$i'/>"</xsl:attribute>
+                                                <font style="font-size:12px">
+                                                    <xsl:if test="$i=$currentpage">
+                                                        <xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
+                                                    </xsl:if>
+                                                    <xsl:value-of select="$i"/>
+                                                </font>
+                                            </a>&#xA0;
+                                        </td>
+                                    </xsl:if>
+                                    <xsl:call-template name="pagenavigSearch">
+                                        <xsl:with-param name="i" select="$i + 1"/>
+                                        <xsl:with-param name="n" select="$n"/>
+                                        <xsl:with-param name="c" select="$c+1"/>
+                                    </xsl:call-template>
+                                </xsl:if>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:if test="$i != $n+1">
+                                    <xsl:if test="$i &lt; $maxpage + 1">
+                                        <xsl:if test="$startnum !=0">
+                                            <td>
+                                                <a href="">
+                                                    <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$startnum'/>"</xsl:attribute>
+                                                    <font style="font-size:12px">
+                                                        <xsl:if test="$startnum=$currentpage">
+                                                            <xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
+                                                        </xsl:if>
+                                                        <xsl:value-of select="$startnum"/>
+                                                    </font>
+                                                </a>&#xA0;
+                                            </td>
+                                        </xsl:if>
+                                    </xsl:if>
+                                    <xsl:if test="$startnum != 0">
+                                        <xsl:call-template name="pagenavigSearch">
+                                            <xsl:with-param name="i" select="$i + 1"/>
+                                            <xsl:with-param name="n" select="$n"/>
+                                            <xsl:with-param name="c" select="$c+1"/>
+                                            <xsl:with-param name="startnum" select="$c - 6"/>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                    <xsl:if test="$startnum = 0">
+                                        <xsl:call-template name="pagenavigSearch">
+                                            <xsl:with-param name="i" select="$i"/>
+                                            <xsl:with-param name="n" select="$n"/>
+                                            <xsl:with-param name="c" select="$c+1"/>
+                                            <xsl:with-param name="startnum" select="$c - 6"/>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="$currentpage != $maxpage">
+                            <xsl:if test="$i = $n+1">
+                                <td>
+                                    <a href="">
+                                        <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$nextpage'/>"</xsl:attribute>
+                                        <font style="font-size:12px"> > </font>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$maxpage'/>"</xsl:attribute>
+                                        <font style="font-size:12px; margin-left:7px"> >> </font>
+                                    </a>
+                                </td>
+                            </xsl:if>
+                        </xsl:if>
+
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:if test="$i=1">
+                    <xsl:if test="$currentpage = 1">
+                        <td>
+                            &#xA0;&#xA0;&#xA0;&#xA0;
+                        </td>
+                        <td>
+                            &#xA0;&#xA0;&#xA0;
+                        </td>
+                    </xsl:if>
+                </xsl:if>
+                <xsl:if test="$i != $n+1">
+                    <xsl:if test="$i &lt; $maxpage + 1">
+                        <td>
+                            <a href="">
+                                <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$i'/>"</xsl:attribute>
+                                <font style="font-size:12px">
+                                    <xsl:if test="$i=$currentpage">
+                                        <xsl:attribute name="style">font-weight:bold;font-size:1.3em</xsl:attribute>
+                                    </xsl:if>
+                                    <xsl:value-of select="$i"/>
+                                </font>
+                            </a>&#xA0;
+                        </td>
+                    </xsl:if>
+                    <xsl:call-template name="pagenavigSearch">
+                        <xsl:with-param name="i" select="$i + 1"/>
+                        <xsl:with-param name="n" select="$n"/>
+                        <xsl:with-param name="c" select="$c+1"/>
+                    </xsl:call-template>
+                </xsl:if>
+                <xsl:if test="$currentpage != $maxpage">
+                    <xsl:if test="$i = $n+1">
+                        <td>
+                            <a href="">
+                                <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$nextpage'/>"</xsl:attribute>
+                                <font style="font-size:12px"> > </font>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="">
+                                <xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=search&amp;keyword=<xsl:value-of select='$keyword'/>&amp;page=<xsl:value-of select='$maxpage'/>"</xsl:attribute>
+                                <font style="font-size:12px; margin-left:7px"> >> </font>
+                            </a>
+                        </td>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
  	 
 	  <xsl:template name="combobox">
 		<xsl:param name="i" select="1"/>
