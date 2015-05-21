@@ -9,9 +9,13 @@ class DoScript extends _DoScript {
 
 	public void doProcess(_Session session, _WebFormData formData, String lang) {
 		println(formData)
-		def page = 1;
-		def db = session.getCurrentDatabase()
-		def col = db.search(formData.getValue("keyword"), page as int)
-		setContent(col)
+        def page = formData.getNumberValueSilently("page", 1);
+
+        def db = session.getCurrentDatabase()
+        def condition = "form in ('furniture', 'officeequipment', 'buildings', 'rentapplication'" +
+                ", 'tenderapplication', 'tender', 'orderleasing') ";
+        String[] cond = ["","", "","","","", condition]
+        def col = db.search(formData.getValue("keyword"), page as int, cond)
+        setContent(col)
 	}
 }
