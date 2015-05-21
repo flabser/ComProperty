@@ -9,26 +9,20 @@ class DoScript extends _DoScript {
 	@Override
 	public void doProcess(_Session session, _WebFormData formData, String lang) {
 		//println(formData)
-		def page = 1;
-        def keyword = "";
-		if (formData.containsField("page") && formData.getValue("page")){
-			page = Integer.parseInt(formData.getValue("page"))
-		}
+        def db = session.getCurrentDatabase()
+        def keyword = formData.getValue("keyword");
+        def page = formData.getNumberValueSilently("page", 1);
+        def col = null;
         def formula = "(form='kgu' or form='kgp' or form='gkkp' or form='ao' or form='too' or form='subsidiaries') and registration='1'";
-        keyword = formData.getEncodedValueSilently("keyword");
+        def search_condition = "form in ('kgu', 'kgp', 'gkkp', 'ao', 'too', 'subsidiaries')";
+        String[] filters = ["","", "","","","", search_condition]
 
-        if (formData.containsField("keyword") && keyword != ""){
-            formula = "$formula and viewtext ~* '$keyword'";
-            //page = 1;
+        if (formData.containsField("keyword") && keyword.trim() != ""){
+            col = db.search(keyword, page, filters)
+        } else{
+            col = db.getCollectionOfDocuments(formula, page, false)
         }
 
-		def db = session.getCurrentDatabase()
-		def filters = []
-		def sorting = []
-		//def col = db.getCollectionOfGlossaries(formula, page, 20)
-        def col = db.getCollectionOfDocuments(formula, page, false)
-       // println col.count;
-       // println(formula)
         setContent(col)
 	}
 }
