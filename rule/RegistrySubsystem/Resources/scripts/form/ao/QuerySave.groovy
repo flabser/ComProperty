@@ -63,7 +63,7 @@ class QuerySave extends _FormQuerySave {
         doc.addViewText(doc.getValueString('bin'))
         doc.addViewText(doc.getValueString('okpo'))
         doc.addViewText(doc.getValueString('oked'))
-        doc.addViewText(session.db.getGlossaryCustomFieldValueByDOCID(doc.getValueString("typeactivity").toInteger(), "koef").replace(",", "."))
+//        doc.addViewText(session.db.getGlossaryCustomFieldValueByDOCID(doc.getValueString("typeactivity").toInteger(), "koef").replace(",", "."))
         doc.addViewText(doc.getValueString("privilege"))
         doc.addViewText(doc.getValueString("orgfullnamekaz"))
 		//doc.setViewNumber(doc.getValueNumber("vnnumber"))
