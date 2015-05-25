@@ -12,7 +12,7 @@
 		<html>
 			<head>
 				<title>
-					<xsl:value-of select="$doctype"/>  - АИС 'Коммунальное Имущество'
+					<xsl:value-of select="$doctype"/> - АИС 'Коммунальное Имущество'
 				</title>
 				<xsl:call-template name="cssandjs"/>
 				<script type="text/javascript">
@@ -107,13 +107,17 @@
                                         <xsl:value-of select="document/captions/documentation/@caption"/>
                                     </a>
                                 </li>
+                                <li class="ui-state-default ui-corner-top">
+                                    <a href="#tabs-3">
+                                        <xsl:value-of select="document/captions/documentation/@caption"/>
+                                    </a>
+                                </li>
                             </ul>
 							<div class="ui-tabs-panel" id="tabs-1">
 								<form action="Provider" name="frm" method="post" id="frm" enctype="application/x-www-form-urlencoded">
 									<div display="block" id="property">
 										<br/>
 										<table width="100%" border="0">
-										
 										<!-- ФИО -->
 										<tr>
 											<td class="fc">
@@ -332,6 +336,18 @@
                                             </td>
                                         </tr>
                                     </table>
+                                </div>
+                            </div>
+                            <div class="ui-tabs-panel" id="tabs-3">
+                                <div display="block"  id="property" width="100%">
+                                    <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="type" value="rtfcontent"/>
+                                        <input type="hidden" name="formsesid" value="{formsesid}"/>
+                                        <!-- Секция "Вложения" -->
+                                        <div display="block" id="att" style="width:100%">
+                                            <xsl:call-template name="attach"/>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 					    </div>
