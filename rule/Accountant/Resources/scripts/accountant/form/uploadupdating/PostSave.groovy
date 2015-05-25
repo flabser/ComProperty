@@ -11,8 +11,10 @@ import java.text.SimpleDateFormat
 class PostSave extends _FormPostSave {
 
     public void doPostSave(_Session ses, _Document doc) {
-        doc.getAttachments("rtfcontent", "InventLoad")
-        File dir = new File("InventLoad" + File.separator + "1");
+        String fileDir = "tmp" + File.separator + "InventLoad" + File.separator + ses.getCurrentUserID() + File.separator + (new Date().time)
+        doc.getAttachments("rtfcontent", fileDir)
+
+        File dir = new File(fileDir + File.separator + "1");
 
         FilenameFilter fileNameFilter = new FilenameFilter() {
             @Override
@@ -24,6 +26,7 @@ class PostSave extends _FormPostSave {
                         return true;
                     }
                 }
+                log("Accountant: import failed, file extension have to be .xls")
                 return false;
             }
         };
@@ -140,7 +143,42 @@ class PostSave extends _FormPostSave {
                                 }else if(kuf_num == 401){
                                     _doc.setForm("automobile")
                                     _doc.setValueString("form", "automobile");
-                                    // ??????????? Автомашины не полностью классифицирован
+                                }else if(kuf_num == 4011){
+                                    _doc.setForm("automobile")
+                                    _doc.setValueString("form", "automobile");
+                                }else if(kuf_num == 4012){
+                                        _doc.setForm("cargo")
+                                        _doc.setValueString("form", "cargo");
+                                }else if(kuf_num == 4013){
+                                    _doc.setForm("dejtransport")
+                                    _doc.setValueString("form", "dejtransport");
+                                }else if(kuf_num == 4014){
+                                    _doc.setForm("officialtransport")
+                                    _doc.setValueString("form", "officialtransport");
+                                }else if(kuf_num == 4015){
+                                    _doc.setForm("hospitaltransport")
+                                    _doc.setValueString("form", "hospitaltransport");
+                                }else if(kuf_num == 40161){
+                                    _doc.setForm("bus")
+                                    _doc.setValueString("form", "bus");
+                                }else if(kuf_num == 40162){
+                                    _doc.setForm("trolleybus")
+                                    _doc.setValueString("form", "trolleybus");
+                                }else if(kuf_num == 40163){
+                                    _doc.setForm("tram")
+                                    _doc.setValueString("form", "tram");
+                                }else if(kuf_num == 40164){
+                                    _doc.setForm("taxi")
+                                    _doc.setValueString("form", "taxi");
+                                }else if(kuf_num == 40165){
+                                    _doc.setForm("watertransport")
+                                    _doc.setValueString("form", "watertransport");
+                                }else if(kuf_num == 402){
+                                    _doc.setForm("specialequipment")
+                                    _doc.setValueString("form", "specialequipment");
+                                }else if(kuf_num == 403){
+                                    _doc.setForm("motorcycle")
+                                    _doc.setValueString("form", "motorcycle");
                                 }else if(kuf_num == 501){
                                     _doc.setForm("objectreservedfund")
                                     _doc.setValueString("form", "objectreservedfund");
@@ -264,7 +302,7 @@ class PostSave extends _FormPostSave {
                                 _doc.addReader("[operator]")
                                 _doc.addReader("[supervisor]")
                                 _doc.addReader("[observer]")
-                                _doc.addReader(ses.getCurrentAppUser().getUserID())
+                                _doc.addEditor(ses.getCurrentAppUser().getUserID())
                                 _doc.addEditor("[observer]")
                                 _doc.setAuthor(ses.getCurrentAppUser().getUserID());
 
@@ -277,6 +315,7 @@ class PostSave extends _FormPostSave {
                                 _doc.addViewText(name)
                                 _doc.addViewText(name)
                                 _doc.addViewText(doc.getValueString("originalcost"))
+                                _doc.setViewDate(new Date());
 
                                 /*  def col_prop_code = ses.currentDatabase.getCollectionOfGlossaries("name = '${propertycode}'", 0, 0)
                                   if (col_prop_code && col_prop_code.count > 0) {
@@ -284,17 +323,17 @@ class PostSave extends _FormPostSave {
                                       _doc.addViewText(ses.currentDatabase.getGlossaryCustomFieldValueByDOCID(prop_code_glos?.getDocID(), "code") )
                                       _doc.setValueString("propertycode", prop_code_glos?.getDocID());
                                   }*/
-                                _doc.setViewDate(acceptancedate)
+                                //_doc.setViewDate(acceptancedate)
                                 _doc.save("[supervisor]")
                                 saved_docs_counter++;
                             }
                         }catch (Exception e){
-                            log("doc don't saved row:$i \n" + e.toString())
+                            log("Accountant: doc wasn't saved. Row:$i \n" + e.toString())
                         }
                     }
                 }
             }
         }
-        log("Accountant import by user ${ses.getCurrentUserID()} finished. Total docs number = $saved_docs_counter") ;
+        log("Accountant: import by user ${ses.getCurrentUserID()} finished. Total imported docs number = $saved_docs_counter") ;
     }
 }
