@@ -109,7 +109,8 @@
                                 </li>
                                 <li class="ui-state-default ui-corner-top">
                                     <a href="#tabs-3">
-                                        <xsl:value-of select="document/captions/documentation/@caption"/>
+                                       <!-- <xsl:value-of select="document/captions/documentation/@caption"/>-->
+                                        Вложения
                                     </a>
                                 </li>
                             </ul>
