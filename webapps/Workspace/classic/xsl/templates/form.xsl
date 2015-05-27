@@ -1901,8 +1901,8 @@
                             <xsl:value-of select="document/captions/attachments/@caption"/>:
                         </td>
                         <td>
-                            <input type="file" size="60" border="#CCC" name="fname">
-                                <xsl:attribute name="onchange">javascript:submitFile('upload', 'upltable', 'fname'); ajaxFunction()</xsl:attribute>
+                            <input type="file" size="60" border="#CCC" name="employer_uploadfield">
+                                <xsl:attribute name="onchange">javascript:submitFile('upload', 'upltable', 'employer_uploadfield'); ajaxFunction()</xsl:attribute>
                             </input>&#xA0;
                             <!-- <a id="upla" style="margin-left:5px; border-bottom:1px dotted; text-decoration:none; color:#1A3DC1;">
                                 <xsl:attribute name="href">javascript:submitFile('upload', 'upltable', 'fname');ajaxFunction()</xsl:attribute>

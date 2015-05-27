@@ -692,7 +692,7 @@ function uploadComplete(tableID, doc) {
     var xmldoc = doc.documentElement,
         st = xmldoc.getAttribute('status'),
         msg = xmldoc.getElementsByTagName('BODY'),
-        fileName= $('input[name=fname]')[0].files[0].name;
+        fileName= $('input[name=employer_uploadfield]')[0].files[0].name;
     if (st == 'ok'){
         tableid='#'+tableID;
         var table = $(tableid);

@@ -104,13 +104,14 @@
 								</li>
                                 <li class="ui-state-default ui-corner-top">
                                     <a href="#tabs-2">
-                                        <xsl:value-of select="document/captions/documentation/@caption"/>
+                                        Вложения
+
                                     </a>
                                 </li>
                                 <li class="ui-state-default ui-corner-top">
                                     <a href="#tabs-3">
                                        <!-- <xsl:value-of select="document/captions/documentation/@caption"/>-->
-                                        Вложения
+                                        <xsl:value-of select="document/captions/documentation/@caption"/>
                                     </a>
                                 </li>
                             </ul>
@@ -285,7 +286,7 @@
                                     <input type="hidden" name="formsesid" value="{formsesid}"/>
                                 </form>
 					    	</div>
-                            <div class="ui-tabs-panel" id="tabs-2">
+                            <div class="ui-tabs-panel" id="tabs-3">
                                 <div display="block" id="">
                                     <table width="100%" border="0">
                                        <!-- <tr>
@@ -339,7 +340,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="ui-tabs-panel" id="tabs-3">
+                            <div class="ui-tabs-panel" id="tabs-2">
                                 <div display="block"  id="property" width="100%">
                                     <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="rtfcontent"/>
