@@ -68,6 +68,16 @@ function suggestionStreet() {
 	});
 }
 
+function validationloginfield(element){
+    if (/^[ 0-9]+[A-z]+$/.test($(element).val()) || $(element).val().length == '0'){
+        $("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled")
+        $(element).removeClass("invalid")
+    }else{
+        $(element).blur().focus().addClass("invalid")
+        $("#btnsavedoc").attr("disabled","disabled").addClass("ui-state-disabled")
+    }
+}
+
 function validationnumfield(element){
 	if (/^[ 0-9]+$/.test($(element).val()) || $(element).val().length == '0'){
 		$("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled")

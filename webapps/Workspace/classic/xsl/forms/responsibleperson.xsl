@@ -141,7 +141,7 @@
 												<xsl:value-of select="document/captions/login/@caption"/>&#xA0;:
 											</td>
 											<td>
-												<input type="text" value="{document/fields/login}" style="width:300px;" class="td_editable" name="login">
+												<input type="text" value="{document/fields/login}" style="width:300px;"  onkeyup="javascript:validationloginfield(this)" class="td_editable" name="login">
 													<xsl:if test="$editmode != 'edit'">
 														<xsl:attribute name="readonly">readonly</xsl:attribute>
 														<xsl:attribute name="class">td_noteditable</xsl:attribute>
