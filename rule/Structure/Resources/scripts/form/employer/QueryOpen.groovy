@@ -86,6 +86,10 @@ class QueryOpen extends _FormQueryOpen {
             publishValue("institution", emp.getObl());
         }
 
+        try{
+            publishAttachment("rtfcontent", "rtfcontent")
+        }catch(Exception e){}
+
 		def actionBar = ses.createActionBar();
         if (user.hasRole(["supervisor", "struct_keeper"]) ){
             if(emp.getDocumentForm() == "E"){
