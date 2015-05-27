@@ -52,7 +52,9 @@ class QueryOpen extends _FormQueryOpen {
         if (emp.getStatus() == _EmployerStatusType.FIRED){
             publishValue("fired", "1")
         }
-
+       // try{
+            publishAttachment("rtfcontent", "rtfcontent")
+       // }catch(Exception e){}
         publishValue("institutionname", emp.getShortName());
         publishValue("institution", emp.getObl());
 
