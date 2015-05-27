@@ -37,5 +37,5 @@
     <caption name ="searchcaption" source ="KEYWORD">поиск</caption>
     <caption name ="employer" source ="KEYWORD">Ответственное лицо по загрузке объектов</caption>
     <caption name ="pleasewaitactivate" source ="KEYWORD">Пожалуйста ждите... Идет подтверждение</caption>
-
+    <caption name="attachments" source="KEYWORD">Вложения</caption>
 </rule>

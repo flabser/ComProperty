@@ -64,6 +64,7 @@
     <caption name ="cancel" source ="KEYWORD">Закрыть</caption>
     <caption name ="searchcaption" source ="KEYWORD">поиск</caption>
     <caption name="reenterpassword" source="KEYWORD">Повтор пароля</caption>
+    <caption name="attachments" source="KEYWORD">Вложения</caption>
 
 	<glossary mode="on" id="post" source="query">
 		<description>Должность</description>
