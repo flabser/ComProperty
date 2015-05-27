@@ -142,12 +142,13 @@
 								<li class="ui-state-default ui-corner-top">
 									<a href="#tabs-1"><xsl:value-of select="document/captions/properties/@caption"/></a>
 								</li>
+                                <li class="ui-state-default ui-corner-top">
+                                    <a href="#tabs-2">Вложения</a>
+                                </li>
 								<li class="ui-state-default ui-corner-top">
-									<a href="#tabs-2"><xsl:value-of select="document/captions/interface/@caption"/></a>
+									<a href="#tabs-3"><xsl:value-of select="document/captions/interface/@caption"/></a>
 								</li>
-								<!-- <li class="ui-state-default ui-corner-top">
-									<a href="#tabs-3"><xsl:value-of select="document/captions/filtermanage/@caption"/></a>
-								</li> -->
+
 							</ul>
 							<form action="Provider" name="frm" method="post" id="frm" enctype="application/x-www-form-urlencoded">
 							<div class="ui-tabs-panel" id="tabs-1">
@@ -481,7 +482,7 @@
 	                 			<br/>
 	           				</div>
 	           			</div>
-	            		<div id="tabs-2">
+	            		<div id="tabs-3">
 							<div display="block" id="interface" style="width:100%">
 								<br/>
 				         		<table width="80%" border="0" style="margin-top:8px">
@@ -597,10 +598,21 @@
 				       				<br/>	
 				        		</div>
 	        				</div>
-	            			
-							<input type="hidden" name="type" value="save_userprofile"/>
-							<input type="hidden" name="id" value="userprofile"/>
-	        			</form>
+                            <input type="hidden" name="type" value="save_userprofile"/>
+                            <input type="hidden" name="id" value="userprofile"/>
+                        </form>
+                        <div class="ui-tabs-panel" id="tabs-2">
+                            <div display="block"  id="property" width="100%">
+                                <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="type" value="employer_uploadfield"/>
+                                    <input type="hidden" name="formsesid" value="{formsesid}"/>
+                                    <!-- Секция "Вложения" -->
+                                    <div display="block" id="att" style="width:100%">
+                                        <xsl:call-template name="attach"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 	        		</div>
 	        		<div style="height:10px"/>
 	        	</div>

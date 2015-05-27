@@ -529,7 +529,7 @@
 	<xsl:template name="attach">
 		<div id="attach" style="display:block;">
 			<table style="border:0; border-collapse:collapse" id="upltable" width="99%">
-				<xsl:if test="$editmode = 'edit'">
+				<!--<xsl:if test="$editmode = 'edit'">
 					<tr>
 						<td class="fc">
 							<xsl:value-of select="document/captions/attachments/@caption"/>:
@@ -538,10 +538,7 @@
 							<input type="file" size="60" border="#CCC" name="fname" id="xls">
 								<xsl:attribute name="onchange">javascript:submitFile('upload', 'upltable', 'fname'); ajaxFunction()</xsl:attribute>
 							</input>&#xA0;
-							<!-- <a id="upla" style="margin-left:5px; border-bottom:1px dotted; text-decoration:none; color:#1A3DC1;">
-								<xsl:attribute name="href">javascript:submitFile('upload', 'upltable', 'fname');ajaxFunction()</xsl:attribute>
-								<xsl:value-of select="document/captions/attach/@caption"/>
-							</a> -->
+
 							<br/>
 							<style>.ui-progressbar .ui-progressbar-value { background-image: url(/SharedResources/jquery/css/base/images/pbar-ani.gif); }</style>
 							<div id="progressbar" style="width:370px; margin-top:5px; height:12px"></div>
@@ -553,7 +550,7 @@
 						</td>
 						<td></td>
 					</tr>
-				</xsl:if>
+				</xsl:if> -->
 				<xsl:variable name='docid' select="document/@docid"/>
 				<xsl:variable name='doctype' select="document/@doctype"/>
 				<xsl:variable name='formsesid' select="formsesid"/>
@@ -573,7 +570,7 @@
 											<xsl:attribute name="onload">checkImage(this)</xsl:attribute>
 											<xsl:attribute name='src'>Provider?type=getattach&amp;formsesid=<xsl:value-of select="$formsesid"/>&amp;doctype=<xsl:value-of select="$doctype"/>&amp;key=<xsl:value-of select="@id"/>&amp;field=rtfcontent&amp;file=<xsl:value-of select='$filename'/></xsl:attribute>
 										</img>
-										<xsl:if test="$editmode = 'edit'">
+										 <xsl:if test="$editmode = 'edit'">
 											<xsl:if test="comment =''">
 												<a href='' style="vertical-align:top;" title='tect'>
 													<xsl:attribute name='href'>javascript:addCommentToAttach('<xsl:value-of select="$id"/>')</xsl:attribute>
@@ -598,7 +595,7 @@
 											<xsl:attribute name='href'>Provider?type=getattach&amp;formsesid=<xsl:value-of select="$formsesid"/>&amp;doctype=<xsl:value-of select="$doctype"/>&amp;key=<xsl:value-of select="@id"/>&amp;field=rtfcontent&amp;file=<xsl:value-of select='$filename'/>	</xsl:attribute>
 											<xsl:value-of select='replace($filename,"%2b","+")'/>
 										</a>&#xA0;&#xA0;
-										<xsl:if test="$editmode = 'edit'">
+										 <xsl:if test="$editmode = 'edit'">
 											<xsl:if test="comment =''">
 												<a href='' style="vertical-align:5px;">
 													<xsl:attribute name='href'>javascript:addCommentToAttach('<xsl:value-of select="$id"/>')</xsl:attribute>
