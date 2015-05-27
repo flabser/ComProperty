@@ -12,6 +12,13 @@
                 </li>
                 <li class="ui-state-default ui-corner-top">
                     <a href="#tabs-2">
+                        Вложения
+
+                    </a>
+                </li>
+                <li class="ui-state-default ui-corner-top">
+                    <a href="#tabs-3">
+                        <!-- <xsl:value-of select="document/captions/documentation/@caption"/>-->
                         <xsl:value-of select="document/captions/documentation/@caption"/>
                     </a>
                 </li>
@@ -180,7 +187,7 @@
                     <input type="hidden" name="formsesid" value="{formsesid}"/>
                 </form>
             </div>
-            <div class="ui-tabs-panel" id="tabs-2">
+            <div class="ui-tabs-panel" id="tabs-3">
                 <div display="block" id="">
                     <table width="100%" border="0">
                         <!-- <tr>
@@ -198,7 +205,25 @@
                         <tr>
                             <td class="fc"></td>
                             <td>
-                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=инструкция по загрузки.docx" >Инструкция по загрузке.docx</a>
+                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=Анкета.docx" >Анкета.docx</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fc"></td>
+                            <td>
+                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=Пример_EXCEL_файла.xlsx" >Пример excel файла.xlsx</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fc"></td>
+                            <td>
+                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=инструкция по загрузки.docx" >Инструкция по загрузки.docx</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fc"></td>
+                            <td>
+                                <a style="color:blue;" href="/Workspace/Provider?type=page&amp;id=downloadfile&amp;filename=Формат_данных_и_КУФ.docx" >Формат данных и КУФ.docx</a>
                             </td>
                         </tr>
                         <tr>
@@ -214,6 +239,18 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="ui-tabs-panel" id="tabs-2">
+                <div display="block"  id="property" width="100%">
+                    <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="type" value="employer_uploadfield"/>
+                        <input type="hidden" name="formsesid" value="{formsesid}"/>
+                        <!-- Секция "Вложения" -->
+                        <div display="block" id="att" style="width:100%">
+                            <xsl:call-template name="attach"/>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
