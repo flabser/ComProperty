@@ -15,6 +15,7 @@
 					<xsl:value-of select="$doctype"/> - АИС 'Коммунальное Имущество'
 				</title>
 				<xsl:call-template name="cssandjs"/>
+                <xsl:call-template name="fields_tooltip"/>
 				<script type="text/javascript">
 					$(document).ready(function(){hotkeysnav()})
    					<![CDATA[
@@ -74,7 +75,7 @@
 						<div class="button_panel">
 							<span style="float:left">
 								<xsl:call-template name="showxml"/>
-								<button title ="{document/captions/saveclose/@hint}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="btnsavedoc">
+								<button title ="{document/captions/saveclose/@hint}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="btnsavedoc" autocomplete="off">
 									<xsl:attribute name="onclick">javascript:SaveFormJquery(&quot;<xsl:value-of select="history/entry[@type eq 'page'][last()]"/>&amp;page=<xsl:value-of select="document/@openfrompage"/>&quot;)</xsl:attribute>
 									<span>
 										<img src="/SharedResources/img/classic/icons/disk.png" class="button_img"/>
@@ -141,14 +142,13 @@
 												<xsl:value-of select="document/captions/login/@caption"/>&#xA0;:
 											</td>
 											<td>
-												<input type="text" value="{document/fields/login}" style="width:300px;"  onkeyup="javascript:validationloginfield(this)" class="td_editable" name="login">
+												<input type="text" value="{document/fields/login}" style="width:300px;"  class="td_editable" name="login" title="{document/captions/logintitle/@caption}" autocomplete="off">
 													<xsl:if test="$editmode != 'edit'">
 														<xsl:attribute name="readonly">readonly</xsl:attribute>
 														<xsl:attribute name="class">td_noteditable</xsl:attribute>
-														<xsl:attribute name="onfocus">javascript:$(this).blur()</xsl:attribute>
 													</xsl:if>
                                                     <xsl:if test="$editmode = 'edit'">
-                                                        <xsl:attribute name="onblur">javascript:checkLogin(this.value)</xsl:attribute>
+                                                        <xsl:attribute name="onblur">javascript:checkLogin(this)</xsl:attribute>
                                                     </xsl:if>
 												</input>
                                                 <xsl:if test="document/@status = 'new'">

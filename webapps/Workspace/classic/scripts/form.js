@@ -69,12 +69,20 @@ function suggestionStreet() {
 }
 
 function validationloginfield(element){
-    if (/^[ 0-9]+[A-z]+$/.test($(element).val()) || $(element).val().length == '0'){
+
+    if (/^[0-9a-z]+$/i.test($(element).val()) || $(element).val().length == '0'){
         $("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled")
         $(element).removeClass("invalid")
+        $(element).attr("title","Поле Логин должен содержать латинские буквы и цифры")
+        $(element).tipTip({maxWidth: "300px", defaultPosition: "right", activation: "hover", delay:"200"});
+         return true
     }else{
-        $(element).blur().focus().addClass("invalid")
+        $(element).focus().addClass("invalid")
         $("#btnsavedoc").attr("disabled","disabled").addClass("ui-state-disabled")
+        $(element).tipTip({maxWidth: "300px", defaultPosition: "right", activation: "hover", delay:"200"});
+        $(element).attr("title","Поле Логин должен содержать латинские буквы и цифры")
+        $(element).tipTip({maxWidth: "300px", defaultPosition: "right", activation: "hover", delay:"200"});
+        return false
     }
 }
 
@@ -458,6 +466,10 @@ function dialogConfirm (text,el,actionEl){
 
 /* сохранение формы */
 function SaveFormJquery(redirecturl) {
+
+    if($("[name=id]").val() == "responsibleperson"){
+        if(validationloginfield($("[name=login]")) == false) return false;
+    }
 	enableblockform()
 	$("body").notify({"text":pleasewaitdocsave,"onopen":function(){}})
 	divhtml ="<div id='dialog-message' title="+saving+">";
@@ -1339,8 +1351,11 @@ function enableCheckByIINButton(el){
     }
 }
 
-function checkLogin(login){
-    login = login.trim();
+function checkLogin(elem){
+    var valid = validationloginfield(elem)
+    if(valid == false)return false;
+
+    var login = $(elem).val().trim();
     if(login == "")
         return false;
     $.ajax({
@@ -1352,11 +1367,15 @@ function checkLogin(login){
             if($(xml).find("isLoginFree").text() == "true"){
                 $("#loginStatusImg").attr("src", "/SharedResources/img/iconset/tick.png").removeAttr("title")
                 $("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled").removeAttr("title");
+                $("input[name=login]").attr("title","Поле Логин должен содержать латинские буквы и цифры")
+                $(elem).tipTip({maxWidth: "300px", defaultPosition: "right", activation: "hover", delay:"200"});
             }else{
                 $("#loginStatusImg").attr("src", "/SharedResources/img/iconset/cross.png")
                 $("#loginStatusImg").attr("title","Данный логин уже существует, выберите другой")
                 $("#btnsavedoc").attr("title", "Данный логин уже существует, выберите другой");
                 $("#btnsavedoc").attr("disabled", "disabled").addClass("ui-state-disabled");
+                $(elem).attr("title","Данный логин уже существует, выберите другой")
+                $(elem).tipTip({maxWidth: "300px", defaultPosition: "right", activation: "hover", delay:"200"});
 
             }
         }, error:function (xhr, ajaxOptions, thrownError){
