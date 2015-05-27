@@ -37,4 +37,6 @@
     <caption name ="searchcaption" source ="KEYWORD">поиск</caption>
     <caption name="attachments" source="KEYWORD">Вложения</caption>
     <caption name="comments" source="KEYWORD">комментарий</caption>
+    <caption name="logintitle" source="KEYWORD">Поле Логин должен содержать латинские буквы и цифры</caption>
+
 </rule>
