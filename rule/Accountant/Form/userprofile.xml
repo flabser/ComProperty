@@ -43,4 +43,5 @@
     <caption name ="orgname" source ="KEYWORD">Наименование учреждения</caption>
     <caption name="password" source="KEYWORD">Пароль</caption>
     <caption name="reenterpassword" source="KEYWORD">Повтор пароля</caption>
+    <caption name="attachments" source="KEYWORD">Вложения</caption>
 </rule>

@@ -58,6 +58,11 @@ class QueryOpen extends _FormQueryOpen {
 
         publishValue("institutionname", emp.getShortName());
         publishValue("institution", emp.getObl());
+
+        try{
+            publishAttachment("rtfcontent", "rtfcontent")
+        }catch(Exception e){}
+
         try{
             def orgDoc = ses.getCurrentDatabase().getDocumentByID(emp.getObl());
             publishValue("org_link", orgDoc.getURL());
