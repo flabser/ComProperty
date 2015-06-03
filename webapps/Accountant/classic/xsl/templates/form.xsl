@@ -529,13 +529,13 @@
 	<xsl:template name="attach">
 		<div id="attach" style="display:block;">
 			<table style="border:0; border-collapse:collapse" id="upltable" width="99%">
-				<!--<xsl:if test="$editmode = 'edit'">
+				 <xsl:if test="$editmode = 'edit'">
 					<tr>
 						<td class="fc">
 							<xsl:value-of select="document/captions/attachments/@caption"/>:
 						</td>
 						<td>
-							<input type="file" size="60" border="#CCC" name="fname" id="xls">
+							<input type="file" size="60" border="#CCC" name="fname" id="xls" accept=".xls">
 								<xsl:attribute name="onchange">javascript:submitFile('upload', 'upltable', 'fname'); ajaxFunction()</xsl:attribute>
 							</input>&#xA0;
 
@@ -550,7 +550,7 @@
 						</td>
 						<td></td>
 					</tr>
-				</xsl:if> -->
+				</xsl:if>
 				<xsl:variable name='docid' select="document/@docid"/>
 				<xsl:variable name='doctype' select="document/@doctype"/>
 				<xsl:variable name='formsesid' select="formsesid"/>
@@ -566,7 +566,7 @@
 							<div class="test" style="width:90%; overflow:hidden; display:inline-block">
 								<xsl:choose>
 									<xsl:when test="$extension = 'jpg' or $extension = 'jpeg' or $extension = 'gif' or $extension = 'bmp' or $extension = 'png'">
-										<img class="imgAtt" title="{$filename}" style="border:1px solid lightgray; max-width:800px; max-height:600px; margin-bottom:5px">
+					 					<img class="imgAtt" title="{$filename}" style="border:1px solid lightgray; max-width:800px; max-height:600px; margin-bottom:5px">
 											<xsl:attribute name="onload">checkImage(this)</xsl:attribute>
                                             <xsl:choose>
                                                 <xsl:when test="contains(/request/@querystring, 'userprofile')">

@@ -264,6 +264,40 @@ function infoDialog(text){
 	$(".ui-dialog button").focus();
 }
 
+function infoDialogBig(text, title, removeId){
+    $(document).unbind("keydown")
+    divhtml ="<div id='dialog-message' title='"+title+"' >";
+    divhtml +="<span style='height:500px; width:100%; text-align:center;'>"+
+        "<font style='font-size:13px;'>"+text+"</font></span>";
+    divhtml += "</div>";
+    $("body").append(divhtml);
+    $("#dialog-message").dialog("destroy");
+    $("#dialog-message").dialog({
+        modal: true,
+        width: 400,
+        buttons: {
+            "Правильно": function() {
+                $(this).dialog("close").remove();
+                $(".hotnav-accesskey").remove()
+                hotkeysnav()
+            },
+            "Нет, загрузить другой файл": function() {
+                $(this).dialog("close").remove();
+                $(".hotnav-accesskey").remove()
+                $("#"+removeId).remove()
+                $("#"+removeId+"comment").remove()
+                hotkeysnav()
+            }
+        },
+        beforeClose: function() {
+            $("#dialog-message").remove();
+            $(".hotnav-accesskey").remove()
+            hotkeysnav()
+        }
+    });
+    $(".ui-dialog button").focus();
+}
+
 function dialogAndFunction(text,func, name, par){
 	divhtml ="<div id='dialog-message' title='Предупреждение'>";
 	divhtml +="<span style='text-align:center;'>"+
@@ -503,6 +537,7 @@ function submitFile(form, tableID, fieldName) {
 				$('#loadingpage').remove();
 				$('#blockWindow').remove();
 				$("body").css("cursor","default")
+
 			};
 			form.attr('target', frame.id);
 			form.submit();
@@ -639,6 +674,8 @@ function uploadComplete(tableID, doc) {
 			fileid=$(doc).find("message[id=4]").text();
             filehash=$(doc).find("message[id=2]").text();
             fileNameEcr=fileName.replace(/\%/g, "%25").replace(/\+/g, "%2b");// убираем знак '+' из ссылок
+            $(table).children("tr").not('tr:first').remove()
+
 			$(table).append("<tr id='"+ csf + "'>" +
 					'<td><input type="hidden" name="filename" value="'+fileName+'"/><input type="hidden" name="fileid" value="'+fileid+'"/><input type="hidden" name="filehash" value="'+filehash+'"/></td>' +
 					"<td>" +
@@ -646,7 +683,7 @@ function uploadComplete(tableID, doc) {
 					"<a href='javascript:addCommentToAttach(&quot;"+ csf +"&quot;)' style='vertical-align:5px; '>"+
 			"<img id='commentaddimg"+csf+"' src='/SharedResources/img/classic/icons/comment_add.png' style='width:12px; height:12px' title='"+addcomment+"'/></a>"+
 			"<a href='javascript:deleterow(&quot;"+sesid +"&quot;,&quot;"+ fileNameEcr +"&quot;,&quot;"+ csf +"&quot;)'><img src='/SharedResources/img/iconset/cross.png' style='margin-left:5px; width:10px; height:10px; vertical-align:6px'  title='"+delete_file+"'/></a>" +
-			"</td><td></td</tr>");
+			"</td><td></td></tr>");
 			$("input[name=deletertfcontentname]").each(function(index, element){
 				if($(element).val() == d){
 					$(element).remove()
@@ -657,10 +694,12 @@ function uploadComplete(tableID, doc) {
 			}
 			$("#progressbar").progressbar("destroy");
 			$("#progressstate").css("display","none");
-			ConfirmCommentToAttach(addcommentforattachment,csf)
+			ConfirmCommentToAttach(addcommentforattachment,csf, fileid)
+
 		}else{
 			$("#progressbar").progressbar("destroy");
 			infoDialog('Произошла ошибка на сервере при выгрузке файла');
+            checkFileStructure(fileid, csf)
 		}
 	}else{
 		$("#progressbar").progressbar("destroy");
@@ -689,7 +728,7 @@ function detectExtAttach(file){
 }
 
 var control_sum_file = null; 
-function ConfirmCommentToAttach(text,csf){
+function ConfirmCommentToAttach(text,csf, fileid){
 	control_sum_file = csf;
 	divhtml ="<div id='dialog-message' title='"+attention+"'>";
 	divhtml +="<span style='height:50px; margin-top:4%; width:100%; text-align:center'>"+
@@ -704,11 +743,12 @@ function ConfirmCommentToAttach(text,csf){
 			buttons:{
 				"да": function() {
 					$(this).dialog("close").remove();
-					addCommentToAttach()
+					addCommentToAttach(csf)
 				},
 				"нет": function() {
 					$(this).dialog("close").remove();
 					$("<tr><td colspan='3'></td></tr>").insertAfter("#"+control_sum_file);
+                    checkFileStructure(fileid, csf)
 				}
 			},
 			beforeClose: function() { 
@@ -726,7 +766,7 @@ function ConfirmCommentToAttach(text,csf){
 			buttons:{
 				"yes": function() {
 					$(this).dialog("close").remove();
-					addCommentToAttach()
+					addCommentToAttach(csf)
 				},
 				"no": function() {
 					$(this).dialog("close").remove();
@@ -748,7 +788,7 @@ function ConfirmCommentToAttach(text,csf){
 			buttons:{
 				"иә": function() {
 					$(this).dialog("close").remove();
-					addCommentToAttach()
+					addCommentToAttach(csf)
 				},
 				"жоқ": function() {
 					$(this).dialog("close").remove();
@@ -769,7 +809,8 @@ function ConfirmCommentToAttach(text,csf){
 			buttons:{
 				是: function() {
 					$(this).dialog("close").remove();
-					addCommentToAttach()
+					addCommentToAttach(csf)
+
 				},
 				不: function() {
 					$(this).dialog("close").remove();
@@ -781,12 +822,54 @@ function ConfirmCommentToAttach(text,csf){
 				$("#progressbar").progressbar( "destroy" );
 				$("#progressstate").css("display","none");
 				$("#readybytes, #percentready , initializing").text('')
+
 			} 
 		});
 	}
 }
 
+function checkFileStructure(fileid, trId){
+    enableblockform()
+    var notify = $("body").notify({"text":"Идет проверка структуры файла. Пожалуйста подождите...","onopen":function(){$("body")},"loadanimation":false})
+    $.ajax({
+        type: "get",
+        datatype: "xml",
+        url: "Provider?type=page&id=check_file_structure",
+        data: "fileid=" + fileid,
+        success: function(xml){
+            var result = $(xml).find("result")
+            if(result.attr("status") != "success") {
+                $("#btnsavedoc").attr("disabled","disabled").addClass("ui-state-disabled")
+                $("#"+trId).remove()
+                var mess = ""
+                if(result.attr("status") == "wrong_kuf" || result.attr("status") == "empty_kuf")
+                    mess =  "Неправильно заполнен КУФ номер. Пожалуйста, сверьте Ваш файл с шаблоном..."
+                else if(result.attr("status") == "parsing_file_error")
+                    mess =  "Неправильный формат файла. Пожалуйста, сверьте Ваш файл с шаблоном..."
+                infoDialog(mess)
+            } else{
+                $("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled")
+                text = "Инвентарный номер: " + result.attr("invnumber") + "<br/>"
+                text += "Наименование: " + result.attr("name") + "<br/>"
+                text += "Дата принятия на баланс: " + result.attr("acceptancedate") + "<br/>"
+                text += "Район: " + result.attr("region") + "<br/>"
+                text += "Адрес: " + result.attr("address") + "<br/>"
+                text += "Первоначальная стоимость (тг.): " + result.attr("originalcost") + "<br/>"
+                text += "Балансовая стоимость (тг.): " + result.attr("balancecost") + "<br/>"
+                text += "kuf: " + result.attr("kuf") + "<br/>"
+                infoDialogBig(text, "Проверьте правильность данных", trId)
+            }
+            $("body").hidenotify({"delay":200,"onclose":function(){$("#notifydiv").remove()}})
+            disableblockform()
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+
+        }
+    })
+}
+
 function addCommentToAttach(csf){
+
 	if (csf){
 		control_sum_file = csf;
 	}
@@ -804,8 +887,8 @@ function addCommentToAttach(csf){
 		"</table><br/>" +
 	"</div>"+
 	"<div class='buttonPaneComment button_panel' style='margin-top:1%; text-align:right; width:98%'>" +
-	"<button class='ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' onclick='javascript:commentToAttachOk()' style='margin-right:5px'><span class='ui-button-text'><font style='font-size:12px; vertical-align:top'>ОК</font></span></button>" +
-	"<button class='ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' onclick='javascript:commentCancel()'><span class='ui-button-text'><font style='font-size:12px; vertical-align:top'>"+cancelcaption+"</font></span></button>" +
+	"<button class='ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' onclick='javascript:commentToAttachOk(&quot;"+csf+"&quot;)' style='margin-right:5px'><span class='ui-button-text'><font style='font-size:12px; vertical-align:top'>ОК</font></span></button>" +
+	"<button class='ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only' onclick='javascript:uploadCommentCancel(&quot;"+csf+"&quot;)'><span class='ui-button-text'><font style='font-size:12px; vertical-align:top'>"+cancelcaption+"</font></span></button>" +
 	"</div>" +
 	"</div>";
 	$("body").append(divhtml);
@@ -814,7 +897,14 @@ function addCommentToAttach(csf){
 	$("#commentBox textarea").focus()
 }
 
-function commentToAttachOk(){
+/* Закрытие формы для ввода комментария и удаление динамической формы */
+function uploadCommentCancel(){
+    checkFileStructure(fileid, csf)
+    $('#commentBox , #dynamicform').remove();
+    disableblockform()
+}
+
+function commentToAttachOk(csf){
 	if ($("#commentText").val().length ==0){
 		if ($.cookie("lang")=="RUS" || !$.cookie("lang"))
 			infoDialog("Введите комментарий");
@@ -825,7 +915,7 @@ function commentToAttachOk(){
 	}else{
 		$("#frm").append("<input type='hidden' name='comment"+control_sum_file+"' value='"+ $("#commentText").val() +"'>")
 		if ($.cookie("lang")=="RUS" || !$.cookie("lang"))
-			$("<tr><td></td><td style='color:#777; font-size:12px'>комментарий : "+$("#commentText").val()+"</td><td></td></tr>").insertAfter("#"+control_sum_file)
+			$("<tr id='"+csf+"comment'><td></td><td style='color:#777; font-size:12px'>комментарий : "+$("#commentText").val()+"</td><td></td></tr>").insertAfter("#"+control_sum_file)
 		else if ($.cookie("lang")=="ENG")
 			$("<tr><td></td><td style='color:#777; font-size:12px'>comments : "+$("#commentText").val()+"</td><td></td></tr>").insertAfter("#"+control_sum_file)
 		else if ($.cookie("lang")=="KAZ")
@@ -833,6 +923,7 @@ function commentToAttachOk(){
 		$("#commentaddimg"+control_sum_file).remove()
 		$("#commentBox").remove()
 	}
+    checkFileStructure(fileid, csf)
 }
 
 /* создание  cookie для сохранения настроек пользователя и сохранение профиля пользователя*/
