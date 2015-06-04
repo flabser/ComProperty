@@ -15,6 +15,7 @@ class QuerySave extends _FormQuerySave {
 		doc.addStringField("author", webFormData.getValue("author"))
 		doc.addStringField("savedate", webFormData.getValue("savedate"))
 		doc.addFile("rtfcontent", webFormData)
+        println(webFormData)
 
 		//def returnURL = session.getURLOfLastPage()
 		localizedMsgBox(getLocalizedWord("Документ сохранен",lang))

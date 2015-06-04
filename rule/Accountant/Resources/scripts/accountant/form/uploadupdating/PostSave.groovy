@@ -32,6 +32,12 @@ class PostSave extends _FormPostSave {
         };
 
         int saved_docs_counter = 0;
+        def s = File.separator;
+        def path = (new File("")).getAbsolutePath() +
+                "${s}rule${s}Accountant${s}Resources${s}scripts${s}accountant${s}resources${s}kuf.properties"
+        def input = new FileInputStream(path);
+        Properties kufProp = new Properties();
+        kufProp.load(input);
 
         if (dir && dir.isDirectory()) {
             def files = dir.listFiles(fileNameFilter)
@@ -83,6 +89,11 @@ class PostSave extends _FormPostSave {
                                 Document document = new Document(ses.getCurrentDatabase().baseObject, "[supervisor]");
                                 _doc = new _Document(document)
                                 int kuf_num = kuf.trim().isNumber() ? kuf.trim().toInteger() : 0;
+
+                                _doc.setForm(kufProp.getProperty(kuf_num as String))
+                                _doc.setValueString("form", kufProp.getProperty(kuf_num as String));
+                                println(kufProp.getProperty(kuf_num as String))
+                                /
                                 if(kuf_num == 101) {
                                     _doc.setForm("furniture")
                                     _doc.setValueString("form", "furniture");
@@ -225,7 +236,7 @@ class PostSave extends _FormPostSave {
                                     _doc.setForm("parking")
                                     _doc.setValueString("form", "parking");
                                 }else continue;
-
+                                  */
                                  /*
                                 String part_kof = kof.substring(0, 7)
 
