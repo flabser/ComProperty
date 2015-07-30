@@ -13,7 +13,7 @@ class personalestate extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='furniture' and viewtext4 ='014' or form='animals' and viewtext4 ='014' or form='sportsequipment' and viewtext4 ='014' or form='others' and viewtext4 ='014' or form='shareblocks' and viewtext4 ='014' or form='equity' and viewtext4 ='014'";
+		def formula = "form in ('furniture','animals','sportsequipment','others','shareblocks','equity') and viewtext = '014'";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

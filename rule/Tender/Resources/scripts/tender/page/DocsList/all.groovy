@@ -13,7 +13,7 @@ class all extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='legalentities'  or form='ao'  or form='gkkp'  or form='kgp'  or form='kgu'  or form='subsidiaries'  or form='too'";
+		def formula = "form in ('legalentities','ao','gkkp','kgp','kgu','subsidiaries','too')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

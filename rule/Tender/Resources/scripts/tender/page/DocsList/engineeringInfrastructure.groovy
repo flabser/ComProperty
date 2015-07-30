@@ -13,7 +13,7 @@ class engineeringInfrastructure extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='shareblocks' and viewtext4 ='014'  or form='equity' and viewtext4 ='014'";
+		def formula = "form in ('shareblocks','equity') and viewtext = '014'";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

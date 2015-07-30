@@ -13,7 +13,7 @@ class specialconstructions extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='bombproof' and viewtext4 ='014' or form='factory' and viewtext4 ='014' or form='combines' and viewtext4 ='014' or form='airport' and viewtext4 ='014'  or form='transitions' and viewtext4 ='014'";
+		def formula = "form in ('bombproof','factory','combines','airport','transitions') and viewtext = '014'";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []
