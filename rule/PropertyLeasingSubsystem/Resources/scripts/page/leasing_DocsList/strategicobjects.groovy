@@ -13,7 +13,7 @@ class strategicobjects extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='billboard' and viewtext4 ='014' or form='columns' and viewtext4 ='014' or form='electricnetworks' and viewtext4 ='014' or form='thermalnetworks' and viewtext4 ='014' or form='gas' and viewtext4 ='014' or form='watersystem' and viewtext4 ='014' or form='drain' and viewtext4 ='014' or form='road' and viewtext4 ='014' or form='parking' and viewtext4 ='014'";
+		def formula = "form in ('billboard','columns','electricnetworks','thermalnetworks','watersystem','drain','road','parking') and viewtext4 = '014'";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []
