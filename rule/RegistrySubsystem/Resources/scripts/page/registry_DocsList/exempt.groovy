@@ -13,7 +13,7 @@ class exempt extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='legalentities' and viewtext6 = '1' or form='ao' and viewtext6 = '1' or form='gkkp' and viewtext6 = '1' or form='kgp' and viewtext6 = '1' or form='kgu' and viewtext6 = '1' or form='subsidiaries' and viewtext6 = '1' or form='too' and viewtext6 = '1'";
+		def formula = "form in ('legalentities','ao','gkkp','kgp','kgu','subsidiaries','too') and viewtext6 = '1'";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []
