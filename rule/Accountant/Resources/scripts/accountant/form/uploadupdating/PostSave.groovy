@@ -26,7 +26,7 @@ class PostSave extends _FormPostSave {
         };
 
         int saved_docs_counter = 0;
-        StringBuilder sb = new StringBuilder();
+        StringBuilder defectRows = new StringBuilder();
         def s = File.separator;
         def path = (new File("")).getAbsolutePath() +
                 "${s}rule${s}Accountant${s}Resources${s}scripts${s}accountant${s}resources${s}kuf.properties"
@@ -71,7 +71,7 @@ class PostSave extends _FormPostSave {
 
                         String kufVal = kufProp.getProperty(kuf.trim());
                         if(kufVal == null){
-                            sb.append("${i} ");   //throw new IllegalArgumentException("kuf value " + kuf + " not found. row = " + i);
+                            defectRows.append("${i} ");   //throw new IllegalArgumentException("kuf value " + kuf + " not found. row = " + i);
                             continue;
                         };
 
@@ -99,7 +99,7 @@ class PostSave extends _FormPostSave {
                         saved_docs_counter++;
 
                     }catch (Exception e){
-                        sb.append(i + " ");
+                        defectRows.append(i + " ");
                         log("Accountant: doc wasn't saved. Row:$i \n" + e.toString())
                     }
                 }
