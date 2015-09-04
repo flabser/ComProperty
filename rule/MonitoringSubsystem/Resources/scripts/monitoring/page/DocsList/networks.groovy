@@ -13,7 +13,7 @@ class networks extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='drain' or form='electricnetworks' or form='thermalnetworks' or form='gas' or form='watersystem'";
+		def formula = "form in ('drain', 'electricnetworks','thermalnetworks','gas','watersystem')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

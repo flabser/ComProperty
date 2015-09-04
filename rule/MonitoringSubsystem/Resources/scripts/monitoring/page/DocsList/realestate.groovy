@@ -13,7 +13,7 @@ class realestate extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='buildings' or form='rooms' or form='structures' or form='residentialobjects' or form='land' and form='monument'";
+		def formula = "form in ('buildings', 'rooms','structures','residentialobjects','land','monument')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

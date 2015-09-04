@@ -13,7 +13,7 @@ class street_sugg extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-			def formula = "form='street' and viewtext ~ '"+ formData.getValueSilently("input_street")+"'";
+		def formula = "form='street' and viewtext ~ '"+ formData.getValueSilently("input_street")+"'";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

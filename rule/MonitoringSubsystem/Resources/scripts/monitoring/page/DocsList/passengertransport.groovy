@@ -13,7 +13,7 @@ class passengertransport extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='bus' or form='trolleybus' or form='tram' or form='watertransport' or form='hospitaltransport' or form='taxi'";
+		def formula = "form in ('bus', 'trolleybus','tram','gas','watertransport','hospitaltransport','taxi')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

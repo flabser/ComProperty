@@ -5,7 +5,7 @@ import kz.nextbase.script.events._DoScript
 import nextbase.groovy.*
 
 class specialconstructions extends _DoScript {
-	
+
 	@Override
 	public void doProcess(_Session session, _WebFormData formData, String lang) {
 		println(formData)
@@ -13,7 +13,7 @@ class specialconstructions extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='bombproof' or form='factory' or form='combines' or form='airport'  or form='transitions'";
+		def formula = "form in ('bombproof', 'factory','combines','airport','land','transitions')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

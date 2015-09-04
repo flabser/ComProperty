@@ -13,7 +13,7 @@ class equipment extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='schoolequipment' or form='officeequipment' or form='computerequipment' or form='medicalequipment' or form='cookequipment' or form='equipmentofcivildefense'";
+		def formula = "form in ('schoolequipment', 'officeequipment','computerequipment','medicalequipment','cookequipment','equipmentofcivildefense')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

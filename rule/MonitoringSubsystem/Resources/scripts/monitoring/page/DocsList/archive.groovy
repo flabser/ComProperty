@@ -13,7 +13,7 @@ class archive extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "form='contract' or form='order' and archived = 1";
+		def formula = "form in ('order','contract') and archived = 1";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []

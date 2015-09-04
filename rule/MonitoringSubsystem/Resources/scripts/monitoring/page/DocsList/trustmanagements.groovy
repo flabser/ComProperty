@@ -13,7 +13,7 @@ class trustmanagements extends _DoScript {
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))
 		}
-		def formula = "viewtext4 = '007' or viewtext4 = '013'";
+		def formula = "viewtext4 in ('007','013')";
 		def db = session.getCurrentDatabase()
 		def filters = []
 		def sorting = []
