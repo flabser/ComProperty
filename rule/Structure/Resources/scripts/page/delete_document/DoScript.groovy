@@ -20,7 +20,7 @@ class DoScript extends _DoScript {
 			}else{
 				try{
                     def doc
-                    if (doctype != 900) {
+                    if (doctype != 900 && doctype != 889) {
                         doc = db.getDocumentByID(id)
                     } else {
                         doc = db.getDocumentByComplexID(doctype, id.toInteger())
