@@ -16,7 +16,7 @@
 			<xsl:call-template name="viewtable_dblclick_open"/>
 			<td style="text-align:center; border:1px solid #ccc" width="3%">
 				<input type="checkbox" name="chbox" id="{@id}" value="{@doctype}" autocomplete="off">
-					<xsl:if test="/request/@id = 'group' or /request/@id = 'responsibleperson'">
+					<xsl:if test="/request/@id = 'group'">
 						<xsl:attribute name="id" select="@docid"/>
 					</xsl:if>
 				</input>
