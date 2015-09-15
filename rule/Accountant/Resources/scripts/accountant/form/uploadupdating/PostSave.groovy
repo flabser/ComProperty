@@ -1,16 +1,12 @@
 package accountant.form.uploadupdating
-
-import jxl.Cell
-import jxl.CellType
-import jxl.LabelCell
-import jxl.Sheet
-import jxl.Workbook
+import jxl.*
 import kz.flabs.runtimeobj.document.Document
 import kz.nextbase.script._Document
 import kz.nextbase.script._Session
 import kz.nextbase.script.events._FormPostSave
 
 import java.text.SimpleDateFormat
+import java.util.prefs.Preferences
 
 class PostSave extends _FormPostSave {
 
@@ -31,6 +27,7 @@ class PostSave extends _FormPostSave {
 
         int saved_docs_counter = 0;
         StringBuilder defectRows = new StringBuilder();
+        StringBuilder savedRows = new StringBuilder();
         def s = File.separator;
         def path = (new File("")).getAbsolutePath() +
                 "${s}rule${s}Accountant${s}Resources${s}scripts${s}accountant${s}resources${s}kuf.properties"
@@ -104,6 +101,7 @@ class PostSave extends _FormPostSave {
                         _doc.setViewDate(new Date());
 
                         _doc.save("[supervisor]")
+                        savedRows.append(_doc.docID).append(", ");
                         saved_docs_counter++;
 
                     }catch (Exception e){
@@ -113,6 +111,12 @@ class PostSave extends _FormPostSave {
                 }
             }
         }
+
+        Preferences pref = Preferences.userRoot().node(ses.user.userID).node("saveddocsids");
+        pref.remove("ids");
+        pref.put("ids", savedRows.length() > 0 ? savedRows.delete(savedRows.length() - 2, savedRows.length()).toString() : "");
+        pref.flush();
+
         log("Accountant: import by user ${ses.getCurrentUserID()} finished. Total imported docs number = $saved_docs_counter") ;
     }
 }
