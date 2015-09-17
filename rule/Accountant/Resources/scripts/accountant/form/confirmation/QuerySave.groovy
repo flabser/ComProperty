@@ -1,9 +1,10 @@
 package accountant.form.confirmation
 
-import kz.nextbase.script.*
+import kz.nextbase.script._Document
+import kz.nextbase.script._Session
+import kz.nextbase.script._ViewEntry
+import kz.nextbase.script._WebFormData
 import kz.nextbase.script.events._FormQuerySave
-
-import java.util.prefs.Preferences
 
 class QuerySave extends _FormQuerySave{
 
@@ -12,21 +13,28 @@ class QuerySave extends _FormQuerySave{
 
         String op = webFormData.getValue("allowsave");
         if(op == null || "true".equals(op.trim()) || !"false".equals(op.trim())) {
-            Preferences.userRoot().node(ses.user.userID).node("saveddocsids").remove("ids");
             return;
         }
 
-        Preferences pref = Preferences.userRoot().node(ses.user.userID).node("saveddocsids");
-        String ids = pref.get("ids", null);
-        if(ids == null) return;
+        def fileName = webFormData.getValue("filename");
 
-        def docs = ses.getCurrentDatabase().getCollectionOfDocuments("docid in (" + ids + ")", false);
-        Iterator<_ViewEntry> it = docs.getEntries().iterator();
+        def savedDocs = ses.getCurrentDatabase().getCollectionOfDocuments(
+                "form = 'saveddocslist' " +
+                "and author = '${ses.getCurrentAppUser().getUserID()}' " +
+                "and filename = '${fileName}'", false);
 
-        while(it.hasNext()){
-            ses.getCurrentDatabase().deleteDocument(String.valueOf(it.next().document.docID), true);
+        Iterator<_ViewEntry> savedDocsIt = savedDocs.getEntries().iterator();
+        while(savedDocsIt.hasNext()){
+            def listDoc = savedDocsIt.next().document;
+            def docs = ses.getCurrentDatabase().getCollectionOfDocuments("docid in (" + listDoc.viewText + ")", false);
+            Iterator<_ViewEntry> it = docs.getEntries().iterator();
+
+            while(it.hasNext()){
+                ses.getCurrentDatabase().deleteDocument(String.valueOf(it.next().document.docID), true);
+            }
+
+            ses.getCurrentDatabase().deleteDocument(String.valueOf(listDoc.docID), true);
         }
 
-        pref.remove("ids");
     }
 }

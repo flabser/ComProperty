@@ -6,17 +6,32 @@ import kz.nextbase.script._Session
 import kz.nextbase.script.events._FormPostSave
 
 import java.text.SimpleDateFormat
-import java.util.prefs.Preferences
 
 class PostSave extends _FormPostSave {
 
+    private static int getMaxCount(int docid, int fieldLength){
+        int initialDocId = docid;
+        int docIdLen = String.valueOf(docid).length();
+        int count = 0;
+
+        int nCount;
+        int fullLength = 0;
+
+        while((nCount = ((int) Math.pow(10, docIdLen) - initialDocId)) * (docIdLen + /**colon symbol*/1) + fullLength < fieldLength){
+            fullLength += nCount * (docIdLen + 1);
+            count += nCount;
+            initialDocId =(int) Math.pow(10, docIdLen);
+            docIdLen++;
+        }
+
+        return count + (fieldLength - fullLength)/(docIdLen + 1);
+    }
+
     public void doPostSave(_Session ses, _Document doc) {
         String fileDir = "tmp" + File.separator + "InventLoad" + File.separator + ses.getCurrentUserID() + File.separator + (new Date().time)
-//        String fileDir = "tmp"
         doc.getAttachments("rtfcontent", fileDir)
 
         File dir = new File(fileDir + File.separator + "1");
-//        File dir = new File(fileDir);
 
         FilenameFilter fileNameFilter = new FilenameFilter() {
             @Override
@@ -42,10 +57,12 @@ class PostSave extends _FormPostSave {
                 Workbook workbook = Workbook.getWorkbook(xlsFile);
                 Sheet sheet = workbook.getSheet(0);
 
+                int maxCount = 100;
                 for (int i = 1; i < sheet.getRows(); i++) {
                     String kuf = sheet.getCell(1, i).getContents();
                     Cell cell = sheet.getCell(1, i);
                     if (cell.type == CellType.EMPTY || cell.cellFormat == null || !kuf ) {
+                        defectRows.append(i).append(",");
                         continue;
                     }
 
@@ -100,23 +117,53 @@ class PostSave extends _FormPostSave {
                         _doc.addViewText(originalcost)
                         _doc.setViewDate(new Date());
 
-                        _doc.save("[supervisor]")
-                        savedRows.append(_doc.docID).append(", ");
+                        _doc.save(ses.getCurrentAppUser().getUserID())
+                        if(i < maxCount)
+                            savedRows.append(_doc.docID).append(",");
+                        else{
+                            maxCount += getMaxCount(_doc.docID, 2048);
+                            insertDocument(ses, "saveddocslist", savedRows, xlsFile.getName());
+
+                            savedRows.delete(0, savedRows.length());
+                            savedRows.append(_doc.docID).append(",");
+                        }
                         saved_docs_counter++;
 
                     }catch (Exception e){
-                        defectRows.append(i + " ");
+                        defectRows.append(i).append(",");
                         log("Accountant: doc wasn't saved. Row:$i \n" + e.toString())
                     }
+                }
+
+                if (savedRows.length() > 0) {
+                    insertDocument(ses, "saveddocslist", savedRows, xlsFile.getName());
+                    savedRows.delete(0, savedRows.length());
+                }
+
+                if (defectRows.length() > 0) {
+                    insertDocument(ses, "defectdocslist", defectRows, xlsFile.getName());
+                    defectRows.delete(0, defectRows.length());
                 }
             }
         }
 
-        Preferences pref = Preferences.userRoot().node(ses.user.userID).node("saveddocsids");
-        pref.remove("ids");
-        pref.put("ids", savedRows.length() > 0 ? savedRows.delete(savedRows.length() - 2, savedRows.length()).toString() : "");
-        pref.flush();
-
         log("Accountant: import by user ${ses.getCurrentUserID()} finished. Total imported docs number = $saved_docs_counter") ;
+    }
+
+    private static void insertDocument(_Session ses, String form, StringBuilder value, String fileName) {
+        value.deleteCharAt(value.length() - 1);
+
+        def doc = new _Document(
+                new Document(ses.getCurrentDatabase().baseObject, ses.getCurrentAppUser().getUserID())
+        );
+        doc.setForm(form);
+        doc.setViewText(value.toString());
+        doc.setViewDate(new Date());
+        doc.addEditor(ses.getCurrentAppUser().getUserID());
+        doc.setAuthor(ses.getCurrentAppUser().getUserID());
+        doc.addEditor("[operator]")
+        doc.addEditor("[supervisor]")
+        doc.setValueString("filename", fileName);
+        doc.save(ses.getCurrentAppUser().getUserID());
     }
 }
