@@ -114,7 +114,9 @@ class PostSave extends _FormPostSave {
                         _doc.setAuthor(ses.getCurrentAppUser().getUserID());
 
                         _doc.setViewText(name)
-                        _doc.addViewText(originalcost)
+                        _doc.addViewText(originalcost);
+                        _doc.addViewText(ses.getCurrentAppUser().fullName);
+                        _doc.addViewText("not_confirmed");
                         _doc.setViewDate(new Date());
 
                         _doc.save(ses.getCurrentAppUser().getUserID())
