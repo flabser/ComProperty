@@ -30,10 +30,10 @@ class QuerySave extends _FormQuerySave{
             Iterator<_ViewEntry> it = docs.getEntries().iterator();
 
             while(it.hasNext()){
-                ses.getCurrentDatabase().deleteDocument(String.valueOf(it.next().document.docID), true);
+                ses.getCurrentDatabase().deleteDocument(896, it.next().document.docID, true);
             }
 
-            ses.getCurrentDatabase().deleteDocument(String.valueOf(listDoc.docID), true);
+            ses.getCurrentDatabase().deleteDocument(896, listDoc.docID, true);
         }
 
     }
