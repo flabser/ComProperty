@@ -4,6 +4,7 @@ import kz.flabs.runtimeobj.document.Document
 import kz.nextbase.script._Document
 import kz.nextbase.script._Session
 import kz.nextbase.script.events._FormPostSave
+import kz.nextbase.script.mail._Memo
 
 import java.text.SimpleDateFormat
 
@@ -146,10 +147,46 @@ class PostSave extends _FormPostSave {
                     insertDocument(ses, "defectdocslist", defectRows, xlsFile.getName());
                     defectRows.delete(0, defectRows.length());
                 }
+
+                StringBuilder msg = new StringBuilder();
+                msg.append("На данный момент было загружено: ")
+                        .append(sheet.getRows() - 1)
+                        .append("объектов. Успешно загрузилось ")
+                        .append(saved_docs_counter)
+                        .append(". С ошибками загрузилось: ")
+                        .append(sheet.getRows() - 1 - saved_docs_counter)
+                        .append(". Номера excel ячеек с ошибками: ")
+                        .append(defectRows)
+                        .append(". Необходимо испавить ошибки и загрузить исправленные данные повторно")
+
+
+                def notifDoc = new _Document(new Document(ses.getCurrentDatabase().baseObject, ses.getCurrentAppUser().getUserID()));
+                notifDoc.setViewText("uploadobj", 1);
+                notifDoc.setForm("notigication");
+                notifDoc.setViewText(msg.toString());
+                notifDoc.setViewDate(new Date());
+
+                notifDoc.addEditor(ses.getCurrentAppUser().getUserID());
+                notifDoc.setAuthor(ses.getCurrentAppUser().getUserID());
+                notifDoc.addEditor("[operator]")
+                notifDoc.addEditor("[supervisor]")
+                notifDoc.save(ses.getCurrentAppUser().getUserID());
+
+                def ma = ses.getMailAgent()
+                try{
+                    def memo = new _Memo("Информация о загрузке", "", msg.toString(), null, true)
+                    ma.sendMail([ses.getCurrentAppUser().getEmail()], memo)
+                } catch (Exception e) {
+                    e.printStackTrace()
+                }
+
             }
         }
 
         log("Accountant: import by user ${ses.getCurrentUserID()} finished. Total imported docs number = $saved_docs_counter") ;
+
+
+
     }
 
     private static void insertDocument(_Session ses, String form, StringBuilder value, String fileName) {
