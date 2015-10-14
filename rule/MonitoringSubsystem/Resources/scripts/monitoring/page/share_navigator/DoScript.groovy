@@ -135,13 +135,14 @@ class DoScript extends _DoScript {
 		notifications_outline.addEntry(new _OutlineEntry(getLocalizedWord("Окончание срока действия договора",lang), getLocalizedWord("Уведомления об окончании срока действия договора",lang), "endcontract_notification", "Provider?type=page&id=endcontract_notification&page=0"))
 		notifications_outline.addEntry(new _OutlineEntry(getLocalizedWord("Регистрация постановления",lang), getLocalizedWord("Уведомления об регистрации постановления",lang), "neworder_notification", "Provider?type=page&id=neworder_notification&page=0"))
 		notifications_outline.addEntry(new _OutlineEntry(getLocalizedWord("Регистрация договора",lang), getLocalizedWord("Уведомления об регистрации договора",lang), "newcontract_notification", "Provider?type=page&id=necontract_notification&page=0"))
+		notifications_outline.addEntry(new _OutlineEntry(getLocalizedWord("Загрузка объектов",lang), getLocalizedWord("Уведомления об загрузке объектов из файла",lang), "upl_notification", "Provider?type=page&id=upload_notification&page=0"))
 		outline.addOutline(notifications_outline)
 		list.add(notifications_outline)
 		def add_outline = new _Outline(getLocalizedWord("Прочее",lang), getLocalizedWord("Прочее",lang), "add")
 		add_outline.addEntry(new _OutlineEntry(getLocalizedWord("Корзина",lang), getLocalizedWord("Корзина",lang), "recyclebin", "Provider?type=page&id=recyclebin"))
 		outline.addOutline(add_outline)
 		list.add(add_outline)
-		
+
 		def archive_outline = new _Outline(getLocalizedWord("Архив",lang), getLocalizedWord("Архив",lang), "archive_outline")
 		archive_outline.addEntry(new _OutlineEntry(getLocalizedWord("Архив",lang), getLocalizedWord("Архив",lang), "archive", "Provider?type=page&id=archive"))
 		outline.addOutline(archive_outline)

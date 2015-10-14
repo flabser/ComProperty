@@ -40,7 +40,7 @@ class QueryOpen extends _FormQueryOpen {
 		if(doc.getEditMode() == _DocumentModeType.EDIT){
 			actionBar.addAction(new _Action(getLocalizedWord("Сохранить и закрыть",lang),getLocalizedWord("Сохранить и закрыть",lang),_ActionType.SAVE_AND_CLOSE))
 		}
-		
+
 		actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
 		publishElement(actionBar)
 		
