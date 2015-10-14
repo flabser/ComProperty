@@ -432,7 +432,7 @@ function SaveFormJquery(redirecturl) {
 			sign+=$(this).val()
 		})
 		$("#frm").append("<input type='hidden' name='srctext' value="+sign+"/><input type='hidden' name='applettype' value='sign'/>")
-		taskauthor=$("input[name=taskauthor]").val()
+		taskauthor=$("input[name=taskauthor]").val();
 		app=document.getElementById('SignApplet');
 		$("#frm").append("<input type='hidden' name='signedfields' value='"+app.getSign(sign,taskauthor)+"'/>")
 	}
@@ -441,7 +441,7 @@ function SaveFormJquery(redirecturl) {
 		url: 'Provider',
 		data: $("form").serialize(),
 		success:function (xml){ 
-			$(document).unbind("keydown")
+			$(document).unbind("keydown");
 			redir = $(xml).find('redirect').text() || redirecturl;
 			$(xml).find('response').each(function(){
 				var st=$(this).attr('status');
@@ -450,8 +450,8 @@ function SaveFormJquery(redirecturl) {
 					if (msgtext.length==0){
 						msgtext = "Ошибка сохранения"
 					}
-					$("#notifydiv").html("<font>"+msgtext+"</font>")
-					$("body").hidenotify({"delay":800,"onclose":function(){$("#notifydiv").remove()}})
+					$("#notifydiv").html("<font>"+msgtext+"</font>");
+					$("body").hidenotify({"delay":800,"onclose":function(){$("#notifydiv").remove()}});
 					$("#dialog-message").dialog({ 
 						buttons: { 
 							Ok: function() {
@@ -528,7 +528,7 @@ function submitFile(form, tableID, fieldName) {
 			infoDialog("Файл загрузки должен иметь расширение 'xls'");
 		}else{
 			$( "#progressbar" ).progressbar({value:0});
-			$("#progressstate").css("display","block")
+			$("#progressstate").css("display","block");
 			form = $('#'+form);
 			var frame = createIFrame();
 			frame.onSendComplete = function() {
@@ -557,8 +557,8 @@ var cancel_button_action;
 function processStateChange(){
 	if (req.readyState == 4){
 		if (req.status == 200){ 
-			$("#loading_attach_img").css("visibility","visible")
-			$(".button_panel").find("button:not(#canceldoc)").attr("disabled","disabled").addClass("ui-state-disabled")
+			$("#loading_attach_img").css("visibility","visible");
+			$(".button_panel").find("button:not(#canceldoc)").attr("disabled","disabled").addClass("ui-state-disabled");
 			if($("#canceldoc").attr("onclick") != "javascript:confirmCancelAttach()"){
 				cancel_button_action= $("#canceldoc").attr("onclick");
 				$("#canceldoc").attr("onclick","javascript:confirmCancelAttach()")
@@ -569,27 +569,30 @@ function processStateChange(){
 				myContentLength = $(xml).find("content_length")[0],
 				myPercent = $(xml).find("percent_complete")[0];
 			if ((isNotFinished == null) && (myPercent == null)){
-				$("#initializing").css("visibility","visible")
+				$("#initializing").css("visibility","visible");
 				window.setTimeout("ajaxFunction();", 150);
 			}else{
-				$("#readybytes, #percentready").css("visibility","visible")
+
+				$("#readybytes, #percentready").css("visibility","visible");
 				$("#initializing").css("visibility","hidden");
 				kbContentLength = parseInt($(myContentLength).text())/1024;
 				mbContentLength = parseInt(kbContentLength)/1024;
 				if (myPercent != null){
+
 					$("#progressbar").progressbar( "option", "value",parseInt($(myPercent).text()));
 					kbread = parseInt($(myBytesRead).text())/1024;
-					mbread = parseInt(kbread)/1024
-					$("#readybytes").html(Math.round(mbread * 10 ) / 10  + " из " + Math.round(mbContentLength * 10 ) / 10   + " мбайт загружено")
-					$("#percentready").html($(myPercent).text() + "%")
+					mbread = parseInt(kbread)/1024;
+					$("#readybytes").html(Math.round(mbread * 10 ) / 10  + " из " + Math.round(mbContentLength * 10 ) / 10   + " мбайт загружено");
+					$("#percentready").html($(myPercent).text() + "%");
 					window.setTimeout("ajaxFunction();", 100);
 				}else{
-					$(".button_panel").find("button:not(#canceldoc)").removeAttr("disabled").removeClass("ui-state-disabled")
+
+					$(".button_panel").find("button:not(#canceldoc)").removeAttr("disabled").removeClass("ui-state-disabled");
 					$("#dialog-message-cancel-attach").dialog('close').remove();
-					$("#readybytes").html(Math.round(mbContentLength * 10 ) / 10   + " из " + Math.round(mbContentLength * 10 ) / 10   + " мбайт загружено")
-					$("#percentready").html("готово")
-					$("#loading_attach_img").css("visibility","hidden")
-					$("#canceldoc").attr("onclick",cancel_button_action)
+					$("#readybytes").html(Math.round(mbContentLength * 10 ) / 10   + " из " + Math.round(mbContentLength * 10 ) / 10   + " мбайт загружено");
+					$("#percentready").html("готово");
+					$("#loading_attach_img").css("visibility","hidden");
+					$("#canceldoc").attr("onclick",cancel_button_action);
 					$("#progressbar").progressbar("option", "value", 100);
 				}
 			}
@@ -610,14 +613,14 @@ function confirmCancelAttach(){
 		width:460,
 		buttons: {
 			"Да": function() {
-				$("#canceldoc").attr("onclick",cancel_button_action)
+				$("#canceldoc").attr("onclick",cancel_button_action);
 				$("#canceldoc").click();
 				$(this).dialog('close').remove();
 			},
 			"Нет": function() {
 				$(this).dialog('close').remove();
 				
-			},
+			}
 		}
 	});
 }
@@ -668,13 +671,13 @@ function uploadComplete(tableID, doc) {
 		sesid=$(doc).find("message").attr('formsesid');
 		csf=$(doc).find("message[id=2]").text();
 		var range = 200 - 1 + 1;
-		if(fileName.indexOf(".") != -1){
+		if(fileName.split('.').pop().toLowerCase() != ''){
 			detectExtAttach(fileName); //определение расширения
 			fieldid=Math.floor(Math.random()*range) + 1;
 			fileid=$(doc).find("message[id=4]").text();
             filehash=$(doc).find("message[id=2]").text();
             fileNameEcr=fileName.replace(/\%/g, "%25").replace(/\+/g, "%2b");// убираем знак '+' из ссылок
-            $(table).children("tr").not('tr:first').remove()
+            $(table).children("tr").not('tr:first').remove();
 
 			$(table).append("<tr id='"+ csf + "'>" +
 					'<td><input type="hidden" name="filename" value="'+fileName+'"/><input type="hidden" name="fileid" value="'+fileid+'"/><input type="hidden" name="filehash" value="'+filehash+'"/></td>' +

@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" ?>
+<?xml version="1.0" ?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:import href="../templates/view.xsl"/>
-	<xsl:import href="../templates/page.xsl"/>
 	<xsl:variable name="viewtype">Вид</xsl:variable>
 	<xsl:output method="html" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
-		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="no"/>
+				doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="no"/>
 	<xsl:variable name="skin" select="request/@skin"/>
 	<xsl:variable name="useragent" select="request/@useragent"/>
+
 	<xsl:template match="//query/entry">
 		<xsl:variable name="num" select="position()"/>
 		<tr title="{@viewtext}" class="{@docid}" id="{@docid}{@doctype}">
@@ -23,8 +23,8 @@
 			<td  style="border:1px solid #ccc;width:210px;">
 				<div style="overflow:hidden; width:99%;">
 					<xsl:if test="@hasresponse='1'">
-	         			<xsl:choose>
-	         				<xsl:when test=".[responses]">
+						<xsl:choose>
+							<xsl:when test=".[responses]">
 								<a href="" style="vertical-align:top; margin-left:3px" id="a{@docid}">
 									<xsl:attribute name='href'>javascript:closeResponses(<xsl:value-of select="@docid"/>, <xsl:value-of select="@doctype"/>,<xsl:value-of select="position()"/>,1)</xsl:attribute>
 									<img border='0' src="/SharedResources/img/classic/1/minus.png" id="img{@docid}"/>
@@ -61,7 +61,7 @@
 					</a>
 				</div>
 			</td>
-			
+
 			<!-- Описание документа -->
 			<td  style="border:1px solid #ccc;min-width:250px; word-wrap:break-word; padding-left: 5px">
 				<div style="display:block; width:99%; " title="{viewcontent/viewtext}">
@@ -79,8 +79,8 @@
 					<xsl:attribute name="onclick">javascript:addDocToFav(this,<xsl:value-of select="@docid"/>,<xsl:value-of select="@doctype"/>)</xsl:attribute>
 					<xsl:attribute name="title" select="//page/captions/addtofav/@caption"/>
 					<xsl:if test="@favourites = 1">
-						<xsl:attribute name="onclick">javascript:eDocFromFav(this,<xsl:value-of select="@docid"/>,<xsl:value-of select="@doctype"/>)</xsl:attribute> 
-						<xsl:attribute name="src">/SharedResources/img/iconset/star_full.png</xsl:attribute> 
+						<xsl:attribute name="onclick">javascript:removeDocFromFav(this,<xsl:value-of select="@docid"/>,<xsl:value-of select="@doctype"/>)</xsl:attribute>
+						<xsl:attribute name="src">/SharedResources/img/iconset/star_full.png</xsl:attribute>
 						<xsl:attribute name="title" select="//page/captions/removefromfav/@caption"/>
 					</xsl:if>
 				</img>
@@ -94,15 +94,15 @@
 			<xsl:attribute name="bgcolor">#FFFFFF</xsl:attribute>
 			<td style="width:5%"/>
 			<td style="width:5%"/>
-			<td colspan="3" nowrap="true">
+			<td colspan="4" nowrap="true">
 				<xsl:apply-templates mode="line"/>
 			</td>
 		</tr>
 	</xsl:template>
-	
+
 	<xsl:template match="viewtext" mode="line"/>
 	<xsl:template match="viewcontent" mode="line"/>
-	
+
 	<xsl:template match="entry" mode="line">
 		<div class="Node" style="overflow:hidden;" id="{@docid}{@doctype}">
 			<xsl:call-template name="graft"/>
@@ -120,7 +120,7 @@
 			<xsl:if test="@hasattach != 0">
 				<img id="atach" src="/SharedResources/img/classic/icons/attach.png" border="0" style="vertical-align:top">
 					<xsl:attribute name="title">Вложений в документе: <xsl:value-of select="@hasattach"/></xsl:attribute>
-				</img> 
+				</img>
 			</xsl:if>
 			<xsl:variable name='simbol'>'</xsl:variable>
 			<xsl:variable name='ecr1' select="replace(viewcontent/viewtext,$simbol ,'&quot;')"/>
@@ -151,7 +151,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<xsl:template match="responses" mode="tree"/>
 
 	<xsl:template match="*" mode="tree">
@@ -160,16 +160,13 @@
 				<img style="vertical-align:top;" src="/SharedResources/img/classic/tree_bar.gif"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:if test="parent::responses">
-					<img style="vertical-align:top;" src="/SharedResources/img/classic/tree_spacer.gif"/>
-				</xsl:if>
-				<xsl:if test="parent::entry">
+				<xsl:if test="parent::responses or parent::entry">
 					<img style="vertical-align:top;" src="/SharedResources/img/classic/tree_spacer.gif"/>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<xsl:template match="/request">
 		<html>
 			<head>
@@ -199,160 +196,159 @@
 				<script type="text/javascript" src="classic/scripts/page.js"/>
 				<script type="text/javascript">
 					$(document).ready(function(){
-						$(".button_panel button").button();
-						hotkeysnav()
-						outline.type = '<xsl:value-of select="@type"/>'; 
-						outline.viewid = '<xsl:value-of select="@id"/>';
-						outline.element = 'project';
-						outline.command='<xsl:value-of select="current/@command"/>';
-						outline.curPage = '<xsl:value-of select="current/@page"/>'; 
-						outline.category = '';
-						outline.filterid = '<xsl:value-of select="@id"/>';
-						refresher();  
+					$(".button_panel button").button();
+					hotkeysnav()
+					outline.type = '<xsl:value-of select="@type"/>';
+					outline.viewid = '<xsl:value-of select="@id"/>';
+					outline.element = 'project';
+					outline.command='<xsl:value-of select="current/@command"/>';
+					outline.curPage = '<xsl:value-of select="current/@page"/>';
+					outline.category = '';
+					outline.filterid = '<xsl:value-of select="@id"/>';
+					refresher();
 					});
 					function hotkeysnav(){
-						$(document).bind('keydown', function(e){
- 							if (e.ctrlKey) {
- 								switch (e.keyCode) {
-								   case 78:
-										<!-- клавиша n -->
-								     	e.preventDefault();
-								     	$("#btnNewdoc").click();
-								     	break;
-								   case 68:
-								   		<!-- клавиша d -->
-								     	e.preventDefault();
-								     	$("#btnDeldoc").click();
-								      	break;
-								   case 70:
-								   		<!-- клавиша f -->
-								     	e.preventDefault();
-								     	$("#btnQFilter").click();
-								      	break;
-								   case 85:
-								   		<!-- клавиша u -->
-								     	e.preventDefault();
-								     	window.location.href=$("#currentuser").attr("href")
-								      	break;
-								   case 81:
-								   		<!-- клавиша q -->
-								     	e.preventDefault();
-								     	window.location.href=$("#logout").attr("href")
-								      	break;
-								   case 72:
-								   		<!-- клавиша h -->
-								     	e.preventDefault();
-								     	window.location.href=$("#helpbtn").attr("href")
-								      	break;
-								   default:
-								      	break;
-								}
-	    					}
-    					});
-    					$("#btnNewdoc .ui-button-text").hotnav({keysource:function(e){ return "n"; }});
-						$("#btnDeldoc .ui-button-text").hotnav({keysource:function(e){ return "d"; }});
-						$("#currentuser").hotnav({ keysource:function(e){ return "u"; }});
-						$("#btnQFilter .ui-button-text").hotnav({keysource:function(e){ return "f"; }});
-						$("#logout").hotnav({keysource:function(e){ return "q"; }});
-						$("#helpbtn").hotnav({keysource:function(e){ return "h"; }});
+					$(document).bind('keydown', function(e){
+					if (e.ctrlKey) {
+					switch (e.keyCode) {
+					case 78:
+					<!-- клавиша n -->
+					e.preventDefault();
+					$("#btnNewdoc").click();
+					break;
+					case 68:
+					<!-- клавиша d -->
+					e.preventDefault();
+					$("#btnDeldoc").click();
+					break;
+					case 70:
+					<!-- клавиша f -->
+					e.preventDefault();
+					$("#btnQFilter").click();
+					break;
+					case 85:
+					<!-- клавиша u -->
+					e.preventDefault();
+					window.location.href=$("#currentuser").attr("href")
+					break;
+					case 81:
+					<!-- клавиша q -->
+					e.preventDefault();
+					window.location.href=$("#logout").attr("href")
+					break;
+					case 72:
+					<!-- клавиша h -->
+					e.preventDefault();
+					window.location.href=$("#helpbtn").attr("href")
+					break;
+					default:
+					break;
+					}
+					}
+					});
+					$("#btnNewdoc .ui-button-text").hotnav({keysource:function(e){ return "n"; }});
+					$("#btnDeldoc .ui-button-text").hotnav({keysource:function(e){ return "d"; }});
+					$("#currentuser").hotnav({ keysource:function(e){ return "u"; }});
+					$("#btnQFilter .ui-button-text").hotnav({keysource:function(e){ return "f"; }});
+					$("#logout").hotnav({keysource:function(e){ return "q"; }});
+					$("#helpbtn").hotnav({keysource:function(e){ return "h"; }});
 					}
 				</script>
-			</head>			
+			</head>
 			<body>
 				<xsl:call-template name="flashentry"/>
 				<div id="blockWindow" style="display:none"/>
-					<div id="wrapper">
-						<xsl:call-template name="loadingpage"/>
-						<xsl:call-template name="header-page"/>
-						<xsl:call-template name="outline-menu-page"/>
-						<span id="view" class="viewframe">
-							<div id="viewcontent">
-								<div id="viewcontent-header" style="height:130px;">
-									<xsl:call-template name="pageinfo"/>
-									<div class="button_panel" style="margin-top:8px">
-										<div style="float:left; padding-left:15px; margin-top:2px; margin-bottom:3px">
-											<xsl:if test="//action[@id='new_document']/@mode = 'ON'">
-												<button style="margin-right:5px" title="{//action[@id='new_document']/@hint}" id="btnNewdoc">
-													<xsl:attribute name="href">javascript:window.location.href="<xsl:value-of select="//action[@id='new_document']/@url"/>"; beforeOpenDocument()</xsl:attribute>
-													<xsl:attribute name="onclick">javascript:window.location.href="<xsl:value-of select="//action[@id='new_document']/@url"/>"; beforeOpenDocument()</xsl:attribute>
-													<img src="/SharedResources/img/classic/icons/page_white.png" class="button_img"/>
-													<font style="font-size:12px; vertical-align:top"><xsl:value-of select="//action[@id='new_document']/@caption"/></font>
-												</button>
-											</xsl:if>
-											<xsl:if test="//action[@id='delete_document']/@mode = 'ON'">
-												<button style="margin-right:5px" title="{//action[@id='delete_document']/@hint}" id="btnDeldoc">
-													<xsl:attribute name="onclick">javascript:delDocument();</xsl:attribute>
-													<img src="/SharedResources/img/classic/icons/page_white_delete.png" class="button_img"/>
-													<font style="font-size:12px; vertical-align:top"><xsl:value-of select="//action[@id='delete_document']/@caption"/></font>
-												</button>
-											</xsl:if>
-										</div>
-										<span style="float:right; padding-right:10px;">
-										</span>
-									</div>
-									<div style="clear:both"/>
-									<div style="clear:both"/>
-									<div id="tableheader">
-										<table class="viewtable" id="viewtable" width="100%" style="">
-											<tr class="th">
-												<td style="text-align:center;height:30px;width:23px;" class="thcell">
-													<input type="checkbox" id="allchbox" autocomplete="off" onClick="checkAll(this)"/>					
-												</td>
-												<td style="text-align:center; height:30px; width:25px;" class="thcell">
-												</td>
-												<td style="width:210px;" class="thcell">
-													<xsl:call-template name="sortingcellpage">
-														<xsl:with-param name="namefield">VIEWTEXT1</xsl:with-param>
-														<xsl:with-param name="sortorder" select="//query/columns/viewtext1/sorting/@order"/>
-														<xsl:with-param name="sortmode" select="//query/columns/viewtext1/sorting/@mode"/>
-													</xsl:call-template>
-								 				</td>
-												<td style="width:210px;" class="thcell">
-													<xsl:call-template name="sortingcellpage">
-														<xsl:with-param name="namefield">VIEWTEXT3</xsl:with-param>
-														<xsl:with-param name="sortorder" select="//query/columns/viewtext3/sorting/@order"/>
-														<xsl:with-param name="sortmode" select="//query/columns/viewtext3/sorting/@mode"/>
-													</xsl:call-template>
-								 				</td>
-												<td style="min-width:250px;" class="thcell">
-													<xsl:call-template name="sortingcellpage">
-														<xsl:with-param name="namefield">VIEWTEXT2</xsl:with-param>
-														<xsl:with-param name="sortorder" select="//query/columns/viewtext2/sorting/@order"/>
-														<xsl:with-param name="sortmode" select="//query/columns/viewtext2/sorting/@mode"/>
-													</xsl:call-template>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-								<div id="viewtablediv">
-									<div id="tablecontent">
-										<xsl:if test="query/filtered/condition[fieldname != ''][value != '0']">
-											<xsl:attribute name="style">top:132px;</xsl:attribute>
+				<div id="wrapper">
+					<xsl:call-template name="loadingpage"/>
+					<xsl:call-template name="header-page"/>
+					<xsl:call-template name="outline-menu-page"/>
+					<span id="view" class="viewframe">
+						<div id="viewcontent">
+							<div id="viewcontent-header" style="height:130px;">
+								<xsl:call-template name="pageinfo"/>
+								<div class="button_panel" style="margin-top:8px">
+									<div style="float:left; padding-left:15px; margin-top:2px; margin-bottom:3px">
+										<xsl:if test="//action[@id='new_document']/@mode = 'ON'">
+											<button style="margin-right:5px" title="{//action[@id='new_document']/@hint}" id="btnNewdoc">
+												<xsl:attribute name="href">javascript:window.location.href="<xsl:value-of select="//action[@id='new_document']/@url"/>"; beforeOpenDocument()</xsl:attribute>
+												<xsl:attribute name="onclick">javascript:window.location.href="<xsl:value-of select="//action[@id='new_document']/@url"/>"; beforeOpenDocument()</xsl:attribute>
+												<img src="/SharedResources/img/classic/icons/page_white.png" class="button_img"/>
+												<font style="font-size:12px; vertical-align:top"><xsl:value-of select="//action[@id='new_document']/@caption"/></font>
+											</button>
 										</xsl:if>
-										<table class="viewtable" id="viewtable" width="100%">
-											<xsl:choose>
-												<xsl:when test="@id = 'report_tasks'">
-													<tr onmouseover="javascript:elemBackground(this,'EEEEEE')" onmouseout="elemBackground(this,'FFFFFF')">
-														<xsl:attribute name="bgcolor">#FFFFFF</xsl:attribute>
-														<td style="text-align:center;border:1px solid #ccc;width:20px;">
-															<input type="checkbox" autocomplete="off" name="chbox"/>
-														</td>
-														<td style="border:1px solid #ccc; padding-left:5px">
-															<a href="Provider?type=edit&amp;id=task_report&amp;key=" class="doclink">Задания</a>
-														</td>
-													</tr>
-												</xsl:when>
-												<xsl:otherwise>
-													<xsl:apply-templates select="//query/entry"/>
-												</xsl:otherwise>
-											</xsl:choose>
-										</table>
-										<div style="clear:both; width:100%">&#xA0;</div>
+										<xsl:if test="//action[@id='delete_document']/@mode = 'ON'">
+											<button style="margin-right:5px" title="{//action[@id='delete_document']/@hint}" id="btnDeldoc">
+												<xsl:attribute name="onclick">javascript:delDocument();</xsl:attribute>
+												<img src="/SharedResources/img/classic/icons/page_white_delete.png" class="button_img"/>
+												<font style="font-size:12px; vertical-align:top"><xsl:value-of select="//action[@id='delete_document']/@caption"/></font>
+											</button>
+										</xsl:if>
 									</div>
+									<span style="float:right; padding-right:10px;">
+									</span>
 								</div>
-			 				</div>
-						</span>
+								<div style="clear:both"/>
+								<div style="clear:both"/>
+								<div id="tableheader">
+									<table class="viewtable" id="viewtable" width="100%" style="">
+										<tr class="th">
+											<td style="text-align:center;height:30px;width:23px;" class="thcell">
+												<input type="checkbox" id="allchbox" autocomplete="off" onClick="checkAll(this)"/>
+											</td>
+											<td style="text-align:center; height:30px; width:25px;" class="thcell"/>
+											<td style="width:210px;" class="thcell">
+												<xsl:call-template name="sortingcellpage">
+													<xsl:with-param name="namefield">VIEWTEXT1</xsl:with-param>
+													<xsl:with-param name="sortorder" select="//query/columns/viewtext1/sorting/@order"/>
+													<xsl:with-param name="sortmode" select="//query/columns/viewtext1/sorting/@mode"/>
+												</xsl:call-template>
+											</td>
+											<td style="width:210px;" class="thcell">
+												<xsl:call-template name="sortingcellpage">
+													<xsl:with-param name="namefield">VIEWTEXT3</xsl:with-param>
+													<xsl:with-param name="sortorder" select="//query/columns/viewtext3/sorting/@order"/>
+													<xsl:with-param name="sortmode" select="//query/columns/viewtext3/sorting/@mode"/>
+												</xsl:call-template>
+											</td>
+											<td style="min-width:250px;" class="thcell">
+												<xsl:call-template name="sortingcellpage">
+													<xsl:with-param name="namefield">VIEWTEXT2</xsl:with-param>
+													<xsl:with-param name="sortorder" select="//query/columns/viewtext2/sorting/@order"/>
+													<xsl:with-param name="sortmode" select="//query/columns/viewtext2/sorting/@mode"/>
+												</xsl:call-template>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div id="viewtablediv">
+								<div id="tablecontent">
+									<xsl:if test="query/filtered/condition[fieldname != ''][value != '0']">
+										<xsl:attribute name="style">top:132px;</xsl:attribute>
+									</xsl:if>
+									<table class="viewtable" id="viewtable" width="100%">
+										<xsl:choose>
+											<xsl:when test="@id = 'report_tasks'">
+												<tr onmouseover="javascript:elemBackground(this,'EEEEEE')" onmouseout="elemBackground(this,'FFFFFF')">
+													<xsl:attribute name="bgcolor">#FFFFFF</xsl:attribute>
+													<td style="text-align:center;border:1px solid #ccc;width:20px;">
+														<input type="checkbox" autocomplete="off" name="chbox"/>
+													</td>
+													<td style="border:1px solid #ccc; padding-left:5px">
+														<a href="Provider?type=edit&amp;id=task_report&amp;key=" class="doclink">Задания</a>
+													</td>
+												</tr>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:apply-templates select="//query/entry"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</table>
+									<div style="clear:both; width:100%">&#xA0;</div>
+								</div>
+							</div>
+						</div>
+					</span>
 				</div>
 			</body>
 		</html>

@@ -1,15 +1,15 @@
 var idtr="";
-var	type='Тип'
-var	waittime='Время ожидания'
-var	hours ='Часов'
-var	yescaption ='да'
-var	nocaption ='нет'
-var	answercommentcaption ='Оставить комментарий ответа?'
-var	warning ='Предупреждение'
-var successfullydeleted ="Успешно удалено"
-var hourss = "часа"
-var day = "день"
-var days = "дней"
+var	type='Тип';
+var	waittime='Время ожидания';
+var	hours ='Часов';
+var	yescaption ='да';
+var	nocaption ='нет';
+var	answercommentcaption ='Оставить комментарий ответа?';
+var	warning ='Предупреждение';
+var successfullydeleted ="Успешно удалено";
+var hourss = "часа";
+var day = "день";
+var days = "дней";
 var unlimited ="Неограничено";
 var button_cancel="Отмена";
 
@@ -28,7 +28,7 @@ function FormData(field, value){
 
 /* Создание формы для ввода комментариев действий пользователя "Согласен" или "Не согласен" */
 function addComment(action){
-	enableblockform()
+	enableblockform();
 	divhtml ="<div id='dialog-message-comment' title='"+commentcaption+"'>";
 	divhtml +="<textarea name='commentText' id='commentText' rows='10' tabindex='1' style='width:97%'/>";
 	divhtml+="</div>";
@@ -118,7 +118,7 @@ function submitFormDecision (useraction){
 			if(useraction == "remind"){
 				infoDialog("Напоминание отправлено")
 			}
-			$("body").css("cursor","default")
+			$("body").css("cursor","default");
 			redir = $(xml).find('redirect').text() || redirectAfterSave;
 			if (useraction == "sign_yes"){
 				setTimeout(function() {
@@ -156,7 +156,7 @@ function submitFormDecision (useraction){
 				window.location = redir;
 			}
 			if (useraction == "remind"){	
-				$(document).unbind("keydown")
+				$(document).unbind("keydown");
 				divhtml ="<div id='dialog-message' title='Предупреждение'>";
 				divhtml+="<div style='height:40px; width:100%; text-align:center; padding-top:25px'>"+
 					"<font style='font-size:13px;'>Напоминание отправлено</font>"+"</div>";

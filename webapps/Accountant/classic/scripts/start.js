@@ -1,6 +1,6 @@
 var app ={
 	name:null
-}
+};
 function changeSystemSettings(el){
 	valCookie=$(el).val();
 	$.cookie($(el).attr("id"), valCookie,{
@@ -59,13 +59,12 @@ function getCookie(name) {
 
 function ourSubmit(type){
 	if($("#login").val() == ""){
-		infoDialog("Введите имя пользователя")
+		infoDialog("Введите имя пользователя");
 		return;
 	}else{
 		if($("#pwd").val() =="" && type=="default"){
-			infoDialog("Заполните пароль")
+			infoDialog("Заполните пароль");
 			return;
-		}else{
-	}
+		}
 	$("form").submit();	}
 }

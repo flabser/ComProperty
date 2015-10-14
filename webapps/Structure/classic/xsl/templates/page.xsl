@@ -10,7 +10,39 @@
 			</script>
 		</xsl:if>	
 	</xsl:template>
-	
+
+	<xsl:template name="pageinfo">
+		<table style="width:100%;">
+			<tr style="height:34px">
+				<td style="text-align:left; padding-left:15px; width:350px; max-width:400px">
+					<font class="time" style="font-size:14px; padding-right:10px; font-weight:bold;">
+						<xsl:call-template name="pagetitle"/>
+					</font>
+				</td>
+				<td>
+					<center>
+						<xsl:call-template name="prepagelist"/>
+					</center>
+				</td>
+				<td style="text-align:right;">
+					<font class="time">
+						<xsl:value-of select="concat(' ', page/captions/documents/@caption, ' : ', //query/@count, ' ')"/>
+					</font>
+				</td>
+			</tr>
+		</table>
+	</xsl:template>
+
+	<xsl:template name="pagetitle">
+		<xsl:variable name="entryid" select="//current_outline_entry/response/content/entry/@id"/>
+		<xsl:if test="//current_outline_entry/response/content/entry != //response/content/outline/outline/entry[@id = $entryid]/@caption">
+			<xsl:value-of select="//response/content/outline/outline/entry[@id = $entryid]/@caption"/>
+		</xsl:if>
+		<xsl:if test="//current_outline_entry/response/content/entry = //response/content/outline/outline/entry[@id = $entryid]/@caption or not(//response/content/outline/outline/entry[@id = $entryid]/@caption)">
+			<xsl:value-of select="//current_outline_entry/response/content/entry"/>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template name="header-view">	
 		<div id="header-view">
 			<span style="float:left">
@@ -285,39 +317,39 @@
 			</table>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="prepagelist">
-		<xsl:if test="query/@maxpage !=1">
+		<xsl:if test="//query/@maxpage !=1">
 			<table class="pagenavigator">
-				<xsl:variable name="curpage" select="query/@currentpage"/>
+				<xsl:variable name="curpage" select="//query/@currentpage"/>
 				<xsl:variable name="prevpage" select="$curpage -1 "/>
-				<xsl:variable name="beforecurview" select="substring-before(@id,'.')"/> 
-            	<xsl:variable name="aftercurview" select="substring-after(@id,'.')"/> 
+				<xsl:variable name="beforecurview" select="substring-before(@id,'.')"/>
+				<xsl:variable name="aftercurview" select="substring-after(@id,'.')"/>
 				<tr>
-					<xsl:if test="query/@currentpage>1">
+					<xsl:if test="//query/@currentpage>1">
 						<td>
 							<a href="">
-								<xsl:attribute name="href">javascript:window.location.href="Provider?type=view&amp;id=<xsl:value-of select='@id'/>&amp;page=1"</xsl:attribute>
+								<xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=<xsl:value-of select='@id'/>&amp;page=1"</xsl:attribute>
 								<font style="font-size:12px">&lt;&lt;</font>
 							</a>&#xA0;
 						</td>
 						<td>
 							<a href="">
-								<xsl:attribute name="href">javascript:window.location.href="Provider?type=view&amp;id=<xsl:value-of select='@id'/>&amp;page=<xsl:value-of select='$prevpage'/>"</xsl:attribute>
+								<xsl:attribute name="href">javascript:window.location.href="Provider?type=page&amp;id=<xsl:value-of select='@id'/>&amp;page=<xsl:value-of select='$prevpage'/>"</xsl:attribute>
 								<font style="font-size:12px">&lt;</font>
 							</a>&#xA0;
 						</td>
 					</xsl:if>
 					<xsl:call-template name="pagenavig"/>
-					<xsl:if test="query/@maxpage > 15">
-						<xsl:variable name="beforecurview" select="substring-before(@id,'.')"/> 
-                		<xsl:variable name="aftercurview" select="substring-after(@id,'.')"/> 
+					<xsl:if test="//query/@maxpage > 15">
+						<xsl:variable name="beforecurview" select="substring-before(@id,'.')"/>
+						<xsl:variable name="aftercurview" select="substring-after(@id,'.')"/>
 						<td>
 							<select>
-								<xsl:attribute name="onChange">jjavascript:window.location.href="Provider?type=view&amp;id=<xsl:value-of select='@id'/>&amp;page="+this.value</xsl:attribute>
-			 					<xsl:call-template name="combobox"/>
-			 				</select>
-			 			</td>
+								<xsl:attribute name="onChange">javascript:window.location.href="Provider?type=page&amp;id=<xsl:value-of select='@id'/>&amp;page="+this.value</xsl:attribute>
+								<xsl:call-template name="combobox"/>
+							</select>
+						</td>
 					</xsl:if>
 				</tr>
 			</table>

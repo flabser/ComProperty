@@ -12,32 +12,31 @@ var queryOpt = {
 	pagenum:'1',
 	keyword:'',
 	dialogview:'1'
-}
+};
 
 function toggleOrgTreeStructure(elid){
 	if ($(".treetablestructure"+elid).css("display") != "none"){
-		$(".treetablestructure"+elid).css("display", "none")
+		$(".treetablestructure"+elid).css("display", "none");
 		$("#treeorgimg"+elid).attr("src","/SharedResources/img/classic/plus.gif")
 	}else{
-		$(".treetablestructure"+elid).css("display", "block")
+		$(".treetablestructure"+elid).css("display", "block");
 		$("#treeorgimg"+elid).attr("src","/SharedResources/img/classic/minus.gif")
 	}
 }
 
 function toggleDepTreeStructure(countEl, action, dociddoctype){
+	el = $("#"+dociddoctype);
 	if (action == 'close'){
-		el = $("#"+dociddoctype)
 		for (var i = 0; i < countEl ; i++ ){
 			el = $(el).next("div['display' = 'block']").css("display","none")
 		}
-		$("#treedep"+dociddoctype).attr("href","javascript:toggleDepTreeStructure("+countEl+",'open',"+ dociddoctype +")")
+		$("#treedep"+dociddoctype).attr("href","javascript:toggleDepTreeStructure("+countEl+",'open',"+ dociddoctype +")");
 		$("#treedepimg"+dociddoctype).attr("src","/SharedResources/img/classic/plus.gif")
 	}else{
-		el = $("#"+dociddoctype)
 		for (var i = 0; i < countEl ; i++ ){
 			el = $(el).next("div['display' = 'none']").css("display","block")
 		}
-		$("#treedep"+dociddoctype).attr("href","javascript:toggleDepTreeStructure("+countEl+",'close',"+ dociddoctype +")")
+		$("#treedep"+dociddoctype).attr("href","javascript:toggleDepTreeStructure("+countEl+",'close',"+ dociddoctype +")");
 		$("#treedepimg"+dociddoctype).attr("src","/SharedResources/img/classic/minus.gif")
 	}
 }
@@ -52,7 +51,7 @@ function checkallOrg(el, tableid){
 }
 
 function checkDepInp(el, countEl){
-	elem = $(el).parent("div").next("div")
+	elem = $(el).parent("div").next("div");
 	for (var i = 0; i < countEl ; i++ ){
 		el.checked ? $(elem).children("input[type=checkbox]").attr("checked","true") : $(elem).children("input[type=checkbox]").removeAttr("checked");
 		if(queryOpt.fieldname == "executor"){
@@ -74,7 +73,7 @@ function keyDown(el){
 
 /* выбор одного корреспондента из структуры */
 function pickListSingleOk(docid){
-	$("#"+docid).attr("value")
+	$("#"+docid).attr("value");
 	text=$("#"+docid).attr("value");
 	$("input[name="+ queryOpt.fieldname +"]").remove();
 	/* создаем скрытое поле для проектов блок *подписывающий* */
@@ -107,8 +106,8 @@ function pickListSingleOk(docid){
 	if (queryOpt.fieldname == 'corr' || queryOpt.fieldname == 'recipient' && queryOpt.queryname == 'corrcat'  ){
 		newTable+="<span style='float:right; border-left:1px solid #ccc; width:20px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:11px'>"+docid+"</span>"
 	}
-	newtable+="</td></tr></table>"
-	$("#"+ queryOpt.tablename).replaceWith(newTable)
+	newtable+="</td></tr></table>";
+	$("#"+ queryOpt.tablename).replaceWith(newTable);
 	pickListClose(); 
 }
 
@@ -121,8 +120,8 @@ function pickListBtnOk(){
 		for( var i = 0; i < $("#executorsColl").children("input[type=hidden]").length; i ++ ){
 			if (k==0){
 				$("#intexectable tr:gt(0)").remove();
-				newTable="<table id='"+ queryOpt.tablename +"'></table>"
-				$("#"+ queryOpt.tablename ).replaceWith(newTable)
+				newTable="<table id='"+ queryOpt.tablename +"'></table>";
+				$("#"+ queryOpt.tablename ).replaceWith(newTable);
 				$("input[name="+queryOpt.fieldname +"]").remove();
 			}
 			k=k+1;
@@ -145,8 +144,8 @@ function pickListBtnOk(){
 			for( var i = 0; i < chBoxes.length; i ++ ){
 				if (chBoxes[i].checked){ 
 					if (k==0){
-						newTable="<table id="+ queryOpt.tablename +"></table>"
-						$("#"+ queryOpt.tablename).replaceWith(newTable)
+						newTable="<table id="+ queryOpt.tablename +"></table>";
+						$("#"+ queryOpt.tablename).replaceWith(newTable);
 						$("input[name="+queryOpt.fieldname+"]").remove();
 					}
 					k=k+1;
@@ -164,8 +163,8 @@ function pickListBtnOk(){
 				for( var i = 0; i < chBoxes.length; i ++ ){
 					if (chBoxes[i].checked){ 
 						if (k==0){
-							newTable="<table id="+ queryOpt.tablename +"></table>"
-							$("#"+ queryOpt.tablename).replaceWith(newTable)
+							newTable="<table id="+ queryOpt.tablename +"></table>";
+							$("#"+ queryOpt.tablename).replaceWith(newTable);
 							$("input[name=parentsubkey]").remove();
 						}
 						elcl=$("#"+chBoxes[i].id).attr("class");
@@ -178,8 +177,8 @@ function pickListBtnOk(){
 				for( var i = 0; i < chBoxes.length; i ++ ){
 					if (chBoxes[i].checked && $(chBoxes[i]).attr("id") != ''){ 
 						if (k==0){
-							newTable="<table id="+ queryOpt.tablename +"></table>"
-							$("#"+ queryOpt.tablename).replaceWith(newTable)
+							newTable="<table id="+ queryOpt.tablename +"></table>";
+							$("#"+ queryOpt.tablename).replaceWith(newTable);
 							$("input[name="+queryOpt.fieldname+"]").remove();
 						}
 						k=k+1;
@@ -226,8 +225,8 @@ function pickListClose(){
 function pickListSingleCoordOk(docid){ 
 	text=$("#"+docid).attr("value");
 	$("input[name=coorder]").remove();
-	$("#frm").append("<input type='hidden' name='coorder'  id='coorder' value='"+docid+"'>")
-	newTable="<table id='coordertbl' width='100%'><tr><td>"+ text +"</td></tr></table>"
+	$("#frm").append("<input type='hidden' name='coorder'  id='coorder' value='"+docid+"'>");
+	newTable="<table id='coordertbl' width='100%'><tr><td>"+ text +"</td></tr></table>";
 	$("#coordertbl").replaceWith(newTable);
 	closePicklistCoord();  
 }
@@ -246,8 +245,8 @@ function centring(id,wh,ww){
 		winW=$('#'+id).width(),
 		scrollA=$("body").scrollTop(), 
 		scrollB=$("body").scrollLeft();
-	htop=scrollA+((h/2)-(winH/2))
-	hleft=scrollB+((w/2)-(winW/2))
+	htop=scrollA+((h/2)-(winH/2));
+	hleft=scrollB+((w/2)-(winW/2));
 	$('#'+id).css('top',htop) ;
 	$('#'+id).css('left',hleft) ;
 }
@@ -268,9 +267,9 @@ var elementCoord;
 function addCoordinator(docid,el){
 	//docid - userID  выбранного корреспондента
 	// el - строка таблицы с выбранным корреспондентом
-	cwb=$(".coordinatorsWithBlock")
+	cwb=$(".coordinatorsWithBlock");
 	signer=$("#signer").val(); 
-	recipient=$("#recipient").val()
+	recipient=$("#recipient").val();
 	if (signer == docid){
 		text=issignerofsz;
 		infoDialog(text)
@@ -303,7 +302,7 @@ function removeCoordinator(docid,el){
 }
 
 /*выделение и снятие выделения корреспондента в таблице одинарным щелчком мыши */
-var prevSelectItem=null
+var prevSelectItem=null;
 
 function selectItem (el){
 	elementCoord=el;
@@ -321,12 +320,12 @@ function plusCoordinator(){
 		infoDialog("Вы не выбрали участника согласования для добавления");
 	}
 	if($("."+userID).val() != null){
-		infoDialog(alreadychosen)
+		infoDialog(alreadychosen);
 		isWithBlock="true"
 	}
 	if (isWithBlock=="false"){
 		signer=$("#signer").val(); 
-		recipient=$("#recipient").val()
+		recipient=$("#recipient").val();
 		if (userID == signer){
 			infoDialog(issignerofsz);
 		}else{
@@ -374,21 +373,21 @@ function disableblockform(){
 }
 
 function dialogBoxStructure(query,isMultiValue, field, form, table) {
-	enableblockform()
+	enableblockform();
 	queryOpt.fieldname = field;
 	queryOpt.formname = form;
 	queryOpt.isMultiValue = isMultiValue;
 	queryOpt.queryname = query;
 	queryOpt.tablename = table;
-	el='picklist'
+	el='picklist';
 	divhtml ="<div class='picklist' id='picklist' onkeyUp='keyDown(el);'>";
 	divhtml +="<div  class='header'><font id='headertext' class='headertext'></font>";
 	divhtml +="<div class='closeButton'><img style='width:15px; height:15px; margin-left:3px; margin-top:1px' src='/SharedResources/img/classic/icons/cross.png' onclick='pickListClose(); '/>";
-	divhtml +="</div></div><div id='divChangeView' style='margin-top:-10px'><div id='divSearch' class='divSearch' style='display:inline-block; float:left; width:360px'></div>" 
+	divhtml +="</div></div><div id='divChangeView' style='margin-top:-10px'><div id='divSearch' class='divSearch' style='display:inline-block; float:left; width:360px'></div>";
 	divhtml +="<div  style='display:inline-block ; float:right; width:100px; margin-top:20px'><a class='actionlink' id='btnChangeView' href='javascript:changeViewStructure(1)' style='margin-top:50px'><font style='font-size:11px'>"+changeviewcaption+"</font></a></div></div>";
 	divhtml +="<div id='contentpane' class='contentpane'>Загрузка данных...</div>";  
 	divhtml += "<div id='btnpane' class='button_panel' style='margin-top:8%; margin:15px 15px 0; padding-bottom:15px;text-align:right;'>";
-	divhtml += "<button onclick='pickListBtnOk()' style='margin-right:5px'><font class='button_text'>ОК</font></button>" 
+	divhtml += "<button onclick='pickListBtnOk()' style='margin-right:5px'><font class='button_text'>ОК</font></button>";
 	divhtml += "<button onclick='pickListClose()'><font class='button_text'>"+cancelcaption+"</font></button>";    
 	divhtml += "</div><div id='executorsColl' display='none'></div></div>";
 	$("body").append(divhtml);
@@ -397,13 +396,13 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 	centring('picklist',500,500);
 	$("#picklist").focus().css('display', "none");
 	$("#headertext").text($("#"+field+"caption").val());
-	$("body").css("cursor","wait")
+	$("body").css("cursor","wait");
 	$.ajax({
 		type: "get",
 		url: 'Provider?type=view&id='+query+'&keyword='+queryOpt.keyword+'&page='+queryOpt.pagenum,
 		success:function (data){
 			if (data.match("login") && data.match("password")){
-				text="Cессия пользователя была закрыта, для продолжения работы необходима повторная авторизация"
+				text="Cессия пользователя была закрыта, для продолжения работы необходима повторная авторизация";
 				func = function(){window.location.reload()};
 				dialogAndFunction (text,func)
 			}else{
@@ -414,7 +413,7 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 						}
 					}else{
 						elem=$(data);
-						$(elem).find("input[type=checkbox]").prop("type","radio")
+						$(elem).find("input[type=checkbox]").prop("type","radio");
 						data= elem;
 					}
 				}
@@ -457,7 +456,7 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 					textConfirm="При изменении поля 'Кем будет подписан' существующие блоки согласования будут удалены"
 					dialogConfirm (textConfirm, "picklist","trblockCoord")
 				}else{
-					$('#blockWindow').css('display',"block")
+					$('#blockWindow').css('display',"block");
 					$('#picklist').css('display', "inline-block");
 				}
 				$('#picklist').focus()
@@ -465,8 +464,8 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 		},
 		error:function (xhr, ajaxOptions, thrownError){
             if (xhr.status == 400){
-         	  $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'></div>")
-         	  $("body").append("<div id='errordata'>"+xhr.responseText+"</div>")
+         	  $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'></div>");
+         	  $("body").append("<div id='errordata'>"+xhr.responseText+"</div>");
          	  $("li[type='square'] > a").attr("href","javascript:backtocontent()")
             }
          }  
@@ -480,7 +479,7 @@ function addToCollectExecutor(el){
 	}else{
 		$("#executorsColl").children("#"+$(el).attr("id")).remove();
 	}
-	$("#executorsColl input[type=hidden]:first").attr("class","otv")
+	$("#executorsColl input[type=hidden]:first").attr("class","otv");
 	//$("#frm").append("<input type='hidden' name='responsible' id='responsible' value='"+ $("#executorsColl input[type=hidden]:first").val() +"'/>")
 }
 
@@ -505,7 +504,7 @@ jQuery.fn.extend({
 /* функция поиска в структуре*/
 function findCorStructure(){
 	var value=$('#searchCor').val();
-	var len=value.length
+	var len=value.length;
 	if (len > 0){
 		$("div[name=itemStruct]").css("display","none");
 		$("#contentpane").find("div[name=itemStruct]").each(function(){
@@ -603,8 +602,8 @@ function changeViewStructure (viewType){
 		},
 		error:function (xhr, ajaxOptions, thrownError){
 			if (xhr.status == 400){
-				$("body").children().wrapAll("<div id='doerrorcontent' style='display:none'/>")
-				$("body").append("<div id='errordata'>"+xhr.responseText+"</div>")
+				$("body").children().wrapAll("<div id='doerrorcontent' style='display:none'/>");
+				$("body").append("<div id='errordata'>"+xhr.responseText+"</div>");
 				$("li[type='square'] > a").attr("href","javascript:backtocontent()")
 			}
 		}  
@@ -628,8 +627,8 @@ function ajaxFind(){
 		},
 		error:function (xhr, ajaxOptions, thrownError){
             if (xhr.status == 400){
-         	  $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'></div>")
-         	  $("body").append("<div id='errordata'>"+xhr.responseText+"</div>")
+         	  $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'></div>");
+         	  $("body").append("<div id='errordata'>"+xhr.responseText+"</div>");
          	  $("li[type='square'] > a").attr("href","javascript:backtocontent()")
             }
          }    
@@ -676,7 +675,7 @@ function expandChapterCorr(docid,num,url,doctype, page) {
 		url:url+"&page="+queryOpt.pagenum,
 		dataType:'html',
 		success: function(data) {
-			$("#contentpane").html(data)
+			$("#contentpane").html(data);
 			$("#img"+docid+doctype).attr("src","/SharedResources/img/classic/minus.gif");
 			$("#a"+docid+doctype).attr("href","javascript:collapsChapterCorr('"+docid+"','"+num+"','"+ url+"','"+doctype+"','"+page+"')");
 		}
@@ -690,7 +689,7 @@ function collapsChapterCorr(docid,num,url,doctype, page) {
 		url:"Provider?type=view&id=corrcat&command=collaps`"+docid+"&page="+ queryOpt.pagenum ,
 		dataType:'html',
 		success: function(data) {
-			$("#contentpane").html(data)
+			$("#contentpane").html(data);
 			$("#img"+docid+doctype).attr("src","/SharedResources/img/classic/plus.gif");
 			$("#a"+docid+doctype).attr("href","javascript:expandChapterCorr('"+docid+"','"+num+"','"+ url+"','"+doctype+"','"+page+"')");
 		}
