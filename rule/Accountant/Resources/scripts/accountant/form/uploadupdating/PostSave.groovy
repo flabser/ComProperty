@@ -151,7 +151,7 @@ class PostSave extends _FormPostSave {
                 StringBuilder msg = new StringBuilder();
                 msg.append("На данный момент было загружено: ")
                         .append(sheet.getRows() - 1)
-                        .append("объектов. Успешно загрузилось ")
+                        .append(" объектов. Успешно загрузилось ")
                         .append(saved_docs_counter)
                         .append(". С ошибками загрузилось: ")
                         .append(sheet.getRows() - 1 - saved_docs_counter)
