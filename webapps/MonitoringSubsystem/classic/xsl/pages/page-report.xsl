@@ -340,6 +340,15 @@
 													<a href="Provider?type=edit&amp;id=engineeringInfrastructure_report&amp;key=" class="doclink">Объекты инженерной инфраструктуры</a>
 												</td>
 											</tr>
+											<tr onmouseover="javascript:elemBackground(this,'EEEEEE')" onmouseout="elemBackground(this,'FFFFFF')">
+												<xsl:attribute name="bgcolor">#FFFFFF</xsl:attribute>
+												<td style="text-align:center;border:1px solid #ccc;width:20px;">
+													<input type="checkbox" autocomplete="off" name="chbox"/>
+												</td>
+												<td style="border:1px solid #ccc; padding-left:5px">
+													<a href="Provider?type=edit&amp;id=personalEstate_report&amp;key=" class="doclink">Движимое имущество</a>
+												</td>
+											</tr>
 										</table>
 										<div style="clear:both; width:100%">&#xA0;</div>
 									</div>
