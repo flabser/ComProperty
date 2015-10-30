@@ -7,7 +7,7 @@
 		<name>outline</name>
 		<value>outline</value>
 	</element>
-	<element mode="OFF" type="SCRIPT">
+	<element mode="ON" type="SCRIPT">
 		<name>action_bar</name>
 		<events>
 			<doscript source="file">monitoring.page.actionbar.order</doscript>
