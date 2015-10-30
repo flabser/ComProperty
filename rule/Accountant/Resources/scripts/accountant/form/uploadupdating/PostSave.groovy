@@ -127,7 +127,7 @@ class PostSave extends _FormPostSave {
                             maxCount += getMaxCount(_doc.docID, 2048);
                             insertDocument(ses, "saveddocslist", savedRows, xlsFile.getName());
 
-                            savedRows.delete(0, savedRows.length());
+                            savedRows = new StringBuilder();
                             savedRows.append(_doc.docID).append(",");
                         }
                         saved_docs_counter++;
@@ -162,7 +162,7 @@ class PostSave extends _FormPostSave {
 
                 def notifDoc = new _Document(new Document(ses.getCurrentDatabase().baseObject, ses.getCurrentAppUser().getUserID()));
                 notifDoc.setViewText("uploadobj", 1);
-                notifDoc.setForm("notigication");
+                notifDoc.setForm("notification");
                 notifDoc.setViewText(msg.toString());
                 notifDoc.setViewDate(new Date());
 
