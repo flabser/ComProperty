@@ -143,11 +143,6 @@ class PostSave extends _FormPostSave {
                     savedRows.delete(0, savedRows.length());
                 }
 
-                if (defectRows.length() > 0) {
-                    insertDocument(ses, "defectdocslist", defectRows, xlsFile.getName());
-                    defectRows.delete(0, defectRows.length());
-                }
-
                 StringBuilder msg = new StringBuilder();
                 msg.append("На данный момент было загружено: ")
                         .append(sheet.getRows() - 1)
@@ -161,9 +156,9 @@ class PostSave extends _FormPostSave {
 
 
                 def notifDoc = new _Document(new Document(ses.getCurrentDatabase().baseObject, ses.getCurrentAppUser().getUserID()));
-                notifDoc.setViewText("uploadobj", 1);
-                notifDoc.setForm("notification");
                 notifDoc.setViewText(msg.toString());
+                notifDoc.addViewText("uploadobj");
+                notifDoc.setForm("notification");
                 notifDoc.setViewDate(new Date());
 
                 notifDoc.addEditor(ses.getCurrentAppUser().getUserID());
@@ -171,6 +166,11 @@ class PostSave extends _FormPostSave {
                 notifDoc.addEditor("[operator]")
                 notifDoc.addEditor("[supervisor]")
                 notifDoc.save(ses.getCurrentAppUser().getUserID());
+
+                if (defectRows.length() > 0) {
+                    insertDocument(ses, "defectdocslist", defectRows, xlsFile.getName());
+                    defectRows.delete(0, defectRows.length());
+                }
 
                 def ma = ses.getMailAgent()
                 try{
