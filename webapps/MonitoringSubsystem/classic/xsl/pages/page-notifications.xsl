@@ -246,7 +246,7 @@
 											<xsl:attribute name="style">top:132px;</xsl:attribute>
 										</xsl:if>
 										<table class="viewtable" id="viewtable" width="100%">
-											<xsl:apply-templates select="//query/entry"/>
+											<xsl:apply-templates select="//view_content/response/content/query/entry"/>
 										</table>
 										<div style="clear:both; width:100%">&#xA0;</div>
 									</div>
