@@ -39,7 +39,7 @@ class QuerySave extends _FormQuerySave {
 		emp.setEmail(webFormData.getValueSilently("email"));
 		emp.setMessenger(webFormData.getValueSilently("instmsgaddress"));
 		emp.setDepID(webFormData.getValueSilently("depid"));
-		String birthDate = webFormData.getValueSilently("birthdate");
+		String birthDate = webFormData.getValueSilently("birthdate") ;
 		if (birthDate) {
 			def bd = _Helper.convertStringToDate(birthDate)
 			println(bd)

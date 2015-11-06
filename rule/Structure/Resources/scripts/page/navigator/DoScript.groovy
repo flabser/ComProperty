@@ -36,11 +36,11 @@ class DoScript extends _DoScript{
                 "legalentity", "Provider?type=page&id=legalentity"));
                 */
         def resp_person = new _OutlineEntry(getLocalizedWord("Ответственные лица по загрузке объектов",lang),
-                getLocalizedWord("Ответственные лица по загрузке объектов",lang), "responsibleperson", "Provider?type=page&id=responsibleperson");
+                getLocalizedWord("Ответственные лица по загрузке объектов",lang), "responsibleperson", "Provider?type=page&id=responsibleperson&page=0");
         resp_person.addEntry(new _OutlineEntry(getLocalizedWord("На регистрацию",lang),
-                getLocalizedWord("На регистрацию",lang), "responsibleperson_inactive", "Provider?type=page&id=responsibleperson&status=inactive"));
+                getLocalizedWord("На регистрацию",lang), "responsibleperson_inactive", "Provider?type=page&id=responsibleperson&status=inactive&page=0"));
         resp_person.addEntry(new _OutlineEntry(getLocalizedWord("Зарегистрированные",lang),
-                getLocalizedWord("Зарегистрированные",lang), "responsibleperson_active", "Provider?type=page&id=responsibleperson&status=active"));
+                getLocalizedWord("Зарегистрированные",lang), "responsibleperson_active", "Provider?type=page&id=responsibleperson&status=active&page=0"));
 
         contractor_outline.addEntry(resp_person);
         list.add(contractor_outline)

@@ -15,7 +15,9 @@ class DoScript extends _DoScript {
 		entryTag.setAttr("entryid",formData.getValueSilently("entryid"))
 		def id = formData.getValueSilently("id");
 		if( formData.containsField("status")){
-           id += "_" + formData.getValue("status")
+			id += "_" + formData.getValue("status")
+			def customParam = new _Tag("customparam","&status="+formData.getValue("status"))
+			rootTag.addTag(customParam)
 		}
         entryTag.setAttr("id",id)
 		rootTag.addTag(entryTag)
