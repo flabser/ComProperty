@@ -144,7 +144,6 @@
                                     </td>
                                 </tr>
                             </xsl:if>
-                            <xsl:if test="document/fields/form = 'E'">
                                 <tr>
                                     <td class="fc">Instant Messenger address :</td>
                                     <td>
@@ -344,7 +343,6 @@
                                         </xsl:if> -->
                                     </td>
                                 </tr>
-                            </xsl:if>
                         </table>
                     </div>
                     <input type="hidden" name="type" value="save"/>
