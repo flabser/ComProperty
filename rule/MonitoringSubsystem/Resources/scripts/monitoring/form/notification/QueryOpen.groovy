@@ -1,11 +1,12 @@
 package monitoring.form.notification
-
-import java.util.Collection;
-import java.util.Map
-import kz.nextbase.script.*
-import kz.nextbase.script.actions.*
-import kz.nextbase.script.events.*;
-import kz.nextbase.script.constants.*
+import kz.nextbase.script._Document
+import kz.nextbase.script._Session
+import kz.nextbase.script._WebFormData
+import kz.nextbase.script.actions._Action
+import kz.nextbase.script.actions._ActionBar
+import kz.nextbase.script.actions._ActionType
+import kz.nextbase.script.constants._DocumentModeType
+import kz.nextbase.script.events._FormQueryOpen
 
 class QueryOpen extends _FormQueryOpen {
 
@@ -67,6 +68,7 @@ class QueryOpen extends _FormQueryOpen {
 		publishValue("comobjecturl",doc.getValueString("comobjecturl"))
 		publishValue("orderurl",doc.getValueString("orderurl"))
 		publishValue("regdate",doc.getValueString("regdate"))
+        publishValue("viewtext",doc.getValueString("viewtext"))
 		publishValue("endcontractdate",doc.getValueString("endcontractdate"))
 	}
 }
