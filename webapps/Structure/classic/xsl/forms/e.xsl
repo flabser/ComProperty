@@ -38,19 +38,17 @@
                                     </input>
                                 </td>
                             </tr>
-                            <xsl:if test="document/fields/form = 'E'">
-                                <tr>
-                                    <td class="fc"><xsl:value-of select="document/captions/shortname/@caption"/> :</td>
-                                    <td>
-                                        <input type="text" name="shortname" value="{document/fields/shortname}" style="width:400px" class="td_editable">
-                                            <xsl:if test="$editmode != 'edit'">
-                                                <xsl:attribute name="readonly">readonly</xsl:attribute>
-                                                <xsl:attribute name="class">td_noteditable</xsl:attribute>
-                                            </xsl:if>
-                                        </input>
-                                    </td>
-                                </tr>
-                            </xsl:if>
+                            <tr>
+                                <td class="fc"><xsl:value-of select="document/captions/shortname/@caption"/> :</td>
+                                <td>
+                                    <input type="text" name="shortname" value="{document/fields/shortname}" style="width:400px" class="td_editable">
+                                        <xsl:if test="$editmode != 'edit'">
+                                            <xsl:attribute name="readonly">readonly</xsl:attribute>
+                                            <xsl:attribute name="class">td_noteditable</xsl:attribute>
+                                        </xsl:if>
+                                    </input>
+                                </td>
+                           </tr>
                             <tr>
                                 <td class="fc">UserID :</td>
                                 <td>
