@@ -159,11 +159,11 @@ class PostSave extends _FormPostSave {
                 notifDoc.setViewText(msg.toString());
                 notifDoc.addViewText("uploadobj");
 
-                notifDoc.setValueString("title", "Уведомление")
-                notifDoc.setValueDate("sentDate", new Date())
+                notifDoc.setValueString("title", "Уведомление  о загрузке объектов")
+                notifDoc.setValueDate("sentdate", new Date())
                 notifDoc.setValueString("notificationtype", "uploadobj")
                 notifDoc.setValueString("balanceholdername", ses.getCurrentAppUser().getFullName())
-                notifDoc.setValueString("description", msg.toString())
+                //notifDoc.setValueString("description", msg.toString())
 
                 notifDoc.setForm("notification");
                 notifDoc.setViewDate(new Date());
