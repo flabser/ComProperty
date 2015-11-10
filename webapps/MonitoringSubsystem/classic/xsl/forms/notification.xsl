@@ -308,6 +308,43 @@
 								<div style="background:#9A9A9A; width:100%; height:1px; margin-bottom:10px"/>
 							</div>
 						</xsl:if>
+						<xsl:if test="document/fields/notificationtype ='uploadobj'">
+							<div style="margin:20px auto; width:900px; border:1px solid #999; min-height:300px; padding:5px; background:#FFFFFE">
+								<img style="width:75px; height:75px; float:right; padding:0px 0px" src="classic/img/almaty.png" />
+								<table style="width:80%; border-collapse:collapse">
+									<tr>
+										<td style="width:130px; text-align:right; color:#808080; font-weight:bold; font-size:11px">Дата отправки: </td>
+										<td style="text-align:left; font-size:13px; font-family:arial; padding-left:10px;"><xsl:value-of select="document/fields/sentdate"/></td>
+									</tr>
+									<tr>
+										<td style="width:130px; text-align:right; color:#808080; font-weight:bold; font-size:11px">Отправитель: </td>
+										<td style="text-align:left; font-size:13px; font-family:arial; padding-left:10px;">Сервер отправки уведомлений</td>
+									</tr>
+									<tr>
+										<td style="width:130px; text-align:right; color:#808080; font-weight:bold; font-size:11px">Содержание: </td>
+										<td style="text-align:left; font-size:13px; font-family:arial; padding-left:10px;">Уведомление о загрузке объектов</td>
+									</tr>
+									<tr>
+										<td style="width:130px; text-align:right; color:#808080; font-weight:bold; font-size:11px">Получатель: </td>
+										<td style="text-align:left; font-size:13px; font-family:arial; padding-left:10px;"><xsl:value-of select="document/fields/balanceholdername"/></td>
+									</tr>
+								</table>
+
+								<div style="background:#DEDEDE; width:100%; height:1px; margin-top:10px"/>
+								<div style="width:100%; height:25px; text-align:center; font-weight:bold; padding-top:10px; font-size:17px">
+									Уведомление
+								</div>
+								<div style="background:#9A9A9A; width:100%; height:2px; margin-top:10px"/>
+								<div style="width:95%; min-height:250px; margin:50px auto">
+									<div style="width:20px; display:inline-block"/><xsl:value-of select="document/fields/viewtext"/>
+								</div>
+								<div style="background:#9A9A9A; width:100%; height:1px; margin-top:10px"/>
+								<div style="width:100%; padding:10px 0 10px 0; text-align:center; font-size:10px">
+									Данное уведомление было сформировано и отправлено сервером уведомлений автоматически
+								</div>
+								<div style="background:#9A9A9A; width:100%; height:1px; margin-bottom:10px"/>
+							</div>
+						</xsl:if>
 						</div>
 						<div style="height:10px"/>
 					</div>
