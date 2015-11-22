@@ -5,10 +5,10 @@ import kz.nextbase.script.events._DoScript
 import nextbase.groovy.*
 
 class furniture extends _DoScript {
-	
+
 	@Override
 	public void doProcess(_Session session, _WebFormData formData, String lang) {
-		println(formData)
+		//println(formData)
 		def page = 1;
 		if (formData.containsField("page") && formData.getValue("page")){
 			page = Integer.parseInt(formData.getValue("page"))

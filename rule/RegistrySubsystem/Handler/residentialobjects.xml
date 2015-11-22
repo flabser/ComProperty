@@ -2,7 +2,7 @@
     <description/>
     <rununderuser source="STATIC" type="TEXT">[observer]</rununderuser>
     <trigger>SCHEDULER</trigger>
-    <scheduler mode="ON">
+    <scheduler mode="OFF">
         <mininterval daysofweek="WORKWEEK">1440</mininterval>
         <starttime>16:52</starttime>
         <nextstart>01:07</nextstart>
