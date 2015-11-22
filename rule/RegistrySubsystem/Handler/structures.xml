@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><rule app="" id="structures" isvalid="true" mode="ON" type="HANDLER">
+<?xml version="1.0" encoding="UTF-8"?><rule app="" id="structures" isvalid="true" mode="OFF" type="HANDLER">
     <description/>
     <rununderuser source="STATIC" type="TEXT">[observer]</rununderuser>
     <trigger>SCHEDULER</trigger>
-    <scheduler mode="ON">
+    <scheduler mode="OFF">
         <mininterval daysofweek="WORKWEEK">1440</mininterval>
         <starttime>14:31</starttime>
         <nextstart>01:07</nextstart>
