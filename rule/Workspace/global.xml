@@ -9,7 +9,7 @@
         <driver>org.postgresql.Driver</driver>
         <url>jdbc:postgresql://localhost:5433/ComProperty</url>
 	<username/>
-		<password/><connectionid>kPNxzPIYRjb3Wr8MvVsEBA==@@@yDiGL+PCTtP3Wr8MvVsEBA==</connectionid></database>
+		<password/><connectionid>kGcmwuH/jaNcH+ZvpEQwQA==@@@BvYd11KTEKFcH+ZvpEQwQA==</connectionid></database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>
 	<daemons>
 		<cyclecontrol>
