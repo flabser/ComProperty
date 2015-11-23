@@ -5,7 +5,8 @@
 	<xsltfile></xsltfile>
 	<element mode="ON" type="SCRIPT">
 		<events>
-			<doscript source="JAVA_CLASS">monitoring.page.report.TestJasper</doscript>
+			<!-- <doscript source="JAVA_CLASS">monitoring.page.report.TestJasper</doscript> -->
+			<doscript source="GROOVY_FILE">monitoring.page.report.TestJasperOnGroovy</doscript>
 		</events>
 	</element>
 </rule>

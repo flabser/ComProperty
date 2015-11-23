@@ -8,8 +8,8 @@
         <name>ComProperty</name>
         <driver>org.postgresql.Driver</driver>
         <url>jdbc:postgresql://localhost:5433/ComProperty</url>
-      	<username/>
-		<password/><connectionid>Y6bP8d1l5lX7r1WqkdKpjw==@@@aj06qAyBuhr7r1WqkdKpjw==</connectionid></database>
+	<username/>
+		<password/><connectionid>kPNxzPIYRjb3Wr8MvVsEBA==@@@yDiGL+PCTtP3Wr8MvVsEBA==</connectionid></database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>
 	<daemons>
 		<cyclecontrol>
