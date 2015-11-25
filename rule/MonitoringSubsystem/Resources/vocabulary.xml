@@ -2330,34 +2330,34 @@
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+	<sentence mode="on" keyword="Мебель">
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Furniture</entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="Животные">
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Animals</entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="Инвентарь">
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Sportsequipment</entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="Прочее">
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Others</entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="Государственные пакеты акций">
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Shareblocks</entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="Долевое участие в ТОО">
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Equity</entry>
 		<entry lang="CHN"></entry>
 	</sentence>
 </vocabulary>
