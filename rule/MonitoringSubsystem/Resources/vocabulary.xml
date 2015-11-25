@@ -2619,6 +2619,12 @@
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
+	<sentence mode="on" keyword="no_data">
+		<entry lang="RUS">Нет данных</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
 </vocabulary>
 
 

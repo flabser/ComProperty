@@ -211,39 +211,45 @@
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/propertytype/@caption"/> :</td>
 											<td>
-												<input type="checkbox" name="propertytype" value="buildings"/>&#xA0;<xsl:value-of select="document/captions/buildings/@caption"/>
+												<input type="checkbox" name="propertytype" value="personalstateCat"/>&#xA0;<xsl:value-of select="document/captions/personalstateCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="rooms"/>&#xA0;<xsl:value-of select="document/captions/rooms/@caption"/>
+												<input type="checkbox" name="propertytype" value="equipmentCat"/>&#xA0;<xsl:value-of select="document/captions/equipmentCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="structures"/>&#xA0;<xsl:value-of select="document/captions/structures/@caption"/>
+												<input type="checkbox" name="propertytype" value="realestateCat"/>&#xA0;<xsl:value-of select="document/captions/realestateCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="residentialobjects"/>&#xA0;<xsl:value-of select="document/captions/residentialobjects/@caption"/>
+												<input type="checkbox" name="propertytype" value="transportCat"/>&#xA0;<xsl:value-of select="document/captions/transportCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="land"/>&#xA0;<xsl:value-of select="document/captions/land/@caption"/>
+												<input type="checkbox" name="propertytype" value="strategicobjectsCat"/>&#xA0;<xsl:value-of select="document/captions/strategicobjectsCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="monument"/>&#xA0;<xsl:value-of select="document/captions/monument/@caption"/>
+												<input type="checkbox" name="propertytype" value="specialconstructionsCat"/>&#xA0;<xsl:value-of select="document/captions/specialconstructionsCat/@caption"/>
 											</td>
-										</tr>									
+										</tr>
+										<tr>
+											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
+											<td>
+												<input type="checkbox" name="propertytype" value="engineeringInfrastructureCat"/>&#xA0;<xsl:value-of select="document/captions/engineeringInfrastructureCat/@caption"/>
+											</td>
+										</tr>										
 										<tr>
 											<td class="fc" style="padding:7px;"><xsl:value-of select="document/captions/reportfiletype/@caption"/> :</td>
 											<td>

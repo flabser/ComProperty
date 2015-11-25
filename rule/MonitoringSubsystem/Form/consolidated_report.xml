@@ -96,12 +96,15 @@
 	<caption name ="reportfiletype" source ="KEYWORD">Тип файла отчета</caption>
 	<caption name ="propertytype" source ="KEYWORD">Тип имущества</caption>
 	<caption name ="fillingreport" source ="KEYWORD">Сформировать отчет</caption>
-	<caption name ="buildings" source ="KEYWORD">Здания</caption>
-	<caption name ="rooms" source ="KEYWORD">Помещения</caption>
-	<caption name ="structures" source ="KEYWORD">Строения</caption>
-	<caption name ="residentialobjects" source ="KEYWORD">Жилые объекты</caption>
-	<caption name ="land" source ="KEYWORD">Земля</caption>
-	<caption name ="monument" source ="KEYWORD">Памятники истории и архитектуры</caption>
+	
+	<caption name ="personalstateCat" source ="KEYWORD">personalstateCat</caption>
+	<caption name ="equipmentCat" source ="KEYWORD">equipmentCat</caption>
+	<caption name ="realestateCat" source ="KEYWORD">realestateCat</caption>
+	<caption name ="transportCat" source ="KEYWORD">transportCat</caption>
+	<caption name ="strategicobjectsCat" source ="KEYWORD">strategicobjectsCat</caption>
+	<caption name ="specialconstructionsCat" source ="KEYWORD">specialconstructionsCat</caption>
+	<caption name ="engineeringInfrastructureCat" source ="KEYWORD">engineeringInfrastructureCat</caption>
+	
 	<glossary mode="on" id="region" source="query">
 		<description>Область</description>
 		<value>region</value>
