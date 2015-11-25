@@ -22,3 +22,7 @@ cfg.xml
 ########
 *.log
 /logs/
+/bin/
+/.settings/
+/.classpath
+/.project

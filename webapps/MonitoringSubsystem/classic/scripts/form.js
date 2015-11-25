@@ -256,7 +256,11 @@ function fillingReport(){
 	var fields = $('form').serializeArray(),
 		formData = $("form").serialize(),
 		recursiveEncoded = $.param(fields);
-	window.location.href = 'Provider?type=handler&id='+$("input[name=id]").val()+'&'+recursiveEncoded;
+	if ($("input[name=id]").val() == 'consolidated_report'){
+		window.location.href = 'Provider?id='+$("input[name=id]").val()+'&'+recursiveEncoded;
+	}else{
+		window.location.href = 'Provider?type=handler&id='+$("input[name=id]").val()+'&'+recursiveEncoded;
+	}	
 	$('#loadingpage, #blockWindow').css("display","none");
 	$("body").css("cursor","default")
 	disableblockform()

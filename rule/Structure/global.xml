@@ -6,15 +6,9 @@
 	<database autodeploy="ON">
 		<name>Structure</name>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://localhost/PropertyObjects</url>
-        <username/>
-        <password/>
-<!--		<driver>net.sourceforge.jtds.jdbc.Driver</driver>
-		<url>jdbc:jtds:sqlserver://172.16.251.8:1433/WTS_NEW</url>
-		<username/>
-		<password/>
-	<connectionid>Ly0jeQIUf0k=@@@5UA3t6yvILpWlHp+lZnkKg==</connectionid>-->
-    <connectionid>xDlS6QholpWL/yUMyHxuOw==@@@IFcZh7bmHeE=</connectionid></database>
+        <url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
+	<username/>
+		<password/><connectionid>ybhZasg0e87X0i+VemLoiA==@@@SQo/OMQq6brX0i+VemLoiA==</connectionid></database>
 	<daemons>
 		<cyclecontrol>
 			<scheduler>

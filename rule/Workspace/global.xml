@@ -7,10 +7,9 @@
     <database autodeploy="ON">
         <name>ComProperty</name>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://localhost/ComProperty</url>
-        <username/>
-        <password/>
-    <connectionid>HzHlFVAdM5DPb9CBT/pSEw==@@@Wgz9pX4V4MfPb9CBT/pSEw==</connectionid></database>
+       	<url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
+	<username/>
+		<password/><connectionid>PzEIBJ7WbcjLnHlYmd/8aw==@@@5Hzd4kABuwzLnHlYmd/8aw==</connectionid></database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>
 	<daemons>
 		<cyclecontrol>
