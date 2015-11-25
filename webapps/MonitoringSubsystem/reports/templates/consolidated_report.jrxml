@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-11-25T16:09:10 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consolidated_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5ed2a72-a9c6-40db-aeec-9f56ef71b9a1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="category" class="java.lang.String"/>
+	<field name="subCategory" class="java.lang.String"/>
+	<field name="count" class="java.lang.Integer"/>
+	<field name="primaryCost" class="java.lang.Integer"/>
+	<field name="depreciation" class="java.lang.Integer"/>
+	<field name="bookvalue" class="java.lang.Integer"/>
+	<field name="reassessmentCost" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="-19" width="555" height="91" backcolor="#FFFFFF" uuid="6d00711e-bb2f-49c7-93c7-64425889e5b9"/>
+				<elementGroup>
+					<elementGroup>
+						<staticText>
+							<reportElement x="133" y="5" width="421" height="21" forecolor="#000000" uuid="a51418e2-01ca-4867-a18c-ecd5ec77a35d"/>
+							<textElement>
+								<font size="13" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Мониторинг объектов государственной собственности]]></text>
+						</staticText>
+						<image>
+							<reportElement x="0" y="0" width="131" height="91" uuid="5b1f9e7e-e11b-48c5-9525-d6c6c41a3f09"/>
+							<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
+						</image>
+					</elementGroup>
+				</elementGroup>
+				<staticText>
+					<reportElement x="130" y="50" width="421" height="21" forecolor="#000000" uuid="54e57d3f-02e1-470c-96ff-95e6fd5fa9f0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="13" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Консолидированный отчет]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="110" height="50" uuid="0d6e4f9d-e060-4cf3-9cc5-73835b8d5ba1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Категория]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="120" height="50" uuid="5a89ab93-537c-47c1-9ae3-29f249a63fca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Под категория]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="60" height="50" uuid="f2286a8a-4f35-4653-9118-e81fa2ae99ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Количество]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="58" height="50" uuid="27506612-595d-457d-b09e-d18859ad2925"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Первоначальная стймость]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="0" width="62" height="50" uuid="cbb09414-7372-40c6-a34d-523918afdfb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Накопленная амортизация]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="70" height="50" uuid="243f19d2-fad2-47d1-82b6-0a03ae823fd5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Балансовая стоймость]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="74" height="50" uuid="f2011b75-0bc8-4127-b675-47959af8766c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Балансовая стоимость после переоценки ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="110" height="30" uuid="6958ba83-b805-4f29-9daf-d18df76020b9"/>
+				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="110" y="0" width="120" height="30" uuid="febbb48e-073a-480f-a8ad-a2d922a0f3f9"/>
+				<textFieldExpression><![CDATA[$F{subCategory}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="60" height="30" uuid="8e286454-5a01-4968-851c-fd02ab5d62e2"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="290" y="0" width="60" height="30" uuid="51259577-a225-4fe6-9115-0a4630cb8012"/>
+				<textFieldExpression><![CDATA[$F{primaryCost}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="349" y="0" width="61" height="30" uuid="d894ceb3-775f-40b7-9285-68da73db81ee"/>
+				<textFieldExpression><![CDATA[$F{depreciation}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="410" y="0" width="70" height="30" uuid="441aa63f-7ab0-4611-9ab6-68f0c30b30ab"/>
+				<textFieldExpression><![CDATA[$F{bookvalue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="72" height="30" uuid="dbebcf84-4cfa-4217-97b2-41c2a8e5adc5"/>
+				<textFieldExpression><![CDATA[$F{reassessmentCost}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

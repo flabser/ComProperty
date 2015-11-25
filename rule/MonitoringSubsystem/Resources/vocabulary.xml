@@ -2330,32 +2330,291 @@
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+	<sentence mode="on" keyword="personalstateCat">
+		<entry lang="RUS">Движимое имущество</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+	<sentence mode="on" keyword="furniture">
+		<entry lang="RUS">Мебель</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="shareblocks">
+		<entry lang="RUS">Государственные пакеты акций</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="equity">
+		<entry lang="RUS">Долевое участие в ТОО</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="animals">
+		<entry lang="RUS">Животные</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
 	</sentence>
-		<sentence mode="on" keyword="">
+		<sentence mode="on" keyword="sportsequipment">
+		<entry lang="RUS">Инвентарь</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="others">
+		<entry lang="RUS">Прочее</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="automobile">
+		<entry lang="RUS">Легковые</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="cargo">
+		<entry lang="RUS">Грузовые</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="bus">
+		<entry lang="RUS">Автобусы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="trolleybus">
+		<entry lang="RUS">Троллейбусы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="tram">
+		<entry lang="RUS">Трамваи</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="watertransport">
+		<entry lang="RUS">Водный транспорт</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="hospitaltransport">
+		<entry lang="RUS">Санитарный транспорт</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="specialequipment">
+		<entry lang="RUS">Специальная техника</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="motorcycle">
+		<entry lang="RUS">Мотоциклы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+<sentence mode="on" keyword="billboard">
+		<entry lang="RUS">Биллборды</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="columns">
+		<entry lang="RUS">Электрические столбы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="electricnetworks">
+		<entry lang="RUS">Электрические сети</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="thermalnetworks">
+		<entry lang="RUS">Тепловые сети</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="gas">
+		<entry lang="RUS">Газовые сети</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="watersystem">
+		<entry lang="RUS">Водопровод и канализация</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="drain">
+		<entry lang="RUS">Арычные</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="road">
+		<entry lang="RUS">Дороги</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="parking">
+		<entry lang="RUS">Парковки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="buildings">
+		<entry lang="RUS">Здания(Отдельностоящие)</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="rooms">
+		<entry lang="RUS"></entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="structures">
+		<entry lang="RUS">Строения</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="residentialobjects">
+		<entry lang="RUS">Жилые объекты</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="land">
+		<entry lang="RUS">Земля</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="monument">
+		<entry lang="RUS">Памятники истории и культуры</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="schoolequipment">
+		<entry lang="RUS">Школьное оборудование</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="officeequipment">
+		<entry lang="RUS">Офисное оборудование</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="computerequipment">
+		<entry lang="RUS">Компьютерное оборудование и орг. техника</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="medicalequipment">
+		<entry lang="RUS">Медицинское оборудование</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="cookequipment">
+		<entry lang="RUS">Кухонное оборудование</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="equipmentofcivildefense">
+		<entry lang="RUS">Оборудование гражданской обороны</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="bombproof">
+		<entry lang="RUS">Бомбоубежища</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="factory">
+		<entry lang="RUS">Заводы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="combines">
+		<entry lang="RUS">Комбинаты</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="airport">
+		<entry lang="RUS">Аэропорты</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="transitions">
+		<entry lang="RUS">Подземные и надземные переходы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	
+		<sentence mode="on" keyword="equipmentCat">
+		<entry lang="RUS">Оборудование</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="realestateCat">
+		<entry lang="RUS">Недвижимое имущество</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="transportCat">
+		<entry lang="RUS">Транспорт</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="strategicobjectsCat">
+		<entry lang="RUS">Стратегические объекты</entry>
+		<entry lang="KAZ">Стратегические объекты</entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+		<sentence mode="on" keyword="specialconstructionsCat">
+		<entry lang="RUS">Специальные сооружения</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG"></entry>
+		<entry lang="CHN"></entry>
+	</sentence>
+	<sentence mode="on" keyword="engineeringInfrastructureCat">
+		<entry lang="RUS">Объекты инженерной инфраструктуры</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 		<entry lang="CHN"></entry>
