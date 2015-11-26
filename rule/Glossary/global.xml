@@ -8,7 +8,7 @@
 		<driver>org.postgresql.Driver</driver>
 		<url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
 			<username/>
-		<password/><connectionid>s2UZ83K+XtZY7/Nm8YbGSg==@@@py/LHtLYr5dY7/Nm8YbGSg==</connectionid></database>
+		<password/><connectionid>3dS5bXj0OGztq+lz3Unygw==@@@lp1/+SYOSTztq+lz3Unygw==</connectionid></database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>
 	<daemons>
 		<daemon>

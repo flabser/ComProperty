@@ -8,7 +8,7 @@
         <driver>org.postgresql.Driver</driver>
         <url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
 	<username/>
-		<password/><connectionid>ybhZasg0e87X0i+VemLoiA==@@@SQo/OMQq6brX0i+VemLoiA==</connectionid></database>
+		<password/><connectionid>pOuOx/Je46D8tOQEgdQZIA==@@@bKziLyFhKH38tOQEgdQZIA==</connectionid></database>
 	<daemons>
 		<cyclecontrol>
 			<scheduler>

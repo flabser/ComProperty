@@ -34,10 +34,10 @@
             <name mode="on">Glossary</name>
         </app>
         <app>
-            <name mode="on">RegistrySubsystem</name>
+            <name mode="off">RegistrySubsystem</name>
         </app>
         <app>
-            <name mode="on">PropertyLeasingSubsystem</name>
+            <name mode="off">PropertyLeasingSubsystem</name>
         </app>
     </applications>
     <logging>
