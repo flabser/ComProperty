@@ -211,43 +211,43 @@
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/propertytype/@caption"/> :</td>
 											<td>
-												<input type="checkbox" name="propertytype" value="personalstateCat"/>&#xA0;<xsl:value-of select="document/captions/personalstateCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="personalstateCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/personalstateCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="equipmentCat"/>&#xA0;<xsl:value-of select="document/captions/equipmentCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="equipmentCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/equipmentCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="realestateCat"/>&#xA0;<xsl:value-of select="document/captions/realestateCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="realestateCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/realestateCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="transportCat"/>&#xA0;<xsl:value-of select="document/captions/transportCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="transportCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/transportCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="strategicobjectsCat"/>&#xA0;<xsl:value-of select="document/captions/strategicobjectsCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="strategicobjectsCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/strategicobjectsCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="specialconstructionsCat"/>&#xA0;<xsl:value-of select="document/captions/specialconstructionsCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="specialconstructionsCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/specialconstructionsCat/@caption"/>
 											</td>
 										</tr>
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"></td>
 											<td>
-												<input type="checkbox" name="propertytype" value="engineeringInfrastructureCat"/>&#xA0;<xsl:value-of select="document/captions/engineeringInfrastructureCat/@caption"/>
+												<input type="checkbox" name="propertytype" value="engineeringInfrastructureCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/engineeringInfrastructureCat/@caption"/>
 											</td>
 										</tr>										
 										<tr>

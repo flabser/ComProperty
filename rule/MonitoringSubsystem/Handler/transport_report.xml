@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="windows-1251"?>
-<rule type="handler" id="transport_report">
+<rule type="handler" id="transport_report" mode="OFF">
     <rununderuser source="macro">CURRENT_USER</rununderuser>
     <trigger>provider</trigger>
     <scheduler>
