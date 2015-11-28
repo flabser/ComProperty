@@ -11,8 +11,8 @@
 			<idatabasedeployer>kz.lof.database.DatabaseDeployer</idatabasedeployer>
 			<idatabase>kz.lof.database.Database</idatabase>
 		</implementation>
-		<username/>
-		<password/><connectionid>0npSeQV1m6uMRudlI7D/6g==@@@DmWlY1fhK7SMRudlI7D/6g==</connectionid></database>
+	<username>postgres</username>
+		<password>smartdoc</password> </database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>	
 	<entrypoint>Provider?type=static&amp;id=start</entrypoint>
 	<defaultredirecturl>Provider?type=page&amp;id=furniture&amp;page=0&amp;title=Мебель</defaultredirecturl>
