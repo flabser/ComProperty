@@ -1,13 +1,20 @@
 package monitoring.page.report;
 
 public class ReportRowEntity {
+	public int countNum;
+	public int primaryCostNum;
+	public int depreciationNum;
+	public int bookvalueNum;
+	public int reassessmentCostNum;
+
 	private String category;
 	private String subCategory;
-	private int count;
-	private int primaryCost;
-	private int depreciation;
-	private int bookvalue;
-	private int reassessmentCost;
+
+	private String count;
+	private String primaryCost;
+	private String depreciation;
+	private String bookvalue;
+	private String reassessmentCost;
 
 	public String getCategory() {
 		return category;
@@ -25,43 +32,63 @@ public class ReportRowEntity {
 		this.subCategory = subCategory;
 	}
 
-	public int getCount() {
-		return count;
+	public void setCount(String c) {
+		this.count = c;
 	}
 
-	public void setCount(int count) {
-		this.count = count;
+	public String getCount() {
+		if (count == null) {
+			return Integer.toString(countNum);
+		} else {
+			return count;
+		}
 	}
 
-	public int getPrimaryCost() {
-		return primaryCost;
+	public String getPrimaryCost() {
+		if (primaryCost == null) {
+			return Integer.toString(primaryCostNum);
+		} else {
+			return primaryCost;
+		}
 	}
 
-	public void setPrimaryCost(int primaryCost) {
+	public void setPrimaryCost(String primaryCost) {
 		this.primaryCost = primaryCost;
 	}
 
-	public int getDepreciation() {
-		return depreciation;
+	public String getDepreciation() {
+		if (depreciation == null) {
+			return Integer.toString(depreciationNum);
+		} else {
+			return depreciation;
+		}
 	}
 
-	public void setDepreciation(int depreciation) {
+	public void setDepreciation(String depreciation) {
 		this.depreciation = depreciation;
 	}
 
-	public int getBookvalue() {
-		return bookvalue;
+	public String getBookvalue() {
+		if (bookvalue == null) {
+			return Integer.toString(bookvalueNum);
+		} else {
+			return bookvalue;
+		}
 	}
 
-	public void setBookvalue(int bookvalue) {
+	public void setBookvalue(String bookvalue) {
 		this.bookvalue = bookvalue;
 	}
 
-	public int getReassessmentCost() {
-		return reassessmentCost;
+	public String getReassessmentCost() {
+		if (reassessmentCost == null) {
+			return Integer.toString(reassessmentCostNum);
+		} else {
+			return reassessmentCost;
+		}
 	}
 
-	public void setReassessmentCost(int reassessmentCost) {
+	public void setReassessmentCost(String reassessmentCost) {
 		this.reassessmentCost = reassessmentCost;
 	}
 

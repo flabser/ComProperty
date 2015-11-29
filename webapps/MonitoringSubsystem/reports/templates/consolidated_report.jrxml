@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-25T16:09:10 -->
+<!-- 2015-11-29T19:14:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consolidated_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5ed2a72-a9c6-40db-aeec-9f56ef71b9a1">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString>
@@ -8,11 +8,11 @@
 	</queryString>
 	<field name="category" class="java.lang.String"/>
 	<field name="subCategory" class="java.lang.String"/>
-	<field name="count" class="java.lang.Integer"/>
-	<field name="primaryCost" class="java.lang.Integer"/>
-	<field name="depreciation" class="java.lang.Integer"/>
-	<field name="bookvalue" class="java.lang.Integer"/>
-	<field name="reassessmentCost" class="java.lang.Integer"/>
+	<field name="count" class="java.lang.String"/>
+	<field name="primaryCost" class="java.lang.String"/>
+	<field name="depreciation" class="java.lang.String"/>
+	<field name="bookvalue" class="java.lang.String"/>
+	<field name="reassessmentCost" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

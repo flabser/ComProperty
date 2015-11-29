@@ -75,7 +75,8 @@ public class ConsolidatedReport extends _DoScript {
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(fetchReportData(categories));
+			ArrayList<ReportRowEntity> result = fetchReportData(categories);
+			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
 			JasperPrint print = JasperFillManager.fillReport(
 					JasperCompileManager.compileReportToFile(repPath + "\\templates\\" + reportName + ".jrxml"),
@@ -125,8 +126,8 @@ public class ConsolidatedReport extends _DoScript {
 		IDBConnectionPool dbPool = db.getConnectionPool();
 		for (String key : categories.keySet()) {
 			String[] toReport = categories.get(key);
-			int countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
 			if (toReport != null) {
+				int countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
 				ReportRowEntity catObject = new ReportRowEntity();
 				catObject.setCategory(getLocalizedWord(key, lang));
 				catObject.setSubCategory("");
@@ -152,7 +153,7 @@ public class ConsolidatedReport extends _DoScript {
 						ResultSet rs = s.executeQuery(sql);
 						while (rs.next()) {
 							int count = rs.getInt(1);
-							object.setCount(count);
+							object.countNum = count;
 							countCat = countCat + count;
 							String nestedSql = "select * from MAINDOCS as m left join CUSTOM_FIELDS as cf on cf.docid = "
 									+ rs.getInt("docid") + " where  m.docid = " + rs.getInt("docid");
@@ -174,10 +175,10 @@ public class ConsolidatedReport extends _DoScript {
 							}
 							System.out
 									.println(originalCostSum + " " + cumulativedepreciationSum + " " + balanceCostSum);
-							object.setPrimaryCost(object.getPrimaryCost() + originalCostSum);
-							object.setDepreciation(object.getDepreciation() + cumulativedepreciationSum);
-							object.setBookvalue(object.getBookvalue() + balanceCostSum);
-							object.setReassessmentCost(0);
+							object.primaryCostNum = object.primaryCostNum + originalCostSum;
+							object.depreciationNum = object.depreciationNum + cumulativedepreciationSum;
+							object.bookvalueNum = object.bookvalueNum + balanceCostSum;
+							object.reassessmentCostNum = 0;
 							nestedS.close();
 
 						}
@@ -194,7 +195,7 @@ public class ConsolidatedReport extends _DoScript {
 					}
 					data.add(object);
 				}
-				catObject.setCount(countCat);
+				catObject.countNum = countCat;
 			}
 		}
 		return data;
@@ -219,7 +220,7 @@ public class ConsolidatedReport extends _DoScript {
 							new TreeSet<DocID>(), new RunTimeParameters(), false);
 					object.setCategory("");
 					object.setSubCategory(getLocalizedWord(toReport[ci], lang));
-					object.setCount(vec.getCount());
+					// object.setCount(vec.getCount());
 					int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
 					for (_ViewEntry e : vec.getEntries()) {
 						try {
@@ -233,10 +234,10 @@ public class ConsolidatedReport extends _DoScript {
 						}
 
 					}
-					object.setPrimaryCost(originalCostSum);
-					object.setDepreciation(cumulativedepreciationSum);
-					object.setBookvalue(balanceCostSum);
-					object.setReassessmentCost(0);
+					// object.setPrimaryCost(originalCostSum);
+					// object.setDepreciation(cumulativedepreciationSum);
+					// object.setBookvalue(balanceCostSum);
+					// object.setReassessmentCost(0);
 					data.add(object);
 				}
 			} else {
