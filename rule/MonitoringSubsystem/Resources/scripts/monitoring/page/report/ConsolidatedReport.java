@@ -1,14 +1,21 @@
 package monitoring.page.report;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
 
 import kz.flabs.dataengine.DatabaseFactory;
+import kz.flabs.dataengine.DatabaseUtil;
+import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.ISelectFormula;
-import kz.flabs.dataengine.h2.queryformula.SelectFormula;
+import kz.flabs.dataengine.h2.Database;
+import kz.flabs.dataengine.postgresql.queryformula.SelectFormula;
 import kz.flabs.parser.FormulaBlocks;
 import kz.flabs.runtimeobj.document.DocID;
 import kz.flabs.users.RunTimeParameters;
@@ -39,9 +46,11 @@ import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
 @SuppressWarnings("deprecation")
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
+	private _Session ses;
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
+		this.ses = ses;
 		this.lang = lang;
 		println(formData);
 		String reportName = formData.getValueSilently("id");
@@ -66,7 +75,7 @@ public class ConsolidatedReport extends _DoScript {
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(fetchData(categories));
+			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(fetchReportData(categories));
 
 			JasperPrint print = JasperFillManager.fillReport(
 					JasperCompileManager.compileReportToFile(repPath + "\\templates\\" + reportName + ".jrxml"),
@@ -108,6 +117,87 @@ public class ConsolidatedReport extends _DoScript {
 		} catch (_Exception e) {
 			Server.logger.errorLogEntry(e);
 		}
+	}
+
+	private ArrayList<ReportRowEntity> fetchReportData(HashMap<String, String[]> categories) {
+		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
+		IDatabase db = ses.getCurrentDatabase().getBaseObject();
+		IDBConnectionPool dbPool = db.getConnectionPool();
+		for (String key : categories.keySet()) {
+			String[] toReport = categories.get(key);
+			int countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
+			if (toReport != null) {
+				ReportRowEntity catObject = new ReportRowEntity();
+				catObject.setCategory(getLocalizedWord(key, lang));
+				catObject.setSubCategory("");
+				data.add(catObject);
+				for (int ci = 0; ci < toReport.length; ci++) {
+					ReportRowEntity object = new ReportRowEntity();
+					object.setCategory("");
+					object.setSubCategory(getLocalizedWord(toReport[ci], lang));
+					Connection conn = dbPool.getConnection();
+					try {
+
+						conn.setAutoCommit(false);
+						Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+
+						String sql = "SELECT foo.count, mdocs.docid  FROM MAINDOCS mdocs, "
+								+ "(SELECT count(md.DOCID) as count FROM MAINDOCS md  WHERE form= '" + toReport[ci]
+								+ "'  and  "
+								+ "exists(select 1 from READERS_MAINDOCS where md.DOCID = READERS_MAINDOCS.DOCID and READERS_MAINDOCS.USERNAME IN "
+								+ "('" + ses.getCurrentUserID() + "'))) as foo  WHERE form= '" + toReport[ci]
+								+ "' and  "
+								+ "exists(select 1 from READERS_MAINDOCS where mdocs.DOCID = READERS_MAINDOCS.DOCID and READERS_MAINDOCS.USERNAME IN "
+								+ "('" + ses.getCurrentUserID() + "')) ORDER BY DOCID ASC ";
+						ResultSet rs = s.executeQuery(sql);
+						while (rs.next()) {
+							int count = rs.getInt(1);
+							object.setCount(count);
+							countCat = countCat + count;
+							String nestedSql = "select * from MAINDOCS as m left join CUSTOM_FIELDS as cf on cf.docid = "
+									+ rs.getInt("docid") + " where  m.docid = " + rs.getInt("docid");
+							Statement nestedS = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+									ResultSet.CONCUR_READ_ONLY);
+							ResultSet nestedRs = nestedS.executeQuery(nestedSql);
+							int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
+
+							while (nestedRs.next()) {
+								String fieldName = nestedRs.getString("name");
+								if (fieldName.equalsIgnoreCase("originalcost")) {
+									originalCostSum = originalCostSum + getIntValue(nestedRs, "value");
+								} else if (fieldName.equalsIgnoreCase("cumulativedepreciation")) {
+									cumulativedepreciationSum = cumulativedepreciationSum
+											+ getIntValue(nestedRs, "value");
+								} else if (fieldName.equalsIgnoreCase("balancecost")) {
+									balanceCostSum = balanceCostSum + getIntValue(nestedRs, "value");
+								}
+							}
+							System.out
+									.println(originalCostSum + " " + cumulativedepreciationSum + " " + balanceCostSum);
+							object.setPrimaryCost(object.getPrimaryCost() + originalCostSum);
+							object.setDepreciation(object.getDepreciation() + cumulativedepreciationSum);
+							object.setBookvalue(object.getBookvalue() + balanceCostSum);
+							object.setReassessmentCost(0);
+							nestedS.close();
+
+						}
+						rs.close();
+						s.close();
+						conn.commit();
+
+					} catch (SQLException e) {
+						DatabaseUtil.errorPrint(db.getDbID(), e);
+					} catch (Exception e) {
+						Database.logger.errorLogEntry(e);
+					} finally {
+						dbPool.returnConnection(conn);
+					}
+					data.add(object);
+				}
+				catObject.setCount(countCat);
+			}
+		}
+		return data;
 	}
 
 	private ArrayList<ReportRowEntity> fetchData(HashMap<String, String[]> categories) {
@@ -157,13 +247,18 @@ public class ConsolidatedReport extends _DoScript {
 			}
 		}
 
-		/*
-		 * int iteration = 10; for (int i = 0; i < iteration; i++) {
-		 * data.add(generateMock()); }
-		 */
-
 		return data;
 
+	}
+
+	private int getIntValue(ResultSet rs, String filedName) {
+		try {
+			return Integer.parseInt(rs.getString(filedName));
+		} catch (NumberFormatException e1) {
+			return 0;
+		} catch (SQLException e) {
+			return 0;
+		}
 	}
 
 	private HashMap<String, String[]> getCategories() {
