@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -50,10 +51,22 @@ public class ConsolidatedReport extends _DoScript {
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
+		long start_time = System.currentTimeMillis();
+		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
 		this.ses = ses;
 		this.lang = lang;
 		println(formData);
 		String reportName = formData.getValueSilently("id");
+		Date from = formData.getDateSilently("acceptancedatefrom");
+		Date to = formData.getDateSilently("acceptancedateto");
+		if (from != null && to != null) {
+			checkAcceptanceDate = true;
+		}
+		int bc = formData.getNumberValueSilently("balanceholder", 0);
+		if (bc != 0) {
+			checkBalanceHolder = true;
+		}
+
 		try {
 			String pType[] = formData.getListOfValuesSilently("propertytype");
 			HashMap<String, String[]> categories = new HashMap<String, String[]>();
@@ -69,13 +82,14 @@ public class ConsolidatedReport extends _DoScript {
 			}
 
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			log("Filling report...");
+			log("Filling report \"" + reportName + "\"...");
 			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator
 					+ ses.getGlobalSettings().id + File.separator + "reports";
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			ArrayList<ReportRowEntity> result = fetchReportData(categories);
+			ArrayList<ReportRowEntity> result = fetchReportData(categories, checkAcceptanceDate, checkBalanceHolder, bc,
+					from, to);
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
 			JasperPrint print = JasperFillManager.fillReport(
@@ -112,7 +126,7 @@ public class ConsolidatedReport extends _DoScript {
 
 			showFile(filePath, fileName);
 			Environment.fileToDelete.add(filePath);
-			log("Done");
+			log("Report \"" + reportName + "\" is ready, estimated time is " + Util.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {
 			Server.logger.errorLogEntry(e);
 		} catch (_Exception e) {
@@ -120,9 +134,12 @@ public class ConsolidatedReport extends _DoScript {
 		}
 	}
 
-	private ArrayList<ReportRowEntity> fetchReportData(HashMap<String, String[]> categories) {
+	private ArrayList<ReportRowEntity> fetchReportData(HashMap<String, String[]> categories,
+			boolean checkAcceptanceDate, boolean checkBalanceHolder, int bc, Date from, Date to) {
+
 		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
 		IDatabase db = ses.getCurrentDatabase().getBaseObject();
+
 		IDBConnectionPool dbPool = db.getConnectionPool();
 		for (String key : categories.keySet()) {
 			String[] toReport = categories.get(key);
@@ -151,41 +168,63 @@ public class ConsolidatedReport extends _DoScript {
 						ResultSet rs = s.executeQuery(sql);
 
 						while (rs.next()) {
-							int count = rs.getInt(1);
-							object.setCountNum(count);
-							countCat = countCat + count;
+
 							String nestedSql = "select * from MAINDOCS as m left join CUSTOM_FIELDS as cf on cf.docid = "
 									+ rs.getInt("docid") + " where  m.docid = " + rs.getInt("docid");
 							Statement nestedS = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
 									ResultSet.CONCUR_READ_ONLY);
 							ResultSet nestedRs = nestedS.executeQuery(nestedSql);
-							int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
+							int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0,
+									balanceHolder = 0;
+							Date acceptanceDate = null;
 
 							while (nestedRs.next()) {
 								String fieldName = nestedRs.getString("name");
 								if (fieldName.equalsIgnoreCase("originalcost")) {
-									originalCostSum = originalCostSum + getIntValue(nestedRs, "value");
+									originalCostSum = getIntValue(nestedRs, "value");
 								} else if (fieldName.equalsIgnoreCase("cumulativedepreciation")) {
-									cumulativedepreciationSum = cumulativedepreciationSum
-											+ getIntValue(nestedRs, "value");
+									cumulativedepreciationSum = getIntValue(nestedRs, "value");
 								} else if (fieldName.equalsIgnoreCase("balancecost")) {
-									balanceCostSum = balanceCostSum + getIntValue(nestedRs, "value");
+									balanceCostSum = getIntValue(nestedRs, "value");
 								} else if (fieldName.equalsIgnoreCase("acceptancedate")) {
-
+									acceptanceDate = nestedRs.getDate("valueasdate");
 								} else if (fieldName.equalsIgnoreCase("balanceholder")) {
-									String bh = rs.getString("balanceholder");
+									balanceHolder = getIntValue(nestedRs, "value");
 								}
 
 							}
-							/*
-							 * System.out .println(originalCostSum + " " +
-							 * cumulativedepreciationSum + " " +
-							 * balanceCostSum);
-							 */
-							object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
-							object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
-							object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
-							object.setReassessmentCostNum(0);
+
+							boolean includeToResult = false;
+							if (checkBalanceHolder) {
+								if (balanceHolder != 0 && balanceHolder == bc) {
+									includeToResult = true;
+								}
+							} else {
+								includeToResult = true;
+							}
+
+							if (checkAcceptanceDate) {
+								if (acceptanceDate != null && acceptanceDate.after(from) && acceptanceDate.before(to)) {
+									includeToResult = true;
+								} else {
+									includeToResult = false;
+								}
+							} else {
+								includeToResult = true;
+							}
+
+							if (includeToResult) {
+								int count = rs.getInt(1);
+								object.setCountNum(count);
+								object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
+								object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
+								object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
+								object.setReassessmentCostNum(0);
+								countCat = countCat + count;
+								originalCostSumCat = originalCostSumCat + originalCostSum;
+								cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
+								balanceCostSumCat = balanceCostSumCat + balanceCostSum;
+							}
 							nestedS.close();
 
 						}
@@ -204,6 +243,10 @@ public class ConsolidatedReport extends _DoScript {
 					data.add(object);
 				}
 				catObject.setCountNum(countCat);
+				catObject.setPrimaryCostNum(catObject.getPrimaryCostNum() + originalCostSumCat);
+				catObject.setDepreciationNum(catObject.getDepreciationNum() + cumulativedepreciationSumCat);
+				catObject.setBookvalueNum(catObject.getBookvalueNum() + balanceCostSumCat);
+				catObject.setReassessmentCostNum(0);
 			}
 		}
 		return data;
