@@ -153,7 +153,7 @@ public class ConsolidatedReport extends _DoScript {
 						ResultSet rs = s.executeQuery(sql);
 						while (rs.next()) {
 							int count = rs.getInt(1);
-							object.countNum = count;
+							object.setCountNum(count);
 							countCat = countCat + count;
 							String nestedSql = "select * from MAINDOCS as m left join CUSTOM_FIELDS as cf on cf.docid = "
 									+ rs.getInt("docid") + " where  m.docid = " + rs.getInt("docid");
@@ -175,10 +175,10 @@ public class ConsolidatedReport extends _DoScript {
 							}
 							System.out
 									.println(originalCostSum + " " + cumulativedepreciationSum + " " + balanceCostSum);
-							object.primaryCostNum = object.primaryCostNum + originalCostSum;
-							object.depreciationNum = object.depreciationNum + cumulativedepreciationSum;
-							object.bookvalueNum = object.bookvalueNum + balanceCostSum;
-							object.reassessmentCostNum = 0;
+							object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
+							object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
+							object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
+							object.setReassessmentCostNum(0);
 							nestedS.close();
 
 						}
@@ -195,7 +195,7 @@ public class ConsolidatedReport extends _DoScript {
 					}
 					data.add(object);
 				}
-				catObject.countNum = countCat;
+				catObject.setCountNum(countCat);
 			}
 		}
 		return data;
