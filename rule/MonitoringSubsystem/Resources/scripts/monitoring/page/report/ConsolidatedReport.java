@@ -170,10 +170,18 @@ public class ConsolidatedReport extends _DoScript {
 											+ getIntValue(nestedRs, "value");
 								} else if (fieldName.equalsIgnoreCase("balancecost")) {
 									balanceCostSum = balanceCostSum + getIntValue(nestedRs, "value");
+								} else if (fieldName.equalsIgnoreCase("acceptancedate")) {
+
+								} else if (fieldName.equalsIgnoreCase("balanceholder")) {
+									String bh = rs.getString("balanceholder");
 								}
+
 							}
-							System.out
-									.println(originalCostSum + " " + cumulativedepreciationSum + " " + balanceCostSum);
+							/*
+							 * System.out .println(originalCostSum + " " +
+							 * cumulativedepreciationSum + " " +
+							 * balanceCostSum);
+							 */
 							object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
 							object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
 							object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
