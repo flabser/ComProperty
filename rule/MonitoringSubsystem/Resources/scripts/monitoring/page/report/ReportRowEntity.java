@@ -7,8 +7,8 @@ public class ReportRowEntity {
 	private int bookvalueNum;
 	private int reassessmentCostNum;
 
-	private String category;
-	private String subCategory;
+	private String category = "";
+	private String subCategory = "";
 
 	private String count;
 	private String primaryCost;
