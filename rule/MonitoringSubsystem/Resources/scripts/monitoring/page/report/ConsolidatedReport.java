@@ -24,18 +24,17 @@ import kz.nextbase.script.events._DoScript;
 import kz.pchelka.env.Environment;
 import kz.pchelka.server.Server;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JRStyle;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JRDesignStyle;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.engine.export.JExcelApiExporter;
 import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
@@ -81,15 +80,23 @@ public class ConsolidatedReport extends _DoScript {
 				style.setPdfEncoding("Cp1251");
 				style.setPdfEmbedded(true);
 				print.setDefaultStyle(style);
-				JRPdfExporter exporter = new JRPdfExporter();
-				exporter.setExporterInput(new SimpleExporterInput(print));
-				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
-				exporter.exportReport();
+				// JRPdfExporter exporter = new JRPdfExporter();
+				// exporter.setExporterInput(new SimpleExporterInput(print));
+				// exporter.setExporterOutput(new
+				// SimpleOutputStreamExporterOutput(filePath));
+				// exporter.exportReport();
+				JasperExportManager.exportReportToPdfFile(print, filePath);
+
 			} else if (type.equalsIgnoreCase(".xls")) {
-				JRXlsxExporter exporter = new JRXlsxExporter();
-				exporter.setExporterInput(new SimpleExporterInput(print));
-				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
-				exporter.exportReport();
+				// JRXlsxExporter exporter = new JRXlsxExporter();
+				// exporter.setExporterInput(new SimpleExporterInput(print));
+				// exporter.setExporterOutput(new
+				// SimpleOutputStreamExporterOutput(filePath));
+				// exporter.exportReport();
+				JExcelApiExporter xlsExporter = new JExcelApiExporter();
+				xlsExporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+				xlsExporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, filePath);
+				xlsExporter.exportReport();
 			}
 
 			showFile(filePath, fileName);
