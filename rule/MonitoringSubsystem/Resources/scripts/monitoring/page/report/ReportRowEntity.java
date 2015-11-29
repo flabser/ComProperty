@@ -1,11 +1,11 @@
 package monitoring.page.report;
 
 public class ReportRowEntity {
-	private Integer countNum;
-	private Integer primaryCostNum;
-	private Integer depreciationNum;
-	private Integer bookvalueNum;
-	private Integer reassessmentCostNum;
+	private int countNum;
+	private int primaryCostNum;
+	private int depreciationNum;
+	private int bookvalueNum;
+	private int reassessmentCostNum;
 
 	private String category;
 	private String subCategory;
