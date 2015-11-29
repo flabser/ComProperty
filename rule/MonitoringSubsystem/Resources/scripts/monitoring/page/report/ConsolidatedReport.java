@@ -36,6 +36,7 @@ import net.sf.jasperreports.engine.design.JRDesignStyle;
 import net.sf.jasperreports.engine.export.JExcelApiExporter;
 import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
 
+@SuppressWarnings("deprecation")
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
 
@@ -184,16 +185,4 @@ public class ConsolidatedReport extends _DoScript {
 		return cat;
 	}
 
-	private ReportRowEntity generateMock() {
-		ReportRowEntity object = new ReportRowEntity();
-		object.setCategory(Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10));
-		object.setSubCategory(Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10));
-		object.setCount(Util.generateRandom());
-		object.setPrimaryCost(Util.generateRandom());
-		object.setDepreciation(Util.generateRandom());
-		object.setBookvalue(Util.generateRandom());
-		object.setReassessmentCost(Util.generateRandom());
-		return object;
-
-	}
 }
