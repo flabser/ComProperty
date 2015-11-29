@@ -151,7 +151,7 @@ public class ConsolidatedReport extends _DoScript {
 								+ "exists(select 1 from READERS_MAINDOCS where mdocs.DOCID = READERS_MAINDOCS.DOCID and READERS_MAINDOCS.USERNAME IN "
 								+ "('" + ses.getCurrentUserID() + "')) ORDER BY DOCID ASC ";
 						ResultSet rs = s.executeQuery(sql);
-						while (rs.next()) {
+						/*while (rs.next()) {
 							int count = rs.getInt(1);
 							object.setCountNum(count);
 							countCat = countCat + count;
@@ -181,7 +181,7 @@ public class ConsolidatedReport extends _DoScript {
 							object.setReassessmentCostNum(0);
 							nestedS.close();
 
-						}
+						}*/
 						rs.close();
 						s.close();
 						conn.commit();
