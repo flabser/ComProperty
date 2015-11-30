@@ -1,22 +1,20 @@
 package monitoring.form.furniture
 
-import java.util.Collection;
-import java.util.Map
 import kz.nextbase.script.*
 import kz.nextbase.script.actions.*
-import kz.nextbase.script.events.*;
 import kz.nextbase.script.constants.*
+import kz.nextbase.script.events.*
 
 class QueryOpen extends _FormQueryOpen {
 
-	
+
 	@Override
 	public void doQueryOpen(_Session ses, _WebFormData webFormData, String lang) {
 		def user = ses.getCurrentAppUser()
-		
+
 		def nav = ses.getPage("outline", webFormData)
 		publishElement(nav)
-		
+
 		def actionBar = ses.createActionBar();
 		actionBar.addAction(new _Action(getLocalizedWord("Сохранить и закрыть",lang),getLocalizedWord("Сохранить и закрыть",lang),_ActionType.SAVE_AND_CLOSE))
 		actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
@@ -31,21 +29,23 @@ class QueryOpen extends _FormQueryOpen {
 	@Override
 	public void doQueryOpen(_Session ses, _Document doc, _WebFormData webFormData, String lang) {
 		def user = ses.getCurrentAppUser()
-		
+
 		def nav = ses.getPage("outline", webFormData)
 		publishElement(nav)
-		
+
 		def actionBar = new _ActionBar(ses)
-		
+
 		if(doc.getEditMode() == _DocumentModeType.EDIT){
 			actionBar.addAction(new _Action(getLocalizedWord("Сохранить и закрыть",lang),getLocalizedWord("Сохранить и закрыть",lang),_ActionType.SAVE_AND_CLOSE))
 		}
-		
+
 		actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
 		publishElement(actionBar)
-		
+
 		publishValue("title",getLocalizedWord("Движимое имущество - мебель", lang) + " ")
 		publishEmployer("author",doc.getAuthorID())
+		publishValue("kof",doc.getValueString("kof"))
+		publishValue("kuf",doc.getValueString("kuf"))
 		if(doc.getField('balanceholder') && doc.getValueNumber("balanceholder") != 0){
 			def balanceholder = ses.getCurrentDatabase().getDocumentByComplexID(896, doc.getValueNumber("balanceholder"));
 			publishValue("balanceholder",doc.getValueNumber("balanceholder"))
@@ -94,7 +94,7 @@ class QueryOpen extends _FormQueryOpen {
 		publishValue("legalclaim",doc.getValueString("legalclaim"))
 		publishValue("orderofremovalfrombalance",doc.getValueString("orderofremovalfrombalance"))
 		publishValue("amount",doc.getValueString("amount"))
-		
+
 		publishValue("model",doc.getValueString("model"))
 		publishValue("color",doc.getValueString("color"))
 		publishValue("width",doc.getValueString("width"))
@@ -107,7 +107,6 @@ class QueryOpen extends _FormQueryOpen {
 		try{
 			publishAttachment("rtfcontent","rtfcontent")
 		}catch(_Exception e){
-
 		}
 	}
 }

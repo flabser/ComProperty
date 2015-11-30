@@ -189,7 +189,7 @@ public class ConsolidatedReport extends _DoScript {
 								} else if (fieldName.equalsIgnoreCase("acceptancedate")) {
 									acceptanceDate = nestedRs.getDate("valueasdate");
 								} else if (fieldName.equalsIgnoreCase("balanceholder")) {
-									balanceHolder = getIntValue(nestedRs, "value");
+									balanceHolder = nestedRs.getInt("valueasnumber");
 								}
 
 							}
