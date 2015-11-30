@@ -267,7 +267,7 @@
 																<xsl:if test="document/@status  = 'new'">
 																	<xsl:attribute name="checked">checked</xsl:attribute>
 																</xsl:if>
-																XLS
+																XLSX
 															</input>
 														</td>
 														 <td>
