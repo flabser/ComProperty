@@ -45,7 +45,6 @@ import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
-@SuppressWarnings("deprecation")
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
 	private _Session ses;
@@ -76,7 +75,7 @@ public class ConsolidatedReport extends _DoScript {
 				categories.put(val, allCategories.get(val));
 			}
 
-			String type = ".xls";
+			String type = ".xlsx";
 			String rType = formData.getValue("typefilereport");
 			if (rType.equals("1")) {
 				type = ".pdf";
@@ -97,7 +96,7 @@ public class ConsolidatedReport extends _DoScript {
 					JasperCompileManager.compileReportToFile(repPath + "\\templates\\" + reportName + ".jrxml"),
 					parameters, dSource);
 
-			String fileName = reportName + "." + type;
+			String fileName = reportName + type;
 			String filePath = getTmpDirPath() + File.separator
 					+ Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
 			if (type.equalsIgnoreCase(".pdf")) {
@@ -112,7 +111,7 @@ public class ConsolidatedReport extends _DoScript {
 				exporter.exportReport();
 				// JasperExportManager.exportReportToPdfFile(print, filePath);
 
-			} else if (type.equalsIgnoreCase(".xls")) {
+			} else if (type.equalsIgnoreCase(".xlsx")) {
 				JRXlsxExporter exporter = new JRXlsxExporter();
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
@@ -199,6 +198,8 @@ public class ConsolidatedReport extends _DoScript {
 							if (checkBalanceHolder) {
 								if (balanceHolder != 0 && balanceHolder == bc) {
 									includeToResult = true;
+								} else {
+									includeToResult = false;
 								}
 							} else {
 								includeToResult = true;
