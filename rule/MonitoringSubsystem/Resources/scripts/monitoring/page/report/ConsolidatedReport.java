@@ -81,7 +81,11 @@ public class ConsolidatedReport extends _DoScript {
 			ArrayList<ReportRowEntity> result = fetchReportData(categories, checkAcceptanceDate, checkBalanceHolder, bc,
 					from, to);
 			parameters.put("grandtotal", grandTotal);
-			parameters.put("balanceholder", getOrgName(bc));
+			if (checkBalanceHolder) {
+				parameters.put("balanceholder", getOrgName(bc));
+			} else {
+				parameters.put("balanceholder", "");
+			}
 
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
