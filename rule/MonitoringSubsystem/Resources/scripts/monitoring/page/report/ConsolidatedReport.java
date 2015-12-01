@@ -8,25 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.TreeSet;
 
-import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.DatabaseUtil;
 import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
-import kz.flabs.dataengine.ISelectFormula;
 import kz.flabs.dataengine.h2.Database;
-import kz.flabs.dataengine.postgresql.queryformula.SelectFormula;
-import kz.flabs.parser.FormulaBlocks;
-import kz.flabs.runtimeobj.document.DocID;
-import kz.flabs.users.RunTimeParameters;
 import kz.flabs.util.Util;
-import kz.flabs.webrule.constants.QueryType;
-import kz.nextbase.script._Document;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._ViewEntry;
-import kz.nextbase.script._ViewEntryCollection;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoScript;
 import kz.pchelka.env.Environment;
@@ -48,6 +37,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
 	private _Session ses;
+	private int grandTotal;
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
@@ -90,6 +80,9 @@ public class ConsolidatedReport extends _DoScript {
 
 			ArrayList<ReportRowEntity> result = fetchReportData(categories, checkAcceptanceDate, checkBalanceHolder, bc,
 					from, to);
+			parameters.put("grandtotal", grandTotal);
+			parameters.put("balanceholder", getOrgName(bc));
+
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
 			JasperPrint print = JasperFillManager.fillReport(
@@ -223,6 +216,7 @@ public class ConsolidatedReport extends _DoScript {
 								object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
 								object.setReassessmentCostNum(0);
 								countCat = countCat + count;
+								grandTotal = grandTotal + count;
 								originalCostSumCat = originalCostSumCat + originalCostSum;
 								cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
 								balanceCostSumCat = balanceCostSumCat + balanceCostSum;
@@ -254,57 +248,6 @@ public class ConsolidatedReport extends _DoScript {
 		return data;
 	}
 
-	private ArrayList<ReportRowEntity> fetchData(HashMap<String, String[]> categories) {
-		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
-		IDatabase db = DatabaseFactory.getDatabase(ses.getGlobalSettings().id);
-		for (String key : categories.keySet()) {
-			String[] toReport = categories.get(key);
-			if (toReport != null) {
-				ReportRowEntity object = new ReportRowEntity();
-				object.setCategory(getLocalizedWord(key, lang));
-				object.setSubCategory("");
-				data.add(object);
-				for (int ci = 0; ci < toReport.length; ci++) {
-					object = new ReportRowEntity();
-					FormulaBlocks queryFormulaBlocks = new FormulaBlocks("form=\"" + toReport[ci] + "\"",
-							QueryType.DOCUMENT);
-					ISelectFormula sf = new SelectFormula(queryFormulaBlocks);
-					_ViewEntryCollection vec = db.getCollectionByCondition(sf, ses.getUser(), 0, 0,
-							new TreeSet<DocID>(), new RunTimeParameters(), false);
-					object.setCategory("");
-					object.setSubCategory(getLocalizedWord(toReport[ci], lang));
-					// object.setCount(vec.getCount());
-					int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
-					for (_ViewEntry e : vec.getEntries()) {
-						try {
-							_Document doc = e.getDocument();
-							originalCostSum = originalCostSum + doc.getValueInt("originalcost");
-							cumulativedepreciationSum = cumulativedepreciationSum
-									+ doc.getValueInt("cumulativedepreciation");
-							balanceCostSum = balanceCostSum + doc.getValueInt("balancecost");
-						} catch (_Exception e1) {
-							Server.logger.errorLogEntry(e1);
-						}
-
-					}
-					// object.setPrimaryCost(originalCostSum);
-					// object.setDepreciation(cumulativedepreciationSum);
-					// object.setBookvalue(balanceCostSum);
-					// object.setReassessmentCost(0);
-					data.add(object);
-				}
-			} else {
-				ReportRowEntity object = new ReportRowEntity();
-				object.setCategory(getLocalizedWord("no_data", lang));
-				object.setSubCategory("");
-				data.add(object);
-			}
-		}
-
-		return data;
-
-	}
-
 	private int getIntValue(ResultSet rs, String filedName) {
 		try {
 			return Integer.parseInt(rs.getString(filedName));
@@ -332,6 +275,40 @@ public class ConsolidatedReport extends _DoScript {
 
 		cat.put("engineeringInfrastructureCat", new String[] { "shareblocks", "equity" });
 		return cat;
+	}
+
+	private String getOrgName(int code) {
+		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
+		IDatabase db = ses.getCurrentDatabase().getBaseObject();
+
+		IDBConnectionPool dbPool = db.getConnectionPool();
+		Connection conn = dbPool.getConnection();
+		try {
+
+			conn.setAutoCommit(false);
+			Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+
+			String sql = "select m.viewtext from maindocs as m where m.form='kgp' or m.form='kgu' or m.form='ao' "
+					+ "or m.form='too' or m.form='subsidiaries' and m.docid=" + code;
+			ResultSet rs = s.executeQuery(sql);
+
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+
+			rs.close();
+			s.close();
+			conn.commit();
+
+		} catch (SQLException e) {
+			DatabaseUtil.errorPrint(db.getDbID(), e);
+		} catch (Exception e) {
+			Database.logger.errorLogEntry(e);
+		} finally {
+			dbPool.returnConnection(conn);
+		}
+		return "";
+
 	}
 
 }

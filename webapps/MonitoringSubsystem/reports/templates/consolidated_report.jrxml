@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-29T19:14:12 -->
+<!-- 2015-12-01T21:09:02 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consolidated_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5ed2a72-a9c6-40db-aeec-9f56ef71b9a1">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="grandtotal" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="captionCount" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["Всего: "]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -46,7 +52,21 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="5" splitType="Stretch"/>
+		<band height="55" splitType="Stretch">
+			<textField>
+				<reportElement x="460" y="20" width="70" height="30" uuid="ee19f1b1-d79a-492b-abd8-6f3ff8c9086b"/>
+				<textFieldExpression><![CDATA[$P{grandtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="20" width="360" height="30" uuid="638cba5f-a9a4-46e3-95e6-48f63524848f"/>
+				<textFieldExpression><![CDATA[$P{balanceholder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="20" width="90" height="30" uuid="36506eed-3031-4fd6-89d6-f2065780c9a2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{captionCount}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="68" splitType="Stretch">
