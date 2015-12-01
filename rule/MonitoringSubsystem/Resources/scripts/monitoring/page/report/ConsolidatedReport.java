@@ -278,7 +278,6 @@ public class ConsolidatedReport extends _DoScript {
 	}
 
 	private String getOrgName(int code) {
-		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
 		IDatabase db = ses.getCurrentDatabase().getBaseObject();
 
 		IDBConnectionPool dbPool = db.getConnectionPool();
@@ -288,8 +287,8 @@ public class ConsolidatedReport extends _DoScript {
 			conn.setAutoCommit(false);
 			Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
-			String sql = "select m.viewtext from maindocs as m where m.form='kgp' or m.form='kgu' or m.form='ao' "
-					+ "or m.form='too' or m.form='subsidiaries' and m.docid=" + code;
+			String sql = "select m.viewtext from maindocs as m where ( m.form='kgp' or m.form='kgu' or m.form='ao' "
+					+ "or m.form='too' or m.form='subsidiaries' ) and m.docid=" + code;
 			ResultSet rs = s.executeQuery(sql);
 
 			if (rs.next()) {
