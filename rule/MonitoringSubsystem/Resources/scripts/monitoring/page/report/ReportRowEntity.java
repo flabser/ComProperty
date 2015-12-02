@@ -1,11 +1,11 @@
 package monitoring.page.report;
 
 public class ReportRowEntity {
-	private int countNum;
-	private int primaryCostNum;
-	private int depreciationNum;
-	private int bookvalueNum;
-	private int reassessmentCostNum;
+	private long countNum;
+	private long primaryCostNum;
+	private long depreciationNum;
+	private long bookvalueNum;
+	private long reassessmentCostNum;
 
 	private String category = "";
 	private String subCategory = "";
@@ -38,7 +38,7 @@ public class ReportRowEntity {
 
 	public String getCount() {
 		if (count == null) {
-			return Integer.toString(countNum);
+			return Long.toString(countNum);
 		} else {
 			return count;
 		}
@@ -46,7 +46,7 @@ public class ReportRowEntity {
 
 	public String getPrimaryCost() {
 		if (primaryCost == null) {
-			return Integer.toString(primaryCostNum);
+			return Long.toString(primaryCostNum);
 		} else {
 			return primaryCost;
 		}
@@ -58,7 +58,7 @@ public class ReportRowEntity {
 
 	public String getDepreciation() {
 		if (depreciation == null) {
-			return Integer.toString(depreciationNum);
+			return Long.toString(depreciationNum);
 		} else {
 			return depreciation;
 		}
@@ -70,7 +70,7 @@ public class ReportRowEntity {
 
 	public String getBookvalue() {
 		if (bookvalue == null) {
-			return Integer.toString(bookvalueNum);
+			return Long.toString(bookvalueNum);
 		} else {
 			return bookvalue;
 		}
@@ -82,7 +82,7 @@ public class ReportRowEntity {
 
 	public String getReassessmentCost() {
 		if (reassessmentCost == null) {
-			return Integer.toString(reassessmentCostNum);
+			return Long.toString(reassessmentCostNum);
 		} else {
 			return reassessmentCost;
 		}
@@ -92,39 +92,39 @@ public class ReportRowEntity {
 		this.reassessmentCost = reassessmentCost;
 	}
 
-	public Integer getCountNum() {
+	public Long getCountNum() {
 		return countNum;
 	}
 
-	public void setCountNum(Integer countNum) {
+	public void setCountNum(Long countNum) {
 		this.countNum = countNum;
 	}
 
-	public Integer getPrimaryCostNum() {
+	public Long getPrimaryCostNum() {
 		return primaryCostNum;
 	}
 
-	public void setPrimaryCostNum(Integer primaryCostNum) {
+	public void setPrimaryCostNum(Long primaryCostNum) {
 		this.primaryCostNum = primaryCostNum;
 	}
 
-	public Integer getDepreciationNum() {
+	public Long getDepreciationNum() {
 		return depreciationNum;
 	}
 
-	public void setDepreciationNum(Integer depreciationNum) {
+	public void setDepreciationNum(Long depreciationNum) {
 		this.depreciationNum = depreciationNum;
 	}
 
-	public Integer getBookvalueNum() {
+	public Long getBookvalueNum() {
 		return bookvalueNum;
 	}
 
-	public void setBookvalueNum(Integer bookvalueNum) {
+	public void setBookvalueNum(Long bookvalueNum) {
 		this.bookvalueNum = bookvalueNum;
 	}
 
-	public Integer getReassessmentCostNum() {
+	public Long getReassessmentCostNum() {
 		return reassessmentCostNum;
 	}
 

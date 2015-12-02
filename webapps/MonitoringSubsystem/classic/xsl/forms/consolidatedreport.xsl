@@ -196,7 +196,7 @@
 											</td>
 										</tr>
 										<!-- Дата принятия на баланс -->
-										<tr>
+										<!-- <tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/acceptancedate/@caption"/> :</td>
 											<td>
 												&#xA0;<label for="from" style="vertical-align:5px;"><xsl:value-of select="document/captions/from/@caption"/></label>&#xA0;
@@ -206,7 +206,7 @@
 												<input type="text" id="acceptancedateto" value="{document/fields/acceptancedateto}" size="7" name="acceptancedateto" style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top">
 												</input>
 											</td>
-										</tr>
+										</tr> -->
 										<!-- Тип имущества-->
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/propertytype/@caption"/> :</td>

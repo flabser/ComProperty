@@ -37,7 +37,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
 	private _Session ses;
-	private int grandTotal;
+	private long grandTotal;
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
@@ -80,7 +80,7 @@ public class ConsolidatedReport extends _DoScript {
 
 			ArrayList<ReportRowEntity> result = fetchReportData(categories, checkAcceptanceDate, checkBalanceHolder, bc,
 					from, to);
-			parameters.put("grandtotal", grandTotal);
+			parameters.put("grandtotal", Long.toString(grandTotal));
 			if (checkBalanceHolder) {
 				parameters.put("balanceholder", getOrgName(bc));
 			} else {
@@ -106,19 +106,11 @@ public class ConsolidatedReport extends _DoScript {
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
 				exporter.exportReport();
-				// JasperExportManager.exportReportToPdfFile(print, filePath);
-
 			} else if (type.equalsIgnoreCase(".xlsx")) {
 				JRXlsxExporter exporter = new JRXlsxExporter();
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
 				exporter.exportReport();
-				// JExcelApiExporter xlsExporter = new JExcelApiExporter();
-				// xlsExporter.setParameter(JRExporterParameter.JASPER_PRINT,
-				// print);
-				// xlsExporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME,
-				// filePath);
-				// xlsExporter.exportReport();
 			}
 
 			showFile(filePath, fileName);
@@ -141,7 +133,7 @@ public class ConsolidatedReport extends _DoScript {
 		for (String key : categories.keySet()) {
 			String[] toReport = categories.get(key);
 			if (toReport != null) {
-				int countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
+				long countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
 				ReportRowEntity catObject = new ReportRowEntity();
 				catObject.setCategory(getLocalizedWord(key, lang));
 				data.add(catObject);
@@ -154,48 +146,54 @@ public class ConsolidatedReport extends _DoScript {
 						conn.setAutoCommit(false);
 						Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
-						int countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0,
+						long countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0,
 								balanceHolder = 0;
 
 						String wherePart = "";
 						if (checkBalanceHolder) {
-							wherePart = " and cf.name = 'balanceholder' and cf.valueasnumber = " + bc;
+							wherePart = " and m.docid in (select  cf.docid from maindocs as m, custom_fields as cf"
+									+ " where cf.name='balanceholder' and cf.docid = m.docid and cf.valueasnumber=" + bc
+									+ ")";
 						}
 
 						String sql1 = "select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
 								+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart;
+						Server.logger.verboseLogEntry(sql1);
 						ResultSet rs = s.executeQuery(sql1);
 						if (rs.next()) {
-							countSum = rs.getInt(1);
-							Server.logger.verboseLogEntry(countSum + " " + sql1);
+							countSum = rs.getLong(1);
+							Server.logger.verboseLogEntry(Long.toString(countSum));
 						}
 
-						String sql2 = "select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+						String sql2 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
 								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
-								+ "cf.name = 'originalcost'";
+								+ "cf.name = 'originalcost'" + wherePart;
 						rs = s.executeQuery(sql2);
 						if (rs.next()) {
-							originalCostSum = rs.getInt(1);
-							Server.logger.verboseLogEntry(originalCostSum + " " + sql2);
+							originalCostSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(originalCostSum + "
+							// " + sql2);
 						}
 
-						String sql3 = "select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+						String sql3 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
 								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
-								+ "cf.name = 'cumulativedepreciation'";
+								+ "cf.name = 'cumulativedepreciation'" + wherePart;
+						;
 						rs = s.executeQuery(sql3);
 						if (rs.next()) {
-							cumulativedepreciationSum = rs.getInt(1);
-							Server.logger.verboseLogEntry(cumulativedepreciationSum + " " + sql3);
+							cumulativedepreciationSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(cumulativedepreciationSum
+							// + " " + sql3);
 						}
 
-						String sql4 = "select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+						String sql4 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
 								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
-								+ "cf.name = 'balancecost'";
+								+ "cf.name = 'balancecost'" + wherePart;
 						rs = s.executeQuery(sql4);
-
 						if (rs.next()) {
-							balanceCostSum = rs.getInt(1);
-							Server.logger.verboseLogEntry(balanceCostSum + " " + sql4);
+							balanceCostSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(balanceCostSum + "
+							// " + sql4);
 						}
 
 						object.setCountNum(countSum);
@@ -231,16 +229,6 @@ public class ConsolidatedReport extends _DoScript {
 			}
 		}
 		return data;
-	}
-
-	private int getIntValue(ResultSet rs, String filedName) {
-		try {
-			return Integer.parseInt(rs.getString(filedName));
-		} catch (NumberFormatException e1) {
-			return 0;
-		} catch (SQLException e) {
-			return 0;
-		}
 	}
 
 	private HashMap<String, String[]> getCategories() {
