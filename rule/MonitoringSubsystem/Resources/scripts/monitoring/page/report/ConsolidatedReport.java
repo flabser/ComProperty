@@ -154,80 +154,55 @@ public class ConsolidatedReport extends _DoScript {
 						conn.setAutoCommit(false);
 						Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
-						String sql = "SELECT foo.count, mdocs.docid  FROM MAINDOCS mdocs, "
-								+ "(SELECT count(md.DOCID) as count FROM MAINDOCS md  WHERE form= '" + toReport[ci]
-								+ "'  and  "
-								+ "exists(select 1 from READERS_MAINDOCS where md.DOCID = READERS_MAINDOCS.DOCID and READERS_MAINDOCS.USERNAME IN "
-								+ "('" + ses.getCurrentUserID() + "'))) as foo  WHERE form= '" + toReport[ci]
-								+ "' and  "
-								+ "exists(select 1 from READERS_MAINDOCS where mdocs.DOCID = READERS_MAINDOCS.DOCID and READERS_MAINDOCS.USERNAME IN "
-								+ "('" + ses.getCurrentUserID() + "')) ORDER BY DOCID ASC ";
-						ResultSet rs = s.executeQuery(sql);
+						int countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0,
+								balanceHolder = 0;
 
-						while (rs.next()) {
-
-							String nestedSql = "select * from MAINDOCS as m left join CUSTOM_FIELDS as cf on cf.docid = "
-									+ rs.getInt("docid") + " where  m.docid = " + rs.getInt("docid");
-							Statement nestedS = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-									ResultSet.CONCUR_READ_ONLY);
-							ResultSet nestedRs = nestedS.executeQuery(nestedSql);
-							int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0,
-									balanceHolder = 0;
-							Date acceptanceDate = null;
-
-							while (nestedRs.next()) {
-								String fieldName = nestedRs.getString("name");
-								if (fieldName.equalsIgnoreCase("originalcost")) {
-									originalCostSum = getIntValue(nestedRs, "value");
-								} else if (fieldName.equalsIgnoreCase("cumulativedepreciation")) {
-									cumulativedepreciationSum = getIntValue(nestedRs, "value");
-								} else if (fieldName.equalsIgnoreCase("balancecost")) {
-									balanceCostSum = getIntValue(nestedRs, "value");
-								} else if (fieldName.equalsIgnoreCase("acceptancedate")) {
-									acceptanceDate = nestedRs.getDate("valueasdate");
-								} else if (fieldName.equalsIgnoreCase("balanceholder")) {
-									balanceHolder = nestedRs.getInt("valueasnumber");
-								}
-
-							}
-
-							boolean includeToResult = false;
-							if (checkBalanceHolder) {
-								if (balanceHolder != 0 && balanceHolder == bc) {
-									includeToResult = true;
-								} else {
-									includeToResult = false;
-								}
-							} else {
-								includeToResult = true;
-							}
-
-							if (checkAcceptanceDate) {
-								if (acceptanceDate != null && acceptanceDate.after(from) && acceptanceDate.before(to)) {
-									includeToResult = true;
-								} else {
-									includeToResult = false;
-								}
-							} else {
-								includeToResult = true;
-							}
-
-							if (includeToResult) {
-								int count = rs.getInt(1);
-								object.setCountNum(count);
-								object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
-								object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
-								object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
-								object.setReassessmentCostNum(0);
-								countCat = countCat + count;
-								grandTotal = grandTotal + count;
-								originalCostSumCat = originalCostSumCat + originalCostSum;
-								cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
-								balanceCostSumCat = balanceCostSumCat + balanceCostSum;
-							}
-							nestedS.close();
-
+						String wherePart = "";
+						if (checkBalanceHolder) {
+							wherePart = " and cf.name = 'balanceholder' and cf.valueasnumber = " + bc;
 						}
+
+						ResultSet rs = s.executeQuery(
+								"select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
+										+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart);
+						if (rs.next()) {
+							countSum = rs.getInt(1);
+						}
+
+						rs = s.executeQuery(
+								"select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+										+ "custom_fields as cf where m.form='" + toReport[ci]
+										+ "' and cf.docid = m.docid and " + "cf.name = 'originalcost'");
+						if (rs.next()) {
+							originalCostSum = rs.getInt(1);
+						}
+
+						rs = s.executeQuery(
+								"select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+										+ "custom_fields as cf where m.form='" + toReport[ci]
+										+ "' and cf.docid = m.docid and " + "cf.name = 'cumulativedepreciation'");
+						if (rs.next()) {
+							cumulativedepreciationSum = rs.getInt(1);
+						}
+
+						rs = s.executeQuery(
+								"select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+										+ "custom_fields as cf where m.form='" + toReport[ci]
+										+ "' and cf.docid = m.docid and " + "cf.name = 'balancecost'");
+						if (rs.next()) {
+							balanceCostSum = rs.getInt(1);
+						}
+
+						object.setCountNum(countSum);
+						object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
+						object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
+						object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
+						object.setReassessmentCostNum(0);
+						countCat = countCat + countSum;
+						grandTotal = grandTotal + countSum;
+						originalCostSumCat = originalCostSumCat + originalCostSum;
+						cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
+						balanceCostSumCat = balanceCostSumCat + balanceCostSum;
 
 						rs.close();
 						s.close();

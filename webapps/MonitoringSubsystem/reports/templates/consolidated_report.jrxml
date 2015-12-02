@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-01T22:53:57 -->
+<!-- 2015-12-02T09:57:38 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consolidated_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5ed2a72-a9c6-40db-aeec-9f56ef71b9a1">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="grandtotal" class="java.lang.Integer" isForPrompting="false"/>
@@ -54,7 +54,7 @@
 	<pageHeader>
 		<band height="55" splitType="Stretch">
 			<textField>
-				<reportElement x="460" y="12" width="70" height="30" uuid="ee19f1b1-d79a-492b-abd8-6f3ff8c9086b"/>
+				<reportElement x="485" y="12" width="70" height="30" uuid="ee19f1b1-d79a-492b-abd8-6f3ff8c9086b"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -68,7 +68,7 @@
 				<textFieldExpression><![CDATA[$P{balanceholder}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="12" width="90" height="30" uuid="36506eed-3031-4fd6-89d6-f2065780c9a2"/>
+				<reportElement x="395" y="12" width="90" height="30" uuid="36506eed-3031-4fd6-89d6-f2065780c9a2"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
