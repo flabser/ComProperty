@@ -162,47 +162,53 @@ public class ConsolidatedReport extends _DoScript {
 							wherePart = " and cf.name = 'balanceholder' and cf.valueasnumber = " + bc;
 						}
 
-						ResultSet rs = s.executeQuery(
-								"select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
-										+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart);
+						String sql1 = "select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
+								+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart;
+						ResultSet rs = s.executeQuery(sql1);
 						if (rs.next()) {
 							countSum = rs.getInt(1);
+							Server.logger.verboseLogEntry(countSum + " " + sql1);
 						}
 
-						rs = s.executeQuery(
-								"select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
-										+ "custom_fields as cf where m.form='" + toReport[ci]
-										+ "' and cf.docid = m.docid and " + "cf.name = 'originalcost'");
+						String sql2 = "select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
+								+ "cf.name = 'originalcost'";
+						rs = s.executeQuery(sql2);
 						if (rs.next()) {
 							originalCostSum = rs.getInt(1);
+							Server.logger.verboseLogEntry(originalCostSum + " " + sql2);
 						}
 
-						rs = s.executeQuery(
-								"select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
-										+ "custom_fields as cf where m.form='" + toReport[ci]
-										+ "' and cf.docid = m.docid and " + "cf.name = 'cumulativedepreciation'");
+						String sql3 = "select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
+								+ "cf.name = 'cumulativedepreciation'";
+						rs = s.executeQuery(sql3);
 						if (rs.next()) {
 							cumulativedepreciationSum = rs.getInt(1);
+							Server.logger.verboseLogEntry(cumulativedepreciationSum + " " + sql3);
 						}
 
-						rs = s.executeQuery(
-								"select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
-										+ "custom_fields as cf where m.form='" + toReport[ci]
-										+ "' and cf.docid = m.docid and " + "cf.name = 'balancecost'");
+						String sql4 = "select sum(CASE WHEN cf.value~E'^\\d+$' THEN cf.value::integer ELSE 0 END) from maindocs as m, "
+								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
+								+ "cf.name = 'balancecost'";
+						rs = s.executeQuery(sql4);
+
 						if (rs.next()) {
 							balanceCostSum = rs.getInt(1);
+							Server.logger.verboseLogEntry(balanceCostSum + " " + sql4);
 						}
 
 						object.setCountNum(countSum);
-						object.setPrimaryCostNum(object.getPrimaryCostNum() + originalCostSum);
-						object.setDepreciationNum(object.getDepreciationNum() + cumulativedepreciationSum);
-						object.setBookvalueNum(object.getBookvalueNum() + balanceCostSum);
+						object.setPrimaryCostNum(originalCostSum);
+						object.setDepreciationNum(cumulativedepreciationSum);
+						object.setBookvalueNum(balanceCostSum);
 						object.setReassessmentCostNum(0);
 						countCat = countCat + countSum;
 						grandTotal = grandTotal + countSum;
 						originalCostSumCat = originalCostSumCat + originalCostSum;
 						cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
 						balanceCostSumCat = balanceCostSumCat + balanceCostSum;
+						data.add(object);
 
 						rs.close();
 						s.close();
@@ -215,7 +221,7 @@ public class ConsolidatedReport extends _DoScript {
 					} finally {
 						dbPool.returnConnection(conn);
 					}
-					data.add(object);
+
 				}
 				catObject.setCountNum(countCat);
 				catObject.setPrimaryCostNum(catObject.getPrimaryCostNum() + originalCostSumCat);
