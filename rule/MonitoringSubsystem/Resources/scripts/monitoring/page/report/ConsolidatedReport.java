@@ -158,11 +158,11 @@ public class ConsolidatedReport extends _DoScript {
 
 						String sql1 = "select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
 								+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart;
-						Server.logger.verboseLogEntry(sql1);
+						// Server.logger.verboseLogEntry(sql1);
 						ResultSet rs = s.executeQuery(sql1);
 						if (rs.next()) {
 							countSum = rs.getLong(1);
-							Server.logger.verboseLogEntry(Long.toString(countSum));
+							// Server.logger.verboseLogEntry(Long.toString(countSum));
 						}
 
 						String sql2 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
