@@ -256,7 +256,7 @@ function fillingReport(){
 	var fields = $('form').serializeArray(),
 		formData = $("form").serialize(),
 		recursiveEncoded = $.param(fields);
-	if ($("input[name=id]").val() == 'consolidated_report'){
+	if ($("input[name=id]").val() == 'consolidated_report' || $("input[name=id]").val() == 'realestate_report'){
 		window.location.href = 'Provider?id='+$("input[name=id]").val()+'&'+recursiveEncoded;
 	}else{
 		window.location.href = 'Provider?type=handler&id='+$("input[name=id]").val()+'&'+recursiveEncoded;

@@ -275,7 +275,7 @@
 											</td>
 										</tr>
 										<!-- Поле "Область" -->
-										<tr>
+										<!-- <tr>
 											<td class="fc" style="padding-top:5px">
 												<xsl:value-of select="document/captions/region/@caption"/> :
 											</td>
@@ -299,7 +299,7 @@
 												</xsl:if>
 											</td>
 										</tr>
-										<!-- Поле "Город" -->
+							
 										<tr>
 											<td class="fc" style="padding-top:5px">
 												<xsl:value-of select="document/captions/city/@caption"/> :
@@ -324,7 +324,7 @@
 												</xsl:if>
 											</td>
 										</tr>
-										<!-- Поле "Район" -->
+								
 										<tr>
 											<td class="fc" style="padding-top:5px">
 												<xsl:value-of select="document/captions/district/@caption"/> :
@@ -349,7 +349,7 @@
 												</xsl:if>
 											</td>
 										</tr>
-										<!-- Поле "Улица" -->
+									
 										<tr>
 											<td class="fc" style="padding-top:5px">
 												<xsl:value-of select="document/captions/street/@caption"/> :
@@ -374,7 +374,7 @@
 												</xsl:if>
 											</td>
 										</tr>
-										<!-- Поле "дом" -->
+							
 										<tr>
 											<td class="fc" style="padding-top:5px">
 												<xsl:value-of select="document/captions/home/@caption"/> :
@@ -387,28 +387,13 @@
 													</xsl:if>
 												</input>
 											</td>
-										</tr>
+										</tr> -->
 										<tr>
 											<td class="fc" style="padding:7px;"><xsl:value-of select="document/captions/reportfiletype/@caption"/> :</td>
 											<td>
 												<table>
 													<tr>
-														<td>
-															<input type="radio" name="typefilereport" value="2">
-																<xsl:attribute name="onclick">javascript: reportsTypeCheck(this)</xsl:attribute>
-																<xsl:if test="document/@editmode !='edit'">
-																	<xsl:attribute name="disabled">disabled</xsl:attribute>
-																</xsl:if>
-																<xsl:if test="document/fields/typefilereport  = '2'">
-																	<xsl:attribute name="checked">checked</xsl:attribute>
-																</xsl:if>
-																<xsl:if test="document/@status  = 'new'">
-																	<xsl:attribute name="checked">checked</xsl:attribute>
-																</xsl:if>
-																XLS
-															</input>
-														</td>
-														 <td>
+													 	<td>
 															<input type="radio" name="typefilereport" value="1">
 																<xsl:attribute name="onclick">javascript: reportsTypeCheck(this)</xsl:attribute>
 																<xsl:if test="document/@editmode !='edit'">
@@ -417,10 +402,24 @@
 																<xsl:if test="document/fields/typefilereport  = '1'">
 																	<xsl:attribute name="checked">checked</xsl:attribute>
 																</xsl:if>
-																
+																<xsl:if test="document/@status  = 'new'">
+																	<xsl:attribute name="checked">checked</xsl:attribute>
+																</xsl:if>																
 																PDF
 															</input>
 														</td>
+														<td>
+															<input type="radio" name="typefilereport" value="2">
+																<xsl:attribute name="onclick">javascript: reportsTypeCheck(this)</xsl:attribute>
+																<xsl:if test="document/@editmode !='edit'">
+																	<xsl:attribute name="disabled">disabled</xsl:attribute>
+																</xsl:if>
+																<xsl:if test="document/fields/typefilereport  = '2'">
+																	<xsl:attribute name="checked">checked</xsl:attribute>
+																</xsl:if>																
+																XLSX
+															</input>
+														</td>														
 														<!--<td>
 															<input type="radio" name="typefilereport" value="3">
 																<xsl:attribute name="onclick">javascript: reportsTypeCheck(this)</xsl:attribute>
@@ -474,7 +473,7 @@
 									</table>
 								</div>
 								<!-- Скрытые поля -->
-								<input type="hidden" name="type" value="save"/>
+								<input type="hidden" name="type" value="page"/>
 								<input type="hidden" name="id" value="{@id}"/>
 								<input type="hidden" name="author" value="{document/fields/author/@attrval}"/>
 								<input type="hidden" name="doctype" value="{document/@doctype}"/>

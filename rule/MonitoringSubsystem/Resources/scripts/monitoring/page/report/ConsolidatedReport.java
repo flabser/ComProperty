@@ -78,8 +78,8 @@ public class ConsolidatedReport extends _DoScript {
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			ArrayList<ReportRowEntity> result = fetchReportData(categories, checkAcceptanceDate, checkBalanceHolder, bc,
-					from, to);
+			ArrayList<ConsolidatedDataBean> result = fetchReportData(categories, checkAcceptanceDate,
+					checkBalanceHolder, bc, from, to);
 			parameters.put("grandtotal", Long.toString(grandTotal));
 			if (checkBalanceHolder) {
 				parameters.put("balanceholder", getOrgName(bc));
@@ -123,10 +123,10 @@ public class ConsolidatedReport extends _DoScript {
 		}
 	}
 
-	private ArrayList<ReportRowEntity> fetchReportData(HashMap<String, String[]> categories,
+	private ArrayList<ConsolidatedDataBean> fetchReportData(HashMap<String, String[]> categories,
 			boolean checkAcceptanceDate, boolean checkBalanceHolder, int bc, Date from, Date to) {
 
-		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
+		ArrayList<ConsolidatedDataBean> data = new ArrayList<ConsolidatedDataBean>();
 		IDatabase db = ses.getCurrentDatabase().getBaseObject();
 
 		IDBConnectionPool dbPool = db.getConnectionPool();
@@ -134,11 +134,11 @@ public class ConsolidatedReport extends _DoScript {
 			String[] toReport = categories.get(key);
 			if (toReport != null) {
 				long countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
-				ReportRowEntity catObject = new ReportRowEntity();
+				ConsolidatedDataBean catObject = new ConsolidatedDataBean();
 				catObject.setCategory(getLocalizedWord(key, lang));
 				data.add(catObject);
 				for (int ci = 0; ci < toReport.length; ci++) {
-					ReportRowEntity object = new ReportRowEntity();
+					ConsolidatedDataBean object = new ConsolidatedDataBean();
 					object.setSubCategory(getLocalizedWord(toReport[ci], lang));
 					Connection conn = dbPool.getConnection();
 					try {
@@ -231,7 +231,7 @@ public class ConsolidatedReport extends _DoScript {
 		return data;
 	}
 
-	private HashMap<String, String[]> getCategories() {
+	public static HashMap<String, String[]> getCategories() {
 		HashMap<String, String[]> cat = new HashMap<String, String[]>();
 		cat.put("personalstateCat",
 				new String[] { "furniture", "animals", "sportsequipment", "others", "shareblocks", "equity" });

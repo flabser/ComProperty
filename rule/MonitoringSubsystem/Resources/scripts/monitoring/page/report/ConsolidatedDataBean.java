@@ -1,6 +1,6 @@
 package monitoring.page.report;
 
-public class ReportRowEntity {
+public class ConsolidatedDataBean {
 	private long countNum;
 	private long primaryCostNum;
 	private long depreciationNum;

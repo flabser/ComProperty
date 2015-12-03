@@ -1,336 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-09-08T10:50:28 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="status_report" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="021cdf0e-eed2-482f-af0a-ff4d32bf0bc2">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
-	<property name="et.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
-	<style name="Normal" isDefault="true" pdfFontName="c:\windows\fonts\tahoma.ttf" pdfEncoding="Cp1251"/>
-	<subDataset name="propcode" uuid="7327aa31-6450-41cb-a8ac-a5abff7aa06c">
-		<parameter name="propertycode" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
-		<queryString>
-			<![CDATA[select viewtext from glossary where docid = $P{propertycode}::int]]>
-		</queryString>
-		<field name="viewtext" class="java.lang.String"/>
-	</subDataset>
-	<subDataset name="region" uuid="78c3cb57-4c5f-46ef-9a4b-1cf8c7474da9">
-		<parameter name="region" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
-		<queryString>
-			<![CDATA[select viewtext from glossary where docid = $P{region}::int]]>
-		</queryString>
-		<field name="viewtext" class="java.lang.String"/>
-	</subDataset>
-	<subDataset name="city" uuid="7d5078b2-f14b-41b5-9f0d-879d1d420927">
-		<parameter name="city" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
-		<queryString>
-			<![CDATA[select viewtext from glossary where docid = $P{city}::int]]>
-		</queryString>
-		<field name="viewtext" class="java.lang.String"/>
-	</subDataset>
-	<subDataset name="district" uuid="7ea772e7-a215-4491-962f-723489520b44">
-		<parameter name="district" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
-		<queryString>
-			<![CDATA[select viewtext from glossary where docid = $P{district}::int]]>
-		</queryString>
-		<field name="viewtext" class="java.lang.String"/>
-	</subDataset>
-	<subDataset name="street" uuid="80025851-d19b-492b-a71b-73ab5e59a82e">
-		<parameter name="street" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
-		<queryString>
-			<![CDATA[select viewtext from glossary where docid = $P{street}::int]]>
-		</queryString>
-		<field name="viewtext" class="java.lang.String"/>
-	</subDataset>
-	<subDataset name="material" uuid="46d36083-3d83-44d9-a371-e7a31b2da642">
-		<parameter name="MATERIAL" class="java.lang.String">
-			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
-		<queryString>
-			<![CDATA[select viewtext from glossary where docid = $P{MATERIAL}::int]]>
-		</queryString>
-		<field name="viewtext" class="java.lang.String"/>
-	</subDataset>
-	<subDataset name="dataset1" uuid="e71a960f-c803-4543-a690-3b970b8ebb4e"/>
-	<parameter name="DATECOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[($P{DATEFROM} != null && $P{DATEFROM}.isEmpty() == false && $P{DATETO} != null && $P{DATETO}.isEmpty() == false ? " AND ACCEPTANCEDATE BETWEEN '" + $P{DATEFROM} + "' AND '" + $P{DATETO} + "'" :
- $P{DATEFROM} != null && $P{DATEFROM}.isEmpty() == false && ($P{DATETO} == null || $P{DATETO}.isEmpty() == true) ? " AND ACCEPTANCEDATE > '" + $P{DATEFROM} + "'" :
- ($P{DATEFROM} == null || $P{DATEFROM}.isEmpty() == true) && $P{DATETO} != null && $P{DATETO}.isEmpty() == false ? " AND ACCEPTANCEDATE < '" + $P{DATETO} + "'" :
- ($P{DATEFROM} == null || $P{DATEFROM}.isEmpty() == true) && ($P{DATEFROM} == null || $P{DATEFROM}.isEmpty() == true) ? "" : "")]]></defaultValueExpression>
-	</parameter>
-	<parameter name="DATEFROM" class="java.lang.String"/>
-	<parameter name="DATETO" class="java.lang.String"/>
-	<parameter name="PROPERTYTYPE" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="PROPERTYTYPECOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[($P{PROPERTYTYPE}!= null && $P{PROPERTYTYPE}.isEmpty() == false ?
-    " where form in (" + $P{PROPERTYTYPE} + ") "
-    : "where form in ('buildings','rooms','structures','residentialobjects','land','monument') "
-)]]></defaultValueExpression>
-	</parameter>
-	<parameter name="REGION" class="java.lang.String"/>
-	<parameter name="CITY" class="java.lang.String"/>
-	<parameter name="DISTRICT" class="java.lang.String"/>
-	<parameter name="STREET" class="java.lang.String"/>
-	<parameter name="REGIONCOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{REGION} != null && $P{REGION}.isEmpty() == false ?
-" and region = " + $P{REGION} : ""]]></defaultValueExpression>
-	</parameter>
-	<parameter name="CITYCOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{CITY} != null && $P{CITY}.isEmpty() == false ?
-" and city = " + $P{CITY} : ""]]></defaultValueExpression>
-	</parameter>
-	<parameter name="DISTRICTCOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{DISTRICT} != null && $P{DISTRICT}.isEmpty() == false ?
-" and district = " + $P{DISTRICT} : ""]]></defaultValueExpression>
-	</parameter>
-	<parameter name="STREETCOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{STREET} != null && $P{STREET}.isEmpty() == false ?
-" and street = " + $P{STREET} : ""]]></defaultValueExpression>
-	</parameter>
-	<parameter name="BALANCEHOLDER" class="java.lang.String"/>
-	<parameter name="BALANCEHOLDERCOND" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{BALANCEHOLDER} != null && $P{BALANCEHOLDER}.isEmpty() == false ?
-" and balanceholder = " + $P{BALANCEHOLDER} : ""]]></defaultValueExpression>
-	</parameter>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-03T23:01:32 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString>
-		<![CDATA[select * from maindocs
-left join (select value::int as propertycode, docid from custom_fields where name = 'propertycode') as propcode on maindocs.docid = propcode.docid
-left join (select value as invnumber, docid from custom_fields where name = 'invnumber') as invnum on maindocs.docid = invnum.docid
-left join (select value as originalcost, docid from custom_fields where name =
-'originalcost') as orgcost on maindocs.docid = orgcost.docid
-
-left join (select value as yearrelease, docid from custom_fields where name =
-'yearconstruction') as yerrel on maindocs.docid = yerrel.docid
-
-left join (select valueasglossary as region, docid from custom_fields where name =
-'region') as reg on maindocs.docid = reg.docid
-left join (select valueasglossary as city, docid from custom_fields where name =
-'city') as cit on maindocs.docid = cit.docid
-left join (select valueasglossary as district, docid from custom_fields where name =
-'district') as dist on maindocs.docid = dist.docid
-left join (select valueasnumber as balanceholder, docid from custom_fields where name =
-'balanceholder') as bal on maindocs.docid = bal.docid
-left join (select valueasglossary as street, docid from custom_fields where name =
-'street') as str on maindocs.docid = str.docid
-
-left join (select valueasdate as acceptancedate, docid from custom_fields where name =
-'acceptancedate') as accdate on maindocs.docid = accdate.docid
-
-left join (select value as assignment, docid from custom_fields where name =
-'assignment') as assgn on maindocs.docid = assgn.docid
-left join (select valueasnumber::int as material, docid from custom_fields where name =
-'material') as mat on maindocs.docid = mat.docid
-left join (select value as countfloors, docid from custom_fields where name =
-'countfloors') as cofl on maindocs.docid = cofl.docid
-
-$P!{PROPERTYTYPECOND}
-$P!{DATECOND}
-$P!{REGIONCOND}
-$P!{CITYCOND}
-$P!{DISTRICTCOND}
-$P!{STREETCOND}
-$P!{BALANCEHOLDERCOND}]]>
+		<![CDATA[]]>
 	</queryString>
+	<field name="propertycodename" class="java.lang.String"/>
 	<field name="invnumber" class="java.lang.String"/>
-	<field name="propertycode" class="java.lang.String"/>
-	<field name="originalcost" class="java.lang.String"/>
-	<field name="yearrelease" class="java.lang.String"/>
-	<field name="region" class="java.lang.String"/>
-	<field name="city" class="java.lang.String"/>
-	<field name="district" class="java.lang.String"/>
-	<field name="street" class="java.lang.String"/>
+	<field name="originalcost" class="java.lang.Long"/>
 	<field name="assignment" class="java.lang.String"/>
 	<field name="material" class="java.lang.String"/>
+	<field name="yearrelease" class="java.lang.String"/>
 	<field name="countfloors" class="java.lang.String"/>
 	<background>
-		<band/>
+		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="72">
+		<band height="79" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="-19" width="555" height="91" backcolor="#FFFFFF" uuid="6d00711e-bb2f-49c7-93c7-64425889e5b9"/>
+				<reportElement mode="Opaque" x="0" y="-19" width="800" height="91" backcolor="#FFFFFF" uuid="98724975-fe61-4ed2-8781-eb7409b2e81e"/>
 				<elementGroup>
-					<elementGroup>
-						<staticText>
-							<reportElement x="133" y="5" width="421" height="21" forecolor="#000000" uuid="a51418e2-01ca-4867-a18c-ecd5ec77a35d"/>
-							<textElement>
-								<font size="13" isBold="true"/>
-							</textElement>
-							<text><![CDATA[Мониторинг объектов государственной собственности]]></text>
-						</staticText>
-						<image>
-							<reportElement x="0" y="0" width="131" height="91" uuid="5b1f9e7e-e11b-48c5-9525-d6c6c41a3f09"/>
-							<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
-						</image>
-						<staticText>
-							<reportElement x="133" y="26" width="421" height="21" forecolor="#000000" uuid="54e57d3f-02e1-470c-96ff-95e6fd5fa9f0"/>
-							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font size="13" isBold="false"/>
-							</textElement>
-							<text><![CDATA[Недвижимое имущество]]></text>
-						</staticText>
-					</elementGroup>
+					<elementGroup/>
 				</elementGroup>
+				<image>
+					<reportElement x="20" y="0" width="89" height="91" uuid="cb155f83-cf41-4329-ba61-19117351aae2"/>
+					<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="109" y="9" width="690" height="21" forecolor="#000000" uuid="ead0c733-9d44-4e09-9dd4-20e21c8947dc"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Мониторинг объектов государственной собственности]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="35" width="690" height="21" forecolor="#000000" uuid="859ee929-7ee1-4445-8df9-942784383f96"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="13" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Недвижимое имущество]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13">
-			<line>
-				<reportElement x="0" y="12" width="554" height="1" uuid="af520c02-8a06-4947-ae6b-de3df9f638d2"/>
-			</line>
-		</band>
+		<band height="29" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="44">
+		<band height="38" splitType="Stretch">
 			<staticText>
-				<reportElement x="1" y="1" width="20" height="33" uuid="7067220b-cd01-4500-a3f8-4d53d04d0acc"/>
+				<reportElement x="0" y="0" width="30" height="33" uuid="59355868-2428-45ef-af2d-e1c27461dd3f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[№]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="1" width="78" height="33" uuid="f59697ee-fec9-4857-a731-0bf75e12fb54"/>
+				<reportElement x="30" y="0" width="118" height="33" uuid="e3b98529-45b9-48d5-807d-d8ecba26d34f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Код права на имущество]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="99" y="1" width="78" height="33" uuid="7401cc37-7a08-494a-adeb-a4373e0f494d"/>
+				<reportElement x="148" y="0" width="120" height="33" uuid="5a6b4087-be26-43a0-ab5e-bab30406c8d1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Инвентарный номер]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="177" y="1" width="104" height="33" uuid="93965745-cb2a-4a2c-a991-c0f63b79c09a"/>
+				<reportElement x="268" y="0" width="104" height="33" uuid="ac10a68d-5943-47bb-b4f4-d03d4b4cbfdf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Первоначальная стоимость]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="281" y="1" width="81" height="33" uuid="b94909fb-d0cf-4633-ba19-cd215c6f9bd4"/>
+				<reportElement x="372" y="0" width="236" height="33" uuid="45ef39ce-e5bf-40d0-9f2f-bd8c1d649923"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<font size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Назначение]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="362" y="0" width="78" height="33" uuid="cc4aeb1c-415f-48e0-8ab8-3e033537dff7"/>
+				<reportElement x="608" y="0" width="78" height="33" uuid="40277466-b889-431f-a9bf-eb5b2ae6e74b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Материал постройки]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="440" y="0" width="64" height="33" uuid="a951823a-a4e5-4925-a006-f1a6cda44f4d"/>
+				<reportElement x="686" y="0" width="64" height="33" uuid="8eb1c3ee-7804-4ad5-a480-ac4697ac4148"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<font size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Год постройки]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="504" y="0" width="51" height="33" uuid="a6779324-d678-4aa2-b2e7-6361b3c685d7"/>
+				<reportElement x="750" y="0" width="51" height="33" uuid="cf00ce15-0d22-46da-8c08-49a9f9655a15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<font size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Число этажей]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="34" width="801" height="1" uuid="9d56fea3-fa76-475e-ba4c-2cf0e7a71c11"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="63" splitType="Stretch">
+		<band height="61" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference">
-				<reportElement key="textField" positionType="Float" x="1" y="0" width="20" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="2ea9cdbd-6dfd-4ad7-bda0-2d1c1cca9f90"/>
-				<textElement textAlignment="Center">
+				<reportElement key="textField" positionType="Float" x="0" y="0" width="30" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" forecolor="#000099" uuid="c237040a-4dd2-4b6b-a5b3-d0d1a4afd858"/>
+				<textElement textAlignment="Left">
 					<font fontName="Arial" size="10" pdfEncoding="Cp1251"/>
 					<paragraph lineSpacing="Double"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="177" y="0" width="104" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="de9c0536-0d81-432d-b16c-3285166a1e1c"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="148" y="0" width="118" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fb225fb1-0a7a-4349-92f3-a4abc1424de2"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{invnumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="267" y="0" width="105" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d48ba476-f712-4055-bbf6-ae9e3b7dc6d9"/>
+				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{originalcost}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="281" y="0" width="81" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="21ac981f-f4e7-4e71-9653-db85dd107b96"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="372" y="0" width="237" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8e3443fe-f66e-4bce-b593-d13bdb208590"/>
+				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{assignment}]]></textFieldExpression>
 			</textField>
-			<componentElement>
-				<reportElement x="21" y="0" width="78" height="53" uuid="b4dd6b24-3302-4e98-ae14-b4d4abc80970"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-					<datasetRun subDataset="propcode" uuid="71b32676-a2c2-414f-8143-0c1c2a8a6925">
-						<datasetParameter name="propertycode">
-							<datasetParameterExpression><![CDATA[$F{propertycode}]]></datasetParameterExpression>
-						</datasetParameter>
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:listContents height="53" width="78">
-						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-							<reportElement x="0" y="0" width="78" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9d43248d-c965-44cc-a8e4-e0aaa3e6fb94"/>
-							<textElement textAlignment="Center"/>
-							<textFieldExpression><![CDATA[$F{viewtext}]]></textFieldExpression>
-						</textField>
-					</jr:listContents>
-				</jr:list>
-			</componentElement>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="440" y="0" width="64" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f2717045-24d7-4870-b44e-764779a483ff"/>
+				<reportElement x="686" y="0" width="64" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="33984950-5918-4873-a707-2e901a8958a8"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{yearrelease}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="504" y="0" width="50" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fbfcc366-13c1-4d06-8068-2aac2af3a06d"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="750" y="0" width="51" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="78d164a9-3a6c-4a04-90d9-ad65f9e0d3d4"/>
+				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{countfloors}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="99" y="0" width="78" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a8346631-6663-4578-b69b-69b044cbfbd1"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{invnumber}]]></textFieldExpression>
+			<textField>
+				<reportElement x="609" y="0" width="77" height="53" uuid="f2bd6eac-1782-47ab-8964-6db76b19f725"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 			</textField>
-			<componentElement>
-				<reportElement x="362" y="0" width="78" height="53" uuid="844ebef2-84a9-40e0-8d0a-eb7fb2696723"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
-					<datasetRun subDataset="material" uuid="f9e0be06-f078-41b6-8e51-c0e431b7c490">
-						<datasetParameter name="MATERIAL">
-							<datasetParameterExpression><![CDATA[$F{material}]]></datasetParameterExpression>
-						</datasetParameter>
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:listContents height="53" width="78">
-						<textField>
-							<reportElement x="0" y="0" width="78" height="53" uuid="1240f958-e1ea-4829-88e6-ca992c975f1f"/>
-							<textElement textAlignment="Center"/>
-							<textFieldExpression><![CDATA[$F{viewtext}]]></textFieldExpression>
-						</textField>
-					</jr:listContents>
-				</jr:list>
-			</componentElement>
+			<textField>
+				<reportElement x="30" y="0" width="118" height="53" uuid="39fa41b2-e401-4f15-ade0-337dbe559f96"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{propertycodename}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band/>
+		<band height="11" splitType="Stretch"/>
 	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
 	<summary>
-		<band/>
+		<band height="10" splitType="Stretch"/>
 	</summary>
 </jasperReport>
