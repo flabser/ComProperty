@@ -6,8 +6,8 @@
 	<database autodeploy="ON">
 		<name>PropertyObjects</name>
 		<driver>org.postgresql.Driver</driver>
-		<!-- <url>jdbc:postgresql://localhost:5433/PropertyObjects</url> -->
-		<url>jdbc:postgresql://172.16.251.7:5432/CIS</url>
+	 <url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
+		<!-- <url>jdbc:postgresql://172.16.251.7:5432/CIS</url> -->
 		<implementation>
 			<idatabasedeployer>kz.lof.database.DatabaseDeployer</idatabasedeployer>
 			<idatabase>kz.lof.database.Database</idatabase>

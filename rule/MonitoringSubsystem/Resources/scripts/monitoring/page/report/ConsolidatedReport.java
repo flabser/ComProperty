@@ -60,7 +60,7 @@ public class ConsolidatedReport extends _DoScript {
 		try {
 			String pType[] = formData.getListOfValuesSilently("propertytype");
 			HashMap<String, String[]> categories = new HashMap<String, String[]>();
-			HashMap<String, String[]> allCategories = getCategories();
+			HashMap<String, String[]> allCategories = ReportUtil.getCategories();
 			for (String val : pType) {
 				categories.put(val, allCategories.get(val));
 			}
@@ -82,7 +82,7 @@ public class ConsolidatedReport extends _DoScript {
 					checkBalanceHolder, bc, from, to);
 			parameters.put("grandtotal", Long.toString(grandTotal));
 			if (checkBalanceHolder) {
-				parameters.put("balanceholder", getOrgName(bc));
+				parameters.put("balanceholder", ReportUtil.getOrgName(ses, bc));
 			} else {
 				parameters.put("balanceholder", "");
 			}
@@ -146,8 +146,7 @@ public class ConsolidatedReport extends _DoScript {
 						conn.setAutoCommit(false);
 						Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
-						long countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0,
-								balanceHolder = 0;
+						long countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
 
 						String wherePart = "";
 						if (checkBalanceHolder) {
@@ -229,58 +228,6 @@ public class ConsolidatedReport extends _DoScript {
 			}
 		}
 		return data;
-	}
-
-	public static HashMap<String, String[]> getCategories() {
-		HashMap<String, String[]> cat = new HashMap<String, String[]>();
-		cat.put("personalstateCat",
-				new String[] { "furniture", "animals", "sportsequipment", "others", "shareblocks", "equity" });
-		cat.put("equipmentCat", new String[] { "schoolequipment", "officeequipment", "computerequipment",
-				"medicalequipment", "cookequipment", "equipmentofcivildefense" });
-		cat.put("realestateCat",
-				new String[] { "buildings", "rooms", "structures", "residentialobjects", "land", "monument" });
-		cat.put("transportCat", new String[] { "automobile", "cargo", "bus", "trolleybus", "tram", "watertransport",
-				"hospitaltransport", "specialequipment", "motorcycle" });
-		cat.put("strategicobjectsCat", new String[] { "billboard", "columns", "electricnetworks", "thermalnetworks",
-				"gas", "watersystem", "drain", "road", "parking" });
-		cat.put("specialconstructionsCat",
-				new String[] { "bombproof", "factory", "combines", "airport", "land", "transitions" });
-
-		cat.put("engineeringInfrastructureCat", new String[] { "shareblocks", "equity" });
-		return cat;
-	}
-
-	private String getOrgName(int code) {
-		IDatabase db = ses.getCurrentDatabase().getBaseObject();
-
-		IDBConnectionPool dbPool = db.getConnectionPool();
-		Connection conn = dbPool.getConnection();
-		try {
-
-			conn.setAutoCommit(false);
-			Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-
-			String sql = "select m.viewtext from maindocs as m where ( m.form='kgp' or m.form='kgu' or m.form='ao' "
-					+ "or m.form='too' or m.form='subsidiaries' ) and m.docid=" + code;
-			ResultSet rs = s.executeQuery(sql);
-
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-
-			rs.close();
-			s.close();
-			conn.commit();
-
-		} catch (SQLException e) {
-			DatabaseUtil.errorPrint(db.getDbID(), e);
-		} catch (Exception e) {
-			Database.logger.errorLogEntry(e);
-		} finally {
-			dbPool.returnConnection(conn);
-		}
-		return "";
-
 	}
 
 }

@@ -42,11 +42,15 @@ public class RealEstateReport extends _DoScript {
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
 		long start_time = System.currentTimeMillis();
-		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
+		boolean checkAcceptanceDate = false, checkBalanceHolder = false, checkPropertyType = false;
 		this.ses = ses;
 		this.lang = lang;
 		println(formData);
 		String reportName = formData.getValueSilently("id");
+		String[] propertyType = formData.getListOfValuesSilently("propertytype");
+		if (propertyType.length > 0) {
+			checkPropertyType = true;
+		}
 		Date from = formData.getDateSilently("acceptancedatefrom");
 		Date to = formData.getDateSilently("acceptancedateto");
 		if (from != null && to != null) {
@@ -72,11 +76,17 @@ public class RealEstateReport extends _DoScript {
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			ArrayList<RealEstateBean> result = fetchReportData(ConsolidatedReport.getCategories(), checkAcceptanceDate,
-					checkBalanceHolder, bc, from, to);
+			String[] cat = ReportUtil.getCategories().get("realestateCat");
+
+			if (checkPropertyType) {
+				cat = propertyType;
+			}
+
+			ArrayList<RealEstateBean> result = fetchReportData(cat, checkAcceptanceDate, checkBalanceHolder, bc, from,
+					to);
 			parameters.put("grandtotal", Long.toString(grandTotal));
 			if (checkBalanceHolder) {
-				parameters.put("balanceholder", getOrgName(bc));
+				parameters.put("balanceholder", ReportUtil.getOrgName(ses, bc));
 			} else {
 				parameters.put("balanceholder", "");
 			}
@@ -117,14 +127,13 @@ public class RealEstateReport extends _DoScript {
 		}
 	}
 
-	private ArrayList<RealEstateBean> fetchReportData(HashMap<String, String[]> categories, boolean checkAcceptanceDate,
+	private ArrayList<RealEstateBean> fetchReportData(String[] toReport, boolean checkAcceptanceDate,
 			boolean checkBalanceHolder, int bc, Date from, Date to) {
 		ArrayList<RealEstateBean> data = new ArrayList<RealEstateBean>();
 		IDatabase db = ses.getCurrentDatabase().getBaseObject();
 
 		IDBConnectionPool dbPool = db.getConnectionPool();
 
-		String[] toReport = categories.get("realestateCat");
 		if (toReport != null) {
 			for (int ci = 0; ci < toReport.length; ci++) {
 				Connection conn = dbPool.getConnection();
@@ -179,7 +188,7 @@ public class RealEstateReport extends _DoScript {
 					object.setInvnumber(rs.getString("value"));
 					object.setViewtext(rs.getString("viewtext"));
 				} else if (name.equals("originalcost")) {
-					object.setOriginalcost(getLongValue(rs, "value"));
+					object.setOriginalcost(ReportUtil.getLongValue(rs, "value"));
 				} else if (name.equals("description")) {
 					object.setAssignment(rs.getString("value"));
 				} else if (name.equals("propertycode_name")) {
@@ -187,7 +196,7 @@ public class RealEstateReport extends _DoScript {
 				} else if (name.equals("material")) {
 					object.setMaterial(rs.getString("value"));
 				} else if (name.equals("yearconstruction")) {
-					object.setYearrealise(Integer.toString(getIntValue(rs, "value")));
+					object.setYearrealise(Integer.toString(ReportUtil.getIntValue(rs, "value")));
 				}
 				System.out.println(rs.getString("value") + " " + docId);
 				nextOk = rs.next();
@@ -199,59 +208,6 @@ public class RealEstateReport extends _DoScript {
 			Database.logger.errorLogEntry(e);
 		}
 		return object;
-
-	}
-
-	private int getIntValue(ResultSet rs, String filedName) {
-		try {
-			return Integer.parseInt(rs.getString(filedName));
-		} catch (NumberFormatException e1) {
-			return 0;
-		} catch (SQLException e) {
-			return 0;
-		}
-	}
-
-	private long getLongValue(ResultSet rs, String filedName) {
-		try {
-			return Long.parseLong(rs.getString(filedName));
-		} catch (NumberFormatException e1) {
-			return 0;
-		} catch (SQLException e) {
-			return 0;
-		}
-	}
-
-	private String getOrgName(int code) {
-		IDatabase db = ses.getCurrentDatabase().getBaseObject();
-
-		IDBConnectionPool dbPool = db.getConnectionPool();
-		Connection conn = dbPool.getConnection();
-		try {
-
-			conn.setAutoCommit(false);
-			Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-
-			String sql = "select m.viewtext from maindocs as m where ( m.form='kgp' or m.form='kgu' or m.form='ao' "
-					+ "or m.form='too' or m.form='subsidiaries' ) and m.docid=" + code;
-			ResultSet rs = s.executeQuery(sql);
-
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-
-			rs.close();
-			s.close();
-			conn.commit();
-
-		} catch (SQLException e) {
-			DatabaseUtil.errorPrint(db.getDbID(), e);
-		} catch (Exception e) {
-			Database.logger.errorLogEntry(e);
-		} finally {
-			dbPool.returnConnection(conn);
-		}
-		return "";
 
 	}
 
