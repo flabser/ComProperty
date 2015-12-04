@@ -11,7 +11,7 @@
 			<xsl:attribute name="bgcolor">#FFFFFF</xsl:attribute>
 			<xsl:call-template name="viewtable_dblclick_open"/>
 			<td style="text-align:center;border:1px solid #ccc;width:23px;">
-				<input type="checkbox" name="chbox" id="{@id}" autocomplete="off" value="{@doctype}"/>
+				<input type="checkbox" name="chbox" id="{@id}" autocomplete="off" value="{@doctype}" disabled="disabled"/>
 			</td>
 			<td  style="border:1px solid #ccc;width:210px;">
 				<div style="overflow:hidden; width:99%;">
