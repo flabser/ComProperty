@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-25T10:26:36 -->
+<!-- 2015-12-04T17:48:34 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="status_report" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="021cdf0e-eed2-482f-af0a-ff4d32bf0bc2">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -77,7 +77,7 @@
 	<parameter name="PROPERTYTYPECOND" class="java.lang.String">
 		<defaultValueExpression><![CDATA[($P{PROPERTYTYPE}!= null && $P{PROPERTYTYPE}.isEmpty() == false ?
     " where form in (" + $P{PROPERTYTYPE} + ") "
-    : "where form in ('objectreservedfund','bombproof','factory','combines','airport','transitions') "
+    : "where form in ('billboard','columns','electricnetworks','thermalnetworks','gas','watersystem','drain','road','parking') "
 )]]></defaultValueExpression>
 	</parameter>
 	<parameter name="REGION" class="java.lang.String"/>
@@ -107,7 +107,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select * from maindocs
-left join (select valueasglossary as propertycode, docid from custom_fields where name = 'propertycode') as propcode on maindocs.docid = propcode.docid
+left join (select value as propertycode, docid from custom_fields where name = 'propertycode') as propcode on maindocs.docid = propcode.docid
 left join (select value as invnumber, docid from custom_fields where name = 'invnumber') as invnum on maindocs.docid = invnum.docid
 left join (select value as originalcost, docid from custom_fields where name =
 'originalcost') as orgcost on maindocs.docid = orgcost.docid
@@ -129,12 +129,12 @@ left join (select valueasglossary as street, docid from custom_fields where name
 left join (select valueasdate as acceptancedate, docid from custom_fields where name =
 'acceptancedate') as accdate on maindocs.docid = accdate.docid
 
-left join (select value as assignment, docid from custom_fields where name =
-'assignment') as assgn on maindocs.docid = assgn.docid
+left join (select value as description, docid from custom_fields where name =
+'description') as descr on maindocs.docid = descr.docid
 left join (select valueasglossary as material, docid from custom_fields where name =
 'material') as mat on maindocs.docid = mat.docid
-left join (select value as countfloors, docid from custom_fields where name =
-'countfloors') as cofl on maindocs.docid = cofl.docid
+left join (select value as totalarea, docid from custom_fields where name =
+'totalarea') as total on maindocs.docid = total.docid
 
 $P!{PROPERTYTYPECOND}
 $P!{DATECOND}
@@ -180,7 +180,7 @@ $P!{BALANCEHOLDERCOND}]]>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font size="13" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Недвижимое имущество]]></text>
+							<text><![CDATA[	Объекты инженерной инфраструктуры]]></text>
 						</staticText>
 					</elementGroup>
 				</elementGroup>

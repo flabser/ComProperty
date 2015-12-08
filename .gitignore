@@ -10,6 +10,7 @@
 /tmp/
 /rule/*/global.xml
 /rule/*/global.dat
+/webapps/*/reports/templates/*.jasper
 
 # Idea resources #
 ##################

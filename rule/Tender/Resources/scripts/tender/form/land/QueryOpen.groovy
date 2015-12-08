@@ -1,22 +1,20 @@
 package tender.form.land
 
-import java.util.Collection;
-import java.util.Map
 import kz.nextbase.script.*
 import kz.nextbase.script.actions.*
-import kz.nextbase.script.events.*;
 import kz.nextbase.script.constants.*
+import kz.nextbase.script.events.*
 
 class QueryOpen extends _FormQueryOpen {
 
-	
+
 	@Override
 	public void doQueryOpen(_Session ses, _WebFormData webFormData, String lang) {
 		def user = ses.getCurrentAppUser()
-		
+
 		def nav = ses.getPage("outline", webFormData)
 		publishElement(nav)
-		
+
 		def actionBar = ses.createActionBar();
 		actionBar.addAction(new _Action(getLocalizedWord("Сохранить и закрыть",lang),getLocalizedWord("Сохранить и закрыть",lang),_ActionType.SAVE_AND_CLOSE))
 		actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
@@ -30,12 +28,12 @@ class QueryOpen extends _FormQueryOpen {
 	@Override
 	public void doQueryOpen(_Session ses, _Document doc, _WebFormData webFormData, String lang) {
 		def user = ses.getCurrentAppUser()
-		
+
 		def nav = ses.getPage("outline", webFormData)
 		publishElement(nav)
-		
+
 		def actionBar = new _ActionBar(ses)
-		
+
 		if (ses.currentAppUser.hasRole("rent")){
 			actionBar.addAction(new _Action("Подать заявление на аренду", "Подать заявление на аренду", "ADD_RENT_REQUEST"))
 		}
@@ -44,7 +42,7 @@ class QueryOpen extends _FormQueryOpen {
 		}
 		actionBar.addAction(new _Action(getLocalizedWord("Закрыть",lang),getLocalizedWord("Закрыть без сохранения",lang),_ActionType.CLOSE))
 		publishElement(actionBar)
-		
+
 		publishValue("title",getLocalizedWord("Недвижимое имущество - Земля", lang) + " ")
 		publishEmployer("author",doc.getAuthorID())
 		publishValue("limitdepreciation",doc.getValueString("limitdepreciation"))
@@ -84,14 +82,13 @@ class QueryOpen extends _FormQueryOpen {
 		publishValue("orderofremovalfrombalance",doc.getValueString("orderofremovalfrombalance"))
 		publishValue("assignment",doc.getValueString("assignment"))
 		publishValue("ktr",doc.getValueString("ktr"))
-		
+
 		publishValue("landtotalarea",doc.getValueString("landtotalarea"))
 		publishValue("extralandarea",doc.getValueString("extralandarea"))
-		
+
 		try{
 			publishAttachment("rtfcontent","rtfcontent")
 		}catch(_Exception e){
-
 		}
 	}
 }

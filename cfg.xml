@@ -31,7 +31,7 @@
             <name mode="on">MonitoringSubsystem</name>
         </app>
         <app>
-            <name mode="on">Glossary</name>
+            <name mode="off">Glossary</name>
         </app>
         <app>
             <name mode="off">RegistrySubsystem</name>

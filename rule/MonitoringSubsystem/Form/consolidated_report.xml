@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="form" id="consolidated_report" mode="on">
 	<description>Отчеты - Недвижимое имущество</description>
-	<xsltfile>forms/consolidated_report.xsl</xsltfile>
+	<xsltfile>forms/consolidatedreport.xsl</xsltfile>
 	<doctype>main</doctype>
 	<!-- <events>
 		<queryopen source="file">form.airport.QueryOpen</queryopen>

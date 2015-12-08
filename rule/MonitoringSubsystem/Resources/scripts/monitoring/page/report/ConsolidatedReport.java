@@ -1,24 +1,21 @@
 package monitoring.page.report;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.TreeSet;
 
-import kz.flabs.dataengine.DatabaseFactory;
+import kz.flabs.dataengine.DatabaseUtil;
+import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
-import kz.flabs.dataengine.ISelectFormula;
-import kz.flabs.dataengine.h2.queryformula.SelectFormula;
-import kz.flabs.parser.FormulaBlocks;
-import kz.flabs.runtimeobj.document.DocID;
-import kz.flabs.users.RunTimeParameters;
+import kz.flabs.dataengine.h2.Database;
 import kz.flabs.util.Util;
-import kz.flabs.webrule.constants.QueryType;
-import kz.nextbase.script._Document;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._ViewEntry;
-import kz.nextbase.script._ViewEntryCollection;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoScript;
 import kz.pchelka.env.Environment;
@@ -39,40 +36,64 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 public class ConsolidatedReport extends _DoScript {
 	private String lang;
+	private _Session ses;
+	private long grandTotal;
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
+		long start_time = System.currentTimeMillis();
+		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
+		this.ses = ses;
 		this.lang = lang;
 		println(formData);
 		String reportName = formData.getValueSilently("id");
+		Date from = formData.getDateSilently("acceptancedatefrom");
+		Date to = formData.getDateSilently("acceptancedateto");
+		if (from != null && to != null) {
+			checkAcceptanceDate = true;
+		}
+		int bc = formData.getNumberValueSilently("balanceholder", 0);
+		if (bc != 0) {
+			checkBalanceHolder = true;
+		}
+
 		try {
 			String pType[] = formData.getListOfValuesSilently("propertytype");
 			HashMap<String, String[]> categories = new HashMap<String, String[]>();
-			HashMap<String, String[]> allCategories = getCategories();
+			HashMap<String, String[]> allCategories = ReportUtil.getCategories();
 			for (String val : pType) {
 				categories.put(val, allCategories.get(val));
 			}
 
-			String type = ".xls";
+			String type = ".xlsx";
 			String rType = formData.getValue("typefilereport");
 			if (rType.equals("1")) {
 				type = ".pdf";
 			}
 
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			log("Filling report...");
+			log("Filling report \"" + reportName + "\"...");
 			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator
 					+ ses.getGlobalSettings().id + File.separator + "reports";
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(fetchData(categories));
+			ArrayList<ConsolidatedDataBean> result = fetchReportData(categories, checkAcceptanceDate,
+					checkBalanceHolder, bc, from, to);
+			parameters.put("grandtotal", Long.toString(grandTotal));
+			if (checkBalanceHolder) {
+				parameters.put("balanceholder", ReportUtil.getOrgName(ses, bc));
+			} else {
+				parameters.put("balanceholder", "");
+			}
+
+			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
 			JasperPrint print = JasperFillManager.fillReport(
 					JasperCompileManager.compileReportToFile(repPath + "\\templates\\" + reportName + ".jrxml"),
 					parameters, dSource);
 
-			String fileName = reportName + "." + type;
+			String fileName = reportName + type;
 			String filePath = getTmpDirPath() + File.separator
 					+ Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
 			if (type.equalsIgnoreCase(".pdf")) {
@@ -85,7 +106,7 @@ public class ConsolidatedReport extends _DoScript {
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
 				exporter.exportReport();
-			} else if (type.equalsIgnoreCase(".xls")) {
+			} else if (type.equalsIgnoreCase(".xlsx")) {
 				JRXlsxExporter exporter = new JRXlsxExporter();
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
@@ -94,7 +115,7 @@ public class ConsolidatedReport extends _DoScript {
 
 			showFile(filePath, fileName);
 			Environment.fileToDelete.add(filePath);
-			log("Done");
+			log("Report \"" + reportName + "\" is ready, estimated time is " + Util.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {
 			Server.logger.errorLogEntry(e);
 		} catch (_Exception e) {
@@ -102,91 +123,111 @@ public class ConsolidatedReport extends _DoScript {
 		}
 	}
 
-	private ArrayList<ReportRowEntity> fetchData(HashMap<String, String[]> categories) {
-		ArrayList<ReportRowEntity> data = new ArrayList<ReportRowEntity>();
-		IDatabase db = DatabaseFactory.getDatabase(ses.getGlobalSettings().id);
+	private ArrayList<ConsolidatedDataBean> fetchReportData(HashMap<String, String[]> categories,
+			boolean checkAcceptanceDate, boolean checkBalanceHolder, int bc, Date from, Date to) {
+
+		ArrayList<ConsolidatedDataBean> data = new ArrayList<ConsolidatedDataBean>();
+		IDatabase db = ses.getCurrentDatabase().getBaseObject();
+
+		IDBConnectionPool dbPool = db.getConnectionPool();
 		for (String key : categories.keySet()) {
 			String[] toReport = categories.get(key);
 			if (toReport != null) {
-				ReportRowEntity object = new ReportRowEntity();
-				object.setCategory(getLocalizedWord(key, lang));
-				object.setSubCategory("");
-				data.add(object);
+				long countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
+				ConsolidatedDataBean catObject = new ConsolidatedDataBean();
+				catObject.setCategory(getLocalizedWord(key, lang));
+				data.add(catObject);
 				for (int ci = 0; ci < toReport.length; ci++) {
-					object = new ReportRowEntity();
-					FormulaBlocks queryFormulaBlocks = new FormulaBlocks("form=\"" + toReport[ci] + "\"",
-							QueryType.DOCUMENT);
-					ISelectFormula sf = new SelectFormula(queryFormulaBlocks);
-					_ViewEntryCollection vec = db.getCollectionByCondition(sf, ses.getUser(), 0, 0,
-							new TreeSet<DocID>(), new RunTimeParameters(), false);
-					object.setCategory("");
+					ConsolidatedDataBean object = new ConsolidatedDataBean();
 					object.setSubCategory(getLocalizedWord(toReport[ci], lang));
-					object.setCount(vec.getCount());
-					int originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
-					for (_ViewEntry e : vec.getEntries()) {
-						try {
-							_Document doc = e.getDocument();
-							originalCostSum = originalCostSum + doc.getValueInt("originalcost");
-							cumulativedepreciationSum = cumulativedepreciationSum
-									+ doc.getValueInt("cumulativedepreciation");
-							balanceCostSum = balanceCostSum + doc.getValueInt("balancecost");
-						} catch (_Exception e1) {
-							Server.logger.errorLogEntry(e1);
+					Connection conn = dbPool.getConnection();
+					try {
+
+						conn.setAutoCommit(false);
+						Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+
+						long countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
+
+						String wherePart = "";
+						if (checkBalanceHolder) {
+							wherePart = " and m.docid in (select  cf.docid from maindocs as m, custom_fields as cf"
+									+ " where cf.name='balanceholder' and cf.docid = m.docid and cf.valueasnumber=" + bc
+									+ ")";
 						}
 
+						String sql1 = "select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
+								+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart;
+						// Server.logger.verboseLogEntry(sql1);
+						ResultSet rs = s.executeQuery(sql1);
+						if (rs.next()) {
+							countSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(Long.toString(countSum));
+						}
+
+						String sql2 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
+								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
+								+ "cf.name = 'originalcost'" + wherePart;
+						rs = s.executeQuery(sql2);
+						if (rs.next()) {
+							originalCostSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(originalCostSum + "
+							// " + sql2);
+						}
+
+						String sql3 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
+								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
+								+ "cf.name = 'cumulativedepreciation'" + wherePart;
+						;
+						rs = s.executeQuery(sql3);
+						if (rs.next()) {
+							cumulativedepreciationSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(cumulativedepreciationSum
+							// + " " + sql3);
+						}
+
+						String sql4 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
+								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
+								+ "cf.name = 'balancecost'" + wherePart;
+						rs = s.executeQuery(sql4);
+						if (rs.next()) {
+							balanceCostSum = rs.getLong(1);
+							// Server.logger.verboseLogEntry(balanceCostSum + "
+							// " + sql4);
+						}
+
+						object.setCountNum(countSum);
+						object.setPrimaryCostNum(originalCostSum);
+						object.setDepreciationNum(cumulativedepreciationSum);
+						object.setBookvalueNum(balanceCostSum);
+						object.setReassessmentCostNum(0);
+						countCat = countCat + countSum;
+						grandTotal = grandTotal + countSum;
+						originalCostSumCat = originalCostSumCat + originalCostSum;
+						cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
+						balanceCostSumCat = balanceCostSumCat + balanceCostSum;
+						data.add(object);
+
+						rs.close();
+						s.close();
+						conn.commit();
+
+					} catch (SQLException e) {
+						DatabaseUtil.errorPrint(db.getDbID(), e);
+					} catch (Exception e) {
+						Database.logger.errorLogEntry(e);
+					} finally {
+						dbPool.returnConnection(conn);
 					}
-					object.setPrimaryCost(originalCostSum);
-					object.setDepreciation(cumulativedepreciationSum);
-					object.setBookvalue(balanceCostSum);
-					object.setReassessmentCost(0);
-					data.add(object);
+
 				}
-			} else {
-				ReportRowEntity object = new ReportRowEntity();
-				object.setCategory(getLocalizedWord("no_data", lang));
-				object.setSubCategory("");
-				data.add(object);
+				catObject.setCountNum(countCat);
+				catObject.setPrimaryCostNum(catObject.getPrimaryCostNum() + originalCostSumCat);
+				catObject.setDepreciationNum(catObject.getDepreciationNum() + cumulativedepreciationSumCat);
+				catObject.setBookvalueNum(catObject.getBookvalueNum() + balanceCostSumCat);
+				catObject.setReassessmentCostNum(0);
 			}
 		}
-
-		/*
-		 * int iteration = 10; for (int i = 0; i < iteration; i++) {
-		 * data.add(generateMock()); }
-		 */
-
 		return data;
-
 	}
 
-	private HashMap<String, String[]> getCategories() {
-		HashMap<String, String[]> cat = new HashMap<String, String[]>();
-		cat.put("personalstateCat",
-				new String[] { "furniture", "animals", "sportsequipment", "others", "shareblocks", "equity" });
-		cat.put("equipmentCat", new String[] { "schoolequipment", "officeequipment", "computerequipment",
-				"medicalequipment", "cookequipment", "equipmentofcivildefense" });
-		cat.put("realestateCat",
-				new String[] { "buildings", "rooms", "structures", "residentialobjects", "land", "monument" });
-		cat.put("transportCat", new String[] { "automobile", "cargo", "bus", "trolleybus", "tram", "watertransport",
-				"hospitaltransport", "specialequipment", "motorcycle" });
-		cat.put("strategicobjectsCat", new String[] { "billboard", "columns", "electricnetworks", "thermalnetworks",
-				"gas", "watersystem", "drain", "road", "parking" });
-		cat.put("specialconstructionsCat",
-				new String[] { "bombproof", "factory", "combines", "airport", "land", "transitions" });
-
-		cat.put("engineeringInfrastructureCat", new String[] { "shareblocks", "equity" });
-		return cat;
-	}
-
-	private ReportRowEntity generateMock() {
-		ReportRowEntity object = new ReportRowEntity();
-		object.setCategory(Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10));
-		object.setSubCategory(Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10));
-		object.setCount(Util.generateRandom());
-		object.setPrimaryCost(Util.generateRandom());
-		object.setDepreciation(Util.generateRandom());
-		object.setBookvalue(Util.generateRandom());
-		object.setReassessmentCost(Util.generateRandom());
-		return object;
-
-	}
 }
