@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-04T17:47:44 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
+<!-- 2015-12-08T21:16:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="strategicobject_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="grandtotal" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -10,9 +12,9 @@
 	<field name="invnumber" class="java.lang.String"/>
 	<field name="originalcost" class="java.lang.Long"/>
 	<field name="assignment" class="java.lang.String"/>
-	<field name="material" class="java.lang.String"/>
+	<field name="material" class="java.lang.Integer"/>
 	<field name="yearrelease" class="java.lang.String"/>
-	<field name="countfloors" class="java.lang.String"/>
+	<field name="totalarea" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -41,6 +43,16 @@
 					</textElement>
 					<text><![CDATA[Стратегические объекты]]></text>
 				</staticText>
+				<textField>
+					<reportElement x="120" y="61" width="400" height="30" uuid="ca7a814f-4dcc-4995-bf1a-55dae069168a"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{balanceholder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="540" y="61" width="110" height="30" uuid="edc9f537-87f6-437f-8d13-c3107cbcc36d"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{grandtotal}]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</title>
@@ -111,7 +123,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="61" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference">
 				<reportElement key="textField" positionType="Float" x="0" y="0" width="30" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" forecolor="#000099" uuid="c237040a-4dd2-4b6b-a5b3-d0d1a4afd858"/>
 				<textElement textAlignment="Left">
@@ -140,11 +152,6 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{yearrelease}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="750" y="0" width="51" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="78d164a9-3a6c-4a04-90d9-ad65f9e0d3d4"/>
-				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{totalarea)]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="609" y="0" width="77" height="53" uuid="f2bd6eac-1782-47ab-8964-6db76b19f725"/>
 				<textElement textAlignment="Left"/>
@@ -154,6 +161,10 @@
 				<reportElement x="30" y="0" width="118" height="53" uuid="39fa41b2-e401-4f15-ade0-337dbe559f96"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{propertycodename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="750" y="-3" width="50" height="56" uuid="b4e69420-7561-4006-95bd-b2374275ed33"/>
+				<textFieldExpression><![CDATA[$F{totalarea}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

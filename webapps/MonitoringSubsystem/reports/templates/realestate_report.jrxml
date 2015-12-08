@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-03T23:01:32 -->
+<!-- 2015-12-08T17:54:03 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="grandtotal" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -10,7 +12,7 @@
 	<field name="invnumber" class="java.lang.String"/>
 	<field name="originalcost" class="java.lang.Long"/>
 	<field name="assignment" class="java.lang.String"/>
-	<field name="material" class="java.lang.String"/>
+	<field name="material" class="java.lang.Integer"/>
 	<field name="yearrelease" class="java.lang.String"/>
 	<field name="countfloors" class="java.lang.String"/>
 	<background>
@@ -41,6 +43,16 @@
 					</textElement>
 					<text><![CDATA[Недвижимое имущество]]></text>
 				</staticText>
+				<textField>
+					<reportElement x="150" y="60" width="350" height="30" uuid="1360c177-e168-4814-9679-b23dbfd3569f"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{balanceholder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="600" y="60" width="100" height="30" uuid="c6db2704-0eac-4ad0-9de8-d79a751bcd4f"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{grandtotal}]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</title>

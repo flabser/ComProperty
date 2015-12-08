@@ -251,8 +251,6 @@
 								<input type="hidden" name="type" value="page"/>
 								<input type="hidden" name="id" value="{@id}"/>
 								<input type="hidden" name="author" value="{document/fields/author/@attrval}"/>
-								<input type="hidden" name="doctype" value="{document/@doctype}"/>
-								<input type="hidden" name="key" value="{document/@docid}"/>
 							</form>
 							<div id="executers" style="display:none">
 								<table style="width:100%">

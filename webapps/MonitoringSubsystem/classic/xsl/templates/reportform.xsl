@@ -12,7 +12,7 @@
 				</font>
 				<xsl:if test="$editmode = 'edit'">
 					<a>
-						<xsl:attribute name="href">javascript:dialogBoxStructure('balanceholder','true','balanceholder','frm', 'balanceholdertbl');</xsl:attribute>
+						<xsl:attribute name="href">javascript:dialogBoxStructure('balanceholder','false','balanceholder','frm', 'balanceholdertbl');</xsl:attribute>
 						<img src="/SharedResources/img/iconset/report_magnify.png" />
 					</a>
 				</xsl:if>

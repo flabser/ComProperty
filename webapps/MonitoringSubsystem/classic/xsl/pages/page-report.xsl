@@ -346,7 +346,7 @@
 													<input type="checkbox" autocomplete="off" name="chbox"/>
 												</td>
 												<td style="border:1px solid #ccc; padding-left:5px">
-													<a href="Provider?type=edit&amp;id=personalEstate_report&amp;key=" class="doclink">Движимое имущество</a>
+													<a href="Provider?type=edit&amp;id=personalestate_report&amp;key=" class="doclink">Движимое имущество</a>
 												</td>
 											</tr>
 											<tr onmouseover="javascript:elemBackground(this,'EEEEEE')" onmouseout="elemBackground(this,'FFFFFF')">

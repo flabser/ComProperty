@@ -255,7 +255,7 @@
 									</table>
 								</div>
 								<!-- Скрытые поля -->
-								<input type="hidden" name="type" value="save" />
+								<input type="hidden" name="type" value="page" />
 								<input type="hidden" name="id" value="{@id}" />
 								<input type="hidden" name="author"
 									value="{document/fields/author/@attrval}" />

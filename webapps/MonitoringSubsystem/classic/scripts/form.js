@@ -256,11 +256,11 @@ function fillingReport(){
 	var fields = $('form').serializeArray(),
 		formData = $("form").serialize(),
 		recursiveEncoded = $.param(fields);
-	if ($("input[name=id]").val() == 'consolidated_report' || $("input[name=id]").val() == 'realestate_report'){
+//	if ($("input[name=id]").val() == 'consolidated_report' || $("input[name=id]").val() == 'realestate_report'|| $("input[name=id]").val() == 'equipment_report'){
 		window.location.href = 'Provider?id='+$("input[name=id]").val()+'&'+recursiveEncoded;
-	}else{
+/*	}else{
 		window.location.href = 'Provider?type=handler&id='+$("input[name=id]").val()+'&'+recursiveEncoded;
-	}	
+	}	*/
 	$('#loadingpage, #blockWindow').css("display","none");
 	$("body").css("cursor","default")
 	disableblockform()

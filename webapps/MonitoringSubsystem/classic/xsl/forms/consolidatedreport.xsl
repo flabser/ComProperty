@@ -2,6 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:import href="../templates/form.xsl"/>
 	<xsl:import href="../templates/sharedactions.xsl"/>
+		<xsl:import href="../templates/reportform.xsl" />
 	<xsl:variable name="doctype">Отчет</xsl:variable>
 	<xsl:variable name="path" select="/request/@skin"/>
 	<xsl:variable name="threaddocid" select="document/@granddocid"/>
@@ -166,47 +167,7 @@
 								<div class="ui-tabs-panel" id="tabs-1">
 									<br/>
 								 	<table width="100%" border="0">
-										<!-- поле "Балансодержатель" -->
-										<tr>
-											<td class="fc" style="padding-top:5px">
-												<font style="vertical-align:top">
-													<xsl:value-of select="document/captions/balanceholder/@caption"/> :
-												</font>
-												<xsl:if test="$editmode = 'edit'">
-													<a>
-														<xsl:attribute name="href">javascript:dialogBoxStructure('balanceholder','false','balanceholder','frm', 'balanceholdertbl');</xsl:attribute>
-														<img src="/SharedResources/img/iconset/report_magnify.png"/>
-													</a>
-												</xsl:if>
-											</td>
-											<td style="padding-top:5px">
-												<table id="balanceholdertbl" style="border-spacing:0px 3px; margin-top:-3px">
-													<tr>
-														<td style="width:600px;" class="td_editable">
-															<xsl:if test="$editmode != 'edit'">
-																<xsl:attribute name="class">td_noteditable</xsl:attribute>
-															</xsl:if>
-															<xsl:value-of select="document/fields/balanceholdername"/>&#xA0;
-															<span style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'><font><xsl:value-of select="document/fields/corr/@attrval"/></font></span>
-														</td>
-													</tr>
-												</table>
-												<input type="hidden" value="{document/fields/balanceholder}" id="balanceholder" name="balanceholder"/>
-												<input type="hidden" value="{document/captions/balanceholder/@caption}" id="balanceholdercaption"/>
-											</td>
-										</tr>
-										<!-- Дата принятия на баланс -->
-										<!-- <tr>
-											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/acceptancedate/@caption"/> :</td>
-											<td>
-												&#xA0;<label for="from" style="vertical-align:5px;"><xsl:value-of select="document/captions/from/@caption"/></label>&#xA0;
-												<input type="text" id="acceptancedatefrom" size="7" name="acceptancedatefrom" value="" style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top;">
-												</input>
-												&#xA0;<label for="to" style="vertical-align:5px;"><xsl:value-of select="document/captions/to/@caption"/></label>&#xA0;
-												<input type="text" id="acceptancedateto" value="{document/fields/acceptancedateto}" size="7" name="acceptancedateto" style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top">
-												</input>
-											</td>
-										</tr> -->
+										<xsl:call-template name="balanceholderprops" />
 										<!-- Тип имущества-->
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/propertytype/@caption"/> :</td>
@@ -250,51 +211,13 @@
 												<input type="checkbox" name="propertytype" value="engineeringInfrastructureCat" checked="checked"/>&#xA0;<xsl:value-of select="document/captions/engineeringInfrastructureCat/@caption"/>
 											</td>
 										</tr>										
-										<tr>
-											<td class="fc" style="padding:7px;"><xsl:value-of select="document/captions/reportfiletype/@caption"/> :</td>
-											<td>
-												<table>
-													<tr>
-														<td>
-															<input type="radio" name="typefilereport" value="2">
-																<xsl:attribute name="onclick">javascript: reportsTypeCheck(this)</xsl:attribute>
-																<xsl:if test="document/@editmode !='edit'">
-																	<xsl:attribute name="disabled">disabled</xsl:attribute>
-																</xsl:if>
-																<xsl:if test="document/fields/typefilereport  = '2'">
-																	<xsl:attribute name="checked">checked</xsl:attribute>
-																</xsl:if>
-																<xsl:if test="document/@status  = 'new'">
-																	<xsl:attribute name="checked">checked</xsl:attribute>
-																</xsl:if>
-																XLSX
-															</input>
-														</td>
-														 <td>
-															<input type="radio" name="typefilereport" value="1">
-																<xsl:attribute name="onclick">javascript: reportsTypeCheck(this)</xsl:attribute>
-																<xsl:if test="document/@editmode !='edit'">
-																	<xsl:attribute name="disabled">disabled</xsl:attribute>
-																</xsl:if>
-																<xsl:if test="document/fields/typefilereport  = '1'">
-																	<xsl:attribute name="checked">checked</xsl:attribute>
-																</xsl:if>
-																
-																PDF
-															</input>
-														</td>														
-													</tr>
-												</table>
-											</td>
-										</tr>										
+										<xsl:call-template name="reporttypeprops" />					
 									</table>
 								</div>
 								<!-- Скрытые поля -->
 								<input type="hidden" name="type" value="page"/>
 								<input type="hidden" name="id" value="{@id}"/>
 								<input type="hidden" name="author" value="{document/fields/author/@attrval}"/>
-								<input type="hidden" name="doctype" value="{document/@doctype}"/>
-								<input type="hidden" name="key" value="{document/@docid}"/>
 							</form>
 							<div id="executers" style="display:none">
 								<table style="width:100%">

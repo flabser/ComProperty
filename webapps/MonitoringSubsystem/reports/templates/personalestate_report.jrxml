@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-04T12:28:12 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="realestate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
+<!-- 2015-12-08T22:36:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="grandtotal" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -10,9 +12,9 @@
 	<field name="invnumber" class="java.lang.String"/>
 	<field name="originalcost" class="java.lang.Long"/>
 	<field name="assignment" class="java.lang.String"/>
-	<field name="material" class="java.lang.String"/>
 	<field name="yearrelease" class="java.lang.String"/>
 	<field name="countfloors" class="java.lang.String"/>
+	<field name="receivingbasis" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -41,6 +43,16 @@
 					<reportElement x="20" y="0" width="89" height="91" uuid="6031e52a-81cc-44c0-a474-514234086205"/>
 					<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
 				</image>
+				<textField>
+					<reportElement x="130" y="56" width="380" height="30" uuid="2df02551-8e92-4418-8d86-c542e11de2e8"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{balanceholder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="530" y="56" width="120" height="30" uuid="9346a815-3400-4b15-96dd-630d77b5c835"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{grandtotal}]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</title>
@@ -78,14 +90,14 @@
 				<text><![CDATA[Первоначальная стоимость]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="372" y="0" width="236" height="33" uuid="45ef39ce-e5bf-40d0-9f2f-bd8c1d649923"/>
+				<reportElement x="372" y="0" width="168" height="33" uuid="45ef39ce-e5bf-40d0-9f2f-bd8c1d649923"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Описание]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="608" y="0" width="78" height="33" uuid="40277466-b889-431f-a9bf-eb5b2ae6e74b"/>
+				<reportElement x="540" y="0" width="146" height="33" uuid="40277466-b889-431f-a9bf-eb5b2ae6e74b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
@@ -131,7 +143,7 @@
 				<textFieldExpression><![CDATA[$F{originalcost}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="372" y="0" width="237" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8e3443fe-f66e-4bce-b593-d13bdb208590"/>
+				<reportElement x="372" y="0" width="168" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8e3443fe-f66e-4bce-b593-d13bdb208590"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{assignment}]]></textFieldExpression>
 			</textField>
@@ -146,14 +158,13 @@
 				<textFieldExpression><![CDATA[$F{countfloors}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="609" y="0" width="77" height="53" uuid="f2bd6eac-1782-47ab-8964-6db76b19f725"/>
-				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="30" y="0" width="118" height="53" uuid="39fa41b2-e401-4f15-ade0-337dbe559f96"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{propertycodename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="0" width="146" height="50" uuid="ce37a37d-28f6-4612-a314-096ee08577f3"/>
+				<textFieldExpression><![CDATA[$F{receivingbasis}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
