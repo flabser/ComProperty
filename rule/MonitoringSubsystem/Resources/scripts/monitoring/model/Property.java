@@ -12,9 +12,11 @@ public class Property extends AppEntity {
 	private long balanceCost;
 	private String description;
 	private String form;
-	private String invnumber;
-	private String objectname;
-	private long originalcost;
+	private String invNumber;
+	private String objectName;
+	private long originalCost;
 	private String propertycode_name;
+	private String assignment;
+	private int yearRelease;
 
 }

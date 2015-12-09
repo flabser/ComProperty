@@ -8,10 +8,10 @@
 		<driver>org.postgresql.Driver</driver>
 	 <!-- <url>jdbc:postgresql://localhost:5433/PropertyObjects</url> -->
 	<url>jdbc:postgresql://172.16.251.7:5432/CIS</url>
-		<implementation>
+		<!-- <implementation>
 			<idatabasedeployer>kz.lof.database.DatabaseDeployer</idatabasedeployer>
 			<idatabase>kz.lof.database.Database</idatabase>
-		</implementation>
+		</implementation> -->
 	<username>postgres</username>
 		<password>smartdoc</password> </database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>	

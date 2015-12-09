@@ -167,7 +167,7 @@
 								<div class="ui-tabs-panel" id="tabs-1">
 									<br/>
 								 	<table width="100%" border="0">
-										<xsl:call-template name="balanceholderprops" />
+										<xsl:call-template name="balanceholdermultiprops" />
 										<!-- Тип имущества-->
 										<tr>
 											<td class="fc" style="padding:5px;position:relative;top:0px"><xsl:value-of select="document/captions/propertytype/@caption"/> :</td>

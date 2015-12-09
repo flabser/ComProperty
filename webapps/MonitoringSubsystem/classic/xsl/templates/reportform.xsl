@@ -41,33 +41,50 @@
 					id="balanceholdercaption" />
 			</td>
 		</tr>
-		<!-- Дата принятия на баланс -->
-		<!--  <tr>
-			<td class="fc" style="padding:5px;position:relative;top:0px">
-				<xsl:value-of select="document/captions/acceptancedate/@caption" />
-				:
+		<xsl:call-template name="acceptanceprops" />
+		</xsl:template>
+		
+		
+		<xsl:template name="balanceholdermultiprops">
+		<!-- balanceholder choosing (multi) -->
+		<tr>
+			<td class="fc" style="padding-top:5px">
+				<font style="vertical-align:top">
+					<xsl:value-of select="document/captions/balanceholder/@caption" />
+					:
+				</font>
+				<xsl:if test="$editmode = 'edit'">
+					<a>
+						<xsl:attribute name="href">javascript:dialogBoxStructure('balanceholder','true','balanceholder','frm', 'balanceholdertbl');</xsl:attribute>
+						<img src="/SharedResources/img/iconset/report_magnify.png" />
+					</a>
+				</xsl:if>
 			</td>
-			<td>
-				&#xA0;
-				<label for="from" style="vertical-align:5px;">
-					<xsl:value-of select="document/captions/from/@caption" />
-				</label>
-				&#xA0;
-				<input type="text" id="acceptancedatefrom" size="7"
-					name="acceptancedatefrom" value=""
-					style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top;">
-				</input>
-				&#xA0;
-				<label for="to" style="vertical-align:5px;">
-					<xsl:value-of select="document/captions/to/@caption" />
-				</label>
-				&#xA0;
-				<input type="text" id="acceptancedateto" value="{document/fields/acceptancedateto}"
-					size="7" name="acceptancedateto"
-					style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top">
-				</input>
+			<td style="padding-top:5px">
+				<table id="balanceholdertbl" style="border-spacing:0px 3px; margin-top:-3px">
+					<tr>
+						<td style="width:600px;" class="td_editable">
+							<xsl:if test="$editmode != 'edit'">
+								<xsl:attribute name="class">td_noteditable</xsl:attribute>
+							</xsl:if>
+							<xsl:value-of select="document/fields/balanceholdername" />
+							&#xA0;
+							<span
+								style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'>
+								<font>
+									<xsl:value-of select="document/fields/corr/@attrval" />
+								</font>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<input type="hidden" value="{document/fields/balanceholder}"
+					id="balanceholder" name="balanceholder" />
+				<input type="hidden" value="{document/captions/balanceholder/@caption}"
+					id="balanceholdercaption" />
 			</td>
-		</tr>-->
+		</tr>
+		<xsl:call-template name="acceptanceprops" />
 	</xsl:template>
 
 	<xsl:template name="propertycodeprops">
@@ -271,4 +288,33 @@
 			</td>
 		</tr>
 	</xsl:template>
+	
+	<xsl:template name="acceptanceprops">
+	<!--  <tr>
+			<td class="fc" style="padding:5px;position:relative;top:0px">
+				<xsl:value-of select="document/captions/acceptancedate/@caption" />
+				:
+			</td>
+			<td>
+				&#xA0;
+				<label for="from" style="vertical-align:5px;">
+					<xsl:value-of select="document/captions/from/@caption" />
+				</label>
+				&#xA0;
+				<input type="text" id="acceptancedatefrom" size="7"
+					name="acceptancedatefrom" value=""
+					style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top;">
+				</input>
+				&#xA0;
+				<label for="to" style="vertical-align:5px;">
+					<xsl:value-of select="document/captions/to/@caption" />
+				</label>
+				&#xA0;
+				<input type="text" id="acceptancedateto" value="{document/fields/acceptancedateto}"
+					size="7" name="acceptancedateto"
+					style="background:#fff; padding:3px 3px 3px 5px; width:80px; border:1px solid #ccc; vertical-align:top">
+				</input>
+			</td>
+		</tr>-->
+		</xsl:template>
 </xsl:stylesheet>

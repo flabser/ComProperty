@@ -52,8 +52,8 @@ public class ConsolidatedReport extends _DoScript {
 		if (from != null && to != null) {
 			checkAcceptanceDate = true;
 		}
-		int bc = formData.getNumberValueSilently("balanceholder", 0);
-		if (bc != 0) {
+		Integer[] bc = formData.getNumberValuesSilently("balanceholder", 0);
+		if (bc[0] != 0) {
 			checkBalanceHolder = true;
 		}
 
@@ -82,7 +82,8 @@ public class ConsolidatedReport extends _DoScript {
 					checkBalanceHolder, bc, from, to);
 			parameters.put("grandtotal", Long.toString(grandTotal));
 			if (checkBalanceHolder) {
-				parameters.put("balanceholder", ReportUtil.getOrgName(ses, bc));
+				// parameters.put("balanceholder", ReportUtil.getOrgName(ses,
+				// bc));
 			} else {
 				parameters.put("balanceholder", "");
 			}
@@ -124,7 +125,7 @@ public class ConsolidatedReport extends _DoScript {
 	}
 
 	private ArrayList<ConsolidatedDataBean> fetchReportData(HashMap<String, String[]> categories,
-			boolean checkAcceptanceDate, boolean checkBalanceHolder, int bc, Date from, Date to) {
+			boolean checkAcceptanceDate, boolean checkBalanceHolder, Integer[] bc, Date from, Date to) {
 
 		ArrayList<ConsolidatedDataBean> data = new ArrayList<ConsolidatedDataBean>();
 		IDatabase db = ses.getCurrentDatabase().getBaseObject();
