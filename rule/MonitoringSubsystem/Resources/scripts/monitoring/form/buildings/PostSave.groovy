@@ -23,7 +23,7 @@ class PostSave extends _FormPostSave {
 		}
 		_doc.addStringField("invnumber", doc.getValueString("invnumber"))
 		_doc.addStringField("description", doc.getValueString("description"))
-		_doc.addStringField("acceptancedate", doc.getValueString("acceptancedate"))
+		_doc.addStringField("acceptancedate", doc.getValueString("acceptancedate") ?: "")
 		_doc.addStringField("home", doc.getValueString("home"))
 		_doc.addStringField("sentdate", new Date().toString())
 		_doc.addStringField("notificationtype", "regobj")
