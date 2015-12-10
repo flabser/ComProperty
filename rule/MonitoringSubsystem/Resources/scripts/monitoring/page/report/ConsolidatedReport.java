@@ -134,6 +134,11 @@ public class ConsolidatedReport extends PropertyReport {
 			} else {
 				orgObject.setOrgName("Все организации");
 			}
+			orgObject.setCount("");
+			orgObject.setPrimaryCost("");
+			orgObject.setDepreciation("");
+			orgObject.setBookvalue("");
+			orgObject.setReassessmentCost("");
 			data.add(orgObject);
 			for (String key : categories.keySet()) {
 
