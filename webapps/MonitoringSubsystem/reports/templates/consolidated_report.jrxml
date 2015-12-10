@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-10T13:18:24 -->
+<!-- 2015-12-10T15:03:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="balanceholder" class="java.lang.String"/>
@@ -90,12 +90,7 @@
 					<font fontName="Arial" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Накоплен-
-ная аморти-зация
-
-
-
-
-]]></text>
+ная аморти-зация]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="660" y="0" width="70" height="60" uuid="8eb1c3ee-7804-4ad5-a480-ac4697ac4148">
@@ -149,35 +144,42 @@
 			</textField>
 			<textField>
 				<reportElement x="730" y="0" width="70" height="20" uuid="6793f5da-a11e-4aef-819d-519d167b4975"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{reassessmentCost}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="660" y="0" width="70" height="20" uuid="3316d82e-9158-419f-a240-51bf8857ac77"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{bookvalue}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="590" y="0" width="70" height="20" uuid="6f8b9f83-ad11-4675-802a-656670e4d093"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{depreciation}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="520" y="0" width="70" height="20" uuid="2c96563f-2ef6-4d40-b248-ff3c1ce972b5"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{primaryCost}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="450" y="0" width="70" height="20" uuid="e46549ac-24b4-4d69-bc6d-59e2418476bd"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="310" y="0" width="140" height="20" uuid="8c2f9572-aa1e-49e6-bc4e-8e414019e0f2"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{subCategory}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="170" y="0" width="140" height="20" uuid="8051a86a-7c54-4ee5-8445-f7a65792db59"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="30" y="0" width="140" height="40" uuid="fbda0356-cdde-41c7-a6b0-fe6ed7480702"/>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{orgName}]]></textFieldExpression>

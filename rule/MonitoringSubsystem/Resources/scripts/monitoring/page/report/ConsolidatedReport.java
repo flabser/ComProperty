@@ -129,7 +129,11 @@ public class ConsolidatedReport extends PropertyReport {
 		IDBConnectionPool dbPool = db.getConnectionPool();
 		for (Integer bKey : bc) {
 			ConsolidatedDataBean orgObject = new ConsolidatedDataBean();
-			orgObject.setOrgName(ReportUtil.getOrgName(ses, bKey));
+			if (checkBalanceHolder) {
+				orgObject.setOrgName(ReportUtil.getOrgName(ses, bKey));
+			} else {
+				orgObject.setOrgName("Все организации");
+			}
 			data.add(orgObject);
 			for (String key : categories.keySet()) {
 

@@ -152,7 +152,7 @@ public abstract class PropertyReport extends _DoScript {
 					String sql1 = "select m.docid, m.viewtext, cf.value, cf.valueasdate, cf.name from maindocs as m, "
 							+ "custom_fields as cf where m.form='" + toReport[ci] + "'" + " and " + "cf.docid = m.docid"
 							+ wherePart;
-					// Server.logger.verboseLogEntry(sql1);
+					Server.logger.verboseLogEntry(sql1);
 					ResultSet rs = s.executeQuery(sql1);
 					while (rs.next()) {
 						data.add(getDocument(rs));
