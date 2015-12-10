@@ -60,7 +60,7 @@
 		<button title ="{document/actionbar/action[@id='save_and_close']/@hint}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="margin-left:5px"  id="generatereport">
 			<xsl:attribute name="onclick">javascript:fillingReport()</xsl:attribute>
 			<span>
-				<img src="/SharedResources/img/classic/icons/disk.png" class="button_img"/>
+				<img src="/SharedResources/img/classic/icons/resultset_next.png" class="button_img"/>
 				<font style="font-size:12px; vertical-align:top"><xsl:value-of select="document/captions/fillingreport/@caption"/></font>
 			</span>
 		</button>

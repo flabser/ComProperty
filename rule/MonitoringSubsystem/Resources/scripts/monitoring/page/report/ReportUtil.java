@@ -16,20 +16,36 @@ public class ReportUtil {
 
 	public static HashMap<String, String[]> getCategories() {
 		HashMap<String, String[]> cat = new HashMap<String, String[]>();
-		cat.put("personalstateCat",
-				new String[] { "furniture", "animals", "sportsequipment", "others", "shareblocks", "equity" });
-		cat.put("equipmentCat", new String[] { "schoolequipment", "officeequipment", "computerequipment",
-				"medicalequipment", "cookequipment", "equipmentofcivildefense" });
-		cat.put("realestateCat",
-				new String[] { "buildings", "rooms", "structures", "residentialobjects", "land", "monument" });
-		cat.put("transportCat", new String[] { "automobile", "cargo", "bus", "trolleybus", "tram", "watertransport",
-				"hospitaltransport", "specialequipment", "motorcycle" });
-		cat.put("strategicobjectsCat", new String[] { "billboard", "columns", "electricnetworks", "thermalnetworks",
-				"gas", "watersystem", "drain", "road", "parking" });
-		cat.put("specialconstructionsCat",
-				new String[] { "bombproof", "factory", "combines", "airport", "land", "transitions" });
+		String[] personalSForm = { "furniture", "animals", "sportsequipment", "others", "shareblocks", "equity" };
+		cat.put("personalstateCat", personalSForm);
+		cat.put("personalestate_report", personalSForm);
 
-		cat.put("engineeringInfrastructureCat", new String[] { "shareblocks", "equity" });
+		String[] equipmentForms = { "schoolequipment", "officeequipment", "computerequipment", "medicalequipment",
+				"cookequipment", "equipmentofcivildefense" };
+		cat.put("equipmentCat", equipmentForms);
+		cat.put("equipment_report", equipmentForms);
+
+		String[] realSForm = { "buildings", "rooms", "structures", "residentialobjects", "land", "monument" };
+		cat.put("realestateCat", realSForm);
+		cat.put("realestate_report", realSForm);
+
+		String[] transportForms = { "automobile", "cargo", "bus", "trolleybus", "tram", "watertransport",
+				"hospitaltransport", "specialequipment", "motorcycle" };
+		cat.put("transportCat", transportForms);
+		cat.put("transport_report", transportForms);
+
+		String[] engInfStructForms = { "billboard", "columns", "electricnetworks", "thermalnetworks", "gas",
+				"watersystem", "drain", "road", "parking" };
+		cat.put("specialconstructionsCat", engInfStructForms);
+		cat.put("engineeringInfrastructure_report", engInfStructForms);
+
+		String[] stratObjForms = { "bombproof", "factory", "combines", "airport", "land", "transitions" };
+		cat.put("strategicobjectsCat", stratObjForms);
+		cat.put("strategicobjects_report", stratObjForms);
+
+		String[] engStrucForms = { "shareblocks", "equity" };
+		cat.put("engineeringInfrastructureCat", engStrucForms);
+
 		return cat;
 	}
 
