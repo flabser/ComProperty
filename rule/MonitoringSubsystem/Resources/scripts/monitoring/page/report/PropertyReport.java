@@ -35,9 +35,9 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 public abstract class PropertyReport extends _DoScript {
-	private String lang;
+	protected String lang;
 	protected _Session ses;
-	private long grandTotal;
+	protected long grandTotal;
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {

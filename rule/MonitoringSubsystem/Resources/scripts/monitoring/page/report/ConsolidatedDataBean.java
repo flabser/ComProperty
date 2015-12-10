@@ -7,6 +7,7 @@ public class ConsolidatedDataBean {
 	private long bookvalueNum;
 	private long reassessmentCostNum;
 
+	private String orgName;
 	private String category = "";
 	private String subCategory = "";
 
@@ -15,6 +16,14 @@ public class ConsolidatedDataBean {
 	private String depreciation;
 	private String bookvalue;
 	private String reassessmentCost;
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
 
 	public String getCategory() {
 		return category;
@@ -130,6 +139,11 @@ public class ConsolidatedDataBean {
 
 	public void setReassessmentCostNum(Integer reassessmentCostNum) {
 		this.reassessmentCostNum = reassessmentCostNum;
+	}
+
+	@Override
+	public String toString() {
+		return orgName + "," + category + "," + subCategory + "," + count;
 	}
 
 }
