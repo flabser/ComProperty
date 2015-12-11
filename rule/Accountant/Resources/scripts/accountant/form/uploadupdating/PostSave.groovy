@@ -109,7 +109,8 @@ class PostSave extends _FormPostSave {
 						_doc.setValueString("address", region + ", " + address);
 						_doc.setValueString("propertycode_name", propertycode_name);
 						_doc.addDateField("acceptancedate", acceptancedate)
-						_doc.setValueString("originalcost", originalcost);
+						//	_doc.setValueNumber("originalcost", Util.convertStringToLong(originalcost))
+						_doc.setValueString("originalcost", _doc.getValueString("originalcost"))
 						_doc.setValueString("balancecost", balancecost);
 						_doc.addEditor("[operator]")
 						_doc.addEditor("[supervisor]")
