@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rule type="page" id="report" mode="on" history="on">
+<rule type="page"  mode="on" history="on">
 	<description>Отчеты </description>
 	<caching>NO_CACHING</caching>
 	<xsltfile>pages/page-report.xsl</xsltfile>
@@ -7,18 +7,7 @@
 		<name>outline</name>
 		<value>outline</value>
 	</element>
-	<element mode="OFF" type="SCRIPT">
-		<name>action_bar</name>
-		<events>
-			<doscript source="file">monitoring.page.actionbar.road</doscript>
-		</events>
-	</element>
-	<element mode="OFF" type="SCRIPT">
-		<name>view_content</name>
-		<events>
-			<doscript source="file">monitoring.page.DocsList.road</doscript>
-		</events>
-	</element>
+	
 	<caption name="category" source="KEYWORD">Отчеты</caption>
 	<caption name="viewnamecaption" source="KEYWORD">Отчеты</caption>
 	<caption name="briefcontent" source="KEYWORD">Описание</caption>

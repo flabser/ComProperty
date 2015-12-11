@@ -17,7 +17,6 @@ import kz.flabs.util.Util;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
-import kz.nextbase.script.events._DoScript;
 import kz.pchelka.env.Environment;
 import kz.pchelka.server.Server;
 import net.sf.jasperreports.engine.JRException;
@@ -34,10 +33,7 @@ import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
-public class ConsolidatedReport extends _DoScript {
-	private String lang;
-	private _Session ses;
-	private long grandTotal;
+public class ConsolidatedReport extends PropertyReport {
 
 	@Override
 	public void doProcess(_Session ses, _WebFormData formData, String lang) {
@@ -131,104 +127,132 @@ public class ConsolidatedReport extends _DoScript {
 		IDatabase db = ses.getCurrentDatabase().getBaseObject();
 
 		IDBConnectionPool dbPool = db.getConnectionPool();
-		for (String key : categories.keySet()) {
-			String[] toReport = categories.get(key);
-			if (toReport != null) {
-				long countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
-				ConsolidatedDataBean catObject = new ConsolidatedDataBean();
-				catObject.setCategory(getLocalizedWord(key, lang));
-				data.add(catObject);
-				for (int ci = 0; ci < toReport.length; ci++) {
-					ConsolidatedDataBean object = new ConsolidatedDataBean();
-					object.setSubCategory(getLocalizedWord(toReport[ci], lang));
-					Connection conn = dbPool.getConnection();
-					try {
+		for (Integer bKey : bc) {
+			ConsolidatedDataBean orgObject = new ConsolidatedDataBean();
+			if (checkBalanceHolder) {
+				orgObject.setOrgName(ReportUtil.getOrgName(ses, bKey));
+			} else {
+				orgObject.setOrgName("Все организации");
+			}
+			orgObject.setCount("");
+			orgObject.setPrimaryCost("");
+			orgObject.setDepreciation("");
+			orgObject.setBookvalue("");
+			orgObject.setReassessmentCost("");
+			data.add(orgObject);
+			for (String key : categories.keySet()) {
 
-						conn.setAutoCommit(false);
-						Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+				String[] toReport = categories.get(key);
+				if (toReport != null) {
+					long countCat = 0, originalCostSumCat = 0, cumulativedepreciationSumCat = 0, balanceCostSumCat = 0;
+					ConsolidatedDataBean catObject = new ConsolidatedDataBean();
+					catObject.setCategory(getLocalizedWord(key, lang));
+					data.add(catObject);
+					for (int ci = 0; ci < toReport.length; ci++) {
+						ConsolidatedDataBean object = new ConsolidatedDataBean();
+						object.setSubCategory(getLocalizedWord(toReport[ci], lang));
+						Connection conn = dbPool.getConnection();
+						try {
 
-						long countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
+							conn.setAutoCommit(false);
+							Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 
-						String wherePart = "";
-						if (checkBalanceHolder) {
-							wherePart = " and m.docid in (select  cf.docid from maindocs as m, custom_fields as cf"
-									+ " where cf.name='balanceholder' and cf.docid = m.docid and cf.valueasnumber=" + bc
-									+ ")";
+							long countSum = 0, originalCostSum = 0, cumulativedepreciationSum = 0, balanceCostSum = 0;
+
+							String wherePart = "";
+							if (checkBalanceHolder) {
+								wherePart = " and m.docid in (select  cf.docid from maindocs as m, custom_fields as cf"
+										+ " where cf.name='balanceholder' and cf.docid = m.docid and cf.valueasnumber="
+										+ bKey + ")";
+							}
+
+							String sql1 = "select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
+									+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart;
+							// Server.logger.verboseLogEntry(sql1);
+							ResultSet rs = s.executeQuery(sql1);
+							if (rs.next()) {
+								countSum = rs.getLong(1);
+								// Server.logger.verboseLogEntry(Long.toString(countSum));
+							}
+
+							String sql2 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
+									+ "custom_fields as cf where m.form='" + toReport[ci]
+									+ "' and cf.docid = m.docid and " + "cf.name = 'originalcost'" + wherePart;
+							rs = s.executeQuery(sql2);
+							if (rs.next()) {
+								originalCostSum = rs.getLong(1);
+								// Server.logger.verboseLogEntry(originalCostSum
+								// + "
+								// " + sql2);
+							}
+
+							String sql3 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
+									+ "custom_fields as cf where m.form='" + toReport[ci]
+									+ "' and cf.docid = m.docid and " + "cf.name = 'cumulativedepreciation'"
+									+ wherePart;
+							;
+							rs = s.executeQuery(sql3);
+							if (rs.next()) {
+								cumulativedepreciationSum = rs.getLong(1);
+								// Server.logger.verboseLogEntry(cumulativedepreciationSum
+								// + " " + sql3);
+							}
+
+							String sql4 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
+									+ "custom_fields as cf where m.form='" + toReport[ci]
+									+ "' and cf.docid = m.docid and " + "cf.name = 'balancecost'" + wherePart;
+							rs = s.executeQuery(sql4);
+							if (rs.next()) {
+								balanceCostSum = rs.getLong(1);
+								// Server.logger.verboseLogEntry(balanceCostSum
+								// + "
+								// " + sql4);
+							}
+
+							object.setCountNum(countSum);
+							object.setPrimaryCostNum(originalCostSum);
+							object.setDepreciationNum(cumulativedepreciationSum);
+							object.setBookvalueNum(balanceCostSum);
+							object.setReassessmentCostNum(0);
+							countCat = countCat + countSum;
+							grandTotal = grandTotal + countSum;
+							originalCostSumCat = originalCostSumCat + originalCostSum;
+							cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
+							balanceCostSumCat = balanceCostSumCat + balanceCostSum;
+							data.add(object);
+
+							rs.close();
+							s.close();
+							conn.commit();
+
+						} catch (SQLException e) {
+							DatabaseUtil.errorPrint(db.getDbID(), e);
+						} catch (Exception e) {
+							Database.logger.errorLogEntry(e);
+						} finally {
+							dbPool.returnConnection(conn);
 						}
 
-						String sql1 = "select count(m.docid) from maindocs as m, custom_fields as cf where m.form='"
-								+ toReport[ci] + "'" + " and cf.docid = m.docid" + wherePart;
-						// Server.logger.verboseLogEntry(sql1);
-						ResultSet rs = s.executeQuery(sql1);
-						if (rs.next()) {
-							countSum = rs.getLong(1);
-							// Server.logger.verboseLogEntry(Long.toString(countSum));
-						}
-
-						String sql2 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
-								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
-								+ "cf.name = 'originalcost'" + wherePart;
-						rs = s.executeQuery(sql2);
-						if (rs.next()) {
-							originalCostSum = rs.getLong(1);
-							// Server.logger.verboseLogEntry(originalCostSum + "
-							// " + sql2);
-						}
-
-						String sql3 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
-								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
-								+ "cf.name = 'cumulativedepreciation'" + wherePart;
-						;
-						rs = s.executeQuery(sql3);
-						if (rs.next()) {
-							cumulativedepreciationSum = rs.getLong(1);
-							// Server.logger.verboseLogEntry(cumulativedepreciationSum
-							// + " " + sql3);
-						}
-
-						String sql4 = "select sum(CASE WHEN cf.value~E'^\\\\d+$' THEN cf.value::bigint ELSE 0 END) from maindocs as m, "
-								+ "custom_fields as cf where m.form='" + toReport[ci] + "' and cf.docid = m.docid and "
-								+ "cf.name = 'balancecost'" + wherePart;
-						rs = s.executeQuery(sql4);
-						if (rs.next()) {
-							balanceCostSum = rs.getLong(1);
-							// Server.logger.verboseLogEntry(balanceCostSum + "
-							// " + sql4);
-						}
-
-						object.setCountNum(countSum);
-						object.setPrimaryCostNum(originalCostSum);
-						object.setDepreciationNum(cumulativedepreciationSum);
-						object.setBookvalueNum(balanceCostSum);
-						object.setReassessmentCostNum(0);
-						countCat = countCat + countSum;
-						grandTotal = grandTotal + countSum;
-						originalCostSumCat = originalCostSumCat + originalCostSum;
-						cumulativedepreciationSumCat = cumulativedepreciationSumCat + cumulativedepreciationSum;
-						balanceCostSumCat = balanceCostSumCat + balanceCostSum;
-						data.add(object);
-
-						rs.close();
-						s.close();
-						conn.commit();
-
-					} catch (SQLException e) {
-						DatabaseUtil.errorPrint(db.getDbID(), e);
-					} catch (Exception e) {
-						Database.logger.errorLogEntry(e);
-					} finally {
-						dbPool.returnConnection(conn);
 					}
-
+					catObject.setCountNum(countCat);
+					catObject.setPrimaryCostNum(catObject.getPrimaryCostNum() + originalCostSumCat);
+					catObject.setDepreciationNum(catObject.getDepreciationNum() + cumulativedepreciationSumCat);
+					catObject.setBookvalueNum(catObject.getBookvalueNum() + balanceCostSumCat);
+					catObject.setReassessmentCostNum(0);
 				}
-				catObject.setCountNum(countCat);
-				catObject.setPrimaryCostNum(catObject.getPrimaryCostNum() + originalCostSumCat);
-				catObject.setDepreciationNum(catObject.getDepreciationNum() + cumulativedepreciationSumCat);
-				catObject.setBookvalueNum(catObject.getBookvalueNum() + balanceCostSumCat);
-				catObject.setReassessmentCostNum(0);
 			}
 		}
 		return data;
+	}
+
+	@Override
+	protected IPropertyBean getDocument(ResultSet rs) {
+		return null;
+	}
+
+	@Override
+	protected IPropertyBean getDocument() {
+		return null;
 	}
 
 }
