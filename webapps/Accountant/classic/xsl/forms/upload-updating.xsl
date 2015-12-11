@@ -142,9 +142,9 @@
 								</form>
 					    	</div>
 							<div class="ui-tabs-panel" id="tabs-2">
-					   			<form action="Uploader" name="uploadcert" id="uploadcert" method="post" enctype="multipart/form-data">
-									<input type="hidden" name="type" value="rtfcontent"/>
-									<input type="hidden" name="formsesid" value="{formsesid}"/>
+					   			<form action="UploadEDS" name="uploadcert" id="uploadcert" method="post" enctype="multipart/form-data">
+									<!--<input type="hidden" name="type" value="rtfcontent"/>
+									<input type="hidden" name="formsesid" value="{formsesid}"/>-->
 									<!-- Секция "Вложения" -->
 									<div display="block" id="att">
 										<br/>
