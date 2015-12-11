@@ -71,7 +71,7 @@ public class ConsolidatedReport extends PropertyReport {
 			log("Filling report \"" + reportName + "\"...");
 			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator
 					+ ses.getGlobalSettings().id + File.separator + "reports";
-			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
+			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, Environment.trash);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
 			ArrayList<ConsolidatedDataBean> result = fetchReportData(categories, checkAcceptanceDate,

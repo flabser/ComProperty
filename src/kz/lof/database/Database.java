@@ -111,8 +111,12 @@ public class Database extends kz.flabs.dataengine.h2.Database implements IDataba
 		// CONFIG (developing)
 		properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "CONFIG");
 		properties.put(PersistenceUnitProperties.DDL_GENERATION, PersistenceUnitProperties.CREATE_ONLY);
+		properties.put(PersistenceUnitProperties.DDL_GENERATION_MODE, PersistenceUnitProperties.DDL_BOTH_GENERATION);
+		properties.put(PersistenceUnitProperties.CREATE_JDBC_DDL_FILE, "createDDL.jdbc");
+		properties.put(PersistenceUnitProperties.DROP_JDBC_DDL_FILE, "dropDDL.jdbc");
+
 		PersistenceProvider pp = new PersistenceProvider();
-		factory = pp.createEntityManagerFactory(env.appType, properties);
+		factory = pp.createEntityManagerFactory("PropertyObjects", properties);
 		if (factory == null) {
 			Server.logger.warningLogEntry("the entity manager of \"" + env.appType + "\" has not been initialized");
 
