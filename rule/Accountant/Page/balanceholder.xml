@@ -10,7 +10,7 @@
 	<element mode="ON" type="SCRIPT">
 		<name>view_content</name>
 		<events>
-			<doscript source="file">page.organizations.DoScript</doscript>
+			<doscript source="file">accountant.page.organizations.DoScript</doscript>
 		</events>
 	</element>
 	<caption name="category" source="KEYWORD">Льготники</caption>
