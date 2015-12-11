@@ -81,6 +81,12 @@
 										<font style="font-size:12px; vertical-align:top"><xsl:value-of select="document/captions/saveclose/@caption"/></font>
 									</span>
 								</button>
+								<button style="margin-left:5px" title ="Подписать" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="btnsavedoc">
+									<xsl:attribute name="onclick">javascript:SignUpload()</xsl:attribute>
+									<span>
+										<font style="font-size:12px; vertical-align:top">Подписать</font>
+									</span>
+								</button>
 							</span>
 							<span style="float:right; margin-right:5px">
 								<button title= "{document/captions/close/@hint}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="canceldoc">
@@ -101,7 +107,17 @@
 									<a href="#tabs-1">
 										<xsl:value-of select="document/captions/download/@caption"/>
 									</a>
-								</li> 
+								</li>
+								<li class="ui-state-default ui-corner-top">
+									<a href="#tabs-2">
+										ЭЦП
+									</a>
+								</li>
+								<li class="ui-state-default ui-corner-top">
+									<a href="#tabs-3">
+										Движение имущества
+									</a>
+								</li>
 							</ul>
 							<div class="ui-tabs-panel" id="tabs-1">
 								<form action="Provider" name="frm" method="post" id="frm" enctype="application/x-www-form-urlencoded">
@@ -124,6 +140,87 @@
 										<xsl:call-template name="attach"/>
 									</div>
 								</form>
+					    	</div>
+							<div class="ui-tabs-panel" id="tabs-2">
+					   			<form action="Uploader" name="uploadcert" id="uploadcert" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="type" value="rtfcontent"/>
+									<input type="hidden" name="formsesid" value="{formsesid}"/>
+									<!-- Секция "Вложения" -->
+									<div display="block" id="att">
+										<br/>
+										<xsl:call-template name="attach_cert"/>
+									</div>
+								</form>
+					    	</div>
+							<div class="ui-tabs-panel" id="tabs-3">
+								<table width="100%" border="0">
+									<tr>
+										<td class="fc" style="padding-top:5px">
+											<font style="vertical-align:top">
+												Движение имущества:
+											</font>
+										</td>
+										<td style="padding-top:5px">
+											<input type="checkbox" name="cdi" autocomlete="off"/>
+										</td>
+									</tr>
+									<tr>
+										<td class="fc" style="padding-top:5px">
+											<font style="vertical-align:top">
+												Балансодержатель 1:
+											</font>
+											<xsl:if test="$editmode = 'edit'">
+												<a>
+													<xsl:attribute name="href">javascript:dialogBoxStructure('balanceholder','false','balanceholder','frm', 'balanceholdertbl');</xsl:attribute>
+													<img src="/SharedResources/img/iconset/report_magnify.png"/>
+												</a>
+											</xsl:if>
+										</td>
+										<td style="padding-top:5px">
+											<table id="balanceholdertbl" style="border-spacing:0px 3px; margin-top:-3px">
+												<tr>
+													<td style="width:600px;" class="td_editable">
+														<xsl:if test="$editmode != 'edit'">
+															<xsl:attribute name="class">td_noteditable</xsl:attribute>
+														</xsl:if>
+														<xsl:value-of select="document/fields/balanceholdername"/>&#xA0;
+														<span style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'><font><xsl:value-of select="document/fields/corr/@attrval"/></font></span>
+													</td>
+												</tr>
+											</table>
+											<input type="hidden" value="{document/fields/balanceholder}" id="balanceholder" name="balanceholder"/>
+											<input type="hidden" value="Балансодержатель 1" id="balanceholdercaption"/>
+										</td>
+									</tr>
+									<tr>
+										<td class="fc" style="padding-top:5px">
+											<font style="vertical-align:top">
+												Балансодержатель 2:
+											</font>
+											<xsl:if test="$editmode = 'edit'">
+												<a>
+													<xsl:attribute name="href">javascript:dialogBoxStructure('balanceholder','false','balanceholder2','frm', 'balanceholdertbl2');</xsl:attribute>
+													<img src="/SharedResources/img/iconset/report_magnify.png"/>
+												</a>
+											</xsl:if>
+										</td>
+										<td style="padding-top:5px">
+											<table id="balanceholdertbl2" style="border-spacing:0px 3px; margin-top:-3px">
+												<tr>
+													<td style="width:600px;" class="td_editable">
+														<xsl:if test="$editmode != 'edit'">
+															<xsl:attribute name="class">td_noteditable</xsl:attribute>
+														</xsl:if>
+														<xsl:value-of select="document/fields/balanceholdername"/>&#xA0;
+														<span style='float:right; border-left:1px solid #ccc; width:17px; padding-right:10px; padding-left:2px; padding-top:1px; color:#ccc; font-size:10.5px'><font><xsl:value-of select="document/fields/corr/@attrval"/></font></span>
+													</td>
+												</tr>
+											</table>
+											<input type="hidden" value="{document/fields/balanceholder}" id="balanceholder2" name="balanceholder2"/>
+											<input type="hidden" value="Балансодержатель 2" id="balanceholdercaption"/>
+										</td>
+									</tr>
+								</table>
 					    	</div>
 					    </div>
 		    			<div style="height:10px"/>

@@ -646,4 +646,123 @@
 			<br/>
 		</div>
 	</xsl:template>
+
+	<xsl:template name="attach_cert">
+		<div id="attach" style="display:block;">
+			<table style="border:0; border-collapse:collapse" id="certtable" width="99%">
+				<xsl:if test="$editmode = 'edit'">
+					<tr>
+						<td class="fc">
+							Пароль :
+						</td>
+						<td>
+							<input type="password" size="40" border="#CCC" name="p_eds"/>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="fc">
+							Сертификат :
+						</td>
+						<td>
+							<input type="file" size="60" border="#CCC" name="cert" autocomplete="off" accept=".p12">
+								<xsl:attribute name="onchange">javascript:submitFile('uploadcert', 'certtable', 'cert');</xsl:attribute>
+							</input>&#xA0;
+							<!-- <a id="upla" style="margin-left:5px; border-bottom:1px dotted; text-decoration:none; color:#1A3DC1;">
+								<xsl:attribute name="href">javascript:submitFile('upload', 'upltable', 'fname');ajaxFunction()</xsl:attribute>
+								<xsl:value-of select="document/captions/attach/@caption"/>
+							</a> -->
+							<br/>
+							<style>.ui-progressbar .ui-progressbar-value { background-image: url(/SharedResources/jquery/css/base/images/pbar-ani.gif); }</style>
+							<div id="progressbar" style="width:370px; margin-top:5px; height:12px"/>
+							<div id="progressstate" style="width:370px; display:none">
+								<font style="visibility:hidden; color:#999; font-size:11px; width:70%" id="readybytes"/>
+								<font style="visibility:hidden; color:#999; font-size:11px; float:right;" id="percentready"/>
+								<font style="visibility:hidden; text-align:center; color:#999; font-size:11px; width:30%; text-align:center" id="initializing">Подготовка к загрузке</font>
+							</div>
+						</td>
+						<td/>
+					</tr>
+				</xsl:if>
+				<xsl:variable name='docid' select="document/@docid"/>
+				<xsl:variable name='doctype' select="document/@doctype"/>
+				<xsl:variable name='formsesid' select="formsesid"/>
+
+				<xsl:for-each select="document/fields/rtfcontent/entry">
+					<tr>
+						<xsl:variable name='id' select='@hash'/>
+						<xsl:variable name='filename' select='@filename'/>
+						<xsl:variable name="extension" select="tokenize(lower-case($filename), '\.')[last()]"/>
+						<xsl:variable name="resolution"/>
+						<xsl:attribute name='id' select="$id"/>
+						<td class="fc"/>
+						<td colspan="2">
+							<div class="test" style="width:90%; overflow:hidden; display:inline-block">
+								<xsl:choose>
+									<xsl:when test="$extension = 'jpg' or $extension = 'jpeg' or $extension = 'gif' or $extension = 'bmp' or $extension = 'png'">
+										<img class="imgAtt" title="{$filename}" style="border:1px solid lightgray; max-width:800px; max-height:600px; margin-bottom:5px">
+											<xsl:attribute name="onload">checkImage(this)</xsl:attribute>
+											<xsl:attribute name='src'>Provider?type=getattach&amp;formsesid=<xsl:value-of select="$formsesid"/>&amp;doctype=<xsl:value-of select="$doctype"/>&amp;key=<xsl:value-of select="$docid"/>&amp;field=rtfcontent&amp;file=<xsl:value-of select='$filename'/></xsl:attribute>
+										</img>
+										<xsl:if test="$editmode = 'edit'">
+											<xsl:if test="comment =''">
+												<a href='' style="vertical-align:top;" title='tect'>
+													<xsl:attribute name='href'>javascript:addCommentToAttach('<xsl:value-of select="$id"/>')</xsl:attribute>
+													<img id="commentaddimg{$id}" src="/SharedResources/img/classic/icons/comment_add.png" style="width:16px; height:16px" >
+														<xsl:attribute name="title" select="//document/captions/add_comment/@caption"/>
+													</img>
+												</a>
+											</xsl:if>
+											<a href='' style="vertical-align:top; margin-left:8px">
+												<xsl:attribute name='href'>javascript:deleterow('<xsl:value-of select="$formsesid"/>','<xsl:value-of select='$filename'/>','<xsl:value-of select="$id" />')</xsl:attribute>
+												<img src="/SharedResources/img/iconset/cross.png" style="width:13px; height:13px">
+													<xsl:attribute name="title" select="//document/captions/delete_file/@caption"/>
+												</img>
+											</a>
+										</xsl:if>
+									</xsl:when>
+									<xsl:otherwise>
+										<img src="/SharedResources/img/iconset/file_extension_{$extension}.png" style="margin-right:5px">
+											<xsl:attribute name="onerror">javascript:changeAttIcon(this)</xsl:attribute>
+										</img>
+										<a style="vertical-align:5px">
+											<xsl:attribute name='href'>Provider?type=getattach&amp;formsesid=<xsl:value-of select="$formsesid"/>&amp;doctype=<xsl:value-of select="$doctype"/>&amp;key=<xsl:value-of select="$docid"/>&amp;field=rtfcontent&amp;id=rtfcontent&amp;file=<xsl:value-of select='$filename'/>	</xsl:attribute>
+											<xsl:value-of select='$filename'/>
+										</a>&#xA0;&#xA0;
+										<xsl:if test="$editmode = 'edit'">
+											<xsl:if test="comment =''">
+												<a href='' style="vertical-align:5px;">
+													<xsl:attribute name='href'>javascript:addCommentToAttach('<xsl:value-of select="$id"/>')</xsl:attribute>
+													<img id="commentaddimg{$id}" src="/SharedResources/img/classic/icons/comment_add.png" style="width:16px; height:16px">
+														<xsl:attribute name="title" select="//document/captions/add_comment/@caption"/>
+													</img>
+												</a>
+											</xsl:if>
+											<a href='' style="vertical-align:5px; margin-left:5px">
+												<xsl:attribute name='href'>javascript:deleterow('<xsl:value-of select="$formsesid"/>','<xsl:value-of select='$filename' />','<xsl:value-of select="$id"/>')</xsl:attribute>
+												<img src="/SharedResources/img/iconset/cross.png" style="width:13px; height:13px">
+													<xsl:attribute name ="title" select="//document/captions/delete_file/@caption"/>
+												</img>
+											</a>
+										</xsl:if>
+									</xsl:otherwise>
+								</xsl:choose>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td/>
+						<td colspan="2" style="color:#777; font-size:12px">
+							<xsl:if test="comment !=''">
+								<xsl:value-of select="concat(//document/captions/comments/@caption,' : ', comment)"/>
+								<br/><br/>
+							</xsl:if>
+						</td>
+					</tr>
+				</xsl:for-each>
+			</table>
+			<br/>
+			<br/>
+		</div>
+	</xsl:template>
 </xsl:stylesheet>

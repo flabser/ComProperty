@@ -134,6 +134,36 @@ function resetquickanswerbutton(){
 	preview = null ;
 }
 
+function SignUpload(){
+	if($("input[name=p_eds]").val() == ''){
+		infoDialog("Заполните поле 'пароль' для ЭЦП")
+	}else{
+		if($("input[name=cert]").val() == ''){
+			infoDialog("выберите сертификат подписи")
+		}else{
+			var file = $("input[name=cert]").val()
+			var fileLen=file.length,
+				symbol;
+			while(symbol !='.' || fileLen == 0){
+				symbol=(file.substring(fileLen-1,fileLen));
+				fileLen = fileLen - 1;
+			}
+			RegEx=/\s/g;
+			ext=file.substring(fileLen +1, file.length).replace(RegEx, "").toLowerCase();
+			if(ext != "p12"){
+				infoDialog("выберите сертификат подписи")
+			}else{
+				if($("input[name=filename]").length == 0){
+					infoDialog("не загружен файл отчета")
+				}else{
+					infoDialog("Файл отчета подписан")
+				}
+			}
+		}
+	}
+
+}
+
 $.fn.extend({
     notify : function(options) {
     	var defaults = { 
