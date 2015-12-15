@@ -1,17 +1,36 @@
 package monitoring.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import monitoring.model.constants.FuelType;
+import monitoring.model.constants.PropertyType;
+
 @Entity
-@Table(name = "automobiles")
-public class Automobile extends Property {
+@Table(name = "vehicles")
+public class Vehicle extends Property implements IProperty {
+	@Column(name = "body_number", length = 30)
 	private String bodyNumber;
+
 	private String category;
+
+	@Column(length = 20)
 	private String color;
-	private String fuelType;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "fuel_type", nullable = true, length = 16)
+	private FuelType fuelType = FuelType.UNKNOWN;
+
+	@Column(length = 10)
 	private String grnz;
+
+	@Column(name = "max_load")
 	private int maxLoad;
+
+	@Column(name = "engine_number", length = 30)
 	private String engineNumber;
 
 	public String getBodyNumber() {
@@ -38,11 +57,11 @@ public class Automobile extends Property {
 		this.color = color;
 	}
 
-	public String getFuelType() {
+	public FuelType getFuelType() {
 		return fuelType;
 	}
 
-	public void setFuelType(String fuelType) {
+	public void setFuelType(FuelType fuelType) {
 		this.fuelType = fuelType;
 	}
 
@@ -68,6 +87,11 @@ public class Automobile extends Property {
 
 	public void setEngineNumber(String engineNumber) {
 		this.engineNumber = engineNumber;
+	}
+
+	@Override
+	public PropertyType getType() {
+		return PropertyType.VEHICLE;
 	}
 
 }
