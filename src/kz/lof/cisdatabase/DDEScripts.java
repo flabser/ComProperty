@@ -1,4 +1,4 @@
-package kz.lof.database;
+package kz.lof.cisdatabase;
 
 public class DDEScripts {
 

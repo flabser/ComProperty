@@ -1,4 +1,4 @@
-package kz.lof.database;
+package kz.lof.cisdatabase;
 
 import static kz.flabs.runtimeobj.RuntimeObjUtil.cutText;
 
@@ -21,18 +21,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import javax.persistence.EntityManagerFactory;
 
 import org.apache.commons.dbcp.DelegatingConnection;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.persistence.config.PersistenceUnitProperties;
-import org.eclipse.persistence.jpa.PersistenceProvider;
 import org.postgresql.largeobject.LargeObject;
 import org.postgresql.largeobject.LargeObjectManager;
 
@@ -90,37 +85,13 @@ import kz.flabs.servlets.sitefiles.UploadedFile;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.pchelka.env.Environment;
-import kz.pchelka.server.Server;
 
 public class Database extends kz.flabs.dataengine.h2.Database implements IDatabase, Const {
-	protected EntityManagerFactory factory;
 
 	public Database(AppEnv env)
 			throws DatabasePoolException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		super(env, true);
 		databaseType = DatabaseType.POSTGRESQL;
-		Map<String, String> properties = new HashMap<String, String>();
-		properties.put(PersistenceUnitProperties.JDBC_DRIVER, env.globalSetting.driver);
-		properties.put(PersistenceUnitProperties.JDBC_USER, env.globalSetting.getDbUserName());
-		properties.put(PersistenceUnitProperties.JDBC_PASSWORD, env.globalSetting.getDbPassword());
-		properties.put(PersistenceUnitProperties.JDBC_URL, connectionURL);
-
-		// INFO,
-		// OFF,
-		// ALL,
-		// CONFIG (developing)
-		properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "CONFIG");
-		properties.put(PersistenceUnitProperties.DDL_GENERATION, PersistenceUnitProperties.CREATE_ONLY);
-		properties.put(PersistenceUnitProperties.DDL_GENERATION_MODE, PersistenceUnitProperties.DDL_BOTH_GENERATION);
-		properties.put(PersistenceUnitProperties.CREATE_JDBC_DDL_FILE, "createDDL.jdbc");
-		properties.put(PersistenceUnitProperties.DROP_JDBC_DDL_FILE, "dropDDL.jdbc");
-
-		PersistenceProvider pp = new PersistenceProvider();
-		factory = pp.createEntityManagerFactory("PropertyObjects", properties);
-		if (factory == null) {
-			Server.logger.warningLogEntry("the entity manager of \"" + env.appType + "\" has not been initialized");
-
-		}
 	}
 
 	@Override
@@ -513,7 +484,7 @@ public class Database extends kz.flabs.dataengine.h2.Database implements IDataba
 	@Override
 	public IForum getForum() {
 		return null;
-
+		// return new Forum(this, this.dbPool);
 	}
 
 	@Override
@@ -1047,7 +1018,7 @@ public class Database extends kz.flabs.dataengine.h2.Database implements IDataba
 	@Override
 	public IProjects getProjects() {
 		return null;
-
+		// return new ProjectOnDatabase(this);
 	}
 
 	@Override
@@ -1498,5 +1469,10 @@ public class Database extends kz.flabs.dataengine.h2.Database implements IDataba
 			SelectFormula sf = new SelectFormula(blocks);
 			return sf;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "version: adapted for ComProperty, URL:" + connectionURL;
 	}
 }
