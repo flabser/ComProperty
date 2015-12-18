@@ -61,6 +61,8 @@ class QueryOpen extends _FormQueryOpen {
 		if(doc.getField('propertycode')){
 			publishGlossaryValue("propertycode",doc.getValueString("propertycode").toInteger())
 		}
+		publishValue("kof",doc.getValueString("kof"))
+		publishValue("kuf",doc.getValueString("kuf"))
 		publishValue("acceptancedate",doc.getValueString("acceptancedate"))
 		if(doc.getField('region')){
 			publishGlossaryValue("region",doc.getValueGlossary("region"))
