@@ -1,5 +1,7 @@
 package monitoring.form.computerequipment
 
+import kz.flabs.appenv.AppEnv
+
 import java.util.Collection;
 import java.util.Map
 import kz.nextbase.script.*
@@ -46,12 +48,18 @@ class QueryOpen extends _FormQueryOpen {
 		
 		publishValue("title",getLocalizedWord("Оборудование - Компьютерное оборудование и орг. техника", lang) + " ")
 		publishEmployer("author",doc.getAuthorID())
+		publishValue("kof",doc.getValueString("kof"))
+		publishValue("kuf",doc.getValueString("kuf"))
 		if(doc.getField('balanceholder') && doc.getValueNumber("balanceholder") != 0){
-			def balanceholder = ses.getCurrentDatabase().getDocumentByComplexID(896, doc.getValueNumber("balanceholder"));
-			publishValue("balanceholder",doc.getValueNumber("balanceholder"))
-			publishValue("balanceholdername",balanceholder.getValueString("orgfullname"))
-			publishValue("balanceholdernamekaz",balanceholder.getValueString("orgfullnamekaz"))
-			publishValue("bin",balanceholder.getValueString("bin"))
+			try {
+				def balanceholder = ses.getCurrentDatabase().getDocumentByComplexID(896, doc.getValueNumber("balanceholder"));
+				publishValue("balanceholder", doc.getValueNumber("balanceholder"))
+				publishValue("balanceholdername", balanceholder.getValueString("orgfullname"))
+				publishValue("balanceholdernamekaz", balanceholder.getValueString("orgfullnamekaz"))
+				publishValue("bin", balanceholder.getValueString("bin"))
+			} catch (Exception e) {
+				AppEnv.logger.errorLogEntry(e)
+			}
 		}
 		publishValue("objectname",doc.getValueString("objectname"))
 		publishValue("limitdepreciation",doc.getValueString("limitdepreciation"))
