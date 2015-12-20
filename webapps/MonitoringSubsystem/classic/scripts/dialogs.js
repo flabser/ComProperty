@@ -308,7 +308,7 @@ var xhr_req =null;
 function findOrganization(){
 	var value=$('#searchCor').val();
 	queryOpt.keyword = value;
-	if(value.length > 2  || value.length == 0){
+	if(value.length > 1  || value.length == 0){
 		$("#picklist").css("cursor","wait");
 		$("#contentpane").html("<img id='loadingimg' src='/SharedResources/img/classic/loading9.gif' style='margin-top:170px; margin-left:10px'/>");
 		if(xhr_req){
