@@ -300,13 +300,16 @@ jQuery.fn.extend({
 });
 
 /* поиск организации */
+var xhr_req =null;
 function findOrganization(){
     var value=$('#searchCor').val();
-    $.ajax({
+	if(xhr_req){
+		xhr_req.abort()
+	}
+   	xhr_req = $.ajax({
         type: "get",
         url: 'Provider?type=page&id='+queryOpt.queryname+'&keyword='+value+'&page='+queryOpt.pagenum,
         success:function (data){
-
             if(queryOpt.isMultiValue=="false"){
                 if($.browser.msie){
                     while(data.match("checkbox")){
@@ -322,13 +325,12 @@ function findOrganization(){
         },
         error:function (xhr, ajaxOptions, thrownError){
             if (xhr.status == 400){
-                $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'/>")
-                $("body").append("<div id='errordata'>"+xhr.responseText+"</div>")
+                $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'/>");
+                $("body").append("<div id='errordata'>"+xhr.responseText+"</div>");
                 $("li[type='square'] > a").attr("href","javascript:backtocontent()")
             }
         }
     });
-
 }
 /* функция поиска в структуре*/
 function findCorStructure(){
