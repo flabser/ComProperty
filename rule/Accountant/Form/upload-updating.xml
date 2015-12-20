@@ -5,7 +5,7 @@
 	<doctype>main</doctype>
 	<events> 
 		<querysave source="file">accountant.form.uploadupdating.QuerySave</querysave>   
-		<postsave source="file">accountant.form.uploadupdating.PostSave</postsave>
+		<postsave source="JAVA_CLASS">accountant.form.uploadupdating.UploadExcelData</postsave>
 	</events>
 	<caption name="newdoc" source="KEYWORD">Новый документ</caption>
 	<caption name="logout" source="KEYWORD">Завершить работу</caption>

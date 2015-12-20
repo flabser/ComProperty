@@ -7,6 +7,10 @@
 		<name>PropertyObjects</name>
 		<driver>org.postgresql.Driver</driver>
 		<url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
+		 <implementation>
+			<idatabasedeployer>kz.lof.cisdatabase.DatabaseDeployer</idatabasedeployer>
+			<idatabase>kz.lof.cisdatabase.Database</idatabase>
+		</implementation> 
 		<username/>
 		<password/><connectionid>sWvO8Az5FS3U53zCXIeN4Q==@@@Fa6DjPagrK3U53zCXIeN4Q==</connectionid></database>
 	<externalmodule type="STRUCTURE">Structure</externalmodule>

@@ -53,6 +53,8 @@ class QueryOpen extends _FormQueryOpen {
 			publishValue("balanceholdernamekaz",balanceholder.getValueString("orgfullnamekaz"))
 			publishValue("bin",balanceholder.getValueString("bin"))
 		}
+		publishValue("kof",doc.getValueString("kof"))
+		publishValue("kuf",doc.getValueString("kuf"))
 		publishValue("objectname",doc.getValueString("objectname"))
 		publishValue("invnumber",doc.getValueString("invnumber"))
 		publishValue("isrented",doc.getValueString("isrented"))

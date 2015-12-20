@@ -6,8 +6,12 @@
 	<database autodeploy="OFF">
 		<name>Structure</name>
         <driver>org.postgresql.Driver</driver>
-     <!--    <url>jdbc:postgresql://localhost:5433/PropertyObjects</url> -->
-        <url>jdbc:postgresql://172.16.251.7:5432/CIS_Structure</url> 
+      <url>jdbc:postgresql://localhost:5433/PropertyObjects</url> 
+       <implementation>
+			<idatabasedeployer>kz.lof.cisdatabase.DatabaseDeployer</idatabasedeployer>
+			<idatabase>kz.lof.cisdatabase.Database</idatabase>
+		</implementation> 
+       <!--  <url>jdbc:postgresql://172.16.251.7:5432/CIS_Structure</url>  -->
 	<username>postgres</username>
 		<password>smartdoc</password> <connectionid>lx4FpYR3teHRXIKnEuFi7Q==@@@SQV4B9aefv3RXIKnEuFi7Q==</connectionid></database>
 	<daemons>

@@ -69,6 +69,8 @@ class QueryOpen extends _FormQueryOpen {
 		if(doc.getField('kt')){
 			publishGlossaryValue("kt",doc.getValueGlossary("kt"))
 		}
+		publishValue("kof",doc.getValueString("kof"))
+		publishValue("kuf",doc.getValueString("kuf"))
 		publishValue("note",doc.getValueString("note"))
 		publishValue("address",doc.getValueString("address"))
 		publishValue("home",doc.getValueString("home"))

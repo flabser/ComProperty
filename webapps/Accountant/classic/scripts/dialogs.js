@@ -399,7 +399,7 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 	$("body").css("cursor","wait");
 	$.ajax({
 		type: "get",
-		url: 'Provider?type=view&id='+query+'&keyword='+queryOpt.keyword+'&page='+queryOpt.pagenum,
+		url: 'Provider?type=page&id='+query+'&keyword='+queryOpt.keyword+'&page='+queryOpt.pagenum,
 		success:function (data){
 			if (data.match("login") && data.match("password")){
 				text="Cессия пользователя была закрыта, для продолжения работы необходима повторная авторизация";

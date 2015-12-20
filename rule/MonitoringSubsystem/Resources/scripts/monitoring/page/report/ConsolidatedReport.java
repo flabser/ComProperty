@@ -71,7 +71,7 @@ public class ConsolidatedReport extends PropertyReport {
 			log("Filling report \"" + reportName + "\"...");
 			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator
 					+ ses.getGlobalSettings().id + File.separator + "reports";
-			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, repPath);
+			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, Environment.trash);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
 			ArrayList<ConsolidatedDataBean> result = fetchReportData(categories, checkAcceptanceDate,
@@ -87,7 +87,8 @@ public class ConsolidatedReport extends PropertyReport {
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
 			JasperPrint print = JasperFillManager.fillReport(
-					JasperCompileManager.compileReportToFile(repPath + "\\templates\\" + reportName + ".jrxml"),
+					JasperCompileManager.compileReportToFile(
+							repPath + File.separator + "templates" + File.separator + reportName + ".jrxml"),
 					parameters, dSource);
 
 			String fileName = reportName + type;
@@ -95,7 +96,8 @@ public class ConsolidatedReport extends PropertyReport {
 					+ Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
 			if (type.equalsIgnoreCase(".pdf")) {
 				JRStyle style = new JRDesignStyle();
-				style.setPdfFontName(repPath + "\\templates\\fonts\\tahoma.ttf");
+				style.setPdfFontName(repPath + File.separator + "templates" + File.separator + "fonts" + File.separator
+						+ "tahoma.ttf");
 				style.setPdfEncoding("Cp1251");
 				style.setPdfEmbedded(true);
 				print.setDefaultStyle(style);
