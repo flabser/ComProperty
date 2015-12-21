@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" id="balanceholder" mode="on" history="off">
 	<description>Льготники</description>
-	<caching>NO_CACHING</caching>
+	<caching>CACHING_IN_USER_SESSION_SCOPE</caching>
 	<xsltfile>pages/balanceholder_list.xsl</xsltfile>
 	<element mode="ON" type="INCLUDED_PAGE">
 		<name>outline</name>
