@@ -16,7 +16,7 @@
 		<username>postgres</username>
 		<password>smartdoc</password>
 	</database>
-	<externalmodule type="STRUCTURE">Structure</externalmodule>
+	<externalmodule type="STAFF">Structure</externalmodule>
 	<daemons>
 		<daemon>
 			<class>kz.flabs.appdaemon.Recalculator</class>

@@ -152,6 +152,9 @@
 									</div>
 								</form>
 					    	</div>
+					    		<div  id="checker_result">
+					    	
+					    		</div>
 							<div class="ui-tabs-panel" id="tabs-3">
 								<table width="100%" border="0">
 									<tr>

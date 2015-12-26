@@ -3,16 +3,18 @@ package monitoring.model;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import monitoring.model.constants.PropertyType;
-import monitoring.model.embedded.Address;
+import reference.model.embedded.Address;
 
 @Entity
-@Table(name = "realestates")
+@Table(name = "real_estates")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "RealEstate.findAll", query = "SELECT m FROM RealEstate AS m ORDER BY m.regDate")
-public class RealEstate extends Property implements IProperty {
+public class RealEstate extends Property {
 	@Embedded
 	private Address address;
 
@@ -43,11 +45,6 @@ public class RealEstate extends Property implements IProperty {
 
 	public void setMaterial(String material) {
 		this.material = material;
-	}
-
-	@Override
-	public PropertyType getType() {
-		return PropertyType.REAL_ESTATE;
 	}
 
 }

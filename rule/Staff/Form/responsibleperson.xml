@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="form" id="responsibleperson" mode="on" >
+	<description>Регистрация ответственного лица</description>
+	<xsltfile>forms/employer.xsl</xsltfile>
+    <doctype>employer</doctype>
+	<events> 
+		<queryopen source="file">staff.form.responsibleperson.QueryOpen</queryopen>
+		<querysave source="file">staff.form.responsibleperson.QuerySave</querysave>
+        <!--<postsave source="file">form.reg_responsibleperson.PostSave</postsave>-->
+	</events>
+	<caption name="newdoc" source="KEYWORD">Новый документ</caption>
+	<caption name="logout" source="KEYWORD">Завершить работу</caption>
+	<caption name="editing" source="KEYWORD">Редактирование</caption>
+	<caption name="readonly" source="KEYWORD">Только для чтения</caption>
+	<caption name="modenotdefined" source="KEYWORD">Режим не определен</caption>
+	<caption name="saved" source="KEYWORD">Сохраненный</caption>
+	<caption name="saveclose" source="KEYWORD">Сохранить и закрыть</caption>
+	<caption name="close" source="KEYWORD">Закрыть</caption>
+	<caption name="name" source="KEYWORD">Регистрация отвественного лица по загрузке объектов</caption>
+	<caption name="login" source="KEYWORD">Логин</caption>
+	<caption name="password" source="KEYWORD">Пароль</caption>
+	<caption name="reenterpassword" source="KEYWORD">Повтор пароля</caption>
+	<caption name="help" source="KEYWORD">Помощь</caption>
+	<caption name="properties" source="KEYWORD">Свойства</caption>
+	<caption name="documentsavedcaption" source="KEYWORD">Идет сохранение документа...</caption>
+	<caption name="documentmarkread" source="KEYWORD">Документ отмечен как прочтенный</caption>
+	<caption name="pleasewaitdocsave" source="KEYWORD">Пожалуйста ждите... Идет сохранение документа</caption>
+	<caption name="saving" source="KEYWORD">Сохранение</caption>
+	<caption name="onlynumber" source="KEYWORD">Поле может содержать только числовые значения</caption>
+	<caption name ="view_userprofile" source ="KEYWORD">Посмотреть свойства текущего пользователя</caption>
+	<caption name ="fio" source ="KEYWORD">Ф.И.О</caption>
+	<caption name ="phone" source ="KEYWORD">Контактные телефоны</caption>
+	<caption name ="email" source ="KEYWORD">Электронный адрес</caption>
+	<caption name ="orgname" source ="KEYWORD">Наименование учреждения</caption>
+    <caption name ="documentation" source ="KEYWORD">Инструкция по работе с системой</caption>
+    <caption name ="cancel" source ="KEYWORD">Закрыть</caption>
+    <caption name ="searchcaption" source ="KEYWORD">поиск</caption>
+    <caption name ="employer" source ="KEYWORD">Ответственное лицо по загрузке объектов</caption>
+    <caption name ="pleasewaitactivate" source ="KEYWORD">Пожалуйста ждите... Идет подтверждение</caption>
+    <caption name="attachments" source="KEYWORD">Вложения</caption>
+</rule>

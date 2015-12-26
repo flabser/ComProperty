@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<vocabulary primary="ENG">
+	<sentence mode="on" keyword="common_reference_data">
+		<entry lang="ENG">Common reference data</entry>
+		<entry lang="ENG">Общий справочник</entry>
+		<entry lang="KAZ"></entry>
+	    <entry lang="CHO"></entry>		
+	</sentence>
+	<sentence mode="on" keyword="specific_reference_dat">
+		<entry lang="ENG">Application reference data</entry>
+		<entry lang="ENG">Справочник приложения</entry>
+		<entry lang="KAZ"></entry>
+	    <entry lang="CHO"></entry>		
+	</sentence>
+	
+</vocabulary>
+

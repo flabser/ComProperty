@@ -1,26 +1,34 @@
 package monitoring.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.dataengine.jpa.AppEntity;
+import kz.flabs.dataengine.jpa.SecureAppEntity;
+import kz.nextbase.script._URL;
 import monitoring.model.constants.KufType;
 
 @Entity
 @Table(name = "properties")
-public class Property extends AppEntity {
-	@Column(length = 10)
+@NamedQuery(name = "Property.findAll", query = "SELECT m FROM Property AS m ORDER BY m.regDate")
+public class Property extends SecureAppEntity {
+	@Column(length = 16)
 	private String kof;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "kuf_type", nullable = false, length = 32)
+	@Column(name = "kuf", nullable = false, length = 32)
 	private KufType kuf;
 
 	@Column(name = "balance_cost")
 	private float balanceCost;
+
+	@Column(name = "balance_holder")
+	private int balanceHolder;
 
 	private String description;
 
@@ -41,7 +49,11 @@ public class Property extends AppEntity {
 	@Column(name = "year_release")
 	private int yearRelease;
 
-	public String getKof() {
+	@Column(name = "acceptance_date")
+	private Date acceptanceDate;
+
+	@Column(name = "year_release")
+	private String getKof() {
 		return kof;
 	}
 
@@ -63,6 +75,14 @@ public class Property extends AppEntity {
 
 	public void setBalanceCost(float balanceCost) {
 		this.balanceCost = balanceCost;
+	}
+
+	public int getBalanceHolder() {
+		return balanceHolder;
+	}
+
+	public void setBalanceHolder(int balanceHolder) {
+		this.balanceHolder = balanceHolder;
 	}
 
 	public String getDescription() {
@@ -119,6 +139,19 @@ public class Property extends AppEntity {
 
 	public void setYearRelease(int yearRelease) {
 		this.yearRelease = yearRelease;
+	}
+
+	public Date getAcceptanceDate() {
+		return acceptanceDate;
+	}
+
+	public void setAcceptanceDate(Date acceptanceDate) {
+		this.acceptanceDate = acceptanceDate;
+	}
+
+	@Override
+	public _URL getURL() {
+		return new _URL("Provider?id=" + getKuf().name().toLowerCase() + "_form&amp;docid=" + getId());
 	}
 
 }

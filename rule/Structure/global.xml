@@ -3,13 +3,13 @@
 	<orgname>ТОО "Avanti"</orgname>
 	<liccount>100</liccount>
 	<logo>structure_small.png</logo>
-	<database autodeploy="OFF">
+	<database autodeploy="ON">
 		<name>Structure</name>
         <driver>org.postgresql.Driver</driver>
       <url>jdbc:postgresql://localhost:5433/PropertyObjects</url> 
        <implementation>
-			<idatabasedeployer>kz.lof.cisdatabase.DatabaseDeployer</idatabasedeployer>
-			<idatabase>kz.lof.cisdatabase.Database</idatabase>
+			<idatabasedeployer>kz.lof.jpadatabase.DatabaseDeployer</idatabasedeployer>
+			<idatabase>kz.lof.jpadatabase.Database</idatabase>
 		</implementation> 
        <!--  <url>jdbc:postgresql://172.16.251.7:5432/CIS_Structure</url>  -->
 	<username>postgres</username>

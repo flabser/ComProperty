@@ -21,8 +21,14 @@
         <app>
             <name mode="on">Structure</name>
         </app>
+         <app>
+            <name mode="on">Staff</name>
+        </app>
+         <app>
+            <name mode="on">Reference</name>
+        </app>
         <app>
-            <name mode="off">Accountant</name>
+            <name mode="on">Accountant</name>
         </app>
         <app>
             <name mode="on">Workspace</name>
@@ -31,7 +37,7 @@
             <name mode="on">MonitoringSubsystem</name>
         </app>
         <app>
-            <name mode="off">Glossary</name>
+            <name mode="on">Glossary</name>
         </app>
         <app>
             <name mode="off">RegistrySubsystem</name>

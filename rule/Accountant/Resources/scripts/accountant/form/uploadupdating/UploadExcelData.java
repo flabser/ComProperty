@@ -48,8 +48,8 @@ public class UploadExcelData extends _FormPostSave {
 			StringBuilder defectRows = new StringBuilder();
 			StringBuilder savedRows = new StringBuilder();
 			String path = new File("").getAbsolutePath() + File.separator + "rule" + File.separator + "Accountant"
-					+ File.separator + "Resources" + File.separator + "scripts" + File.separator + File.separator
-					+ "accountant" + File.separator + "resources" + File.separator + "kuf.properties";
+					+ File.separator + "Resources" + File.separator + "scripts" + File.separator + "accountant"
+					+ File.separator + "resources" + File.separator + "kuf.properties";
 			FileInputStream input = new FileInputStream(path);
 			Properties kufProp = new Properties();
 			kufProp.load(input);
@@ -62,6 +62,8 @@ public class UploadExcelData extends _FormPostSave {
 					ws.setEncoding("Cp1252");
 					Workbook workbook = Workbook.getWorkbook(xf, ws);
 					Sheet sheet = workbook.getSheet(0);
+
+					new ImportData().importFromExcelSheet(sheet, ses, kufProp);
 
 					int maxCount = 100;
 					for (int i = 1; i < sheet.getRows(); i++) {

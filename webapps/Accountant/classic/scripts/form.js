@@ -866,11 +866,13 @@ function checkFileStructure(fileid, trId){
     var notify = $("body").notify({"text":"Идет проверка структуры файла. Пожалуйста подождите...","onopen":function(){$("body")},"loadanimation":false})
     $.ajax({
         type: "get",
-        datatype: "xml",
+        datatype: "html",
         url: "Provider?type=page&id=check_file_structure",
         data: "fileid=" + fileid,
-        success: function(xml){
-            var result = $(xml).find("result")
+        success: function(data){
+        	  $("#checker_result").html(data);    
+        	
+           /* var result = $(xml).find("result")
             if(result.attr("status") != "success") {
                 $("#btnsavedoc").attr("disabled","disabled").addClass("ui-state-disabled")
                 $("#"+trId).remove()
@@ -891,7 +893,7 @@ function checkFileStructure(fileid, trId){
                 text += "Балансовая стоимость (тг.): " + result.attr("balancecost") + "<br/>"
                 text += "kuf: " + result.attr("kuf") + "<br/>"
                 infoDialogBig(text, "Проверьте правильность данных", trId)
-            }
+            }*/
             $("body").hidenotify({"delay":200,"onclose":function(){$("#notifydiv").remove()}})
             disableblockform()
         },

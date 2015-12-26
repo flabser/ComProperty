@@ -8,16 +8,16 @@
 	<database autodeploy="OFF">
 		<name>ComProperty</name>
 		<driver>org.postgresql.Driver</driver>
-		<url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
+		<url>jdbc:postgresql://localhost:5433/jpatest</url>
 		<implementation>
-			<idatabasedeployer>kz.lof.cisdatabase.DatabaseDeployer
+			<idatabasedeployer>kz.lof.jpadatabase.DatabaseDeployer
 			</idatabasedeployer>
-			<idatabase>kz.lof.cisdatabase.Database</idatabase>
+			<idatabase>kz.lof.jpadatabase.Database</idatabase>
 		</implementation>
 		<username>postgres</username>
 		<password>smartdoc</password>
 	</database>
-	<externalmodule type="STRUCTURE">Structure</externalmodule>
+	<externalmodule type="STAFF">Structure</externalmodule>
 	<daemons>
 		<cyclecontrol>
 			<scheduler mode="off">

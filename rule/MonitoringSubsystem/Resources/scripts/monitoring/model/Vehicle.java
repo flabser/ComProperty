@@ -4,14 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import monitoring.model.constants.FuelType;
-import monitoring.model.constants.PropertyType;
 
 @Entity
 @Table(name = "vehicles")
-public class Vehicle extends Property implements IProperty {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Vehicle extends Property {
 	@Column(name = "body_number", length = 30)
 	private String bodyNumber;
 
@@ -87,11 +89,6 @@ public class Vehicle extends Property implements IProperty {
 
 	public void setEngineNumber(String engineNumber) {
 		this.engineNumber = engineNumber;
-	}
-
-	@Override
-	public PropertyType getType() {
-		return PropertyType.VEHICLE;
 	}
 
 }

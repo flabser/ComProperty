@@ -1,19 +1,27 @@
 package monitoring.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import monitoring.model.constants.PropertyType;
-
 @Entity
-@Table(name = "personalestates")
+@Table(name = "personal_estates")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "PersonalEstate.findAll", query = "SELECT m FROM PersonalEstate AS m ORDER BY m.regDate")
-public class PersonalEstate extends Property implements IProperty {
+public class PersonalEstate extends Property {
 
-	@Override
-	public PropertyType getType() {
-		return PropertyType.PERSONAL_ESTATE;
+	@Column(name = "ready_to_use")
+	private boolean readyToUse;
+
+	public boolean isReadyToUse() {
+		return readyToUse;
+	}
+
+	public void setReadyToUse(boolean readyToUse) {
+		this.readyToUse = readyToUse;
 	}
 
 }

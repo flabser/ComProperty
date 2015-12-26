@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="page"  mode="on" history="on">
+	<description>Справочники - Страна</description>
+	<caching>NO_CACHING</caching>
+	<xsltfile>pages/page-glossary.xsl</xsltfile>
+	<element mode="ON" type="INCLUDED_PAGE">
+		<name>outline</name>
+		<value>outline</value>
+	</element>
+	<element mode="ON" type="SCRIPT">
+		<name>action_bar</name>
+		<events>
+			<doscript source="JAVA_CLASS">reference.page.actionbar.Countries</doscript>
+		</events>
+	</element>
+	<element mode="ON" type="SCRIPT">
+		<name>view_content</name>
+		<events>
+			<doscript source="JAVA_CLASS">reference.page.view.Countries</doscript>
+		</events>
+    </element>
+	<element mode="ON" type="INCLUDED_PAGE">
+		<name>share_view_captions</name>
+		<value>share_view_captions</value>
+	</element>
+</rule>
