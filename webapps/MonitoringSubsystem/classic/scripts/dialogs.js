@@ -248,7 +248,11 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 				}
                 if((queryOpt.fieldname == 'organization' || queryOpt.fieldname == 'balanceholder') && queryOpt.queryname == 'balanceholder'){
                     searchTbl ="<font style='vertical-align:3px;  color:#555555'>"+searchcaption+":</font>";
-                    searchTbl +=" <input type='text' id='searchCor'  margin-left:3px;' size='40' onKeyUp='findOrganization()'/>";
+					if($.browser.msie){
+						searchTbl +=" <input type='text' id='searchCor'  margin-left:3px;' size='40' onpropertychange='findOrganization()'/>";
+					}else{
+						searchTbl +=" <input type='text' id='searchCor'  margin-left:3px;' size='40' oninput='findOrganization()'/>";
+					}
                     $("#divSearch").append(searchTbl);
                 }
 
@@ -300,40 +304,51 @@ jQuery.fn.extend({
 });
 
 /* поиск организации */
+var xhr_req =null;
 function findOrganization(){
-    var value=$('#searchCor').val();
-    $.ajax({
-        type: "get",
-        url: 'Provider?type=page&id='+queryOpt.queryname+'&keyword='+value+'&page='+queryOpt.pagenum,
-        success:function (data){
-
-            if(queryOpt.isMultiValue=="false"){
-                if($.browser.msie){
-                    while(data.match("checkbox")){
-                        data=data.replace("checkbox", "radio");
-                    }
-                }else{
-                    elem=$(data);
-                    $(elem).find("input[type=checkbox]").prop("type","radio")
-                    data= elem;
-                }
-            }
-            $("#contentpane").html(data);
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-            if (xhr.status == 400){
-                $("body").children().wrapAll("<div id='doerrorcontent' style='display:none'/>")
-                $("body").append("<div id='errordata'>"+xhr.responseText+"</div>")
-                $("li[type='square'] > a").attr("href","javascript:backtocontent()")
-            }
-        }
-    });
-
+	var value=$('#searchCor').val();
+	queryOpt.keyword = value;
+	if(value.length > 1  || value.length == 0){
+		$("#picklist").css("cursor","wait");
+		$("#contentpane").html("<img id='loadingimg' src='/SharedResources/img/classic/loading9.gif' style='margin-top:170px; margin-left:10px'/>");
+		if(xhr_req){
+			xhr_req.abort()
+		}
+		xhr_req = $.ajax({
+			type: "get",
+			url: 'Provider?type=page&id='+queryOpt.queryname+'&keyword='+value+'&page=1',
+			success:function (data){
+				if(queryOpt.isMultiValue=="false"){
+					if($.browser.msie){
+						while(data.match("checkbox")){
+							data=data.replace("checkbox", "radio");
+						}
+					}else{
+						elem=$(data);
+						$(elem).find("input[type=checkbox]").prop("type","radio");
+						data= elem;
+					}
+				}
+				$("#contentpane").html(data);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				if (xhr.status == 400){
+					$("body").children().wrapAll("<div id='doerrorcontent' style='display:none'/>");
+					$("body").append("<div id='errordata'>"+xhr.responseText+"</div>");
+					$("li[type='square'] > a").attr("href","javascript:backtocontent()")
+				}
+			},
+			complete:function(){
+				$("#picklist").css("cursor","default")
+			}
+		});
+	}
 }
+
 /* функция поиска в структуре*/
 function findCorStructure(){
 	var value=$('#searchCor').val();
-	var len=value.length
+	var len=value.length;
 	if (len > 0){
 		$("div[name=itemStruct]").css("display","none");
 		$("#contentpane").find("div[name=itemStruct]").each(function(){
@@ -348,6 +363,8 @@ function findCorStructure(){
 /* функция выбора страницы в диалогах*/
 function selectPage(page){
 	queryOpt.pagenum = page;
+	$("#picklist").css("cursor","wait");
+	$("#contentpane").html("<img id='loadingimg' src='/SharedResources/img/classic/loading9.gif' style='margin-top:170px; margin-left:10px'/>");
 	$.ajax({
 		type: "get",
 		url: 'Provider?type=page&id='+ queryOpt.queryname +'&page='+ queryOpt.pagenum +"&keyword="+queryOpt.keyword,
@@ -359,7 +376,8 @@ function selectPage(page){
 			}
 			$("#contentpane").html(data);
 			$('#btnChangeView').attr("href","javascript:changeViewStructure("+queryOpt.dialogview+")");
-			$('#searchCor').focus()
+			$('#searchCor').focus();
+			$("#picklist").css("cursor","default");
 		}
 	});
 }

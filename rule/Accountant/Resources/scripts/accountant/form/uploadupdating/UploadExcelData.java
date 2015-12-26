@@ -129,6 +129,8 @@ public class UploadExcelData extends _FormPostSave {
 							_doc.setValueString("address", region + ", " + address);
 							_doc.setValueString("propertycode_name", propertycode_name);
 
+							_doc.setValueNumber("balanceholder", ses.getCurrentAppUser().getObl());
+
 							_doc.setValueDate("acceptancedate", acceptancedate);
 							_doc.setValueString("originalcost",
 									Float.toString(Util.convertStringToFloat(originalcost)));
@@ -139,7 +141,8 @@ public class UploadExcelData extends _FormPostSave {
 							_doc.setAuthor(ses.getCurrentAppUser().getUserID());
 
 							_doc.setViewText(name);
-							_doc.addViewText(originalcost);
+							//_doc.addViewText(originalcost);
+							_doc.addViewText(name);
 							_doc.addViewText(ses.getCurrentAppUser().getFullName());
 							_doc.addViewText(kof + "/" + kuf);
 							_doc.setViewDate(new Date());
