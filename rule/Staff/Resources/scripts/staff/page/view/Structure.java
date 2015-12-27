@@ -20,15 +20,18 @@ public class Structure extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		println(formData);
+		List<_IXMLContent> content = new ArrayList<_IXMLContent>();
 		StructureDAO dao = new StructureDAO(session);
 		Organization<_IPOJOObject> org = dao.findPrimaryOrg();
-		List<Department> deps = org.getDepartments();
-		List<Employer> emps = org.getEmployers();
-		List<_IXMLContent> content = new ArrayList<_IXMLContent>();
-		content.add(new _POJOObjectWrapper(org));
-		content.add(new _POJOListWrapper(emps, emps.size()));
-		content.add(new _POJOListWrapper(deps, deps.size()));
-
+		if (org != null) {
+			List<Department> deps = org.getDepartments();
+			List<Employer> emps = org.getEmployers();
+			content.add(new _POJOObjectWrapper(org));
+			content.add(new _POJOListWrapper(emps, emps.size()));
+			content.add(new _POJOListWrapper(deps, deps.size()));
+		} else {
+			content.add(new _POJOListWrapper(getLocalizedWord("Primary organization has not been found", lang)));
+		}
 		setContent(content);
 	}
 

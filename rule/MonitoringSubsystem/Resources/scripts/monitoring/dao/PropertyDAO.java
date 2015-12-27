@@ -6,11 +6,14 @@ import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import kz.flabs.dataengine.jpa.DAO;
 import kz.flabs.dataengine.jpa.IAppEntity;
+import kz.flabs.dataengine.jpa.SecureAppEntity;
 import kz.nextbase.script._Session;
 import monitoring.model.Property;
 import monitoring.model.constants.KufType;
@@ -19,18 +22,6 @@ public class PropertyDAO<T1 extends IAppEntity, K1> extends DAO<Property, UUID> 
 
 	public PropertyDAO(_Session session) {
 		super(Property.class, session);
-	}
-
-	public T1 findById(Class<T1> entityClass, K1 id) {
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		try {
-			String jpql = "SELECT m FROM " + entityClass.getName() + " AS m WHERE m.id = :id";
-			TypedQuery<T1> q = em.createQuery(jpql, entityClass);
-			q.setParameter("id", id);
-			return q.getSingleResult();
-		} finally {
-			em.close();
-		}
 	}
 
 	public List<T1> findAllByIds(Class<T1> entityClass, List<K1> ids) {
@@ -74,10 +65,15 @@ public class PropertyDAO<T1 extends IAppEntity, K1> extends DAO<Property, UUID> 
 	public Long getCountByKufType(KufType kuf) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
-			String jpql = "SELECT count(m) FROM Property AS m WHERE m.kuf IN :kuf";
-			Query q = em.createQuery(jpql);
-			q.setParameter("kuf", EnumSet.of(kuf));
-			return (Long) q.getSingleResult();
+			CriteriaBuilder cb = em.getCriteriaBuilder();
+			CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+			Root<Property> c = cq.from(Property.class);
+			CriteriaQuery<Long> select = cq.select(cb.count(c));
+			select.where(c.get("kuf").in(EnumSet.of(kuf)));
+			if (SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
+				select.where(c.get("readers").in((long) user.docID));
+			}
+			return em.createQuery(cq).getSingleResult();
 		} finally {
 			em.close();
 		}
@@ -86,24 +82,17 @@ public class PropertyDAO<T1 extends IAppEntity, K1> extends DAO<Property, UUID> 
 	public List<Property> findAllByKufType(KufType kuf, int firstRec, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
-			String jpql = "SELECT m FROM  Property AS m WHERE m.kuf IN :kuf";
-			TypedQuery<Property> q = em.createQuery(jpql, Property.class);
-			q.setFirstResult(firstRec);
-			q.setMaxResults(pageSize);
-			q.setParameter("kuf", EnumSet.of(kuf));
-			return q.getResultList();
-		} finally {
-			em.close();
-		}
-	}
-
-	public List<T1> findAllByKufType(Class<T1> entityClass, KufType kuf) {
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		try {
-			String jpql = "SELECT m FROM " + entityClass.getName() + " AS m WHERE m.kuf IN :kuf";
-			TypedQuery<T1> q = em.createQuery(jpql, entityClass);
-			q.setParameter("kuf", EnumSet.of(kuf));
-			return q.getResultList();
+			CriteriaQuery<Property> cq = em.getCriteriaBuilder().createQuery(Property.class);
+			Root<Property> c = cq.from(Property.class);
+			CriteriaQuery<Property> select = cq.select(c);
+			select.where(c.get("kuf").in(EnumSet.of(kuf)));
+			if (SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
+				select.where(c.get("readers").in((long) user.docID));
+			}
+			TypedQuery<Property> typedQuery = em.createQuery(select);
+			typedQuery.setFirstResult(firstRec);
+			typedQuery.setMaxResults(pageSize);
+			return typedQuery.getResultList();
 		} finally {
 			em.close();
 		}

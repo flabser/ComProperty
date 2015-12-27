@@ -76,8 +76,8 @@
 		<html>
 			<head>
 				<title>4MS Structure - <xsl:value-of select="//captions/title/@caption"/></title>
-				<link type="text/css" rel="stylesheet" href="classic/css/outline.css"/>
-				<link type="text/css" rel="stylesheet" href="classic/css/main.css"/>
+				<link type="text/css" rel="stylesheet" href="css/outline.css"/>
+				<link type="text/css" rel="stylesheet" href="css/main.css"/>
 				<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/css/smoothness/jquery-ui-1.8.20.custom.css"/>
 				<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/js/hotnav/jquery.hotnav.css"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/jquery-1.4.2.js"/>
@@ -96,9 +96,9 @@
 				<script type="text/javascript" src="/SharedResources/jquery/js/hotnav/jquery.hotnav.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/scrollTo/scrollTo.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/tiptip/jquery.tipTip.js"/>
-				<script type="text/javascript" src="classic/scripts/outline.js"/>
-				<script type="text/javascript" src="classic/scripts/view.js"/>
-				<script type="text/javascript" src="classic/scripts/page.js"/>
+				<script type="text/javascript" src="scripts/outline.js"/>
+				<script type="text/javascript" src="scripts/view.js"/>
+				<script type="text/javascript" src="scripts/page.js"/>
 				<script type="text/javascript">
 					$(document).ready(function(){
 						$(".button_panel button").button();

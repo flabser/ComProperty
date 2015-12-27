@@ -11,6 +11,7 @@ import jxl.LabelCell;
 import jxl.Sheet;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Session;
+import kz.nextbase.script.struct._Employer;
 import kz.pchelka.server.Server;
 import monitoring.dao.PropertyDAO;
 import monitoring.model.PersonalEstate;
@@ -85,7 +86,10 @@ public class ImportData {
 				addr.setAdditionalInfo(address);
 				prop.setOriginalCost(Util.convertStringToFloat(originalcost));
 				prop.setBalanceCost(Util.convertStringToFloat(balancecost));
-				prop.setAuthor(ses.getCurrentAppUser().getUserID());
+				prop.setAuthor(ses.getUser());
+				_Employer emp = ses.getStructure().getEmployer("cgalina");
+				prop.addEditor(emp.employer.getUser());
+
 				if (prop instanceof PersonalEstate) {
 					PersonalEstate pe = (PersonalEstate) prop;
 					pe.setReadyToUse(true);

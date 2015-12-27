@@ -45,10 +45,10 @@
 
 	<!-- Набор javascript библиотек -->
 	<xsl:template name="cssandjs">
-			<link type="text/css" rel="stylesheet" href="classic/css/main.css?ver=3"/>
-		<link type="text/css" rel="stylesheet" href="classic/css/form.css?ver=3"/>
-		<link type="text/css" rel="stylesheet" href="classic/css/actionbar.css?ver=3"/>
-		<link type="text/css" rel="stylesheet" href="classic/css/dialogs.css?ver=3"/>
+			<link type="text/css" rel="stylesheet" href="css/main.css?ver=3"/>
+		<link type="text/css" rel="stylesheet" href="css/form.css?ver=3"/>
+		<link type="text/css" rel="stylesheet" href="css/actionbar.css?ver=3"/>
+		<link type="text/css" rel="stylesheet" href="css/dialogs.css?ver=3"/>
 		<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/css/smoothness/jquery-ui-1.8.20.custom.css"/>
 		<link type="text/css" rel="Stylesheet" media="screen" href="/SharedResources/jquery/js/tiptip/tipTip.css"/>
 		<link rel="Stylesheet" type="text/css" href="/SharedResources/jquery/js/jhtmlarea/style/jHtmlArea.css"/>
@@ -68,10 +68,10 @@
 		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.tabs.min.js"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.button.min.js"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/tiptip/jquery.tipTip.js"/>
-		<script type="text/javascript" src="classic/scripts/form.js?ver=3"/>
-		<script type="text/javascript" src="classic/scripts/coord.js?ver=3"/>
-		<script type="text/javascript" src="classic/scripts/dialogs.js?ver=3"/>
-		<script type="text/javascript" src="classic/scripts/outline.js?ver=3"/>
+		<script type="text/javascript" src="scripts/form.js?ver=3"/>
+		<script type="text/javascript" src="scripts/coord.js?ver=3"/>
+		<script type="text/javascript" src="scripts/dialogs.js?ver=3"/>
+		<script type="text/javascript" src="scripts/outline.js?ver=3"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/cookie/jquery.cookie.js"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/jhtmlarea/scripts/jHtmlArea-0.7.0.js"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/hotnav/jquery.hotkeys.js"/>
@@ -177,7 +177,7 @@
 	</xsl:template>
 	
 	<xsl:template name="documentheader">
-		<div style="position:absolute; top:0px; left:0px; width:100%; background:url(classic/img/yellow_background.jpg); height:70px; border-bottom:1px solid #fcdd76; z-index:2">
+		<div style="position:absolute; top:0px; left:0px; width:100%; background:url(img/yellow_background.jpg); height:70px; border-bottom:1px solid #fcdd76; z-index:2">
 			<span style="float:left">
 				<img alt="" src ="/SharedResources/logos/structure_small.png" style="margin:5px 5px 0px 10px"/>
 				<font style="font-size:1.5em; vertical-align:20px; color:#555555; margin-left:5px">4MS</font>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:import href="templates/view.xsl"/>
 	<xsl:output method="html" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="yes"/>
 	<xsl:template match="/request/history">
@@ -29,16 +30,14 @@
 				<script type="text/javascript" src="/SharedResources/jquery/js/ui/jquery.ui.tabs.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/ui/jquery.ui.button.js"/>
 				<script type="text/javascript">    
-					$(function(){
-						$("button").button();
-					});
+					$(function() { $( "button" ).button();});
     			</script>
 			</head>
 			<body style="font-family: Verdana, arial, helvetica, sans-serif; padding:0px; margin:0px">
-				<div  style="position:absolute;  top:0px; left:0px; width:100%; height:70px; border-bottom:1px solid rgba(190,213,224,0.89); background:url('classic/img/yellow_background.jpg');">
-				    <span style="float:left">
-						<img alt="" src ="classic/img/structure-logo.png" style="margin:5px 5px 0px 10px"/>
-						<font style="font-size:1.5em; vertical-align:15px; color:#555555">4MS Structure </font>
+				<div id="header-view">
+					<span style="float:left">
+						<img alt="" src ="classic/img/4ms-logo_small.png" style="margin:10px 5px 0px 10px"/>
+						<font style="font-size:1.5em; vertical-align:10px; color:#555555">4MS Workflow </font>
 					</span>
 					<span style="float:right; padding:5px 5px 5px 0px" >
 						<a id="currentuser" target="_parent" title="Посмотреть свойства текущего пользователя" href=" Provider?type=edit&amp;element=userprofile&amp;id=userprofile" style="text-decoration:none;color: #555555 ; font: 11px Tahoma; font-weight:bold">
@@ -47,29 +46,21 @@
 						<a target="_parent" href="Logout" id="logout" title="{outline/fields/logout/@caption}" style="text-decoration:none;color: #555555 ; font: 11px Tahoma; font-weight:bold">
 							<font style="margin-left:15px;"><xsl:value-of select="captions/logout/@caption"/></font> 
 						</a>
-						<a target="_parent" id="helpbtn" href="Provider?type=page&amp;id=help_summary" title="Помощь" style="text-decoration:none;color: #555555 ; font: 11px Tahoma; font-weight:bold">
+						<a target="_parent" id="helpbtn" href="Provider?type=static&amp;id=help_summary" title="Помощь" style="text-decoration:none;color: #555555 ; font: 11px Tahoma; font-weight:bold">
 							<font style="margin-left:15px;"><xsl:value-of select="captions/helpcaption/@caption"/></font> 
 						</a>
 					</span>				
 				</div>
-				<div style="width:100%; position:absolute; top:80px;">
-					<button style="float:right; margin-right:5px">
-						<xsl:attribute name="onclick">javascript:window.history.back()</xsl:attribute>
-						<img src="/SharedResources/img/iconset/cross.png" class="button_img" style="width:16px; vertical-align:top"/>
-						<font style="font-size:12px; margin-left:5px; vertical-align:7px">Закрыть</font>
-					</button>
-				</div>
-				<div class="help_bar" style="margin:380px auto 0px; width:500px; text-align:center">
-					<font style="color:#444; font-size:18px">Страница помощи временно недоступна</font>
-					<!-- <span style="margin-left:5px">
+				<div class="help_bar" style="margin-top:85px">
+					<span style="margin-left:5px">
 						<b>Категория :</b>
 						<xsl:value-of select="content/category"/>
 						<button style="float:right">
-							<xsl:attribute name="onclick">javascript:CancelForm(&quot;<xsl:value-of select="/request/history/entry[@type eq 'view'][last()]"/>&quot;)</xsl:attribute>
+							<xsl:attribute name="onclick">javascript:window.history.back()</xsl:attribute>
 							<img src="/SharedResources/img/iconset/cross.png" class="button_img" style="width:16px; vertical-align:top"/>
 							<font style="font-size:12px; margin-left:5px; vertical-align:7px">Закрыть</font>
 						</button>
-					</span>  -->
+					</span>
 				</div>
 				<div style="font-family:verdana; margin-top:100px">
 					<xsl:for-each select="content/*">

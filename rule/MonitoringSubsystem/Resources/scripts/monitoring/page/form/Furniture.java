@@ -23,7 +23,7 @@ public class Furniture extends _DoPage {
 		PersonalEstate entity = null;
 		if (!id.equals("")) {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
-			entity = dao.findById(PersonalEstate.class, UUID.fromString(id));
+			entity = (PersonalEstate) dao.findById(UUID.fromString(id));
 		} else {
 			entity = new PersonalEstate();
 			entity.setAuthor(user);
@@ -42,7 +42,7 @@ public class Furniture extends _DoPage {
 			boolean isNew = false;
 			String id = webFormData.getValueSilently("docid");
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
-			PersonalEstate entity = dao.findById(PersonalEstate.class, UUID.fromString(id));
+			PersonalEstate entity = (PersonalEstate) dao.findById(UUID.fromString(id));
 			if (entity == null) {
 				isNew = true;
 				entity = new PersonalEstate();
@@ -121,8 +121,8 @@ public class Furniture extends _DoPage {
 			// webFormData.getValueSilently("technicalpassport"));
 			entity.setAcceptanceDate(_Helper.convertStringToDate(webFormData.getValue("acceptancedate")));
 			User user = session.getUser();
-			entity.getAcl().addEditor(user);
-			entity.getAcl().addEditor("[operator]");
+			entity.addEditor(user);
+			entity.addEditor("[operator]");
 			// doc.addFile("rtfcontent", webFormData);
 
 			_URL returnURL = session.getURLOfLastPage();
