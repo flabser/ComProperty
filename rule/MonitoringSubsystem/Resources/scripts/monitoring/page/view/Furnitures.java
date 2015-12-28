@@ -1,7 +1,6 @@
 package monitoring.page.view;
 
 import java.util.List;
-import java.util.UUID;
 
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.flabs.users.User;
@@ -11,7 +10,6 @@ import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import monitoring.dao.PropertyDAO;
-import monitoring.model.Property;
 import monitoring.model.constants.KufType;
 
 public class Furnitures extends _DoPage {
@@ -25,7 +23,7 @@ public class Furnitures extends _DoPage {
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
-		PropertyDAO<Property, UUID> dao = new PropertyDAO<Property, UUID>(session);
+		PropertyDAO dao = new PropertyDAO(session);
 		long count = dao.getCountByKufType(KufType.FURNITURE);
 		int maxPage = RuntimeObjUtil.countMaxPage((int) count, pageSize);
 		if (pageNum == 0) {
