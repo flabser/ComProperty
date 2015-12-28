@@ -18,7 +18,7 @@ import staff.model.constants.DepartmentType;
 public class Department extends Staff {
 	private DepartmentType type;
 	private Organization organization;
-	private List<Employer> employers;
+	private List<Employee> employers;
 
 	@NotNull
 	@ManyToOne(optional = false)
@@ -28,7 +28,7 @@ public class Department extends Staff {
 	}
 
 	@OneToMany(mappedBy = "department")
-	public List<Employer> getRegions() {
+	public List<Employee> getRegions() {
 		return employers;
 	}
 

@@ -8,21 +8,21 @@ import javax.persistence.TypedQuery;
 
 import kz.flabs.dataengine.jpa.DAO;
 import kz.nextbase.script._Session;
-import staff.model.Employer;
+import staff.model.Employee;
 
-public class EmployerDAO extends DAO<Employer, UUID> {
+public class EmployeeDAO extends DAO<Employee, UUID> {
 
-	public EmployerDAO(_Session session) {
-		super(Employer.class, session);
+	public EmployeeDAO(_Session session) {
+		super(Employee.class, session);
 	}
 
-	public Employer findByLogin(String login) {
+	public Employee findByLogin(String login) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
-			String jpql = "SELECT m FROM Employer AS m WHERE m.login = :login";
-			TypedQuery<Employer> q = em.createQuery(jpql, Employer.class);
+			String jpql = "SELECT m FROM Employee AS m WHERE m.login = :login";
+			TypedQuery<Employee> q = em.createQuery(jpql, Employee.class);
 			q.setParameter("login", login);
-			List<Employer> res = q.getResultList();
+			List<Employee> res = q.getResultList();
 			return res.get(0);
 		} catch (IndexOutOfBoundsException e) {
 			return null;

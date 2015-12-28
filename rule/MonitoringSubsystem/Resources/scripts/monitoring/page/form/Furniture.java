@@ -121,7 +121,7 @@ public class Furniture extends _DoPage {
 			// webFormData.getValueSilently("technicalpassport"));
 			entity.setAcceptanceDate(_Helper.convertStringToDate(webFormData.getValue("acceptancedate")));
 			User user = session.getUser();
-			entity.addEditor(user);
+			entity.addReaderEditor(user);
 			entity.addEditor("[operator]");
 			// doc.addFile("rtfcontent", webFormData);
 

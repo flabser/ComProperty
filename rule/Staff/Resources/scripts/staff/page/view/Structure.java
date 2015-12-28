@@ -12,7 +12,7 @@ import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import staff.dao.StructureDAO;
 import staff.model.Department;
-import staff.model.Employer;
+import staff.model.Employee;
 import staff.model.Organization;
 
 public class Structure extends _DoPage {
@@ -25,7 +25,7 @@ public class Structure extends _DoPage {
 		Organization<_IPOJOObject> org = dao.findPrimaryOrg();
 		if (org != null) {
 			List<Department> deps = org.getDepartments();
-			List<Employer> emps = org.getEmployers();
+			List<Employee> emps = org.getEmployers();
 			content.add(new _POJOObjectWrapper(org));
 			content.add(new _POJOListWrapper(emps, emps.size()));
 			content.add(new _POJOListWrapper(deps, deps.size()));

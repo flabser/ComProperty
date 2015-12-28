@@ -67,7 +67,7 @@ import kz.flabs.webrule.constants.FieldType;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._ViewEntryCollection;
 import kz.pchelka.env.Environment;
-import staff.dao.EmployerDAO;
+import staff.dao.EmployeeDAO;
 
 public class Structure extends DatabaseCore implements IStructure, Const {
 	public int numberOfLicense = 200;
@@ -218,8 +218,8 @@ public class Structure extends DatabaseCore implements IStructure, Const {
 	@Override
 	public Employer getAppUser(String user) {
 
-		EmployerDAO dao = new EmployerDAO(new _Session(db.getParent(), new User(User.sysUser), db.getParent()));
-		staff.model.Employer e = dao.findByLogin(user);
+		EmployeeDAO dao = new EmployeeDAO(new _Session(db.getParent(), new User(User.sysUser), db.getParent()));
+		staff.model.Employee e = dao.findByLogin(user);
 		if (e != null) {
 			Employer emp = new Employer(this);
 			emp.setDdbID(e.getId().toString());

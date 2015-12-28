@@ -19,7 +19,7 @@ public class Organization<T extends _IPOJOObject> extends Staff {
 	private List<Department> departments;
 
 	@OneToMany(mappedBy = "organization")
-	private List<Employer> employers;
+	private List<Employee> employers;
 
 	@Column(name = "is_primary")
 	private boolean isPrimary;
@@ -36,11 +36,11 @@ public class Organization<T extends _IPOJOObject> extends Staff {
 		this.isPrimary = isPrimary;
 	}
 
-	public List<Employer> getEmployers() {
+	public List<Employee> getEmployers() {
 		return employers;
 	}
 
-	public void setEmployers(List<Employer> employers) {
+	public void setEmployers(List<Employee> employers) {
 		this.employers = employers;
 	}
 

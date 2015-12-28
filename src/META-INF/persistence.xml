@@ -14,7 +14,7 @@
 		<!-- Common Staff module entities -->
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
-		<class>staff.model.Employer</class>
+		<class>staff.model.Employee</class>
 		<!-- Common Reference module entities -->
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
@@ -40,7 +40,7 @@
 		<!-- Common Staff module entities -->			
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
-		<class>staff.model.Employer</class>
+		<class>staff.model.Employee</class>
 		<!-- Common Reference module entities -->	
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
@@ -63,7 +63,7 @@
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
-		<class>staff.model.Employer</class>
+		<class>staff.model.Employee</class>
 		<!-- Common Reference module entities -->
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
@@ -77,7 +77,7 @@
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
-		<class>staff.model.Employer</class>
+		<class>staff.model.Employee</class>
 		<!-- Common Reference module entities -->
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
@@ -95,7 +95,7 @@
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
-		<class>staff.model.Employer</class>
+		<class>staff.model.Employee</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 </persistence>
