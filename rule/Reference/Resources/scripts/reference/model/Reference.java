@@ -18,4 +18,8 @@ public class Reference extends AppEntity {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
 }
