@@ -27,8 +27,8 @@ public class Structure extends _DoPage {
 			List<Department> deps = org.getDepartments();
 			List<Employee> emps = org.getEmployers();
 			content.add(new _POJOObjectWrapper(org));
-			content.add(new _POJOListWrapper(emps, emps.size()));
-			content.add(new _POJOListWrapper(deps, deps.size()));
+			content.add(new _POJOListWrapper(emps));
+			content.add(new _POJOListWrapper(deps));
 		} else {
 			content.add(new _POJOListWrapper(getLocalizedWord("Primary organization has not been found", lang)));
 		}

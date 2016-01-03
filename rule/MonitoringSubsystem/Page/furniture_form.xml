@@ -5,7 +5,7 @@
 	<xsltfile>pages/furniture-form.xsl</xsltfile>
 	<element mode="ON" type="SCRIPT">
 		<events>
-			<doscript source="JAVA_CLASS">monitoring.page.form.Furniture</doscript>
+			<doscript source="JAVA_CLASS">monitoring.page.form.FurnitureForm</doscript>
 		</events>
 	</element>
 	<caption name="close" source="KEYWORD">Закрыть</caption>

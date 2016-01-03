@@ -14,7 +14,7 @@ import kz.nextbase.script.events._DoPage;
 import monitoring.dao.PersonalEstateDAO;
 import monitoring.model.PersonalEstate;
 
-public class Furniture extends _DoPage {
+public class FurnitureForm extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {

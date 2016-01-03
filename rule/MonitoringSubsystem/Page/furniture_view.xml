@@ -10,13 +10,13 @@
 	<element mode="ON" type="SCRIPT">
 		<name>action_bar</name>
 		<events>
-			<doscript source="file">monitoring.page.actionbar.furniture</doscript>
+			<doscript source="file">monitoring.page.actionbar.FurnitureActionBar</doscript>
 		</events>
 	</element>
 	<element mode="ON" type="SCRIPT">
 		<name>view_content</name>
 		<events>
-			<doscript source="JAVA_CLASS">monitoring.page.view.Furnitures</doscript>
+			<doscript source="JAVA_CLASS">monitoring.page.view.FurnitureView</doscript>
 		</events>
 	</element>
 	<caption name="category" source="KEYWORD">Документы организации</caption>

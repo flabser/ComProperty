@@ -2,16 +2,104 @@
 <vocabulary primary="ENG">
 	<sentence mode="on" keyword="common_reference_data">
 		<entry lang="ENG">Common reference data</entry>
-		<entry lang="ENG">Общий справочник</entry>
+		<entry lang="RUS">Общий справочник</entry>
 		<entry lang="KAZ"></entry>
-	    <entry lang="CHO"></entry>		
+		<entry lang="CHO"></entry>
 	</sentence>
-	<sentence mode="on" keyword="specific_reference_dat">
+	<sentence mode="on" keyword="specific_reference_data">
 		<entry lang="ENG">Application reference data</entry>
-		<entry lang="ENG">Справочник приложения</entry>
+		<entry lang="RUS">Справочник приложения</entry>
 		<entry lang="KAZ"></entry>
-	    <entry lang="CHO"></entry>		
+		<entry lang="CHO"></entry>
 	</sentence>
-	
+	<sentence mode="on" keyword="countries">
+		<entry lang="ENG">Countries</entry>
+		<entry lang="RUS">Страны</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="regions">
+		<entry lang="ENG">Regions</entry>
+		<entry lang="RUS">Регионы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="districts">
+		<entry lang="ENG">Districts</entry>
+		<entry lang="RUS">Районы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="localities">
+		<entry lang="ENG">Localities</entry>
+		<entry lang="RUS">Населенные пункты</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="streets">
+		<entry lang="ENG">Streets</entry>
+		<entry lang="RUS">Улицы</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="postions">
+		<entry lang="ENG">Positions</entry>
+		<entry lang="RUS">Должности</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="propertycodes">
+		<entry lang="ENG">Property codes</entry>
+		<entry lang="RUS">Коды собственности</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="structure_types">
+		<entry lang="ENG">Structure types</entry>
+		<entry lang="RUS">Тип структуры</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+	<sentence mode="on" keyword="building_materials">
+		<entry lang="ENG">Building materials</entry>
+		<entry lang="RUS">Материал постройки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+</sentence>
+	<sentence mode="on" keyword="document_was_saved_succesfully">
+		<entry lang="ENG">Document was saved</entry>
+		<entry lang="RUS">Материал постройки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+</sentence>
+	<sentence mode="on" keyword="count">
+		<entry lang="ENG">Count</entry>
+		<entry lang="RUS">Материал постройки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+</sentence>
+	<sentence mode="on" keyword="building_materials">
+		<entry lang="ENG">Building materials</entry>
+		<entry lang="RUS">Материал постройки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+</sentence>
+	<sentence mode="on" keyword="building_materials">
+		<entry lang="ENG">Building materials</entry>
+		<entry lang="RUS">Материал постройки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
+</sentence>
+	<sentence mode="on" keyword="building_materials">
+		<entry lang="ENG">Building materials</entry>
+		<entry lang="RUS">Материал постройки</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
 </vocabulary>
 

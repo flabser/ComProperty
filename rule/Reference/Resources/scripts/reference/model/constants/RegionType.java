@@ -1,7 +1,9 @@
 package reference.model.constants;
 
 /**
- * Created by Kayra on 28/12/15.
+ * 
+ * 
+ * @author Kayra created 28-12-2015
  */
 
 public enum RegionType {

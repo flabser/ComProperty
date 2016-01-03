@@ -30,7 +30,7 @@ public class Orgs extends _DoPage {
 		}
 		int startRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
 		List<? extends _IPOJOObject> list = dao.findAll(startRec, pageSize);
-		_POJOListWrapper<? extends _IPOJOObject, ?> data = new _POJOListWrapper(list, maxPage, (int) count, pageNum);
+		_POJOListWrapper<? extends _IPOJOObject> data = new _POJOListWrapper<>(list, maxPage, (int) count, pageNum);
 		setContent(data);
 	}
 

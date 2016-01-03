@@ -47,7 +47,7 @@ public class BalanceHolders extends _DoPage {
 			}
 			list = dao.findAllByKeyword(keyword, RuntimeObjUtil.calcStartEntry(pageNum, pageSize), pageSize);
 		}
-		_POJOListWrapper<? extends _IPOJOObject, ?> data = new _POJOListWrapper(list, maxPage, (int) count, pageNum);
+		_POJOListWrapper<? extends _IPOJOObject> data = new _POJOListWrapper(list, maxPage, (int) count, pageNum);
 		setContent(data);
 	}
 

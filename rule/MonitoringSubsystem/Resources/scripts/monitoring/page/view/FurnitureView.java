@@ -14,7 +14,7 @@ import monitoring.dao.PropertyDAO;
 import monitoring.model.Property;
 import monitoring.model.constants.KufType;
 
-public class Furnitures extends _DoPage {
+public class FurnitureView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
@@ -26,8 +26,9 @@ public class Furnitures extends _DoPage {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 		PropertyDAO dao = new PropertyDAO(session);
-		DAO<Property, UUID>.ViewResult<Property> result = dao.findIN("kuf", EnumSet.of(KufType.FURNITURE), pageNum, pageSize);
-		_POJOListWrapper<? extends _IPOJOObject, ?> data = new _POJOListWrapper(result.getResult(), result.getMaxPage(), result.getCount(), pageNum);
+		DAO<Property, UUID>.ViewResult<Property> result = dao.findAllIN("kuf", EnumSet.of(KufType.FURNITURE), pageNum, pageSize);
+		_POJOListWrapper<? extends _IPOJOObject> data = new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(),
+		        pageNum);
 		setContent(data);
 	}
 
