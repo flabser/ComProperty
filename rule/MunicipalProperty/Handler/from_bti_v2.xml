@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><rule app="" id="from_bti_v2" isvalid="true" mode="ON" type="HANDLER">
+    <description/>
+    <rununderuser source="STATIC" type="TEXT">[observer]</rununderuser>
+    <trigger>SCHEDULER</trigger>
+    <scheduler mode="OFF">
+        <starttime>15:02</starttime>
+        <nextstart/>
+        <days>WORKWEEK</days>
+    </scheduler>
+    <events>
+        <trigger source="file">monitoring.handler.from_bti_wl_v2.Trigger</trigger>
+    </events>
+</rule>

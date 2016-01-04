@@ -7,9 +7,10 @@ import kz.nextbase.script._XMLDocument;
 import kz.nextbase.script.events._DoPage;
 
 /**
- * Created by Kaira on 24/12/15.
+ * 
+ * 
+ * @author Kayra created 24-12-2015
  */
-
 public class CurrentEntry extends _DoPage {
 
 	@Override

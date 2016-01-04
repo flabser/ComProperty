@@ -42,7 +42,7 @@
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
-	<sentence mode="on" keyword="postions">
+	<sentence mode="on" keyword="positions">
 		<entry lang="ENG">Positions</entry>
 		<entry lang="RUS">Должности</entry>
 		<entry lang="KAZ"></entry>
@@ -67,37 +67,37 @@
 		<entry lang="CHO"></entry>
 	</sentence>
 
-	<sentence mode="on" keyword="document_was_saved_succesfully">
-		<entry lang="ENG">Document was saved</entry>
-		<entry lang="RUS">Материал постройки</entry>
+	<sentence mode="on" keyword="UNKNOWN">
+		<entry lang="ENG">Unknown</entry>
+		<entry lang="RUS">Не определен</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
 
-	<sentence mode="on" keyword="count">
-		<entry lang="ENG">Count</entry>
-		<entry lang="RUS">Материал постройки</entry>
+	<sentence mode="on" keyword="URBAN_AGGLOMERATION">
+		<entry lang="ENG">Urban agglomeration</entry>
+		<entry lang="RUS">Городская агломерация</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
 
-	<sentence mode="on" keyword="building_materials">
-		<entry lang="ENG">Building materials</entry>
-		<entry lang="RUS">Материал постройки</entry>
+	<sentence mode="on" keyword="REGION">
+		<entry lang="ENG">Region</entry>
+		<entry lang="RUS">Область</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
 
-	<sentence mode="on" keyword="building_materials">
-		<entry lang="ENG">Building materials</entry>
-		<entry lang="RUS">Материал постройки</entry>
+	<sentence mode="on" keyword="FEDERATION">
+		<entry lang="ENG">Federation</entry>
+		<entry lang="RUS">Федерация</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
 
-	<sentence mode="on" keyword="building_materials">
-		<entry lang="ENG">Building materials</entry>
-		<entry lang="RUS">Материал постройки</entry>
+	<sentence mode="on" keyword="del_document">
+		<entry lang="ENG">Delete document</entry>
+		<entry lang="RUS">Удалить документ</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>

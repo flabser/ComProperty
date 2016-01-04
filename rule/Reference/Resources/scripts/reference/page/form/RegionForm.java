@@ -37,7 +37,7 @@ public class RegionForm extends ReferenceForm {
 			entity.setAuthor(user);
 		}
 		setContent(new _POJOObjectWrapper(entity));
-		setContent(new _EnumWrapper<RegionType>(RegionType.class.getEnumConstants(), lang));
+		setContent(new _EnumWrapper<RegionType>(RegionType.class.getEnumConstants(), getLocalizedWord(RegionType.class.getEnumConstants(), lang)));
 		setContent(new _POJOListWrapper<Country>(new CountryDAO(session).findAll()));
 
 	}

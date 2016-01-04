@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-11T11:55:10 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="engineeringinfrastructure_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="grandtotal" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="propertycodename" class="java.lang.String"/>
+	<field name="invnumber" class="java.lang.String"/>
+	<field name="originalcost" class="java.lang.Long"/>
+	<field name="assignment" class="java.lang.String"/>
+	<field name="material" class="java.lang.Integer"/>
+	<field name="yearrelease" class="java.lang.String"/>
+	<field name="totalarea" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="-19" width="800" height="91" backcolor="#FFFFFF" uuid="98724975-fe61-4ed2-8781-eb7409b2e81e"/>
+				<elementGroup>
+					<elementGroup/>
+				</elementGroup>
+				<image>
+					<reportElement x="20" y="0" width="89" height="91" uuid="cb155f83-cf41-4329-ba61-19117351aae2"/>
+					<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="109" y="9" width="690" height="21" forecolor="#000000" uuid="ead0c733-9d44-4e09-9dd4-20e21c8947dc"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Мониторинг объектов государственной собственности]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="35" width="690" height="21" forecolor="#000000" uuid="859ee929-7ee1-4445-8df9-942784383f96"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="13" isBold="false"/>
+					</textElement>
+					<text><![CDATA[	Объекты инженерной инфраструктуры]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="120" y="56" width="410" height="30" uuid="1bb3a62f-f6d7-44f0-929d-d3013969954f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{balanceholder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="590" y="56" width="100" height="30" uuid="ed9770da-d883-45d3-827a-25a71eaa53a5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{grandtotal}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="29" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="33" uuid="59355868-2428-45ef-af2d-e1c27461dd3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[№]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="0" width="118" height="33" uuid="e3b98529-45b9-48d5-807d-d8ecba26d34f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Код права на имущество]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="0" width="120" height="33" uuid="5a6b4087-be26-43a0-ab5e-bab30406c8d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Инвентарный номер]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="0" width="104" height="33" uuid="ac10a68d-5943-47bb-b4f4-d03d4b4cbfdf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Первоначальная стоимость]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="0" width="236" height="33" uuid="45ef39ce-e5bf-40d0-9f2f-bd8c1d649923"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Назначение]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="608" y="0" width="78" height="33" uuid="40277466-b889-431f-a9bf-eb5b2ae6e74b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Материал постройки]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="686" y="0" width="64" height="33" uuid="8eb1c3ee-7804-4ad5-a480-ac4697ac4148"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Год постройки]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="0" width="51" height="33" uuid="cf00ce15-0d22-46da-8c08-49a9f9655a15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Общая площадь]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="34" width="801" height="1" uuid="9d56fea3-fa76-475e-ba4c-2cf0e7a71c11"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference">
+				<reportElement key="textField" positionType="Float" x="0" y="0" width="30" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" forecolor="#000099" uuid="c237040a-4dd2-4b6b-a5b3-d0d1a4afd858"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="148" y="0" width="118" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fb225fb1-0a7a-4349-92f3-a4abc1424de2"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invnumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="267" y="0" width="105" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d48ba476-f712-4055-bbf6-ae9e3b7dc6d9"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{originalcost}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="372" y="0" width="237" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8e3443fe-f66e-4bce-b593-d13bdb208590"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{assignment}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="686" y="0" width="64" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="33984950-5918-4873-a707-2e901a8958a8"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{yearrelease}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="609" y="0" width="77" height="53" uuid="f2bd6eac-1782-47ab-8964-6db76b19f725"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="0" width="118" height="53" uuid="39fa41b2-e401-4f15-ade0-337dbe559f96"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{propertycodename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="750" y="0" width="50" height="52" uuid="e4988259-eb37-4b1b-ad43-e5bc7a5fd841"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalarea}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="10" splitType="Stretch"/>
+	</summary>
+</jasperReport>

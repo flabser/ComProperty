@@ -8,15 +8,9 @@
 		<value>outline</value>
 	</element>
 	<element mode="ON" type="SCRIPT">
-		<name>action_bar</name>
-		<events>
-			<doscript source="JAVA_CLASS">reference.page.actionbar.PropertyCodes</doscript>
-		</events>
-	</element>
-	<element mode="ON" type="SCRIPT">
 		<name>view_content</name>
 		<events>
-			<doscript source="JAVA_CLASS">reference.page.view.PropertyCodes</doscript>
+			<doscript source="JAVA_CLASS">reference.page.view.PropertyCodeView</doscript>
 		</events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">

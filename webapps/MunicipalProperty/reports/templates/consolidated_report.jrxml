@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-11T11:54:28 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="grandtotal" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="reassessmentCost" class="java.lang.String"/>
+	<field name="bookvalue" class="java.lang.String"/>
+	<field name="depreciation" class="java.lang.String"/>
+	<field name="primaryCost" class="java.lang.String"/>
+	<field name="count" class="java.lang.String"/>
+	<field name="subCategory" class="java.lang.String"/>
+	<field name="category" class="java.lang.String"/>
+	<field name="orgName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="-19" width="800" height="91" backcolor="#FFFFFF" uuid="98724975-fe61-4ed2-8781-eb7409b2e81e"/>
+				<elementGroup>
+					<elementGroup/>
+				</elementGroup>
+				<staticText>
+					<reportElement x="109" y="9" width="690" height="21" forecolor="#000000" uuid="ead0c733-9d44-4e09-9dd4-20e21c8947dc"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Мониторинг объектов государственной собственности]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="35" width="690" height="21" forecolor="#000000" uuid="859ee929-7ee1-4445-8df9-942784383f96"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="13" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Консолидированный отчет]]></text>
+				</staticText>
+				<image>
+					<reportElement x="20" y="0" width="89" height="91" uuid="6031e52a-81cc-44c0-a474-514234086205"/>
+					<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="60" uuid="59355868-2428-45ef-af2d-e1c27461dd3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[№]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="140" height="61" uuid="e3b98529-45b9-48d5-807d-d8ecba26d34f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Категория]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="140" height="60" uuid="5a6b4087-be26-43a0-ab5e-bab30406c8d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Подкатегория]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="70" height="60" uuid="45ef39ce-e5bf-40d0-9f2f-bd8c1d649923">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Количество]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="0" width="70" height="60" uuid="40277466-b889-431f-a9bf-eb5b2ae6e74b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Накоплен-
+ная аморти-зация]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="660" y="0" width="70" height="60" uuid="8eb1c3ee-7804-4ad5-a480-ac4697ac4148">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Балансовая стоймость]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="730" y="0" width="70" height="60" uuid="cf00ce15-0d22-46da-8c08-49a9f9655a15">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Балансовая стоимость после переоценки ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="0" width="70" height="60" uuid="ac10a68d-5943-47bb-b4f4-d03d4b4cbfdf">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Перво-начальная стоимость]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="61" width="800" height="1" uuid="e7c90483-a463-4674-a741-661cab1c2832"/>
+			</line>
+			<staticText>
+				<reportElement x="30" y="0" width="140" height="60" uuid="86d410ad-17f6-43a7-9de3-636ba7a5b9d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Организация]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference">
+				<reportElement key="textField" positionType="Float" x="0" y="0" width="30" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" forecolor="#000099" uuid="c237040a-4dd2-4b6b-a5b3-d0d1a4afd858"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" pdfEncoding="Cp1251"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="730" y="0" width="70" height="20" uuid="6793f5da-a11e-4aef-819d-519d167b4975"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reassessmentCost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="660" y="0" width="70" height="20" uuid="3316d82e-9158-419f-a240-51bf8857ac77"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bookvalue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="590" y="0" width="70" height="20" uuid="6f8b9f83-ad11-4675-802a-656670e4d093"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depreciation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="70" height="20" uuid="2c96563f-2ef6-4d40-b248-ff3c1ce972b5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{primaryCost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="70" height="20" uuid="e46549ac-24b4-4d69-bc6d-59e2418476bd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="310" y="0" width="140" height="20" uuid="8c2f9572-aa1e-49e6-bc4e-8e414019e0f2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subCategory}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="170" y="0" width="140" height="20" uuid="8051a86a-7c54-4ee5-8445-f7a65792db59"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="30" y="0" width="140" height="40" uuid="fbda0356-cdde-41c7-a6b0-fe6ed7480702"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orgName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="10" splitType="Stretch"/>
+	</summary>
+</jasperReport>

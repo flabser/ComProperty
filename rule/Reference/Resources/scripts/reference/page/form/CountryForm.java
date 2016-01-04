@@ -33,6 +33,7 @@ public class CountryForm extends ReferenceForm {
 			entity = new Country();
 			entity.setAuthor(user);
 		}
+		setContent(getSimpleActionBar(session, lang));
 		setContent(new _POJOObjectWrapper(entity));
 		setContent(new _EnumWrapper<CountryCode>(CountryCode.class.getEnumConstants()));
 	}

@@ -5,14 +5,11 @@
     <element mode="ON" type="SCRIPT">
         <name>current_outline_entry</name>
         <events>
-            <doscript source="file">staff.page.currententry.DoScript</doscript>
+            <doscript source="JAVA_CLASS">staff.page.navigator.CurrentEntry</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <name>included_share_navi</name>
         <value>share_navi</value>
     </element>
-	<caption name ="deleting" source ="KEYWORD">Удаление</caption>
-	<caption name ="documentsdeleted" source ="KEYWORD">Документов удалено</caption>
-	<caption name ="documentsnotdeleted" source ="KEYWORD">Документов не удалено</caption>
 </rule>

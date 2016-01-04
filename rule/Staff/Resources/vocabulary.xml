@@ -1,9 +1,66 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
-	<sentence mode="on" keyword="Primary organization has not been found">
-		<entry lang="RUS">Основная организация не найдена</entry>
+	<sentence mode="on" keyword="common_staff_data">
+		<entry lang="ENG">Structure and Organizations</entry>
+		<entry lang="RUS">Структура и организации</entry>
+		<entry lang="KAZ"></entry>
+	</sentence>
+		<sentence mode="on" keyword="specific_staff_data">
+		<entry lang="ENG">Additional lists of the application</entry>
+		<entry lang="RUS">Дополнительные реестры приложения</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+		<sentence mode="on" keyword="structure">
+		<entry lang="ENG">Organization structure</entry>
+		<entry lang="RUS">Структура основной организации</entry>
+		<entry lang="KAZ"></entry>		
+	</sentence>
+		<sentence mode="on" keyword="organizations">
+		<entry lang="ENG">Organizations</entry>
+		<entry lang="RUS">Организации</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+		<sentence mode="on" keyword="contractors">
+		<entry lang="ENG">Contractors</entry>
+		<entry lang="RUS">Контрагенты</entry>
+		<entry lang="KAZ"></entry>
+	</sentence>
+		<sentence mode="on" keyword="individuals">
+		<entry lang="ENG">Individuals</entry>
+		<entry lang="RUS">Физические лица</entry>
+		<entry lang="KAZ"></entry>
+	</sentence>
+		<sentence mode="on" keyword="legal_entities">
+		<entry lang="ENG">Legal entities</entry>
+		<entry lang="RUS">Юридические лица</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="responsible_persons">
+		<entry lang="ENG">Responsible person</entry>
+		<entry lang="RUS">Ответственные лица по загрузке данных</entry>
+		<entry lang="KAZ"></entry>
+	</sentence>
+	<sentence mode="on" keyword="new_organization">
+		<entry lang="ENG">New organization</entry>
+		<entry lang="RUS">Новая организация</entry>
 		<entry lang="KAZ"></entry>
         <entry lang="CHN"></entry>		
+	</sentence>
+	
+		<sentence mode="on" keyword="add_new_organization">
+		<entry lang="ENG">Add new organization</entry>
+		<entry lang="RUS">Добавить новую организацию</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="del_document">
+		<entry lang="ENG">Delete document</entry>
+		<entry lang="RUS">Удалить документ</entry>
+		<entry lang="KAZ"></entry>
+	</sentence>	
+	<sentence mode="on" keyword="no_primary_org">
+		<entry lang="ENG">Primary organization has not been found</entry>
+		<entry lang="RUS">Основная организация не найдена</entry>
+		<entry lang="KAZ"></entry>	
 	</sentence>
 	
 </vocabulary>

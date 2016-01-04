@@ -176,7 +176,7 @@
 					<span id="view" class="viewframe">
 						<div id="viewcontent" style="margin-left:12px;">
 							<div id="viewcontent-header" style="height:30px;">
-						    	<xsl:call-template name="viewinfo"/>
+						    	<!-- <xsl:call-template name="viewinfo"/> -->
 								<div class="button_panel" style="margin-top:10px">
 									<span style="float:left; margin-left:3px;">
 		                                <xsl:if test="//actionbar/action[. = 'CUSTOM_ACTION']/@mode = 'ON'">

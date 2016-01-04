@@ -8,10 +8,7 @@
 		<driver>org.postgresql.Driver</driver>
 	  <url>jdbc:postgresql://localhost:5433/jpatest</url>
 	<!-- <url>jdbc:postgresql://172.16.251.7:5432/CIS</url> -->
-		 <implementation>
-			<idatabasedeployer>kz.lof.jpadatabase.DatabaseDeployer</idatabasedeployer>
-			<idatabase>kz.lof.jpadatabase.Database</idatabase>
-		</implementation> 
+		 
 	<username>postgres</username>
 		<password>smartdoc</password> </database>
 	<externalmodule type="STAFF">Structure</externalmodule>	

@@ -11,7 +11,9 @@ import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
 
 /**
- * Created by Kaira on 24/12/15.
+ * 
+ * 
+ * @author Kayra created 24-12-2015
  */
 
 public class MainNavigator extends _DoPage {
