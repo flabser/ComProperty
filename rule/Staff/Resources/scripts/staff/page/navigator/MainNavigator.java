@@ -30,53 +30,6 @@ public class MainNavigator extends _DoPage {
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("legal_entities", lang), "legal_entity_view"));
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible_person_view"));
 
-		/*
-		 * _Outline docs_outline = new _Outline(getLocalizedWord("Структура",
-		 * lang), getLocalizedWord("Структура", lang), "str");
-		 * 
-		 * // if(cuser.hasRole(["struct_keeper", "supervisor"])) {
-		 * docs_outline.addEntry(new
-		 * _OutlineEntry(getLocalizedWord("Структура организации", lang),
-		 * getLocalizedWord("Структура организации", lang), "structure",
-		 * "Provider?id=structure"));
-		 * 
-		 * docs_outline.addEntry(new
-		 * _OutlineEntry(getLocalizedWord("Организации", lang),
-		 * getLocalizedWord("Организации", lang), "organizations",
-		 * "Provider?id=organizations")); // } // list.add(docs_outline);
-		 * _Outline contractor_outline = new
-		 * _Outline(getLocalizedWord("Контрагенты", lang),
-		 * getLocalizedWord("Контрагенты", lang), "contr");
-		 * 
-		 * contractor_outline.addEntry(new
-		 * _OutlineEntry(getLocalizedWord("Физические лица", lang),
-		 * getLocalizedWord("Физические лица", lang), "naturalperson",
-		 * "Provider?type=page&id=naturalperson"));
-		 * contractor_outline.addEntry(new
-		 * _OutlineEntry(getLocalizedWord("Юридические лица", lang),
-		 * getLocalizedWord("Юридические лица", lang), "legalentity",
-		 * "Provider?type=page&id=legalentity"));
-		 * 
-		 * _OutlineEntry resp_person = new
-		 * _OutlineEntry(getLocalizedWord("Ответственные лица по загрузке объектов"
-		 * , lang), getLocalizedWord( "Ответственные лица по загрузке объектов",
-		 * lang), "responsibleperson",
-		 * "Provider?type=page&id=responsibleperson&page=0");
-		 * resp_person.addEntry(new
-		 * _OutlineEntry(getLocalizedWord("На регистрацию", lang),
-		 * getLocalizedWord("На регистрацию", lang),
-		 * "responsibleperson_inactive",
-		 * "Provider?type=page&id=responsibleperson&status=inactive&page=0"));
-		 * resp_person.addEntry(new
-		 * _OutlineEntry(getLocalizedWord("Зарегистрированные", lang),
-		 * getLocalizedWord("Зарегистрированные", lang),
-		 * "responsibleperson_active",
-		 * "Provider?type=page&id=responsibleperson&status=active&page=0"));
-		 * 
-		 * contractor_outline.addEntry(resp_person); list.add(docs_outline);
-		 * list.add(contractor_outline);
-		 */
-
 		list.add(common_outline);
 		list.add(specific_outline);
 

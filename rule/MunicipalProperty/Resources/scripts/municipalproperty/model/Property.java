@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import kz.flabs.dataengine.jpa.SecureAppEntity;
 import kz.nextbase.script._URL;
-import monitoring.model.constants.KufType;
+import municipalproperty.model.constants.KufType;
 
 @Entity
 @Table(name = "properties")

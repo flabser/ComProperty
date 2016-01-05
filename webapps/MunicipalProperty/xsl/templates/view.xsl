@@ -51,7 +51,7 @@
 				<font style="font-size:1.5em; vertical-align:50px; color:#555555; margin-left:20px; line-height:60px">АИС 'Коммунальное Имущество'</font>
 			</span>
 			<span style="float:right; padding:5px 5px 5px 0px">
-				<a id="currentuser" target="_parent" href="Provider?type=edit&amp;element=userprofile&amp;id=userprofile" class="no_underline" style="color: #555555 ; font: 11px Tahoma; font-weight:bold">
+				<a id="currentuser" target="_parent" href="Provider?id=userprofile" class="no_underline" style="color: #555555 ; font: 11px Tahoma; font-weight:bold">
 					<xsl:attribute name="title" select="page/captions/view_userprofile/@caption"/>
 					<xsl:value-of select="@username"/>
 				</a>

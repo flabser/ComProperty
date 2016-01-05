@@ -8,8 +8,8 @@
 		<html>
 			<head>
 				<title> 4ms workflow - <xsl:value-of select="outline/*/entry[@current]/@caption"/></title>
-				<link type="text/css" rel="stylesheet" href="classic/css/outline.css"/>
-				<link type="text/css" rel="stylesheet" href="classic/css/main.css"/>
+				<link type="text/css" rel="stylesheet" href="css/outline.css"/>
+				<link type="text/css" rel="stylesheet" href="css/main.css"/>
 				<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/css/smoothness/jquery-ui-1.8.20.custom.css"/>
 				<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/js/hotnav/jquery.hotnav.css"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/jquery-1.4.2.js"/>
@@ -28,9 +28,9 @@
 				<script type="text/javascript" src="/SharedResources/jquery/js/hotnav/jquery.hotnav.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/scrollTo/scrollTo.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/tiptip/jquery.tipTip.js"/>
-				<script type="text/javascript" src="classic/scripts/outline.js"/>
-				<script type="text/javascript" src="classic/scripts/view.js"/>
-				<script type="text/javascript" src="classic/scripts/page.js"/>
+				<script type="text/javascript" src="scripts/outline.js"/>
+				<script type="text/javascript" src="scripts/view.js"/>
+				<script type="text/javascript" src="scripts/page.js"/>
 				<script type="text/javascript">
 					function onLoadActions(){
 						<xsl:choose>
@@ -113,7 +113,7 @@
 					</div>	
 					<div id="outline">
 						<div id="outline-header" >
-							<img alt="" src ="classic/img/logo_small.png" style="height:50px; margin-top:5px"/>
+							<img alt="" src ="img/logo_small.png" style="height:50px; margin-top:5px"/>
 							<br/>
 							<font style="font-size:0.80em; color:#1D5987; position:relative; top:14px">
 								<xsl:value-of select="outline/fields/documentmanager/@caption"/>&#xA0;<xsl:value-of select="outline/fields/orgtitle"/>
@@ -207,7 +207,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="gadget" display="none" style="display:none; width:264px; height:194px; background:url(classic/img/BLUE-base.png) no-repeat ; font-size:12px">
+				<div id="gadget" display="none" style="display:none; width:264px; height:194px; background:url(img/BLUE-base.png) no-repeat ; font-size:12px">
  					<table style="width:220px; height:154px; border-collapse:collapse; margin-top:5px; margin-left:18px; font-size:12px; font-family:Segoe UI, Tahoma;" valign="top">
 						<xsl:for-each select="outline/entry[1]/entry">
 							<tr id="str" style="height:10px">

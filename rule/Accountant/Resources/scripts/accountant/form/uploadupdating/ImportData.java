@@ -12,11 +12,11 @@ import jxl.Sheet;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Session;
 import kz.pchelka.server.Server;
-import monitoring.dao.PropertyDAO;
-import monitoring.model.PersonalEstate;
-import monitoring.model.Property;
-import monitoring.model.constants.KufType;
-import monitoring.model.util.PropertyFactory;
+import municipalproperty.dao.PropertyDAO;
+import municipalproperty.model.PersonalEstate;
+import municipalproperty.model.Property;
+import municipalproperty.model.constants.KufType;
+import municipalproperty.model.util.PropertyFactory;
 import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 

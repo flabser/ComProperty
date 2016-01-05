@@ -1,10 +1,10 @@
 package municipalproperty.model.util;
 
 import kz.flabs.util.Util;
-import monitoring.model.Equipment;
-import monitoring.model.PersonalEstate;
-import monitoring.model.Property;
-import monitoring.model.constants.KufType;
+import municipalproperty.model.Equipment;
+import municipalproperty.model.PersonalEstate;
+import municipalproperty.model.Property;
+import municipalproperty.model.constants.KufType;
 
 public class PropertyFactory {
 	public static Property getProperty(String kuf) {

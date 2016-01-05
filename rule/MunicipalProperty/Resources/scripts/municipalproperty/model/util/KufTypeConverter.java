@@ -3,7 +3,7 @@ package municipalproperty.model.util;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import monitoring.model.constants.KufType;
+import municipalproperty.model.constants.KufType;
 
 @Converter(autoApply = true)
 public class KufTypeConverter implements AttributeConverter<KufType, Integer> {

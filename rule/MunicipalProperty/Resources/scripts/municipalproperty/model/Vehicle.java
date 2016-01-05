@@ -8,7 +8,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import monitoring.model.constants.FuelType;
+import municipalproperty.model.constants.FuelType;
 
 @Entity
 @Table(name = "vehicles")

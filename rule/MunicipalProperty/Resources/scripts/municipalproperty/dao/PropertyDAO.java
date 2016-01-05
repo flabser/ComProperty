@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 
 import kz.flabs.dataengine.jpa.DAO;
 import kz.nextbase.script._Session;
-import monitoring.model.Property;
+import municipalproperty.model.Property;
 
 public class PropertyDAO extends DAO<Property, UUID> {
 

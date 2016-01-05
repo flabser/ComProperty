@@ -343,7 +343,8 @@
 		<entry lang="ENG">Add</entry>
 		<entry lang="CHN">加</entry>
 	</sentence>
-	<sentence mode="on" keyword="Удалить">
+	<sentence mode="on" keyword="del_document">
+		<entry lang="RUS">Удалить</entry>
 		<entry lang="KAZ">Жою</entry>
 		<entry lang="ENG">Delete</entry>
 		<entry lang="CHN">删除</entry>
@@ -733,17 +734,20 @@
 		<entry lang="RUS">Инвентарь</entry>
 		<entry lang="KAZ">Инвентарь</entry>
 	</sentence>
-	<sentence mode="on" keyword="Нематериальные активы">
+	<sentence mode="on" keyword="intangible_asset">
+		<entry lang="RUS">Нематериальные активы</entry>
 		<entry lang="KAZ">Материалды емес активтер</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Государственные пакеты акций">
+	<sentence mode="on" keyword="share_blocks">
+		<entry lang="RUS">Государственные пакеты акций</entry>
 		<entry lang="KAZ">Мемлекеттік акциялар пакеті</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Долевое участие в ТОО">
+	<sentence mode="on" keyword="equities">
+		<entry lang="RUS">Долевое участие в ТОО</entry>
 		<entry lang="KAZ">ЖШС-гі үлесі</entry>
 		<entry lang="ENG"></entry>
 
@@ -2398,7 +2402,7 @@
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="sportsequipment">
+	<sentence mode="on" keyword="inventory">
 		<entry lang="RUS">Инвентарь</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>

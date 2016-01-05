@@ -2,10 +2,10 @@
 <rule type="page" mode="on" history="on">
 	<description></description>
 	<caching>NO_CACHING</caching>
-	<xsltfile>*</xsltfile>
+	<xsltfile>DEFAULT</xsltfile>
 	<element mode="ON" type="SCRIPT">
 		<events>
-			<doscript source="JAVA_CLASS">municipalproperty.page.form.FurnitureForm</doscript>
+			<doscript source="JAVA_CLASS">municipalproperty.page.UserProfile</doscript>
 		</events>
 	</element>
  <element mode="ON" type="INCLUDED_PAGE">

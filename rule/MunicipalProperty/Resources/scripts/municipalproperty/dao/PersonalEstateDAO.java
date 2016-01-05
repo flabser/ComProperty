@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import kz.flabs.dataengine.jpa.DAO;
 import kz.nextbase.script._Session;
-import monitoring.model.PersonalEstate;
+import municipalproperty.model.PersonalEstate;
 
 public class PersonalEstateDAO extends DAO<PersonalEstate, UUID> {
 

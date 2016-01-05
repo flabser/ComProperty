@@ -11,8 +11,8 @@ import kz.nextbase.script._Session;
 import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
-import monitoring.dao.PersonalEstateDAO;
-import monitoring.model.PersonalEstate;
+import municipalproperty.dao.PersonalEstateDAO;
+import municipalproperty.model.PersonalEstate;
 
 public class FurnitureForm extends _DoPage {
 

@@ -41,9 +41,24 @@ public class MainNavigator extends _DoPage {
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("cook_equipment", lang), "cook_equipment_view"));
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("equipment_of_civildefense", lang), "equipment_of_civildefense_view"));
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("other_equipment", lang), "other_equipment_view"));
+		_OutlineEntry realEstateEntry = new _OutlineEntry(getLocalizedWord("real_estates", lang), "real_estate_view");
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "building_view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("structures", lang), "structure_view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("residential_objects", lang), "residential_object_view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("land", lang), "land_view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("monuments", lang), "monument_view"));
+		_OutlineEntry transportEntry = new _OutlineEntry(getLocalizedWord("transports", lang), "transport_view");
+		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("cars", lang), "car_view"));
+		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("autmobiles", lang), "autmobile_view"));
+		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("cargo", lang), "cargo_view"));
+		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("dej_transports", lang), "dej_transport_view"));
+		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("official_transports", lang), "official_transport_view"));
+
 		munPropOutline.addEntry(personalEstateEntry);
 		munPropOutline.addEntry(intangibleAssetsEntry);
 		munPropOutline.addEntry(equipmentEntry);
+		munPropOutline.addEntry(realEstateEntry);
+		munPropOutline.addEntry(transportEntry);
 		_Outline objPropTypeOutline = new _Outline(getLocalizedWord("obj_property_type", lang), "obj_property_type");
 		objPropTypeOutline.addEntry(new _OutlineEntry(getLocalizedWord("propertycodes", lang), "propertycode_view"));
 		objPropTypeOutline.addEntry(new _OutlineEntry(getLocalizedWord("structure_types", lang), "structure_type_view"));
