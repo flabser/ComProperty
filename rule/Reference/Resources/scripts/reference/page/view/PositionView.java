@@ -11,7 +11,7 @@ public class PositionView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "position", lang));
-		setContent(getViewContent(new PositionDAO(session), formData));
+		setContent(getViewPage(new PositionDAO(session), formData));
 	}
 
 	@Override

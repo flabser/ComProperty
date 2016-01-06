@@ -1,6 +1,7 @@
 package municipalproperty.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.Table;
 import kz.flabs.dataengine.jpa.SecureAppEntity;
 import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;
+
+import org.eclipse.persistence.annotations.Convert;
 
 @Entity
 @Table(name = "properties")
@@ -27,8 +30,9 @@ public class Property extends SecureAppEntity {
 	@Column(name = "balance_cost")
 	private float balanceCost;
 
+	@Convert("uuidConverter")
 	@Column(name = "balance_holder")
-	private int balanceHolder;
+	private UUID balanceHolder;
 
 	private String description;
 
@@ -77,11 +81,11 @@ public class Property extends SecureAppEntity {
 		this.balanceCost = balanceCost;
 	}
 
-	public int getBalanceHolder() {
+	public UUID getBalanceHolder() {
 		return balanceHolder;
 	}
 
-	public void setBalanceHolder(int balanceHolder) {
+	public void setBalanceHolder(UUID balanceHolder) {
 		this.balanceHolder = balanceHolder;
 	}
 

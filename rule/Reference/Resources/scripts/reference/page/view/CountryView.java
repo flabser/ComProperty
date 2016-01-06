@@ -11,7 +11,7 @@ public class CountryView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "country", lang));
-		setContent(getViewContent(new CountryDAO(session), formData));
+		setContent(getViewPage(new CountryDAO(session), formData));
 	}
 
 	@Override

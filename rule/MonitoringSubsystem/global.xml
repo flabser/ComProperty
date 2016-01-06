@@ -3,7 +3,7 @@
 	<orgname></orgname>
 	<liccount></liccount>
 	<logo>communal.png</logo>
-	<database autodeploy="OFF">
+	<database autodeploy="on">
 		<name>PropertyObjects</name>
 		<driver>org.postgresql.Driver</driver>
 	  <url>jdbc:postgresql://localhost:5433/jpatest</url>
@@ -13,7 +13,7 @@
 		<password>smartdoc</password> </database>
 	<externalmodule type="STAFF">Structure</externalmodule>	
 	<entrypoint>Provider?type=static&amp;id=start</entrypoint>
-	<defaultredirecturl>Provider?id=furniture_view&amp;page=0&amp;title=Мебель</defaultredirecturl>
+	<defaultredirecturl>Provider?id=furniture&amp;page=0&amp;title=Мебель</defaultredirecturl>
 	<langs>
 		<entry id="RUS" isprimary="1">Русский</entry>
 		<entry id="KAZ">Казакша</entry>

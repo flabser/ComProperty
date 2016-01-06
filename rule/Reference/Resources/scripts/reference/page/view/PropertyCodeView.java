@@ -11,7 +11,7 @@ public class PropertyCodeView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "property_code", lang));
-		setContent(getViewContent(new PropertyCodeDAO(session), formData));
+		setContent(getViewPage(new PropertyCodeDAO(session), formData));
 	}
 
 	@Override

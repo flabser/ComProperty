@@ -374,7 +374,8 @@
 		<entry lang="ENG">Reading only</entry>
 		<entry lang="CHN">只读</entry>
 	</sentence>
-	<sentence mode="on" keyword="Новый документ">
+	<sentence mode="on" keyword="new_document">
+		<entry lang="RUS">Новый документ</entry>
 		<entry lang="KAZ">Жаңа құжат</entry>
 		<entry lang="ENG">New document</entry>
 		<entry lang="CHN">新的文档</entry>
@@ -514,11 +515,6 @@
 		<entry lang="ENG">User roles</entry>
 		<entry lang="CHN">用户角色</entry>
 	</sentence>
-	<sentence mode="on" keyword="Язык документа">
-		<entry lang="KAZ">Құжат тiлі</entry>
-		<entry lang="ENG">Document language</entry>
-		<entry lang="CHN">文档语言</entry>
-	</sentence>
 	<sentence mode="on" keyword="Чужой компьютер">
 		<entry lang="KAZ">Бөгде компьютер</entry>
 		<entry lang="ENG">Another's computer</entry>
@@ -529,20 +525,17 @@
 		<entry lang="ENG">Recycle Bin</entry>
 		<entry lang="CHN">篮</entry>
 	</sentence>
-	<sentence mode="on" keyword="Отчеты">
+	<sentence mode="on" keyword="reports">
+		<entry lang="RUS">Отчеты</entry>
 		<entry lang="KAZ">Есептемелер</entry>
 		<entry lang="ENG">Reports</entry>
 		<entry lang="CHN">篮</entry>
 	</sentence>
-	<sentence mode="on" keyword="Отчет">
+	<sentence mode="on" keyword="report">
+		<entry lang="RUS">Отчеты</entry>
 		<entry lang="KAZ">Есептеме</entry>
 		<entry lang="ENG">Report</entry>
 		<entry lang="CHN">篮</entry>
-	</sentence>
-	<sentence mode="on" keyword="Задания">
-		<entry lang="KAZ">Тапсырмалар</entry>
-		<entry lang="ENG">Job</entry>
-		<entry lang="CHN">工作</entry>
 	</sentence>
 	<sentence mode="on" keyword="Сформировать отчет">
 		<entry lang="KAZ">Есептемені құрастыру</entry>
@@ -717,7 +710,7 @@
 	<sentence mode="on" keyword="personal_estates">
 		<entry lang="ENG">Personal estate</entry>
 		<entry lang="RUS">Движимое имущество</entry>
-		<entry lang="KAZ">Жылжымалы мүлік</entry>		
+		<entry lang="KAZ">Жылжымалы мүлік</entry>
 	</sentence>
 	<sentence mode="on" keyword="furnitures">
 		<entry lang="ENG">Furniture</entry>
@@ -729,16 +722,15 @@
 		<entry lang="RUS">Мебель</entry>
 		<entry lang="KAZ">Жиһаз</entry>
 	</sentence>
-	<sentence mode="on" keyword="equipments">
+	<sentence mode="on" keyword="equipment">
 		<entry lang="ENG">Equipments</entry>
-		<entry lang="RUS">Инвентарь</entry>
-		<entry lang="KAZ">Инвентарь</entry>
+		<entry lang="RUS">Оборудование</entry>
+		<entry lang="KAZ">Оборудование</entry>
 	</sentence>
-	<sentence mode="on" keyword="intangible_asset">
+	<sentence mode="on" keyword="intangible_assets">
 		<entry lang="RUS">Нематериальные активы</entry>
 		<entry lang="KAZ">Материалды емес активтер</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="share_blocks">
 		<entry lang="RUS">Государственные пакеты акций</entry>
@@ -755,12 +747,10 @@
 	<sentence mode="on" keyword="Балансодержатель">
 		<entry lang="KAZ">Теңгерім ұстаушы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Наименование Гос. учреждения (каз.)">
 		<entry lang="KAZ">Мем. мекеменің атауы (қаз.)</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="БИН Коммунальных Гос. учреждений">
 		<entry lang="KAZ">Коммуналды Мем. мекемелердің БСН</entry>
@@ -780,12 +770,10 @@
 	<sentence mode="on" keyword="Код права на имущество">
 		<entry lang="KAZ">Мүлікке құқықтың коды</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Дата принятия на баланс">
 		<entry lang="KAZ">Балансқа алу датасы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Область">
 		<entry lang="KAZ">Облыс</entry>
@@ -800,7 +788,6 @@
 	<sentence mode="on" keyword="Район">
 		<entry lang="KAZ">Аудан</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Улица">
 		<entry lang="KAZ">Көше</entry>
@@ -815,12 +802,10 @@
 	<sentence mode="on" keyword="Первоначальная стоимость">
 		<entry lang="KAZ">Бастапқы құны</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Оценочная стоимость">
 		<entry lang="KAZ">Бағалау құны</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Остаточная стоимость">
 		<entry lang="KAZ">Қалдықтық құн</entry>
@@ -835,7 +820,6 @@
 	<sentence mode="on" keyword="Основание поступления в Гос. собственность">
 		<entry lang="KAZ">Мемлекеттік меншікке өту негізі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Основание поступления на баланс">
 		<entry lang="KAZ">Балансқа өту негізі</entry>
@@ -855,7 +839,6 @@
 	<sentence mode="on" keyword="Цвет">
 		<entry lang="KAZ">Түсі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Ширина">
 		<entry lang="KAZ">Ені</entry>
@@ -870,12 +853,10 @@
 	<sentence mode="on" keyword="Глубина">
 		<entry lang="KAZ">Тереңдігі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Год выпуска">
 		<entry lang="KAZ">Шығарылған жылы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Изменение первоначальной стоимости">
 		<entry lang="KAZ">Бастапқы құнының өзгеруі</entry>
@@ -895,27 +876,22 @@
 	<sentence mode="on" keyword="Накопленная амортизация">
 		<entry lang="KAZ">Қорланған өтемпұл</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Износ">
 		<entry lang="KAZ">Тозу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Наличие обременения">
 		<entry lang="KAZ">Ауыртпалықтың болуы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Залог">
 		<entry lang="KAZ">Кепіл</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Арест по решению суда">
 		<entry lang="KAZ">Сот шешімі бойынша тыйым салу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Юридическое притязание">
 		<entry lang="KAZ">Заңды талап ету</entry>
@@ -925,12 +901,10 @@
 	<sentence mode="on" keyword='Поле "Инвентарный номер" не заполнено.'>
 		<entry lang="KAZ">"Инвентарлы нөмір" жолы толтырылмады</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword='Поле "Описание объекта" не заполнено.'>
 		<entry lang="KAZ">"Объектінің сипаттамасы" жолы толтырылмады</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Тип (Класс по назначению)">
 		<entry lang="KAZ">Тип (Тағайындау бойынша сынып)</entry>
@@ -945,12 +919,10 @@
 	<sentence mode="on" keyword="Возраст">
 		<entry lang="KAZ">Жасы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Вес">
 		<entry lang="KAZ">Салмағы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Окрас">
 		<entry lang="KAZ">Реңі</entry>
@@ -970,223 +942,208 @@
 	<sentence mode="on" keyword="Оборудование">
 		<entry lang="KAZ">Құрал-жабдық</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Школьное оборудование">
+	<sentence mode="on" keyword="school_equipment">
+		<entry lang="RUS">Школьное оборудование</entry>
 		<entry lang="KAZ">Мектеп құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Офисное оборудование">
+	<sentence mode="on" keyword="office_equipment">
+		<entry lang="RUS">Офисное оборудование</entry>
 		<entry lang="KAZ">Кеңсе құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Компьютерное оборудование и орг. техника">
+	<sentence mode="on" keyword="computer_equipment">
+		<entry lang="RUS">Компьютерное оборудование и орг. техника</entry>
 		<entry lang="KAZ">Компьютер құрал-жабдығы және ұйымдастыру техникасы
 		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Медицинское оборудование">
+	<sentence mode="on" keyword="medical_equipment">
+		<entry lang="RUS">Медицинское оборудование</entry>
 		<entry lang="KAZ">Медицина құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Кухонное оборудование">
+	<sentence mode="on" keyword="cook_equipment">
+		<entry lang="RUS">Кухонное оборудование</entry>
 		<entry lang="KAZ">Асүй құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Оборудование гражданской обороны">
+	<sentence mode="on" keyword="equipment_of_civildefence">
+		<entry lang="RUS">Оборудование гражданской обороны</entry>
 		<entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Мощность">
 		<entry lang="KAZ">Қуаттылығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Недвижимое имущество">
+	<sentence mode="on" keyword="real_estate">
+		<entry lang="RUS">Недвижимое имущество</entry>
 		<entry lang="KAZ">Жылжымайтын мүлік</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Здания(Отдельностоящие)">
 		<entry lang="KAZ">Ғимараттар (Бөлек тұрған)</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Помещения">
 		<entry lang="KAZ">Ғимараттар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Строения">
 		<entry lang="KAZ">Құрылыстар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Жилые объекты">
+	<sentence mode="on" keyword="residential_objects">
+		<entry lang="RUS">Жилые объекты</entry>
 		<entry lang="KAZ">Тұрғын үй объектісі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Земля">
+	<sentence mode="on" keyword="land">
+		<entry lang="RUS">Земля</entry>
 		<entry lang="KAZ">Жер</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Памятники истории и культуры">
+	<sentence mode="on" keyword="monuments">
+		<entry lang="RUS">Памятники истории и культуры</entry>
 		<entry lang="KAZ">Тарих пен мәдениет ескерткіштері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Назначение">
 		<entry lang="KAZ">Тағайындау</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Территориальное расположение объекта">
 		<entry lang="KAZ">Объектінің территориялық орналасуы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Число этажей">
 		<entry lang="KAZ">Қабаттар саны</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Общая площадь">
 		<entry lang="KAZ">Жалпы ауданы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Полезная площадь">
 		<entry lang="KAZ">Пайдалы ауданы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Материал постройки">
 		<entry lang="KAZ">Құрылыстың материалы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Тип строения">
 		<entry lang="KAZ">Құрылыстың түрі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Год постройки">
 		<entry lang="KAZ">Соғылған жылы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Наличие подвала">
 		<entry lang="KAZ">Жертөленің болуы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Транспорт">
+	<sentence mode="on" keyword="transport">
+		<entry lang="RUS">Транспорт</entry>
 		<entry lang="KAZ">Транспорт</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Автомашины">
+	<sentence mode="on" keyword="autmobiles">
+		<entry lang="RUS">Автомашины</entry>
 		<entry lang="KAZ">Автокөліктер</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Легковые">
+	<sentence mode="on" keyword="cars">
+		<entry lang="RUS">Легковые</entry>
 		<entry lang="KAZ">Жеңіл автокөліктер</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Грузовые">
+	<sentence mode="on" keyword="cargo">
+		<entry lang="RUS">Грузовые</entry>
 		<entry lang="KAZ">Жүк тасымалдағыш</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Дежурный">
+	<sentence mode="on" keyword="dej_transport">
+		<entry lang="RUS">Дежурный</entry>
 		<entry lang="KAZ">Кезекші</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Служебный">
+	<sentence mode="on" keyword="official_transport">
+		<entry lang="RUS">Служебный</entry>
 		<entry lang="KAZ">Қызметтік</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Санитарный транспорт">
+	<sentence mode="on" keyword="hospita_transport">
+		<entry lang="RUS">Санитарный транспорт</entry>
 		<entry lang="KAZ">Санитарлық транспорт</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Пассажирский транспорт">
+	<sentence mode="on" keyword="passenger_transport">
+		<entry lang="RUS">Пассажирский транспорт</entry>
 		<entry lang="KAZ">Жолаушылар транспорты</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Автобусы">
+	<sentence mode="on" keyword="buses">
+		<entry lang="RUS">Автобусы</entry>
 		<entry lang="KAZ">Автобустар</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Троллейбусы">
+	<sentence mode="on" keyword="trolleybuses">
+		<entry lang="RUS">Троллейбусы</entry>
 		<entry lang="KAZ">Троллейбустар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Трамваи">
+	<sentence mode="on" keyword="trams">
+		<entry lang="RUS">Трамваи</entry>
 		<entry lang="KAZ">Трамвайлар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Водный транспорт">
+	<sentence mode="on" keyword="water_transports">
+		<entry lang="RUS">Водный транспорт</entry>
 		<entry lang="KAZ">Су транспорты</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Таксопарк">
+	<sentence mode="on" keyword="taxi">
+		<entry lang="RUS">Таксопарк</entry>
 		<entry lang="KAZ">Таксопарк</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Специальная техника">
+	<sentence mode="on" keyword="special_equipment">
+		<entry lang="RUS">Специальная техника</entry>
 		<entry lang="KAZ">Арнайы техника</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Мотоциклы">
+	<sentence mode="on" keyword="motocycles">
+		<entry lang="RUS">Мотоциклы</entry>
 		<entry lang="KAZ">Мотоциклдер</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Номер двигателя">
 		<entry lang="KAZ">Қозғалтқыш нөмірі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Номер кузова">
 		<entry lang="KAZ">Қораптың нөмірі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Марка(модель)">
 		<entry lang="KAZ">Марка (моделі)</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Мощность двигателя">
 		<entry lang="KAZ">Қозғалтқыш қуаты</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Объем двигателя">
 		<entry lang="KAZ">Қозғалтқыш көлемі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Вид топлива">
 		<entry lang="KAZ">Жанармай түрі</entry>
@@ -1196,150 +1153,119 @@
 	<sentence mode="on" keyword="Расход ГСМ на 100 км">
 		<entry lang="KAZ">100 км-ге ЖЖМ шығыны</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Пробег">
 		<entry lang="KAZ">Жүрген жолы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Нормативный срок эксплуатации">
 		<entry lang="KAZ">Пайдаланудың нормалық мерзімі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Состояние">
 		<entry lang="KAZ">Жағдайы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Масса без нагрузки">
 		<entry lang="KAZ">Жүксіз массасы</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
+		<entry lang="ENG"></entry>	</sentence>
 	<sentence mode="on" keyword="Разрешенная максимальная нагрузка">
 		<entry lang="KAZ">Рұқсат етілген максималды жүк</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Количество пассажирских мест">
 		<entry lang="KAZ">Жолаушылар орнының саны</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Количество пассажирских мест (час пик)">
 		<entry lang="KAZ">Жолаушылар орнының саны (қарбалас уақытта)</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Стратегические объекты">
+	<sentence mode="on" keyword="strategic_objects">
+		<entry lang="RUS">Стратегические объекты</entry>
 		<entry lang="KAZ">Стратегиялық объектілер</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
-		keyword="Объекты государственного природно-заповедного фонда">
+		keyword="object_reserved_fund">
+		<entry lang="RUS">Объекты государственного природно-заповедного фонда</entry>
 		<entry lang="KAZ">Мемлекеттік табиғи-қорық қорларының объектілері
 		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Специальные сооружения">
+	<sentence mode="on" keyword="special_constructions">
+		<entry lang="RUS">Специальные сооружения</entry>
 		<entry lang="KAZ">Арнайы құрылыстар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Бомбоубежища">
-		<entry lang="KAZ">Бомбадан сақтанатын жер</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="Заводы">
-		<entry lang="KAZ">Зауыттар</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="Комбинаты">
+	<sentence mode="on" keyword="combines">
+		<entry lang="RUS">Комбинаты</entry>
 		<entry lang="KAZ">Комбинаттар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Аэропорты">
+	<sentence mode="on" keyword="airports">
+		<entry lang="RUS">Аэропорты</entry>
 		<entry lang="KAZ">Әуежайлар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Подземные и надземные переходы">
+	<sentence mode="on" keyword="transitions">
+		<entry lang="RUS">Подземные и надземные переходы</entry>
 		<entry lang="KAZ">Жер үсті мен асты өткелдері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Площадь земельного участка">
 		<entry lang="KAZ">Жер бөлігінің ауданы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Объекты инженерной инфраструктуры">
+	<sentence mode="on" keyword="eng_infrastructure">
+		<entry lang="RUS">Объекты инженерной инфраструктуры</entry>
 		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Биллборды">
+	<sentence mode="on" keyword="billboards">
+		<entry lang="RUS">Билборды</entry>
 		<entry lang="KAZ">Биллбордтар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Электрические столбы">
-		<entry lang="KAZ">Электр бағаналары</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="Сети">
+	<sentence mode="on" keyword="networks">
+		<entry lang="RUS">Сети</entry>
 		<entry lang="KAZ">Желілер</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Электрические">
+	<sentence mode="on" keyword="electric_networks">
+		<entry lang="RUS">Электрические</entry>
 		<entry lang="KAZ">Электр</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Тепловые">
+	<sentence mode="on" keyword="thermal_networks">
+		<entry lang="RUS">Тепловые</entry>
 		<entry lang="KAZ">Жылу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Газовые">
+	<sentence mode="on" keyword="gas">
+		<entry lang="RUS">Газовые</entry>
 		<entry lang="KAZ">Газ</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Водопровод и канализация">
+	<sentence mode="on" keyword="water_systems">
+		<entry lang="RUS">Водопровод и канализация</entry>
 		<entry lang="KAZ">Сутартқыш және кәріз жүйесі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Арычные">
-		<entry lang="KAZ">Арық</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="Дороги">
+	<sentence mode="on" keyword="roads">
+		<entry lang="RUS">Дороги</entry>
 		<entry lang="KAZ">Жолдар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Парковки">
+	<sentence mode="on" keyword="parkings">
+		<entry lang="RUS">Парковки</entry>
 		<entry lang="KAZ">Көлік тұрақтар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword="Мониторинг объектов коммунальной собственности">
 		<entry lang="KAZ">Коммуналды меншік объектілерін бақылау</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Регистрационные документы">
 		<entry lang="KAZ">Тіркеу құжаттары</entry>
@@ -1351,92 +1277,82 @@
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on" keyword="Движимое имущество - Животные">
-		<entry lang="KAZ">Жылжымалы мүлік - Жануарлар</entry>
+	<sentence mode="on" keyword="animals">
+		<entry lang="RUS">Животные</entry>
+		<entry lang="KAZ">Жануарлар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Вид">
 		<entry lang="KAZ">Түр</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword="Движимое имущество - Государственные пакеты акций">
 		<entry lang="KAZ">Жылжымалы мүлік - Мемлекеттік акциялар пакеті
 		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="others">
 		<entry lang="ENG">Others</entry>
-		<entry lang="RUS">Движимое имущество - прочее</entry>
-		<entry lang="KAZ">Жылжымалы мүлік - басқалары</entry>		
+		<entry lang="RUS">Прочее</entry>
+		<entry lang="KAZ">Басқалары</entry>
 	</sentence>
-	<sentence mode="on" keyword="Движимое имущество - инвентарь">
-		<entry lang="KAZ">Жылжымалы мүлік - инвентарь</entry>
+	<sentence mode="on" keyword="inventory">
+		<entry lang="RUS">Инвентарь</entry>
+		<entry lang="KAZ">Инвентарь</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Движимое имущество - Долевое участие в ТОО">
 		<entry lang="KAZ">Жылжымалы мүлік - ЖШС-гі үлесі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Оборудование - Школьное оборудование">
 		<entry lang="KAZ">Құрал-жабдық - Мектеп құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Оборудование - Офисное оборудование">
 		<entry lang="KAZ">Құрал-жабдық - Кеңсе құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword="Оборудование - Компьютерное оборудование и орг. техника">
 		<entry lang="KAZ">Құрал-жабдық - Компьютер құрал-жабдығы және
-			ұйымдастыру техникасы</entry>
+			ұйымдастыру техникасы
+		</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
 	<sentence mode="on" keyword="Оборудование - Медицинское оборудование">
 		<entry lang="KAZ">Құрал-жабдық - Медицина құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Оборудование - Кухонное оборудование">
 		<entry lang="KAZ">Құрал-жабдық - Асүй құрал-жабдығы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword="Оборудование - Оборудование гражданской обороны">
 		<entry lang="KAZ">Құрал-жабдық - Азаматтық қорғаныс құрал-жабдығы
 		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Недвижимое имущество - Здание">
-		<entry lang="KAZ">Жылжымайтын мүлік - Ғимараттар (Бөлек тұрған)
-		</entry>
+	<sentence mode="on" keyword="buildings">
+		<entry lang="RUS">Здание</entry>
+		<entry lang="KAZ">Ғимараттар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Недвижимое имущество - Помещение">
 		<entry lang="KAZ">Жылжымайтын мүлік - Ғимараттар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Недвижимое имущество - Строение">
-		<entry lang="KAZ">Жылжымайтын мүлік - Құрылыстар</entry>
+	<sentence mode="on" keyword="structures">
+		<entry lang="RUS">Строение</entry>
+		<entry lang="KAZ">Құрылыстар</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Недвижимое имущество - Жилой объект">
 		<entry lang="KAZ">Жылжымайтын мүлік - Тұрғын үй объектісі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Недвижимое имущество - Земля">
 		<entry lang="KAZ">Жылжымайтын мүлік - Жер</entry>
@@ -1518,20 +1434,19 @@
 	<sentence mode="on"
 		keyword="Стратегические объекты - Объекты государственного природно-заповедного фонда">
 		<entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық
-			қорларының объектілері</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="Стратегические объекты - Бомбоубежища">
-		<entry lang="KAZ">Стратегиялық объектілер - Бомбадан сақтанатын жер
+			қорларының объектілері
 		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Стратегические объекты - Завод">
-		<entry lang="KAZ">Стратегиялық объектілер - Зауыт</entry>
+	<sentence mode="on" keyword="bombproofs">
+		<entry lang="RUS">Бомбоубежища</entry>
+		<entry lang="KAZ">Бомбадан сақтанатын жер</entry>
 		<entry lang="ENG"></entry>
-
+	</sentence>
+	<sentence mode="on" keyword="factory">
+		<entry lang="RUS">Завод</entry>
+		<entry lang="KAZ">Зауыт</entry>
+		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Стратегические объекты - Комбинат">
 		<entry lang="KAZ">Стратегиялық объектілер - Комбинат</entry>
@@ -1546,29 +1461,24 @@
 	<sentence mode="on"
 		keyword="Стратегические объекты - Подземные и надземные переходы">
 		<entry lang="KAZ">Стратегиялық объектілер - Жер үсті мен асты
-			өткелдері</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="Объекты инженерной инфраструктуры - Биллборды">
-		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Биллбордтар
+			өткелдері
 		</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
-	<sentence mode="on"
-		keyword="Объекты инженерной инфраструктуры - Электрические столбы">
-		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Электр
-			бағаналары</entry>
-		<entry lang="ENG"></entry>
 
+	<sentence mode="on"
+		keyword="columns">
+		<entry lang="RUS">Электрические столбы</entry>
+		<entry lang="KAZ">Электр бағаналары</entry>
+		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on"
 		keyword="Объекты инженерной инфраструктуры - Электрические сети">
 		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Электр
-			желілері</entry>
+			желілері
+		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword="Объекты инженерной инфраструктуры - Тепловые сети">
@@ -1587,7 +1497,8 @@
 	<sentence mode="on"
 		keyword="Объекты инженерной инфраструктуры - Водопровод и канализация">
 		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері - Сутартқыш және
-			кәріз жүйесі</entry>
+			кәріз жүйесі
+		</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
@@ -1788,33 +1699,29 @@
 	<sentence mode="on" keyword="Электрические сети">
 		<entry lang="KAZ">Электр желілері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Тепловые сети">
 		<entry lang="KAZ">Жылу желілері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Газовые сети">
+	<sentence mode="on" keyword="gas">
+		<entry lang="RUS">Газовые сети</entry>
 		<entry lang="KAZ">Газ желілері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
-	<sentence mode="on" keyword="Арычные сети">
+	<sentence mode="on" keyword="drain">
+		<entry lang="RUS">Арычные сети</entry>
 		<entry lang="KAZ">Арық желілері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет объекты инженерной инфраструктуры">
 		<entry lang="KAZ">Инженерлік инфрақұрылым объектілері есептемесі
 		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет стратегические объекты">
 		<entry lang="KAZ">Стратегиялық объектілер есептемесі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет транспорт">
 		<entry lang="KAZ">Транспорт есептемесі</entry>
@@ -1824,17 +1731,14 @@
 	<sentence mode="on" keyword="Санитарный">
 		<entry lang="KAZ">Санитарлық</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Здания">
 		<entry lang="KAZ">Ғимараттар (үйлер)</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Памятники истории и архитектуры">
 		<entry lang="KAZ">Тарих пен архитектура ескерткіштері</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет оборудование">
 		<entry lang="KAZ">Құрал-жабдық есептемесі</entry>
@@ -1854,12 +1758,12 @@
 	<sentence mode="on" keyword="Временное безвозмездное пользование">
 		<entry lang="KAZ">Уақытша өтеусіз пайдалану</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword="Вклад в уставной капитал - Доверительное управление">
 		<entry lang="KAZ">Жарғылық капиталға салым - Мүлікті сенімгерлікпен
-			басқару</entry>
+			басқару
+		</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
@@ -1874,7 +1778,6 @@
 		keyword="Вклад в уставной капитал - Оперативное пользование">
 		<entry lang="KAZ">Жарғылық капиталға салым - Жедел пайдалану</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить договор">
 		<entry lang="KAZ">Келісім-шарт қосу</entry>
@@ -1889,12 +1792,10 @@
 	<sentence mode="on" keyword="Активно">
 		<entry lang="KAZ">Белсенді</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Неактивно">
 		<entry lang="KAZ">Белсенді емес</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить постановление">
 		<entry lang="KAZ">Қаулы қосу</entry>
@@ -1910,7 +1811,6 @@
 		keyword='Поле "Наименование постановления" не заполнено.'>
 		<entry lang="KAZ">"Қаулының атауы" жолы толтырылмады</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword='Поле "Дата регистрации" не заполнено.'>
 		<entry lang="KAZ">"Тіркеу датасы" жолы толтырылмады</entry>
@@ -1935,17 +1835,16 @@
 	<sentence mode="on" keyword="Дата истечения срока договора">
 		<entry lang="KAZ">Келісім-шарт мерзімінің аяқталу датасы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword='Поле "Наименование договора" не заполнено.'>
 		<entry lang="KAZ">"Келісім-шарттың атауы" жолы толтырылмады</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword='Поле "Дата истечения срока договора" не заполнено.'>
 		<entry lang="KAZ">"Келісім-шарт мерзімінің аяқталу датасы" жолы
-			толтырылмады</entry>
+			толтырылмады
+		</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
@@ -1957,12 +1856,10 @@
 	<sentence mode="on" keyword="Уведомить об окончании действия договора">
 		<entry lang="KAZ">Келісім-шарттың аяқталуы туралы хабарлау</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Архив">
 		<entry lang="KAZ">Мұрағат</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Прочее">
 		<entry lang="KAZ">Басқалары</entry>
@@ -1977,12 +1874,10 @@
 	<sentence mode="on" keyword="Добавить акт">
 		<entry lang="KAZ">Акт қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Наименование">
 		<entry lang="KAZ">Атауы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить новую мебель">
 		<entry lang="KAZ">Жаңа жиһаз қосу</entry>
@@ -2002,7 +1897,6 @@
 	<sentence mode="on" keyword="Добавить прочее">
 		<entry lang="KAZ">Басқаларын қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить новый спорт. инвентарь">
 		<entry lang="KAZ">Жаңа спорт. инвентарь қосу</entry>
@@ -2017,7 +1911,6 @@
 	<sentence mode="on" keyword="Добавить школьное оборудование">
 		<entry lang="KAZ">Мектеп құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить офисное оборудование">
 		<entry lang="KAZ">Кеңсе құрал-жабдығын қосу</entry>
@@ -2042,12 +1935,10 @@
 	<sentence mode="on" keyword="Добавить оборудование гражданской обороны">
 		<entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить государственные пакеты акций">
 		<entry lang="KAZ">Мемлекеттік акциялар пакетін қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Номинальная стоимость">
 		<entry lang="KAZ">Атаулы құны</entry>
@@ -2067,12 +1958,10 @@
 	<sentence mode="on" keyword="Реестродержатель">
 		<entry lang="KAZ">Тізім иесі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить долевое участие в ТОО">
 		<entry lang="KAZ">ЖШС-гі үлесін қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить здание">
 		<entry lang="KAZ">Ғимарат қосу</entry>
@@ -2092,7 +1981,6 @@
 	<sentence mode="on" keyword="Добавить земельный участок">
 		<entry lang="KAZ">Жер телімін қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить памятник истории(культуры)">
 		<entry lang="KAZ">Тарих (мәдениет) ескерткішін қосу</entry>
@@ -2112,12 +2000,10 @@
 	<sentence mode="on" keyword="Добавить дежурный транспорт">
 		<entry lang="KAZ">Кезекші транспорт қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить служебный транспорт">
 		<entry lang="KAZ">Қызметтік транспорт қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить санитарный транспорт">
 		<entry lang="KAZ">Санитарлық транспорт қосу</entry>
@@ -2132,12 +2018,10 @@
 	<sentence mode="on" keyword="Добавить троллейбус">
 		<entry lang="KAZ">Троллейбус қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить трамвай">
 		<entry lang="KAZ">Трамвай қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить водный транспорт">
 		<entry lang="KAZ">Су транспортын қосу</entry>
@@ -2147,7 +2031,6 @@
 	<sentence mode="on" keyword="Добавить такси">
 		<entry lang="KAZ">Такси қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить специальную технику">
 		<entry lang="KAZ">Арнайы техника қосу</entry>
@@ -2167,12 +2050,10 @@
 	<sentence mode="on" keyword="№ тех. паспорта">
 		<entry lang="KAZ">Тех. құжат №</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отличное">
 		<entry lang="KAZ">Өте жақсы</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Хорошее">
 		<entry lang="KAZ">Жақсы</entry>
@@ -2187,17 +2068,14 @@
 	<sentence mode="on" keyword="Добавить объект фонда">
 		<entry lang="KAZ">Қор объектісін қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить бомбоубежище">
 		<entry lang="KAZ">Бомбадан сақтанатын жер қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить завод">
 		<entry lang="KAZ">Зауыт қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить комбинат">
 		<entry lang="KAZ">Комбинат қосу</entry>
@@ -2212,12 +2090,10 @@
 	<sentence mode="on" keyword="Добавить надземный(подземный) переход">
 		<entry lang="KAZ">Жер үсті мен асты өткелдерін қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить биллборд">
 		<entry lang="KAZ">Биллборд қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить электрический столб">
 		<entry lang="KAZ">Электр бағанасын қосу</entry>
@@ -2232,7 +2108,6 @@
 	<sentence mode="on" keyword="Добавить тепловую сеть">
 		<entry lang="KAZ">Жылу желісін қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить газовую сеть">
 		<entry lang="KAZ">Газ желісін қосу</entry>
@@ -2252,17 +2127,14 @@
 	<sentence mode="on" keyword="Добавить дорогу">
 		<entry lang="KAZ">Жол қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить парковку">
 		<entry lang="KAZ">Көлік тұрақ қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Описание">
 		<entry lang="KAZ">Сипаттама</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Наименование акта">
 		<entry lang="KAZ">Акттың атауы</entry>
@@ -2277,17 +2149,14 @@
 	<sentence mode="on" keyword="Новый акт">
 		<entry lang="KAZ">Жаңа акт</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Время прочтения">
 		<entry lang="KAZ">Оқу уақыты</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет оборудование">
 		<entry lang="KAZ">Құрал-жабдық есептемесі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет недвижимое имущество">
 		<entry lang="KAZ">Жылжымайтын мүлік есептемесі</entry>
@@ -2308,7 +2177,6 @@
 	<sentence mode="on" keyword="Отчет транспорт">
 		<entry lang="KAZ">Транспорт есептемесі</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Отчет стратегические объекты">
 		<entry lang="KAZ">Стратегиялық объектілер есептемесі</entry>
@@ -2334,24 +2202,21 @@
 	<sentence mode="on" keyword="Дата регистрации акта">
 		<entry lang="KAZ">Актіні тіркеу күні</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Сдал: Должность, Ф.И.О">
 		<entry lang="KAZ">Тапсырды: Лауазымы, Аты-жөні</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Принял: Должность, Ф.И.О">
 		<entry lang="KAZ">Қабылдады: Лауазымы, Аты-жөні</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on"
 		keyword='Поле "Техническое состояние объекта на момент сдачи" не заполнено.'>
 		<entry lang="KAZ">"Тапсыру мезетіндегі объектінің техникалық күйі"
-			жолы толтырылмады.</entry>
+			жолы толтырылмады.
+		</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword='Поле "Дата регистрации акта" не заполнено.'>
 		<entry lang="KAZ">"Актіні тіркеу күні" жолы толтырылмады.</entry>
@@ -2361,312 +2226,29 @@
 	<sentence mode="on" keyword='Поле "Сдал" не заполнено.'>
 		<entry lang="KAZ">"Тапсырды" жолы толтырылмады.</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword='Поле "Принял" не заполнено.'>
 		<entry lang="KAZ">"Қабылдады" жолы толтырылмады.</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить акт приема-передачи">
 		<entry lang="KAZ">Қабылдау-тапсыру актісін қосу</entry>
 		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="personalstateCat">
-		<entry lang="RUS">Движимое имущество</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="furnitures">
-		<entry lang="RUS">Мебель</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-	</sentence>
-	<sentence mode="on" keyword="shareblocks">
-		<entry lang="RUS">Государственные пакеты акций</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="equity">
-		<entry lang="RUS">Долевое участие в ТОО</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="animals">
-		<entry lang="RUS">Животные</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="inventory">
-		<entry lang="RUS">Инвентарь</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="others">
-		<entry lang="RUS">Прочее</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="automobile">
-		<entry lang="RUS">Легковые</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="cargo">
-		<entry lang="RUS">Грузовые</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="bus">
-		<entry lang="RUS">Автобусы</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="trolleybus">
-		<entry lang="RUS">Троллейбусы</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="tram">
-		<entry lang="RUS">Трамваи</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="watertransport">
-		<entry lang="RUS">Водный транспорт</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="hospitaltransport">
-		<entry lang="RUS">Санитарный транспорт</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="specialequipment">
-		<entry lang="RUS">Специальная техника</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="motorcycle">
-		<entry lang="RUS">Мотоциклы</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="billboard">
-		<entry lang="RUS">Биллборды</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="columns">
-		<entry lang="RUS">Электрические столбы</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="electricnetworks">
-		<entry lang="RUS">Электрические сети</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="thermalnetworks">
-		<entry lang="RUS">Тепловые сети</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="gas">
-		<entry lang="RUS">Газовые сети</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="watersystem">
-		<entry lang="RUS">Водопровод и канализация</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="drain">
-		<entry lang="RUS">Арычные</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="road">
-		<entry lang="RUS">Дороги</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="parking">
-		<entry lang="RUS">Парковки</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="buildings">
-		<entry lang="RUS">Здания(Отдельностоящие)</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="rooms">
-		<entry lang="RUS"></entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="structures">
-		<entry lang="RUS">Строения</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="residentialobjects">
-		<entry lang="RUS">Жилые объекты</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="land">
-		<entry lang="RUS">Земля</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="monument">
-		<entry lang="RUS">Памятники истории и культуры</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="schoolequipment">
-		<entry lang="RUS">Школьное оборудование</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="officeequipment">
-		<entry lang="RUS">Офисное оборудование</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="computerequipment">
-		<entry lang="RUS">Компьютерное оборудование и орг. техника</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="medicalequipment">
-		<entry lang="RUS">Медицинское оборудование</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="cookequipment">
-		<entry lang="RUS">Кухонное оборудование</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="equipmentofcivildefense">
-		<entry lang="RUS">Оборудование гражданской обороны</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="bombproof">
-		<entry lang="RUS">Бомбоубежища</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="factory">
-		<entry lang="RUS">Заводы</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="combines">
-		<entry lang="RUS">Комбинаты</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="airport">
-		<entry lang="RUS">Аэропорты</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="transitions">
-		<entry lang="RUS">Подземные и надземные переходы</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
 	</sentence>
 
-	<sentence mode="on" keyword="equipmentCat">
-		<entry lang="RUS">Оборудование</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
 
-	</sentence>
-	<sentence mode="on" keyword="realestateCat">
-		<entry lang="RUS">Недвижимое имущество</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="transportCat">
-		<entry lang="RUS">Транспорт</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="strategicobjectsCat">
-		<entry lang="RUS">Стратегические объекты</entry>
-		<entry lang="KAZ">Стратегические объекты</entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="specialconstructionsCat">
-		<entry lang="RUS">Специальные сооружения</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
-	<sentence mode="on" keyword="engineeringInfrastructureCat">
-		<entry lang="RUS">Объекты инженерной инфраструктуры</entry>
-		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
-	</sentence>
+	<!-- common sentences -->
 	<sentence mode="on" keyword="no_data">
+		<entry lang="ENG">There is no any data</entry>
 		<entry lang="RUS">Нет данных</entry>
 		<entry lang="KAZ"></entry>
-		<entry lang="ENG"></entry>
-
 	</sentence>
+	<sentence mode="on" keyword="ft_search_resturn_null">
+		<entry lang="ENG">Documnets have been not found, keyword</entry>
+		<entry lang="RUS">Документы не найдены, строка поиска</entry>
+		<entry lang="KAZ"></entry>
+	</sentence>
+
 </vocabulary>
 
 

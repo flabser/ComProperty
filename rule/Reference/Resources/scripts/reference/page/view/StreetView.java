@@ -11,7 +11,7 @@ public class StreetView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "street", lang));
-		setContent(getViewContent(new StreetDAO(session), formData));
+		setContent(getViewPage(new StreetDAO(session), formData));
 	}
 
 	@Override

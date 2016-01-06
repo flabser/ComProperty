@@ -48,7 +48,8 @@ public class FurnitureForm extends _DoPage {
 				entity = new PersonalEstate();
 			}
 			// doc.addStringField("note", webFormData.getValueSilently("note"));
-			entity.setBalanceHolder(webFormData.getNumberValueSilently("balanceholder", 0));
+			// entity.setBalanceHolder(webFormData.getNumberValueSilently("balanceholder",
+			// 0));
 			// doc.addStringField("address",
 			// webFormData.getValueSilently("address"));
 			entity.setInvNumber(webFormData.getValueSilently("invnumber"));

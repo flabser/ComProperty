@@ -17,7 +17,7 @@ public class BuildingMaterialView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "building_material", lang));
-		setContent(getViewContent(new BuildingMaterialDAO(session), formData));
+		setContent(getViewPage(new BuildingMaterialDAO(session), formData));
 	}
 
 	@Override

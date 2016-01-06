@@ -2,6 +2,7 @@ package accountant.form.uploadupdating;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import jxl.Cell;
@@ -18,7 +19,9 @@ import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.model.util.PropertyFactory;
 import staff.dao.EmployeeDAO;
+import staff.dao.OrganizationDAO;
 import staff.model.Employee;
+import staff.model.Organization;
 
 public class ImportData {
 	StringBuilder defectRows = new StringBuilder();
@@ -87,6 +90,10 @@ public class ImportData {
 				addr.setAdditionalInfo(address);
 				prop.setOriginalCost(Util.convertStringToFloat(originalcost));
 				prop.setBalanceCost(Util.convertStringToFloat(balancecost));
+				OrganizationDAO orgDao = new OrganizationDAO(ses);
+				List<Organization> orgList = orgDao.findAll();
+				Organization org = orgList.get(1);
+				prop.setBalanceHolder(org.getId());
 				prop.setAuthor(ses.getUser());
 				EmployeeDAO empDao = new EmployeeDAO(ses);
 				Employee emp = empDao.findByLogin("cgalina");

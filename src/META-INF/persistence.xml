@@ -4,13 +4,14 @@
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
 		<!-- Specific application entities -->
-		<class>monitoring.model.Property</class>
-		<class>monitoring.model.Vehicle</class>
-		<class>monitoring.model.RealEstate</class>
-		<class>monitoring.model.PersonalEstate</class>
-		<class>monitoring.model.Equipment</class>
-		<class>monitoring.model.EngineeringInfrastaff</class>
-		<class>monitoring.model.StrategicObject</class>
+		<class>municipalproperty.model.Property</class>
+		<class>municipalproperty.model.Vehicle</class>
+		<class>municipalproperty.model.RealEstate</class>
+		<class>municipalproperty.model.PersonalEstate</class>
+		<class>municipalproperty.model.Equipment</class>
+		<class>municipalproperty.model.EngineeringInfrastaff</class>
+		<class>municipalproperty.model.StrategicObject</class>
+		<class>municipalproperty.model.ReportTemplate</class>
 		<!-- Common Staff module entities -->
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -30,13 +31,13 @@
 	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
 		<!-- Specific application entities -->
-		<class>monitoring.model.Property</class>
-		<class>monitoring.model.Vehicle</class>
-		<class>monitoring.model.RealEstate</class>
-		<class>monitoring.model.PersonalEstate</class>
-		<class>monitoring.model.Equipment</class>
-		<class>monitoring.model.EngineeringInfrastaff</class>
-		<class>monitoring.model.StrategicObject</class>
+		<class>municipalproperty.model.Property</class>
+		<class>municipalproperty.model.Vehicle</class>
+		<class>municipalproperty.model.RealEstate</class>
+		<class>municipalproperty.model.PersonalEstate</class>
+		<class>municipalproperty.model.Equipment</class>
+		<class>municipalproperty.model.EngineeringInfrastaff</class>
+		<class>municipalproperty.model.StrategicObject</class>
 		<!-- Common Staff module entities -->			
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>

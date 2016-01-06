@@ -4,16 +4,59 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import kz.flabs.dataengine.DatabaseUtil;
 import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.h2.Database;
 import kz.nextbase.script._Session;
+import municipalproperty.model.constants.KufType;
 
 public class ReportUtil {
 
+	public static HashMap<String, List<KufType>> getCat() {
+		HashMap<String, List<KufType>> cat = new HashMap<String, List<KufType>>();
+		ArrayList<KufType> peList = new ArrayList<KufType>(Arrays.asList(KufType.FURNITURE, KufType.ANIMALS, KufType.SPORT_EQUIPMENT, KufType.OTHERS,
+		        KufType.SHARE_BLOCK, KufType.EQUITY));
+		cat.put("personalstateCat", peList);
+		cat.put("personalestate_report", peList);
+
+		ArrayList<KufType> eList = new ArrayList<KufType>(Arrays.asList(KufType.SCHOOL_EQUIPMENT, KufType.OFFICE_EQUIPMENT,
+		        KufType.COMPUTER_EQUIPMENT, KufType.MEDICAL_EQUIPMENT, KufType.COOK_EQUIPMENT, KufType.EQUIPMENT_OF_CIVIL_DEFENSE));
+		cat.put("equipmentCat", eList);
+		cat.put("equipment_report", eList);
+
+		ArrayList<KufType> reList = new ArrayList<KufType>(Arrays.asList(KufType.BUILDINGS, KufType.ROOMS, KufType.STRUCTURES,
+		        KufType.RESIDENTIAL_OBJECTS, KufType.LAND, KufType.MONUMENT));
+		cat.put("realestateCat", reList);
+		cat.put("realestate_report", reList);
+
+		ArrayList<KufType> tList = new ArrayList<KufType>(Arrays.asList(KufType.CARGO, KufType.BUS, KufType.TROLLEYBUS, KufType.TRAM,
+		        KufType.WATER_TRANSPORT, KufType.HOSPITAL_TRANSPORT, KufType.SPECIAL_EQUIPMENT));
+		cat.put("transportCat", tList);
+		cat.put("transport_report", tList);
+
+		ArrayList<KufType> eiList = new ArrayList<KufType>(Arrays.asList(KufType.BILLBOARD, KufType.COLUMNS, KufType.ELECTRIC_NETWORKS,
+		        KufType.THERMAL_NETWORKS, KufType.GAS, KufType.WATER_SYSTEM, KufType.DRAIN, KufType.ROAD, KufType.PARKING));
+		cat.put("specialconstructionsCat", eiList);
+		cat.put("engineeringInfrastructure_report", eiList);
+
+		ArrayList<KufType> soList = new ArrayList<KufType>(Arrays.asList(KufType.BOMBPROOF, KufType.FACTORY, KufType.COMBINES, KufType.AIRPORT,
+		        KufType.LAND, KufType.TRANSITIONS));
+		cat.put("strategicobjectsCat", soList);
+		cat.put("strategicobjects_report", soList);
+
+		ArrayList<KufType> esList = new ArrayList<KufType>(Arrays.asList(KufType.SHARE_BLOCK, KufType.EQUITY));
+		cat.put("engineeringInfrastructureCat", esList);
+
+		return cat;
+	}
+
+	@Deprecated
 	public static HashMap<String, String[]> getCategories() {
 		HashMap<String, String[]> cat = new HashMap<String, String[]>();
 		String[] personalSForm = { "furniture", "animals", "sportsequipment", "others", "shareblocks", "equity" };

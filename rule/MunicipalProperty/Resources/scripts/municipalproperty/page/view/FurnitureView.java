@@ -10,7 +10,7 @@ public class FurnitureView extends MunicipalPropertyView {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "furniture", lang));
-		setContent(getPropertyViewContent(session, formData, KufType.FURNITURE));
+		setContent(getPropertyViewPage(session, formData, KufType.FURNITURE));
 	}
 
 	@Override

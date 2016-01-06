@@ -16,7 +16,7 @@ public class StructureTypeView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "structure_type", lang));
-		setContent(getViewContent(new StructureTypeDAO(session), formData));
+		setContent(getViewPage(new StructureTypeDAO(session), formData));
 	}
 
 	@Override

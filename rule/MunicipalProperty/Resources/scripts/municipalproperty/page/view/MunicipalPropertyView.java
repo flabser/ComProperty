@@ -24,7 +24,7 @@ import municipalproperty.model.constants.KufType;
 
 public abstract class MunicipalPropertyView extends _DoPage {
 
-	protected _IXMLContent getPropertyViewContent(_Session session, _WebFormData formData, KufType kuf) {
+	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
 		return getPropertyViewContent(session, formData, params);
@@ -38,7 +38,7 @@ public abstract class MunicipalPropertyView extends _DoPage {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 		PropertyDAO dao = new PropertyDAO(session);
-		DAO<Property, UUID>.ViewResult<Property> result = dao.findAllIN("kuf", set, pageNum, pageSize);
+		DAO<Property, UUID>.ViewPage<Property> result = dao.findAllIN("kuf", set, pageNum, pageSize);
 		return new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum());
 	}
 

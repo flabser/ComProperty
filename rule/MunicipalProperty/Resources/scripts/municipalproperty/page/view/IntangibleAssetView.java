@@ -1,7 +1,7 @@
 package municipalproperty.page.view;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -17,13 +17,8 @@ public class IntangibleAssetView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		// println(formData);
 		setContent(getSimpleActionBar(session, "intangible_asset", lang));
-		List<KufType> params = new ArrayList<KufType>();
-		params.add(KufType.FURNITURE);
-		params.add(KufType.ANIMALS);
-		params.add(KufType.SPORT_EQUIPMENT);
-		params.add(KufType.OTHERS);
+		ArrayList<KufType> params = new ArrayList<KufType>(Arrays.asList(KufType.SHARE_BLOCK, KufType.EQUITY));
 		setContent(getPropertyViewContent(session, formData, params));
 	}
 

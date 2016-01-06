@@ -11,7 +11,7 @@ public class RegionView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "region", lang));
-		setContent(getViewContent(new RegionDAO(session), formData));
+		setContent(getViewPage(new RegionDAO(session), formData));
 	}
 
 	@Override

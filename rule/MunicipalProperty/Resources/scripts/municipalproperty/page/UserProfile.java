@@ -24,7 +24,7 @@ public class UserProfile extends _DoPage {
 		EmployeeDAO dao = new EmployeeDAO(ses);
 		Employee emp = dao.findByLogin(user.getUserID());
 		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
-		// setContent(emp);
+		setContent(emp);
 
 	}
 
