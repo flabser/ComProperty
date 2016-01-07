@@ -27,6 +27,7 @@
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
 		<class>reference.model.StructureType</class>	
+		<class>reference.model.ReceivingReason</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
@@ -52,14 +53,10 @@
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
-		<class>reference.model.StructureType</class>	
+		<class>reference.model.StructureType</class>
+		<class>reference.model.ReceivingReason</class>	
 		<shared-cache-mode>NONE</shared-cache-mode>
-	</persistence-unit>	
-	<persistence-unit name="Glossary" transaction-type="RESOURCE_LOCAL">
-		<!-- Referenced data entities -->
-		<class>glossary.model.PropertyCode</class>		
-		<shared-cache-mode>NONE</shared-cache-mode>
-	</persistence-unit>	
+	</persistence-unit>		
 	<persistence-unit name="Staff" transaction-type="RESOURCE_LOCAL">
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
@@ -89,7 +86,8 @@
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
-		<class>reference.model.StructureType</class>	
+		<class>reference.model.StructureType</class>
+		<class>reference.model.ReceivingReason</class>	
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Workspace" transaction-type="RESOURCE_LOCAL">

@@ -20,13 +20,13 @@ import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script._XMLDocument;
 import kz.nextbase.script.events._DoPage;
+import accountant.page.action.MPXLImporter.ErrorDescription;
 
 public class ImportFileChecker extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		String fileDir = "tmp" + File.separator + "InventLoad" + File.separator + session.getCurrentUserID()
-				+ File.separator + new Date().getTime();
+		String fileDir = "tmp" + File.separator + "InventLoad" + File.separator + session.getCurrentUserID() + File.separator + new Date().getTime();
 		try {
 			ArrayList<String> ids = new ArrayList<String>();
 			ids.add(formData.getValue("fileid"));
@@ -59,18 +59,18 @@ public class ImportFileChecker extends _DoPage {
 			if (dir != null && dir.isDirectory()) {
 				File[] files = dir.listFiles(fileNameFilter);
 
-				FileChecker id = new FileChecker();
+				MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
 
 				for (File xlsFile : files) {
 					Workbook workbook = Workbook.getWorkbook(xlsFile);
 					Sheet sheet = workbook.getSheet(0);
-					Map<Integer, List<List<String>>> sheetErrs = id.check(sheet, ses, false);
-					for (Entry<Integer, List<List<String>>> row : sheetErrs.entrySet()) {
+					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, false);
+					for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {
 						_Tag entry = rootTag.addTag("entry");
 						entry.setAttr("row", row.getKey());
-						for (List<String> colList : row.getValue()) {
-							for (String val : colList) {
-								entry.addTag("column", val);
+						for (List<ErrorDescription> colList : row.getValue()) {
+							for (ErrorDescription val : colList) {
+								entry.addTag("column", val.toString());
 							}
 						}
 					}

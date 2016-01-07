@@ -9,7 +9,7 @@
     </element>
     <element mode="ON" type="SCRIPT">
 		<events>
-			<doscript source="JAVA_CLASS">staff.page.view.ContractorView</doscript>
+			<doscript source="JAVA_CLASS">staff.page.view.EmployeeView</doscript>
 		</events>
     </element>   
      <element mode="ON" type="INCLUDED_PAGE">

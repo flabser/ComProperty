@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.users.User;
-import kz.nextbase.script._URL;
 import staff.exception.EmployеeException;
 
 @Entity
@@ -26,6 +25,9 @@ public class Employee extends Staff {
 	@JoinColumn(nullable = false)
 	private Organization organization;
 
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
 	private Department department;
 
 	public void setOrganization(Organization organization) {
@@ -36,9 +38,6 @@ public class Employee extends Staff {
 		return organization;
 	}
 
-	@NotNull
-	@ManyToOne(optional = false)
-	@JoinColumn(nullable = false)
 	public Department getDepartment() {
 		return department;
 	}
@@ -67,11 +66,6 @@ public class Employee extends Staff {
 			throw new EmployеeException("User who associated with the Employer has not been found");
 		}
 
-	}
-
-	@Override
-	public _URL getURL() {
-		return new _URL("Provider?id=employee_form&amp;docid=" + getId());
 	}
 
 }

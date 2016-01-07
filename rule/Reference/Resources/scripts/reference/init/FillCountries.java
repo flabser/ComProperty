@@ -22,7 +22,7 @@ public class FillCountries extends InitialDataAdapter<Country, CountryDAO> {
 		List<Country> entities = new ArrayList<Country>();
 		String[] data = { "Казахстан", "Россия", "Беларуссия", "Украина", "Германия", "Франция", "Турция", "США", "Китай", "Болгария" };
 		CountryCode[] code = { CountryCode.KZ, CountryCode.RU, CountryCode.BY, CountryCode.UA, CountryCode.DE, CountryCode.FR, CountryCode.TR,
-		        CountryCode.US, CountryCode.US, CountryCode.BG };
+		        CountryCode.US, CountryCode.CN, CountryCode.BG };
 
 		for (int i = 0; i < data.length; i++) {
 			Country entity = new Country();

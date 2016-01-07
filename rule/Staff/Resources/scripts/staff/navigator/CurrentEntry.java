@@ -1,4 +1,4 @@
-package staff.page.navigator;
+package staff.navigator;
 
 import kz.nextbase.script._Session;
 import kz.nextbase.script._Tag;

@@ -1,4 +1,4 @@
-package staff.page.navigator;
+package staff.navigator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,7 @@ public class MainNavigator extends _DoPage {
 
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure_view"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("employees", lang), "employee_view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organizations", lang), "organization_view"));
 
 		_Outline specific_outline = new _Outline(getLocalizedWord("specific_staff_data", lang), "specific");

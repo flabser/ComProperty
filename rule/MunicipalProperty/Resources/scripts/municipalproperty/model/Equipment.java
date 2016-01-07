@@ -12,4 +12,14 @@ import javax.persistence.Table;
 @NamedQuery(name = "Equipment.findAll", query = "SELECT m FROM Equipment AS m ORDER BY m.regDate")
 public class Equipment extends Property {
 
+	private String model;
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 }

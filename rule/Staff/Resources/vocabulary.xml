@@ -5,7 +5,7 @@
 		<entry lang="RUS">Структура и организации</entry>
 		<entry lang="KAZ"></entry>
 	</sentence>
-		<sentence mode="on" keyword="specific_staff_data">
+	<sentence mode="on" keyword="specific_staff_data">
 		<entry lang="ENG">Additional lists of the application</entry>
 		<entry lang="RUS">Дополнительные реестры приложения</entry>
 		<entry lang="KAZ"></entry>	
@@ -15,7 +15,17 @@
 		<entry lang="RUS">Структура основной организации</entry>
 		<entry lang="KAZ"></entry>		
 	</sentence>
-		<sentence mode="on" keyword="organizations">
+	<sentence mode="on" keyword="employees">
+		<entry lang="ENG">Employees</entry>
+		<entry lang="RUS">Сотрудники</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="new_employee">
+		<entry lang="ENG">New employee</entry>
+		<entry lang="RUS">Новый сотрудник</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="organizations">
 		<entry lang="ENG">Organizations</entry>
 		<entry lang="RUS">Организации</entry>
 		<entry lang="KAZ"></entry>	
@@ -25,12 +35,12 @@
 		<entry lang="RUS">Контрагенты</entry>
 		<entry lang="KAZ"></entry>
 	</sentence>
-		<sentence mode="on" keyword="individuals">
+	<sentence mode="on" keyword="individuals">
 		<entry lang="ENG">Individuals</entry>
 		<entry lang="RUS">Физические лица</entry>
 		<entry lang="KAZ"></entry>
 	</sentence>
-		<sentence mode="on" keyword="legal_entities">
+	<sentence mode="on" keyword="legal_entities">
 		<entry lang="ENG">Legal entities</entry>
 		<entry lang="RUS">Юридические лица</entry>
 		<entry lang="KAZ"></entry>	
@@ -45,9 +55,8 @@
 		<entry lang="RUS">Новая организация</entry>
 		<entry lang="KAZ"></entry>
         <entry lang="CHN"></entry>		
-	</sentence>
-	
-		<sentence mode="on" keyword="add_new_organization">
+	</sentence>	
+	<sentence mode="on" keyword="add_new_organization">
 		<entry lang="ENG">Add new organization</entry>
 		<entry lang="RUS">Добавить новую организацию</entry>
 		<entry lang="KAZ"></entry>	

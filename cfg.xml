@@ -37,7 +37,7 @@
             <name mode="on">MunicipalProperty</name>
         </app>
         <app>
-            <name mode="on">MonitoringSubsystem</name>
+            <name mode="off">MonitoringSubsystem</name>
         </app>
         <app>
             <name mode="off">Glossary</name>

@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import kz.flabs.util.Util;
+import reference.model.Country;
+import reference.model.District;
 import reference.model.Locality;
 import reference.model.Region;
 import reference.model.Street;
@@ -15,7 +17,15 @@ public class Address {
 
 	@ManyToOne
 	@JoinColumn
+	private Country country;
+
+	@ManyToOne
+	@JoinColumn
 	private Region region;
+
+	@ManyToOne
+	@JoinColumn
+	private District district;
 
 	@ManyToOne
 	@JoinColumn
@@ -68,6 +78,14 @@ public class Address {
 		return Util.toStringGettersVal(this);
 	}
 
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
 	public Region getRegion() {
 		return region;
 	}
@@ -79,6 +97,14 @@ public class Address {
 	public void setRegion(String r) {
 		region = new Region();
 
+	}
+
+	public District getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(District district) {
+		this.district = district;
 	}
 
 }

@@ -1,20 +1,23 @@
 package municipalproperty.model;
 
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.jpa.SecureAppEntity;
 import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;
-
-import org.eclipse.persistence.annotations.Convert;
+import reference.model.PropertyCode;
+import reference.model.ReceivingReason;
+import staff.model.Organization;
 
 @Entity
 @Table(name = "properties")
@@ -30,9 +33,26 @@ public class Property extends SecureAppEntity {
 	@Column(name = "balance_cost")
 	private float balanceCost;
 
-	@Convert("uuidConverter")
-	@Column(name = "balance_holder")
-	private UUID balanceHolder;
+	@Column(name = "revaluation_amount")
+	private float revaluationAmount;
+
+	@Column(name = "residual_cost")
+	private float residualCost;
+
+	@ManyToOne
+	@JoinColumn
+	private ReceivingReason receivingReason;
+
+	@Column(name = "commissioning_year")
+	private int commissioningYear;
+
+	@Column(name = "acquisition_year")
+	private int acquisitionYear;
+
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Organization balanceHolder;
 
 	private String description;
 
@@ -45,8 +65,15 @@ public class Property extends SecureAppEntity {
 	@Column(name = "original_cost")
 	private float originalCost;
 
-	@Column(name = "property_code")
-	private String propertyCode;
+	@Column(name = "cumulative_depreciation")
+	private float cumulativeDepreciation;
+
+	@Column(name = "impairment_loss")
+	private float impairmentLoss;
+
+	@ManyToOne
+	@JoinColumn
+	private PropertyCode propertyCode;
 
 	private String assignment;
 
@@ -55,6 +82,21 @@ public class Property extends SecureAppEntity {
 
 	@Column(name = "acceptance_date")
 	private Date acceptanceDate;
+
+	@ManyToOne
+	@JoinColumn
+	private ReceivingReason rReason;
+
+	@Column(name = "ready_to_use")
+	private boolean readyToUse;
+
+	public boolean isReadyToUse() {
+		return readyToUse;
+	}
+
+	public void setReadyToUse(boolean readyToUse) {
+		this.readyToUse = readyToUse;
+	}
 
 	@Column(name = "year_release")
 	private String getKof() {
@@ -81,11 +123,27 @@ public class Property extends SecureAppEntity {
 		this.balanceCost = balanceCost;
 	}
 
-	public UUID getBalanceHolder() {
+	public float getCumulativeDepreciation() {
+		return cumulativeDepreciation;
+	}
+
+	public void setCumulativeDepreciation(float cumulativeDepreciation) {
+		this.cumulativeDepreciation = cumulativeDepreciation;
+	}
+
+	public float getImpairmentLoss() {
+		return impairmentLoss;
+	}
+
+	public void setImpairmentLoss(float impairmentLoss) {
+		this.impairmentLoss = impairmentLoss;
+	}
+
+	public Organization getBalanceHolder() {
 		return balanceHolder;
 	}
 
-	public void setBalanceHolder(UUID balanceHolder) {
+	public void setBalanceHolder(Organization balanceHolder) {
 		this.balanceHolder = balanceHolder;
 	}
 
@@ -121,11 +179,11 @@ public class Property extends SecureAppEntity {
 		this.originalCost = originalCost;
 	}
 
-	public String getPropertyCode() {
+	public PropertyCode getPropertyCode() {
 		return propertyCode;
 	}
 
-	public void setPropertyCode(String propertyCode) {
+	public void setPropertyCode(PropertyCode propertyCode) {
 		this.propertyCode = propertyCode;
 	}
 
@@ -151,6 +209,54 @@ public class Property extends SecureAppEntity {
 
 	public void setAcceptanceDate(Date acceptanceDate) {
 		this.acceptanceDate = acceptanceDate;
+	}
+
+	public float getRevaluationAmount() {
+		return revaluationAmount;
+	}
+
+	public void setRevaluationAmount(float revaluationAmount) {
+		this.revaluationAmount = revaluationAmount;
+	}
+
+	public float getResidualCost() {
+		return residualCost;
+	}
+
+	public void setResidualCost(float residualCost) {
+		this.residualCost = residualCost;
+	}
+
+	public ReceivingReason getReceivingReason() {
+		return receivingReason;
+	}
+
+	public void setReceivingReason(ReceivingReason receivingReason) {
+		this.receivingReason = receivingReason;
+	}
+
+	public int getCommissioningYear() {
+		return commissioningYear;
+	}
+
+	public void setCommissioningYear(int commissioningYear) {
+		this.commissioningYear = commissioningYear;
+	}
+
+	public int getAcquisitionYear() {
+		return acquisitionYear;
+	}
+
+	public void setAcquisitionYear(int acquisitionYear) {
+		this.acquisitionYear = acquisitionYear;
+	}
+
+	public ReceivingReason getrReason() {
+		return rReason;
+	}
+
+	public void setrReason(ReceivingReason rReason) {
+		this.rReason = rReason;
 	}
 
 	@Override

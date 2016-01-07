@@ -5,7 +5,7 @@
     <element mode="ON" type="SCRIPT">
         <name>outline</name>
         <events>
-            <doscript source="JAVA_CLASS">staff.page.navigator.MainNavigator</doscript>
+            <doscript source="JAVA_CLASS">staff.navigator.MainNavigator</doscript>
         </events>
     </element>
 </rule>

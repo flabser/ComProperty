@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rule type="page" id="outline" mode="on">
+<rule type="page"  mode="on">
 	<description></description>
     <caching>NO_CACHING</caching>
     <element mode="ON" type="SCRIPT">
         <name>current_outline_entry</name>
         <events>
-            <doscript source="JAVA_CLASS">staff.page.navigator.CurrentEntry</doscript>
+            <doscript source="JAVA_CLASS">staff.navigator.CurrentEntry</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">

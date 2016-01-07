@@ -55,7 +55,7 @@ public class FurnitureForm extends _DoPage {
 			entity.setInvNumber(webFormData.getValueSilently("invnumber"));
 			entity.setDescription(webFormData.getValueSilently("description"));
 			entity.setObjectName(webFormData.getValueSilently("objectname"));
-			entity.setPropertyCode(webFormData.getValueSilently("propertycode"));
+			// entity.setPropertyCode(webFormData.getValueSilently("propertycode"));
 			// doc.addNumberField("region",
 			// webFormData.getNumberValueSilently("region", 0));
 			// doc.addNumberField("city",

@@ -32,6 +32,12 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
+/**
+ * 
+ * 
+ * @author Kayra created 06-01-2016
+ */
+
 public class RegistryReport extends _DoPage {
 	protected long grandTotal;
 

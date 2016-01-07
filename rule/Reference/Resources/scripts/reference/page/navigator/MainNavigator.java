@@ -34,6 +34,7 @@ public class MainNavigator extends _DoPage {
 
 		_Outline specific_outline = new _Outline(getLocalizedWord("specific_reference_data", lang), "specific");
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("propertycodes", lang), "propertycode_view"));
+		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("receiving_reasons", lang), "receiving_reason_view"));
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure_types", lang), "structure_type_view"));
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("building_materials", lang), "building_material_view"));
 
