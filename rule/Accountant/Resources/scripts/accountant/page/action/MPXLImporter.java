@@ -79,8 +79,8 @@ public class MPXLImporter {
 			String residualCost = sheet.getCell(15, i).getContents().trim();
 			String receiptBasisinBalance = sheet.getCell(16, i).getContents().trim();
 			String model = sheet.getCell(17, i).getContents().trim();
-			String commissioningYear = sheet.getCell(18, i).getContents().trim();
-			String acquisitionYear = sheet.getCell(19, i).getContents().trim();
+			Cell commissioningYear = sheet.getCell(18, i);
+			Cell acquisitionYear = sheet.getCell(19, i);
 			String isReadyToOperation = sheet.getCell(20, i).getContents().trim();
 
 			if (mode == MPXLImporter.CHECK) {
@@ -108,9 +108,8 @@ public class MPXLImporter {
 				rowErr.add(new CheVal("17, Основание поступления на баланс", receiptBasisinBalance).isReferenceValue(new ReceivingReasonDAO(ses),
 				        receiptBasisinBalance).getErr());
 				rowErr.add(new CheVal("18 Модель", model).isOkAnyway().getErr());
-				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", commissioningYear).isIntNumber(commissioningYear).isYear(commissioningYear)
-				        .getErr());
-				rowErr.add(new CheVal("20, Год приобретения ", acquisitionYear).isIntNumber(acquisitionYear).isYear(acquisitionYear).getErr());
+				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", commissioningYear.getContents()).isYear(commissioningYear).getErr());
+				rowErr.add(new CheVal("20, Год приобретения ", acquisitionYear.getContents()).isYear(acquisitionYear).getErr());
 				rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", isReadyToOperation).isNotEmpty(isReadyToOperation)
 				        .isValueOfList(trueVal, falseVal, isReadyToOperation).getErr());
 
@@ -161,7 +160,7 @@ public class MPXLImporter {
 				}
 				prop.setCommissioningYear(cv.getYear(commissioningYear));
 				prop.setAcquisitionYear(cv.getYear(acquisitionYear));
-				prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, acquisitionYear));
+				prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, isReadyToOperation));
 
 				OrganizationDAO orgDao = new OrganizationDAO(ses);
 				List<Organization> orgList = orgDao.findAll();
@@ -212,7 +211,7 @@ public class MPXLImporter {
 			return value.trim();
 		}
 
-		CheVal isYear(String value) {
+		CheVal isYear(Cell value) {
 			if (getYear(value) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue, "value is larger than " + Calendar.getInstance().get(Calendar.YEAR)
 				        + " or less than " + MPXLImporter.FROM_YEAR + ")"));
@@ -220,13 +219,22 @@ public class MPXLImporter {
 			return this;
 		}
 
-		Integer getYear(String value) {
-			int v = Util.convertStringToInt(value);
-			int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-			if (v > currentYear || v < MPXLImporter.FROM_YEAR) {
-				return null;
+		Integer getYear(Cell cell) {
+			if (cell.getType() == CellType.DATE) {
+				DateCell dateCell = (DateCell) cell;
+				Date dateVal = dateCell.getDate();
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(dateVal);
+				return cal.get(Calendar.YEAR);
 			} else {
-				return v;
+				String value = cell.getContents().trim();
+				int v = Util.convertStringToInt(value);
+				int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+				if (v > currentYear || v < MPXLImporter.FROM_YEAR) {
+					return null;
+				} else {
+					return v;
+				}
 			}
 
 		}
