@@ -28,13 +28,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/code/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="col-lg-6">
+                                <input type="text" name="code" value="{//fields/code}" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
 
-                <input type="hidden" name="type" value="save"/>
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="doctype" value="{document/@doctype}"/>
-                <input type="hidden" name="key" value="{document/@docid}"/>
-                <input type="hidden" name="ddbid" value="{document/@id}"/>
             </form>
         </section>
     </xsl:template>

@@ -107,7 +107,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a id="logout" href="Logout" title="{document/captions/logout/@caption}">
+                                    <a id="logout" href="Logout" title="{//captions/logout/@caption}">
                                         <xsl:value-of select="//captions/logout/@caption"/>
                                     </a>
                                 </li>
