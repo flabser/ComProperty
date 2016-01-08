@@ -16,7 +16,7 @@
             </div>
         </header>
         <section class="content-body">
-            <form name="region">
+            <form name="{//document/@entity}">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
@@ -41,6 +41,7 @@
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
+                <input type="hidden" name="docid" value="{//document/@docid}"/>
             </form>
         </section>
     </xsl:template>
