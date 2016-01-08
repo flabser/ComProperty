@@ -110,7 +110,7 @@ public class Database extends kz.flabs.dataengine.h2.Database implements IDataba
 		// OFF,
 		// ALL,
 		// CONFIG (developing)
-		properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "CONFIG");
+		properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "INFO");
 		properties.put(PersistenceUnitProperties.DDL_GENERATION, PersistenceUnitProperties.CREATE_OR_EXTEND);
 		properties
 		        .put(PersistenceUnitProperties.SCHEMA_GENERATION_SCRIPTS_ACTION, PersistenceUnitProperties.SCHEMA_GENERATION_DROP_AND_CREATE_ACTION);

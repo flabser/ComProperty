@@ -17,17 +17,19 @@ import staff.model.constants.DepartmentType;
 @NamedQuery(name = "Department.findAll", query = "SELECT m FROM Department AS m ORDER BY m.regDate")
 public class Department extends Staff {
 	private DepartmentType type;
-	private Organization organization;
-	private List<Employee> employers;
 
 	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)
+	private Organization organization;
+
+	@OneToMany(mappedBy = "department")
+	private List<Employee> employers;
+
 	public Organization getOrganization() {
 		return organization;
 	}
 
-	@OneToMany(mappedBy = "department")
 	public List<Employee> getRegions() {
 		return employers;
 	}

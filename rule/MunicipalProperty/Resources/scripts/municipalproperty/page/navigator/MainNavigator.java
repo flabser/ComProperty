@@ -60,13 +60,13 @@ public class MainNavigator extends _DoPage {
 		autoEntry.addEntry(new _OutlineEntry(getLocalizedWord("official_transport", lang), "official_transport_view"));
 		_OutlineEntry passengerTransportEntry = new _OutlineEntry(getLocalizedWord("passenger_transport", lang), "passenger_transport_view");
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("buses", lang), "bus_view"));
-		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trolleybuses", lang), "trollebys_view"));
+		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trolleybuses", lang), "trolleybus_view"));
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trams", lang), "tram_view"));
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("water_transports", lang), "water_transport_view"));
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("taxi", lang), "taxi_view"));
 		autoEntry.addEntry(passengerTransportEntry);
 		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("special_equipment", lang), "special_equipment_view"));
-		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("motocycles", lang), "motocycle_view"));
+		transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("motorcycles", lang), "motorcycle_view"));
 
 		_OutlineEntry strategicObjectEntry = new _OutlineEntry(getLocalizedWord("strategic_objects", lang), "strategicobject_view");
 		strategicObjectEntry.addEntry(new _OutlineEntry(getLocalizedWord("object_reserved_fund", lang), "object_reserved_fund_view"));
@@ -83,7 +83,7 @@ public class MainNavigator extends _DoPage {
 		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("columns", lang), "column_view"));
 		_OutlineEntry networkEntry = new _OutlineEntry(getLocalizedWord("networks", lang), "network_view");
 		engStructureEntry.addEntry(networkEntry);
-		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "electric_networks_view"));
+		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "electric_network_view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("thermal_networks", lang), "thermal_network_view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("gas", lang), "gas_view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("water_systems", lang), "water_system__view"));

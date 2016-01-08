@@ -83,10 +83,6 @@ public class Property extends SecureAppEntity {
 	@Column(name = "acceptance_date")
 	private Date acceptanceDate;
 
-	@ManyToOne
-	@JoinColumn
-	private ReceivingReason rReason;
-
 	@Column(name = "ready_to_use")
 	private boolean readyToUse;
 
@@ -249,14 +245,6 @@ public class Property extends SecureAppEntity {
 
 	public void setAcquisitionYear(int acquisitionYear) {
 		this.acquisitionYear = acquisitionYear;
-	}
-
-	public ReceivingReason getrReason() {
-		return rReason;
-	}
-
-	public void setrReason(ReceivingReason rReason) {
-		this.rReason = rReason;
 	}
 
 	@Override

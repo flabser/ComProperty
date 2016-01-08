@@ -58,6 +58,7 @@ public class MPXLImporter {
 	}
 
 	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong) {
+		int loaded = 0, skipped = 0;
 		for (int i = 1; i < sheet.getRows(); i++) {
 			String kof = sheet.getCell(0, i).getContents().trim();
 			String kuf = sheet.getCell(1, i).getContents().trim();
@@ -88,6 +89,11 @@ public class MPXLImporter {
 				rowErr.add(new CheVal("1, КОФ", kof).isNotEmpty(kof).getErr());
 				rowErr.add(new CheVal("2, КУФ", kuf).isNotEmpty(kuf).isKufType(kuf).getErr());
 				rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotEmpty(invNumber).getErr());
+				PropertyDAO dao = new PropertyDAO(ses);
+				Property p = dao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
+				if (p != null) {
+					rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotUniqueMessage().getErr());
+				}
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());
 				rowErr.add(new CheVal("5, Код права на имущество", propertyCode).isNotEmpty(propertyCode)
 				        .isReferenceValue(new PropertyCodeDAO(ses), propertyCode).getErr());
@@ -132,6 +138,7 @@ public class MPXLImporter {
 				PropertyDAO dao = new PropertyDAO(ses);
 				Property p = dao.findByInvNum(cv.getString(invNumber));
 				if (p != null) {
+					skipped++;
 					continue;
 				}
 				Property prop = PropertyFactory.getProperty(kuf);
@@ -175,8 +182,10 @@ public class MPXLImporter {
 					Server.logger.errorLogEntry(e);
 				}
 				dao.add(prop);
+				loaded++;
 			}
 		}
+		Server.logger.verboseLogEntry("processed=" + loaded + ", skipped=" + skipped);
 		return sheetErr;
 
 	}
@@ -189,6 +198,11 @@ public class MPXLImporter {
 		CheVal(String column, String sv) {
 			info = column;
 			sourceValue = sv;
+		}
+
+		public CheVal isNotUniqueMessage() {
+			errMsg.add(new ErrorDescription(info, sourceValue, "value is not unique"));
+			return this;
 		}
 
 		public CheVal() {
@@ -230,10 +244,21 @@ public class MPXLImporter {
 				String value = cell.getContents().trim();
 				int v = Util.convertStringToInt(value);
 				int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-				if (v > currentYear || v < MPXLImporter.FROM_YEAR) {
-					return null;
+				if (!value.equals("") && v == 0) {
+					Date dv = getDate(cell);
+					if (dv != null) {
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(dv);
+						return cal.get(Calendar.YEAR);
+					} else {
+						return null;
+					}
 				} else {
-					return v;
+					if (v > currentYear || v < MPXLImporter.FROM_YEAR) {
+						return null;
+					} else {
+						return v;
+					}
 				}
 			}
 

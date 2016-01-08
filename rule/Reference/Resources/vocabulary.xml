@@ -54,6 +54,12 @@
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
+	<sentence mode="on" keyword="receiving_reasons">
+		<entry lang="ENG"></entry>
+		<entry lang="RUS">Основание поступления на баланс</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="CHO"></entry>
+	</sentence>
 	<sentence mode="on" keyword="structure_types">
 		<entry lang="ENG">Structure types</entry>
 		<entry lang="RUS">Тип структуры</entry>
@@ -66,35 +72,30 @@
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
-
 	<sentence mode="on" keyword="UNKNOWN">
 		<entry lang="ENG">Unknown</entry>
 		<entry lang="RUS">Не определен</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
-
 	<sentence mode="on" keyword="URBAN_AGGLOMERATION">
 		<entry lang="ENG">Urban agglomeration</entry>
 		<entry lang="RUS">Городская агломерация</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
-
 	<sentence mode="on" keyword="REGION">
 		<entry lang="ENG">Region</entry>
 		<entry lang="RUS">Область</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
-
 	<sentence mode="on" keyword="FEDERATION">
 		<entry lang="ENG">Federation</entry>
 		<entry lang="RUS">Федерация</entry>
 		<entry lang="KAZ"></entry>
 		<entry lang="CHO"></entry>
 	</sentence>
-
 	<sentence mode="on" keyword="del_document">
 		<entry lang="ENG">Delete document</entry>
 		<entry lang="RUS">Удалить документ</entry>

@@ -30,7 +30,22 @@
 		<entry lang="RUS">Организации</entry>
 		<entry lang="KAZ"></entry>	
 	</sentence>
-		<sentence mode="on" keyword="contractors">
+	<sentence mode="on" keyword="roles">
+		<entry lang="ENG">Roles</entry>
+		<entry lang="RUS">Роли</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="new_role">
+		<entry lang="ENG">New role</entry>
+		<entry lang="RUS">Новая роль</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="assigned">
+		<entry lang="ENG">Assigned role</entry>
+		<entry lang="RUS">Назначена роль</entry>
+		<entry lang="KAZ"></entry>	
+	</sentence>
+	<sentence mode="on" keyword="contractors">
 		<entry lang="ENG">Contractors</entry>
 		<entry lang="RUS">Контрагенты</entry>
 		<entry lang="KAZ"></entry>

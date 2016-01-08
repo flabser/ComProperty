@@ -1,8 +1,14 @@
 package staff.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,6 +35,10 @@ public class Employee extends Staff {
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)
 	private Department department;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "employee_role")
+	private List<Role> roles;
 
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
@@ -66,6 +76,21 @@ public class Employee extends Staff {
 			throw new EmployеeException("User who associated with the Employer has not been found");
 		}
 
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public void addAddRole(Role r) {
+		if (roles == null) {
+			roles = new ArrayList<Role>();
+		}
+		roles.add(r);
 	}
 
 }

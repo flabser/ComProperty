@@ -13,8 +13,11 @@ public class EmployeeView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
+		EmployeeDAO dao = new EmployeeDAO(session);
+
 		setContent(getSimpleActionBar(session, "employee", lang));
-		setContent(getViewPage(new EmployeeDAO(session), formData));
+		setContent(getViewPage(dao, formData));
+
 	}
 
 	@Override
