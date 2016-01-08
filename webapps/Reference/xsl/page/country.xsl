@@ -16,7 +16,7 @@
             </div>
         </header>
         <section class="content-body">
-            <form name="proposal">
+            <form name="country">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
