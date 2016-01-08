@@ -9,7 +9,9 @@
 
     <xsl:template name="_content">
         <div class="content-header">
-            <xsl:call-template name="page-info"/>
+            <xsl:call-template name="page-info">
+                <xsl:with-param name="title" select="//captions/countries/@caption"/>
+            </xsl:call-template>
         </div>
         <div class="content-body">
             <div class="view view_proposals">

@@ -43,8 +43,9 @@
     </xsl:template>
 
     <xsl:template name="page-info">
+        <xsl:param name="title" select="//captions/title/@caption"/>
         <h1 class="header-title">
-            <xsl:value-of select="//captions/title/@caption"/>
+            <xsl:value-of select="$title"/>
 
             <xsl:if test="//view_content//query/@count">
                 <sup class="entry-count">
