@@ -9,37 +9,35 @@ import kz.nextbase.script.events._DoPage;
 import kz.nextbase.script.struct._Employer;
 
 /**
- * 
- * 
  * @author Kayra created 03-01-2016
  */
 
 public abstract class ReferenceForm extends _DoPage {
 
-	protected boolean validate(_WebFormData webFormData) {
-		if (webFormData.getValueSilently("name").equals("")) {
-			localizedMsgBox("field_name_is_empty");
-			return false;
-		}
+    protected boolean validate(_WebFormData webFormData) {
+        if (webFormData.getValueSilently("name").isEmpty()) {
+            localizedMsgBox("field_name_is_empty");
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	protected _ActionBar getSimpleActionBar(_Session ses, String lang) {
-		_ActionBar actionBar = new _ActionBar(ses);
-		_Employer user = ses.getCurrentAppUser();
-		// if (user.hasRole("supervisor")) {
-		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), getLocalizedWord("save_close", lang), _ActionType.SAVE_AND_CLOSE));
-		// }
+    protected _ActionBar getSimpleActionBar(_Session ses, String lang) {
+        _ActionBar actionBar = new _ActionBar(ses);
+        _Employer user = ses.getCurrentAppUser();
+        // if (user.hasRole("supervisor")) {
+        actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+        // }
 
-		actionBar.addAction(new _Action(getLocalizedWord("close", lang), getLocalizedWord("just_close", lang), _ActionType.CLOSE));
-		return actionBar;
+        actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
+        return actionBar;
 
-	}
+    }
 
-	@Override
-	public abstract void doGET(_Session session, _WebFormData formData, String lang);
+    @Override
+    public abstract void doGET(_Session session, _WebFormData formData, String lang);
 
-	@Override
-	public abstract void doPOST(_Session session, _WebFormData formData, String lang);
+    @Override
+    public abstract void doPOST(_Session session, _WebFormData formData, String lang);
 }

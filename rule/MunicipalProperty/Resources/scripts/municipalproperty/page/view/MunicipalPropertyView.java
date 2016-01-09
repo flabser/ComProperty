@@ -38,7 +38,7 @@ public abstract class MunicipalPropertyView extends _DoPage {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 		PropertyDAO dao = new PropertyDAO(session);
-		DAO<Property, UUID>.ViewPage<Property> result = dao.findAllin("kuf", set, pageNum, pageSize);
+		DAO<Property, UUID>.ViewPage<Property> result = dao.findAllIN("kuf", set, pageNum, pageSize);
 		return new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum());
 	}
 

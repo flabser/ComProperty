@@ -48,7 +48,10 @@
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
                         <span>
-                            <xsl:value-of select="viewcontent/viewtext"/>
+                            <xsl:value-of select="viewcontent/name"/>
+                        </span>
+                        <span>
+                            <xsl:value-of select="viewcontent/code"/>
                         </span>
                     </div>
                 </a>
