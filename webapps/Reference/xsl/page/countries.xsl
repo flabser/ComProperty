@@ -28,7 +28,7 @@
                     <input type="checkbox" data-toggle="docid" class="all"/>
                 </label>
                 <div class="entry-captions">
-                    <span class="workplan-name">
+                    <span>
                         <xsl:value-of select="//captions/viewtext/@caption"/>
                     </span>
                 </div>
@@ -47,7 +47,7 @@
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
-                        <span class="workplan-name">
+                        <span>
                             <xsl:value-of select="viewcontent/viewtext"/>
                         </span>
                     </div>

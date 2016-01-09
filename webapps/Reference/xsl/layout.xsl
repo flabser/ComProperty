@@ -13,34 +13,35 @@
     <xsl:decimal-format name="df" grouping-separator=" "/>
 
     <xsl:template name="layout">
-        <xsl:param name="w_title" select="concat(//captions/title/@caption, ' - ', $APP_NAME)"/>
+        <xsl:param name="title" select="concat(//captions/title/@caption, ' - ', $APP_NAME)"/>
         <xsl:param name="active_aside_id" select="//app_menu//current/@id"/>
         <xsl:param name="aside_collapse" select="''"/>
-        <xsl:param name="include" select="''"/>
-        <xsl:param name="include_body" select="''"/>
+        <xsl:param name="include_head" select="''"/>
+        <xsl:param name="include_body_top" select="''"/>
+        <xsl:param name="include_body_bottom" select="''"/>
         <xsl:param name="body_class" select="''"/>
 
         <xsl:call-template name="HTML-DOCTYPE"/>
         <html>
             <xsl:call-template name="html_head">
-                <xsl:with-param name="w_title" select="$w_title"/>
-                <xsl:with-param name="include" select="$include"/>
+                <xsl:with-param name="title" select="$title"/>
+                <xsl:with-param name="include" select="$include_head"/>
             </xsl:call-template>
             <body class="{$body_class}">
+                <xsl:copy-of select="$include_body_top"/>
                 <div class="main-load" id="main-load" style="display:none"></div>
                 <div class="layout {$aside_collapse}">
                     <div class="content-overlay" id="content-overlay"></div>
                     <xsl:call-template name="main-header"/>
                     <xsl:apply-templates select="//app_menu" mode="outline">
-                        <xsl:with-param name="active-entry-id" select="$active_aside_id"/>
+                        <xsl:with-param name="active-id" select="$active_aside_id"/>
                     </xsl:apply-templates>
                     <section class="content">
                         <xsl:call-template name="_content"/>
                     </section>
                     <xsl:call-template name="main-footer"/>
                 </div>
-                <xsl:call-template name="util-js-mark-as-read"/>
-                <xsl:copy-of select="$include_body"/>
+                <xsl:copy-of select="$include_body_bottom"/>
             </body>
         </html>
     </xsl:template>
@@ -48,11 +49,11 @@
     <xsl:template name="_content"/>
 
     <xsl:template name="html_head">
+        <xsl:param name="title" select="''"/>
         <xsl:param name="include" select="''"/>
-        <xsl:param name="w_title" select="''"/>
         <head>
             <title>
-                <xsl:value-of select="$w_title"/>
+                <xsl:value-of select="$title"/>
             </title>
             <link rel="shortcut icon" href="favicon.ico"/>
             <meta name="format-detection" content="telephone=no"/>

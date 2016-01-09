@@ -9,7 +9,9 @@
 
     <xsl:template name="_content">
         <div class="content-header">
-            <xsl:call-template name="page-info"/>
+            <xsl:call-template name="page-info">
+                <xsl:with-param name="title" select="//captions/regions/@caption"/>
+            </xsl:call-template>
         </div>
         <div class="content-body">
             <div class="view view_proposals">
@@ -26,7 +28,7 @@
                     <input type="checkbox" data-toggle="docid" class="all"/>
                 </label>
                 <div class="entry-captions">
-                    <span class="workplan-name">
+                    <span>
                         <xsl:value-of select="//captions/viewtext/@caption"/>
                     </span>
                 </div>
@@ -45,7 +47,7 @@
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
-                        <span class="workplan-name">
+                        <span>
                             <xsl:value-of select="viewcontent/viewtext"/>
                         </span>
                     </div>

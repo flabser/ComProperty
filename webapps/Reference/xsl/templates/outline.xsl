@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:variable name="outline-current-entry" select="//app_menu//current"/>
+    <xsl:variable name="outline-current" select="//app_menu//current"/>
 
     <xsl:template match="app_menu" mode="outline">
-        <xsl:param name="active-entry-id" select="//app_menu//current/@id"/>
+        <xsl:param name="active-id" select="//app_menu//current/@id"/>
 
-        <aside class="aside nav-app">
+        <aside class="aside side-nav" id="side-nav">
             <xsl:apply-templates select="response/content/outline" mode="outline">
-                <xsl:with-param name="active-entry-id" select="$active-entry-id"/>
+                <xsl:with-param name="active-id" select="$active-id"/>
             </xsl:apply-templates>
         </aside>
     </xsl:template>
 
     <xsl:template match="outline" mode="outline">
-        <xsl:param name="active-entry-id" select="''"/>
+        <xsl:param name="active-id" select="''"/>
 
-        <div class="side-nav">
-            <div class="side-header" data-role="side-tree-toggle">
-                <span class="side-tree-toggle"></span>
-                <span title="{@hint}">
+        <section>
+            <xsl:if test="@caption != ''">
+                <xsl:attribute name="class" select="'collapsible'"/>
+                <xsl:attribute name="id" select="concat('side-nav-', @id)"/>
+                <header data-role="toggle">
                     <xsl:value-of select="@caption"/>
-                </span>
-            </div>
-            <ul class="side-tree" id="side-tree-{@id}">
+                </header>
+            </xsl:if>
+            <ul>
                 <xsl:apply-templates mode="outline">
-                    <xsl:with-param name="active-entry-id" select="$active-entry-id"/>
+                    <xsl:with-param name="active-id" select="$active-id"/>
                 </xsl:apply-templates>
             </ul>
-        </div>
+        </section>
     </xsl:template>
 
     <xsl:template match="entry" mode="outline">
-        <xsl:param name="active-entry-id" select="''"/>
+        <xsl:param name="active-id" select="''"/>
 
-        <li class="side-tree-item">
-            <a href="{@url}" title="{@hint}">
-                <xsl:if test="$active-entry-id != ''
-                        and (@id = $active-entry-id or @id = $outline-current-entry or @id = $outline-current-entry/@id)">
-                    <xsl:attribute name="class">side-tree-item-active</xsl:attribute>
+        <li>
+            <a href="{@url}" title="{@hint}" class="nav-link">
+                <xsl:if test="$active-id != '' and (@id = $active-id or @id = $outline-current or @id = $outline-current/@id)">
+                    <xsl:attribute name="class" select="'nav-link active'"/>
                 </xsl:if>
                 <xsl:choose>
                     <xsl:when test="@id = 'users'">
@@ -48,13 +48,14 @@
                         <i class="fa fa-file-o"></i>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:value-of select="@caption"/>
+                <span>
+                    <xsl:value-of select="@caption"/>
+                </span>
             </a>
             <xsl:if test="./entry">
-                <span class="side-tree-toggle" data-role="side-tree-toggle"></span>
-                <ul class="side-tree" id="side-tree-{@id}{position()}">
+                <ul id="side-nav-{@id}{position()}">
                     <xsl:apply-templates mode="outline">
-                        <xsl:with-param name="active-entry-id" select="$active-entry-id"/>
+                        <xsl:with-param name="active-id" select="$active-id"/>
                     </xsl:apply-templates>
                 </ul>
             </xsl:if>

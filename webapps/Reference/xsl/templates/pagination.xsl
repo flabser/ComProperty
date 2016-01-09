@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<!-- page-navigator -->
-	<!-- Medet. Стилизация описана в page-navigator.css, не пишите стилизацию в attr (style) для этого есть css -->
+	<!-- Medet. Стилизация описана в pagination.css, не пишите стилизацию в attr (style) для этого есть css -->
 
 	<xsl:variable name="PAGE_ARROW_FIRST">
 		<xsl:text>&lt;&lt;</xsl:text>
