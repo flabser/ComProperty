@@ -3,15 +3,15 @@
     <description>Справочники - Страна</description>
     <caching>NO_CACHING</caching>
     <xsltfile>*</xsltfile>
-    <element mode="ON" type="INCLUDED_PAGE">
-        <name></name>
-        <value>outline</value>
-    </element>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
             <doscript source="JAVA_CLASS">reference.page.view.CountryView</doscript>
         </events>
+    </element>
+    <element mode="ON" type="INCLUDED_PAGE">
+        <name></name>
+        <value>outline</value>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <name>share_view_captions</name>

@@ -2,16 +2,16 @@
 <rule type="page" mode="on" history="on">
     <description>Districts</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>pages/page-glossary.xsl</xsltfile>
-    <element mode="ON" type="INCLUDED_PAGE">
-        <name></name>
-        <value>outline</value>
-    </element>
+    <xsltfile>*</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
             <doscript source="JAVA_CLASS">reference.page.view.DistrictView</doscript>
         </events>
+    </element>
+    <element mode="ON" type="INCLUDED_PAGE">
+        <name></name>
+        <value>outline</value>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <name>share_view_captions</name>
