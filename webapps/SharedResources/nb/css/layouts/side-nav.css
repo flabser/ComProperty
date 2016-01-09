@@ -34,6 +34,11 @@ body.side-nav-open {
     transform: translate3d(230px, 0, 0);
 }
 
+.side-nav section > header {
+    font-weight: bold;
+    padding: 6px 12px;
+}
+
 
 /* .side-nav ul */
 
@@ -43,6 +48,7 @@ body.side-nav-open {
     padding: 0;
 }
 
+.side-nav > section > ul,
 .side-nav > ul {
     margin-left: 0;
 }
@@ -91,7 +97,7 @@ body.side-nav-open {
 .side-nav .nav-link > i {
     color: #5C5C5C;
     display: inline-block;
-    font-size: 1.3em;
+    font-size: 14px;
     text-align: left;
     vertical-align: middle;
     width: 26px;
@@ -103,4 +109,6 @@ body.side-nav-open {
 
 .side-nav .nav-link > i + span {
     margin-left: 2px;
+    vertical-align: top;
+    white-space: normal;
 }

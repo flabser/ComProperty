@@ -10,11 +10,11 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/regions/@caption"/>
+                <xsl:with-param name="title" select="//captions/countries/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_regions">
+            <div class="view view_building_materials">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>

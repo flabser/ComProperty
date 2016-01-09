@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rule type="page"  mode="on">
-	<caching>CACHING_IN_SERVER_SCOPE</caching>
-	<caption name="category" source="KEYWORD">Справочники</caption>
-	<caption name="viewnamecaption" source="KEYWORD">Область</caption>
-	<caption name="viewtext1" source="KEYWORD">Название</caption>
-	<caption name="page" source="KEYWORD">Страница</caption>
-	<caption name="documents" source="KEYWORD">Документов</caption>
-	<caption name="updates" source="KEYWORD">Обновлено</caption>
-	<caption name="from" source="KEYWORD">из</caption>
-	<caption name="btnNewDocument" source="KEYWORD">Добавить</caption>
-	<caption name="btnDelete" source="KEYWORD">Удалить</caption>
-	<caption name="helpcaption" source="KEYWORD">Помощь</caption>
-	<caption name="logout" source="KEYWORD">Завершить работу</caption>
-	<caption name="view_userprofile" source ="KEYWORD">Посмотреть свойства текущего пользователя</caption>
-	<caption name="search" source ="KEYWORD">Поиск</caption>
+<rule type="page" mode="on">
+    <caching>CACHING_IN_SERVER_SCOPE</caching>
+    <caption name="page" source="KEYWORD">Страница</caption>
+    <caption name="documents" source="KEYWORD">Документов</caption>
+    <caption name="updates" source="KEYWORD">Обновлено</caption>
+    <caption name="from" source="KEYWORD">из</caption>
+    <caption name="add" source="KEYWORD">Добавить</caption>
+    <caption name="delete" source="KEYWORD">Удалить</caption>
+    <caption name="help" source="KEYWORD">Помощь</caption>
+    <caption name="logout" source="KEYWORD">Завершить работу</caption>
+    <caption name="user_profile" source="KEYWORD">Посмотреть свойства текущего пользователя</caption>
+    <caption name="search" source="KEYWORD">Поиск</caption>
 </rule>

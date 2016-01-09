@@ -1,24 +1,19 @@
 ﻿<?xml version="1.0" ?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:import href="../layout.xsl"/>
+    <xsl:import href="layout.xsl"/>
 
     <xsl:template match="/request">
         <xsl:call-template name="layout"/>
     </xsl:template>
 
     <xsl:template name="_content">
-        <div class="content-header">
-            <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/regions/@caption"/>
-            </xsl:call-template>
-        </div>
+        <div class="content-header"></div>
         <div class="content-body">
-            <div class="view view_regions">
+            <div class="view">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
-        <input type="hidden" name="page_id" id="page_id" value="{@id}"/>
     </xsl:template>
 
     <xsl:template name="view-table">
@@ -48,10 +43,7 @@
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
                         <span>
-                            <xsl:value-of select="viewcontent/name"/>
-                        </span>
-                        <span>
-                            <xsl:value-of select="viewcontent/code"/>
+                            <xsl:value-of select="viewcontent/viewtext"/>
                         </span>
                     </div>
                 </a>

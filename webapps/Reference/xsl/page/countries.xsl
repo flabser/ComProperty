@@ -14,7 +14,7 @@
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_proposals">
+            <div class="view view_countries">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <input type="checkbox" data-toggle="docid" class="all"/>
                 </label>
                 <div class="entry-captions">
-                    <span class="workplan-name">
+                    <span>
                         <xsl:value-of select="//captions/viewtext/@caption"/>
                     </span>
                 </div>
@@ -47,8 +47,11 @@
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
-                        <span class="workplan-name">
-                            <xsl:value-of select="viewcontent/viewtext"/>
+                        <span>
+                            <xsl:value-of select="viewcontent/name"/>
+                        </span>
+                        <span>
+                            <xsl:value-of select="viewcontent/code"/>
                         </span>
                     </div>
                 </a>

@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 var csso = require('gulp-csso');
 
 var js_files = ['js/src/nb.js', 'js/src/*.js'];
-var css_files = ['./css/**/*.css', '!./css/nb.min.css'];
+var css_files = ['./css/**/*.css', '!./css/nb.build.css'];
 
 gulp.task('lint', function() {
     gulp.src(js_files)
@@ -22,8 +22,7 @@ gulp.task('minify_js', function() {
 
 gulp.task('minify_css', function() {
     gulp.src(css_files)
-        .pipe(concat('nb.min.css'))
-        .pipe(csso())
+        .pipe(concat('nb.build.css'))
         .pipe(gulp.dest('./css'));
 });
 

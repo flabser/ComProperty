@@ -3,7 +3,9 @@
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout"/>
+        <xsl:call-template name="layout">
+            <xsl:with-param name="active_aside_id" select="'regions'"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="_content">
@@ -41,7 +43,7 @@
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
+                <input type="hidden" name="docid" value="{//document/id}"/>
             </form>
         </section>
     </xsl:template>

@@ -12,6 +12,7 @@ var js_files = ['../SharedResources/nb/js/nb.build.js',
 ];
 
 var css_files = ['../SharedResources/css/normalize.css',
+    '../SharedResources/nb/css/nb.build.css',
     './css/**/*.css',
     '!./css/all.min.css'
 ];
