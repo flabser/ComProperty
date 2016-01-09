@@ -29,4 +29,8 @@ public class Role extends Staff {
 		return employees;
 	}
 
+	@Override
+	public String getShortXMLChunk() {
+		return "<name>" + getName() + "</name><description>" + description + "</description>";
+	}
 }

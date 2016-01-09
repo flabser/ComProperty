@@ -27,10 +27,10 @@ public abstract class MunicipalPropertyView extends _DoPage {
 	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
-		return getPropertyViewContent(session, formData, params);
+		return getPropertyViewPage(session, formData, params);
 	}
 
-	protected _IXMLContent getPropertyViewContent(_Session session, _WebFormData formData, List<KufType> set) {
+	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set) {
 		User user = session.getUser();
 		int pageNum = 1;
 		int pageSize = user.getSession().pageSize;

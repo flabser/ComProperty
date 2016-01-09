@@ -19,7 +19,7 @@ public class IntangibleAssetView extends MunicipalPropertyView {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		setContent(getSimpleActionBar(session, "intangible_asset", lang));
 		ArrayList<KufType> params = new ArrayList<KufType>(Arrays.asList(KufType.SHARE_BLOCK, KufType.EQUITY));
-		setContent(getPropertyViewContent(session, formData, params));
+		setContent(getPropertyViewPage(session, formData, params));
 	}
 
 	@Override

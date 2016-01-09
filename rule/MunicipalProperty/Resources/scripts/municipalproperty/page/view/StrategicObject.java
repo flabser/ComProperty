@@ -14,12 +14,13 @@ public class StrategicObject extends MunicipalPropertyView {
 		// println(formData);
 		setContent(getSimpleActionBar(session, "strategic_object", lang));
 		List<KufType> params = new ArrayList<KufType>();
+		params.add(KufType.OBJECT_RESERVED_FUND);
 		params.add(KufType.BOMBPROOF);
 		params.add(KufType.FACTORY);
 		params.add(KufType.COMBINES);
 		params.add(KufType.AIRPORT);
 		params.add(KufType.TRANSITIONS);
-		setContent(getPropertyViewContent(session, formData, params));
+		setContent(getPropertyViewPage(session, formData, params));
 	}
 
 	@Override

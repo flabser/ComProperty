@@ -22,4 +22,9 @@ public class Reference extends AppEntity {
 	public String toString() {
 		return name;
 	}
+
+	@Override
+	public String getShortXMLChunk() {
+		return "<name>" + getName() + "</name>";
+	}
 }

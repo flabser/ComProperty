@@ -6,6 +6,7 @@ import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
+import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._URL;
@@ -13,6 +14,8 @@ import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.dao.PersonalEstateDAO;
 import municipalproperty.model.PersonalEstate;
+import reference.dao.PropertyCodeDAO;
+import reference.dao.ReceivingReasonDAO;
 
 public class FurnitureForm extends _DoPage {
 
@@ -29,6 +32,8 @@ public class FurnitureForm extends _DoPage {
 			entity.setAuthor(user);
 		}
 		setContent(new _POJOObjectWrapper(entity));
+		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll()));
+		setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll()));
 	}
 
 	@Override
