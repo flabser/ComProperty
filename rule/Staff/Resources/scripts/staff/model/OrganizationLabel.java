@@ -7,6 +7,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.nextbase.script._URL;
+
 @Entity
 @Table(name = "org_labels")
 @NamedQuery(name = "OrganizationLabel.findAll", query = "SELECT m FROM OrganizationLabel AS m ORDER BY m.regDate")
@@ -32,6 +34,11 @@ public class OrganizationLabel extends Staff {
 	@Override
 	public String getShortXMLChunk() {
 		return "<name>" + getName() + "</name><description>" + description + "</description>";
+	}
+
+	@Override
+	public _URL getURL() {
+		return new _URL("Provider?id=organization_label_form&amp;docid=" + getId());
 	}
 
 }
