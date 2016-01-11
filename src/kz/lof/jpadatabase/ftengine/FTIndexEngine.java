@@ -13,8 +13,7 @@ import kz.flabs.dataengine.FTIndexEngineException;
 import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
-import kz.flabs.dataengine.jpa.DAO;
-import kz.flabs.dataengine.jpa.DAO.ViewPage;
+import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.exception.ComplexObjectException;
 import kz.flabs.exception.DocumentException;
 import kz.flabs.users.User;
@@ -51,7 +50,7 @@ public class FTIndexEngine implements IFTIndexEngine, Const {
 
 			if (ids.size() > 0) {
 				PropertyDAO dao = new PropertyDAO(ses);
-				DAO<Property, UUID>.ViewPage<Property> vPage = dao.findAllByIds(ids, pageNum, pageSize);
+				ViewPage<Property> vPage = dao.findAllByIds(ids, pageNum, pageSize);
 				return vPage;
 			} else {
 				return null;

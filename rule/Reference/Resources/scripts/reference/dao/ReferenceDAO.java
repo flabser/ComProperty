@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 
 import kz.flabs.dataengine.jpa.DAO;
 import kz.flabs.dataengine.jpa.IAppEntity;
+import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.nextbase.script._Session;
 
@@ -44,7 +45,7 @@ public abstract class ReferenceDAO<T extends IAppEntity, K> extends DAO<T, K> {
 		}
 	}
 
-	public DAO<T, K>.ViewPage<T> findAllByKeyword(String keyword, int pageNum, int pageSize) {
+	public ViewPage<T> findAllByKeyword(String keyword, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {

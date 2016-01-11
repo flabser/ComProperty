@@ -2,7 +2,7 @@ package municipalproperty.page;
 
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
-import kz.flabs.dataengine.jpa.DAO.ViewPage;
+import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.users.User;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
