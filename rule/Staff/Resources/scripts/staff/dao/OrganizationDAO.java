@@ -32,7 +32,7 @@ public class OrganizationDAO extends DAO<Organization, UUID> {
 			Root<Organization> c = cq.from(getEntityClass());
 			cq.select(c);
 			countCq.select(cb.count(c));
-			Predicate condition = cb.like(cb.lower(c.get("name")), "%" + keyword.toLowerCase() + "%");
+			Predicate condition = cb.like(cb.lower(c.<String> get("name")), "%" + keyword.toLowerCase() + "%");
 			cq.where(condition);
 			countCq.where(condition);
 			TypedQuery<Organization> typedQuery = em.createQuery(cq);

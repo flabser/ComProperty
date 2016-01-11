@@ -54,7 +54,7 @@ public abstract class ReferenceDAO<T extends IAppEntity, K> extends DAO<T, K> {
 			Root<T> c = cq.from(getEntityClass());
 			cq.select(c);
 			countCq.select(cb.count(c));
-			Predicate condition = cb.like(cb.lower(c.get("name")), "%" + keyword.toLowerCase() + "%");
+			Predicate condition = cb.like(cb.lower(c.<String> get("name")), "%" + keyword.toLowerCase() + "%");
 			cq.where(condition);
 			countCq.where(condition);
 			TypedQuery<T> typedQuery = em.createQuery(cq);
