@@ -16,4 +16,5 @@
         <name>share_view_captions</name>
         <value>share_view_captions</value>
     </element>
+    <caption name="legal_entities" source="KEYWORD">Legal entities</caption>
 </rule>
