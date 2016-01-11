@@ -23,13 +23,17 @@ public class DeleteRoleAction extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData webFormData, String lang) throws _Exception {
-		String id = webFormData.getValueSilently("docid");
-		RoleDAO dao = new RoleDAO(session);
-		dao.delete(dao.findById(UUID.fromString(id)));
-		_URL returnURL = session.getURLOfLastPage();
-		localizedMsgBox(getLocalizedWord("document_was_deleted_succesfully", lang));
-		setRedirectURL(returnURL);
+	public void doPOST(_Session session, _WebFormData webFormData, String lang) {
+		try {
+			String id = webFormData.getValueSilently("docid");
+			RoleDAO dao = new RoleDAO(session);
+			dao.delete(dao.findById(UUID.fromString(id)));
+			_URL returnURL = session.getURLOfLastPage();
+			localizedMsgBox(getLocalizedWord("document_was_deleted_succesfully", lang));
+			setRedirectURL(returnURL);
+		} catch (_Exception e) {
+			log(e);
+		}
 	}
 
 }
