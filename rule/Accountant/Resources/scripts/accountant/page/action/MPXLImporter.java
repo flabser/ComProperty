@@ -58,7 +58,17 @@ public class MPXLImporter {
 	}
 
 	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong) {
-		int loaded = 0, skipped = 0;
+		int processed = 0, skipped = 0;
+		if (mode == MPXLImporter.LOAD) {
+			mode = MPXLImporter.CHECK;
+			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true);
+			if (res.size() > 0) {
+				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
+				return null;
+			}
+			mode = MPXLImporter.LOAD;
+		}
+
 		for (int i = 1; i < sheet.getRows(); i++) {
 			String kof = sheet.getCell(0, i).getContents().trim();
 			String kuf = sheet.getCell(1, i).getContents().trim();
@@ -93,6 +103,7 @@ public class MPXLImporter {
 				Property p = dao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
 				if (p != null) {
 					rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotUniqueMessage().getErr());
+					skipped++;
 				}
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());
 				rowErr.add(new CheVal("5, Код права на имущество", propertyCode).isNotEmpty(propertyCode)
@@ -133,6 +144,7 @@ public class MPXLImporter {
 				if (rowErr.size() > 0 && stopIfWrong) {
 					break;
 				}
+				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
 				CheVal cv = new CheVal();
 				PropertyDAO dao = new PropertyDAO(ses);
@@ -182,10 +194,10 @@ public class MPXLImporter {
 					Server.logger.errorLogEntry(e);
 				}
 				dao.add(prop);
-				loaded++;
+				processed++;
 			}
 		}
-		Server.logger.verboseLogEntry("processed=" + loaded + ", skipped=" + skipped);
+		Server.logger.verboseLogEntry("processed=" + processed + ", skipped=" + skipped);
 		return sheetErr;
 
 	}

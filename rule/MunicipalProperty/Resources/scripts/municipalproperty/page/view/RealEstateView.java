@@ -20,7 +20,7 @@ public class RealEstateView extends MunicipalPropertyView {
 		setContent(getSimpleActionBar(session, "real_estate", lang));
 		ArrayList<KufType> params = new ArrayList<KufType>(Arrays.asList(KufType.BUILDINGS, KufType.ROOMS, KufType.STRUCTURES,
 		        KufType.RESIDENTIAL_OBJECTS, KufType.LAND, KufType.MONUMENT));
-		setContent(getPropertyViewContent(session, formData, params));
+		setContent(getPropertyViewPage(session, formData, params));
 	}
 
 	@Override

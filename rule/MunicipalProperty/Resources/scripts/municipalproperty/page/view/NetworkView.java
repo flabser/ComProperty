@@ -25,7 +25,7 @@ public class NetworkView extends MunicipalPropertyView {
 		params.add(KufType.GAS);
 		params.add(KufType.WATER_SYSTEM);
 		params.add(KufType.DRAIN);
-		setContent(getPropertyViewContent(session, formData, params));
+		setContent(getPropertyViewPage(session, formData, params));
 	}
 
 	@Override

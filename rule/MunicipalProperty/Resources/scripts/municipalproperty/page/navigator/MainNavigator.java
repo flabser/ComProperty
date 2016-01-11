@@ -71,7 +71,7 @@ public class MainNavigator extends _DoPage {
 		_OutlineEntry strategicObjectEntry = new _OutlineEntry(getLocalizedWord("strategic_objects", lang), "strategicobject_view");
 		strategicObjectEntry.addEntry(new _OutlineEntry(getLocalizedWord("object_reserved_fund", lang), "object_reserved_fund_view"));
 		_OutlineEntry specialConstructionEntry = new _OutlineEntry(getLocalizedWord("special_constructions", lang), "special_construction_view");
-		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("bombproofs", lang), "boomproof_view"));
+		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("bombproofs", lang), "bombproof_view"));
 		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("factory", lang), "factory_view"));
 		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("combines", lang), "combine_view"));
 		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("airports", lang), "airport_view"));
@@ -86,9 +86,9 @@ public class MainNavigator extends _DoPage {
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "electric_network_view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("thermal_networks", lang), "thermal_network_view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("gas", lang), "gas_view"));
-		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("water_systems", lang), "water_system__view"));
+		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("water_systems", lang), "water_system_view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("drain", lang), "drain_view"));
-		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("roads", lang), "road__view"));
+		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("roads", lang), "road_view"));
 		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("parkings", lang), "parking_view"));
 
 		munPropOutline.addEntry(personalEstateEntry);

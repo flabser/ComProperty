@@ -3,14 +3,14 @@ package staff.page.form;
 import java.util.UUID;
 
 import kz.flabs.users.User;
-import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
+import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
-import reference.model.constants.CountryCode;
 import staff.dao.EmployeeDAO;
+import staff.dao.RoleDAO;
 import staff.model.Employee;
 
 /**
@@ -35,7 +35,7 @@ public class EmployeeForm extends StaffForm {
 		}
 		setContent(getSimpleActionBar(session, lang));
 		setContent(new _POJOObjectWrapper(entity));
-		setContent(new _EnumWrapper<CountryCode>(CountryCode.class.getEnumConstants()));
+		setContent(new _POJOListWrapper(new RoleDAO(session).findAll()));
 	}
 
 	@Override
