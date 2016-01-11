@@ -20,8 +20,8 @@ public class FillPropertyCode extends InitialDataAdapter<PropertyCode, PropertyC
 	public List<PropertyCode> getData(_Session ses, Language lang, Vocabulary vocabulary) {
 		List<PropertyCode> entities = new ArrayList<PropertyCode>();
 		String[] data = { "Безвозмездное пользование", "Временное безвоздмездное пользование", "Временное безвозмездное пользование",
-		        "Доверительное управление", "Долгосрочная аренда", "Концессия", "О некоторых вопросах коммунальной собственности города",
-		        "Оперативное управление", "Постановление о создании", "Распоряжение", "Собственность", "Хозяйственное ведение" };
+		        "Доверительное управление", "Долгосрочная аренда", "Концессия", "Оперативное управление", "Постановление о создании", "Распоряжение",
+		        "Собственность", "Хозяйственное ведение" };
 
 		for (int i = 0; i < data.length; i++) {
 			PropertyCode entity = new PropertyCode();
