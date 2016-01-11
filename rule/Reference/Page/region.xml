@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Region</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>*</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">reference.page.form.RegionForm</doscript>
