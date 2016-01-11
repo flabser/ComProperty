@@ -12,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import kz.flabs.dataengine.jpa.DAO;
+import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.nextbase.script._Session;
 import staff.model.Organization;
@@ -22,7 +23,7 @@ public class OrganizationDAO extends DAO<Organization, UUID> {
 		super(Organization.class, session);
 	}
 
-	public DAO<Organization, UUID>.ViewPage<Organization> findAllByKeyword(String keyword, int pageNum, int pageSize) {
+	public ViewPage<Organization> findAllByKeyword(String keyword, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {

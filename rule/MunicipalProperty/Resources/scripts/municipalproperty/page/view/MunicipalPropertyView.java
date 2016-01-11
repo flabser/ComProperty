@@ -2,9 +2,8 @@ package municipalproperty.page.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import kz.flabs.dataengine.jpa.DAO;
+import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.users.User;
 import kz.nextbase.script._IXMLContent;
 import kz.nextbase.script._POJOListWrapper;
@@ -38,7 +37,7 @@ public abstract class MunicipalPropertyView extends _DoPage {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 		PropertyDAO dao = new PropertyDAO(session);
-		DAO<Property, UUID>.ViewPage<Property> result = dao.findAllin("kuf", set, pageNum, pageSize);
+		ViewPage<Property> result = dao.findAllin("kuf", set, pageNum, pageSize);
 		return new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum());
 	}
 
