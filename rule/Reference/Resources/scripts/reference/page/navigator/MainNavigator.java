@@ -29,18 +29,18 @@ public class MainNavigator extends _DoPage {
 		_Outline common_outline = new _Outline(getLocalizedWord("common_reference_data", lang), "common");
 
 		// if(cuser.hasRole(["struct_keeper", "supervisor"])) {
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("countries", lang), "country_view"));
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("regions", lang), "region_view"));
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("districts", lang), "district_view"));
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("localities", lang), "locality_view"));
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("streets", lang), "street_view"));
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("positions", lang), "position_view"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("countries", lang), "countries"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("regions", lang), "regions"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("districts", lang), "districts"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("localities", lang), "localities"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("streets", lang), "streets"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("positions", lang), "positions"));
 
 		_Outline specific_outline = new _Outline(getLocalizedWord("specific_reference_data", lang), "specific");
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("property_codes", lang), "property_code_view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("receiving_reasons", lang), "receiving_reason_view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure_types", lang), "structure_type_view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("building_materials", lang), "building_material_view"));
+		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("property_codes", lang), "property-codes"));
+		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("receiving_reasons", lang), "receiving-reasons"));
+		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure_types", lang), "structure-types"));
+		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("building_materials", lang), "building-materials"));
 
 		list.add(common_outline);
 		list.add(specific_outline);
