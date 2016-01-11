@@ -27,3 +27,5 @@ cfg.xml
 /.settings/
 /.classpath
 /.project
+#
+node_modules/
