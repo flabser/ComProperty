@@ -7,7 +7,7 @@ import kz.flabs.dataengine.jpa.AppEntity;
 
 @MappedSuperclass
 public class Staff extends AppEntity {
-	@Column(length = 64, unique = true)
+	@Column(length = 128, unique = true)
 	private String name;
 
 	public String getName() {
