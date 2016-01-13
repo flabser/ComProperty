@@ -23,7 +23,7 @@ public class Region extends Reference {
 	private Country country;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "region_type", nullable = true, length = 16)
+	@Column(name = "region_type", nullable = true, length = 32)
 	private RegionType type = RegionType.UNKNOWN;
 
 	public RegionType getType() {

@@ -26,7 +26,7 @@ public class OrganizationLabelView extends _DoPage {
 			List<Organization> emps = role.getLabels();
 			setContent(new _POJOListWrapper(emps));
 		} else {
-			setContent(getSimpleActionBar(session, "organization_label", lang));
+			setContent(getSimpleActionBar(session, "organization-label", lang));
 			setContent(getViewPage(dao, formData));
 		}
 	}
