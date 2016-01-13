@@ -3,7 +3,6 @@
     <description></description>
     <caching>NO_CACHING</caching>
     <element mode="ON" type="SCRIPT">
-        <name></name>
         <events>
             <doscript source="JAVA_CLASS">staff.page.action.DeleteOrganizationAction</doscript>
         </events>

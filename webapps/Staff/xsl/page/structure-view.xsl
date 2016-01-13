@@ -34,7 +34,14 @@
             </div>
         </header>
         <div class="entries">
-            <xsl:apply-templates select="//view_content//query/entry" mode="view-table-body"/>
+            <xsl:choose>
+                <xsl:when test="//view_content//message">
+                    <xsl:value-of select="//view_content//message"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="//view_content//query/entry" mode="view-table-body"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </div>
     </xsl:template>
 
