@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="page" mode="on" history="on">
+    <description>Lands</description>
+    <caching>NO_CACHING</caching>
+    <xsltfile>DEFAULT</xsltfile>
+    <element mode="ON" type="SCRIPT">
+        <name>view_content</name>
+        <events>
+            <doscript source="JAVA_CLASS">municipalproperty.page.view.LandView</doscript>
+        </events>
+    </element>
+    <element mode="ON" type="INCLUDED_PAGE">
+        <name></name>
+        <value>outline</value>
+    </element>
+    <element mode="ON" type="INCLUDED_PAGE">
+        <name>share_view_captions</name>
+        <value>share_view_captions</value>
+    </element>
+    <caption name="lands" source="KEYWORD">Lands</caption>
+</rule>

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
-	<description></description>
-	<caching>NO_CACHING</caching>
-	<element mode="ON" type="SCRIPT">
-		<name>current_outline_entry</name>
-		<events>
-			<doscript source="JAVA_CLASS">municipalproperty.page.navigator.CurrentEntry</doscript>
-		</events>
-	</element>	
-	<element mode="ON" type="INCLUDED_PAGE">
-		<name>included_share_navi</name>
-		<value>share_navi</value>
-	</element>
+    <description>Outline</description>
+    <caching>NO_CACHING</caching>
+    <element mode="ON" type="SCRIPT">
+        <name>app_menu</name>
+        <events>
+            <doscript source="JAVA_CLASS">reference.page.navigator.MainNavigator</doscript>
+        </events>
+    </element>
 </rule>
