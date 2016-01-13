@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description>Street</description>
+    <description>StructureType</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
-            <doscript source="JAVA_CLASS">reference.page.form.StreetForm</doscript>
+            <doscript source="JAVA_CLASS">reference.page.form.StructureTypeForm</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
     </element>
-    <element mode="ON" type="INCLUDED_PAGE">
-        <value>share_view_captions</value>
-    </element>
-    <caption name="street" source="KEYWORD">Street</caption>
+    <caption name="structure_type" source="KEYWORD">Structure type</caption>
 </rule>

@@ -15,7 +15,7 @@ public class PositionView extends _DoPage {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         _ActionBar actionBar = new _ActionBar(session);
         _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_position");
-        newDocAction.setURL("Provider?id=position");
+        newDocAction.setURL("Provider?id=position-form");
         actionBar.addAction(newDocAction);
         actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 

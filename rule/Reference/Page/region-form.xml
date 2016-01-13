@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description>Building material</description>
+    <description>Region</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
-            <doscript source="JAVA_CLASS">reference.page.form.BuildingMaterialForm</doscript>
+            <doscript source="JAVA_CLASS">reference.page.form.RegionForm</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
     </element>
-    <element mode="ON" type="INCLUDED_PAGE">
-        <value>share_view_captions</value>
-    </element>
-    <caption name="building_material" source="KEYWORD">Building material</caption>
+    <caption name="region" source="KEYWORD">Region</caption>
 </rule>

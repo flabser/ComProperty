@@ -15,7 +15,7 @@ public class StreetView extends _DoPage {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         _ActionBar actionBar = new _ActionBar(session);
         _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_street");
-        newDocAction.setURL("Provider?id=street");
+        newDocAction.setURL("Provider?id=street-form");
         actionBar.addAction(newDocAction);
         actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
