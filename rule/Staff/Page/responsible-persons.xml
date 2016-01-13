@@ -4,6 +4,7 @@
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
+        <name>view_content</name>
         <events>
             <doscript source="JAVA_CLASS">staff.page.view.ResponsiblePersonView</doscript>
         </events>
