@@ -8,15 +8,11 @@ import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import reference.dao.BuildingMaterialDAO;
 
-/**
- * @author Kayra created 03-01-2016
- */
 
 public class BuildingMaterialView extends _DoPage {
 
     @Override
     public void doGET(_Session session, _WebFormData formData, String lang) {
-        // println(formData);
         _ActionBar actionBar = new _ActionBar(session);
         _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_building_material");
         newDocAction.setURL("Provider?id=building-material");

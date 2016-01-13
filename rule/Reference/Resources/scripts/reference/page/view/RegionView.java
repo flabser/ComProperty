@@ -13,8 +13,6 @@ public class RegionView extends _DoPage {
 
     @Override
     public void doGET(_Session session, _WebFormData formData, String lang) {
-        // println(formData);
-
         _ActionBar actionBar = new _ActionBar(session);
         _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_region");
         newDocAction.setURL("Provider?id=region");
