@@ -12,9 +12,6 @@ import staff.model.Role;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Kayra created 21-12-2015
- */
 
 public class MainNavigator extends _DoPage {
 
@@ -27,27 +24,27 @@ public class MainNavigator extends _DoPage {
         currentTag.setAttr("entryid", formData.getValueSilently("entryid"));
 
         _Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
-        common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure"));
-        _OutlineEntry employeeEntry = new _OutlineEntry(getLocalizedWord("employees", lang), "employees");
+        common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure-view"));
+        _OutlineEntry employeeEntry = new _OutlineEntry(getLocalizedWord("employees", lang), "employee-view");
         for (Role role : new RoleDAO(session).findAll()) {
             employeeEntry.addEntry(new _OutlineEntry(getLocalizedWord(role.getName(), lang), getLocalizedWord("assigned", lang) + " : "
-                    + getLocalizedWord(role.getName(), lang), role.getName(), "Provider?id=roles&docid=" + role.getId()));
+                    + getLocalizedWord(role.getName(), lang), role.getName(), "Provider?id=role-view&docid=" + role.getId()));
         }
         common_outline.addEntry(employeeEntry);
 
-        _OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organizations");
+        _OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");
         for (OrganizationLabel label : new OrganizationLabelDAO(session).findAll()) {
             orgEntry.addEntry(new _OutlineEntry(getLocalizedWord(label.getName(), lang), getLocalizedWord("labeled", lang) + " : "
-                    + getLocalizedWord(label.getName(), lang), label.getName(), "Provider?id=organization-labels&docid=" + label.getId()));
+                    + getLocalizedWord(label.getName(), lang), label.getName(), "Provider?id=organization-label-view&docid=" + label.getId()));
         }
         common_outline.addEntry(orgEntry);
-        common_outline.addEntry(new _OutlineEntry(getLocalizedWord("roles", lang), "roles"));
-        common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organization_labels", lang), "organization-labels"));
+        common_outline.addEntry(new _OutlineEntry(getLocalizedWord("roles", lang), "role-view"));
+        common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organization_labels", lang), "organization-label-view"));
         _Outline specific_outline = new _Outline(getLocalizedWord("specific_staff_data", lang), "specific");
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("contractors", lang), "contractors"));
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("individuals", lang), "individuals"));
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("legal_entities", lang), "legal-entities"));
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible-persons"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("contractors", lang), "contractor-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("individuals", lang), "individual-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("legal_entities", lang), "legal-entity-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible-person-view"));
 
         list.add(common_outline);
         list.add(specific_outline);
