@@ -178,6 +178,8 @@
 									<ul class="js-uploaded-files"></ul>
 								</form>
 
+								<div id="checker_result"></div>
+
 								<iframe id="target-frame" name="target-frame" class="frame"></iframe>
 								<!-- progress bar -->
 								<div class="progress-bar">
@@ -206,9 +208,6 @@
 										<xsl:call-template name="attach_cert" />
 									</div>
 								</form>
-							</div>
-							<div id="checker_result">
-
 							</div>
 							<div class="ui-tabs-panel" id="tabs-3">
 								<table width="100%" border="0">

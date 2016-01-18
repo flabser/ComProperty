@@ -63,6 +63,8 @@ function upload2(fileInput) {
                     var fileName = res.progress.filename;
                     var tpl = "<li><a href='Provider?type=getattach&key=" + fileName + "'>" + fileName + "</a></li>";
                     $('.js-uploaded-files').append(tpl);
+                    //
+                    checkFileStructure(fileName, 0);
                 },
                 error: function(err){
                     console.log(err);
