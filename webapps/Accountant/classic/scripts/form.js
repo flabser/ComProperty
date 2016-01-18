@@ -870,7 +870,9 @@ function checkFileStructure(fileid, trId){
         url: "Provider?type=page&id=check_file_structure",
         data: "fileid=" + fileid,
         success: function(data){
-        	  $("#checker_result").html(data);    
+        	  $("#checker_result").html(data);
+
+        	  console.log(data);
         	
            /* var result = $(xml).find("result")
             if(result.attr("status") != "success") {
@@ -894,8 +896,8 @@ function checkFileStructure(fileid, trId){
                 text += "kuf: " + result.attr("kuf") + "<br/>"
                 infoDialogBig(text, "Проверьте правильность данных", trId)
             }*/
-            $("body").hidenotify({"delay":200,"onclose":function(){$("#notifydiv").remove()}})
-            disableblockform()
+            $("body").hidenotify({"delay":200,"onclose":function(){$("#notifydiv").remove()}});
+            disableblockform();
         },
         error: function(xhr, ajaxOptions, thrownError){
 

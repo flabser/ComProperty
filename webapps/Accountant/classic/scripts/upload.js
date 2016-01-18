@@ -40,3 +40,41 @@ var progress;
 					})
 				}, 1000);
 			}
+
+
+function upload2(fileInput) {
+    var formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    var time = new Date().getTime();
+
+    return $.ajax({
+        url: 'UploadFile?time=' + time,
+        type: 'POST',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function(uploadResult) {
+            $.ajax({
+                url: 'UploadFile?time=' + time,
+                type: 'GET',
+                dataType: 'json',
+                success: function(res){
+                    var fileName = res.progress.filename;
+                    var tpl = "<li><a href='Provider?type=getattach&key=" + fileName + "'>" + fileName + "</a></li>";
+                    $('.js-uploaded-files').append(tpl);
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+
+            fileInput.form.reset();
+            return uploadResult;
+        },
+        error: function(err) {
+            fileInput.form.reset();
+            console.log(err);
+        }
+    });
+}

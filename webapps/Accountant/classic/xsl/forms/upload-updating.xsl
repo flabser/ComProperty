@@ -21,7 +21,6 @@
 				</title>
 				<xsl:call-template name="cssandjs" />
 				<script type="text/javascript" src="classic/scripts/upload.js"/>
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 				<style>		<![CDATA[
 			.frame {
 				position: absolute;
@@ -78,11 +77,11 @@
 									}
 			   					}
 							});
-							$("#canceldoc").hotnav({keysource:function(e){ return "b"; }});
-							$("#btnsavedoc").hotnav({keysource:function(e){ return "s"; }});
-							$("#currentuser").hotnav({ keysource:function(e){ return "u"; }});
-							$("#logout").hotnav({keysource:function(e){ return "q"; }});
-							$("#helpbtn").hotnav({keysource:function(e){ return "h"; }});
+							// $("#canceldoc").hotnav({keysource:function(e){ return "b"; }});
+							// $("#btnsavedoc").hotnav({keysource:function(e){ return "s"; }});
+							// $("#currentuser").hotnav({ keysource:function(e){ return "u"; }});
+							// $("#logout").hotnav({keysource:function(e){ return "q"; }});
+							// $("#helpbtn").hotnav({keysource:function(e){ return "h"; }});
 						}
 					]]>
 				</script>
@@ -174,15 +173,11 @@
 								</form>
 
 								<form id="uploadform" method="POST" enctype="multipart/form-data">
-								
-													<input type="file" name="upfile"/>
-										<br />
-					
-										<input type="text" name="note"/>
-											<br />
-											<br />
-											<input type="button" onclick="upload()" value="Press"/> 
+									<input type="file" name="upfile" onchange="upload2(this)"/>
+									<!--<input type="text" name="note"/>-->
+									<ul class="js-uploaded-files"></ul>
 								</form>
+
 								<iframe id="target-frame" name="target-frame" class="frame"></iframe>
 								<!-- progress bar -->
 								<div class="progress-bar">

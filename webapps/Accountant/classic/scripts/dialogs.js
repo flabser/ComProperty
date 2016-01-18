@@ -407,7 +407,7 @@ function dialogBoxStructure(query,isMultiValue, field, form, table) {
 				dialogAndFunction (text,func)
 			}else{
 				if(isMultiValue=="false"){
-					if($.browser.msie){
+					if(false && $.browser.msie){
 						while(data.match("checkbox")){
 							data=data.replace("checkbox", "radio");
 						}

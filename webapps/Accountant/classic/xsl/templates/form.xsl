@@ -49,27 +49,17 @@
 		<link type="text/css" rel="stylesheet" href="classic/css/form.css?ver=3"/>
 		<link type="text/css" rel="stylesheet" href="classic/css/actionbar.css?ver=3"/>
 		<link type="text/css" rel="stylesheet" href="classic/css/dialogs.css?ver=3"/>
-		<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/css/smoothness/jquery-ui-1.8.20.custom.css"/>
+		<link type="text/css" rel="stylesheet" href="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
 		<link type="text/css" rel="Stylesheet" media="screen" href="/SharedResources/jquery/js/tiptip/tipTip.css"/>
 		<link rel="Stylesheet" type="text/css" href="/SharedResources/jquery/js/jhtmlarea/style/jHtmlArea.css"/>
 		<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/js/hotnav/jquery.hotnav.css"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/jquery-1.4.2.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.core.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.effects.core.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.widget.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/jquery.ui.datepicker.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.mouse.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.slider.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.progressbar.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.autocomplete.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.draggable.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.position.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.dialog.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.tabs.min.js"/>
-		<script type="text/javascript" src="/SharedResources/jquery/js/ui/minified/jquery.ui.button.min.js"/>
+
+		<script type="text/javascript" src="/SharedResources/vendor/jquery/jquery-2.1.4.min.js"/>
+		<script type="text/javascript" src="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"/>
+
 		<script type="text/javascript" src="/SharedResources/jquery/js/tiptip/jquery.tipTip.js"/>
 		<script type="text/javascript" src="classic/scripts/form.js?ver=3"/>
-		<!-- <script type="text/javascript" src="classic/scripts/coord.js?ver=3"/> -->
+
 		<script type="text/javascript" src="classic/scripts/dialogs.js?ver=3"/>
 		<script type="text/javascript" src="classic/scripts/outline.js?ver=3"/>
 		<script type="text/javascript" src="/SharedResources/jquery/js/cookie/jquery.cookie.js"/>
