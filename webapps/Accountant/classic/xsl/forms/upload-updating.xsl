@@ -173,7 +173,8 @@
 								</form>
 
 								<form id="uploadform" method="POST" enctype="multipart/form-data">
-									<input type="file" name="upfile" onchange="upload2(this)"/>
+									<input type="file" name="upfile" onchange="upload2(this)"
+										   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
 									<!--<input type="text" name="note"/>-->
 									<ul class="js-uploaded-files"></ul>
 								</form>
