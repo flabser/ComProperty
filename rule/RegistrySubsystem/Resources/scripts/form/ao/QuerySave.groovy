@@ -73,10 +73,10 @@ class QuerySave extends _FormQuerySave {
 
 	def validate(_WebFormData webFormData){
 
-		/*if (webFormData.getValueSilently("invnumber") == ""){
-			localizedMsgBox("Поле \"Инвентарный номер\" не заполнено.")
+		if (webFormData.getValueSilently("bin") == ""){
+			localizedMsgBox("Поле \"БИН\" не заполнено.")
 			return false
-		}*/
+		}
 		return true
 	}
 }
