@@ -4,7 +4,7 @@
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'localities'"/>
+            <xsl:with-param name="active_aside_id" select="'locality-view'"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -27,6 +27,26 @@
                         <div class="controls">
                             <div class="col-lg-6">
                                 <input type="text" name="name" value="{//fields/name}" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/type/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="col-lg-6">
+                                <input type="text" name="type" value="{//fields/type}" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/district/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="col-lg-6">
+                                <input type="text" name="district" value="{//fields/district}" class="form-control"/>
                             </div>
                         </div>
                     </div>

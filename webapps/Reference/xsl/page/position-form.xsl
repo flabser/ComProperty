@@ -4,7 +4,7 @@
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'positions'"/>
+            <xsl:with-param name="active_aside_id" select="'position-view'"/>
         </xsl:call-template>
     </xsl:template>
 

@@ -4,7 +4,7 @@
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'building-materials'"/>
+            <xsl:with-param name="active_aside_id" select="'building-material-view'"/>
         </xsl:call-template>
     </xsl:template>
 

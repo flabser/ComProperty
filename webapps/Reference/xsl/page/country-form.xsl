@@ -4,7 +4,7 @@
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'countries'"/>
+            <xsl:with-param name="active_aside_id" select="'country-view'"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -36,7 +36,11 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="code" value="{//fields/code}" class="form-control"/>
+                                <select name="code" class="form-control">
+                                    <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry" mode="select_options">
+                                        <xsl:with-param name="selected" select="//fields/code"/>
+                                    </xsl:apply-templates>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -46,6 +50,17 @@
                 <input type="hidden" name="docid" value="{//document/id}"/>
             </form>
         </section>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="select_options">
+        <xsl:param name="selected"/>
+
+        <option value="{@attrval}">
+            <xsl:if test="@attrval = $selected">
+                <xsl:attribute name="selected" select="'selected'"/>
+            </xsl:if>
+            <xsl:value-of select="text()"/>
+        </option>
     </xsl:template>
 
 </xsl:stylesheet>
