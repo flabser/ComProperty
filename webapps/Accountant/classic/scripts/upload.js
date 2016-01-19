@@ -61,10 +61,12 @@ function upload2(fileInput) {
                 dataType: 'json',
                 success: function(res){
                     var fileName = res.progress.filename;
-                    var tpl = "<li><a href='Provider?type=getattach&key=" + fileName + "'>" + fileName + "</a></li>";
-                    $('.js-uploaded-files').append(tpl);
-                    //
-                    checkFileStructure(fileName, 0);
+                    var tpl = [];
+                    tpl.push('<li>');
+                    tpl.push('<a href="Provider?type=getattach&key=' + fileName + '">' + fileName + '</a>');
+                    tpl.push(' <button type="button" onclick="checkFileStructure(\'' + fileName + '\', 0)">проверить</button>');
+                    tpl.push('</li>');
+                    $('.js-uploaded-files').append(tpl.join(''));
                 },
                 error: function(err){
                     console.log(err);
