@@ -1,9 +1,7 @@
 package reference.page.form;
 
 import kz.flabs.users.User;
-import kz.nextbase.script._POJOObjectWrapper;
-import kz.nextbase.script._Session;
-import kz.nextbase.script._WebFormData;
+import kz.nextbase.script.*;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.ReceivingReason;
 
@@ -29,6 +27,43 @@ public class ReceivingReasonForm extends ReferenceForm {
 
     @Override
     public void doPOST(_Session session, _WebFormData webFormData, String lang) {
+        println(webFormData);
+        try {
+            boolean v = validate(webFormData);
+            if (v == false) {
+                setBadRequest();
+                return;
+            }
 
+            boolean isNew = false;
+            String id = webFormData.getValueSilently("docid");
+            ReceivingReasonDAO dao = new ReceivingReasonDAO(session);
+            ReceivingReason entity;
+
+            if (id.isEmpty()) {
+                isNew = true;
+                entity = new ReceivingReason();
+            } else {
+                entity = dao.findById(UUID.fromString(id));
+                if (entity == null) {
+                    isNew = true;
+                    entity = new ReceivingReason();
+                }
+            }
+
+            entity.setName(webFormData.getValueSilently("name"));
+
+            if (isNew) {
+                dao.add(entity);
+            } else {
+                dao.update(entity);
+            }
+
+            _URL returnURL = session.getURLOfLastPage();
+            localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
+            setRedirectURL(returnURL);
+        } catch (_Exception e) {
+            log(e);
+        }
     }
 }

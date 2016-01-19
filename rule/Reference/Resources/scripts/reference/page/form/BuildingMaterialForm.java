@@ -1,9 +1,7 @@
 package reference.page.form;
 
 import kz.flabs.users.User;
-import kz.nextbase.script._POJOObjectWrapper;
-import kz.nextbase.script._Session;
-import kz.nextbase.script._WebFormData;
+import kz.nextbase.script.*;
 import reference.dao.BuildingMaterialDAO;
 import reference.model.BuildingMaterial;
 
@@ -29,6 +27,43 @@ public class BuildingMaterialForm extends ReferenceForm {
 
     @Override
     public void doPOST(_Session session, _WebFormData webFormData, String lang) {
+        println(webFormData);
+        try {
+            boolean v = validate(webFormData);
+            if (v == false) {
+                setBadRequest();
+                return;
+            }
 
+            boolean isNew = false;
+            String id = webFormData.getValueSilently("docid");
+            BuildingMaterialDAO dao = new BuildingMaterialDAO(session);
+            BuildingMaterial entity;
+
+            if (id.isEmpty()) {
+                isNew = true;
+                entity = new BuildingMaterial();
+            } else {
+                entity = dao.findById(UUID.fromString(id));
+                if (entity == null) {
+                    isNew = true;
+                    entity = new BuildingMaterial();
+                }
+            }
+
+            entity.setName(webFormData.getValueSilently("name"));
+
+            if (isNew) {
+                dao.add(entity);
+            } else {
+                dao.update(entity);
+            }
+
+            _URL returnURL = session.getURLOfLastPage();
+            localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
+            setRedirectURL(returnURL);
+        } catch (_Exception e) {
+            log(e);
+        }
     }
 }
