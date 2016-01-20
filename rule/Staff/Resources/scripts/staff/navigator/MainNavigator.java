@@ -25,6 +25,7 @@ public class MainNavigator extends _DoPage {
 
         _Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
         common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure-view"));
+
         _OutlineEntry employeeEntry = new _OutlineEntry(getLocalizedWord("employees", lang), "employee-view");
         for (Role role : new RoleDAO(session).findAll()) {
             employeeEntry.addEntry(new _OutlineEntry(getLocalizedWord(role.getName(), lang), getLocalizedWord("assigned", lang) + " : "
@@ -38,8 +39,10 @@ public class MainNavigator extends _DoPage {
                     + getLocalizedWord(label.getName(), lang), label.getName(), "Provider?id=organization-label-view&docid=" + label.getId()));
         }
         common_outline.addEntry(orgEntry);
+
         common_outline.addEntry(new _OutlineEntry(getLocalizedWord("roles", lang), "role-view"));
         common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organization_labels", lang), "organization-label-view"));
+
         _Outline specific_outline = new _Outline(getLocalizedWord("specific_staff_data", lang), "specific");
         specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("contractors", lang), "contractor-view"));
         specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("individuals", lang), "individual-view"));

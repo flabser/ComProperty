@@ -21,7 +21,7 @@ public class OrganizationLabelView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		OrganizationLabelDAO dao = new OrganizationLabelDAO(session);
 		String id = formData.getValueSilently("docid");
-		if (!id.equals("")) {
+		if (!id.isEmpty()) {
 			OrganizationLabel role = dao.findById(UUID.fromString(id));
 			List<Organization> emps = role.getLabels();
 			setContent(new _POJOListWrapper(emps));

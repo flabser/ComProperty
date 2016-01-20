@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description>OrganizationLabel</description>
+    <description>Department</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
-            <doscript source="JAVA_CLASS">staff.page.form.OrganizationLabelForm</doscript>
+            <doscript source="JAVA_CLASS">staff.page.form.DepartmentForm</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
     </element>
-    <caption name="organization_label" source="KEYWORD">Organization label</caption>
+    <caption name="department" source="KEYWORD">Department</caption>
 </rule>

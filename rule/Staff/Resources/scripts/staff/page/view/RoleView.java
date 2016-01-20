@@ -21,7 +21,7 @@ public class RoleView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		RoleDAO dao = new RoleDAO(session);
 		String id = formData.getValueSilently("docid");
-		if (!id.equals("")) {
+		if (!id.isEmpty()) {
 			Role role = dao.findById(UUID.fromString(id));
 			List<Employee> emps = role.getEmployees();
 			setContent(new _POJOListWrapper(emps));
