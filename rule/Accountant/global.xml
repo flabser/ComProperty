@@ -38,9 +38,7 @@
         <!-- <entry id="ENG">English</entry> -->
     </langs>
     <skins>
-        <entry default="on" errorpage="error.xsl" id="classic"
-               path="./webapps/Accountant/xsl">Classic
-        </entry>
+        <entry default="on" errorpage="error.xsl" id="classic" path="./webapps/Accountant/xsl">Classic</entry>
     </skins>
     <roles>
         <entry id="system_administrator">Cистемный администратор АИС</entry>
