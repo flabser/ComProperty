@@ -2,6 +2,9 @@ package staff.page.view;
 
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
+import kz.nextbase.script.actions._Action;
+import kz.nextbase.script.actions._ActionBar;
+import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import staff.dao.EmployeeDAO;
 
@@ -11,17 +14,20 @@ import staff.dao.EmployeeDAO;
 
 public class EmployeeView extends _DoPage {
 
-	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
-		EmployeeDAO dao = new EmployeeDAO(session);
+    @Override
+    public void doGET(_Session session, _WebFormData formData, String lang) {
+        _ActionBar actionBar = new _ActionBar(session);
+        _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_employee");
+        newDocAction.setURL("Provider?id=employee-form");
+        actionBar.addAction(newDocAction);
+        actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(getSimpleActionBar(session, "employee", lang));
-		setContent(getViewPage(dao, formData));
+        setContent(actionBar);
+        setContent(getViewPage(new EmployeeDAO(session), formData));
+    }
 
-	}
+    @Override
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
 
-	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
-
-	}
+    }
 }

@@ -29,6 +29,7 @@ public class DepartmentForm extends StaffForm {
         }
         setContent(getSimpleActionBar(session, lang));
         setContent(new _POJOObjectWrapper(entity));
+        setContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
         setContent(new _POJOListWrapper(new RoleDAO(session).findAll()));
     }
 

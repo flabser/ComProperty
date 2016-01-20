@@ -20,7 +20,28 @@
         <section class="content-body">
             <form name="{//document/@entity}">
                 <fieldset class="fieldset">
-
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/name/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="col-lg-6">
+                                <input type="text" name="name" value="{//fields/name}" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/description/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="col-lg-6">
+                                <textarea name="description" class="form-control">
+                                    <xsl:value-of select="//fields/description"/>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>

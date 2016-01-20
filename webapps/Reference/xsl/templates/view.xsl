@@ -16,12 +16,8 @@
             </xsl:if>
         </h1>
         <div class="content-actions">
-            <div class="pull-right">
-                <xsl:apply-templates select="//view_content" mode="page-navigator"/>
-            </div>
-            <div class="on-desktop">
-                <xsl:apply-templates select="//actionbar"/>
-            </div>
+            <xsl:apply-templates select="//view_content" mode="page-navigator"/>
+            <xsl:apply-templates select="//actionbar"/>
         </div>
     </xsl:template>
 

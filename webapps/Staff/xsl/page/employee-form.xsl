@@ -4,14 +4,14 @@
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'countries'"/>
+            <xsl:with-param name="active_aside_id" select="'employee-view'"/>
         </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="_content">
         <header class="content-header">
             <h1 class="header-title">
-                <xsl:value-of select="//captions/title/@caption"/>
+                <xsl:value-of select="//captions/employee/@caption"/>
             </h1>
             <div class="content-actions">
                 <xsl:apply-templates select="//actionbar"/>

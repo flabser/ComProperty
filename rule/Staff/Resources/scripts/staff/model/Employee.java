@@ -32,20 +32,20 @@ public class Employee extends Staff {
     @JoinTable(name = "employee_role")
     private List<Role> roles;
 
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-
     public Organization getOrganization() {
         return organization;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     public Department getDepartment() {
         return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getLogin() {

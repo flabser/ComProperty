@@ -4,14 +4,14 @@
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'locality-view'"/>
+            <xsl:with-param name="active_aside_id" select="'department-view'"/>
         </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="_content">
         <header class="content-header">
             <h1 class="header-title">
-                <xsl:value-of select="//captions/locality/@caption"/>
+                <xsl:value-of select="//captions/department/@caption"/>
             </h1>
             <div class="content-actions">
                 <xsl:apply-templates select="//actionbar"/>
@@ -32,21 +32,13 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/type/@caption"/>
+                            <xsl:value-of select="//captions/description/@caption"/>
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="type" value="{//fields/type}" class="form-control"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="control-label">
-                            <xsl:value-of select="//captions/district/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="district" value="{//fields/district}" class="form-control"/>
+                                <textarea name="description" class="form-control">
+                                    <xsl:value-of select="//fields/description"/>
+                                </textarea>
                             </div>
                         </div>
                     </div>
