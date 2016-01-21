@@ -12,5 +12,4 @@
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
     </element>
-    <caption name="building_materials" source="KEYWORD">Материал постройки</caption>
 </rule>

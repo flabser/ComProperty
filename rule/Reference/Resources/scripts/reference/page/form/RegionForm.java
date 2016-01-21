@@ -20,7 +20,7 @@ public class RegionForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
-        Region entity = null;
+        Region entity;
         if (!id.isEmpty()) {
             RegionDAO dao = new RegionDAO(session);
             entity = dao.findById(UUID.fromString(id));
@@ -35,16 +35,15 @@ public class RegionForm extends ReferenceForm {
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
         try {
-            boolean v = validate(webFormData);
+            boolean v = validate(formData);
             if (v == false) {
                 setBadRequest();
                 return;
             }
             boolean isNew = false;
-            String id = webFormData.getValueSilently("docid");
+            String id = formData.getValueSilently("docid");
             RegionDAO dao = new RegionDAO(session);
             Region entity;
 
@@ -59,10 +58,10 @@ public class RegionForm extends ReferenceForm {
                 }
             }
 
-            entity.setName(webFormData.getValueSilently("name"));
-            entity.setType(RegionType.valueOf(webFormData.getValueSilently("region_type", "UNKNOWN")));
-            CountryDAO cDao = new CountryDAO(session);
-            Country country = cDao.findById(UUID.fromString(webFormData.getValueSilently("country_id")));
+            entity.setName(formData.getValue("name"));
+            entity.setType(RegionType.valueOf(formData.getValueSilently("region_type", "UNKNOWN")));
+            CountryDAO countryDao = new CountryDAO(session);
+            Country country = countryDao.findById(UUID.fromString(formData.getValueSilently("country_id")));
             entity.setCountry(country);
 
             if (isNew) {
@@ -80,13 +79,13 @@ public class RegionForm extends ReferenceForm {
     }
 
     @Override
-    protected boolean validate(_WebFormData webFormData) {
-        if (super.validate(webFormData)) {
+    protected boolean validate(_WebFormData formData) {
+        if (super.validate(formData)) {
             return false;
-        } else if (webFormData.getValueSilently("region_type").equals("") || webFormData.getValueSilently("region_type").equals("UNKNOWN")) {
+        } else if (formData.getValueSilently("region_type").isEmpty() || formData.getValueSilently("region_type").equals("UNKNOWN")) {
             localizedMsgBox("field_region_type_is_empty");
             return false;
-        } else if (webFormData.getValueSilently("country_id").equals("")) {
+        } else if (formData.getValueSilently("country_id").isEmpty()) {
             localizedMsgBox("field_country_type_is_empty");
             return false;
         }

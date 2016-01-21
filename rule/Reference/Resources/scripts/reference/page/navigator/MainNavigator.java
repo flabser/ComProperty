@@ -17,7 +17,6 @@ public class MainNavigator extends _DoPage {
 
         _Tag currentTag = new _Tag("current");
         currentTag.setAttr("id", formData.getValueSilently("id"));
-        currentTag.setAttr("entryid", formData.getValueSilently("entryid"));
 
         _Outline common_outline = new _Outline(getLocalizedWord("common_reference_data", lang), "common");
 

@@ -18,7 +18,7 @@ public class DistrictForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
-        District entity = null;
+        District entity;
         if (!id.isEmpty()) {
             DistrictDAO dao = new DistrictDAO(session);
             entity = dao.findById(UUID.fromString(id));
@@ -27,11 +27,11 @@ public class DistrictForm extends ReferenceForm {
             entity.setAuthor(user);
         }
         setContent(new _POJOObjectWrapper(entity));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
     public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
         try {
             boolean v = validate(webFormData);
             if (v == false) {
@@ -56,7 +56,7 @@ public class DistrictForm extends ReferenceForm {
                 }
             }
 
-            entity.setName(webFormData.getValueSilently("name"));
+            entity.setName(webFormData.getValue("name"));
             entity.setRegion(regionDAO.findById(UUID.fromString(webFormData.getValue("region"))));
 
             if (isNew) {

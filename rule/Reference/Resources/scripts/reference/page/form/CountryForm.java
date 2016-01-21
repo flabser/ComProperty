@@ -18,7 +18,7 @@ public class CountryForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
-        Country entity = null;
+        Country entity;
         if (!id.isEmpty()) {
             CountryDAO dao = new CountryDAO(session);
             entity = dao.findById(UUID.fromString(id));
@@ -26,23 +26,22 @@ public class CountryForm extends ReferenceForm {
             entity = new Country();
             entity.setAuthor(user);
         }
-        setContent(getSimpleActionBar(session, lang));
         setContent(new _POJOObjectWrapper(entity));
         setContent(new _EnumWrapper<>(CountryCode.class.getEnumConstants()));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
         try {
-            boolean v = validate(webFormData);
+            boolean v = validate(formData);
             if (v == false) {
                 setBadRequest();
                 return;
             }
 
             boolean isNew = false;
-            String id = webFormData.getValueSilently("docid");
+            String id = formData.getValueSilently("docid");
             CountryDAO dao = new CountryDAO(session);
             Country entity;
 
@@ -57,8 +56,8 @@ public class CountryForm extends ReferenceForm {
                 }
             }
 
-            entity.setName(webFormData.getValueSilently("name"));
-            entity.setCode(CountryCode.valueOf(webFormData.getValueSilently("code", "UNKNOWN")));
+            entity.setName(formData.getValue("name"));
+            entity.setCode(CountryCode.valueOf(formData.getValueSilently("code", "UNKNOWN")));
 
             if (isNew) {
                 dao.add(entity);

@@ -19,7 +19,7 @@ public class LocalityForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
-        Locality entity = null;
+        Locality entity;
         if (!id.isEmpty()) {
             LocalityDAO dao = new LocalityDAO(session);
             entity = dao.findById(UUID.fromString(id));
@@ -28,20 +28,21 @@ public class LocalityForm extends ReferenceForm {
             entity.setAuthor(user);
         }
         setContent(new _POJOObjectWrapper(entity));
+        setContent(new _EnumWrapper<>(LocalityType.class.getEnumConstants()));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
         try {
-            boolean v = validate(webFormData);
+            boolean v = validate(formData);
             if (v == false) {
                 setBadRequest();
                 return;
             }
 
             boolean isNew = false;
-            String id = webFormData.getValueSilently("docid");
+            String id = formData.getValueSilently("docid");
             LocalityDAO dao = new LocalityDAO(session);
             DistrictDAO districtDAO = new DistrictDAO(session);
             Locality entity;
@@ -57,9 +58,9 @@ public class LocalityForm extends ReferenceForm {
                 }
             }
 
-            entity.setName(webFormData.getValueSilently("name"));
-            entity.setType(LocalityType.valueOf(webFormData.getValueSilently("type", "UNKNOWN")));
-            entity.setDistrict(districtDAO.findById(UUID.fromString(webFormData.getValue("district"))));
+            entity.setName(formData.getValue("name"));
+            entity.setType(LocalityType.valueOf(formData.getValueSilently("type", "UNKNOWN")));
+            entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("district"))));
 
             if (isNew) {
                 dao.add(entity);

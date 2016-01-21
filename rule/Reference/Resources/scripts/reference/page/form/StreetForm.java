@@ -15,7 +15,7 @@ public class StreetForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
-        Street entity = null;
+        Street entity;
         if (!id.isEmpty()) {
             StreetDAO dao = new StreetDAO(session);
             entity = dao.findById(UUID.fromString(id));
@@ -24,20 +24,20 @@ public class StreetForm extends ReferenceForm {
             entity.setAuthor(user);
         }
         setContent(new _POJOObjectWrapper(entity));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
         try {
-            boolean v = validate(webFormData);
+            boolean v = validate(formData);
             if (v == false) {
                 setBadRequest();
                 return;
             }
 
             boolean isNew = false;
-            String id = webFormData.getValueSilently("docid");
+            String id = formData.getValueSilently("docid");
             StreetDAO dao = new StreetDAO(session);
             LocalityDAO localityDAO = new LocalityDAO(session);
             Street entity;
@@ -53,8 +53,8 @@ public class StreetForm extends ReferenceForm {
                 }
             }
 
-            entity.setName(webFormData.getValueSilently("name"));
-            entity.setLocality(localityDAO.findById(UUID.fromString(webFormData.getValue("locality"))));
+            entity.setName(formData.getValue("name"));
+            entity.setLocality(localityDAO.findById(UUID.fromString(formData.getValue("locality"))));
 
             if (isNew) {
                 dao.add(entity);

@@ -14,7 +14,7 @@ public class PositionForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
-        Position entity = null;
+        Position entity;
         if (!id.isEmpty()) {
             PositionDAO dao = new PositionDAO(session);
             entity = dao.findById(UUID.fromString(id));
@@ -23,20 +23,20 @@ public class PositionForm extends ReferenceForm {
             entity.setAuthor(user);
         }
         setContent(new _POJOObjectWrapper(entity));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
         try {
-            boolean v = validate(webFormData);
+            boolean v = validate(formData);
             if (v == false) {
                 setBadRequest();
                 return;
             }
 
             boolean isNew = false;
-            String id = webFormData.getValueSilently("docid");
+            String id = formData.getValueSilently("docid");
             PositionDAO dao = new PositionDAO(session);
             Position entity;
 
@@ -51,7 +51,7 @@ public class PositionForm extends ReferenceForm {
                 }
             }
 
-            entity.setName(webFormData.getValueSilently("name"));
+            entity.setName(formData.getValue("name"));
 
             if (isNew) {
                 dao.add(entity);

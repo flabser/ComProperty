@@ -11,5 +11,4 @@
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
     </element>
-    <caption name="structure_type" source="KEYWORD">Structure type</caption>
 </rule>
