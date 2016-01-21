@@ -62,7 +62,6 @@
             <link rel="stylesheet" href="/SharedResources/vendor/font-awesome/css/font-awesome.min.css"/>
             <link rel="stylesheet" href="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
             <link rel="stylesheet" href="css/all.min.css"/>
-            <link rel="stylesheet" href="/SharedResources/nb/css/nb.build.css"/>
 
             <script src="/SharedResources/vendor/jquery/jquery-2.1.4.min.js"></script>
             <script src="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
