@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:variable name="outline-current" select="//app_menu//current"/>
-
     <xsl:template match="app_menu" mode="outline">
         <xsl:param name="active-id" select="//app_menu//current/@id"/>
 
@@ -37,7 +35,7 @@
 
         <li>
             <a href="{@url}" title="{@hint}" class="nav-link">
-                <xsl:if test="$active-id != '' and (@id = $active-id or @id = $outline-current or @id = $outline-current/@id)">
+                <xsl:if test="$active-id != '' and @id = $active-id">
                     <xsl:attribute name="class" select="'nav-link active'"/>
                 </xsl:if>
                 <xsl:choose>
