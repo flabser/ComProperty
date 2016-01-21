@@ -12,5 +12,4 @@
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
     </element>
-    <caption name="legal_entities" source="KEYWORD">Legal entities</caption>
 </rule>

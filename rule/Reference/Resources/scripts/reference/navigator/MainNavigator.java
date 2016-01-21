@@ -1,4 +1,4 @@
-package reference.page.navigator;
+package reference.navigator;
 
 import kz.nextbase.script.*;
 import kz.nextbase.script.events._DoPage;

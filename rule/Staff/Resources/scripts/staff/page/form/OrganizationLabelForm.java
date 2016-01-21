@@ -25,8 +25,8 @@ public class OrganizationLabelForm extends StaffForm {
             entity = new OrganizationLabel();
             entity.setAuthor(user);
         }
-        setContent(getSimpleActionBar(session, lang));
         setContent(new _POJOObjectWrapper(entity));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
@@ -37,6 +37,7 @@ public class OrganizationLabelForm extends StaffForm {
                 setBadRequest();
                 return;
             }
+
             boolean isNew = false;
             String id = formData.getValueSilently("docid");
             OrganizationLabelDAO dao = new OrganizationLabelDAO(session);
@@ -53,8 +54,8 @@ public class OrganizationLabelForm extends StaffForm {
                 }
             }
 
-            entity.setName(formData.getValueSilently("name"));
-            entity.setDescription(formData.getValueSilently("description"));
+            entity.setName(formData.getValue("name"));
+            entity.setDescription(formData.getValue("description"));
 
             if (isNew) {
                 dao.add(entity);

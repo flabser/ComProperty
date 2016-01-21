@@ -2,14 +2,17 @@
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
+    <caption name="brand" source="KEYWORD">Reference</caption>
+
     <caption name="page" source="KEYWORD">Страница</caption>
     <caption name="documents" source="KEYWORD">Документов</caption>
-    <caption name="add" source="KEYWORD">Добавить</caption>
-    <caption name="delete" source="KEYWORD">Удалить</caption>
     <caption name="help" source="KEYWORD">Помощь</caption>
     <caption name="logout" source="KEYWORD">Завершить работу</caption>
     <caption name="user_profile" source="KEYWORD">Посмотреть свойства текущего пользователя</caption>
     <caption name="search" source="KEYWORD">Поиск</caption>
+
+    <caption name="add" source="KEYWORD">Добавить</caption>
+    <caption name="delete" source="KEYWORD">Удалить</caption>
 
     <caption name="name" source="KEYWORD">Название</caption>
     <caption name="code" source="KEYWORD">Код</caption>
@@ -18,9 +21,9 @@
     <caption name="region" source="KEYWORD">Регион</caption>
     <caption name="country" source="KEYWORD">Страна</caption>
     <caption name="locality" source="KEYWORD">Населенный пункт</caption>
+    <caption name="street" source="KEYWORD">Улица</caption>
     <caption name="position" source="KEYWORD">Должность</caption>
     <caption name="property_code" source="KEYWORD">Код собственности</caption>
     <caption name="receiving_reason" source="KEYWORD">Основание поступления на баланс</caption>
-    <caption name="street" source="KEYWORD">Улица</caption>
     <caption name="structure_type" source="KEYWORD">Тип структуры</caption>
 </rule>

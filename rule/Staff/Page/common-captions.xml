@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
+
+    <caption name="brand" source="KEYWORD">Staff</caption>
+
     <caption name="page" source="KEYWORD">Страница</caption>
     <caption name="documents" source="KEYWORD">Документов</caption>
-    <caption name="updates" source="KEYWORD">Обновлено</caption>
-    <caption name="from" source="KEYWORD">из</caption>
-    <caption name="add" source="KEYWORD">Добавить</caption>
-    <caption name="delete" source="KEYWORD">Удалить</caption>
     <caption name="help" source="KEYWORD">Помощь</caption>
     <caption name="logout" source="KEYWORD">Завершить работу</caption>
     <caption name="user_profile" source="KEYWORD">Посмотреть свойства текущего пользователя</caption>
     <caption name="search" source="KEYWORD">Поиск</caption>
+
+    <caption name="add" source="KEYWORD">Добавить</caption>
+    <caption name="delete" source="KEYWORD">Удалить</caption>
+
+    <caption name="organization" source="KEYWORD">Организация</caption>
+    <caption name="department" source="KEYWORD">Департамент</caption>
+    <caption name="employee" source="KEYWORD">Сотрудник</caption>
+    <caption name="organization_label" source="KEYWORD">Признак организации</caption>
+    <caption name="role" source="KEYWORD">Роль</caption>
 </rule>

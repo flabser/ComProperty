@@ -14,8 +14,8 @@ import kz.nextbase.script.struct._Employer;
 
 public abstract class StaffForm extends _DoPage {
 
-    protected boolean validate(_WebFormData webFormData) {
-        if (webFormData.getValueSilently("name").isEmpty()) {
+    protected boolean validate(_WebFormData formData) {
+        if (formData.getValueSilently("name").isEmpty()) {
             localizedMsgBox("field_name_is_empty");
             return false;
         }

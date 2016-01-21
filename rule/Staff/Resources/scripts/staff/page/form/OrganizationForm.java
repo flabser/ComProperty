@@ -26,9 +26,9 @@ public class OrganizationForm extends StaffForm {
             entity = new Organization();
             entity.setAuthor(user);
         }
-        setContent(getSimpleActionBar(session, lang));
         setContent(new _POJOObjectWrapper(entity));
         setContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll()));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class OrganizationForm extends StaffForm {
                 }
             }
 
-            entity.setName(formData.getValueSilently("name"));
+            entity.setName(formData.getValue("name"));
             entity.setPrimary("1".equals(formData.getValueSilently("is_primary")));
 
             if (isNew) {

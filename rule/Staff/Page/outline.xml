@@ -11,4 +11,14 @@
     <element mode="ON" type="INCLUDED_PAGE">
         <value>common-captions</value>
     </element>
+    <caption name="organizations" source="KEYWORD">Организации</caption>
+    <caption name="departments" source="KEYWORD">Департаменты</caption>
+    <caption name="employees" source="KEYWORD">Сотрудники</caption>
+    <caption name="contractors" source="KEYWORD">Контрагенты</caption>
+    <caption name="individuals" source="KEYWORD">Физические лица</caption>
+    <caption name="legal_entities" source="KEYWORD">Юридические лица</caption>
+    <caption name="organization_labels" source="KEYWORD">Признаки для организации</caption>
+    <caption name="responsible_persons" source="KEYWORD">Ответственные лица по загрузке данных</caption>
+    <caption name="roles" source="KEYWORD">Роли</caption>
+    <caption name="structure" source="KEYWORD">Структура</caption>
 </rule>

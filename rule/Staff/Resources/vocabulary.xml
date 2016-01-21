@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
-    <sentence mode="on" keyword="save_and_close">
+    <sentence mode="on" keyword="save_close">
         <entry lang="ENG">Save &amp; close</entry>
         <entry lang="RUS">Сохранить и закрыть</entry>
         <entry lang="KAZ">Сақтау және жабу</entry>
@@ -21,8 +21,8 @@
         <entry lang="KAZ"></entry>
     </sentence>
     <sentence mode="on" keyword="specific_staff_data">
-        <entry lang="ENG">Additional lists of the application</entry>
-        <entry lang="RUS">Дополнительные реестры приложения</entry>
+        <entry lang="ENG">Additional lists</entry>
+        <entry lang="RUS">Дополнительные реестры</entry>
         <entry lang="KAZ"></entry>
     </sentence>
     <sentence mode="on" keyword="structure">
@@ -136,6 +136,4 @@
         <entry lang="RUS">Основная организация не найдена</entry>
         <entry lang="KAZ"></entry>
     </sentence>
-
 </vocabulary>
-

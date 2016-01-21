@@ -32,9 +32,9 @@ public class EmployeeForm extends StaffForm {
             entity = new Employee();
             entity.setAuthor(user);
         }
-        setContent(getSimpleActionBar(session, lang));
         setContent(new _POJOObjectWrapper(entity));
         setContent(new _POJOListWrapper(new RoleDAO(session).findAll()));
+        setContent(getSimpleActionBar(session, lang));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class EmployeeForm extends StaffForm {
                 }
             }
 
-            entity.setName(formData.getValueSilently("name"));
+            entity.setName(formData.getValue("name"));
             entity.setLogin(formData.getValueSilently("login"));
             entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organization_id"))));
             entity.setDepartment(depDAO.findById(UUID.fromString(formData.getValue("department_id"))));
