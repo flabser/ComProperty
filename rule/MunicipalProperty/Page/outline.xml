@@ -8,4 +8,42 @@
             <doscript source="JAVA_CLASS">municipalproperty.navigator.MainNavigator</doscript>
         </events>
     </element>
+    <element mode="ON" type="INCLUDED_PAGE">
+        <value>common-captions</value>
+    </element>
+    <caption name="airports" source="KEYWORD">Airports</caption>
+    <caption name="animals" source="KEYWORD">Animals</caption>
+    <caption name="automobiles" source="KEYWORD">Automobiles</caption>
+    <caption name="billboards" source="KEYWORD">Billboards</caption>
+    <caption name="bomb_proofs" source="KEYWORD">Bomb proofs</caption>
+    <caption name="buildings" source="KEYWORD">Buildings</caption>
+    <caption name="buses" source="KEYWORD">Buses</caption>
+    <caption name="cars" source="KEYWORD">Cars</caption>
+    <caption name="cargoes" source="KEYWORD">Cargoes</caption>
+    <caption name="columns" source="KEYWORD">Columns</caption>
+    <caption name="combines" source="KEYWORD">Combines</caption>
+    <caption name="computer_equipment" source="KEYWORD">Computer equipment</caption>
+    <caption name="cook_equipment" source="KEYWORD">Cook equipment</caption>
+    <caption name="drains" source="KEYWORD">Drains</caption>
+    <caption name="electric_networks" source="KEYWORD">Electric networks</caption>
+    <caption name="eng_infrastructures" source="KEYWORD">Eng infrastructures</caption>
+    <caption name="equipment" source="KEYWORD">Equipment</caption>
+    <caption name="equities" source="KEYWORD">Equities</caption>
+    <caption name="factories" source="KEYWORD">Factories</caption>
+    <caption name="furniture" source="KEYWORD">Furniture</caption>
+    <caption name="intangible_assets" source="KEYWORD">Intangible assets</caption>
+    <caption name="inventories" source="KEYWORD">Inventories</caption>
+    <caption name="lands" source="KEYWORD">Lands</caption>
+    <caption name="medical_equipment" source="KEYWORD">Medical equipment</caption>
+    <caption name="monuments" source="KEYWORD">Monuments</caption>
+    <caption name="motorcycles" source="KEYWORD">Motorcycles</caption>
+    <caption name="networks" source="KEYWORD">Networks</caption>
+    <caption name="objects_reserved_fund" source="KEYWORD">Objects reserved fund</caption>
+    <caption name="official_transports" source="KEYWORD">Official transports</caption>
+    <caption name="others_equipment" source="KEYWORD">Others equipment</caption>
+    <caption name="others" source="KEYWORD">Others</caption>
+    <caption name="parking_lots" source="KEYWORD">Parking lots</caption>
+    <caption name="passenger_transports" source="KEYWORD">Passenger transports</caption>
+    <caption name="personal_estates" source="KEYWORD">Personal estates</caption>
+    <caption name="real_estates" source="KEYWORD">Real estates</caption>
 </rule>
