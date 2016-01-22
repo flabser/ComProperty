@@ -249,6 +249,12 @@ nb.utils.notify = function(opt) {
 $(document).ready(function() {
     nb.LANG_ID = $.cookie('lang') || 'RUS';
 
+    $('[data-role=side-tree-toggle]').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).parent().toggleClass('nav-link-collapsed');
+    });
+
     $(':checkbox').bind('click', function() {
         var $checkbox = $(this);
 

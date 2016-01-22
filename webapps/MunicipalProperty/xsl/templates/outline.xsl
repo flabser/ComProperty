@@ -16,10 +16,13 @@
 
         <section>
             <xsl:if test="@caption != ''">
-                <xsl:attribute name="class" select="'collapsible'"/>
+                <xsl:attribute name="class" select="'side-nav-collapsible'"/>
                 <xsl:attribute name="id" select="concat('side-nav-', @id)"/>
                 <header data-role="toggle">
-                    <xsl:value-of select="@caption"/>
+                    <i class="side-tree-toggle fa"></i>
+                    <span>
+                        <xsl:value-of select="@caption"/>
+                    </span>
                 </header>
             </xsl:if>
             <ul>
@@ -34,9 +37,18 @@
         <xsl:param name="active-id" select="''"/>
 
         <li>
-            <a href="{@url}" title="{@hint}" class="nav-link">
-                <xsl:if test="$active-id != '' and @id = $active-id">
+            <a href="{@url}" title="{@hint}" class="nav-link" data-nav="{@id}{position()}">
+                <xsl:if test="./entry">
+                    <xsl:attribute name="class" select="'nav-link collapsible nav-link-collapsed'"/>
+                </xsl:if>
+                <xsl:if test="@id = $active-id">
                     <xsl:attribute name="class" select="'nav-link active'"/>
+                    <xsl:if test="./entry">
+                        <xsl:attribute name="class" select="'nav-link active collapsible nav-link-collapsed'"/>
+                    </xsl:if>
+                </xsl:if>
+                <xsl:if test="./entry">
+                    <i class="side-tree-toggle fa" data-role="side-tree-toggle"></i>
                 </xsl:if>
                 <xsl:choose>
                     <xsl:when test="@id = 'users'">
@@ -51,7 +63,7 @@
                 </span>
             </a>
             <xsl:if test="./entry">
-                <ul id="side-nav-{@id}{position()}">
+                <ul>
                     <xsl:apply-templates mode="outline">
                         <xsl:with-param name="active-id" select="$active-id"/>
                     </xsl:apply-templates>
