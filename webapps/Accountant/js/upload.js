@@ -37,8 +37,8 @@ function loadFile(fileId) {
         datatype: 'html',
         url: 'Provider?type=page&id=load_file_data',
         data: 'fileid=' + fileId,
-        success: function(data) {
-
+        success: function(result) {
+            console.log(result);
         }
     });
 }
@@ -49,7 +49,8 @@ function delFile(fileId) {
         datatype: 'html',
         url: 'Provider?type=page&id=delattach',
         data: 'fileid=' + fileId,
-        success: function(data) {
+        success: function(result) {
+            console.log(result);
             $('[data-file="' + fileId + '"]').orphan();
         }
     });
