@@ -3,15 +3,13 @@
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'receiving-reason-view'"/>
-        </xsl:call-template>
+        <xsl:call-template name="layout"/>
     </xsl:template>
 
     <xsl:template name="_content">
         <header class="content-header">
             <h1 class="header-title">
-                <xsl:value-of select="//captions/receiving_reason/@caption"/>
+                <xsl:value-of select="//captions/building_material/@caption"/>
             </h1>
             <div class="content-actions">
                 <xsl:apply-templates select="//actionbar"/>
@@ -33,7 +31,7 @@
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/id}"/>
+                <input type="hidden" name="docid" value="{//document/@docid}"/>
             </form>
         </section>
     </xsl:template>

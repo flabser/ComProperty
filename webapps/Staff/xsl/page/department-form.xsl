@@ -3,9 +3,7 @@
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'department-view'"/>
-        </xsl:call-template>
+        <xsl:call-template name="layout"/>
     </xsl:template>
 
     <xsl:template name="_content">

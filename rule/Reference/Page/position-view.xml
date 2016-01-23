@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Positions</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>DEFAULT</xsltfile>
+    <xsltfile>views/position.xsl</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>

@@ -15,7 +15,7 @@ public class PropertyCodeView extends _DoPage {
     public void doGET(_Session session, _WebFormData formData, String lang) {
         _ActionBar actionBar = new _ActionBar(session);
         _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_property_code");
-        newDocAction.setURL("Provider?id=property-code-form");
+        newDocAction.setURL("Provider?id=propertycode-form");
         actionBar.addAction(newDocAction);
         actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 

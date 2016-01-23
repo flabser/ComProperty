@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>District</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>DEFAULT</xsltfile>
+    <xsltfile>forms/district.xsl</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">reference.page.form.DistrictForm</doscript>

@@ -16,7 +16,7 @@ public class MainNavigator extends _DoPage {
         List<_IXMLContent> list = new ArrayList<>();
 
         _Tag currentTag = new _Tag("current");
-        currentTag.setAttr("id", formData.getValueSilently("id"));
+        currentTag.setAttr("id", formData.getValueSilently("id").replaceAll("-form", "-view"));
 
         _Outline common_outline = new _Outline(getLocalizedWord("common_reference_data", lang), "common");
 
@@ -29,10 +29,10 @@ public class MainNavigator extends _DoPage {
         common_outline.addEntry(new _OutlineEntry(getLocalizedWord("positions", lang), "position-view"));
 
         _Outline specific_outline = new _Outline(getLocalizedWord("specific_reference_data", lang), "specific");
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("property_codes", lang), "property-code-view"));
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("receiving_reasons", lang), "receiving-reason-view"));
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure_types", lang), "structure-type-view"));
-        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("building_materials", lang), "building-material-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("property_codes", lang), "propertycode-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("receiving_reasons", lang), "receivingreason-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure_types", lang), "structuretype-view"));
+        specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("building_materials", lang), "buildingmaterial-view"));
 
         list.add(common_outline);
         list.add(specific_outline);

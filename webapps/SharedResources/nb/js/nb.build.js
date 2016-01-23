@@ -308,7 +308,6 @@ $(document).ready(function() {
     });
 
     //
-
     $(window).resize(function() {
         if (window.innerWidth <= 800) {
             $('body').addClass('phone');

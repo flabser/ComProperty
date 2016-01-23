@@ -3,15 +3,13 @@
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout">
-            <xsl:with-param name="active_aside_id" select="'position-view'"/>
-        </xsl:call-template>
+        <xsl:call-template name="layout"/>
     </xsl:template>
 
     <xsl:template name="_content">
         <header class="content-header">
             <h1 class="header-title">
-                <xsl:value-of select="//captions/position/@caption"/>
+                <xsl:value-of select="//captions/district/@caption"/>
             </h1>
             <div class="content-actions">
                 <xsl:apply-templates select="//actionbar"/>
@@ -30,10 +28,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/region/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="col-lg-6">
+                                <input type="text" name="region" value="{//fields/region}" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/id}"/>
+                <input type="hidden" name="docid" value="{//document/@docid}"/>
             </form>
         </section>
     </xsl:template>

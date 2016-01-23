@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Street</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>DEFAULT</xsltfile>
+    <xsltfile>forms/street.xsl</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">reference.page.form.StreetForm</doscript>

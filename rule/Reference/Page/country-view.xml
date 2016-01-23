@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Справочники - Страна</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>DEFAULT</xsltfile>
+    <xsltfile>views/country.xsl</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
