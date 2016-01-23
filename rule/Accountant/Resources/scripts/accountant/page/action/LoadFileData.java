@@ -19,7 +19,7 @@ import kz.nextbase.script.events._DoPage;
 import kz.pchelka.env.Environment;
 import accountant.page.action.MPXLImporter.ErrorDescription;
 
-public class ImportFileChecker extends _DoPage {
+public class LoadFileData extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
@@ -27,22 +27,30 @@ public class ImportFileChecker extends _DoPage {
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
 			File xlsFile = new File(userTmpDir + File.separator + formData.getValue("fileid"));
+			String result_message = "";
 
 			_Tag rootTag = new _Tag("result");
 
-			MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
+			MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
 
 			Workbook workbook = Workbook.getWorkbook(xlsFile);
 			Sheet sheet = workbook.getSheet(0);
-			Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, false);
+			Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true);
 			for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {
 				_Tag entry = rootTag.addTag("entry");
 				entry.setAttr("row", row.getKey());
 				for (List<ErrorDescription> colList : row.getValue()) {
 					for (ErrorDescription val : colList) {
 						entry.addTag("column", val.toString());
+						result_message = "error";
+						break;
 					}
 				}
+			}
+
+			if (!result_message.isEmpty()) {
+				rootTag.setAttr("status", result_message);
+				setBadRequest();
 			}
 
 			_XMLDocument xml = new _XMLDocument(rootTag);
