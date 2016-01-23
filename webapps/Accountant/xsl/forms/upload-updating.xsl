@@ -14,7 +14,7 @@
     <xsl:template name="_content">
         <header class="content-header">
             <h1 class="header-title">
-                <xsl:value-of select="//captions/name/@caption"/>
+                <xsl:value-of select="//captions/title/@caption"/>
             </h1>
             <div class="content-actions">
                 <xsl:apply-templates select="//actionbar"/>

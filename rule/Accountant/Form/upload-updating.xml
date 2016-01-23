@@ -9,6 +9,7 @@
         <postsave source="JAVA_CLASS">accountant.form.uploadupdating.UploadExcelData</postsave>
     </events>
     <caption name="brand" source="KEYWORD">АИС 'Коммунальное Имущество'</caption>
+    <caption name="title" source="KEYWORD">Страница загрузки обновлений</caption>
     <caption name="logout" source="KEYWORD">Завершить работу</caption>
     <caption name="editing" source="KEYWORD">Редактирование</caption>
     <caption name="readonly" source="KEYWORD">Только для чтения</caption>
