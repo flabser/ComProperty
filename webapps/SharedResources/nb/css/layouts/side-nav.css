@@ -73,7 +73,7 @@ body.side-nav-open {
     font-weight: normal;
     margin: 0;
     overflow: hidden;
-    padding: 8px 16px;
+    padding: 8px 16px 8px 30px;
     position: relative;
     text-decoration: none;
     white-space: nowrap;
@@ -132,7 +132,7 @@ body.side-nav-open {
 .side-nav i.side-tree-toggle {
     height: 100%;
     left: 0;
-    padding: 11px 8px;
+    padding: 11px 11px;
     position: absolute;
     top: 0;
     width: 28px !important;
