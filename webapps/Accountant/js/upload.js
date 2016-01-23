@@ -38,7 +38,7 @@ function loadFile(fileId) {
         url: 'Provider?type=page&id=load_file_data',
         data: 'fileid=' + fileId,
         success: function(result) {
-            console.log(result);
+            // console.log(result);
         }
     });
 }
@@ -50,8 +50,8 @@ function delFile(fileId) {
         url: 'Provider?type=page&id=delattach',
         data: 'fileid=' + fileId,
         success: function(result) {
-            console.log(result);
-            $('[data-file="' + fileId + '"]').orphan();
+            // console.log(result);
+            $('[data-file="' + fileId + '"]').remove();
         }
     });
 }
@@ -72,7 +72,7 @@ function checkFileStructure(fileid, trId) {
         success: function(data) {
             $('#checker_result').html(data);
 
-            console.log(data);
+            // console.log(data);
 
             /* var result = $(xml).find("result")
              if(result.attr("status") != "success") {
