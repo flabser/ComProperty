@@ -23,19 +23,24 @@ import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.Property;
+import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.model.util.PropertyFactory;
 import reference.dao.CountryDAO;
 import reference.dao.DistrictDAO;
+import reference.dao.LocalityDAO;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.dao.ReferenceDAO;
 import reference.dao.RegionDAO;
+import reference.dao.StreetDAO;
 import reference.model.Country;
 import reference.model.District;
+import reference.model.Locality;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.Region;
+import reference.model.Street;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.exception.EmployеeException;
@@ -131,19 +136,19 @@ public class MPXLImporter {
 				        .isValueOfList(trueVal, falseVal, isReadyToOperation).getErr());
 
 				rowErr.removeAll(Arrays.asList(null, ""));
-				System.out.println("------" + (i + 1) + "---------");
-				for (List<ErrorDescription> v : rowErr) {
-					// System.out.println("------" + (i + 1) + "---------");
-					for (ErrorDescription vq : v) {
-						System.out.println(vq);
+				if (!rowErr.isEmpty()) {
+					System.out.println("------" + (i + 1) + "---------");
+					for (List<ErrorDescription> v : rowErr) {
+						for (ErrorDescription vq : v) {
+							System.out.println(vq);
+						}
 					}
-
+					sheetErr.put(i + 1, rowErr);
+					if (stopIfWrong) {
+						break;
+					}
 				}
 
-				sheetErr.put(i + 1, rowErr);
-				if (rowErr.size() > 0 && stopIfWrong) {
-					break;
-				}
 				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
 				CheVal cv = new CheVal();
@@ -176,6 +181,10 @@ public class MPXLImporter {
 					((PersonalEstate) prop).setModel(model);
 				} else if (prop instanceof Equipment) {
 					((Equipment) prop).setModel(model);
+				} else if (prop instanceof RealEstate) {
+					addr.setLocality((Locality) cv.getEntity(new LocalityDAO(ses), "Алматы"));
+					addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "Unknown"));
+					((RealEstate) prop).setAddress(addr);
 				}
 				prop.setCommissioningYear(cv.getYear(commissioningYear));
 				prop.setAcquisitionYear(cv.getYear(acquisitionYear));

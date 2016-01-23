@@ -10,7 +10,6 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import kz.flabs.users.User;
-import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
@@ -26,7 +25,7 @@ public class ImportFileChecker extends _DoPage {
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
-			File xlsFile = new File(userTmpDir + File.separator + formData.getValue("fileid"));
+			File xlsFile = new File(userTmpDir + File.separator + formData.getEncodedValueSilently("fileid"));
 
 			_Tag rootTag = new _Tag("result");
 
@@ -47,7 +46,8 @@ public class ImportFileChecker extends _DoPage {
 
 			_XMLDocument xml = new _XMLDocument(rootTag);
 			setContent(xml);
-		} catch (_Exception | BiffException | IOException e) {
+		} catch (BiffException | IOException e) {
+			setBadRequest();
 			error(e);
 		}
 	}

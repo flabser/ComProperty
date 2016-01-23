@@ -20,6 +20,10 @@ import reference.model.constants.RegionType;
 @NamedQuery(name = "Region.findAll", query = "SELECT m FROM Region AS m ORDER BY m.regDate")
 public class Region extends Reference {
 	private List<District> districts;
+
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
 	private Country country;
 
 	@Enumerated(EnumType.STRING)
@@ -43,9 +47,6 @@ public class Region extends Reference {
 		return districts;
 	}
 
-	@NotNull
-	@ManyToOne(optional = false)
-	@JoinColumn(nullable = false)
 	public Country getCountry() {
 		return country;
 	}

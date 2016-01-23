@@ -2,8 +2,6 @@ package reference.model.embedded;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import kz.flabs.util.Util;
 import reference.model.Country;
@@ -15,24 +13,24 @@ import reference.model.Street;
 @Embeddable
 public class Address {
 
-	@ManyToOne
-	@JoinColumn
+	// @ManyToOne
+	// @JoinColumn(nullable = false)
 	private Country country;
 
-	@ManyToOne
-	@JoinColumn
+	// @ManyToOne
+	// @JoinColumn
 	private Region region;
 
-	@ManyToOne
-	@JoinColumn
+	// @ManyToOne
+	// @JoinColumn
 	private District district;
 
-	@ManyToOne
-	@JoinColumn
+	// @ManyToOne
+	// @JoinColumn
 	private Locality locality;
 
-	@ManyToOne
-	@JoinColumn
+	// @ManyToOne
+	// @JoinColumn
 	private Street street;
 
 	@Column(name = "house_number", length = 10)

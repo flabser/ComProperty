@@ -30,6 +30,11 @@ public class Locality extends Reference {
 	@JoinColumn(nullable = false)
 	private District district;
 
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Region region;
+
 	@OneToMany(mappedBy = "locality")
 	public List<Street> getStreets() {
 		return streets;
@@ -41,6 +46,18 @@ public class Locality extends Reference {
 
 	public void setType(LocalityType type) {
 		this.type = type;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	public void setStreets(List<Street> streets) {
+		this.streets = streets;
 	}
 
 	public District getDistrict() {
