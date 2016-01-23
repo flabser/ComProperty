@@ -10,8 +10,9 @@ function upload(fileInput) {
         contentType: false,
         processData: false,
         data: formData,
-        success: function(uploadResult) {
-            var fileName = fileInput.files[0].name;
+        datatype: 'json',
+        success: function(result) {
+            var fileName = result.files[0];
             var tpl = [];
             tpl.push('<li data-file="' + fileName + '">');
             tpl.push(' <a href="Provider?type=getattach&key=' + fileName + '">' + fileName + '</a>');
@@ -22,7 +23,7 @@ function upload(fileInput) {
             $('.js-uploaded-files').append(tpl.join(''));
 
             fileInput.form.reset();
-            return uploadResult;
+            return result;
         },
         error: function(err) {
             fileInput.form.reset();
