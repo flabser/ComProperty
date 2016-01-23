@@ -11,12 +11,22 @@ function upload(fileInput) {
         processData: false,
         data: formData,
         datatype: 'json',
+        xhr: function() {
+            var customXhr = $.ajaxSettings.xhr();
+            if (customXhr.upload) {
+                customXhr.upload.addEventListener('progress', onProgress, false);
+            }
+            return customXhr;
+        },
+        beforeSend: function() {
+            $('#progress-bar').show();
+        },
         success: function(result) {
             var fileName = result.files[0];
             var tpl = [];
             tpl.push('<li data-file="' + fileName + '">');
             tpl.push(' <a href="Provider?type=getattach&key=' + fileName + '">' + fileName + '</a>');
-            tpl.push(' <button type="button" class="btn btn-sm" onclick="checkFileStructure(\'' + fileName + '\', 0)">проверить</button>');
+            tpl.push(' <button type="button" class="btn btn-sm" onclick="checkFile(\'' + fileName + '\', 0)">проверить</button>');
             tpl.push(' <button type="button" class="btn btn-sm" onclick="loadFile(\'' + fileName + '\')">загрузить</button>');
             tpl.push(' <button type="button" class="btn btn-sm" onclick="delFile(\'' + fileName + '\')">удалить</button>');
             tpl.push('</li>');
@@ -28,8 +38,24 @@ function upload(fileInput) {
         error: function(err) {
             fileInput.form.reset();
             console.log(err);
+        },
+        complete: function() {
+            $('progress').attr({
+                value: 0,
+                max: 100
+            });
+            $('#progress-bar').hide();
         }
     });
+}
+
+function onProgress(e) {
+    if (e.lengthComputable) {
+        $('progress').attr({
+            value: e.loaded,
+            max: e.total
+        });
+    }
 }
 
 function loadFile(fileId) {
@@ -63,7 +89,7 @@ function delFile(fileId) {
     });
 }
 
-function checkFileStructure(fileid, trId) {
+function checkFile(fileid, trId) {
     nb.utils.blockUI();
 
     var noty = nb.utils.notify({
