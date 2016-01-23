@@ -35,10 +35,13 @@ function loadFile(fileId) {
     $.ajax({
         type: 'get',
         datatype: 'html',
-        url: 'Provider?type=page&id=load_file_data',
+        url: 'Provider?type=page&id=load-file-data',
         data: 'fileid=' + fileId,
         success: function(result) {
             // console.log(result);
+        },
+        error: function(err) {
+            console.log(err);
         }
     });
 }
@@ -47,11 +50,14 @@ function delFile(fileId) {
     $.ajax({
         type: 'get',
         datatype: 'html',
-        url: 'Provider?type=page&id=delattach',
+        url: 'Provider?type=page&id=delete-attach',
         data: 'fileid=' + fileId,
         success: function(result) {
             // console.log(result);
             $('[data-file="' + fileId + '"]').remove();
+        },
+        error: function(err) {
+            console.log(err);
         }
     });
 }
@@ -67,7 +73,7 @@ function checkFileStructure(fileid, trId) {
     $.ajax({
         type: 'get',
         datatype: 'html',
-        url: 'Provider?type=page&id=check_file_structure',
+        url: 'Provider?type=page&id=check-file-structure',
         data: 'fileid=' + fileid,
         success: function(data) {
             $('#checker_result').html(data);

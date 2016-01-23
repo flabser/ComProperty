@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="off">
-    <description></description>
+    <description>ImportFileChecker</description>
     <caching>NO_CACHING</caching>
-    <xsltfile></xsltfile>
+    <xsltfile>pages/xls-checking-result.xsl</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
-            <doscript source="JAVA_CLASS">accountant.page.action.LoadFileData</doscript>
+            <doscript source="JAVA_CLASS">accountant.page.action.ImportFileChecker</doscript>
         </events>
     </element>
 </rule>
