@@ -27,7 +27,7 @@
                         <label class="btn btn-lg" for="upfile">
                             <i class="fa fa-file-excel-o"></i>
                             <span>
-                                <xsl:value-of select="//captions/download/@caption"/>
+                                <xsl:value-of select="//captions/attach_file/@caption"/>
                             </span>
                         </label>
                     </div>

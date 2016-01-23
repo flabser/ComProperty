@@ -19,6 +19,7 @@
     <caption name="name" source="KEYWORD">Страница загрузки обновлений</caption>
     <caption name="attachments" source="KEYWORD">Загрузить обновление</caption>
     <caption name="download" source="KEYWORD">Загрузить обновление</caption>
+    <caption name="attach_file" source="KEYWORD">Прикрепить файл</caption>
     <caption name="documentsavedcaption" source="KEYWORD">Идет сохранение документа...</caption>
     <caption name="pleasewaitdocsave" source="KEYWORD">Пожалуйста ждите... Идет сохранение документа</caption>
     <caption name="saving" source="KEYWORD">Сохранение</caption>

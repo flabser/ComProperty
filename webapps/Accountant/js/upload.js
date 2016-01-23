@@ -13,9 +13,11 @@ function upload(fileInput) {
         success: function(uploadResult) {
             var fileName = fileInput.files[0].name;
             var tpl = [];
-            tpl.push('<li>');
-            tpl.push('<a href="Provider?type=getattach&key=' + fileName + '">' + fileName + '</a>');
+            tpl.push('<li data-file="' + fileName + '">');
+            tpl.push(' <a href="Provider?type=getattach&key=' + fileName + '">' + fileName + '</a>');
             tpl.push(' <button type="button" class="btn btn-sm" onclick="checkFileStructure(\'' + fileName + '\', 0)">проверить</button>');
+            tpl.push(' <button type="button" class="btn btn-sm" onclick="loadFile(\'' + fileName + '\')">загрузить</button>');
+            tpl.push(' <button type="button" class="btn btn-sm" onclick="delFile(\'' + fileName + '\')">удалить</button>');
             tpl.push('</li>');
             $('.js-uploaded-files').append(tpl.join(''));
 
@@ -29,6 +31,30 @@ function upload(fileInput) {
     });
 }
 
+function loadFile(fileId) {
+    $.ajax({
+        type: 'get',
+        datatype: 'html',
+        url: 'Provider?type=page&id=load_file_data',
+        data: 'fileid=' + fileId,
+        success: function(data) {
+
+        }
+    });
+}
+
+function delFile(fileId) {
+    $.ajax({
+        type: 'get',
+        datatype: 'html',
+        url: 'Provider?type=page&id=delattach',
+        data: 'fileid=' + fileId,
+        success: function(data) {
+            $('[data-file="' + fileId + '"]').orphan();
+        }
+    });
+}
+
 function checkFileStructure(fileid, trId) {
     nb.utils.blockUI();
 
@@ -38,12 +64,12 @@ function checkFileStructure(fileid, trId) {
     }).show();
 
     $.ajax({
-        type: "get",
-        datatype: "html",
-        url: "Provider?type=page&id=check_file_structure",
-        data: "fileid=" + fileid,
+        type: 'get',
+        datatype: 'html',
+        url: 'Provider?type=page&id=check_file_structure',
+        data: 'fileid=' + fileid,
         success: function(data) {
-            $("#checker_result").html(data);
+            $('#checker_result').html(data);
 
             console.log(data);
 
