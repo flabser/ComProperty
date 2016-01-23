@@ -306,6 +306,20 @@ $(document).ready(function() {
             $(this).removeClass('nav-link-collapsed');
         }
     });
+
+    //
+
+    $(window).resize(function() {
+        if (window.innerWidth <= 800) {
+            $('body').addClass('phone');
+        } else {
+            $('body').removeClass('phone');
+        }
+    });
+
+    if (window.innerWidth <= 800) {
+        $('body').addClass('phone');
+    }
 });
 
 /**
@@ -934,3 +948,12 @@ nb.xhr.sendSortRequest = function(pageId, column, direction) {
         }
     });
 };
+
+$(function() {
+
+    $('[data-action=save_and_close]').click(function() {
+        nb.xhr.saveDocument().then(function() {
+            $('[data-action=close]')[0].click();
+        });
+    });
+});

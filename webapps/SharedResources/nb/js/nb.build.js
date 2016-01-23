@@ -306,6 +306,20 @@ $(document).ready(function() {
             $(this).removeClass('nav-link-collapsed');
         }
     });
+
+    //
+
+    $(window).resize(function() {
+        if (window.innerWidth <= 800) {
+            $('body').addClass('phone');
+        } else {
+            $('body').removeClass('phone');
+        }
+    });
+
+    if (window.innerWidth <= 800) {
+        $('body').addClass('phone');
+    }
 });
 
 /**
