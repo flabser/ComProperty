@@ -7,10 +7,10 @@ import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.Language;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
-import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
-import reference.model.District;
+import reference.dao.RegionDAO;
 import reference.model.Locality;
+import reference.model.Region;
 import reference.model.constants.LocalityType;
 
 /**
@@ -23,16 +23,15 @@ public class FillLocalities extends InitialDataAdapter<Locality, LocalityDAO> {
 	public List<Locality> getData(_Session ses, Language lang, Vocabulary vocabulary) {
 
 		List<Locality> entities = new ArrayList<Locality>();
-		String[] data = { "Талды-Курган" };
+		String[] data = { "Алматы", "Капчагай", "Талды-Курган" };
 
-		DistrictDAO cDao = new DistrictDAO(ses);
-		District d = cDao.findByName("Алматинская");
+		RegionDAO cDao = new RegionDAO(ses);
+		Region d = cDao.findByName("Алматинская");
 		if (d != null) {
-
-			for (int i = 0; i < data.length; i++) {
+			for (String val : data) {
 				Locality entity = new Locality();
-				entity.setDistrict(d);
-				entity.setName(data[i]);
+				entity.setRegion(d);
+				entity.setName(val);
 				entity.setType(LocalityType.CITY);
 				entities.add(entity);
 			}
