@@ -28,7 +28,7 @@ public class FillDefaultRoles extends InitialDataAdapter<Role, RoleDAO> {
 		entities.add(entity);
 
 		entity = new Role();
-		entity.setName("refference_admin");
+		entity.setName("reference_admin");
 		entity.setDescription("the role allow to manage in Reference module");
 		entities.add(entity);
 

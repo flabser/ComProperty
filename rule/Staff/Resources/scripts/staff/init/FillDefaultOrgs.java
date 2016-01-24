@@ -12,7 +12,6 @@ import jxl.read.biff.BiffException;
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.Language;
 import kz.flabs.localization.Vocabulary;
-import kz.flabs.util.Util;
 import kz.nextbase.script._Session;
 import kz.pchelka.env.EnvConst;
 import staff.dao.OrganizationDAO;
@@ -30,6 +29,7 @@ public class FillDefaultOrgs extends InitialDataAdapter<Organization, Organizati
 	@Override
 	public List<Organization> getData(_Session ses, Language lang, Vocabulary vocabulary) {
 		List<Organization> entities = new ArrayList<Organization>();
+		boolean isPrimary = true;
 
 		File xf = new File(excelFile);
 		if (xf.exists()) {
@@ -48,7 +48,8 @@ public class FillDefaultOrgs extends InitialDataAdapter<Organization, Organizati
 				if (!orgName.equals("") && !orgName.equals("''")) {
 					Organization entity = new Organization();
 					entity.setName(orgName);
-					entity.setPrimary(Util.getRandomBoolean());
+					entity.setPrimary(isPrimary);
+					isPrimary = false;
 					entities.add(entity);
 				}
 

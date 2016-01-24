@@ -140,25 +140,5 @@
         <entry lang="CHO"></entry>
     </sentence>
 
-    <sentence mode="on" keyword="save_close">
-        <entry lang="ENG">Save &amp; close</entry>
-        <entry lang="RUS">Сохранить и закрыть</entry>
-        <entry lang="KAZ">Сақтау және жабу</entry>
-    </sentence>
-    <sentence mode="on" keyword="close">
-        <entry lang="ENG">Close</entry>
-        <entry lang="RUS">Закрыть</entry>
-        <entry lang="KAZ">Жабу</entry>
-    </sentence>
-    <sentence mode="on" keyword="add">
-        <entry lang="ENG">Add</entry>
-        <entry lang="RUS">Добавить</entry>
-        <entry lang="KAZ">Жаңа</entry>
-    </sentence>
-    <sentence mode="on" keyword="del_document">
-        <entry lang="ENG">Delete document</entry>
-        <entry lang="RUS">Удалить документ</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
+  
 </vocabulary>
