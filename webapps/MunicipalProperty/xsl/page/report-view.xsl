@@ -10,15 +10,14 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/airports/@caption"/>
+                <xsl:with-param name="title" select="//captions/reports/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_building_materials">
+            <div class="view view_furniture">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
-        <input type="hidden" name="page_id" id="page_id" value="{@id}"/>
     </xsl:template>
 
     <xsl:template name="view-table">
@@ -49,9 +48,6 @@
                     <div class="entry-fields">
                         <span>
                             <xsl:value-of select="viewcontent/name"/>
-                        </span>
-                        <span>
-                            <xsl:value-of select="viewcontent/code"/>
                         </span>
                     </div>
                 </a>

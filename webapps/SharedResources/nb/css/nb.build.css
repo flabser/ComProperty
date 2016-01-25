@@ -1030,8 +1030,9 @@ footer.content-actions {
 }
 
 .pagination {
-    text-align: center;
+    margin: 0;
     padding: 4px 4px 2px;
+    text-align: center;
 }
 
 .pagination a {
@@ -1069,8 +1070,9 @@ footer.content-actions {
 
 .pagination-select select {
     border-radius: 2px;
+    min-height: auto;
     padding: 4px;
-    vertical-align: middle;
+    vertical-align: baseline;
 }
 
 .phone .pagination a {

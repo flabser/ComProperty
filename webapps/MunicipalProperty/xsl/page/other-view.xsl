@@ -10,7 +10,7 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/airports/@caption"/>
+                <xsl:with-param name="title" select="//captions/others/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
@@ -48,10 +48,7 @@
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
                         <span>
-                            <xsl:value-of select="viewcontent/name"/>
-                        </span>
-                        <span>
-                            <xsl:value-of select="viewcontent/code"/>
+                            <xsl:value-of select="viewcontent/objectname"/>
                         </span>
                     </div>
                 </a>
