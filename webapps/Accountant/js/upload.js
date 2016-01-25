@@ -56,10 +56,7 @@ function loadFile(fileId) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
-        url: 'Provider?type=page&id=load-file-data',
-        data: {
-            fileid: fileId
-        },
+        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId,
         success: function(result) {
             return result;
         },
@@ -81,10 +78,7 @@ function delFile(fileId) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
-        url: 'Provider?type=page&id=delete-attach',
-        data: {
-            fileid: fileId
-        }
+        url: 'Provider?type=page&id=delete-attach&fileid=' + fileId
     });
 }
 
