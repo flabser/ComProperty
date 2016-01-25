@@ -55,7 +55,8 @@
         <template id="tpl_upload_file">
             <div class="panel update-file-panel js-file-panel">
                 <div class="panel__header blink-anim">
-                    <div class="panel-title" data-toggle="panel">
+                    <div class="panel-title panel-toggle" data-toggle="panel">
+                        <i class="fa"></i>
                         <a href="Provider?type=getattach&amp;key=" class="update-file-link js-link"></a>
                         <span>
                             <button type="button" class="btn btn-sm js-check">проверить</button>

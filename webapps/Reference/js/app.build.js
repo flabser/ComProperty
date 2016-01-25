@@ -177,7 +177,7 @@ nb.utils.getForm = function(el) {
 nb.utils.blockUI = function() {
     var $el = $('#nb-block-ui');
     if ($el.length === 0) {
-        $el = $('<div id="nb-block-ui" style="background:rgba(0,0,0,0.1);position:fixed;top:0;left:0;bottom:0;right:0;z-index:999;"/>');
+        $el = $('<div id="nb-block-ui" style="background:rgba(0,0,0,0.1);cursor:wait;position:fixed;top:0;left:0;bottom:0;right:0;z-index:999;"/>');
         $el.appendTo('body');
     }
 
