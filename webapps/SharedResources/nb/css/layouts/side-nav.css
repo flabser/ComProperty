@@ -88,8 +88,9 @@ body.side-nav-open {
 }
 
 .side-nav .nav-link.active {
-    background-color: #607D8B;
-    color: #FFF;
+    background-color: #E5EEF7; /*#607D8B;*/
+    border: 1px solid #B6D8F8;
+    /*color: #FFF;*/
     font-weight: bold;
 }
 
