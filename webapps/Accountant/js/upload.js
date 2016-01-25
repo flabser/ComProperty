@@ -20,15 +20,7 @@ function upload(fileInput) {
         },
         success: function(result) {
             var fileName = result.files[0];
-            var tpl = [];
-            tpl.push('<li data-file="' + fileName + '">');
-            tpl.push(' <a href="Provider?type=getattach&key=' + fileName + '">' + fileName + '</a>');
-            tpl.push(' <button type="button" class="btn btn-sm" onclick="checkFile(\'' + fileName + '\', 0)">проверить</button>');
-            tpl.push(' <button type="button" class="btn btn-sm" onclick="loadFile(\'' + fileName + '\')">загрузить</button>');
-            tpl.push(' <button type="button" class="btn btn-sm" onclick="delFile(\'' + fileName + '\')">удалить</button>');
-            tpl.push('</li>');
-            $('.js-uploaded-files').append(tpl.join(''));
-
+            renderFilePanel(fileName);
             return result;
         },
         error: function(err) {
@@ -61,21 +53,22 @@ function loadFile(fileId) {
         message: 'Идет загрузка данных. Пожалуйста подождите...'
     }).show();
 
-    $.ajax({
-        type: 'get',
+    return $.ajax({
+        type: 'post',
         datatype: 'html',
         url: 'Provider?type=page&id=load-file-data',
         data: {
             fileid: fileId
         },
         success: function(result) {
-            // console.log(result);
+            return result;
         },
         error: function(err) {
             nb.utils.notify({
                 type: 'error',
                 message: 'Ошибка загрузки'
             }).show(2000);
+            return err;
         },
         complete: function() {
             nb.utils.unblockUI();
@@ -85,24 +78,17 @@ function loadFile(fileId) {
 }
 
 function delFile(fileId) {
-    $.ajax({
-        type: 'get',
+    return $.ajax({
+        type: 'post',
         datatype: 'html',
         url: 'Provider?type=page&id=delete-attach',
         data: {
             fileid: fileId
-        },
-        success: function(result) {
-            // console.log(result);
-            $('[data-file="' + fileId + '"]').remove();
-        },
-        error: function(err) {
-            console.log(err);
         }
     });
 }
 
-function checkFile(fileId, trId) {
+function checkFile(fileId) {
     nb.utils.blockUI();
 
     var noty = nb.utils.notify({
@@ -110,7 +96,7 @@ function checkFile(fileId, trId) {
         message: 'Идет проверка структуры файла. Пожалуйста подождите...'
     }).show();
 
-    $.ajax({
+    return $.ajax({
         type: 'get',
         datatype: 'html',
         url: 'Provider?type=page&id=check-file-structure',
@@ -118,35 +104,10 @@ function checkFile(fileId, trId) {
             fileid: fileId
         },
         success: function(data) {
-            $('#checker_result').html(data);
-
-            // console.log(data);
-
-            /* var result = $(xml).find("result")
-             if(result.attr("status") != "success") {
-                 $("#btnsavedoc").attr("disabled","disabled").addClass("ui-state-disabled")
-                 $("#"+trId).remove()
-                 var mess = ""
-                 if(result.attr("status") == "wrong_kuf" || result.attr("status") == "empty_kuf")
-                     mess =  "Неправильно заполнен КУФ номер. Пожалуйста, сверьте Ваш файл с шаблоном..."
-                 else if(result.attr("status") == "parsing_file_error")
-                     mess =  "Неправильный формат файла. Пожалуйста, сверьте Ваш файл с шаблоном..."
-                 infoDialog(mess)
-             } else{
-                 $("#btnsavedoc").removeAttr("disabled").removeClass("ui-state-disabled")
-                 text = "Инвентарный номер: " + result.attr("invnumber") + "<br/>"
-                 text += "Наименование: " + result.attr("name") + "<br/>"
-                 text += "Дата принятия на баланс: " + result.attr("acceptancedate") + "<br/>"
-                 text += "Район: " + result.attr("region") + "<br/>"
-                 text += "Адрес: " + result.attr("address") + "<br/>"
-                 text += "Первоначальная стоимость (тг.): " + result.attr("originalcost") + "<br/>"
-                 text += "Балансовая стоимость (тг.): " + result.attr("balancecost") + "<br/>"
-                 text += "kuf: " + result.attr("kuf") + "<br/>"
-                 infoDialogBig(text, "Проверьте правильность данных", trId)
-             }*/
+            return data;
         },
-        error: function(xhr, ajaxOptions, thrownError) {
-
+        error: function() {
+            return false;
         },
         complete: function() {
             nb.utils.unblockUI();
@@ -155,15 +116,58 @@ function checkFile(fileId, trId) {
     })
 }
 
+function renderFilePanel(fileName) {
+    var template = $('#tpl_upload_file').clone();
+    var $tpl = $(template.html().trim());
+
+    var t_link = $tpl.find('.js-link').attr('href');
+    $tpl.find('.js-link').attr('href', t_link + fileName).html(fileName);
+
+    $tpl.find('.js-check').on('click', function(e) {
+        e.stopPropagation();
+        var $btn = $(this);
+        $btn.attr('disabled', true);
+        //
+        checkFile(fileName).then(function(result) {
+            $btn.parents('.panel').addClass('open');
+            if (result == '') {
+                $tpl.find('.js-load').removeAttr('disabled');
+            }
+            $tpl.find('.js-check-result').html(result);
+        }, function(err) {
+            $btn.parents('.panel').addClass('open');
+            $tpl.find('.js-check-result').html(err.statusText);
+        });
+    });
+
+    $tpl.find('.js-delete').on('click', function(e) {
+        e.stopPropagation();
+        delFile(fileName).then(function() {
+            $tpl.remove();
+        });
+    });
+
+    $tpl.find('.js-load').on('click', function(e) {
+        e.stopPropagation();
+        loadFile(fileName);
+    });
+
+    $('.js-uploaded-files').append($tpl);
+}
+
 $(function() {
     $('[data-action=save_and_close]').click(function() {
         nb.xhr.saveDocument().then(function(result) {
-            // $('[data-action=close]')[0].click();
             console.log(result);
-            /*nb.utils.notify({
-                type: 'info',
-                message: 'Сохранен'
-            }).show(1000);*/
         });
+    });
+
+    $(document).on('click', '[data-toggle=panel]', function() {
+        var $panel = $(this).parents('.panel');
+        if ($panel.hasClass('open')) {
+            $panel.removeClass('open');
+        } else {
+            $panel.addClass('open');
+        }
     });
 });

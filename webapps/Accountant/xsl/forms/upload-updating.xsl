@@ -39,18 +39,34 @@
                 <input type="hidden" name="type" value="save"/>
                 <input type="hidden" name="id" value="{@id}"/>
                 <input type="hidden" name="key" value="{document/@docid}"/>
-                <input type="hidden" name="savedate" value="{document/@docid}"/>
-                <input type="hidden" name="author" value="{@username}"/>
             </form>
             <form class="hidden" method="POST" enctype="multipart/form-data">
                 <input type="file" id="upfile" name="upfile" onchange="upload(this)"
                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
             </form>
             <div class="upload-result">
-                <ul class="js-uploaded-files"></ul>
-                <div id="checker_result"></div>
+                <div class="js-uploaded-files"></div>
             </div>
         </section>
+        <xsl:call-template name="tpl_upload_file"/>
+    </xsl:template>
+
+    <xsl:template name="tpl_upload_file">
+        <template id="tpl_upload_file">
+            <div class="panel update-file-panel js-file-panel">
+                <div class="panel__header blink-anim">
+                    <div class="panel-title" data-toggle="panel">
+                        <a href="Provider?type=getattach&amp;key=" class="update-file-link js-link"></a>
+                        <span>
+                            <button type="button" class="btn btn-sm js-check">проверить</button>
+                            <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">загрузить</button>
+                            <button type="button" class="btn btn-sm js-delete">удалить</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="panel__body js-check-result"></div>
+            </div>
+        </template>
     </xsl:template>
 
 </xsl:stylesheet>

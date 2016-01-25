@@ -1528,6 +1528,35 @@ i.has-parent {
     display: none;
 }
 
+.blink-anim {
+    -webkit-animation: blinkAnim 1.3s;
+    animation: blinkAnim 1.3s;
+}
+
+
+/* Chrome, Safari, Opera */
+
+@-webkit-keyframes blinkAnim {
+    from {
+        background: yellow;
+    }
+    to {
+        background: white;
+    }
+}
+
+
+/* Standard syntax */
+
+@keyframes blinkAnim {
+    from {
+        background: yellow;
+    }
+    to {
+        background: white;
+    }
+}
+
 .btn {
     background-color: #FFF;
     border: 1px solid #CDCDCD;

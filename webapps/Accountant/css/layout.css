@@ -6,6 +6,27 @@ progress[value='0'] {
     display: none;
 }
 
+.update-file-panel {
+    margin: 0 auto 8px;
+    width: 99%;
+}
+
+.update-file-panel.open > .panel__body {
+    max-height: 500px;
+}
+
+.update-file-link {
+    display: inline-block;
+    margin-right: 3px;
+    padding: 4px;
+}
+
+.panel__header,
+.panel-title {
+    font-size: 13px;
+    height: auto;
+}
+
 .upload-checking-result {
     margin: 1em;
 }
