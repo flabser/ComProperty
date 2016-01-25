@@ -35,7 +35,7 @@ public class MainNavigator extends _DoPage {
         _OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");
         for (OrganizationLabel label : new OrganizationLabelDAO(session).findAll()) {
             orgEntry.addEntry(new _OutlineEntry(getLocalizedWord(label.getName(), lang), getLocalizedWord("labeled", lang) + " : "
-                    + getLocalizedWord(label.getName(), lang), "organization-view" + label.getId(), "Provider?id=organizationlabel-view&docid=" + label.getId()));
+                    + getLocalizedWord(label.getName(), lang), "organizationlabel-view" + label.getId(), "Provider?id=organizationlabel-view&docid=" + label.getId()));
         }
         common_outline.addEntry(orgEntry);
 
