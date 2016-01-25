@@ -22,9 +22,12 @@ public class DeleteAttach extends _DoPage {
         User user = session.getUser();
         File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
         try {
-            File xlsFile = new File(userTmpDir + File.separator + formData.getValue("fileid"));
-            if (xlsFile.exists()) {
-                xlsFile.delete();
+            String fileName = formData.getValue("fileid");
+            if (fileName.indexOf('/') == -1 && fileName.indexOf('\\') == -1) {
+                File xlsFile = new File(userTmpDir + File.separator + formData.getValue("fileid"));
+                if (xlsFile.exists()) {
+                    xlsFile.delete();
+                }
             }
         } catch (_Exception e) {
             error(e);
