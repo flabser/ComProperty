@@ -1,3 +1,11 @@
 .content {
     margin-left: 0;
 }
+
+progress[value='0'] {
+    display: none;
+}
+
+.upload-checking-result {
+    margin: 1em;
+}

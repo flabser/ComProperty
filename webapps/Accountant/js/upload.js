@@ -18,9 +18,6 @@ function upload(fileInput) {
             }
             return customXhr;
         },
-        beforeSend: function() {
-            $('#progress-bar').show();
-        },
         success: function(result) {
             var fileName = result.files[0];
             var tpl = [];
@@ -32,11 +29,9 @@ function upload(fileInput) {
             tpl.push('</li>');
             $('.js-uploaded-files').append(tpl.join(''));
 
-            fileInput.form.reset();
             return result;
         },
         error: function(err) {
-            fileInput.form.reset();
             console.log(err);
         },
         complete: function() {
@@ -44,7 +39,7 @@ function upload(fileInput) {
                 value: 0,
                 max: 100
             });
-            $('#progress-bar').hide();
+            fileInput.form.reset();
         }
     });
 }
@@ -70,7 +65,9 @@ function loadFile(fileId) {
         type: 'get',
         datatype: 'html',
         url: 'Provider?type=page&id=load-file-data',
-        data: 'fileid=' + fileId,
+        data: {
+            fileid: fileId
+        },
         success: function(result) {
             // console.log(result);
         },
@@ -79,11 +76,10 @@ function loadFile(fileId) {
                 type: 'error',
                 message: 'Ошибка загрузки'
             }).show(2000);
-            noty.hide();
         },
         complete: function() {
             nb.utils.unblockUI();
-            noty.remove(200);
+            noty.remove();
         }
     });
 }
@@ -93,7 +89,9 @@ function delFile(fileId) {
         type: 'get',
         datatype: 'html',
         url: 'Provider?type=page&id=delete-attach',
-        data: 'fileid=' + fileId,
+        data: {
+            fileid: fileId
+        },
         success: function(result) {
             // console.log(result);
             $('[data-file="' + fileId + '"]').remove();
@@ -104,7 +102,7 @@ function delFile(fileId) {
     });
 }
 
-function checkFile(fileid, trId) {
+function checkFile(fileId, trId) {
     nb.utils.blockUI();
 
     var noty = nb.utils.notify({
@@ -116,7 +114,9 @@ function checkFile(fileid, trId) {
         type: 'get',
         datatype: 'html',
         url: 'Provider?type=page&id=check-file-structure',
-        data: 'fileid=' + fileid,
+        data: {
+            fileid: fileId
+        },
         success: function(data) {
             $('#checker_result').html(data);
 

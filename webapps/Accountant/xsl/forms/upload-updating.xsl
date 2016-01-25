@@ -30,8 +30,8 @@
                                 <xsl:value-of select="//captions/attach_file/@caption"/>
                             </span>
                         </label>
-                        <div id="progress-bar" style="display:none">
-                            <progress max="100" value="0"></progress>
+                        <div>
+                            <progress id="upload-progress-bar" max="100" value="0"></progress>
                         </div>
                     </div>
                 </fieldset>
