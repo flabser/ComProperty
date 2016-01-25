@@ -23,6 +23,19 @@ public class OrganizationDAO extends DAO<Organization, UUID> {
 		super(Organization.class, session);
 	}
 
+	public Organization findPrimaryOrg() {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		try {
+			String jpql = "SELECT m FROM Organization AS m WHERE m.isPrimary = true";
+			TypedQuery<Organization> q = em.createQuery(jpql, Organization.class);
+			return q.getResultList().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+
 	public ViewPage<Organization> findAllByKeyword(String keyword, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
