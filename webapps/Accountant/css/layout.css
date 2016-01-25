@@ -27,6 +27,10 @@ progress[value='0'] {
     height: auto;
 }
 
+.update-file-panel .panel-title:hover {
+    background: #CCC;
+}
+
 .update-file-panel .panel-toggle {
     background: none;
     border: none;
