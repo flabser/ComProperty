@@ -2,7 +2,7 @@
 
 .side-nav {
     border-right: 1px solid #DDD;
-    padding: 8px 0;
+    padding: 8px 4px;
     word-wrap: normal;
 }
 
@@ -68,6 +68,7 @@ body.side-nav-open {
 /* .side-nav .nav-link */
 
 .side-nav .nav-link {
+    border-radius: 2px;
     color: #303333;
     cursor: pointer;
     display: block;
@@ -87,16 +88,19 @@ body.side-nav-open {
 }
 
 .side-nav .nav-link.active {
-    background-color: #B6D8F8;
+    background-color: #607D8B;
+    color: #FFF;
     font-weight: bold;
 }
 
 .side-nav .nav-link:active {
-    background-color: #F5F5F5 !important;
+    background-color: #DDD !important;
+    color: #303333;
 }
 
 .side-nav .nav-link:hover {
     background-color: #DDD;
+    color: #303333;
 }
 
 .nav-link.collapsible {
@@ -113,7 +117,7 @@ body.side-nav-open {
 }
 
 .side-nav .nav-link > i {
-    color: #5C5C5C;
+    color: inherit;
     display: inline-block;
     font-size: 14px;
     text-align: left;
