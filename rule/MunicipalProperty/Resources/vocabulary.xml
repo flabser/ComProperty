@@ -564,7 +564,7 @@
 		<entry lang="RUS">Прочее</entry>
 		<entry lang="KAZ">Басқалары</entry>
 	</sentence>
-	<sentence mode="on" keyword="inventory">
+	<sentence mode="on" keyword="inventorybomb">
 		<entry lang="RUS">Инвентарь</entry>
 		<entry lang="KAZ">Инвентарь</entry>
 		<entry lang="ENG"></entry>
@@ -946,7 +946,8 @@
 		<entry lang="KAZ">Атауы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Добавить новую мебель">
+	<sentence mode="on" keyword="new_furniture-form">
+		<entry lang="RUS">Добавить мебель</entry>
 		<entry lang="KAZ">Жаңа жиһаз қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>

@@ -17,8 +17,6 @@ public class EquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		// println(formData);
-		setContent(getSimpleActionBar(session, "equipment", lang));
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(KufType.SCHOOL_EQUIPMENT);
 		params.add(KufType.COMPUTER_EQUIPMENT);

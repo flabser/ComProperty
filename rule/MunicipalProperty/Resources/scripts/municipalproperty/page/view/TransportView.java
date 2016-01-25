@@ -17,7 +17,6 @@ public class TransportView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		setContent(getSimpleActionBar(session, "transport", lang));
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(KufType.AUTOMOBILE);
 		params.add(KufType.CARGO);

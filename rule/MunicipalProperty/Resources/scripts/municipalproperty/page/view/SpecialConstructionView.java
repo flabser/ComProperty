@@ -17,7 +17,6 @@ public class SpecialConstructionView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		setContent(getSimpleActionBar(session, "special_construction", lang));
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(KufType.BOMBPROOF);
 		params.add(KufType.FACTORY);

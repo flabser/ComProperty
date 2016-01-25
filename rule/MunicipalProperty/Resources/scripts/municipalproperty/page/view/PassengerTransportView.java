@@ -17,7 +17,6 @@ public class PassengerTransportView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		setContent(getSimpleActionBar(session, "passenger_transport", lang));
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(KufType.BUS);
 		params.add(KufType.TROLLEYBUS);

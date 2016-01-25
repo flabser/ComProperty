@@ -249,7 +249,7 @@ public class Property extends SecureAppEntity {
 
 	@Override
 	public _URL getURL() {
-		return new _URL("Provider?id=" + getKuf().name().toLowerCase() + "_form&amp;docid=" + getId());
+		return new _URL("Provider?id=" + getKuf().name().toLowerCase() + "-form&amp;docid=" + getId());
 	}
 
 }

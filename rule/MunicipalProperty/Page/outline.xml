@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <description>Outline</description>
-    <caching>NO_CACHING</caching>
+    <caching>CACHING_IN_USER_SESSION_SCOPE</caching>
     <element mode="ON" type="SCRIPT">
         <name>app_menu</name>
         <events>
@@ -11,39 +11,39 @@
     <element mode="ON" type="INCLUDED_PAGE">
         <value>common-captions</value>
     </element>
-    <caption name="airports" source="KEYWORD">Airports</caption>
-    <caption name="animals" source="KEYWORD">Animals</caption>
-    <caption name="automobiles" source="KEYWORD">Automobiles</caption>
-    <caption name="billboards" source="KEYWORD">Billboards</caption>
-    <caption name="bomb_proofs" source="KEYWORD">Bomb proofs</caption>
-    <caption name="buildings" source="KEYWORD">Buildings</caption>
-    <caption name="buses" source="KEYWORD">Buses</caption>
-    <caption name="cars" source="KEYWORD">Cars</caption>
-    <caption name="cargoes" source="KEYWORD">Cargoes</caption>
-    <caption name="columns" source="KEYWORD">Columns</caption>
-    <caption name="combines" source="KEYWORD">Combines</caption>
-    <caption name="computer_equipment" source="KEYWORD">Computer equipment</caption>
-    <caption name="cook_equipment" source="KEYWORD">Cook equipment</caption>
-    <caption name="drains" source="KEYWORD">Drains</caption>
-    <caption name="electric_networks" source="KEYWORD">Electric networks</caption>
-    <caption name="eng_infrastructures" source="KEYWORD">Eng infrastructures</caption>
-    <caption name="equipment" source="KEYWORD">Equipment</caption>
-    <caption name="equities" source="KEYWORD">Equities</caption>
-    <caption name="factories" source="KEYWORD">Factories</caption>
-    <caption name="furniture" source="KEYWORD">Furniture</caption>
-    <caption name="intangible_assets" source="KEYWORD">Intangible assets</caption>
-    <caption name="inventories" source="KEYWORD">Inventories</caption>
-    <caption name="lands" source="KEYWORD">Lands</caption>
-    <caption name="medical_equipment" source="KEYWORD">Medical equipment</caption>
-    <caption name="monuments" source="KEYWORD">Monuments</caption>
-    <caption name="motorcycles" source="KEYWORD">Motorcycles</caption>
-    <caption name="networks" source="KEYWORD">Networks</caption>
-    <caption name="objects_reserved_fund" source="KEYWORD">Objects reserved fund</caption>
-    <caption name="official_transports" source="KEYWORD">Official transports</caption>
-    <caption name="others_equipment" source="KEYWORD">Others equipment</caption>
-    <caption name="others" source="KEYWORD">Others</caption>
-    <caption name="parking_lots" source="KEYWORD">Parking lots</caption>
-    <caption name="passenger_transports" source="KEYWORD">Passenger transports</caption>
-    <caption name="personal_estates" source="KEYWORD">Personal estates</caption>
-    <caption name="real_estates" source="KEYWORD">Real estates</caption>
+    <caption name="airports" source="KEYWORD">airports</caption>
+    <caption name="animals" source="KEYWORD">animals</caption>
+    <caption name="automobiles" source="KEYWORD">automobiles</caption>
+    <caption name="billboards" source="KEYWORD">billboards</caption>
+    <caption name="bomb_proofs" source="KEYWORD">bombproofs</caption>
+    <caption name="buildings" source="KEYWORD">buildings</caption>
+    <caption name="buses" source="KEYWORD">buses</caption>
+    <caption name="cars" source="KEYWORD">cars</caption>
+    <caption name="cargoes" source="KEYWORD">cargoes</caption>
+    <caption name="columns" source="KEYWORD">columns</caption>
+    <caption name="combines" source="KEYWORD">combines</caption>
+    <caption name="computer_equipment" source="KEYWORD">computer_equipment</caption>
+    <caption name="cook_equipment" source="KEYWORD">cook_equipment</caption>
+    <caption name="drains" source="KEYWORD">drains</caption>
+    <caption name="electric_networks" source="KEYWORD">electric_networks</caption>
+    <caption name="eng_infrastructures" source="KEYWORD">eng_infrastructures</caption>
+    <caption name="equipment" source="KEYWORD">equipment</caption>
+    <caption name="equities" source="KEYWORD">equities</caption>
+    <caption name="factories" source="KEYWORD">factories</caption>
+    <caption name="furniture" source="KEYWORD">furniture</caption>
+    <caption name="intangible_assets" source="KEYWORD">intangible_assets</caption>
+    <caption name="inventories" source="KEYWORD">inventory</caption>
+    <caption name="lands" source="KEYWORD">land</caption>
+    <caption name="medical_equipment" source="KEYWORD">medical_equipment</caption>
+    <caption name="monuments" source="KEYWORD">monuments</caption>
+    <caption name="motorcycles" source="KEYWORD">motorcycles</caption>
+    <caption name="networks" source="KEYWORD">networks</caption>
+    <caption name="objects_reserved_fund" source="KEYWORD">objects_reserved_fund</caption>
+    <caption name="official_transports" source="KEYWORD">official_transports</caption>
+    <caption name="others_equipment" source="KEYWORD">others_equipment</caption>
+    <caption name="others" source="KEYWORD">others</caption>
+    <caption name="parking_lots" source="KEYWORD">parking_lots</caption>
+    <caption name="passenger_transports" source="KEYWORD">passenger_transports</caption>
+    <caption name="personal_estates" source="KEYWORD">personal_estates</caption>
+    <caption name="real_estates" source="KEYWORD">real_estates</caption>
 </rule>

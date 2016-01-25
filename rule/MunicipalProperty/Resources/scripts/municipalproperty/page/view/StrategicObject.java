@@ -11,8 +11,6 @@ public class StrategicObject extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		// println(formData);
-		setContent(getSimpleActionBar(session, "strategic_object", lang));
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(KufType.OBJECT_RESERVED_FUND);
 		params.add(KufType.BOMBPROOF);

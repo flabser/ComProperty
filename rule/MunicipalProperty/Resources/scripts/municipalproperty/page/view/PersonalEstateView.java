@@ -17,7 +17,7 @@ public class PersonalEstateView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
-		setContent(getSimpleActionBar(session, "personal_estate", lang));
+
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(KufType.FURNITURE);
 		params.add(KufType.ANIMALS);
