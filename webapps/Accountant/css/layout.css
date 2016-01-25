@@ -39,6 +39,11 @@ progress[value='0'] {
     z-index: 2;
 }
 
+.update-file-panel .panel-toggle i.fa {
+    font-size: 22px;
+    vertical-align: middle;
+}
+
 .upload-checking-result {
     margin: 1em;
 }
