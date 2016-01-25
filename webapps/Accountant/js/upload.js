@@ -59,6 +59,13 @@ function onProgress(e) {
 }
 
 function loadFile(fileId) {
+    nb.utils.blockUI();
+
+    var noty = nb.utils.notify({
+        type: 'info',
+        message: 'Идет загрузка данных. Пожалуйста подождите...'
+    }).show();
+
     $.ajax({
         type: 'get',
         datatype: 'html',
@@ -68,7 +75,15 @@ function loadFile(fileId) {
             // console.log(result);
         },
         error: function(err) {
-            console.log(err);
+            nb.utils.notify({
+                type: 'error',
+                message: 'Ошибка загрузки'
+            }).show(2000);
+            noty.hide();
+        },
+        complete: function() {
+            nb.utils.unblockUI();
+            noty.remove(200);
         }
     });
 }
@@ -129,11 +144,11 @@ function checkFile(fileid, trId) {
                  text += "kuf: " + result.attr("kuf") + "<br/>"
                  infoDialogBig(text, "Проверьте правильность данных", trId)
              }*/
-            noty.remove(200);
-
-            nb.utils.unblockUI();
         },
         error: function(xhr, ajaxOptions, thrownError) {
+
+        },
+        complete: function() {
             nb.utils.unblockUI();
             noty.remove(200);
         }
