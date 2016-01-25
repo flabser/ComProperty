@@ -319,4 +319,9 @@ $(document).ready(function() {
     if (window.innerWidth <= 800) {
         $('body').addClass('phone');
     }
+
+    //
+    setTimeout(function() {
+        $('body').removeClass('no_transition');
+    }, 200);
 });
