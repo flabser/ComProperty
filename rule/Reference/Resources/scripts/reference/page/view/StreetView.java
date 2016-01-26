@@ -8,23 +8,22 @@ import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import reference.dao.StreetDAO;
 
-
 public class StreetView extends _DoPage {
 
-    @Override
-    public void doGET(_Session session, _WebFormData formData, String lang) {
-        _ActionBar actionBar = new _ActionBar(session);
-        _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_street");
-        newDocAction.setURL("Provider?id=street-form");
-        actionBar.addAction(newDocAction);
-        actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+	@Override
+	public void doGET(_Session session, _WebFormData formData, String lang) {
+		_ActionBar actionBar = new _ActionBar(session);
+		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_street");
+		newDocAction.setURL("Provider?id=street-form");
+		actionBar.addAction(newDocAction);
+		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-        setContent(actionBar);
-        setContent(getViewPage(new StreetDAO(session), formData));
-    }
+		setContent(actionBar);
+		setContent(getViewPage(new StreetDAO(session), formData));
+	}
 
-    @Override
-    public void doPOST(_Session session, _WebFormData formData, String lang) {
+	@Override
+	public void doPOST(_Session session, _WebFormData formData, String lang) {
 
-    }
+	}
 }

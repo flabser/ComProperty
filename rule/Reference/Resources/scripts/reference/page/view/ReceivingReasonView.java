@@ -8,23 +8,22 @@ import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import reference.dao.ReceivingReasonDAO;
 
-
 public class ReceivingReasonView extends _DoPage {
 
-    @Override
-    public void doGET(_Session session, _WebFormData formData, String lang) {
-        _ActionBar actionBar = new _ActionBar(session);
-        _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_receiving_reason");
-        newDocAction.setURL("Provider?id=receivingreason-form");
-        actionBar.addAction(newDocAction);
-        actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+	@Override
+	public void doGET(_Session session, _WebFormData formData, String lang) {
+		_ActionBar actionBar = new _ActionBar(session);
+		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_receiving_reason");
+		newDocAction.setURL("Provider?id=receivingreason-form");
+		actionBar.addAction(newDocAction);
+		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-        setContent(actionBar);
-        setContent(getViewPage(new ReceivingReasonDAO(session), formData));
-    }
+		setContent(actionBar);
+		setContent(getViewPage(new ReceivingReasonDAO(session), formData));
+	}
 
-    @Override
-    public void doPOST(_Session session, _WebFormData formData, String lang) {
+	@Override
+	public void doPOST(_Session session, _WebFormData formData, String lang) {
 
-    }
+	}
 }
