@@ -8,6 +8,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import kz.flabs.dataengine.jpa.AppEntity;
+import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;
 
 /**
@@ -49,6 +50,11 @@ public class ReportTemplate extends AppEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public _URL getURL() {
+		return new _URL("Provider?id=report-template-form&amp;docid=" + getId());
 	}
 
 }

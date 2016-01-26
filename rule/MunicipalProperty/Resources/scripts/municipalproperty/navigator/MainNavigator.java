@@ -100,7 +100,7 @@ public class MainNavigator extends _DoPage {
 		munPropOutline.addEntry(engStructureEntry);
 
 		_Outline reportOutline = new _Outline(getLocalizedWord("reports", lang), "report");
-		reportOutline.addEntry(new _OutlineEntry(getLocalizedWord("reports", lang), "report-view"));
+		reportOutline.addEntry(new _OutlineEntry(getLocalizedWord("reports", lang), "report-template-view"));
 
 		list.add(munPropOutline);
 		list.add(reportOutline);
