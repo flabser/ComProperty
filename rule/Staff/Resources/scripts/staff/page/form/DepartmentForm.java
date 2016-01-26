@@ -26,7 +26,7 @@ public class DepartmentForm extends StaffForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Department entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			DepartmentDAO dao = new DepartmentDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {

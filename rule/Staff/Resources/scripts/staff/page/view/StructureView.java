@@ -29,7 +29,7 @@ public class StructureView extends _DoPage {
 		}
 
 		_ActionBar actionBar = new _ActionBar(session);
-		_Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_organization");
+		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization");
 		newDocAction.setURL("Provider?id=organization-form");
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));

@@ -251,7 +251,7 @@
 		<entry lang="KAZ">Қуаттылығы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="real_estate">
+	<sentence mode="on" keyword="real_estates">
 		<entry lang="RUS">Недвижимое имущество</entry>
 		<entry lang="KAZ">Жылжымайтын мүлік</entry>
 		<entry lang="ENG"></entry>
@@ -324,7 +324,7 @@
 		<entry lang="KAZ">Транспорт</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="autmobiles">
+	<sentence mode="on" keyword="automobiles">
 		<entry lang="RUS">Автомашины</entry>
 		<entry lang="KAZ">Автокөліктер</entry>
 		<entry lang="ENG"></entry>

@@ -1,4 +1,4 @@
-package municipalproperty.page;
+package staff.page;
 
 import kz.flabs.users.User;
 import kz.nextbase.script._Session;
