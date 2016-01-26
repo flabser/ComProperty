@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rule app="" id="birthday_reminder" isvalid="true" mode="ON" type="HANDLER">
+<?xml version="1.0" encoding="UTF-8"?><rule app="" id="birthday_reminder" isvalid="true" mode="ON" type="HANDLER">
     <description>test of the new handler</description>
     <rununderuser source="STATIC" type="TEXT"/>
     <trigger>SCHEDULER</trigger>
