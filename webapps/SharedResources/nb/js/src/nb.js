@@ -249,6 +249,20 @@ nb.utils.notify = function(opt) {
 $(document).ready(function() {
     nb.LANG_ID = $.cookie('lang') || 'RUS';
 
+    //
+    var oreo = localStorage.getItem('side-tree-toggle');
+    var ary = [];
+    if (oreo != null) {
+        ary = oreo.split(',');
+    } else {
+        localStorage.setItem('side-tree-toggle', '');
+    }
+    $('[data-nav]', '.aside').each(function() {
+        if (ary.indexOf($(this).data('nav')) != -1) {
+            $(this).removeClass('nav-link-collapsed');
+        }
+    });
+
     $(':checkbox').bind('click', function() {
         var $checkbox = $(this);
 
@@ -290,20 +304,6 @@ $(document).ready(function() {
         } else {
             ary.push(navId);
             localStorage.setItem(storageKey, ary.join(','));
-        }
-    });
-
-    //
-    var oreo = localStorage.getItem('side-tree-toggle');
-    var ary = [];
-    if (oreo != null) {
-        ary = oreo.split(',');
-    } else {
-        localStorage.setItem('side-tree-toggle', '');
-    }
-    $('[data-nav]', '.aside').each(function() {
-        if (ary.indexOf($(this).data('nav')) != -1) {
-            $(this).removeClass('nav-link-collapsed');
         }
     });
 

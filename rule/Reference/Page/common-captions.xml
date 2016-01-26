@@ -26,4 +26,14 @@
     <caption name="property_code" source="KEYWORD">Код собственности</caption>
     <caption name="receiving_reason" source="KEYWORD">Основание поступления на баланс</caption>
     <caption name="structure_type" source="KEYWORD">Тип структуры</caption>
+
+    <caption name="building_materials" source="KEYWORD">Материал постройки</caption>
+    <caption name="countries" source="KEYWORD">Страны</caption>
+    <caption name="districts" source="KEYWORD">Районы</caption>
+    <caption name="regions" source="KEYWORD">Регионы</caption>
+    <caption name="localities" source="KEYWORD">Населенные пункты</caption>
+    <caption name="streets" source="KEYWORD">Улицы</caption>
+    <caption name="positions" source="KEYWORD">Должности</caption>
+    <caption name="property_codes" source="KEYWORD">Коды собственности</caption>
+    <caption name="receiving_reasons" source="KEYWORD">Основание поступления на баланс</caption>
 </rule>

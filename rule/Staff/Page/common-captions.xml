@@ -19,4 +19,15 @@
     <caption name="employee" source="KEYWORD">Сотрудник</caption>
     <caption name="organization_label" source="KEYWORD">Признак организации</caption>
     <caption name="role" source="KEYWORD">Роль</caption>
+
+    <caption name="organizations" source="KEYWORD">Организации</caption>
+    <caption name="departments" source="KEYWORD">Департаменты</caption>
+    <caption name="employees" source="KEYWORD">Сотрудники</caption>
+    <caption name="contractors" source="KEYWORD">Контрагенты</caption>
+    <caption name="individuals" source="KEYWORD">Физические лица</caption>
+    <caption name="legal_entities" source="KEYWORD">Юридические лица</caption>
+    <caption name="organization_labels" source="KEYWORD">Признаки для организации</caption>
+    <caption name="responsible_persons" source="KEYWORD">Ответственные лица по загрузке данных</caption>
+    <caption name="roles" source="KEYWORD">Роли</caption>
+    <caption name="structure" source="KEYWORD">Структура</caption>
 </rule>
