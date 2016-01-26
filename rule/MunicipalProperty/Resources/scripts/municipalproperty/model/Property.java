@@ -247,9 +247,10 @@ public class Property extends SecureAppEntity {
 		this.acquisitionYear = acquisitionYear;
 	}
 
+	// TODO need to post the URL during saving
 	@Override
 	public _URL getURL() {
-		return new _URL("Provider?id=" + getKuf().name().toLowerCase() + "-form&amp;docid=" + getId());
+		return new _URL("Provider?id=" + getKuf().name().replace("_", "-").toLowerCase() + "-form&amp;docid=" + getId());
 	}
 
 }
