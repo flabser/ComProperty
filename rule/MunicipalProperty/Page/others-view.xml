@@ -6,7 +6,7 @@
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
-            <doscript source="JAVA_CLASS">municipalproperty.page.view.OtherView</doscript>
+            <doscript source="JAVA_CLASS">municipalproperty.page.view.OthersView</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">

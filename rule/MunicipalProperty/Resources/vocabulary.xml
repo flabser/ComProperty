@@ -564,7 +564,7 @@
 		<entry lang="RUS">Прочее</entry>
 		<entry lang="KAZ">Басқалары</entry>
 	</sentence>
-	<sentence mode="on" keyword="inventorybomb">
+	<sentence mode="on" keyword="inventory">
 		<entry lang="RUS">Инвентарь</entry>
 		<entry lang="KAZ">Инвентарь</entry>
 		<entry lang="ENG"></entry>
@@ -959,45 +959,54 @@
 		<entry lang="KAZ">"Бастапқы құны" жолы толтырылмады</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Добавить прочее">
+	<sentence mode="on" keyword="new_others">
+		<entry lang="RUS">Добавить прочее</entry>
 		<entry lang="KAZ">Басқаларын қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить новый спорт. инвентарь">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Жаңа спорт. инвентарь қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Добавить новое животное">
+	<sentence mode="on" keyword="new_animal">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Жаңа жануар қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить школьное оборудование">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Мектеп құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить офисное оборудование">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Кеңсе құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
 	<sentence mode="on" keyword="Добавить компьютерное оборудование">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Компьютер құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить медицинское оборудование">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Медицина құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить кухонное оборудование">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Асүй құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить оборудование гражданской обороны">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығын қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить государственные пакеты акций">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Мемлекеттік акциялар пакетін қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -1018,56 +1027,68 @@
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить долевое участие в ТОО">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">ЖШС-гі үлесін қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить здание">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Ғимарат қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить строение">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Құрылыс қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить жилой объект">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Тұрғын үй объектісін қосу</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
 	<sentence mode="on" keyword="Добавить земельный участок">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Жер телімін қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить памятник истории(культуры)">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Тарих (мәдениет) ескерткішін қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить легковой автомобиль">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Жеңіл автокөлік қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить грузовой автомобиль">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Жүк тасымалдағыш автокөлік қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить дежурный транспорт">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Кезекші транспорт қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить служебный транспорт">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Қызметтік транспорт қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить санитарный транспорт">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Санитарлық транспорт қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить автобус">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Автобус қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить троллейбус">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Троллейбус қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -1076,61 +1097,74 @@
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить водный транспорт">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Су транспортын қосу</entry>
 		<entry lang="ENG"></entry>
-
 	</sentence>
 	<sentence mode="on" keyword="Добавить такси">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Такси қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить специальную технику">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Арнайы техника қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить мотоцикл">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Мотоцикл қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Гос №">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Мем №</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
 	<sentence mode="on" keyword="№ тех. паспорта">
+		<entry lang="RUS">Добавить животное</entry>
 		<entry lang="KAZ">Тех. құжат №</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Отличное">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Өте жақсы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Хорошее">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Жақсы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Удовлетворительное">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Қанағаттанарлық</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить объект фонда">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Қор объектісін қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить бомбоубежище">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Бомбадан сақтанатын жер қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить завод">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Зауыт қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Добавить комбинат">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Комбинат қосу</entry>
 		<entry lang="ENG"></entry>
 
 	</sentence>
 	<sentence mode="on" keyword="Добавить аэропорт">
+		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Әуежай қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>

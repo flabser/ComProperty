@@ -337,11 +337,12 @@
 		<entry lang="ENG">File is not selected</entry>
 		<entry lang="CHN">该文件未被选中</entry>
 	</sentence>
-	<sentence mode="on" keyword="Добавить">
+	<sentence mode="on" keyword="new_">
+		<entry lang="RUS">Добавить</entry>
 		<entry lang="KAZ">Қосу</entry>
 		<entry lang="ENG">Add</entry>
 		<entry lang="CHN">加</entry>
-	</sentence>
+	</sentence>	
 	<sentence mode="on" keyword="del_document">
 		<entry lang="RUS">Удалить</entry>
 		<entry lang="KAZ">Жою</entry>
@@ -398,11 +399,6 @@
 		<entry lang="KAZ">Жаңа</entry>
 		<entry lang="ENG">New</entry>
 		<entry lang="CHN">新</entry>
-	</sentence>
-	<sentence mode="on" keyword="Удалить документ">
-		<entry lang="KAZ">Құжатты жою</entry>
-		<entry lang="ENG">Delete document</entry>
-		<entry lang="CHN">删除的文件</entry>
 	</sentence>
 	<sentence mode="on" keyword="Содержание отчета">
 		<entry lang="KAZ">Есептеменің мазмұны</entry>

@@ -10,7 +10,7 @@ import municipalproperty.model.constants.KufType;
  * @author Kayra created 05-01-2016
  */
 
-public class OtherView extends MunicipalPropertyView {
+public class OthersView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
