@@ -8,23 +8,22 @@ import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import reference.dao.PositionDAO;
 
-
 public class PositionView extends _DoPage {
 
-    @Override
-    public void doGET(_Session session, _WebFormData formData, String lang) {
-        _ActionBar actionBar = new _ActionBar(session);
-        _Action newDocAction = new _Action(getLocalizedWord("add", lang), "", "new_position");
-        newDocAction.setURL("Provider?id=position-form");
-        actionBar.addAction(newDocAction);
-        actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+	@Override
+	public void doGET(_Session session, _WebFormData formData, String lang) {
+		_ActionBar actionBar = new _ActionBar(session);
+		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_position");
+		newDocAction.setURL("Provider?id=position-form");
+		actionBar.addAction(newDocAction);
+		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-        setContent(actionBar);
-        setContent(getViewPage(new PositionDAO(session), formData));
-    }
+		setContent(actionBar);
+		setContent(getViewPage(new PositionDAO(session), formData));
+	}
 
-    @Override
-    public void doPOST(_Session session, _WebFormData formData, String lang) {
+	@Override
+	public void doPOST(_Session session, _WebFormData formData, String lang) {
 
-    }
+	}
 }
