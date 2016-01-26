@@ -130,6 +130,25 @@
     border-color: #DE3309;
 }
 
+.field-wrapper {
+    padding: 0;
+    position: relative;
+}
+
+.error-massage {
+    display: none;
+}
+
+.field-wrapper.has-error > .error-massage {
+    display: block;
+}
+
+.field-wrapper.has-error input,
+.field-wrapper.has-error textarea,
+.field-wrapper.has-error select {
+    border-color: #DE3309;
+}
+
 @media ( max-width: 960px) {
     .form-group .control-label {
         width: 170px;

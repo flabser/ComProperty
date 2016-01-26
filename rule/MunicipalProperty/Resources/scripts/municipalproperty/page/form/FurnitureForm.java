@@ -3,6 +3,9 @@ package municipalproperty.page.form;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script.*;
+import kz.nextbase.script.actions._Action;
+import kz.nextbase.script.actions._ActionBar;
+import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.dao.PersonalEstateDAO;
 import municipalproperty.model.PersonalEstate;
@@ -19,43 +22,54 @@ public class FurnitureForm extends _DoPage {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
         PersonalEstate entity;
-        if (!id.isEmpty()) {
-            PersonalEstateDAO dao = new PersonalEstateDAO(session);
-            entity = dao.findById(UUID.fromString(id));
-        } else {
+        if (id.isEmpty()) {
             entity = new PersonalEstate();
             entity.setAuthor(user);
+        } else {
+            PersonalEstateDAO dao = new PersonalEstateDAO(session);
+            entity = dao.findById(UUID.fromString(id));
         }
         setContent(new _POJOObjectWrapper(entity));
         setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll()));
         setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll()));
+        setContent(getActionBar(session, lang));
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-        println(webFormData);
+    public void doPOST(_Session session, _WebFormData formData, String lang) {
         try {
-            boolean v = validate(webFormData);
-            if (v == false) {
+            boolean v = validate(formData);
+            if (!v) {
+                setBadRequest();
                 return;
             }
 
             boolean isNew = false;
-            String id = webFormData.getValueSilently("docid");
+            String id = formData.getValueSilently("docid");
             PersonalEstateDAO dao = new PersonalEstateDAO(session);
-            PersonalEstate entity = dao.findById(UUID.fromString(id));
-            if (entity == null) {
+            PersonalEstate entity;
+
+            if (id.isEmpty()) {
                 isNew = true;
                 entity = new PersonalEstate();
+            } else {
+                entity = dao.findById(UUID.fromString(id));
+                if (entity == null) {
+                    isNew = true;
+                    entity = new PersonalEstate();
+                }
             }
+
+            entity.setInvNumber(formData.getValueSilently("invnumber"));
+            entity.setDescription(formData.getValueSilently("description"));
+            entity.setObjectName(formData.getValueSilently("objectname"));
+
             // doc.addStringField("note", webFormData.getValueSilently("note"));
             // entity.setBalanceHolder(webFormData.getNumberValueSilently("balanceholder",
             // 0));
             // doc.addStringField("address",
             // webFormData.getValueSilently("address"));
-            entity.setInvNumber(webFormData.getValueSilently("invnumber"));
-            entity.setDescription(webFormData.getValueSilently("description"));
-            entity.setObjectName(webFormData.getValueSilently("objectname"));
+
             // entity.setPropertyCode(webFormData.getValueSilently("propertycode"));
             // doc.addNumberField("region",
             // webFormData.getNumberValueSilently("region", 0));
@@ -74,8 +88,8 @@ public class FurnitureForm extends _DoPage {
             // webFormData.getValueSilently("appartament"));
             // doc.addStringField("regdoc",
             // webFormData.getValueSilently("regdoc"));
-            entity.setOriginalCost(Util.convertStringToFloat(webFormData.getValueSilently("originalcost")));
-            entity.setBalanceCost(Util.convertStringToFloat(webFormData.getValueSilently("balancecost")));
+            entity.setOriginalCost(Util.convertStringToFloat(formData.getValueSilently("originalcost")));
+            entity.setBalanceCost(Util.convertStringToFloat(formData.getValueSilently("balancecost")));
             // doc.addStringField("estimatedcost",
             // webFormData.getValueSilently("estimatedcost"));
             // doc.addStringField("residualcost",
@@ -104,7 +118,7 @@ public class FurnitureForm extends _DoPage {
             // webFormData.getValueSilently("height"));
             // doc.addStringField("depth",
             // webFormData.getValueSilently("depth"));
-            entity.setYearRelease(webFormData.getNumberValueSilently("yearrelease", 0));
+            entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
             // doc.addStringField("depreciating",
             // webFormData.getValueSilently("depreciating"));
             // doc.addStringField("pledge",
@@ -121,14 +135,12 @@ public class FurnitureForm extends _DoPage {
             // webFormData.getValueSilently("propertyarticlein"));
             // doc.addStringField("technicalpassport",
             // webFormData.getValueSilently("technicalpassport"));
-            entity.setAcceptanceDate(_Helper.convertStringToDate(webFormData.getValue("acceptancedate")));
+            entity.setAcceptanceDate(_Helper.convertStringToDate(formData.getValue("acceptancedate")));
             User user = session.getUser();
             entity.addReaderEditor(user);
             entity.addEditor("[operator]");
             // doc.addFile("rtfcontent", webFormData);
 
-            _URL returnURL = session.getURLOfLastPage();
-            localizedMsgBox(getLocalizedWord("Документ сохранен", lang));
             /*
              * if (doc.isNewDoc) { returnURL.changeParameter("page", "0"); }
 			 */
@@ -142,16 +154,26 @@ public class FurnitureForm extends _DoPage {
             // .getGlossaryCustomFieldValueByDOCID(doc.getValueString("propertycode").toInteger(),
             // "code"));
             // doc.setViewDate(doc.getValueDate("acceptancedate"));
-            setRedirectURL(returnURL);
 
             if (isNew) {
                 dao.add(entity);
             } else {
                 dao.update(entity);
             }
+
+            _URL returnURL = session.getURLOfLastPage();
+            localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
+            setRedirectURL(returnURL);
         } catch (_Exception e) {
             log(e);
         }
+    }
+
+    private _ActionBar getActionBar(_Session ses, String lang) {
+        _ActionBar actionBar = new _ActionBar(ses);
+        actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+        actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
+        return actionBar;
     }
 
     private boolean validate(_WebFormData webFormData) {
