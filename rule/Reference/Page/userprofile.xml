@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-	<description></description>
+	<description>UserProfile</description>
 	<caching>NO_CACHING</caching>
-	<xsltfile>DEFAULT</xsltfile>
+	<xsltfile>forms/user-profile.xsl</xsltfile>
 	<element mode="ON" type="SCRIPT">
 		<events>
-			<doscript source="JAVA_CLASS">staff.page.UserProfile</doscript>
+			<doscript source="JAVA_CLASS">reference.page.UserProfile</doscript>
 		</events>
 	</element>
- <element mode="ON" type="INCLUDED_PAGE">
-		<name>share_form_captions</name>
-		<value>share_form_captions</value>
+	<element mode="ON" type="INCLUDED_PAGE">
+		<value>outline</value>
 	</element>
 </rule>

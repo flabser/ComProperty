@@ -1,4 +1,4 @@
-package staff.page;
+package accountant.page;
 
 import kz.flabs.users.User;
 import kz.nextbase.script._Session;
@@ -10,9 +10,6 @@ import kz.nextbase.script.events._DoPage;
 import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 
-/**
- * @author Kayra created 05-01-2016
- */
 
 public class UserProfile extends _DoPage {
 
