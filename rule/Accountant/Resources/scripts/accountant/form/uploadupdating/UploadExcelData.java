@@ -31,8 +31,7 @@ public class UploadExcelData extends _FormPostSave {
 	@Override
 	public void doPostSave(_Session ses, _Document doc) {
 		try {
-			String fileDir = "tmp" + File.separator + "InventLoad" + File.separator + ses.getCurrentUserID()
-					+ File.separator + new Date().getTime();
+			String fileDir = "tmp" + File.separator + "InventLoad" + File.separator + ses.getCurrentUserID() + File.separator + new Date().getTime();
 			doc.getAttachments("rtfcontent", fileDir);
 
 			File dir = new File(fileDir + File.separator + "1");
@@ -47,9 +46,8 @@ public class UploadExcelData extends _FormPostSave {
 			int saved_docs_counter = 0;
 			StringBuilder defectRows = new StringBuilder();
 			StringBuilder savedRows = new StringBuilder();
-			String path = new File("").getAbsolutePath() + File.separator + "rule" + File.separator + "Accountant"
-					+ File.separator + "Resources" + File.separator + "scripts" + File.separator + "accountant"
-					+ File.separator + "resources" + File.separator + "kuf.properties";
+			String path = new File("").getAbsolutePath() + File.separator + "rule" + File.separator + "Accountant" + File.separator + "Resources"
+			        + File.separator + "scripts" + File.separator + "accountant" + File.separator + "resources" + File.separator + "kuf.properties";
 			FileInputStream input = new FileInputStream(path);
 			Properties kufProp = new Properties();
 			kufProp.load(input);
@@ -63,8 +61,6 @@ public class UploadExcelData extends _FormPostSave {
 					Workbook workbook = Workbook.getWorkbook(xf, ws);
 					Sheet sheet = workbook.getSheet(0);
 
-					new ImportData().importFromExcelSheet(sheet, ses, kufProp);
-
 					int maxCount = 100;
 					for (int i = 1; i < sheet.getRows(); i++) {
 						String kof = sheet.getCell(0, i).getContents();
@@ -77,8 +73,7 @@ public class UploadExcelData extends _FormPostSave {
 
 						try {
 							String invnumber = sheet.getCell(2, i).getContents();
-							_ViewEntryCollection docs = ses.getCurrentDatabase()
-									.getCollectionOfDocuments("invnumber='" + invnumber + "'", false);
+							_ViewEntryCollection docs = ses.getCurrentDatabase().getCollectionOfDocuments("invnumber='" + invnumber + "'", false);
 							if (docs.getEntries().size() > 0) {
 								continue;
 							}
@@ -100,8 +95,7 @@ public class UploadExcelData extends _FormPostSave {
 								DateCell dateCell = (DateCell) dCell;
 								acceptancedate = dateCell.getDate();
 							} else {
-								String acceptancedateStr = sheet.getCell(5, i).getContents().replace("/", ".")
-										.replace("-", ".");
+								String acceptancedateStr = sheet.getCell(5, i).getContents().replace("/", ".").replace("-", ".");
 								switch (acceptancedateStr.length()) {
 								case 4:
 									acceptancedate = new SimpleDateFormat("yyyy").parse(acceptancedateStr);
@@ -132,8 +126,7 @@ public class UploadExcelData extends _FormPostSave {
 							_doc.setValueNumber("balanceholder", ses.getCurrentAppUser().getObl());
 
 							_doc.setValueDate("acceptancedate", acceptancedate);
-							_doc.setValueString("originalcost",
-									Float.toString(Util.convertStringToFloat(originalcost)));
+							_doc.setValueString("originalcost", Float.toString(Util.convertStringToFloat(originalcost)));
 							_doc.setValueString("balancecost", Float.toString(Util.convertStringToFloat(balancecost)));
 							_doc.addEditor("[operator]");
 							_doc.addEditor("[supervisor]");
@@ -141,7 +134,7 @@ public class UploadExcelData extends _FormPostSave {
 							_doc.setAuthor(ses.getCurrentAppUser().getUserID());
 
 							_doc.setViewText(name);
-							//_doc.addViewText(originalcost);
+							// _doc.addViewText(originalcost);
 							_doc.addViewText(name);
 							_doc.addViewText(ses.getCurrentAppUser().getFullName());
 							_doc.addViewText(kof + "/" + kuf);
@@ -170,14 +163,12 @@ public class UploadExcelData extends _FormPostSave {
 					}
 
 					StringBuilder msg = new StringBuilder();
-					msg.append("На данный момент было загружено: ").append(sheet.getRows() - 1)
-							.append(" объектов. Успешно загрузилось ").append(saved_docs_counter)
-							.append(". С ошибками загрузилось: ").append(sheet.getRows() - 1 - saved_docs_counter)
-							.append(". Номера excel ячеек с ошибками: ").append(defectRows)
-							.append(". Необходимо испавить ошибки и загрузить исправленные данные повторно");
+					msg.append("На данный момент было загружено: ").append(sheet.getRows() - 1).append(" объектов. Успешно загрузилось ")
+					        .append(saved_docs_counter).append(". С ошибками загрузилось: ").append(sheet.getRows() - 1 - saved_docs_counter)
+					        .append(". Номера excel ячеек с ошибками: ").append(defectRows)
+					        .append(". Необходимо испавить ошибки и загрузить исправленные данные повторно");
 
-					_Document notifDoc = new _Document(new Document(ses.getCurrentDatabase().getBaseObject(),
-							ses.getCurrentAppUser().getUserID()));
+					_Document notifDoc = new _Document(new Document(ses.getCurrentDatabase().getBaseObject(), ses.getCurrentAppUser().getUserID()));
 					notifDoc.setViewText(msg.toString());
 					notifDoc.addViewText("uploadobj");
 
@@ -214,20 +205,18 @@ public class UploadExcelData extends _FormPostSave {
 				}
 			}
 
-			log("Accountant: import by user " + ses.getCurrentUserID() + " finished. Total imported docs number = "
-					+ saved_docs_counter);
+			log("Accountant: import by user " + ses.getCurrentUserID() + " finished. Total imported docs number = " + saved_docs_counter);
 		} catch (Exception e) {
 			error(e);
 		}
 
 	}
 
-	private static void insertDocument(_Session ses, String form, StringBuilder value, String fileName)
-			throws LicenseException, ComplexObjectException {
+	private static void insertDocument(_Session ses, String form, StringBuilder value, String fileName) throws LicenseException,
+	        ComplexObjectException {
 		value.deleteCharAt(value.length() - 1);
 
-		_Document doc = new _Document(
-				new Document(ses.getCurrentDatabase().getBaseObject(), ses.getCurrentAppUser().getUserID()));
+		_Document doc = new _Document(new Document(ses.getCurrentDatabase().getBaseObject(), ses.getCurrentAppUser().getUserID()));
 		doc.setForm(form);
 		doc.setViewText(value.toString());
 		doc.setViewDate(new Date());
@@ -247,9 +236,11 @@ public class UploadExcelData extends _FormPostSave {
 		int nCount;
 		int fullLength = 0;
 
-		while ((nCount = (int) Math.pow(10, docIdLen) - initialDocId)
-				* (docIdLen + /** colon symbol */
-				1) + fullLength < fieldLength) {
+		while ((nCount = (int) Math.pow(10, docIdLen) - initialDocId) * (docIdLen + /**
+		 * 
+		 * colon symbol
+		 */
+		1) + fullLength < fieldLength) {
 			fullLength += nCount * (docIdLen + 1);
 			count += nCount;
 			initialDocId = (int) Math.pow(10, docIdLen);

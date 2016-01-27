@@ -62,11 +62,12 @@ public class MPXLImporter {
 		this.mode = mode;
 	}
 
-	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong) {
+	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh) {
+		PropertyDAO propertyDao = new PropertyDAO(ses);
 		int processed = 0, skipped = 0;
 		if (mode == MPXLImporter.LOAD) {
 			mode = MPXLImporter.CHECK;
-			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true);
+			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, bh);
 			if (res.size() > 0) {
 				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 				return null;
@@ -104,12 +105,16 @@ public class MPXLImporter {
 				rowErr.add(new CheVal("1, КОФ", kof).isNotEmpty(kof).getErr());
 				rowErr.add(new CheVal("2, КУФ", kuf).isNotEmpty(kuf).isKufType(kuf).getErr());
 				rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotEmpty(invNumber).getErr());
-				PropertyDAO dao = new PropertyDAO(ses);
-				Property p = dao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
-				if (p != null) {
-					rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotUniqueMessage().getErr());
-					skipped++;
+				List<Property> pList = propertyDao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
+
+				for (Property p : pList) {
+					if (p.getBalanceHolder().equals(bh)) {
+						rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotUniqueMessage().getErr());
+						skipped++;
+						break;
+					}
 				}
+
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());
 				rowErr.add(new CheVal("5, Код права на имущество", propertyCode).isNotEmpty(propertyCode)
 				        .isReferenceValue(new PropertyCodeDAO(ses), propertyCode).getErr());
@@ -152,11 +157,10 @@ public class MPXLImporter {
 				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
 				CheVal cv = new CheVal();
-				PropertyDAO dao = new PropertyDAO(ses);
-				Property p = dao.findByInvNum(cv.getString(invNumber));
+				List<Property> p = propertyDao.findByInvNum(cv.getString(invNumber));
 				if (p != null) {
-					skipped++;
-					continue;
+					// skipped++;
+					// continue;
 				}
 				Property prop = PropertyFactory.getProperty(kuf);
 				prop.setKof(kof);
@@ -202,7 +206,7 @@ public class MPXLImporter {
 				} catch (EmployеeException e) {
 					Server.logger.errorLogEntry(e);
 				}
-				dao.add(prop);
+				propertyDao.add(prop);
 				processed++;
 			}
 		}
