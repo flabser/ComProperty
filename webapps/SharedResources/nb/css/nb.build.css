@@ -1936,7 +1936,6 @@ select {
     background: white;
     border: 1px solid #CCC;
     border-radius: 2px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     color: #000;
     display: inline-block;
@@ -1996,6 +1995,7 @@ input[type=radio] {
     box-shadow: none;
     margin: 0;
     max-width: 16px;
+    min-height: auto;
     padding: 1px;
     width: auto !important;
 }

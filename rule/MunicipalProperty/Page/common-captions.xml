@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
-	<caption name="new_" source="KEYWORD">new_</caption>
-	
+    <caption name="new_" source="KEYWORD">new_</caption>
 
+    <caption name="brand" source="KEYWORD">brand</caption>
     <caption name="viewnamecaption" source="KEYWORD">Область</caption>
     <caption name="page" source="KEYWORD">Страница</caption>
     <caption name="documents" source="KEYWORD">Документов</caption>
@@ -50,4 +50,5 @@
     <caption name="passenger_transports" source="KEYWORD">passenger_transports</caption>
     <caption name="personal_estates" source="KEYWORD">personal_estates</caption>
     <caption name="real_estates" source="KEYWORD">real_estates</caption>
+    <caption name="reports" source="KEYWORD">reports</caption>
 </rule>

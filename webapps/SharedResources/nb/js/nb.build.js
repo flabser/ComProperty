@@ -816,16 +816,14 @@ nb.xhr.saveDocument = function(options) {
                 'text': nb.getText('error_xhr', 'Ошибка при выполнении запроса'),
                 'type': 'error'
             });
+        },
+        complete: function() {
+            nb.utils.unblockUI();
+            notify.remove(2000);
         }
     };
 
-    var def = nb.ajax(xhrArgs);
-    def.always(function() {
-        nb.utils.unblockUI();
-        notify.remove(2000);
-    });
-
-    return def;
+    return nb.ajax(xhrArgs);
 };
 
 /**

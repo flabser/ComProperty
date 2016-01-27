@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vocabulary primary="ENG">	
+<vocabulary primary="ENG">
+	<sentence mode="on" keyword="brand">
+		<entry lang="ENG">АИС 'Коммунальное имущество'</entry>
+		<entry lang="RUS">АИС 'Коммунальное имущество'</entry>
+		<entry lang="KAZ">АИС 'Коммунальное имущество'</entry>
+	</sentence>
 	<sentence mode="on" keyword="municipal_property">
 		<entry lang="ENG">Municipal property</entry>
 		<entry lang="RUS">Объекты коммунальной собственности</entry>

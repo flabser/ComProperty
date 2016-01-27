@@ -16,7 +16,7 @@ public class MainNavigator extends _DoPage {
         List<_IXMLContent> list = new ArrayList<>();
 
         _Tag currentTag = new _Tag("current");
-        currentTag.setAttr("id", formData.getValueSilently("id").replaceAll("-form", "-view"));
+        currentTag.setAttr("id", formData.getValueSilently("id").replace("-form", "-view"));
 
         _Outline common_outline = new _Outline(getLocalizedWord("common_reference_data", lang), "common");
 
