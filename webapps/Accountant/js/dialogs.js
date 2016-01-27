@@ -1,4 +1,4 @@
-nbApp.dialogChoiceAccessRoles = function(el) {
+nbApp.dialogBalanceHolder = function(el) {
     var dlg = nb.dialog.show({
         targetForm: el.form.name,
         fieldName: 'balanceholder',

@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="off">
     <description>ImportFileChecker</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>pages/xls-checking-result.xsl</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>

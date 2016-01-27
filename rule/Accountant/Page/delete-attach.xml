@@ -2,7 +2,6 @@
 <rule type="page" mode="on" history="off">
     <description>DeleteAttach</description>
     <caching>NO_CACHING</caching>
-    <xsltfile></xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">accountant.page.action.DeleteAttach</doscript>

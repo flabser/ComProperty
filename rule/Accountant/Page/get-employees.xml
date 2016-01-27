@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="off">
-    <description></description>
+    <description>GetEmployeesAction</description>
     <caching>NO_CACHING</caching>
-    <xsltfile></xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
