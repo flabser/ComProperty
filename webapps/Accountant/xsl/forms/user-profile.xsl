@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:import href="../templates/sharedactions.xsl"/>
-	<xsl:import href="../templates/form.xsl"/>
+
 	<xsl:output method="html" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="yes"/>
 	<xsl:variable name="editmode" select="/request/document/@editmode"/>
@@ -12,107 +11,9 @@
 		<html>
 	  		<head>
 	 			<title><xsl:value-of select="document/captions/employer/@caption"/> : <xsl:value-of select="document/fields/fullname"/>  - АИС 'Коммунальное Имущество'</title>
-	     		<xsl:call-template name="cssandjs"/>
-	     		<script type="text/javascript">
-	     			$(document).ready(function(){hotkeysnav()})
-   					<![CDATA[
-   						function hotkeysnav() {
-							$(document).bind('keydown', function(e){
-			 					if (e.ctrlKey) {
-			 						switch (e.keyCode) {
-									   case 66:
-									   		<!-- клавиша b -->
-									     	e.preventDefault();
-									     	$("#canceldoc").click();
-									      	break;
-									   case 83:
-									   		<!-- клавиша s -->
-									     	e.preventDefault();
-									     	$("#btnsavedoc").click();
-									      	break;
-									   case 85:
-									   		<!-- клавиша u -->
-									     	e.preventDefault();
-									     	window.location.href=$("#currentuser").attr("href")
-									      	break;
-									   case 81:
-									   		<!-- клавиша q -->
-									     	e.preventDefault();
-									     	window.location.href=$("#logout").attr("href")
-									      	break;
-									   case 72:
-									   		<!-- клавиша h -->
-									     	e.preventDefault();
-									     	window.location.href=$("#helpbtn").attr("href")
-									      	break;
-									   default:
-									      	break;
-									}
-			   					}
-							});
-							$("#canceldoc").hotnav({keysource:function(e){ return "b"; }});
-							$("#btnsavedoc").hotnav({keysource:function(e){ return "s"; }});
-							$("#currentuser").hotnav({ keysource:function(e){ return "u"; }});
-							$("#logout").hotnav({keysource:function(e){ return "q"; }});
-							$("#helpbtn").hotnav({keysource:function(e){ return "h"; }});
-						}
-					]]>
-				</script>
-				<script type="text/javascript">
-					$(document).ready(function(){
-						(function(){
-							$("#btnPwdChange").click(function(){
-								$("#passdlg").dialog({
-									title: "Смена пароля",
-									modal: true,
-									width: 400
-								});
-							});
-						})();
-						$("#btnpwdok").click(function(){
-							var perror = "";
-							var oldpwd = $('#oldpwd').val();
-							var newpwd = $('#cnewpwd').val();
-							var rnewpwd = $('#rnewpwd').val();
-							if( oldpwd == '' ) {
-								perror = "Введите текущий пароль";
-							} else if( newpwd == '' ) {
-								perror = "Введите новый пароль";
-							} else if( rnewpwd == ''){
-								perror = "Подтвердите новый пароль";
-							} else if (newpwd != rnewpwd) {
-								perror = "Повтор пароля не верный";
-							} else if (newpwd == oldpwd) {
-								perror = "Операция не имеет смысла";
-							} else if (3 > newpwd.length) {
-								perror = "Пароль слишком короткий.";
-							}
-							if (perror==''){
-								$('#pass').toggle(true);
-								$("#btnPwdChange").toggle(false);
-								$('#newpwd').val(newpwd).attr('name', 'newpwd');
-								$('#newpwd').after('<input type="hidden" name="oldpwd" value="'+oldpwd+'"/>');
-								$("#passdlg").dialog('close');
-							} else {
-								alert(perror);
-							}
-						});
-						$("#btndlgclose").click(function(){ $("#passdlg").dialog('close'); });
-						if ($.cookie("refresh") != null){ $("[name=refresh] #"+$.cookie("refresh")).attr("selected","selected")}
-						if ($.cookie("lang") != null){ $("[name=lang] #"+$.cookie("lang")).attr("selected","selected")}
-						<![CDATA[
-						if ($.cookie("history") != null && $.cookie("history")=='history_on' ){
-							$("input[name=historyvis]").attr("checked","checked")
-						}]]>
-						if ($.cookie("pagesize") != null){
-							$("[name=countdocinview] #countdocinview"+$.cookie("pagesize")).attr("selected","selected")
-						}
-					});
-				</script>
 	    	</head>
 	    	<body>  
 	    		<div id="docwrapper">
-	    			<xsl:call-template name="documentheader"/>	
 					<div class="formwrapper">
 	            		<div  class="formtitle">
 							<div class="title">
@@ -130,7 +31,7 @@
 								</button>
 							</span>
 							<span style="float:right; margin-right:5px">
-			            		<xsl:call-template name="cancel"/>
+
 			            	</span>
 		 	         	</div>            			     
 						<br/>
@@ -608,7 +509,7 @@
                                     <input type="hidden" name="formsesid" value="{formsesid}"/>
                                     <!-- Секция "Вложения" -->
                                     <div display="block" id="att" style="width:100%">
-                                        <xsl:call-template name="attach"/>
+                                        <!--<xsl:call-template name="attach"/>-->
                                     </div>
                                 </form>
                             </div>
@@ -617,7 +518,6 @@
 	        		<div style="height:10px"/>
 	        	</div>
 	        	</div>
-				<xsl:call-template name="formoutline"/>
 	        </body>
 		</html>
 	</xsl:template>

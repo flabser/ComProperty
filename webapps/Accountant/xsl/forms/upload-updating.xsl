@@ -5,7 +5,7 @@
     <xsl:template match="/request">
         <xsl:call-template name="layout">
             <xsl:with-param name="include_head">
-                <link rel="stylesheet" href="css/layout.css"/>
+                <link rel="stylesheet" href="css/style.css"/>
                 <script src="js/upload.js"/>
             </xsl:with-param>
         </xsl:call-template>
