@@ -7,12 +7,12 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <header class="content-header">
-            <h1 class="header-title"></h1>
-            <div class="content-actions"></div>
-        </header>
-        <section class="content-body">
-            <form>
+        <form>
+            <header class="content-header">
+                <h1 class="header-title"></h1>
+                <div class="content-actions"></div>
+            </header>
+            <section class="content-body">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
@@ -23,8 +23,8 @@
                         </div>
                     </div>
                 </fieldset>
-            </form>
-        </section>
+            </section>
+        </form>
     </xsl:template>
 
 </xsl:stylesheet>
