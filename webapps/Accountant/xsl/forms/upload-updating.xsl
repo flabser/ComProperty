@@ -12,16 +12,17 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <header class="content-header">
-            <h1 class="header-title">
-                <xsl:value-of select="//captions/title/@caption"/>
-            </h1>
-            <div class="content-actions">
-                <xsl:apply-templates select="//actionbar"/>
-            </div>
-        </header>
-        <section class="content-body">
-            <form name="{//document/@entity}">
+        <form name="{//document/@entity}">
+            <header class="content-header">
+                <h1 class="header-title">
+                    <xsl:value-of select="//captions/title/@caption"/>
+                </h1>
+                <div class="content-actions">
+                    <xsl:apply-templates select="//actionbar"/>
+                </div>
+            </header>
+            <section class="content-body">
+
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <label class="btn btn-lg" for="upfile">
@@ -39,15 +40,16 @@
                 <input type="hidden" name="type" value="save"/>
                 <input type="hidden" name="id" value="{@id}"/>
                 <input type="hidden" name="key" value="{document/@docid}"/>
-            </form>
-            <form class="hidden" method="POST" enctype="multipart/form-data">
-                <input type="file" id="upfile" name="upfile" onchange="upload(this)"
-                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
-            </form>
-            <div class="upload-result">
-                <div class="js-uploaded-files"></div>
-            </div>
-        </section>
+
+                <div class="upload-result">
+                    <div class="js-uploaded-files"></div>
+                </div>
+            </section>
+        </form>
+        <form class="hidden" method="POST" enctype="multipart/form-data">
+            <input type="file" id="upfile" name="upfile" onchange="upload(this)"
+                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+        </form>
         <xsl:call-template name="tpl_upload_file"/>
     </xsl:template>
 
@@ -60,7 +62,8 @@
                         <a href="Provider?type=getattach&amp;key=" class="update-file-link js-link"></a>
                         <span>
                             <button type="button" class="btn btn-sm js-check">проверить</button>
-                            <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">загрузить</button>
+                            <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">загрузить
+                            </button>
                             <button type="button" class="btn btn-sm js-delete">удалить</button>
                         </span>
                     </div>

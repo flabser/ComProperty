@@ -7,16 +7,16 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <header class="content-header">
-            <h1 class="header-title">
-                <xsl:value-of select="//captions/district/@caption"/>
-            </h1>
-            <div class="content-actions">
-                <xsl:apply-templates select="//actionbar"/>
-            </div>
-        </header>
-        <section class="content-body">
-            <form name="{//document/@entity}">
+        <form name="{//document/@entity}">
+            <header class="content-header">
+                <h1 class="header-title">
+                    <xsl:value-of select="//captions/district/@caption"/>
+                </h1>
+                <div class="content-actions">
+                    <xsl:apply-templates select="//actionbar"/>
+                </div>
+            </header>
+            <section class="content-body">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
@@ -42,8 +42,8 @@
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
-            </form>
-        </section>
+            </section>
+        </form>
     </xsl:template>
 
 </xsl:stylesheet>

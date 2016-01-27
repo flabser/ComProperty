@@ -7,16 +7,16 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <header class="content-header">
-            <h1 class="header-title">
-                <xsl:value-of select="//captions/country/@caption"/>
-            </h1>
-            <div class="content-actions">
-                <xsl:apply-templates select="//actionbar"/>
-            </div>
-        </header>
-        <section class="content-body">
-            <form name="{//document/@entity}">
+        <form name="{//document/@entity}">
+            <header class="content-header">
+                <h1 class="header-title">
+                    <xsl:value-of select="//captions/country/@caption"/>
+                </h1>
+                <div class="content-actions">
+                    <xsl:apply-templates select="//actionbar"/>
+                </div>
+            </header>
+            <section class="content-body">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
@@ -35,7 +35,8 @@
                         <div class="controls">
                             <div class="col-lg-6">
                                 <select name="code" class="form-control">
-                                    <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry" mode="select_options">
+                                    <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry"
+                                                         mode="select_options">
                                         <xsl:with-param name="selected" select="//fields/code"/>
                                     </xsl:apply-templates>
                                 </select>
@@ -46,8 +47,8 @@
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
-            </form>
-        </section>
+            </section>
+        </form>
     </xsl:template>
 
     <xsl:template match="entry" mode="select_options">
