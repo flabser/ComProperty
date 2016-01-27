@@ -22,7 +22,7 @@ public class OrganizationLabelForm extends StaffForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		OrganizationLabel entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			OrganizationLabelDAO dao = new OrganizationLabelDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {

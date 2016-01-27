@@ -20,11 +20,6 @@
         <entry lang="RUS">Сотрудники</entry>
         <entry lang="KAZ"></entry>
     </sentence>
-    <sentence mode="on" keyword="new_employee">
-        <entry lang="ENG">New employee</entry>
-        <entry lang="RUS">Новый сотрудник</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
     <sentence mode="on" keyword="organizations">
         <entry lang="ENG">Organizations</entry>
         <entry lang="RUS">Организации</entry>
@@ -33,11 +28,6 @@
     <sentence mode="on" keyword="organization_labels">
         <entry lang="ENG">Organization labels</entry>
         <entry lang="RUS">Признаки для организации</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
-    <sentence mode="on" keyword="new_organization-label">
-        <entry lang="ENG">New organization label</entry>
-        <entry lang="RUS">Новый признак организации</entry>
         <entry lang="KAZ"></entry>
     </sentence>
     <sentence mode="on" keyword="labeled">
@@ -58,11 +48,6 @@
     <sentence mode="on" keyword="roles">
         <entry lang="ENG">Roles</entry>
         <entry lang="RUS">Роли</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
-    <sentence mode="on" keyword="new_role">
-        <entry lang="ENG">New role</entry>
-        <entry lang="RUS">Новая роль</entry>
         <entry lang="KAZ"></entry>
     </sentence>
     <sentence mode="on" keyword="assigned">
@@ -99,12 +84,6 @@
         <entry lang="ENG">Responsible person</entry>
         <entry lang="RUS">Ответственные лица по загрузке данных</entry>
         <entry lang="KAZ"></entry>
-    </sentence>
-    <sentence mode="on" keyword="new_organization">
-        <entry lang="ENG">New organization</entry>
-        <entry lang="RUS">Новая организация</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHN"></entry>
     </sentence>
     <sentence mode="on" keyword="add_new_organization">
         <entry lang="ENG">Add new organization</entry>

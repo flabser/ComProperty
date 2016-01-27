@@ -38,7 +38,7 @@ public class OrganizationLabel extends Staff {
 
 	@Override
 	public _URL getURL() {
-		return new _URL("Provider?id=organization-label&amp;docid=" + getId());
+		return new _URL("Provider?id=organization-label-form&amp;docid=" + getId());
 	}
 
 }

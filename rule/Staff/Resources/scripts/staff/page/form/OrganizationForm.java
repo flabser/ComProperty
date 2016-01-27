@@ -24,7 +24,7 @@ public class OrganizationForm extends StaffForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Organization entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			OrganizationDAO dao = new OrganizationDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
