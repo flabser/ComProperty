@@ -40,8 +40,9 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 		List<Employee> entities = new ArrayList<Employee>();
 		if (checkNecessaryFiles()) {
 			ISystemDatabase sysDb = Environment.systemBase;
-			List<User> users = sysDb.getAllUsers("", 0, 100);
+			List<User> users = sysDb.getAllUsers("", 0, 10000);
 			int rCount = users.size();
+			System.out.println("System users count = " + rCount);
 			for (int i = 0; i < rCount; i++) {
 				entities.add(getMock(users.get(i)));
 			}
