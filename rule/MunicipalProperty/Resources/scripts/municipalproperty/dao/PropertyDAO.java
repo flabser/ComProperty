@@ -24,10 +24,9 @@ public class PropertyDAO extends DAO<Property, UUID> {
 		super(Property.class, session);
 	}
 
-	public Property findByInvNum(String invNum) {
+	public List<Property> findByInvNum(String invNum) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		boolean isSecureEntity = false;
 		try {
 			CriteriaQuery<Property> cq = cb.createQuery(Property.class);
 			Root<Property> c = cq.from(Property.class);
@@ -37,15 +36,9 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			Query query = em.createQuery(cq);
 			if (!user.getUserID().equals(Const.sysUser)) {
 				condition = cb.and(c.get("readers").in((long) user.docID), condition);
-				isSecureEntity = true;
 			}
-			Property entity = (Property) query.getSingleResult();
-			if (isSecureEntity) {
-				if (!entity.getEditors().contains(user.docID)) {
-					entity.setEditable(false);
-				}
-			}
-			return entity;
+			List<Property> entities = query.getResultList();
+			return entities;
 		} catch (NoResultException e) {
 			return null;
 		} finally {
