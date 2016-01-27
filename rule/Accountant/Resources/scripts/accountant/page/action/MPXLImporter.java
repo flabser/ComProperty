@@ -25,6 +25,7 @@ import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
+import municipalproperty.model.constants.StatusType;
 import municipalproperty.model.util.PropertyFactory;
 import reference.dao.CountryDAO;
 import reference.dao.DistrictDAO;
@@ -198,6 +199,7 @@ public class MPXLImporter {
 				List<Organization> orgList = orgDao.findAll();
 				Organization org = orgList.get(1);
 				prop.setBalanceHolder(org);
+				prop.setStatus(StatusType.ON_BALANCE);
 				prop.setAuthor(ses.getUser());
 				EmployeeDAO empDao = new EmployeeDAO(ses);
 				Employee emp = empDao.findByLogin("cgalina");

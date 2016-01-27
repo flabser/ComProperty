@@ -32,6 +32,12 @@ public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, Org
 		entity.setDescription("organization is a branch of the primary organization");
 		entities.add(entity);
 
+		/* ComProperty application specific labels */
+		entity = new OrganizationLabel();
+		entity.setName("balance_holder");
+		entity.setDescription("Организация-балансодержатель");
+		entities.add(entity);
+
 		return entities;
 	}
 

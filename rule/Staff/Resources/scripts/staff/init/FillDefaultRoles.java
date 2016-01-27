@@ -22,6 +22,7 @@ public class FillDefaultRoles extends InitialDataAdapter<Role, RoleDAO> {
 	public List<Role> getData(_Session ses, Language lang, Vocabulary vocabulary) {
 		List<Role> entities = new ArrayList<Role>();
 
+		/* Common roles */
 		Role entity = new Role();
 		entity.setName("staff_admin");
 		entity.setDescription("the role allow to manage in Staff module");
@@ -30,6 +31,12 @@ public class FillDefaultRoles extends InitialDataAdapter<Role, RoleDAO> {
 		entity = new Role();
 		entity.setName("reference_admin");
 		entity.setDescription("the role allow to manage in Reference module");
+		entities.add(entity);
+
+		/* ComProperty application specific roles */
+		entity = new Role();
+		entity.setName("data_loader");
+		entity.setDescription("Ответственное лицо по загрузке данных");
 		entities.add(entity);
 
 		return entities;

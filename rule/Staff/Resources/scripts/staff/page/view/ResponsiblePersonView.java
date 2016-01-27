@@ -6,10 +6,10 @@ import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
-import staff.dao.OrganizationDAO;
+import staff.dao.EmployeeDAO;
 
 /**
- * @author Kayra created 04-01-2016
+ * @author Kayra created 07-01-2016
  */
 
 public class ResponsiblePersonView extends _DoPage {
@@ -17,13 +17,13 @@ public class ResponsiblePersonView extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		_ActionBar actionBar = new _ActionBar(session);
-		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization");
-		newDocAction.setURL("Provider?id=organization-form");
+		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_employee");
+		newDocAction.setURL("Provider?id=employee-form");
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
 		setContent(actionBar);
-		setContent(getViewPage(new OrganizationDAO(session), formData));
+		setContent(getViewPage(new EmployeeDAO(session), formData));
 	}
 
 	@Override
