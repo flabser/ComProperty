@@ -6,7 +6,9 @@
         <xsl:call-template name="layout">
             <xsl:with-param name="include_head">
                 <link rel="stylesheet" href="css/style.css"/>
+                <link rel="stylesheet" href="css/jq-rewrite.css"/>
                 <script src="js/upload.js"/>
+                <script src="js/dialogs.js"/>
             </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
@@ -35,19 +37,18 @@
                         </div>
                     </div>
                 </fieldset>
-
-                <input type="hidden" name="type" value="save"/>
-                <input type="hidden" name="id" value="{@id}"/>
-                <input type="hidden" name="key" value="{document/@docid}"/>
-
                 <div class="upload-result">
                     <div class="js-uploaded-files"></div>
                 </div>
             </section>
+
+            <input type="hidden" name="type" value="save"/>
+            <input type="hidden" name="id" value="{@id}"/>
+            <input type="hidden" name="key" value="{//document/@docid}"/>
         </form>
         <form class="hidden" method="POST" enctype="multipart/form-data">
-            <input type="file" id="upfile" name="upfile" onchange="upload(this)"
-                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this)"
+                   accept="application/vnd.ms-excel"/>
         </form>
         <xsl:call-template name="tpl_upload_file"/>
     </xsl:template>
@@ -61,13 +62,20 @@
                         <a href="Provider?type=getattach&amp;key=" class="update-file-link js-link"></a>
                         <span>
                             <button type="button" class="btn btn-sm js-check">проверить</button>
+                            <button type="button" class="btn btn-sm js-select-balance-holder">
+                                <span>выбрать балансодержателя</span>
+                            </button>
                             <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">загрузить
                             </button>
                             <button type="button" class="btn btn-sm js-delete">удалить</button>
                         </span>
                     </div>
                 </div>
-                <div class="panel__body js-check-result"></div>
+                <div class="panel__body">
+                    <input type="hidden" name="balanceholder" value=""/>
+                    <div class="js-balanceholder"></div>
+                    <div class="js-check-result"></div>
+                </div>
             </div>
         </template>
     </xsl:template>

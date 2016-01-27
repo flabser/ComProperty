@@ -1,4 +1,4 @@
-function upload(fileInput) {
+function uploadUpdate(fileInput) {
     var formData = new FormData();
     formData.append('file', fileInput.files[0]);
     var time = new Date().getTime();
@@ -119,6 +119,7 @@ function renderFilePanel(fileName) {
 
     $tpl.find('.js-check').on('click', function(e) {
         e.stopPropagation();
+        e.preventDefault();
         var $btn = $(this);
         $btn.attr('disabled', true);
         //
@@ -126,6 +127,7 @@ function renderFilePanel(fileName) {
             $btn.parents('.panel').addClass('open');
             if (result == '') {
                 $tpl.find('.js-load').removeAttr('disabled');
+                $tpl.find('.js-select-balance-holder').removeAttr('disabled');
             }
             $tpl.find('.js-check-result').html(result);
         }, function(err) {
@@ -136,6 +138,7 @@ function renderFilePanel(fileName) {
 
     $tpl.find('.js-delete').on('click', function(e) {
         e.stopPropagation();
+        e.preventDefault();
         delFile(fileName).then(function() {
             $tpl.remove();
         });
@@ -143,7 +146,14 @@ function renderFilePanel(fileName) {
 
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
+        e.preventDefault();
         loadFile(fileName);
+    });
+
+    $tpl.find('.js-select-balance-holder').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        nbApp.dialogChoiceAccessRoles(this);
     });
 
     $('.js-uploaded-files').append($tpl);
@@ -154,14 +164,5 @@ $(function() {
         nb.xhr.saveDocument().then(function(result) {
             console.log(result);
         });
-    });
-
-    $(document).on('click', '[data-toggle=panel]', function() {
-        var $panel = $(this).parents('.panel');
-        if ($panel.hasClass('open')) {
-            $panel.removeClass('open');
-        } else {
-            $panel.addClass('open');
-        }
     });
 });

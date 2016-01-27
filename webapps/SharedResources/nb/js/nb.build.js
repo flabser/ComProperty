@@ -308,6 +308,16 @@ $(document).ready(function() {
     });
 
     //
+    $(document).on('click', '[data-toggle=panel]', function() {
+        var $panel = $(this).parents('.panel');
+        if ($panel.hasClass('open')) {
+            $panel.removeClass('open');
+        } else {
+            $panel.addClass('open');
+        }
+    });
+
+    //
     $(window).resize(function() {
         if (window.innerWidth <= 800) {
             $('body').addClass('phone');
