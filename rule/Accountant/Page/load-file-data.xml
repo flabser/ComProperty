@@ -2,7 +2,6 @@
 <rule type="page" mode="on" history="off">
     <description>LoadFileData</description>
     <caching>NO_CACHING</caching>
-    <xsltfile></xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">accountant.page.action.LoadFileData</doscript>
