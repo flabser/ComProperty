@@ -262,7 +262,7 @@ public class Property extends SecureAppEntity {
 
 	@Override
 	public String getDefaultForm() {
-		return getKuf().name().replace("_", "-").toLowerCase();
+		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
 	}
 
 	// TODO need to post the URL during saving
