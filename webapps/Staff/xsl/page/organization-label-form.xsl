@@ -9,7 +9,7 @@
     <xsl:template name="_content">
         <header class="content-header">
             <h1 class="header-title">
-                <xsl:value-of select="//captions/title/@caption"/>
+                <xsl:value-of select="//captions/organization_label/@caption"/>
             </h1>
             <div class="content-actions">
                 <xsl:apply-templates select="//actionbar"/>
@@ -23,7 +23,7 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
+                            <div class="field-wrapper col-lg-6">
                                 <input type="text" name="name" value="{//fields/name}" class="form-control"/>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <xsl:value-of select="//captions/description/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
+                            <div class="field-wrapper col-lg-6">
                                 <textarea name="description" class="form-control">
                                     <xsl:value-of select="//fields/description"/>
                                 </textarea>

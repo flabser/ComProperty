@@ -16,7 +16,7 @@
     <caption name="delattach" source="KEYWORD">Удалить</caption>
     <caption name="openattach" source="KEYWORD">Открыть</caption>
     <caption name="briefcontent" source="KEYWORD">Краткое содержание</caption>
-    <caption name="logout" source="KEYWORD">Завершить работу</caption>
+
     <caption name="cancel" source="KEYWORD">Отмена</caption>
     <caption name="changeview" source="KEYWORD">Изменить вид</caption>
     <caption name="commentcaption" source="KEYWORD">Комментарий</caption>

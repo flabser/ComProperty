@@ -30,4 +30,8 @@
     <caption name="responsible_persons" source="KEYWORD">Ответственные лица по загрузке данных</caption>
     <caption name="roles" source="KEYWORD">Роли</caption>
     <caption name="structure" source="KEYWORD">Структура</caption>
+
+    <caption name="name" source="KEYWORD">name</caption>
+    <caption name="description" source="KEYWORD">description</caption>
+    <caption name="is_primary_organization" source="KEYWORD">is_primary_organization</caption>
 </rule>

@@ -13,7 +13,7 @@
             </h1>
         </header>
         <section class="content-body">
-            <form name="{//document/@entity}">
+            <form method="post" name="{//document/@entity}">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
@@ -90,7 +90,7 @@
             </form>
         </section>
         <footer class="content-actions">
-            <button class="btn btn-primary" type="button">
+            <button class="btn btn-primary" type="submit">
                 Сформировать отчет
             </button>
         </footer>
