@@ -100,4 +100,9 @@
         <entry lang="RUS">Основная организация не найдена</entry>
         <entry lang="KAZ"></entry>
     </sentence>
+      <sentence mode="on" keyword="name">
+        <entry lang="ENG">Name</entry>
+        <entry lang="RUS">Имя</entry>
+        <entry lang="KAZ"></entry>
+    </sentence>
 </vocabulary>

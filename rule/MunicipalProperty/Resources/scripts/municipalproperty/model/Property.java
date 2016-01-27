@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import kz.flabs.dataengine.jpa.SecureAppEntity;
 import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;
+import municipalproperty.model.constants.StatusType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import staff.model.Organization;
@@ -29,6 +30,10 @@ public class Property extends SecureAppEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "kuf", nullable = false, length = 32)
 	private KufType kuf;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 32)
+	private StatusType status;
 
 	@Column(name = "balance_cost")
 	private float balanceCost;
@@ -109,6 +114,14 @@ public class Property extends SecureAppEntity {
 
 	public void setKuf(KufType kuf) {
 		this.kuf = kuf;
+	}
+
+	public StatusType getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusType status) {
+		this.status = status;
 	}
 
 	public float getBalanceCost() {
