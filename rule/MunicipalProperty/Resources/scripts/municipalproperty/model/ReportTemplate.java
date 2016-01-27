@@ -53,8 +53,28 @@ public class ReportTemplate extends AppEntity {
 	}
 
 	@Override
+	public String getDefaultForm() {
+		return "report-template-form";
+	}
+
+	@Override
 	public _URL getURL() {
 		return new _URL("Provider?id=report-template-form&amp;docid=" + getId());
 	}
 
+	// TODO need to add something to localize propertyType list
+	@Override
+	public String getFullXMLChunk() {
+		StringBuilder value = new StringBuilder(1000);
+		value.append("<name>" + name + "</name>");
+		String enumValue = "";
+		if (propertyType != null) {
+			for (KufType val : propertyType) {
+				enumValue += "<entry id=\"" + val + "\">" + val + "</entry>";
+			}
+		}
+		value.append("<propertytype>" + enumValue + "</propertytype>");
+		value.append("<type>" + type + "</type>");
+		return value.toString();
+	}
 }

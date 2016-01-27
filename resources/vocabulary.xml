@@ -12,6 +12,11 @@
 		<entry lang="KAZ">Іздеу</entry>
 		<entry lang="ENG">Search</entry>
 	</sentence>
+	<sentence mode="on" keyword="report_file_type">
+		<entry lang="RUS">Тип файла отчета</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG">File type of the report</entry>
+	</sentence>	
 	<sentence mode="on" keyword="Свойства пользователя">
 		<entry lang="KAZ">Қолданушының қасиеттерi</entry>
 		<entry lang="ENG">Properties of the user</entry>
