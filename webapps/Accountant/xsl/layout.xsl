@@ -90,14 +90,14 @@
                             </a>
                             <ul class="dropdown-menu right">
                                 <li>
-                                    <a id="currentuser" title="{//captions/view_userprofile/@caption}"
-                                       href=" Provider?type=edit&amp;element=userprofile&amp;id=userprofile">
+                                    <a class="user-profile" title="{//captions/user_profile/@caption}"
+                                       href=" Provider?id=userprofile">
                                         <xsl:value-of select="@username"/>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a id="logout" href="Logout" title="{//captions/logout/@caption}">
+                                    <a class="logout" href="Logout">
                                         <xsl:value-of select="//captions/logout/@caption"/>
                                     </a>
                                 </li>
