@@ -153,7 +153,7 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-select-balance-holder').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        nbApp.dialogBalanceHolder(this);
+        nbApp.dialogChoiceBalanceHolder(this);
     });
 
     $('.js-uploaded-files').append($tpl);
