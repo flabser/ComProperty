@@ -27,6 +27,6 @@ public class ReportTemplateForm extends _DoPage {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData webFormData, String lang) {
-
+		println(webFormData);
 	}
 }

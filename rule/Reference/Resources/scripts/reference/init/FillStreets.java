@@ -25,23 +25,58 @@ import reference.model.Street;
  */
 
 public class FillStreets extends InitialDataAdapter<Street, StreetDAO> {
-	private static String excelFile = EnvConst.RESOURCES_DIR + File.separator + "orgs.xls";
+	private static String excelFile = EnvConst.RESOURCES_DIR + File.separator + "streets.xls";
 
 	@Override
 	public List<Street> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 
 		List<Street> entities = new ArrayList<Street>();
-		String[] data = { "Unknown", "Достык", "Толе Би", "Фурманова" };
-
 		LocalityDAO cDao = new LocalityDAO(ses);
 		Locality d = cDao.findByName("Алматы");
 		if (d != null) {
-			for (String val : data) {
-				Street entity = new Street();
-				entity.setLocality(d);
-				entity.setName(val);
-				entities.add(entity);
+			File xf = new File(excelFile);
+			if (xf.exists()) {
+				WorkbookSettings ws = new WorkbookSettings();
+				ws.setEncoding("Cp1252");
+				Workbook workbook = null;
+				try {
+					workbook = Workbook.getWorkbook(xf, ws);
+				} catch (BiffException | IOException e) {
+					System.out.println(e);
+				}
+				Sheet sheet = workbook.getSheet(0);
+				int rCount = sheet.getRows();
+				for (int i = 2; i < rCount; i++) {
+					int id = Util.convertStringToInt(sheet.getCell(0, i).getContents());
+					String name = sheet.getCell(1, i).getContents();
+					if (!name.equals("") && !name.equals("''") & id != 0) {
+						Street entity = new Street();
+						entity.setLocality(d);
+						entity.setName(name);
+						entity.setStreetId(id);
+						entities.add(entity);
+					}
+
+				}
+			} else {
+				System.out.println("There is no appropriate file (" + excelFile + "). It will be loaded default data");
+				String[] data = { "Champs Elysées", "La Rambla", "Fifth Avenue", "Via Appia", "Zeil", "Abbey Road", "Khao San", "Rua Augusta" };
+				int count = 1;
+				for (String val : data) {
+					Street entity = new Street();
+					entity.setLocality(d);
+					entity.setName(val);
+					entity.setStreetId(count);
+					entities.add(entity);
+					count++;
+				}
 			}
+
+			Street entity = new Street();
+			entity.setLocality(d);
+			entity.setName("Unknown");
+			entity.setStreetId(0);
+			entities.add(entity);
 		}
 		return entities;
 
@@ -52,37 +87,4 @@ public class FillStreets extends InitialDataAdapter<Street, StreetDAO> {
 		return StreetDAO.class;
 	}
 
-	public List<Street> getData1(_Session ses, LanguageType lang, Vocabulary vocabulary) {
-
-		List<Street> entities = new ArrayList<Street>();
-
-		File xf = new File(excelFile);
-		if (xf.exists()) {
-			WorkbookSettings ws = new WorkbookSettings();
-			ws.setEncoding("Cp1252");
-			Workbook workbook = null;
-			try {
-				workbook = Workbook.getWorkbook(xf, ws);
-			} catch (BiffException | IOException e) {
-				System.out.println(e);
-			}
-			Sheet sheet = workbook.getSheet(0);
-			int rCount = sheet.getRows();
-			for (int i = 2; i < rCount; i++) {
-				int id = Util.convertStringToInt(sheet.getCell(1, i).getContents());
-				String name = sheet.getCell(2, i).getContents();
-				if (!name.equals("") && !name.equals("''") & id != 0) {
-					Street entity = new Street();
-					entity.setName(name);
-					entity.setStreetId(id);
-					entities.add(entity);
-				}
-
-			}
-		} else {
-			System.out.println("There is no \"" + excelFile + "\" file");
-		}
-		return entities;
-
-	}
 }
