@@ -26,7 +26,8 @@
 		<class>reference.model.District</class>
 		<class>reference.model.Locality</class>
 		<class>reference.model.Street</class>			
-		<class>reference.model.Position</class>		
+		<class>reference.model.Position</class>	
+		<class>reference.model.Tag</class>	
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
@@ -57,6 +58,7 @@
 		<class>reference.model.Locality</class>
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
+		<class>reference.model.Tag</class>	
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
@@ -94,6 +96,7 @@
 		<class>reference.model.Locality</class>
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
+		<class>reference.model.Tag</class>	
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	

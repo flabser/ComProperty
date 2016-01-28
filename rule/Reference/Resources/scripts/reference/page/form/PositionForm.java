@@ -18,7 +18,7 @@ public class PositionForm extends ReferenceForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Position entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			PositionDAO dao = new PositionDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {

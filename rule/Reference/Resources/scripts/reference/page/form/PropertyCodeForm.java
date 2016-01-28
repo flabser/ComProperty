@@ -18,7 +18,7 @@ public class PropertyCodeForm extends ReferenceForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		PropertyCode entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			PropertyCodeDAO dao = new PropertyCodeDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {

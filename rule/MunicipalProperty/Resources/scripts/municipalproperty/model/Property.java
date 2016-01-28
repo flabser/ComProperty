@@ -1,23 +1,30 @@
 package municipalproperty.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.jpa.SecureAppEntity;
+import kz.flabs.localization.LanguageType;
+import kz.flabs.util.Util;
 import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;
-import municipalproperty.model.constants.StatusType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
+import reference.model.Tag;
 import staff.model.Organization;
 
 @Entity
@@ -30,10 +37,6 @@ public class Property extends SecureAppEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "kuf", nullable = false, length = 32)
 	private KufType kuf;
-
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 32)
-	private StatusType status;
 
 	@Column(name = "balance_cost")
 	private float balanceCost;
@@ -59,7 +62,7 @@ public class Property extends SecureAppEntity {
 	@JoinColumn(nullable = false)
 	private Organization balanceHolder;
 
-	private String description;
+	private String description = "";
 
 	@Column(name = "inv_number")
 	private String invNumber;
@@ -80,7 +83,7 @@ public class Property extends SecureAppEntity {
 	@JoinColumn
 	private PropertyCode propertyCode;
 
-	private String assignment;
+	private String assignment = "";
 
 	@Column(name = "year_release")
 	private int yearRelease;
@@ -91,12 +94,43 @@ public class Property extends SecureAppEntity {
 	@Column(name = "ready_to_use")
 	private boolean readyToUse;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "property_tags")
+	private List<Tag> tags;
+
 	public boolean isReadyToUse() {
 		return readyToUse;
 	}
 
 	public void setReadyToUse(boolean readyToUse) {
 		this.readyToUse = readyToUse;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public void addTag(Tag tag) {
+		if (tags == null) {
+			tags = new ArrayList<Tag>();
+		}
+		tags.add(tag);
+	}
+
+	// TODO to improve
+	public boolean isTagged(String name) {
+		if (getTags() != null) {
+			for (Tag tag : tags) {
+				if (tag.getName().equals(name)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Column(name = "year_release")
@@ -114,14 +148,6 @@ public class Property extends SecureAppEntity {
 
 	public void setKuf(KufType kuf) {
 		this.kuf = kuf;
-	}
-
-	public StatusType getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusType status) {
-		this.status = status;
 	}
 
 	public float getBalanceCost() {
@@ -261,7 +287,7 @@ public class Property extends SecureAppEntity {
 	}
 
 	@Override
-	public String getDefaultForm() {
+	public String getDefaultFormName() {
 		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
 	}
 
@@ -269,6 +295,38 @@ public class Property extends SecureAppEntity {
 	@Override
 	public _URL getURL() {
 		return new _URL("Provider?id=" + getKuf().name().replace("_", "-").toLowerCase() + "-form&amp;docid=" + getId());
+	}
+
+	@Override
+	public String getFullXMLChunk() {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
+		chunk.append("<author>" + author + "</author>");
+		chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
+		chunk.append("<acquisitionyear>" + acquisitionYear + "</acquisitionyear>");
+		chunk.append("<assignment>" + assignment + "</assignment>");
+		chunk.append("<balancecost>" + balanceCost + "</balancecost>");
+		chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
+		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
+		chunk.append("<cumulativedepreciation>" + cumulativeDepreciation + "</cumulativedepreciation>");
+		chunk.append("<description>" + description + "</description>");
+		chunk.append("<impairmentloss>" + impairmentLoss + "</impairmentloss>");
+		chunk.append("<invnumber>" + invNumber + "</invnumber>");
+		chunk.append("<kuf>" + kuf + "</kuf>");
+		chunk.append("<objectname>" + objectName + "</objectname>");
+		chunk.append("<originalcost>" + originalCost + "</originalcost>");
+		chunk.append("<propertycode>" + propertyCode + "</propertycode>");
+		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
+		chunk.append("<receivingreason>" + receivingReason + "</receivingreason>");
+		chunk.append("<residualcost>" + residualCost + "</residualcost>");
+		chunk.append("<revaluationamount>" + revaluationAmount + "</revaluationamount>");
+		String tagsAsText = "";
+		for (Tag t : tags) {
+			tagsAsText += t.getLocalizedName().get(LanguageType.RUS);
+		}
+		chunk.append("<tags>" + tagsAsText + "</tags>");
+		chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
+		return chunk.toString();
 	}
 
 }

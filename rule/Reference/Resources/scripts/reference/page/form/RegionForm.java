@@ -27,7 +27,7 @@ public class RegionForm extends ReferenceForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Region entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			RegionDAO dao = new RegionDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {

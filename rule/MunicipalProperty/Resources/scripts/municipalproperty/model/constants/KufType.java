@@ -26,6 +26,7 @@ public enum KufType {
 		}
 		return UNKNOWN;
 	}
+
 }
 /*
  * 101=furniture 102=animals 103=sportsequipment 104=shareblocks 105=equity
