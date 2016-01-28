@@ -111,7 +111,7 @@ function checkFile(fileId) {
 }
 
 function renderFilePanel(fileName) {
-    var template = $('#tpl_upload_file').clone();
+    var template = $('#tpl_update_file_panel').clone();
     var $tpl = $(template.html().trim());
 
     var t_link = $tpl.find('.js-link').attr('href');

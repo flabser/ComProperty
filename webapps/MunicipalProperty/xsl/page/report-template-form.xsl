@@ -7,22 +7,22 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <header class="content-header">
-            <h1 class="header-title">
-                <xsl:value-of select="//captions/report/@caption"/>
-            </h1>
-        </header>
-        <section class="content-body">
-            <form method="post" name="{//document/@entity}">
+        <form method="post" name="{//document/@entity}">
+            <header class="content-header">
+                <h1 class="header-title">
+                    <xsl:value-of select="concat(//captions/report/@caption, ' / ', //fields/name)"/>
+                </h1>
+            </header>
+            <section class="content-body">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
                             <xsl:value-of select="//captions/balanceholder/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="field-wrapper col-md-6">
-                                <div class="form-control selection" data-input="balanceholder"
-                                     onclick="nbApp.choiceBalanceHolder(this)">
+                            <div class="field-wrapper col-lg-6">
+                                <div class="form-control selectize-dialog" data-input="balanceholder"
+                                     onclick="nbApp.dialogChoiceBalanceHolder(this)">
                                     <xsl:value-of select="//fields/balanceholdername"/>
                                 </div>
                                 <input type="hidden" name="balanceholder" value="{//fields/balanceholder}"/>
@@ -31,27 +31,16 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/propertycode/@caption"/>
+                            <xsl:value-of select="//captions/property_type/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="field-wrapper col-md-6">
-                                <label class="btn btn-sm">
-                                    <input type="checkbox" name="propertycode">
-                                        1
-                                    </input>
-                                </label>
-                                <label class="btn btn-sm">
-                                    <input type="checkbox" name="propertycode">
-                                        2
-                                    </input>
-                                </label>
-                                <label class="btn btn-sm">
-                                    <input type="checkbox" name="propertycode">
-                                        3
-                                    </input>
-                                </label>
-                                <!--<input type="text" name="propertycode" value="{//fields/propertycode}"
-                                       class="form-control" readonly="readonly"/>-->
+                            <div class="field-wrapper col-lg-6">
+                                <xsl:for-each select="//fields/propertytype/entry">
+                                    <label class="btn btn-sm">
+                                        <input type="checkbox" name="propertycode" value="{@id}"/>
+                                        <xsl:value-of select="text()"/>
+                                    </label>
+                                </xsl:for-each>
                             </div>
                         </div>
                     </div>
@@ -60,40 +49,35 @@
                             <xsl:value-of select="//captions/report_file_type/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="field-wrapper col-md-6">
-                                <label class="btn btn-sm">
-                                    <input type="radio" name="typefilereport" value="1">
-                                        <xsl:if test="//fields/typefilereport  = '1'">
-                                            <xsl:attribute name="checked">checked</xsl:attribute>
-                                        </xsl:if>
-                                        <xsl:if test="//document/@status  = 'new'">
-                                            <xsl:attribute name="checked">checked</xsl:attribute>
-                                        </xsl:if>
-                                        PDF
-                                    </input>
-                                </label>
-                                <label class="btn btn-sm">
-                                    <input type="radio" name="typefilereport" value="2">
-                                        <xsl:if test="//fields/typefilereport  = '2'">
-                                            <xsl:attribute name="checked">checked</xsl:attribute>
-                                        </xsl:if>
-                                        XLSX
-                                    </input>
-                                </label>
-                            </div>
+                            <label class="btn btn-sm">
+                                <input type="radio" name="typefilereport" value="1">
+                                    <xsl:if test="//document/@status  = 'new' or //fields/typefilereport  = '1' or not(//fields/typefilereport)">
+                                        <xsl:attribute name="checked">checked</xsl:attribute>
+                                    </xsl:if>
+                                </input>
+                                PDF
+                            </label>
+                            <label class="btn btn-sm">
+                                <input type="radio" name="typefilereport" value="2">
+                                    <xsl:if test="//fields/typefilereport  = '2'">
+                                        <xsl:attribute name="checked">checked</xsl:attribute>
+                                    </xsl:if>
+                                </input>
+                                XLSX
+                            </label>
                         </div>
                     </div>
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
-            </form>
-        </section>
-        <footer class="content-actions">
-            <button class="btn btn-primary" type="submit">
-                Сформировать отчет
-            </button>
-        </footer>
+            </section>
+            <footer class="content-actions">
+                <button class="btn btn-primary" type="submit">
+                    <xsl:value-of select="//captions/create_report/@caption"/>
+                </button>
+            </footer>
+        </form>
     </xsl:template>
 
 </xsl:stylesheet>

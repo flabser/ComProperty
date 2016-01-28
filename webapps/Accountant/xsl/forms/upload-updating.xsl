@@ -7,8 +7,8 @@
             <xsl:with-param name="include_head">
                 <link rel="stylesheet" href="css/style.css"/>
                 <link rel="stylesheet" href="css/jq-rewrite.css"/>
-                <script src="js/upload.js"/>
-                <script src="js/dialogs.js"/>
+                <script src="js/upload.js"></script>
+                <script src="js/dialogs.js"></script>
             </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
@@ -50,11 +50,11 @@
             <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this)"
                    accept="application/vnd.ms-excel"/>
         </form>
-        <xsl:call-template name="tpl_upload_file"/>
+        <xsl:call-template name="tpl_update_file_panel"/>
     </xsl:template>
 
-    <xsl:template name="tpl_upload_file">
-        <template id="tpl_upload_file">
+    <xsl:template name="tpl_update_file_panel">
+        <template id="tpl_update_file_panel">
             <div class="panel update-file-panel js-file-panel">
                 <div class="panel__header blink-anim">
                     <div class="panel-title panel-toggle" data-toggle="panel">

@@ -25,3 +25,17 @@ fieldset[disabled] .form-control {
     border: 1px solid red;
     box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
 }
+
+.form-control.selectize-dialog {
+    padding-right: 14px;
+}
+
+.form-control.selectize-dialog:before {
+    content: "\f044";
+    display: block;
+    font: 14px/1 FontAwesome;
+    margin-top: -7px;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+}

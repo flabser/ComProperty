@@ -54,6 +54,7 @@
     <caption name="invnumber" source="KEYWORD">Инвентарный номер</caption>
     <caption name="description" source="KEYWORD">Описание объекта</caption>
     <caption name="propertycode" source="KEYWORD">Код права на имущество</caption>
+    <caption name="property_type" source="KEYWORD">Тип имущество</caption>
     <caption name="acceptancedate" source="KEYWORD">Дата принятия на баланс</caption>
     <caption name="address" source="KEYWORD">Адрес места нахождения объекта</caption>
     <caption name="region" source="KEYWORD">Область</caption>

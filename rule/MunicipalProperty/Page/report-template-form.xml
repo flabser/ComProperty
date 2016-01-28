@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description></description>
+    <description>ReportTemplateForm</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
@@ -16,4 +16,5 @@
     </element>
     <caption name="report" source="KEYWORD">report</caption>
     <caption name="report_file_type" source="KEYWORD">report_file_type</caption>
+    <caption name="create_report" source="KEYWORD">create_report</caption>
 </rule>

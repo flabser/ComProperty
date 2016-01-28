@@ -4,20 +4,22 @@
 
     <xsl:template match="//view_content//result">
         <xsl:if test="entry">
-            <ul>
-                <xsl:apply-templates select="entry"/>
+            <ul class="nb-dialog-list">
+                <xsl:apply-templates select="entry" mode="dep"/>
             </ul>
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="entry">
-        <li>
+    <xsl:template match="entry"/>
+
+    <xsl:template match="entry" mode="dep">
+        <li class="nb-dialog-list-it">
             <label ondblclick="nb.dialog.execute(this)">
                 <input data-type="select" type="radio" name="employee" value="{@id}" data-text="{viewcontent/name}"/>
-                <input data-id="{@id}" name="login" value="{viewcontent/login}" type="hidden"/>
                 <span>
                     <xsl:value-of select="viewcontent/name"/>
                 </span>
+                <input data-id="{@id}" name="login" value="{viewcontent/login}" type="hidden"/>
             </label>
         </li>
     </xsl:template>
