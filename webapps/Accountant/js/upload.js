@@ -45,7 +45,7 @@ function onProgress(e) {
     }
 }
 
-function loadFile(fileId) {
+function loadFile(fileId, balanceHolderId) {
     nb.utils.blockUI();
 
     var noty = nb.utils.notify({
@@ -56,7 +56,7 @@ function loadFile(fileId) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
-        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId,
+        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId + '&balanceholder=' + balanceHolderId,
         success: function(result) {
             return result;
         },
@@ -114,6 +114,8 @@ function renderFilePanel(fileName) {
     var template = $('#tpl_update_file_panel').clone();
     var $tpl = $(template.html().trim());
 
+    $tpl.attr('name', 'form' + (new Date().getTime()));
+
     var t_link = $tpl.find('.js-link').attr('href');
     $tpl.find('.js-link').attr('href', t_link + fileName).html(fileName);
 
@@ -147,12 +149,14 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        loadFile(fileName);
+        var bhId = $tpl.find('input[name=balanceholder]').val();
+        loadFile(fileName, bhId);
     });
 
     $tpl.find('.js-select-balance-holder').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
+        $(this).parents('.panel').addClass('open');
         nbApp.dialogChoiceBalanceHolder(this);
     });
 

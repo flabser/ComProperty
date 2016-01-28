@@ -132,7 +132,7 @@ nb.form.setValues = function(currentNode) {
                 $('<input type="hidden" name="' + fieldName + '" value="' + node.value + '" />').appendTo(form);
                 htm.push('<li>' + $(node).data('text') + '</li>');
             });
-            $('[data-input=' + fieldName + ']').html(htm.join(''));
+            $('[data-input=' + fieldName + ']', form).html(htm.join(''));
         } else {
             var $fieldNode = $('[name=' + fieldName + ']', form);
             if ($fieldNode.length === 0) {
@@ -141,7 +141,7 @@ nb.form.setValues = function(currentNode) {
             }
 
             $fieldNode.val(nodeList[0].value);
-            $('[data-input=' + fieldName + ']').html('<li>' + nodeList.attr('data-text') + '</li>');
+            $('[data-input=' + fieldName + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
         }
 
         return true;
