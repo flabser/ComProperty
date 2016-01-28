@@ -510,7 +510,7 @@ footer.content-actions {
     margin: 0;
     max-width: 100%;
     min-height: 34px;
-    padding: 8px;
+    padding: 4px 0;
 }
 
 .form-group.has-controls-label {}
