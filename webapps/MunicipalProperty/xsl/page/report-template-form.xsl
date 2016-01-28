@@ -38,7 +38,9 @@
                                 <xsl:for-each select="//fields/propertytype/entry">
                                     <label class="btn btn-sm">
                                         <input type="checkbox" name="propertycode" value="{@id}"/>
-                                        <xsl:value-of select="text()"/>
+                                        <span>
+                                            <xsl:value-of select="text()"/>
+                                        </span>
                                     </label>
                                 </xsl:for-each>
                             </div>
@@ -55,7 +57,7 @@
                                         <xsl:attribute name="checked">checked</xsl:attribute>
                                     </xsl:if>
                                 </input>
-                                PDF
+                                <span>PDF</span>
                             </label>
                             <label class="btn btn-sm">
                                 <input type="radio" name="typefilereport" value="2">
@@ -63,7 +65,7 @@
                                         <xsl:attribute name="checked">checked</xsl:attribute>
                                     </xsl:if>
                                 </input>
-                                XLSX
+                                <span>XLSX</span>
                             </label>
                         </div>
                     </div>

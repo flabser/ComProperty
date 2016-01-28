@@ -5,7 +5,6 @@
     <xsl:import href="templates/outline.xsl"/>
     <xsl:import href="templates/view.xsl"/>
     <xsl:import href="templates/actions.xsl"/>
-    <xsl:import href="templates/utils.xsl"/>
 
     <xsl:output method="html" encoding="utf-8" indent="no"/>
 

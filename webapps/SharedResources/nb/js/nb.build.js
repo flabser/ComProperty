@@ -166,6 +166,11 @@ nb.utils.getForm = function(el) {
 
     if (typeof(el) === 'string' && (document[el] && document[el].nodeName === 'FORM')) {
         return document[el];
+    } else {
+        var $pf = $(el).parents('form')
+        if ($pf.length) {
+            el = $pf.get(0);
+        }
     }
 
     return el.form || el;
