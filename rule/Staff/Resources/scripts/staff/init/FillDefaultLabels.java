@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import staff.dao.OrganizationLabelDAO;
@@ -19,7 +19,7 @@ import staff.model.OrganizationLabel;
 public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, OrganizationLabelDAO> {
 
 	@Override
-	public List<OrganizationLabel> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<OrganizationLabel> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<OrganizationLabel> entities = new ArrayList<OrganizationLabel>();
 
 		OrganizationLabel entity = new OrganizationLabel();

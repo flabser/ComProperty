@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import reference.dao.CountryDAO;
@@ -20,7 +20,7 @@ import reference.model.constants.RegionType;
 public class FillRegions extends InitialDataAdapter<Region, RegionDAO> {
 
 	@Override
-	public List<Region> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<Region> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<Region> entities = new ArrayList<Region>();
 		String[] data = { "Алматы", "Астана", "Алматинская", "Акмолинская", "Джамбульская", "Мангистауская", "ЮКО", "ВКО" };
 

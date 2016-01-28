@@ -1,5 +1,6 @@
 package reference.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +16,17 @@ public class Street extends Reference {
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)
 	private Locality locality;
+
+	@Column(name = "street_id")
+	private int streetId;
+
+	public int getStreetId() {
+		return streetId;
+	}
+
+	public void setStreetId(int streetId) {
+		this.streetId = streetId;
+	}
 
 	public Locality getLocality() {
 		return locality;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import municipalproperty.dao.ReportTemplateDAO;
@@ -20,7 +20,7 @@ import municipalproperty.model.constants.KufType;
 public class FillReportTemplates extends InitialDataAdapter<ReportTemplate, ReportTemplateDAO> {
 
 	@Override
-	public List<ReportTemplate> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<ReportTemplate> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<ReportTemplate> entities = new ArrayList<ReportTemplate>();
 
 		ReportTemplate entity = new ReportTemplate();

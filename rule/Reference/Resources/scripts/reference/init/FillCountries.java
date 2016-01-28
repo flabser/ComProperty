@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import reference.dao.CountryDAO;
@@ -18,7 +18,7 @@ import reference.model.constants.CountryCode;
 public class FillCountries extends InitialDataAdapter<Country, CountryDAO> {
 
 	@Override
-	public List<Country> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<Country> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<Country> entities = new ArrayList<Country>();
 		String[] data = { "Казахстан", "Россия", "Беларуссия", "Украина", "Германия", "Франция", "Турция", "США", "Китай", "Болгария" };
 		CountryCode[] code = { CountryCode.KZ, CountryCode.RU, CountryCode.BY, CountryCode.UA, CountryCode.DE, CountryCode.FR, CountryCode.TR,

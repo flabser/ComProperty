@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import reference.dao.PositionDAO;
@@ -17,7 +17,7 @@ import reference.model.Position;
 public class FillPositions extends InitialDataAdapter<Position, PositionDAO> {
 
 	@Override
-	public List<Position> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<Position> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<Position> entities = new ArrayList<Position>();
 		String[] data = { "Директор", "Менеджер", "Бухгалтер", "Инженер", "Специалист", "Секретарь-референт", "Администратор",
 		        "Руководитель подразделения", "Экспедитор" };

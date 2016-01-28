@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
@@ -20,7 +19,7 @@ import reference.model.Tag;
 public class FillTags extends InitialDataAdapter<Tag, TagDAO> {
 
 	@Override
-	public List<Tag> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<Tag> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<Tag> entities = new ArrayList<Tag>();
 
 		Tag entity = new Tag();

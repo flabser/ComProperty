@@ -7,7 +7,7 @@ import java.util.List;
 
 import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
@@ -35,7 +35,7 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 	private static String file2 = EnvConst.RESOURCES_DIR + File.separator + "Fantasy.txt";
 
 	@Override
-	public List<Employee> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<Employee> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		this.ses = ses;
 		List<Employee> entities = new ArrayList<Employee>();
 		if (checkNecessaryFiles()) {

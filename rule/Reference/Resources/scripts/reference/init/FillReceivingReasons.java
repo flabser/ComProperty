@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import reference.dao.ReceivingReasonDAO;
@@ -18,7 +18,7 @@ import reference.model.ReceivingReason;
 public class FillReceivingReasons extends InitialDataAdapter<ReceivingReason, ReceivingReasonDAO> {
 
 	@Override
-	public List<ReceivingReason> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<ReceivingReason> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<ReceivingReason> entities = new ArrayList<ReceivingReason>();
 		String[] data = { "Приобретено", "Принято из республиканской собственности", "Принято из коммунальной собственности", "Другое" };
 

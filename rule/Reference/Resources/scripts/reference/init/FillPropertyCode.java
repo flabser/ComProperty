@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import reference.dao.PropertyCodeDAO;
@@ -17,7 +17,7 @@ import reference.model.PropertyCode;
 public class FillPropertyCode extends InitialDataAdapter<PropertyCode, PropertyCodeDAO> {
 
 	@Override
-	public List<PropertyCode> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<PropertyCode> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<PropertyCode> entities = new ArrayList<PropertyCode>();
 		String[] data = { "Безвозмездное пользование", "Временное безвоздмездное пользование", "Временное безвозмездное пользование",
 		        "Доверительное управление", "Долгосрочная аренда", "Концессия", "Оперативное управление", "Постановление о создании", "Распоряжение",

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import reference.dao.StructureTypeDAO;
@@ -17,7 +17,7 @@ import reference.model.StructureType;
 public class FillStructureTypes extends InitialDataAdapter<StructureType, StructureTypeDAO> {
 
 	@Override
-	public List<StructureType> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<StructureType> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<StructureType> entities = new ArrayList<StructureType>();
 		String[] data = { "Бассейн", "Буровая скважина", "Водокачка", "Встроенно-пристроенная часть", "Дорога", "Другое", "Мост",
 		        "Ограждение парков, скверов и общественных садов", "Отдельно стоящее строение", "Памятник", "Подвальная часть",

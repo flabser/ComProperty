@@ -10,7 +10,7 @@ import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
 import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.Language;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
 import kz.pchelka.env.EnvConst;
@@ -27,7 +27,7 @@ public class FillDefaultOrgs extends InitialDataAdapter<Organization, Organizati
 	private static String excelFile = EnvConst.RESOURCES_DIR + File.separator + "orgs.xls";
 
 	@Override
-	public List<Organization> getData(_Session ses, Language lang, Vocabulary vocabulary) {
+	public List<Organization> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<Organization> entities = new ArrayList<Organization>();
 		boolean isPrimary = true;
 
