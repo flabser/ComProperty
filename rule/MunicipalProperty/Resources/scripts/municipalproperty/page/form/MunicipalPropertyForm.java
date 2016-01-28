@@ -7,7 +7,6 @@ import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.model.Property;
-import municipalproperty.model.constants.StatusType;
 
 /**
  * Common abstract class for form of the Municipal Property application. Use it
@@ -25,7 +24,7 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 		_Action transferAction = new _Action(getLocalizedWord("transfer", lang), getLocalizedWord("transfer", lang), "transfer");
 		transferAction.setURL("Provider?id=transfer");
 		actionBar.addAction(transferAction);
-		if (entity.getStatus() == StatusType.ON_BALANCE) {
+		if (entity.isTagged("on_balance")) {
 			_Action writtenOffAction = new _Action(getLocalizedWord("written_off", lang), getLocalizedWord("written_off", lang), "written_off");
 			writtenOffAction.setURL("Provider?id=writtenoff");
 			actionBar.addAction(writtenOffAction);

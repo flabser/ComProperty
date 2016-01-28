@@ -53,7 +53,7 @@ public class ReportTemplate extends AppEntity {
 	}
 
 	@Override
-	public String getDefaultForm() {
+	public String getDefaultFormName() {
 		return "report-template-form";
 	}
 

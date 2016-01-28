@@ -8,7 +8,6 @@ import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
-import municipalproperty.model.constants.StatusType;
 
 public class WrittenOff extends _DoPage {
 
@@ -23,7 +22,7 @@ public class WrittenOff extends _DoPage {
 		PropertyDAO dao = new PropertyDAO(ses);
 		Property entity = dao.findById(UUID.fromString(id));
 		if (entity != null) {
-			entity.setStatus(StatusType.WRITTENOFF);
+			// entity.setStatus(StatusType.WRITTENOFF);
 			dao.update(entity);
 		} else {
 			setBadRequest();

@@ -114,6 +114,12 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
+    <sentence mode="on" keyword="tags">
+        <entry lang="ENG">Tags</entry>
+        <entry lang="RUS">Метки</entry>
+        <entry lang="KAZ"></entry>
+        <entry lang="CHO"></entry>
+    </sentence>
 
     <sentence mode="on" keyword="UNKNOWN">
         <entry lang="ENG">Unknown</entry>

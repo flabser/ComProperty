@@ -2,30 +2,37 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
+import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
-import reference.dao.StructureTypeDAO;
-import reference.model.StructureType;
+import municipalproperty.dao.TagDAO;
+import reference.model.Tag;
 
-public class StructureTypeForm extends ReferenceForm {
+/**
+ * @author Kayra created 28-01-2016
+ */
+
+public class TagForm extends ReferenceForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, String lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		StructureType entity;
+		Tag entity;
 		if (!id.equals("")) {
-			StructureTypeDAO dao = new StructureTypeDAO(session);
+			TagDAO dao = new TagDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new StructureType();
+			entity = new Tag();
 			entity.setAuthor(user);
 		}
 		setContent(new _POJOObjectWrapper(entity));
+		setContent(new _EnumWrapper<>(LanguageType.class.getEnumConstants()));
 		setContent(getSimpleActionBar(session, lang));
 	}
 
@@ -40,21 +47,23 @@ public class StructureTypeForm extends ReferenceForm {
 
 			boolean isNew = false;
 			String id = formData.getValueSilently("docid");
-			StructureTypeDAO dao = new StructureTypeDAO(session);
-			StructureType entity;
+			TagDAO dao = new TagDAO(session);
+			Tag entity;
 
-			if (id.isEmpty()) {
+			if (id.equals("")) {
 				isNew = true;
-				entity = new StructureType();
+				entity = new Tag();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
 				if (entity == null) {
 					isNew = true;
-					entity = new StructureType();
+					entity = new Tag();
 				}
 			}
 
-			entity.setName(formData.getValue("name"));
+			// entity.setName(formData.getValue("name"));
+			// entity.setCode(CountryCode.valueOf(formData.getValueSilently("code",
+			// "UNKNOWN")));
 
 			if (isNew) {
 				dao.add(entity);

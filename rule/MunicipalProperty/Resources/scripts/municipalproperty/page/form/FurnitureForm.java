@@ -23,12 +23,12 @@ public class FurnitureForm extends MunicipalPropertyForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		PersonalEstate entity;
-		if (id.isEmpty()) {
-			entity = new PersonalEstate();
-			entity.setAuthor(user);
-		} else {
+		if (!id.equals("")) {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
 			entity = dao.findById(UUID.fromString(id));
+		} else {
+			entity = new PersonalEstate();
+			entity.setAuthor(user);
 		}
 		setContent(new _POJOObjectWrapper(entity));
 		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll()));

@@ -25,7 +25,7 @@ public class LocalityForm extends ReferenceForm {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Locality entity;
-		if (!id.isEmpty()) {
+		if (!id.equals("")) {
 			LocalityDAO dao = new LocalityDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {

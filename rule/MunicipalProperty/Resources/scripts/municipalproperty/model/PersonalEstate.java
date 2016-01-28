@@ -22,4 +22,8 @@ public class PersonalEstate extends Property {
 		this.model = model;
 	}
 
+	@Override
+	public String getFullXMLChunk() {
+		return super.getFullXMLChunk() + "<model>" + model + "</model>";
+	}
 }
