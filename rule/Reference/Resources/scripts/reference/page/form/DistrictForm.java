@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOObjectWrapper;
@@ -19,7 +20,7 @@ import reference.model.District;
 public class DistrictForm extends ReferenceForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		District entity;
@@ -30,12 +31,12 @@ public class DistrictForm extends ReferenceForm {
 			entity = new District();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity));
+		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(getSimpleActionBar(session, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData webFormData, String lang) {
+	public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
 		try {
 			boolean v = validate(webFormData);
 			if (v == false) {

@@ -1,5 +1,6 @@
 package reference.page;
 
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -14,7 +15,7 @@ import staff.model.Employee;
 public class UserProfile extends _DoPage {
 
     @Override
-    public void doGET(_Session ses, _WebFormData webFormData, String lang) {
+    public void doGET(_Session ses, _WebFormData webFormData, LanguageType lang) {
         User user = ses.getUser();
         EmployeeDAO dao = new EmployeeDAO(ses);
         Employee emp = dao.findByLogin(user.getUserID());
@@ -23,7 +24,7 @@ public class UserProfile extends _DoPage {
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData webFormData, String lang) {
+    public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
 
     }
 }

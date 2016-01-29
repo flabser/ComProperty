@@ -2,6 +2,7 @@ package municipalproperty.page.action;
 
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -12,12 +13,12 @@ import municipalproperty.model.Property;
 public class WrittenOff extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData webFormData, String lang) throws _Exception {
+	public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) throws _Exception {
 		String id = webFormData.getValue("docid");
 		PropertyDAO dao = new PropertyDAO(ses);
 		Property entity = dao.findById(UUID.fromString(id));

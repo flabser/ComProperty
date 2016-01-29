@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
@@ -23,7 +24,7 @@ import reference.model.constants.RegionType;
 public class RegionForm extends ReferenceForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Region entity;
@@ -34,14 +35,14 @@ public class RegionForm extends ReferenceForm {
 			entity = new Region();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity));
-		setContent(new _EnumWrapper<>(RegionType.class.getEnumConstants(), getLocalizedWord(RegionType.class.getEnumConstants(), lang)));
-		setContent(new _POJOListWrapper<>(new CountryDAO(session).findAll()));
+		setContent(new _POJOObjectWrapper(entity, lang));
+		setContent(new _EnumWrapper<>(RegionType.class.getEnumConstants(), getLocalizedWord(RegionType.class.getEnumConstants(), lang.toString())));
+		setContent(new _POJOListWrapper<>(new CountryDAO(session).findAll(), lang));
 		setContent(getSimpleActionBar(session, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
 			boolean v = validate(formData);
 			if (v == false) {

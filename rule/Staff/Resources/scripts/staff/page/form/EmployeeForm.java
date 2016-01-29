@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOListWrapper;
@@ -26,7 +27,7 @@ import staff.model.Role;
 public class EmployeeForm extends StaffForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Employee entity;
@@ -37,13 +38,13 @@ public class EmployeeForm extends StaffForm {
 			entity = new Employee();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity));
-		setContent(new _POJOListWrapper(new RoleDAO(session).findAll()));
+		setContent(new _POJOObjectWrapper(entity, lang));
+		setContent(new _POJOListWrapper(new RoleDAO(session).findAll(), lang));
 		setContent(getSimpleActionBar(session, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
 			boolean v = validate(formData);
 			if (v == false) {

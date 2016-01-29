@@ -8,6 +8,7 @@ import java.util.Map;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Session;
@@ -21,12 +22,12 @@ import accountant.page.action.MPXLImporter.ErrorDescription;
 public class LoadFileData extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {

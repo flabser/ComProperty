@@ -3,6 +3,7 @@ package municipalproperty.page;
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
 import kz.flabs.dataengine.jpa.ViewPage;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
@@ -22,7 +23,7 @@ import municipalproperty.model.Property;
 public class FTSearch extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String keyWord = formData.getEncodedValueSilently("keyword");
 		if (keyWord.equals("")) {
 			setBadRequest();
@@ -40,7 +41,7 @@ public class FTSearch extends _DoPage {
 		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
 		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
 		if (result != null) {
-			setContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum()));
+			setContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang));
 		} else {
 			setContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": " + keyWord));
 		}
@@ -48,7 +49,7 @@ public class FTSearch extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 
 	}
 

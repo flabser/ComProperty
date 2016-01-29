@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
@@ -42,7 +43,7 @@ public class RegistryReport extends _DoPage {
 	protected long grandTotal;
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		long start_time = System.currentTimeMillis();
 		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
 		println(formData);
@@ -132,7 +133,7 @@ public class RegistryReport extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 
 	}
 

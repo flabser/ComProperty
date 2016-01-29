@@ -1,5 +1,6 @@
 package staff.page.form;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
@@ -23,7 +24,7 @@ public abstract class StaffForm extends _DoPage {
         return true;
     }
 
-    protected _ActionBar getSimpleActionBar(_Session ses, String lang) {
+    protected _ActionBar getSimpleActionBar(_Session ses, LanguageType lang) {
         _ActionBar actionBar = new _ActionBar(ses);
         _Employer user = ses.getCurrentAppUser();
         // if (user.hasRole("supervisor")) {

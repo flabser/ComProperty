@@ -6,6 +6,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.flabs.localization.LanguageType;
+
 @Entity
 @Table(name = "personal_estates")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,7 +25,7 @@ public class PersonalEstate extends Property {
 	}
 
 	@Override
-	public String getFullXMLChunk() {
-		return super.getFullXMLChunk() + "<model>" + model + "</model>";
+	public String getFullXMLChunk(LanguageType lang) {
+		return super.getFullXMLChunk(lang) + "<model>" + model + "</model>";
 	}
 }

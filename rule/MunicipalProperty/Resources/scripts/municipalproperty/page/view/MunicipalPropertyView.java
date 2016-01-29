@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.jpa.ViewPage;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._IXMLContent;
 import kz.nextbase.script._POJOListWrapper;
@@ -23,13 +24,13 @@ import municipalproperty.model.constants.KufType;
 
 public abstract class MunicipalPropertyView extends _DoPage {
 
-	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf) {
+	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
-		return getPropertyViewPage(session, formData, params);
+		return getPropertyViewPage(session, formData, params, lang);
 	}
 
-	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set) {
+	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
 		User user = session.getUser();
 		int pageNum = 1;
 		int pageSize = user.getSession().pageSize;
@@ -38,12 +39,12 @@ public abstract class MunicipalPropertyView extends _DoPage {
 		}
 		PropertyDAO dao = new PropertyDAO(session);
 		ViewPage<Property> result = dao.findAllin("kuf", set, pageNum, pageSize);
-		return new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum());
+		return new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang);
 	}
 
 	@Override
-	public abstract void doGET(_Session session, _WebFormData formData, String lang);
+	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
 
 	@Override
-	public abstract void doPOST(_Session session, _WebFormData formData, String lang);
+	public abstract void doPOST(_Session session, _WebFormData formData, LanguageType lang);
 }

@@ -252,7 +252,8 @@
 		<entry lang="ENG">Saved document</entry>
 		<entry lang="CHI">保存</entry>
 	</sentence>
-	<sentence mode="on" keyword="Редактирование">
+	<sentence mode="on" keyword="edit">
+		<entry lang="RUS">Редактирование</entry>
 		<entry lang="KAZ">Өңдеу</entry>
 		<entry lang="ENG">Editing</entry>
 		<entry lang="CHI">编辑</entry>

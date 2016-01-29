@@ -8,6 +8,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import kz.flabs.dataengine.jpa.AppEntity;
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;
 
@@ -64,7 +65,7 @@ public class ReportTemplate extends AppEntity {
 
 	// TODO need to add something to localize propertyType list
 	@Override
-	public String getFullXMLChunk() {
+	public String getFullXMLChunk(LanguageType lang) {
 		StringBuilder value = new StringBuilder(1000);
 		value.append("<name>" + name + "</name>");
 		String enumValue = "";

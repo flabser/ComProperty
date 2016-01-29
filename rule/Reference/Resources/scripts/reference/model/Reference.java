@@ -38,7 +38,7 @@ public class Reference extends AppEntity {
 	}
 
 	@Override
-	public String getShortXMLChunk() {
+	public String getShortXMLChunk(LanguageType lang) {
 		return "<name>" + getName() + "</name>";
 	}
 }

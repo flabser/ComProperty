@@ -291,14 +291,23 @@ public class Property extends SecureAppEntity {
 		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
 	}
 
-	// TODO need to post the URL during saving
 	@Override
 	public _URL getURL() {
-		return new _URL("Provider?id=" + getKuf().name().replace("_", "-").toLowerCase() + "-form&amp;docid=" + getId());
+		return new _URL("Provider?id=" + getForm() + "&amp;docid=" + getId());
 	}
 
 	@Override
-	public String getFullXMLChunk() {
+	public String getShortXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<originalcost>" + originalCost + "</originalcost>");
+		chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
+		chunk.append("<invnumber>" + invNumber + "</invnumber>");
+		chunk.append("<objectname>" + objectName + "</objectname>");
+		return chunk.toString();
+	}
+
+	@Override
+	public String getFullXMLChunk(LanguageType lang) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
 		chunk.append("<author>" + author + "</author>");
@@ -312,7 +321,7 @@ public class Property extends SecureAppEntity {
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<impairmentloss>" + impairmentLoss + "</impairmentloss>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
-		chunk.append("<kuf>" + kuf + "</kuf>");
+		chunk.append("<kuf>" + kuf.getCode() + "</kuf>");
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + originalCost + "</originalcost>");
 		chunk.append("<propertycode>" + propertyCode + "</propertycode>");
@@ -322,7 +331,7 @@ public class Property extends SecureAppEntity {
 		chunk.append("<revaluationamount>" + revaluationAmount + "</revaluationamount>");
 		String tagsAsText = "";
 		for (Tag t : tags) {
-			tagsAsText += t.getLocalizedName().get(LanguageType.RUS);
+			tagsAsText += t.getLocalizedName().get(lang);
 		}
 		chunk.append("<tags>" + tagsAsText + "</tags>");
 		chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");

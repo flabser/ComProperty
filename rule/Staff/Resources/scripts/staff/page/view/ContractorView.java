@@ -1,5 +1,6 @@
 package staff.page.view;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
@@ -15,7 +16,7 @@ import staff.dao.OrganizationDAO;
 public class ContractorView extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		_ActionBar actionBar = new _ActionBar(session);
 		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization");
 		newDocAction.setURL("Provider?id=organization-form");
@@ -27,7 +28,7 @@ public class ContractorView extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 
 	}
 }
