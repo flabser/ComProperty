@@ -33,7 +33,7 @@ public class BuildingMaterialForm extends ReferenceForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
-			boolean v = validate(formData);
+			boolean v = validate(formData, lang);
 			if (!v) {
 				setBadRequest();
 				return;
@@ -44,7 +44,7 @@ public class BuildingMaterialForm extends ReferenceForm {
 			BuildingMaterialDAO dao = new BuildingMaterialDAO(session);
 			BuildingMaterial entity;
 
-			if (id.isEmpty()) {
+			if (id.equals("")) {
 				isNew = true;
 				entity = new BuildingMaterial();
 			} else {

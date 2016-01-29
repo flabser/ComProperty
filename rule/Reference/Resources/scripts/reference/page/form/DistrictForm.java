@@ -7,7 +7,6 @@ import kz.flabs.users.User;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import reference.dao.DistrictDAO;
 import reference.dao.RegionDAO;
@@ -38,7 +37,7 @@ public class DistrictForm extends ReferenceForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
 		try {
-			boolean v = validate(webFormData);
+			boolean v = validate(webFormData, lang);
 			if (v == false) {
 				setBadRequest();
 				return;
@@ -70,9 +69,7 @@ public class DistrictForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
-			setRedirectURL(returnURL);
+			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
 		} catch (_Exception e) {
 			log(e);
 		}

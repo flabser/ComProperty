@@ -95,9 +95,14 @@
         <entry lang="RUS">Удалить документ</entry>
         <entry lang="KAZ"></entry>
     </sentence>
+     <sentence mode="on" keyword="is_primary_organization">
+        <entry lang="ENG">is Primary organization</entry>
+        <entry lang="RUS">Первичная организация</entry>
+        <entry lang="KAZ"></entry>
+    </sentence>
     <sentence mode="on" keyword="no_primary_org">
         <entry lang="ENG">Primary organization has not been found</entry>
-        <entry lang="RUS">Основная организация не найдена</entry>
+        <entry lang="RUS">Первичная организация не найдена</entry>
         <entry lang="KAZ"></entry>
     </sentence>
       <sentence mode="on" keyword="name">

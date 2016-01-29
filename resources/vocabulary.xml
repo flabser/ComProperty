@@ -22,6 +22,16 @@
 		<entry lang="KAZ">Есептемені құрастыру</entry>
 		<entry lang="ENG">Generate a report</entry>
 	</sentence>	
+	<sentence mode="on" keyword="field_name_is_empty">
+		<entry lang="RUS">Поле не заполнено</entry>
+		<entry lang="KAZ">Поле не заполнено</entry>
+		<entry lang="ENG">The field is empty</entry>
+	</sentence>
+	<sentence mode="on" keyword="document_was_saved_succesfully">
+		<entry lang="RUS">Документ сохранен</entry>
+		<entry lang="KAZ">Құжат сақталды</entry>
+		<entry lang="ENG">The document has been saved</entry>
+	</sentence>
 	<sentence mode="on" keyword="Свойства пользователя">
 		<entry lang="KAZ">Қолданушының қасиеттерi</entry>
 		<entry lang="ENG">Properties of the user</entry>

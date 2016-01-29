@@ -15,9 +15,9 @@ import kz.nextbase.script.struct._Employer;
 
 public abstract class ReferenceForm extends _DoPage {
 
-	protected boolean validate(_WebFormData formData) {
+	protected boolean validate(_WebFormData formData, LanguageType lang) {
 		if (formData.getValueSilently("name").isEmpty()) {
-			localizedMsgBox("field_name_is_empty");
+			addMsg(getLocalizedWord("field_name_is_empty", lang));
 			return false;
 		}
 

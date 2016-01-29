@@ -10,7 +10,6 @@ import kz.nextbase.script._Helper;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.dao.PersonalEstateDAO;
 import municipalproperty.model.PersonalEstate;
@@ -39,9 +38,10 @@ public class FurnitureForm extends MunicipalPropertyForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+		println(formData);
 		try {
-			boolean v = validate(formData);
-			if (!v) {
+
+			if (!validate(formData, lang)) {
 				setBadRequest();
 				return;
 			}
@@ -51,15 +51,11 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
 			PersonalEstate entity;
 
-			if (id.isEmpty()) {
+			if (id.equals("")) {
 				isNew = true;
 				entity = new PersonalEstate();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new PersonalEstate();
-				}
 			}
 
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
@@ -162,32 +158,32 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			} else {
 				dao.update(entity);
 			}
-
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
-			setRedirectURL(returnURL);
+			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
 		} catch (_Exception e) {
 			log(e);
+			setBadRequest();
 		}
 	}
 
-	private boolean validate(_WebFormData webFormData) {
+	private boolean validate(_WebFormData webFormData, LanguageType lang) {
+		boolean validationState = true;
 		if (webFormData.getValueSilently("objectname").isEmpty()) {
-			localizedMsgBox("Поле \"Наименование\" не заполнено.");
-			return false;
+			addMsg("Поле \"Наименование\" не заполнено.");
+			validationState = false;
 		}
 		if (webFormData.getValueSilently("originalcost").isEmpty()) {
-			localizedMsgBox("Поле \"Первоначальная стоимость\" не заполнено.");
-			return false;
+			addMsg("Поле \"Первоначальная стоимость\" не заполнено.");
+			validationState = false;
 		}
 		if (webFormData.getValueSilently("description").isEmpty()) {
-			localizedMsgBox("Поле \"Описание объекта\" не заполнено.");
-			return false;
+			addMsg("Поле \"Описание объекта\" не заполнено.");
+			validationState = false;
 		}
 		if (webFormData.getValueSilently("propertycode").isEmpty()) {
-			localizedMsgBox("Поле \"Код права на имущество\" не заполнено.");
-			return false;
+			addMsg("Поле \"Код права на имущество\" не заполнено.");
+			validationState = false;
 		}
-		return true;
+		return validationState;
+
 	}
 }

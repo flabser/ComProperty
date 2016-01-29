@@ -8,7 +8,6 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import reference.dao.CountryDAO;
 import reference.model.Country;
@@ -40,7 +39,7 @@ public class CountryForm extends ReferenceForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
-			boolean v = validate(formData);
+			boolean v = validate(formData, lang);
 			if (v == false) {
 				setBadRequest();
 				return;
@@ -70,10 +69,7 @@ public class CountryForm extends ReferenceForm {
 			} else {
 				dao.update(entity);
 			}
-
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
-			setRedirectURL(returnURL);
+			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
 		} catch (_Exception e) {
 			log(e);
 		}

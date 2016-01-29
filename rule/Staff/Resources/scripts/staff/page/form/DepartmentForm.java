@@ -9,7 +9,6 @@ import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import staff.dao.DepartmentDAO;
 import staff.dao.RoleDAO;
@@ -43,7 +42,7 @@ public class DepartmentForm extends StaffForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
-			boolean v = validate(formData);
+			boolean v = validate(formData, lang);
 			if (v == false) {
 				setBadRequest();
 				return;
@@ -74,9 +73,7 @@ public class DepartmentForm extends StaffForm {
 				dao.update(entity);
 			}
 
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
-			setRedirectURL(returnURL);
+			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
 		} catch (_Exception e) {
 			log(e);
 		}

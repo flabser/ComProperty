@@ -9,7 +9,6 @@ import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import reference.dao.CountryDAO;
 import reference.dao.RegionDAO;
@@ -44,7 +43,7 @@ public class RegionForm extends ReferenceForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
-			boolean v = validate(formData);
+			boolean v = validate(formData, lang);
 			if (v == false) {
 				setBadRequest();
 				return;
@@ -59,10 +58,6 @@ public class RegionForm extends ReferenceForm {
 				entity = new Region();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Region();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -77,23 +72,22 @@ public class RegionForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
-			setRedirectURL(returnURL);
+			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+
 		} catch (_Exception e) {
 			log(e);
 		}
 	}
 
 	@Override
-	protected boolean validate(_WebFormData formData) {
-		if (super.validate(formData)) {
+	protected boolean validate(_WebFormData formData, LanguageType lang) {
+		if (super.validate(formData, lang)) {
 			return false;
 		} else if (formData.getValueSilently("region_type").isEmpty() || formData.getValueSilently("region_type").equals("UNKNOWN")) {
-			localizedMsgBox("field_region_type_is_empty");
+			addMsg("field_region_type_is_empty");
 			return false;
 		} else if (formData.getValueSilently("country_id").isEmpty()) {
-			localizedMsgBox("field_country_type_is_empty");
+			addMsg("field_country_type_is_empty");
 			return false;
 		}
 

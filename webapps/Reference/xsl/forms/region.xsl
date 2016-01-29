@@ -34,7 +34,7 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="type" value="{//fields/type}" class="form-control"/>
+                                <input type="text" name="region_type" value="{//fields/type}" class="form-control"/>
                             </div>
                         </div>
                     </div>
