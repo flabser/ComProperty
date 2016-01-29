@@ -7,6 +7,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._URL;
 
 @Entity
@@ -32,7 +33,7 @@ public class OrganizationLabel extends Staff {
 	}
 
 	@Override
-	public String getShortXMLChunk() {
+	public String getShortXMLChunk(LanguageType lang) {
 		return "<name>" + getName() + "</name><description>" + description + "</description>";
 	}
 

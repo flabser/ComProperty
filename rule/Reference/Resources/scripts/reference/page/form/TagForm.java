@@ -20,7 +20,7 @@ import reference.model.Tag;
 public class TagForm extends ReferenceForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Tag entity;
@@ -31,13 +31,13 @@ public class TagForm extends ReferenceForm {
 			entity = new Tag();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity));
+		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(new _EnumWrapper<>(LanguageType.class.getEnumConstants()));
 		setContent(getSimpleActionBar(session, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
 			boolean v = validate(formData);
 			if (v == false) {

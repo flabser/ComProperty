@@ -15,7 +15,7 @@
 			<idatabase>kz.lof.jpadatabase.Database</idatabase>
 		</implementation>
 		<username>postgres</username>
-		<password>smartdoc</password>
+		<password>1</password>
 	</database>
 	<externalmodule type="STAFF">Structure</externalmodule>
 	<daemons>

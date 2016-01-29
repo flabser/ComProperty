@@ -19,7 +19,7 @@
                 <xsl:value-of select="//captions/title/@caption"/>
             </h1>
             <div class="content-actions">
-                <xsl:apply-templates select="//actionbar"/>
+             <!--    <xsl:apply-templates select="//actionbar"/> -->
             </div>
         </header>
         <section class="content-body">

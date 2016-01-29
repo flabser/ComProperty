@@ -44,7 +44,6 @@ import reference.model.Region;
 import reference.model.Street;
 import reference.model.Tag;
 import staff.dao.EmployeeDAO;
-import staff.dao.OrganizationDAO;
 import staff.exception.EmployеeException;
 import staff.model.Employee;
 import staff.model.Organization;
@@ -159,10 +158,12 @@ public class MPXLImporter {
 				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
 				CheVal cv = new CheVal();
-				List<Property> p = propertyDao.findByInvNum(cv.getString(invNumber));
-				if (p != null) {
-					// skipped++;
-					// continue;
+				List<Property> pList = propertyDao.findByInvNum(cv.getString(invNumber));
+				for (Property p : pList) {
+					if (p.getBalanceHolder().equals(bh)) {
+						skipped++;
+						break;
+					}
 				}
 				Property prop = PropertyFactory.getProperty(kuf);
 				prop.setKof(kof);
@@ -189,17 +190,13 @@ public class MPXLImporter {
 					((Equipment) prop).setModel(model);
 				} else if (prop instanceof RealEstate) {
 					addr.setLocality((Locality) cv.getEntity(new LocalityDAO(ses), "Алматы"));
-					addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "Unknown"));
+					addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "unknown"));
 					((RealEstate) prop).setAddress(addr);
 				}
 				prop.setCommissioningYear(cv.getYear(commissioningYear));
 				prop.setAcquisitionYear(cv.getYear(acquisitionYear));
 				prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, isReadyToOperation));
-
-				OrganizationDAO orgDao = new OrganizationDAO(ses);
-				List<Organization> orgList = orgDao.findAll();
-				Organization org = orgList.get(1);
-				prop.setBalanceHolder(org);
+				prop.setBalanceHolder(bh);
 				TagDAO tagDao = new TagDAO(ses);
 				Tag tag = tagDao.findByName("on_balance");
 				prop.addTag(tag);

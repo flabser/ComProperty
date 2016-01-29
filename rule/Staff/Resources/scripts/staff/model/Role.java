@@ -7,6 +7,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.flabs.localization.LanguageType;
+
 @Entity
 @Table(name = "roles")
 @NamedQuery(name = "Role.findAll", query = "SELECT m FROM Role AS m ORDER BY m.regDate")
@@ -30,7 +32,7 @@ public class Role extends Staff {
 	}
 
 	@Override
-	public String getShortXMLChunk() {
+	public String getShortXMLChunk(LanguageType lang) {
 		return "<name>" + getName() + "</name><description>" + description + "</description>";
 	}
 }

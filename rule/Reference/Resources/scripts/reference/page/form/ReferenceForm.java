@@ -1,5 +1,6 @@
 package reference.page.form;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
@@ -14,30 +15,30 @@ import kz.nextbase.script.struct._Employer;
 
 public abstract class ReferenceForm extends _DoPage {
 
-    protected boolean validate(_WebFormData formData) {
-        if (formData.getValueSilently("name").isEmpty()) {
-            localizedMsgBox("field_name_is_empty");
-            return false;
-        }
+	protected boolean validate(_WebFormData formData) {
+		if (formData.getValueSilently("name").isEmpty()) {
+			localizedMsgBox("field_name_is_empty");
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    protected _ActionBar getSimpleActionBar(_Session ses, String lang) {
-        _ActionBar actionBar = new _ActionBar(ses);
-        _Employer user = ses.getCurrentAppUser();
-        // if (user.hasRole("supervisor")) {
-        actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
-        // }
+	protected _ActionBar getSimpleActionBar(_Session ses, LanguageType lang) {
+		_ActionBar actionBar = new _ActionBar(ses);
+		_Employer user = ses.getCurrentAppUser();
+		// if (user.hasRole("supervisor")) {
+		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+		// }
 
-        actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
-        return actionBar;
+		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
+		return actionBar;
 
-    }
+	}
 
-    @Override
-    public abstract void doGET(_Session session, _WebFormData formData, String lang);
+	@Override
+	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
 
-    @Override
-    public abstract void doPOST(_Session session, _WebFormData formData, String lang);
+	@Override
+	public abstract void doPOST(_Session session, _WebFormData formData, LanguageType lang);
 }

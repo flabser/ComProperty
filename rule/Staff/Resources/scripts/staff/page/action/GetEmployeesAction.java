@@ -1,6 +1,7 @@
 package staff.page.action;
 
 import kz.flabs.dataengine.jpa.ViewPage;
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -16,7 +17,7 @@ import staff.dao.EmployeeDAO;
 public class GetEmployeesAction extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData formData, String lang) {
+	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
 		String keyword = formData.getEncodedValueSilently("keyword");
 		int pageNum = 1;
 		int pageSize = ses.getUser().getSession().pageSize;
@@ -26,11 +27,11 @@ public class GetEmployeesAction extends _DoPage {
 
 		EmployeeDAO empDao = new EmployeeDAO(ses);
 		ViewPage emps = empDao.findAllByName(keyword, pageNum, pageSize);
-		setContent(new _POJOListWrapper(emps.getResult(), emps.getMaxPage(), emps.getCount(), emps.getPageNum()));
+		setContent(new _POJOListWrapper(emps.getResult(), emps.getMaxPage(), emps.getCount(), emps.getPageNum(), lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData webFormData, String lang) {
+	public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
 
 	}
 

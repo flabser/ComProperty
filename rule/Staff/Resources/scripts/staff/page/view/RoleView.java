@@ -3,6 +3,7 @@ package staff.page.view;
 import java.util.List;
 import java.util.UUID;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -21,13 +22,13 @@ import staff.model.Role;
 public class RoleView extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, String lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		RoleDAO dao = new RoleDAO(session);
 		String id = formData.getValueSilently("docid");
 		if (!id.isEmpty()) {
 			Role role = dao.findById(UUID.fromString(id));
 			List<Employee> emps = role.getEmployees();
-			setContent(new _POJOListWrapper(emps));
+			setContent(new _POJOListWrapper(emps, lang));
 		} else {
 			_ActionBar actionBar = new _ActionBar(session);
 			_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_role");
@@ -41,7 +42,7 @@ public class RoleView extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, String lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 
 	}
 }

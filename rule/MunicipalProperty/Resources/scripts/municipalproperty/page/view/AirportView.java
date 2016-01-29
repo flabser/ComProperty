@@ -1,5 +1,6 @@
 package municipalproperty.page.view;
 
+import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.model.constants.KufType;
@@ -10,14 +11,14 @@ import municipalproperty.model.constants.KufType;
 
 public class AirportView extends MunicipalPropertyView {
 
-    @Override
-    public void doGET(_Session session, _WebFormData formData, String lang) {
-        setContent(getSimpleActionBar(session, "airport-form", lang));
-        setContent(getPropertyViewPage(session, formData, KufType.AIRPORT));
-    }
+	@Override
+	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+		setContent(getSimpleActionBar(session, "airport-form", lang));
+		setContent(getPropertyViewPage(session, formData, KufType.AIRPORT, lang));
+	}
 
-    @Override
-    public void doPOST(_Session session, _WebFormData formData, String lang) {
+	@Override
+	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 
-    }
+	}
 }
