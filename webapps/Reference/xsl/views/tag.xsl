@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+﻿<?xml version="1.0" ?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:import href="../layout.xsl"/>
@@ -10,11 +10,11 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/receiving_reason/@caption"/>
+                <xsl:with-param name="title" select="//captions/countries/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_receiving_reasons">
+            <div class="view view_tags">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
@@ -49,9 +49,6 @@
                     <div class="entry-fields">
                         <span>
                             <xsl:value-of select="viewcontent/name"/>
-                        </span>
-                        <span>
-                            <xsl:value-of select="viewcontent/code"/>
                         </span>
                     </div>
                 </a>

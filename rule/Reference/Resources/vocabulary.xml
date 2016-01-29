@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
+    <sentence mode="on" keyword="brand">
+        <entry lang="ENG">Reference</entry>
+        <entry lang="RUS">Общий справочник</entry>
+        <entry lang="KAZ">Общий справочник</entry>
+        <entry lang="CHO">Reference</entry>
+    </sentence>
     <sentence mode="on" keyword="common_reference_data">
         <entry lang="ENG">Common reference data</entry>
         <entry lang="RUS">Общий справочник</entry>
@@ -96,8 +102,8 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="structure_types">
-        <entry lang="ENG">Structure types</entry>
+    <sentence mode="on" keyword="structure_type">
+        <entry lang="ENG">Structure type</entry>
         <entry lang="RUS">Тип структуры</entry>
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
@@ -108,7 +114,13 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="receiving_reasons">
+    <sentence mode="on" keyword="building_material">
+        <entry lang="ENG">Building material</entry>
+        <entry lang="RUS">Материал постройки</entry>
+        <entry lang="KAZ"></entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="receiving_reason">
         <entry lang="ENG"></entry>
         <entry lang="RUS">Основание поступления на баланс</entry>
         <entry lang="KAZ"></entry>
@@ -117,6 +129,25 @@
     <sentence mode="on" keyword="tags">
         <entry lang="ENG">Tags</entry>
         <entry lang="RUS">Метки</entry>
+        <entry lang="KAZ"></entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="tag">
+        <entry lang="ENG">Tag</entry>
+        <entry lang="RUS">Метка</entry>
+        <entry lang="KAZ"></entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+
+    <sentence mode="on" keyword="name">
+        <entry lang="ENG">Name</entry>
+        <entry lang="RUS">Название</entry>
+        <entry lang="KAZ"></entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="code">
+        <entry lang="ENG">Code</entry>
+        <entry lang="RUS">Код</entry>
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
@@ -145,6 +176,4 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-
-  
 </vocabulary>

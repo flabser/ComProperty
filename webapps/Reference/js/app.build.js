@@ -783,7 +783,11 @@ nb.xhr.saveDocument = function(options) {
             $('.required, [required]', 'form').removeClass('required').removeAttr('required');
         },
         success: function(xml) {
-            var jmsg = nb.utils.parseMessageToJson(xml);
+            notify.set({
+                'text': nb.getText('document_saved', 'Документ сохранен'),
+                'type': 'success'
+            });
+            /*var jmsg = nb.utils.parseMessageToJson(xml);
             var msgText = jmsg.message[0];
             if (jmsg.status === 'ok') {
                 notify.set({
@@ -824,7 +828,7 @@ nb.xhr.saveDocument = function(options) {
                         'type': 'error'
                     });
                 }
-            }
+            }*/
         },
         error: function() {
             notify.set({

@@ -14,11 +14,9 @@
     <caption name="close" source="KEYWORD">Закрыть</caption>
     <caption name="saveandclose" source="KEYWORD">Сохранить и закрыть</caption>
     <caption name="properties" source="KEYWORD">Свойства</caption>
-    <caption name="logout" source="KEYWORD">Завершить работу</caption>
     <caption name="lang" source="KEYWORD">Язык интерфейса</caption>
     <caption name="interface" source="KEYWORD">Интерфейс</caption>
     <caption name="refreshperiod" source="KEYWORD">Периодичность обновления видов</caption>
-    <caption name="help" source="KEYWORD">Помощь</caption>
     <caption name="oldpassword" source="KEYWORD">Старый пароль</caption>
     <caption name="role" source="KEYWORD">Роли</caption>
     <caption name="group" source="KEYWORD">Группы</caption>
@@ -33,7 +31,6 @@
     <caption name="shortname" source="KEYWORD">Сокращенное имя</caption>
     <caption name="groups" source="KEYWORD">Группы</caption>
     <caption name="min" source="KEYWORD">мин</caption>
-    <caption name="view_userprofile" source="KEYWORD">Посмотреть свойства текущего пользователя</caption>
     <glossary mode="on" id="langs" source="macro">AVAILABLE_LANGS</glossary>
     <caption name="fio" source="KEYWORD">Ф.И.О</caption>
     <caption name="phone" source="KEYWORD">Контактные телефоны</caption>
