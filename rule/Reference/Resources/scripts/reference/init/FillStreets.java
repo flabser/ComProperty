@@ -74,7 +74,7 @@ public class FillStreets extends InitialDataAdapter<Street, StreetDAO> {
 
 			Street entity = new Street();
 			entity.setLocality(d);
-			entity.setName("Unknown");
+			entity.setName("unknown");
 			entity.setStreetId(0);
 			entities.add(entity);
 		}

@@ -35,7 +35,7 @@ public class ImportFileChecker extends _DoPage {
 			_Tag rootTag = new _Tag("result");
 			String excelFile = userTmpDir + File.separator + formData.getEncodedValueSilently("fileid");
 			String ext = FilenameUtils.getExtension(excelFile);
-			if (ext.equalsIgnoreCase("xsl")) {
+			if (ext.equalsIgnoreCase("xls")) {
 				File xlsFile = new File(excelFile);
 
 				MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
