@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:import href="layout.xsl"/>
@@ -10,7 +10,7 @@
     <xsl:template name="_content">
         <div class="content-header"></div>
         <div class="content-body">
-            <div class="view">
+            <div class="view {@id}">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
@@ -36,9 +36,9 @@
 
     <xsl:template match="entry" mode="view-table-body">
         <div class="entry-wrap">
-            <div data-ddbid="{@id}" class="entry">
+            <div data-id="{@id}" class="entry">
                 <label class="entry-select">
-                    <input type="checkbox" name="docid" id="{@id}" value="{@doctype}"/>
+                    <input type="checkbox" name="docid" value="{@id}"/>
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">

@@ -21,7 +21,7 @@
 
         <xsl:call-template name="HTML-DOCTYPE"/>
         <html>
-            <xsl:call-template name="html_head">
+            <xsl:call-template name="html-head">
                 <xsl:with-param name="title" select="$title"/>
                 <xsl:with-param name="include" select="$include_head"/>
             </xsl:call-template>
@@ -46,7 +46,7 @@
 
     <xsl:template name="_content"/>
 
-    <xsl:template name="html_head">
+    <xsl:template name="html-head">
         <xsl:param name="title" select="''"/>
         <xsl:param name="include" select="''"/>
         <head>
