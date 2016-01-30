@@ -49,6 +49,12 @@
             <name mode="off">PropertyLeasingSubsystem</name>
         </app>
     </applications>
+    <langs>
+    	<!-- https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes  -->
+		<entry>RUS</entry>
+		<entry>KAZ</entry>
+		<entry>ENG</entry>
+	</langs>
     <logging>
         <verbose>true</verbose>
     </logging>
@@ -56,15 +62,5 @@
         <smtphost>192.168.0.1</smtphost>
         <defaultsender>info@flabs.kz</defaultsender>
     </mailagent>
-    <instmsgagent>
-        <xmppserver>172.16.251.13</xmppserver>
-        <xmpplogin>support@zion</xmpplogin>
-        <xmpppwd>support</xmpppwd>
-    </instmsgagent>
     <debug mode="ON"></debug>
-
-    <externalhost>
-        <host id="ump" type="WEB_SERVICES_PROVIDER">127.0.0.1:15045</host>
-        <host id="ord" type="DOMINO_DATA_PROVIDER" server="zion" db="ComProperty/ord.nsf" user="developer" pwd="123">zion.flabs.loc:63148</host>
-    </externalhost>
 </nextbase>
