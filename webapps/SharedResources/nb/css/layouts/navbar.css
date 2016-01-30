@@ -267,26 +267,26 @@
 }
 
 
-/* sidebar-toggle */
+/* side-nav-toggle */
 
-.sidebar-toggle {
+.side-nav-toggle {
     cursor: pointer;
     display: none;
     height: 50px;
     position: relative;
 }
 
-.tablet .sidebar-toggle,
-.phone .sidebar-toggle {
+.tablet .side-nav-toggle,
+.phone .side-nav-toggle {
     display: inline-block;
 }
 
-.sidebar-toggle:hover:before,
-.sidebar-toggle:hover:after {
+.side-nav-toggle:hover:before,
+.side-nav-toggle:hover:after {
     border-color: #888;
 }
 
-.sidebar-toggle:before {
+.side-nav-toggle:before {
     border-bottom: 3px solid #AAA;
     border-top: 3px solid #AAA;
     content: '';
@@ -295,7 +295,7 @@
     width: 16px;
 }
 
-.sidebar-toggle:after {
+.side-nav-toggle:after {
     border-top: 3px solid #AAA;
     content: '';
     display: block;

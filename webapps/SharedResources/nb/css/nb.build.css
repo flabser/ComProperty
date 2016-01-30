@@ -734,11 +734,6 @@ footer.content-actions {
     z-index: 5;
 }
 
-.main {
-    display: block;
-    margin: 0px auto;
-}
-
 .aside {
     background-color: #F7F7F7;
     bottom: 0;
@@ -785,7 +780,7 @@ footer.content-actions {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 4;
+    z-index: 6;
 }
 
 .app-loading {
@@ -1085,26 +1080,26 @@ footer.content-actions {
 }
 
 
-/* sidebar-toggle */
+/* side-nav-toggle */
 
-.sidebar-toggle {
+.side-nav-toggle {
     cursor: pointer;
     display: none;
     height: 50px;
     position: relative;
 }
 
-.tablet .sidebar-toggle,
-.phone .sidebar-toggle {
+.tablet .side-nav-toggle,
+.phone .side-nav-toggle {
     display: inline-block;
 }
 
-.sidebar-toggle:hover:before,
-.sidebar-toggle:hover:after {
+.side-nav-toggle:hover:before,
+.side-nav-toggle:hover:after {
     border-color: #888;
 }
 
-.sidebar-toggle:before {
+.side-nav-toggle:before {
     border-bottom: 3px solid #AAA;
     border-top: 3px solid #AAA;
     content: '';
@@ -1113,7 +1108,7 @@ footer.content-actions {
     width: 16px;
 }
 
-.sidebar-toggle:after {
+.side-nav-toggle:after {
     border-top: 3px solid #AAA;
     content: '';
     display: block;
@@ -1192,7 +1187,7 @@ footer.content-actions {
     left: -280px;
     height: 100%;
     overflow-y: auto;
-    padding: 8px 0;
+    padding: 8px 4px;
     top: 0;
     transition: all .15s;
     z-index: 7;
@@ -1389,7 +1384,7 @@ body.side-nav-open {
 
 .entry-captions {
     display: inline-block;
-    padding: 9px 11px;
+    padding: 9px 11px 9px 40px;
     vertical-align: top;
     white-space: nowrap;
     width: 100%;
@@ -1476,12 +1471,15 @@ body.side-nav-open {
 
 .entry-select {
     display: inline-block;
+    height: 100%;
     line-height: inherit;
     margin: 0;
     padding: 11px 0;
+    position: absolute;
     text-align: center;
     vertical-align: top;
     width: 36px;
+    z-index: 1;
 }
 
 .entry-select > input {
@@ -1504,7 +1502,7 @@ body.side-nav-open {
 
 .entry-link {
     display: inline-block;
-    padding: 11px;
+    padding: 11px 11px 11px 40px;
     position: relative;
     vertical-align: top;
     width: 100%;

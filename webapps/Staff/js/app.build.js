@@ -323,6 +323,11 @@ $(document).ready(function() {
     });
 
     //
+    $(document).on('click', '[data-toggle=side-nav], .content-overlay', function() {
+        $('body').toggleClass('side-nav-open');
+    });
+
+    //
     $(window).resize(function() {
         if (window.innerWidth <= 800) {
             $('body').addClass('phone');

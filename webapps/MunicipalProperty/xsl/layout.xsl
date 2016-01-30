@@ -9,7 +9,6 @@
     <xsl:variable name="isAjaxRequest" select="//ajax = '1'"/>
 
     <xsl:output method="html" encoding="utf-8" indent="no"/>
-    <xsl:decimal-format name="df" grouping-separator=" "/>
 
     <xsl:template name="layout">
         <xsl:param name="title" select="concat(//captions/title/@caption, ' - ', $APP_NAME)"/>
@@ -26,7 +25,7 @@
                 <xsl:with-param name="title" select="$title"/>
                 <xsl:with-param name="include" select="$include_head"/>
             </xsl:call-template>
-            <body class="no_transition {$body_class}">
+            <body class="{$body_class}">
                 <xsl:copy-of select="$include_body_top"/>
                 <div class="main-load" id="main-load" style="display:none"></div>
                 <div class="layout {$aside_collapse}">
@@ -77,20 +76,13 @@
         <header class="header navbar navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
-                            data-target="#nb-navbar"
-                            aria-controls="nb-navbar" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    <button class="side-nav-toggle" type="button" data-toggle="side-nav"></button>
                     <img alt="logo" src="{$APP_LOGO_IMG_SRC}" class="brand-logo"/>
                     <span class="brand-title">
                         <xsl:value-of select="$APP_NAME"/>
                     </span>
                 </div>
-                <nav id="nb-navbar" class="collapse navbar-collapse">
+                <nav class="navbar-nav navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -113,7 +105,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <xsl:if test="not(document)">
+                    <xsl:if test="not(//document)">
                         <form class="navbar-form navbar-right" role="search" onsubmit="return false;">
                             <input type="text" class="form-control" name="keyword" placeholder="Search"/>
                         </form>
@@ -124,27 +116,5 @@
     </xsl:template>
 
     <xsl:template name="main-footer"/>
-
-    <xsl:template match="action" mode="header">
-        <a class="no-desktop head-item nav-action" title="{@hint}" href="#" data-action="{@id}">
-            <xsl:if test="js">
-                <xsl:attribute name="href" select="concat('javascript:', js)"/>
-            </xsl:if>
-            <xsl:if test="@url != ''">
-                <xsl:attribute name="href" select="@url"/>
-            </xsl:if>
-            <xsl:choose>
-                <xsl:when test="@id = 'add_new'">
-                    <i class="fa fa-plus"/>
-                </xsl:when>
-                <xsl:when test="@id = 'delete_document'">
-                    <i class="fa fa-remove"/>
-                </xsl:when>
-            </xsl:choose>
-            <span class="action-label">
-                <xsl:value-of select="@caption"/>
-            </span>
-        </a>
-    </xsl:template>
 
 </xsl:stylesheet>

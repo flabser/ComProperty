@@ -13,7 +13,7 @@
     left: -280px;
     height: 100%;
     overflow-y: auto;
-    padding: 8px 0;
+    padding: 8px 4px;
     top: 0;
     transition: all .15s;
     z-index: 7;
