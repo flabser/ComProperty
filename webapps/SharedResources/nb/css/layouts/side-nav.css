@@ -19,16 +19,31 @@
     z-index: 7;
 }
 
-body.side-nav-open {
+.tablet.side-nav-toggle,
+.phone.side-nav-toggle {
     overflow: hidden;
 }
 
-.side-nav-open .content-overlay {
+.tablet.side-nav-toggle .content-overlay,
+.phone.side-nav-toggle .content-overlay {
     display: block;
 }
 
-.tablet.side-nav-open .side-nav,
-.phone.side-nav-open .side-nav {
+
+/* desktop */
+
+.side-nav-toggle .side-nav {
+    -moz-transform: translate(-280px, 0);
+    -webkit-transform: translate(-280px, 0);
+    transform: translate(-280px, 0);
+    transform: translate3d(-280px, 0, 0);
+}
+
+
+/* device */
+
+.tablet.side-nav-toggle .side-nav,
+.phone.side-nav-toggle .side-nav {
     -moz-transform: translate(280px, 0);
     -webkit-transform: translate(280px, 0);
     transform: translate(280px, 0);

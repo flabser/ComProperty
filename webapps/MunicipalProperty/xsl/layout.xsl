@@ -74,9 +74,9 @@
 
     <xsl:template name="main-header">
         <header class="header navbar navbar-fixed-top">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
-                    <button class="side-nav-toggle" type="button" data-toggle="side-nav"></button>
+                    <button class="btn-side-nav-toggle" type="button" data-toggle="side-nav"></button>
                     <img alt="logo" src="{$APP_LOGO_IMG_SRC}" class="brand-logo"/>
                     <span class="brand-title">
                         <xsl:value-of select="$APP_NAME"/>

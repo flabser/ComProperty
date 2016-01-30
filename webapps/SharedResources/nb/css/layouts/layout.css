@@ -42,15 +42,16 @@
     padding: 0 0 20px 0;
     padding-top: 50px;
     position: relative;
+    transition: margin-left .15s;
 }
 
-.aside + .content {
+body:not(.side-nav-toggle) .aside + .content {
     margin-left: 280px;
 }
 
 .tablet .content,
 .phone .content {
-    margin: 0 0 10px 0px;
+    margin-left: 0 !important;
 }
 
 .content-overlay {

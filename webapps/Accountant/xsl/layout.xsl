@@ -66,7 +66,7 @@
 
     <xsl:template name="main-header">
         <header class="header navbar navbar-fixed-top">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
                     <img alt="logo" src="{$APP_LOGO_IMG_SRC}" class="brand-logo"/>
                     <span class="brand-title">

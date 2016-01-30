@@ -325,18 +325,18 @@ $(document).ready(function() {
     // toggle=side-nav
     $(document).on('click', '[data-toggle=side-nav]', function(event) {
         event.preventDefault();
-        $('body').toggleClass('side-nav-open');
+        $('body').toggleClass('side-nav-toggle');
     });
 
     if ($('#content-overlay')) {
         $('#content-overlay').mousedown(function(event) {
             event.preventDefault();
-            $('body').removeClass('side-nav-open');
+            $('body').removeClass('side-nav-toggle');
         });
 
         $('#content-overlay')[0].addEventListener('touchstart', function(event) {
             event.preventDefault();
-            $('body').removeClass('side-nav-open');
+            $('body').removeClass('side-nav-toggle');
         }, false);
     }
 
