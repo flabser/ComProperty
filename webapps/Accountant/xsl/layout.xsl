@@ -20,7 +20,7 @@
                 <xsl:with-param name="title" select="$title"/>
                 <xsl:with-param name="include" select="$include_head"/>
             </xsl:call-template>
-            <body class="{$body_class}">
+            <body class="no_transition {$body_class}">
                 <xsl:copy-of select="$include_body_top"/>
                 <div class="main-load" id="main-load" style="display:none"></div>
                 <div class="layout {$aside_collapse}">

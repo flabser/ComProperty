@@ -356,5 +356,5 @@ $(document).ready(function() {
     //
     setTimeout(function() {
         $('body').removeClass('no_transition');
-    }, 200);
+    }, 250);
 });
