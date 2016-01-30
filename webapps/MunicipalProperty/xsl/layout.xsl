@@ -96,6 +96,11 @@
                                         <xsl:value-of select="@username"/>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-toggle-theme="theme1">
+                                        типа theme1
+                                    </a>
+                                </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a class="logout" href="Logout">

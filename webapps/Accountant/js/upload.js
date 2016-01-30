@@ -94,10 +94,7 @@ function checkFile(fileId) {
     return $.ajax({
         type: 'get',
         datatype: 'html',
-        url: 'Provider?type=page&id=check-file-structure',
-        data: {
-            fileid: fileId
-        },
+        url: 'Provider?type=page&id=check-file-structure&fileid=' + fileId,
         success: function(data) {
             return data;
         },
@@ -151,7 +148,6 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        // var bhId = $tpl.find('input[name=balanceholder]').val();
         loadFile(fileName, $tpl.serialize());
     });
 
@@ -171,11 +167,3 @@ function renderFilePanel(fileName) {
 
     $('.js-uploaded-files').append($tpl);
 }
-
-$(function() {
-    $('[data-action=save_and_close]').click(function() {
-        nb.xhr.saveDocument().then(function(result) {
-            console.log(result);
-        });
-    });
-});

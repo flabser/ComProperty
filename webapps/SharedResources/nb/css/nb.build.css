@@ -104,10 +104,11 @@
 
 .tab-pane {
     margin: 8px 0;
+    min-height: 30px;
 }
 
 .content-body .nav-tabs {
-    margin-top: 1em;
+    padding-top: 1em;
 }
 
 .nb-dialog {
@@ -541,7 +542,7 @@ footer.content-actions {
 
 .fieldset {
     border: none;
-    margin: 0 0 8px 0;
+    margin: 0;
     padding: 8px;
 }
 
@@ -758,7 +759,6 @@ footer.content-actions {
 }
 
 .content {
-    background: #FFF;
     border: none;
     height: auto;
     margin: 0 0 10px 0;
@@ -1364,7 +1364,6 @@ body:not(.side-nav-toggle) .aside + .content {
 }
 
 .view {
-    background: #FFF;
     position: relative;
     width: 100%;
 }
@@ -1450,7 +1449,7 @@ body:not(.side-nav-toggle) .aside + .content {
 /* entry */
 
 .entry {
-    background: white;
+    background: #FFF;
     display: block;
     overflow: hidden;
     padding: 0;

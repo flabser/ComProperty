@@ -13,8 +13,9 @@
 
 .tab-pane {
     margin: 8px 0;
+    min-height: 30px;
 }
 
 .content-body .nav-tabs {
-    margin-top: 1em;
+    padding-top: 1em;
 }

@@ -1,5 +1,4 @@
 .view {
-    background: #FFF;
     position: relative;
     width: 100%;
 }
@@ -85,7 +84,7 @@
 /* entry */
 
 .entry {
-    background: white;
+    background: #FFF;
     display: block;
     overflow: hidden;
     padding: 0;
