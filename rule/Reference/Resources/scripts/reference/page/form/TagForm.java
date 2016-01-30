@@ -9,7 +9,7 @@ import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
-import municipalproperty.dao.TagDAO;
+import reference.dao.TagDAO;
 import reference.model.Tag;
 
 /**
