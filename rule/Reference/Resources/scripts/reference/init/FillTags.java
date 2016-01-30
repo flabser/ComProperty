@@ -9,7 +9,7 @@ import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;
-import municipalproperty.dao.TagDAO;
+import reference.dao.TagDAO;
 import reference.model.Tag;
 
 /**

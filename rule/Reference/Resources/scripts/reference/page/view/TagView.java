@@ -7,7 +7,7 @@ import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
-import municipalproperty.dao.TagDAO;
+import reference.dao.TagDAO;
 
 /**
  * @author Kayra created 28-01-2016

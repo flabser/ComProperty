@@ -12,7 +12,6 @@ class DoScript extends _DoScript{
 		publishElement("build", ent.getBuildTime())
 		publishElement("org", ent.getGeneralName())
 		publishElement("img", ent.getLogoImg())
-		publishElement("eds", ent.edsIsOn())
 		publishElement("appname", ent.getAppName())		
 		publishElement("availablelangs", ent.getAvailableLangs())
 		publishElement("availableskins", ent.getAvailableSkins())
