@@ -64,6 +64,9 @@
                                 <button type="button" class="btn btn-sm js-select-balance-holder" disabled="disabled">
                                     <span>выбрать балансодержателя</span>
                                 </button>
+                                <button type="button" class="btn btn-sm js-select-readers" disabled="disabled">
+                                    <span>выбрать читателей</span>
+                                </button>
                                 <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">
                                     загрузить
                                 </button>
@@ -73,7 +76,10 @@
                     </div>
                     <div class="panel__body">
                         <input type="hidden" name="balanceholder" value=""/>
-                        <strong data-input="balanceholder"></strong>
+                        <div>
+                            <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                            <ul class="update-readers" data-input="reader"></ul>
+                        </div>
                         <div class="js-check-result"></div>
                     </div>
                 </div>

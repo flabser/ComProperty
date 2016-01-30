@@ -45,7 +45,7 @@ function onProgress(e) {
     }
 }
 
-function loadFile(fileId, balanceHolderId) {
+function loadFile(fileId, data) {
     nb.utils.blockUI();
 
     var noty = nb.utils.notify({
@@ -56,7 +56,8 @@ function loadFile(fileId, balanceHolderId) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
-        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId + '&balanceholder=' + balanceHolderId,
+        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId,
+        data: data,
         success: function(result) {
             return result;
         },
@@ -130,6 +131,7 @@ function renderFilePanel(fileName) {
             if (result == '') {
                 $tpl.find('.js-load').removeAttr('disabled');
                 $tpl.find('.js-select-balance-holder').removeAttr('disabled');
+                $tpl.find('.js-select-readers').removeAttr('disabled');
             }
             $tpl.find('.js-check-result').html(result);
         }, function(err) {
@@ -149,8 +151,8 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        var bhId = $tpl.find('input[name=balanceholder]').val();
-        loadFile(fileName, bhId);
+        // var bhId = $tpl.find('input[name=balanceholder]').val();
+        loadFile(fileName, $tpl.serialize());
     });
 
     $tpl.find('.js-select-balance-holder').on('click', function(e) {
@@ -158,6 +160,13 @@ function renderFilePanel(fileName) {
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
         nbApp.dialogChoiceBalanceHolder(this);
+    });
+
+    $tpl.find('.js-select-readers').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).parents('.panel').addClass('open');
+        nbApp.dialogChoiceReaders(this);
     });
 
     $('.js-uploaded-files').append($tpl);

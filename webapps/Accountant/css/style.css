@@ -52,3 +52,17 @@ progress[value='0'] {
 .upload-checking-result {
     margin: 1em;
 }
+
+.update-balance-holder {
+    
+}
+
+.update-readers {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.update-readers li {
+    padding: 4px;
+}
