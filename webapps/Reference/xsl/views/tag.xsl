@@ -10,15 +10,14 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/countries/@caption"/>
+                <xsl:with-param name="title" select="//captions/tags/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_tags">
+            <div class="view {@id}">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
-        <input type="hidden" name="page_id" id="page_id" value="{@id}"/>
     </xsl:template>
 
     <xsl:template name="view-table">
@@ -41,9 +40,9 @@
 
     <xsl:template match="entry" mode="view-table-body">
         <div class="entry-wrap">
-            <div data-ddbid="{@id}" class="entry">
+            <div data-id="{@id}" class="entry">
                 <label class="entry-select">
-                    <input type="checkbox" name="docid" id="{@id}" value="{@doctype}"/>
+                    <input type="checkbox" name="docid" value="{@id}"/>
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">

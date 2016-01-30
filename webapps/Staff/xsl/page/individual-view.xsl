@@ -14,7 +14,7 @@
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_individuals">
+            <div class="view {@id}">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>
@@ -40,17 +40,14 @@
 
     <xsl:template match="entry" mode="view-table-body">
         <div class="entry-wrap">
-            <div data-ddbid="{@id}" class="entry">
+            <div data-id="{@id}" class="entry">
                 <label class="entry-select">
-                    <input type="checkbox" name="docid" id="{@id}" value="{@doctype}"/>
+                    <input type="checkbox" name="docid" value="{@id}"/>
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
                         <span>
                             <xsl:value-of select="viewcontent/name"/>
-                        </span>
-                        <span>
-                            <xsl:value-of select="viewcontent/code"/>
                         </span>
                     </div>
                 </a>
