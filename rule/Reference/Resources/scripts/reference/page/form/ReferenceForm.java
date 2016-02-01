@@ -7,7 +7,6 @@ import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
-import kz.nextbase.script.struct._Employer;
 
 /**
  * @author Kayra created 03-01-2016
@@ -26,7 +25,7 @@ public abstract class ReferenceForm extends _DoPage {
 
 	protected _ActionBar getSimpleActionBar(_Session ses, LanguageType lang) {
 		_ActionBar actionBar = new _ActionBar(ses);
-		_Employer user = ses.getCurrentAppUser();
+		// _Employer user = ses.getCurrentAppUser();
 		// if (user.hasRole("supervisor")) {
 		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
 		// }
