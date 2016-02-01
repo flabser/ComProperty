@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description></description>
+    <description>UploadUpdatingForm</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
@@ -8,4 +8,19 @@
             <doscript source="JAVA_CLASS">accountant.page.form.UploadUpdatingForm</doscript>
         </events>
     </element>
+    <caption name="brand" source="KEYWORD">АИС 'Коммунальное Имущество'</caption>
+    <caption name="title" source="KEYWORD">Страница загрузки обновлений</caption>
+    <caption name="logout" source="KEYWORD">Завершить работу</caption>
+    <caption name="editing" source="KEYWORD">Редактирование</caption>
+    <caption name="readonly" source="KEYWORD">Только для чтения</caption>
+    <caption name="mode_not_defined" source="KEYWORD">Режим не определен</caption>
+    <caption name="saved" source="KEYWORD">Сохраненный</caption>
+    <caption name="save_close" source="KEYWORD">Сохранить и закрыть</caption>
+    <caption name="close" source="KEYWORD">Закрыть</caption>
+    <caption name="document_saved" source="KEYWORD">Идет сохранение документа...</caption>
+    <caption name="please_wait_doc_save" source="KEYWORD">Пожалуйста ждите... Идет сохранение документа</caption>
+    <caption name="saving" source="KEYWORD">Сохранение</caption>
+    <caption name="user_profile" source="KEYWORD">Посмотреть свойства текущего пользователя</caption>
+    <caption name="cancel" source="KEYWORD">Отмена</caption>
+    <caption name="attach_file" source="KEYWORD">Прикрепить файл</caption>
 </rule>

@@ -24,4 +24,6 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:template match="//history"/>
+
 </xsl:stylesheet>
