@@ -35,7 +35,7 @@ body.theme1 {
     background: rgba(0, 0, 0, .1);
 }
 
-.side-nav .nav-link:active {
+.theme1 .side-nav .nav-link:active {
     background: rgba(0, 0, 0, .17) !important;
     color: #303333;
 }
