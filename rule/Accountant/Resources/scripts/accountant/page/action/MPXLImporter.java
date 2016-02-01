@@ -109,11 +109,12 @@ public class MPXLImporter {
 				List<Property> pList = propertyDao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
 
 				for (Property p : pList) {
-					if (p.getBalanceHolder().equals(bh)) {
-						rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotUniqueMessage().getErr());
-						skipped++;
-						break;
-					}
+					/*
+					 * if (p.getBalanceHolder().equals(bh)) { rowErr.add(new
+					 * CheVal("3, Инвентарный номер",
+					 * invNumber).isNotUniqueMessage().getErr()); skipped++;
+					 * break; }
+					 */
 				}
 
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());

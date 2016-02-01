@@ -7,6 +7,12 @@
 		<entry lang="KAZ">Сервермен байланыс орнатылмаған</entry>		
 		<entry lang="CHI">没有连接到服务器</entry>
 	</sentence>
+	<sentence mode="on" keyword="internal_server_error">
+		<entry lang="ENG">Internal server error</entry>
+		<entry lang="RUS">Внутреняя ошибка серевера</entry>
+		<entry lang="KAZ">Внутреняя ошибка серевера</entry>		
+		<entry lang="CHI"></entry>
+	</sentence>
 	<sentence mode="on" keyword="search">
 		<entry lang="RUS">Поиск</entry>
 		<entry lang="KAZ">Іздеу</entry>

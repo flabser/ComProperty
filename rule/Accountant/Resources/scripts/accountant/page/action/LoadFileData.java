@@ -31,29 +31,32 @@ public class LoadFileData extends _DoPage {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+		println(formData);
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
 			String fileName = userTmpDir + File.separator + formData.getEncodedValueSilently("fileid");
 			String ext = FilenameUtils.getExtension(fileName);
+			Organization org = null;
 			if (ext.equalsIgnoreCase("xls")) {
 				try {
 					UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
 					OrganizationDAO dao = new OrganizationDAO(session);
-					Organization org = dao.findById(bhId);
+					org = dao.findById(bhId);
 					File xlsFile = new File(fileName);
 					MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
 					Workbook workbook = Workbook.getWorkbook(xlsFile);
 					Sheet sheet = workbook.getSheet(0);
 					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org);
 					if (sheetErrs == null) {
-						setBadRequest();
+						setError(getLocalizedWord("internal_error", lang));
 					}
 				} catch (IllegalArgumentException e) {
-					setBadRequest();
+					addValidationError(getLocalizedWord("incorrect_balanceholder_org_field", lang));
 				}
+
 			} else {
-				setBadRequest();
+				addValidationError(getLocalizedWord("incorrect_xls_file", lang));
 			}
 
 		} catch (BiffException | IOException e) {
