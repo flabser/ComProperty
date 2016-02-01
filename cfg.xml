@@ -18,6 +18,9 @@
         </clientauth>
     </ssl>
     <applications>
+       <app>
+            <name mode="on">Administrator</name>
+        </app>
         <app>
             <name mode="off">Structure</name>
         </app>

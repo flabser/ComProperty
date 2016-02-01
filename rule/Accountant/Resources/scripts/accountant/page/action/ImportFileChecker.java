@@ -10,12 +10,12 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import kz.flabs.localization.LanguageType;
+import kz.flabs.servlets.pojo.Outcome;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
-import kz.nextbase.script._XMLDocument;
 import kz.nextbase.script.events._DoPage;
 import kz.pchelka.env.Environment;
 
@@ -61,8 +61,9 @@ public class ImportFileChecker extends _DoPage {
 				_Tag entry = rootTag.addTag("entry");
 				entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
 			}
-			_XMLDocument xml = new _XMLDocument(rootTag);
-			setContent(xml);
+
+			Outcome outcome = new Outcome(rootTag);
+			setPageContent(outcome);
 		} catch (BiffException | IOException e) {
 			setBadRequest();
 			error(e);

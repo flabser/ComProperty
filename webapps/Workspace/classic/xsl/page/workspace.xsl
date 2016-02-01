@@ -81,7 +81,7 @@
 															<xsl:value-of select="page/captions/login/@caption" />
 														</font>
 													</span>
-													<span style="margin-left:5px; height:16px; padding: 3px 10px 2px 10px; margin-top:5px" class="ui-button ui-widget ui-state-default  ui-button-text-only ui-corner-all">
+												<!-- 	<span style="margin-left:5px; height:16px; padding: 3px 10px 2px 10px; margin-top:5px" class="ui-button ui-widget ui-state-default  ui-button-text-only ui-corner-all">
 														<xsl:attribute name="onclick">javascript:openListRegForm()</xsl:attribute>
 														<font class="button" style=" font-size:11px; margin-top:5px ">
 															Регистрация
@@ -92,7 +92,7 @@
 														<font class="button" style=" font-size:11px; margin-top:5px ">
 															Просмотр объектов
 														</font>
-													</span>
+													</span> -->
 												</td>
 											</tr>
 											<tr>
