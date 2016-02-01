@@ -24,7 +24,8 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="name" value="{//fields/name}" class="form-control"/>
+                                <input type="text" name="name" value="{//fields/name}" class="form-control"
+                                       required="required"/>
                             </div>
                         </div>
                     </div>
@@ -34,7 +35,7 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <select name="code" class="form-control">
+                                <select name="code" class="form-control" required="required">
                                     <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry"
                                                          mode="select_options">
                                         <xsl:with-param name="selected" select="//fields/code"/>

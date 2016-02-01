@@ -59,11 +59,13 @@ nb.dialog = {
         options.dialogFilterListItem = options.dialogFilterListItem || 'li';
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
-        options.errorMessage = options.errorMessage || nb.strings.dialog_select_value;
+        options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
 
         options.onLoad = options.onLoad || null;
+
+        // onExecute
         options.onExecute = options.onExecute || function() {
-            if (nb.form.setValues($dialog, null)) {
+            if (nb.setFormValues($dialog)) {
                 $dialog.dialog('close');
             }
         };

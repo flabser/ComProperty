@@ -1,5 +1,5 @@
 nbApp.dialogChoiceBalanceHolder = function(el) {
-    var form = nb.utils.getForm(el);
+    var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fieldName: 'balanceholder',
@@ -23,7 +23,7 @@ nbApp.dialogChoiceBalanceHolder = function(el) {
 };
 
 nbApp.dialogChoiceReaders = function(el) {
-    var form = nb.utils.getForm(el);
+    var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fieldName: 'reader',

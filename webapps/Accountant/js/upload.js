@@ -46,9 +46,9 @@ function onProgress(e) {
 }
 
 function loadFile(fileId, data) {
-    nb.utils.blockUI();
+    nb.uiBlock();
 
-    var noty = nb.utils.notify({
+    var noty = nb.notify({
         type: 'info',
         message: 'Идет загрузка данных. Пожалуйста подождите...'
     }).show();
@@ -62,14 +62,14 @@ function loadFile(fileId, data) {
             return result;
         },
         error: function(err) {
-            nb.utils.notify({
+            nb.notify({
                 type: 'error',
                 message: 'Ошибка загрузки'
             }).show(2000);
             return err;
         },
         complete: function() {
-            nb.utils.unblockUI();
+            nb.uiUnblock();
             noty.remove();
         }
     });
@@ -84,9 +84,9 @@ function delFile(fileId) {
 }
 
 function checkFile(fileId) {
-    nb.utils.blockUI();
+    nb.uiBlock();
 
-    var noty = nb.utils.notify({
+    var noty = nb.notify({
         type: 'info',
         message: 'Идет проверка структуры файла. Пожалуйста подождите...'
     }).show();
@@ -102,7 +102,7 @@ function checkFile(fileId) {
             return false;
         },
         complete: function() {
-            nb.utils.unblockUI();
+            nb.uiUnblock();
             noty.remove(200);
         }
     })
@@ -148,7 +148,9 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        loadFile(fileName, $tpl.serialize());
+        loadFile(fileName, $tpl.serialize()).then(function() {
+            $tpl.addClass('upload-success');
+        });
     });
 
     $tpl.find('.js-select-balance-holder').on('click', function(e) {

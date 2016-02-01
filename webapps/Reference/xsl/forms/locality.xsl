@@ -24,7 +24,8 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="name" value="{//fields/name}" class="form-control"/>
+                                <input type="text" name="name" value="{//fields/name}" class="form-control"
+                                       required="required"/>
                             </div>
                         </div>
                     </div>
@@ -34,7 +35,8 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="type" value="{//fields/type}" class="form-control"/>
+                                <input type="text" name="type" value="{//fields/type}" class="form-control"
+                                       required="required"/>
                             </div>
                         </div>
                     </div>
@@ -44,7 +46,8 @@
                         </div>
                         <div class="controls">
                             <div class="col-lg-6">
-                                <input type="text" name="district" value="{//fields/district}" class="form-control"/>
+                                <input type="text" name="district" value="{//fields/district}" class="form-control"
+                                       required="required"/>
                             </div>
                         </div>
                     </div>

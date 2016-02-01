@@ -22,6 +22,11 @@ progress[value='0'] {
     padding: 4px;
 }
 
+.upload-success .panel__header {
+    background: #C5E1A5 !important;
+    border-bottom: 2px solid #4CAF50;
+}
+
 .update-file-panel .panel__header,
 .update-file-panel .panel-title {
     font-size: 13px;
@@ -53,9 +58,7 @@ progress[value='0'] {
     margin: 1em;
 }
 
-.update-balance-holder {
-    
-}
+.update-balance-holder {}
 
 .update-readers {
     list-style: none;
