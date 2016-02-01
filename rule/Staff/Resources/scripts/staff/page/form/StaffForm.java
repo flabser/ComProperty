@@ -1,13 +1,13 @@
 package staff.page.form;
 
 import kz.flabs.localization.LanguageType;
+import kz.nextbase.script._Employer;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
-import kz.nextbase.script.struct._Employer;
 
 /**
  * @author Kayra created 07-01-2016
