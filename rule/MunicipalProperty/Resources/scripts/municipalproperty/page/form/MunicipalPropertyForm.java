@@ -24,11 +24,11 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
 		_Action transferAction = new _Action(getLocalizedWord("transfer", lang), getLocalizedWord("transfer", lang), "transfer");
 		transferAction.setURL("Provider?id=transfer");
-		actionBar.addAction(transferAction);
+		// actionBar.addAction(transferAction);
 		if (entity.isTagged("on_balance")) {
 			_Action writtenOffAction = new _Action(getLocalizedWord("written_off", lang), getLocalizedWord("written_off", lang), "written_off");
 			writtenOffAction.setURL("Provider?id=writtenoff");
-			actionBar.addAction(writtenOffAction);
+			// actionBar.addAction(writtenOffAction);
 		}
 		return actionBar;
 	}

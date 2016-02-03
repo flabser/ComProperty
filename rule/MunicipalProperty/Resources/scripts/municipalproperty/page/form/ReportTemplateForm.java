@@ -30,4 +30,5 @@ public class ReportTemplateForm extends _DoPage {
 	public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
 		println(webFormData);
 	}
+
 }
