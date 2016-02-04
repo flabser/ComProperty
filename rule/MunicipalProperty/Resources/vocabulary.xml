@@ -75,6 +75,16 @@
 		<entry lang="KAZ">Балансовая стоимость</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
+			<sentence mode="on" keyword="revaluation_amount">
+	 	<entry lang="RUS">Сумма переоценки</entry>
+		<entry lang="KAZ">Сумма переоценки</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+				<sentence mode="on" keyword="after_revaluation_amount">
+	 	<entry lang="RUS">Сумма переоценки</entry>
+		<entry lang="KAZ">Сумма переоценки</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
 	<sentence mode="on" keyword="Наименование Гос. учреждения (каз.)">
 		<entry lang="KAZ">Мем. мекеменің атауы (қаз.)</entry>
 		<entry lang="ENG"></entry>

@@ -18,6 +18,11 @@
 		<entry lang="KAZ">Іздеу</entry>
 		<entry lang="ENG">Search</entry>
 	</sentence>
+	<sentence mode="on" keyword="search">
+		<entry lang="RUS">Поиск</entry>
+		<entry lang="KAZ">Іздеу</entry>
+		<entry lang="ENG">Search</entry>
+	</sentence>
 	<sentence mode="on" keyword="report_file_type">
 		<entry lang="RUS">Тип файла отчета</entry>
 		<entry lang="KAZ">Есептеме файлының түрi</entry>
@@ -313,6 +318,12 @@
 		<entry lang="ENG">Attachments</entry>
 		<entry lang="CHI">嵌入</entry>
 	</sentence>
+	<sentence mode="on" keyword="attachments">
+		<entry lang="RUS">Вложения</entry>
+		<entry lang="KAZ">Тіркемелер</entry>
+		<entry lang="ENG">Attachments</entry>
+		<entry lang="CHI">嵌入</entry>
+	</sentence>
 	<sentence mode="on" keyword="Прикрепить">
 		<entry lang="KAZ">Тіркеу</entry>
 		<entry lang="ENG">Attach</entry>
@@ -508,7 +519,8 @@
 		<entry lang="ENG">Interface language</entry>
 		<entry lang="CHI">语言</entry>
 	</sentence>
-	<sentence mode="on" keyword="Интерфейс">
+	<sentence mode="on" keyword="interface">
+		<entry lang="RUS">Внешний вид</entry>
 		<entry lang="KAZ">Интерфейс</entry>
 		<entry lang="ENG">interface</entry>
 		<entry lang="CHI">它的界面 </entry>

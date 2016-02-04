@@ -17,17 +17,17 @@ import staff.model.Employee;
 
 public class UserProfile extends _DoPage {
 
-    @Override
-    public void doGET(_Session ses, _WebFormData webFormData, LanguageType lang) {
-        User user = ses.getUser();
-        EmployeeDAO dao = new EmployeeDAO(ses);
-        Employee emp = dao.findByLogin(user.getUserID());
-        setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
-        setContent(emp);
-    }
+	@Override
+	public void doGET(_Session ses, _WebFormData webFormData, LanguageType lang) {
+		User user = ses.getUser();
+		EmployeeDAO dao = new EmployeeDAO(ses);
+		Employee emp = dao.findByLogin(user.getUserID());
+		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
+		setContent(emp);
+	}
 
-    @Override
-    public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
+	@Override
+	public void doPOST(_Session session, _WebFormData webFormData, LanguageType lang) {
 
-    }
+	}
 }
