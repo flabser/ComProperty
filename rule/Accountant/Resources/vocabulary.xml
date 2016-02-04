@@ -3,17 +3,17 @@
 	<sentence mode="on" keyword="incorrect_xls_file">
 		<entry lang="RUS">Не корректный файл Excel 97-2003</entry>
 		<entry lang="KAZ">Не корректный файл Excel 97-2003</entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Microsoft Excel 97-2003 file is not correct</entry>
 	</sentence>
 		<sentence mode="on" keyword="incorrect_balanceholder_org_field">
 		<entry lang="RUS">Организация-балансодержатель не указана или не найдена</entry>
 		<entry lang="KAZ">Организация-балансодержатель не указана или не найдена</entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Balance holder field is not correct</entry>
 	</sentence>
 	<sentence mode="on" keyword="incorrect_readers_field">
 		<entry lang="RUS">Не указаны читатели</entry>
 		<entry lang="KAZ">Не указаны читатели</entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Readers field is not correct</entry>
 	</sentence>
 	
 	

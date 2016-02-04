@@ -2,7 +2,6 @@
 <rule id="Workspace" mode="on" type="global">
     <description>Рабочая область</description>
     <orgname>АИС "Коммунальное имущество"</orgname>
-    <liccount>100</liccount>
     <logo>logo.png</logo>
     <appname>Рабочая область</appname>
     <database autodeploy="OFF">
@@ -18,49 +17,13 @@
         <password>smartdoc</password>
     </database>
     <externalmodule type="STAFF">Structure</externalmodule>
-    <daemons>
-        <cyclecontrol>
-            <scheduler mode="off">
-                <mininterval daysofweek="WORKWEEK,">360</mininterval>
-            </scheduler>
-        </cyclecontrol>
-        <timewaiting>
-            <scheduler mode="off">
-                <mininterval daysofweek="WORKWEEK,">360</mininterval>
-            </scheduler>
-        </timewaiting>
-        <recalculator>
-            <scheduler mode="off">
-                <mininterval daysofweek="WORKWEEK,">360</mininterval>
-            </scheduler>
-        </recalculator>
-    </daemons>
-    <entrypoint>Provider?type=static&amp;id=start</entrypoint>
     <defaultredirecturl>Provider?type=page&amp;id=workspace</defaultredirecturl>
     <langs>
         <entry id="RUS">Русский</entry>
         <entry id="KAZ">Казакша</entry>
         <!-- <entry id="ENG">English</entry> <entry id="CHN">中国</entry> -->
     </langs>
-    <roles>
-        <entry id="system_administrator">Cистемный администратор АИС</entry>
-        <entry id="registrator">регистратор – сотрудник, в должностные функции
-            которого определено ведение и регистрация тендеров АИС «Коммунальное
-            Имущество»
-        </entry>
-        <entry id="rent">разрешает подавать заявление на аренду объектов</entry>
-        <entry id="tender">разрешает подавать заявление на участие в тендере</entry>
-        <entry id="user">Зарегистрированый пользователь. разрешает просмотр
-            объектов объявленных в аренду, текущие тендеры, подавать заявления на
-            аренду
-        </entry>
-        <entry id="guest">Не зарегистрированый пользователь. разрешает просмотр
-            объектов объявленных в аренду, текущие тендеры
-        </entry>
-    </roles>
-    <skins>
-        <entry default="on" id="classic" path="./webapps/Workspace/classic/xsl">Classic</entry>
+     <skins>
+        <entry default="on" id="classic" path="./webapps/Workspace/xsl">Classic</entry>
     </skins>
-    <markdelaysec>5</markdelaysec>
-    <eds mode="OFF"></eds>
 </rule>

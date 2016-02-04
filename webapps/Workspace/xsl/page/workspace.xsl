@@ -12,8 +12,8 @@
 			<head>
 				<title>NextBase - WorkSpace</title>
 				<script type="text/javascript" src="/SharedResources/jquery/js/jquery-1.4.2.js"/>
-				<script type="text/javascript" src="classic/scripts/start.js"/>
-				<script type="text/javascript" src="classic/scripts/workspace.form.js"/>
+				<script type="text/javascript" src="scripts/start.js"/>
+				<script type="text/javascript" src="scripts/workspace.form.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/cookie/jquery.cookie.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/ui/jquery.ui.widget.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/ui/jquery.ui.core.js"/>
@@ -25,13 +25,13 @@
 				<script type="text/javascript" src="/SharedResources/jquery/js/hotnav/jquery.hotkeys.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/hotnav/jquery.hotnav.js"/>
 				<script type="text/javascript" src="/SharedResources/jquery/js/ui/jquery.ui.datepicker.js"/>
-				<link type="text/css" rel="stylesheet" href="classic/css/main.css"/>
-				<link type="text/css" rel="stylesheet" href="classic/css/start.css"/>
+				<link type="text/css" rel="stylesheet" href="css/main.css"/>
+				<link type="text/css" rel="stylesheet" href="css/start.css"/>
 				<link type="text/css" rel="stylesheet" href="/SharedResources/jquery/css/base/jquery-ui-1.8.2.redmont.css"/>
 			</head>
 			<body>
 				<div style="position:absolute; top:0px; bottom:0px; left:0px; right:0px; min-height:600px; z-index:2">
-					<div style="width:100%; height:80px; background:url(classic/img/body.png)">
+					<div style="width:100%; height:80px; background:url(img/body.png)">
 						<span style="padding-left:10px; text-align:left;">
 							<font style="font-size:2.7em; color:white; font-family:Roboto, Arial, Tahoma; margin-left:12px; vertical-align:-53px"><xsl:value-of select="page/response/content/org"/></font>
 							<div style="margin-top:10px;">

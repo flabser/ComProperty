@@ -5,8 +5,7 @@ import java.util.List;
 
 import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
-import kz.flabs.users.User;
-import kz.nextbase.script._IXMLContent;
+import kz.nextbase.script._IPOJOObject;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -24,16 +23,15 @@ import municipalproperty.model.constants.KufType;
 
 public abstract class MunicipalPropertyView extends _DoPage {
 
-	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
+	protected _IPOJOObject getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
 		return getPropertyViewPage(session, formData, params, lang);
 	}
 
-	protected _IXMLContent getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
-		User user = session.getUser();
+	protected _IPOJOObject getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
 		int pageNum = 1;
-		int pageSize = user.getSession().pageSize;
+		int pageSize = session.getPageSize();
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}

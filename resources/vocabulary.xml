@@ -280,22 +280,35 @@
 		<entry lang="ENG">Close</entry>
 		<entry lang="CHI">关闭</entry>
 	</sentence>
-	<sentence mode="on" keyword="Основные свойства">
+	<sentence mode="on" keyword="basic_properties">
+		<entry lang="RUS">Основные свойства</entry>
 		<entry lang="KAZ">Негізгі қасиеттері</entry>
 		<entry lang="ENG">Basic properties</entry>
 		<entry lang="CHI">基本性能</entry>
 	</sentence>
-	<sentence mode="on" keyword="Свойства">
+	<sentence mode="on" keyword="bin">
+		<entry lang="RUS">БИН</entry>
+		<entry lang="KAZ">БИН</entry>
+		<entry lang="ENG">BIN</entry>
+	</sentence>
+	<sentence mode="on" keyword="properties">
+		<entry lang="RUS">Свойства</entry>
 		<entry lang="KAZ">Қасиеттері</entry>
 		<entry lang="ENG">Properties</entry>
 		<entry lang="CHI">物业</entry>
+	</sentence>
+	<sentence mode="on" keyword="description">
+		<entry lang="RUS">Описание</entry>
+		<entry lang="KAZ">Сипаттама</entry>
+		<entry lang="ENG">Description</entry>
 	</sentence>
 	<sentence mode="on" keyword="Подписал ">
 		<entry lang="KAZ">Қол қойды</entry>
 		<entry lang="ENG">Signed by</entry>
 		<entry lang="CHI">签署</entry>
 	</sentence>
-	<sentence mode="on" keyword="Вложения">
+	<sentence mode="on" keyword="files">
+		<entry lang="RUS">Вложения</entry>
 		<entry lang="KAZ">Тіркемелер</entry>
 		<entry lang="ENG">Attachments</entry>
 		<entry lang="CHI">嵌入</entry>
@@ -310,17 +323,20 @@
 		<entry lang="ENG">Implementing progress</entry>
 		<entry lang="CHI">当然，执行</entry>
 	</sentence>
-	<sentence mode="on" keyword="Автор">
+	<sentence mode="on" keyword="author">
+		<entry lang="RUS">Автор</entry>
 		<entry lang="KAZ">Автор</entry>
 		<entry lang="ENG">Author</entry>
 		<entry lang="CHI">笔者</entry>
 	</sentence>
-	<sentence mode="on" keyword="Страница">
+	<sentence mode="on" keyword="Page">
+		<entry lang="RUS">Страница</entry>
 		<entry lang="KAZ">Бет</entry>
 		<entry lang="ENG">Page</entry>
 		<entry lang="CHI">首页</entry>
 	</sentence>
-	<sentence mode="on" keyword="страница">
+	<sentence mode="on" keyword="page">
+		<entry lang="RUS">страница</entry>
 		<entry lang="KAZ">бет</entry>
 		<entry lang="ENG">page</entry>
 		<entry lang="CHI">首页</entry>
@@ -330,15 +346,11 @@
 		<entry lang="ENG">of</entry>
 		<entry lang="CHI">的</entry>
 	</sentence>
-	<sentence mode="on" keyword="Дополнительно">
+	<sentence mode="on" keyword="additional">
+		<entry lang="RUS">Дополнительно</entry>
 		<entry lang="KAZ">Қосымша</entry>
 		<entry lang="ENG">More</entry>
 		<entry lang="CHI">此外</entry>
-	</sentence>
-	<sentence mode="on" keyword="Файлы">
-		<entry lang="KAZ">Файлдар</entry>
-		<entry lang="ENG">Files</entry>
-		<entry lang="CHI">档</entry>
 	</sentence>
 	<sentence mode="on" keyword="Состояние документа">
 		<entry lang="KAZ">Құжаттың күйі</entry>
@@ -450,9 +462,10 @@
 		<entry lang="ENG">Save</entry>
 		<entry lang="CHI">保存</entry>
 	</sentence>
-	<sentence mode="on" keyword="Примечание">
+	<sentence mode="on" keyword="notes">
+		<entry lang="RUS">Примечания</entry>
 		<entry lang="KAZ">Ескерту</entry>
-		<entry lang="ENG">Note</entry>
+		<entry lang="ENG">Notes</entry>
 		<entry lang="CHI">注意：</entry>
 	</sentence>
 	<sentence mode="on" keyword="дата">

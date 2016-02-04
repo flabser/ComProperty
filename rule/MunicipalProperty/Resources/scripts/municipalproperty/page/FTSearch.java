@@ -31,7 +31,7 @@ public class FTSearch extends _DoPage {
 		}
 		User user = session.getUser();
 		int pageNum = 1;
-		int pageSize = user.getSession().pageSize;
+		int pageSize = session.pageSize;
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}

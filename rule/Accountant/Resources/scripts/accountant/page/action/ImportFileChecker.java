@@ -10,7 +10,6 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import kz.flabs.localization.LanguageType;
-import kz.flabs.servlets.pojo.Outcome;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Session;
@@ -29,6 +28,7 @@ public class ImportFileChecker extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+		println(formData);
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
@@ -62,8 +62,7 @@ public class ImportFileChecker extends _DoPage {
 				entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
 			}
 
-			Outcome outcome = new Outcome(rootTag);
-			setPageContent(outcome);
+			setContent(rootTag);
 		} catch (BiffException | IOException e) {
 			setBadRequest();
 			error(e);

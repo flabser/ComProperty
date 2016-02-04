@@ -122,7 +122,7 @@ public class RegistryReport extends _DoPage {
 				exporter.exportReport();
 			}
 
-			showFile(filePath, fileName);
+			// showFile(filePath, fileName);
 			Environment.fileToDelete.add(filePath);
 			log("Report \"" + reportName + "\" is ready, estimated time is " + Util.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {

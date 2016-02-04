@@ -29,12 +29,12 @@
                     </li>
                     <li>
                         <a href="#tabs-2" role="tab" data-toggle="tab">
-                            <xsl:value-of select="//captions/documentsoftitle/@caption"/>
+                            <xsl:value-of select="//captions/documents_of_title/@caption"/>
                         </a>
                     </li>
                     <li>
                         <a href="#tabs-3" role="tab" data-toggle="tab">
-                            <xsl:value-of select="//captions/note/@caption"/>
+                            <xsl:value-of select="//captions/notes/@caption"/>
                         </a>
                     </li>
                     <li>
@@ -57,20 +57,20 @@
                             <xsl:if test="//fields/balanceholder != ''">
                                 <div class="form-group">
                                     <div class="control-label">
-                                        <xsl:value-of select="//captions/balanceholder/@caption"/>
+                                        <xsl:value-of select="//captions/balance_holder/@caption"/>
                                     </div>
                                     <div class="controls">
                                         <div class="field-wrapper col-md-6">
                                             <div class="form-control selection" data-input="balanceholder"
                                                  onclick="nbApp.choiceBalanceHolder(this)">
-                                                <xsl:value-of select="//fields/balanceholdername"/>
+                                                <xsl:value-of select="//fields/balanceholder"/>
                                             </div>
                                             <input type="hidden" name="balanceholder" value="{//fields/balanceholder}"
                                                    required="required"/>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                             <!--    <div class="form-group">
                                     <div class="control-label">
                                         <xsl:value-of select="//captions/namekaz/@caption"/>
                                     </div>
@@ -81,7 +81,7 @@
                                                    required="required"/>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <div class="control-label">
                                         <xsl:value-of select="//captions/bin/@caption"/>
@@ -100,7 +100,7 @@
                             <!-- Инвентарный номер -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/invnumber/@caption"/>
+                                    <xsl:value-of select="//captions/inv_number/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-2">
@@ -112,7 +112,7 @@
                             <!-- Наименование объекта -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/objectname/@caption"/>
+                                    <xsl:value-of select="//captions/object_name/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-6">
@@ -138,7 +138,7 @@
                             <!-- Код права на имущество -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/propertycode/@caption"/>
+                                    <xsl:value-of select="//captions/property_code/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-3">
@@ -146,11 +146,11 @@
                                                class="form-control" readonly="readonly"/>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                             <!-- Дата принятия на баланс -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/acceptancedate/@caption"/>
+                                    <xsl:value-of select="//captions/acceptance_date/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-2">
@@ -158,9 +158,9 @@
                                                class="form-control"/>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                           
                             <!-- Поле "Область" -->
-                            <div class="form-group">
+                          <!--   <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/region/@caption"/>
                                 </div>
@@ -174,7 +174,7 @@
                                     <input type="hidden" name="region" value="{//fields/region}"/>
                                 </div>
                             </div>
-                            <!-- Поле "Город" -->
+                            Поле "Город"
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/city/@caption"/>
@@ -189,7 +189,7 @@
                                     <input type="hidden" name="region" value="{//fields/city}"/>
                                 </div>
                             </div>
-                            <!-- Поле "Район" -->
+                            Поле "Район"
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/district/@caption"/>
@@ -204,7 +204,7 @@
                                     <input type="hidden" name="region" value="{//fields/district}"/>
                                 </div>
                             </div>
-                            <!-- Поле "Улица" -->
+                            Поле "Улица"
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/street/@caption"/>
@@ -219,7 +219,7 @@
                                     <input type="hidden" name="region" value="{//fields/street}"/>
                                 </div>
                             </div>
-                            <!-- Поле "Дом" -->
+                            Поле "Дом"
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/home/@caption"/>
@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Поле "Адрес" -->
+                            Поле "Адрес"
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/address/@caption"/>
@@ -242,7 +242,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Количество -->
+                            Количество
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/amount/@caption"/>
@@ -253,11 +253,11 @@
                                                class="form-control"/>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Первоначальная стоимость -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/originalcost/@caption"/>
+                                    <xsl:value-of select="//captions/original_cost/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-2">
@@ -266,10 +266,34 @@
                                     </div>
                                 </div>
                             </div>
+                                 <!-- Накопленная амортизация -->
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/cumulative_depreciation/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <div class="field-wrapper col-md-2">
+                                        <input type="number" name="cumulativedepreciation"
+                                               value="{//fields/cumulativedepreciation}" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                              <!-- Убыток от обесценения -->
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/impairment_loss/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <div class="field-wrapper col-md-2">
+                                        <input type="number" name="impairmentloss"
+                                               value="{//fields/impairmentloss}" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Балансовая стоимость -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/balancecost/@caption"/>
+                                    <xsl:value-of select="//captions/balance_cost/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-2">
@@ -278,43 +302,44 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Оценочная стоимость-->
+                         
+                            <!-- Сумма переоценки-->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/estimatedcost/@caption"/>
+                                    <xsl:value-of select="//captions/revaluation_amount/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-2">
-                                        <input type="number" name="estimatedcost" value="{//fields/estimatedcost}"
+                                        <input type="number" name="revaluationamount" value="{//fields/revaluationamount}"
                                                class="form-control"/>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Остаточная стоимость-->
+                            <!-- Балансовая стоимость после переоценки-->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/residualcost/@caption"/>
+                                    <xsl:value-of select="//captions/after_revaluation_amount/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-2">
-                                        <input type="number" name="residualcost" value="{//fields/residualcost}"
+                                        <input type="number" name="afterrevaluationamount" value="{//fields/afterevaluationamount}"
                                                class="form-control"/>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Предельная норма амортизации -->
+                              <!-- Основание поступления на баланс -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/limitdepreciation/@caption"/>
+                                    <xsl:value-of select="//captions/receiving_reason/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <div class="field-wrapper col-md-2">
-                                        <input type="number" name="limitdepreciation"
-                                               value="{//fields/limitdepreciation}" class="form-control"/>
+                                    <div class="field-wrapper col-md-3">
+                                        <input type="text" name="receivingreason" value="{//fields/receivingreason}"
+                                               class="form-control" readonly="readonly"/>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Основание поступления в Гос. собственность-->
+<!--                             Основание поступления в Гос. собственность
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/receiptbasisingproperty/@caption"/>
@@ -325,21 +350,9 @@
                                                value="{//fields/receiptbasisingproperty}" class="form-control"/>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Основание поступления на баланс-->
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/receiptbasisinbalance/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <div class="field-wrapper col-md-6">
-                                        <input type="text" name="receiptbasisinbalance"
-                                               value="{//fields/receiptbasisinbalance}" class="form-control"/>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>   -->                         
                             <!-- Основание снятия с баланса -->
-                            <div class="form-group">
+                           <!--  <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/orderofremovalfrombalance/@caption"/>
                                 </div>
@@ -349,7 +362,7 @@
                                                value="{//fields/orderofremovalfrombalance}" class="form-control"/>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Модель -->
                             <div class="form-group">
                                 <div class="control-label">
@@ -361,8 +374,51 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Цвет -->
+                              <!-- Год ввода в эксплуатацию -->
                             <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/commissioning_year/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <div class="field-wrapper col-md-1">
+                                        <input type="text" name="commissioningyear" value="{//fields/commissioningyear}" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                              <!-- Год приобретения -->
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/acquisition_year/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <div class="field-wrapper col-md-1">
+                                        <input type="text" name="acquisitionyear" value="{//fields/acquisitionyear}"
+                                               class="form-control" readonly="readonly"/>
+                                    </div>
+                                </div>
+                            </div>
+                               <!-- Сведения о годности к эксплуатации -->
+                              <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/is_ready_to_use/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <div class="field-wrapper col-lg-6">
+ 
+                                    <label class="btn btn-sm">
+                                        <input type="checkbox" name="isreadytouse" value="{//fields/isreadytouse}"/>
+                                        <span>
+                                              Годен
+                                        </span>
+                                    </label>
+                              
+                            </div>
+                        </div>
+                    </div>
+                       
+                          
+                            <!-- Цвет -->
+                            <!-- <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/color/@caption"/>
                                 </div>
@@ -372,7 +428,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Ширина -->
+                            Ширина
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/width/@caption"/>
@@ -384,7 +440,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Высота -->
+                            Высота
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/height/@caption"/>
@@ -396,7 +452,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Глубина -->
+                            Глубина
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/depth/@caption"/>
@@ -408,7 +464,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Год выпуска -->
+                            Год выпуска
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/yearrelease/@caption"/>
@@ -419,11 +475,15 @@
                                                class="date-year form-control"/>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            
+                            
+                            
+                          
                             <!-- Изменение первоначальной стоимости -->
-                            <fieldset class="fieldset">
+                              <fieldset class="fieldset">
                                 <legend class="legend">
-                                    <xsl:value-of select="//captions/сhangeoriginalcost/@caption"/>
+                                    <xsl:value-of select="//captions/сhange_original_cost/@caption"/>
                                 </legend>
                                 <!-- Ремонт-->
                                 <div class="form-group">
@@ -518,7 +578,7 @@
                                 </div>
                             </fieldset>
                         </fieldset>
-                    </div>
+                    </div> -->
                     <div role="tabpanel" class="tab-pane" id="tabs-2">
                         <fieldset class="fieldset">
                             <xsl:if test="$editmode != 'edit'">
@@ -569,12 +629,12 @@
                             <!-- Примечание -->
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/note/@caption"/>
+                                    <xsl:value-of select="//captions/notes/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="field-wrapper col-md-6">
                                         <textarea name="technicalpassport">
-                                            <xsl:value-of select="//fields/note"/>
+                                            <xsl:value-of select="//fields/notes"/>
                                         </textarea>
                                     </div>
                                 </div>
@@ -582,15 +642,15 @@
                         </fieldset>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-4">
-                        <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
+                       <!--  <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="type" value="rtfcontent"/>
                             <input type="hidden" name="formsesid" value="{formsesid}"/>
-                            <!-- Секция "Вложения" -->
+                            Секция "Вложения"
                             <div display="block" id="att">
                                 <br/>
-                                <!--<xsl:call-template name="attach"/>-->
+                                <xsl:call-template name="attach"/>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-5">
                         <!--<xsl:call-template name="docinfo"/>-->
@@ -599,12 +659,7 @@
             </section>
             <input type="hidden" name="type" value="save"/>
             <input type="hidden" name="id" value="{@id}"/>
-            <input type="hidden" name="author" value="{//fields/author/@attrval}"/>
-            <input type="hidden" name="doctype" value="{document/@doctype}"/>
-            <input type="hidden" name="key" value="{document/@docid}"/>
-            <input type="hidden" name="parentdocid" value="{document/@parentdocid}"/>
-            <input type="hidden" name="parentdoctype" value="{document/@parentdoctype}"/>
-            <input type="hidden" name="isrented" value="{//fields/isrented}"/>
+            <input type="hidden" name="docid" value="{//document/@docid}"/>
         </form>
     </xsl:template>
 

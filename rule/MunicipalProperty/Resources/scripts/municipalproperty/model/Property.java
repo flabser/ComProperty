@@ -94,6 +94,8 @@ public class Property extends SecureAppEntity {
 	@Column(name = "ready_to_use")
 	private boolean readyToUse;
 
+	private String notes = "";
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
 	private List<Tag> tags;
@@ -286,6 +288,14 @@ public class Property extends SecureAppEntity {
 		this.acquisitionYear = acquisitionYear;
 	}
 
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	@Override
 	public String getDefaultFormName() {
 		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
@@ -321,6 +331,7 @@ public class Property extends SecureAppEntity {
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<impairmentloss>" + impairmentLoss + "</impairmentloss>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
+		chunk.append("<kof>" + kof + "</kof>");
 		chunk.append("<kuf>" + kuf.getCode() + "</kuf>");
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + originalCost + "</originalcost>");

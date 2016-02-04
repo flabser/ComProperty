@@ -21,7 +21,7 @@ public class GetOrganizationsAction extends _DoPage {
 	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
 		String keyword = formData.getEncodedValueSilently("keyword");
 		int pageNum = 1;
-		int pageSize = ses.getUser().getSession().pageSize;
+		int pageSize = ses.pageSize;
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}

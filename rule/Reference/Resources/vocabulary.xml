@@ -120,12 +120,11 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="receiving_reason">
-        <entry lang="ENG"></entry>
-        <entry lang="RUS">Основание поступления на баланс</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
+   <sentence mode="on" keyword="receiving_reason">
+		<entry lang="RUS">Основание поступления на баланс</entry>
+		<entry lang="KAZ">Балансқа өту негізі</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
     <sentence mode="on" keyword="tags">
         <entry lang="ENG">Tags</entry>
         <entry lang="RUS">Метки</entry>

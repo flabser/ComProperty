@@ -18,7 +18,6 @@ public class Workspace extends _DoPage {
 		publishElement("img", ent.getLogoImg());
 		publishElement("appname", ent.getAppName());
 		publishElement("availablelangs", ent.getAvailableLangs());
-		publishElement("availableskins", ent.getAvailableSkins());
 		publishElement("availableapps", ent.getAvailableApps());
 
 	}

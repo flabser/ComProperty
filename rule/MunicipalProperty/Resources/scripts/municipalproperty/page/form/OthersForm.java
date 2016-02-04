@@ -10,7 +10,6 @@ import kz.nextbase.script._Helper;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.dao.PersonalEstateDAO;
@@ -133,8 +132,7 @@ public class OthersForm extends _DoPage {
 			entity.addEditor("[operator]");
 			// doc.addFile("rtfcontent", webFormData);
 
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("Документ сохранен", lang));
+			addMsg(getLocalizedWord("Документ сохранен", lang));
 			/*
 			 * if (doc.isNewDoc) { returnURL.changeParameter("page", "0"); }
 			 */
@@ -148,7 +146,6 @@ public class OthersForm extends _DoPage {
 			// .getGlossaryCustomFieldValueByDOCID(doc.getValueString("propertycode").toInteger(),
 			// "code"));
 			// doc.setViewDate(doc.getValueDate("acceptancedate"));
-			setRedirectURL(returnURL);
 
 			if (isNew) {
 				dao.add(entity);

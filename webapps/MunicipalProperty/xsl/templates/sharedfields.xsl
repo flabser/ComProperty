@@ -9,13 +9,13 @@
             </div>
             <div class="controls">
                 <div class="field-wrapper col-md-2">
-                    <input type="text" name="invnumber" value="{//fields/kof}" class="form-control"/>
+                    <input type="text" name="kof" value="{//fields/kof}" class="form-control"/>
                 </div>
                 <div style="float:left;padding:4px">
                     <xsl:value-of select="'/'"/>
                 </div>
                 <div class="field-wrapper col-md-1">
-                    <input type="text" name="invnumber" value="{//fields/kuf}" class="form-control"/>
+                    <input type="text" name="kuf" value="{//fields/kuf}" class="form-control"/>
                 </div>
             </div>
         </div>

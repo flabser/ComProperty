@@ -7,7 +7,6 @@ import kz.flabs.users.User;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
-import kz.nextbase.script._URL;
 import kz.nextbase.script._WebFormData;
 import reference.dao.BuildingMaterialDAO;
 import reference.model.BuildingMaterial;
@@ -63,9 +62,8 @@ public class BuildingMaterialForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			_URL returnURL = session.getURLOfLastPage();
-			localizedMsgBox(getLocalizedWord("document_was_saved_succesfully", lang));
-			setRedirectURL(returnURL);
+			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+
 		} catch (_Exception e) {
 			log(e);
 		}
