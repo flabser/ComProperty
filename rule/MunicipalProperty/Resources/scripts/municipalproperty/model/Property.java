@@ -321,18 +321,27 @@ public class Property extends SecureAppEntity {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
 		chunk.append("<author>" + author + "</author>");
-		chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
+		try {
+			chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
+		} catch (NullPointerException e) {
+			chunk.append("<acceptancedate></acceptancedate>");
+		}
 		chunk.append("<acquisitionyear>" + acquisitionYear + "</acquisitionyear>");
 		chunk.append("<assignment>" + assignment + "</assignment>");
 		chunk.append("<balancecost>" + balanceCost + "</balancecost>");
-		chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
+		chunk.append("<balanceholder>" + balanceHolder.getName() + "</balanceholder>");
+		chunk.append("<balanceholderbin>" + balanceHolder.getBin() + "</balanceholderbin>");
 		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
 		chunk.append("<cumulativedepreciation>" + cumulativeDepreciation + "</cumulativedepreciation>");
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<impairmentloss>" + impairmentLoss + "</impairmentloss>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
 		chunk.append("<kof>" + kof + "</kof>");
-		chunk.append("<kuf>" + kuf.getCode() + "</kuf>");
+		try {
+			chunk.append("<kuf>" + kuf.getCode() + "</kuf>");
+		} catch (NullPointerException e) {
+			chunk.append("<acceptancedate></acceptancedate>");
+		}
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + originalCost + "</originalcost>");
 		chunk.append("<propertycode>" + propertyCode + "</propertycode>");
@@ -340,11 +349,15 @@ public class Property extends SecureAppEntity {
 		chunk.append("<receivingreason>" + receivingReason + "</receivingreason>");
 		chunk.append("<residualcost>" + residualCost + "</residualcost>");
 		chunk.append("<revaluationamount>" + revaluationAmount + "</revaluationamount>");
-		String tagsAsText = "";
-		for (Tag t : tags) {
-			tagsAsText += t.getLocalizedName().get(lang);
+		try {
+			String tagsAsText = "";
+			for (Tag t : tags) {
+				tagsAsText += t.getLocalizedName().get(lang);
+			}
+			chunk.append("<tags>" + tagsAsText + "</tags>");
+		} catch (NullPointerException e) {
+			chunk.append("<tags></tags>");
 		}
-		chunk.append("<tags>" + tagsAsText + "</tags>");
 		chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
 		return chunk.toString();
 	}

@@ -28,6 +28,9 @@ public class Organization extends Staff {
 	@JoinTable(name = "org_org_label")
 	private List<OrganizationLabel> labels;
 
+	@Column(length = 12)
+	private String bin;
+
 	public List<Department> getDepartments() {
 		return departments;
 	}
@@ -46,6 +49,14 @@ public class Organization extends Staff {
 
 	public void setEmployers(List<Employee> employers) {
 		this.employers = employers;
+	}
+
+	public String getBin() {
+		return bin;
+	}
+
+	public void setBin(String bin) {
+		this.bin = bin;
 	}
 
 }

@@ -54,7 +54,7 @@
                             <xsl:if test="$editmode != 'edit'">
                                 <xsl:attribute name="disabled" select="'disabled'"/>
                             </xsl:if>
-                            <xsl:if test="//fields/balanceholder != ''">
+       
                                 <div class="form-group">
                                     <div class="control-label">
                                         <xsl:value-of select="//captions/balance_holder/@caption"/>
@@ -87,13 +87,13 @@
                                         <xsl:value-of select="//captions/bin/@caption"/>
                                     </div>
                                     <div class="controls">
-                                        <div class="field-wrapper col-md-6">
-                                            <input type="text" name="bin" value="{//fields/bin}" class="form-control"
+                                        <div class="field-wrapper col-md-2">
+                                            <input type="text" name="balanceholderbin" value="{//fields/balanceholderbin}" class="form-control"
                                                    required="required"/>
                                         </div>
                                     </div>
                                 </div>
-                            </xsl:if>
+                        
 
                             <xsl:call-template name="kof_kuf"/>
 

@@ -1,5 +1,6 @@
 package municipalproperty.page.form;
 
+import java.util.Date;
 import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
@@ -18,6 +19,7 @@ import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
+import staff.model.Organization;
 
 public class FurnitureForm extends MunicipalPropertyForm {
 
@@ -32,6 +34,22 @@ public class FurnitureForm extends MunicipalPropertyForm {
 		} else {
 			entity = new PersonalEstate();
 			entity.setAuthor(user);
+			entity.setRegDate(new Date());
+			Organization tempEmptyOrg = new Organization();
+			tempEmptyOrg.setName("");
+			tempEmptyOrg.setBin("");
+			entity.setBalanceHolder(tempEmptyOrg);
+			entity.setKuf(KufType.FURNITURE);
+			entity.setKof("");
+			entity.setInvNumber("");
+			entity.setObjectName("");
+			PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
+			entity.setPropertyCode(pcDao.findByName("Собственность"));
+			entity.setModel("");
+			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
+			entity.setReceivingReason(rrDao.findByName("Приобретено"));
+			entity.setReadyToUse(true);
+
 		}
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
