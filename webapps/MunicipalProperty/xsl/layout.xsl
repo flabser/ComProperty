@@ -98,7 +98,7 @@
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)" data-toggle-theme="theme1">
-                                        типа theme1
+                                       Сменить оформление
                                     </a>
                                 </li>
                                 <li class="divider"></li>

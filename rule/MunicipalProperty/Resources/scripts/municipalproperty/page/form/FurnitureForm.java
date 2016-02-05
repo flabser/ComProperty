@@ -76,7 +76,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 				isNew = true;
 				entity = new PersonalEstate();
 			} else {
-				entity = dao.findById(UUID.fromString(id));
+				entity = dao.findById(id);
 			}
 
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
@@ -86,7 +86,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			entity.setKuf(KufType.getType(formData.getNumberValueSilently("kuf", 0)));
 			entity.setDescription(formData.getValueSilently("description"));
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
-			PropertyCode pcEntity = pcDao.findByName(formData.getValueSilently("propertycode"));
+			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
 			if (pcEntity != null && !entity.getPropertyCode().equals(pcEntity)) {
 				entity.setPropertyCode(pcEntity);
 			}
@@ -97,7 +97,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			entity.setRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("afterrevaluationamount")));
 
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
-			ReceivingReason rrEntity = rrDao.findByName(formData.getValueSilently("receivingreason"));
+			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			if (rrEntity != null && !entity.getPropertyCode().equals(rrEntity)) {
 				entity.setReceivingReason(rrEntity);
 			}
@@ -106,6 +106,13 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
 			entity.setAcceptanceDate(_Helper.convertStringToDate(formData.getValue("acceptancedate")));
+			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
+			if (rtu == 1) {
+				entity.setReadyToUse(true);
+			} else {
+				entity.setReadyToUse(false);
+			}
+
 			User user = session.getUser();
 			entity.addReaderEditor(user);
 
@@ -123,6 +130,12 @@ public class FurnitureForm extends MunicipalPropertyForm {
 
 	private boolean validate(_WebFormData webFormData, LanguageType lang) {
 		boolean validationState = true;
+
+		if (webFormData.getValueSilently("objectname").isEmpty()) {
+			addValidationError("Поле \"Наименование\" не заполнено.");
+			validationState = false;
+		}
+
 		if (webFormData.getValueSilently("objectname").isEmpty()) {
 			addValidationError("Поле \"Наименование\" не заполнено.");
 			validationState = false;

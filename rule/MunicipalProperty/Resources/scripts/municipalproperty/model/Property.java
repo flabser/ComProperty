@@ -344,9 +344,9 @@ public class Property extends SecureAppEntity {
 		}
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + originalCost + "</originalcost>");
-		chunk.append("<propertycode>" + propertyCode + "</propertycode>");
+		chunk.append("<propertycode>" + propertyCode.getId() + "</propertycode>");
 		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
-		chunk.append("<receivingreason>" + receivingReason + "</receivingreason>");
+		chunk.append("<receivingreason>" + receivingReason.getId() + "</receivingreason>");
 		chunk.append("<residualcost>" + residualCost + "</residualcost>");
 		chunk.append("<revaluationamount>" + revaluationAmount + "</revaluationamount>");
 		try {

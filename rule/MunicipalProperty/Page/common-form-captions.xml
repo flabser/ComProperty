@@ -8,6 +8,7 @@
    <caption name="save_close"></caption>
     <caption name="close"></caption>
     <caption name="bin"></caption>
+    <caption name="editable"></caption>
     <caption name="namerus">Наименование Гос. учреждения (рус.)</caption>
     <caption name="namekaz">Наименование Гос. учреждения (каз.)</caption>
     <caption name="inv_number"></caption>
@@ -36,8 +37,7 @@
     
     <caption name="estimatedcost">Оценочная стоимость</caption>
     <caption name="residualcost">Остаточная стоимость</caption>
-    <caption name="receiving_reason">Основание поступления на баланс</caption>
-    <caption name="cumulativedepreciation">Накопленная амортизация</caption>
+    <caption name="receiving_reason"></caption>
     <caption name="deterioration">Износ</caption>
     <caption name="repair">Ремонт</caption>
     <caption name="amount">Количество</caption>

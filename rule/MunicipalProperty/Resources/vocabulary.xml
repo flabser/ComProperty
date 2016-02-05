@@ -62,8 +62,8 @@
 	</sentence>
 	 <sentence mode="on" keyword="property_code">
         <entry lang="ENG">Property code</entry>
-        <entry lang="RUS">Код собственности</entry>
-        <entry lang="KAZ"></entry>       
+        <entry lang="RUS">Код права на имущество</entry>
+        <entry lang="KAZ">Мүлікке құқықтың коды</entry>       
     </sentence>
 	<sentence mode="on" keyword="balance_holder">
 	 	<entry lang="RUS">Балансодержатель</entry>
@@ -80,9 +80,14 @@
 		<entry lang="KAZ">Сумма переоценки</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-				<sentence mode="on" keyword="after_revaluation_amount">
+	<sentence mode="on" keyword="after_revaluation_amount">
 	 	<entry lang="RUS">Сумма переоценки</entry>
 		<entry lang="KAZ">Сумма переоценки</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+	<sentence mode="on" keyword="commissioning_year">
+	 	<entry lang="RUS">Год ввода в эксплуатацию</entry>
+		<entry lang="KAZ">Год ввода в эксплуатацию</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Наименование Гос. учреждения (каз.)">
@@ -102,10 +107,7 @@
 		<entry lang="KAZ">Объектінің сипаттамасы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Код права на имущество">
-		<entry lang="KAZ">Мүлікке құқықтың коды</entry>
-		<entry lang="ENG"></entry>
-	</sentence>
+	
 	<sentence mode="on" keyword="acquisition_year">
 		<entry lang="RUS">Год прибретения</entry>
 		<entry lang="KAZ">Год прибретения</entry>
