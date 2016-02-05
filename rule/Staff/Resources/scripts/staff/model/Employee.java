@@ -17,12 +17,13 @@ import javax.validation.constraints.NotNull;
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.users.User;
+import kz.lof.dataengine.system.IEmployee;
 import staff.exception.EmployеeException;
 
 @Entity
 @Table(name = "employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
-public class Employee extends Staff {
+public class Employee extends Staff implements IEmployee {
 	@Column(nullable = false, length = 32)
 	private String login;
 
