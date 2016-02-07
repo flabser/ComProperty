@@ -802,7 +802,7 @@ nb.xhr.saveDocument = function(options) {
         },
         success: function(xml) {
             notify.set({
-                'text': nb.getText('document_saved', 'Документ сохранен'),
+                'text': nb.getText('document_saved', 'Документ сохраненq od'),
                 'type': 'success'
             });
             /*var jmsg = nb.utils.parseMessageToJson(xml);

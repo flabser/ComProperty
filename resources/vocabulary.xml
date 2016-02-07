@@ -43,6 +43,18 @@
 		<entry lang="KAZ">Құжат сақталды</entry>
 		<entry lang="ENG">The document has been saved</entry>
 	</sentence>
+	<sentence mode="on" keyword="editable">
+		<entry lang="RUS">Редактирование</entry>
+		<entry lang="KAZ">Өңдеу</entry>
+		<entry lang="ENG">Editing</entry>
+		<entry lang="CHI">编辑</entry>
+	</sentence>
+	<sentence mode="on" keyword="reg_date">
+		<entry lang="RUS">Дата регистрации</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG">Registration date</entry>
+		<entry lang="CHI"></entry>
+	</sentence>
 	<sentence mode="on" keyword="Свойства пользователя">
 		<entry lang="KAZ">Қолданушының қасиеттерi</entry>
 		<entry lang="ENG">Properties of the user</entry>

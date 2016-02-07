@@ -43,7 +43,7 @@
 									<div class="panel panel-default">
 							<div class="form-group">
 								<div class="control-label">
-									<xsl:value-of select="//captions/ediatble/@caption" />
+									<xsl:value-of select="//captions/editable/@caption" />
 								</div>
 								<div class="control-label">
 									<xsl:value-of select="//document/@editable" />
