@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- common vocabulary file -->
 <vocabulary primary="ENG">
+	<sentence mode="on" keyword="action_completed_successfully">
+		<entry lang="ENG">Action completed successfully</entry>
+		<entry lang="RUS">Действие выполнено успешно</entry>
+		<entry lang="KAZ">Действие выполнено успешно</entry>		
+		<entry lang="CHI"></entry>
+	</sentence>
 	<sentence mode="on" keyword="no_connection">
 		<entry lang="ENG">No connection to the server</entry>
 		<entry lang="RUS">Отсутствует соединение с сервером</entry>
@@ -13,10 +19,11 @@
 		<entry lang="KAZ">Внутреняя ошибка серевера</entry>		
 		<entry lang="CHI"></entry>
 	</sentence>
-	<sentence mode="on" keyword="search">
-		<entry lang="RUS">Поиск</entry>
-		<entry lang="KAZ">Іздеу</entry>
-		<entry lang="ENG">Search</entry>
+	<sentence mode="on" keyword="validation_error">
+		<entry lang="ENG">Validation error</entry>
+		<entry lang="RUS">Ошибка сохранения формы</entry>
+		<entry lang="KAZ">Ошибка сохранения формы</entry>		
+		<entry lang="CHI"></entry>
 	</sentence>
 	<sentence mode="on" keyword="search">
 		<entry lang="RUS">Поиск</entry>
@@ -48,6 +55,12 @@
 		<entry lang="KAZ">Өңдеу</entry>
 		<entry lang="ENG">Editing</entry>
 		<entry lang="CHI">编辑</entry>
+	</sentence>
+	<sentence mode="on" keyword="reg_date">
+		<entry lang="RUS">Дата регистрации</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG">Registration date</entry>
+		<entry lang="CHI"></entry>
 	</sentence>
 	<sentence mode="on" keyword="reg_date">
 		<entry lang="RUS">Дата регистрации</entry>

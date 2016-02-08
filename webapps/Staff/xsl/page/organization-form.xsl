@@ -37,9 +37,21 @@
                                         <xsl:if test="//fields/is_primary  = '1'">
                                             <xsl:attribute name="checked">checked</xsl:attribute>
                                         </xsl:if>
-                                        <xsl:value-of select="//captions/is_primary_organization/@caption"/>
+                                        <span>
+                                        	<xsl:value-of select="//captions/is_primary_organization/@caption"/>
+                                        </span>
                                     </input>
                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <div class="control-label">
+                        	  <xsl:value-of select="//captions/bin/@caption"/>
+                        </div>
+                        <div class="controls">
+                          <div class="field-wrapper col-lg-2">
+                                <input type="text" name="bin" value="{//fields/bin}" class="form-control"/>
                             </div>
                         </div>
                     </div>

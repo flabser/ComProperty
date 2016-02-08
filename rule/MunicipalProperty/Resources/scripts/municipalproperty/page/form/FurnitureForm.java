@@ -25,6 +25,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+		println("refferer = " + formData.getReferrer());
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		PersonalEstate entity;
@@ -55,6 +56,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
 		setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
 		setContent(getActionBar(session, lang, entity));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -121,9 +123,10 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			} else {
 				dao.update(entity);
 			}
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 			setBadRequest();
 		}
 	}

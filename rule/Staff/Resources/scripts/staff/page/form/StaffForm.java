@@ -15,8 +15,8 @@ import kz.nextbase.script.events._DoPage;
 public abstract class StaffForm extends _DoPage {
 
 	protected boolean validate(_WebFormData formData, LanguageType lang) {
-		if (formData.getValueSilently("name").isEmpty()) {
-			addMsg(getLocalizedWord("field_name_is_empty", lang));
+		if (formData.getValueSilently("name").equals("")) {
+			addValidationError(getLocalizedWord("field_name_is_empty", lang), "name");
 			return false;
 		}
 

@@ -793,19 +793,21 @@ nb.xhr.saveDocument = function(options) {
     var xhrArgs = {
         cache: false,
         type: 'POST',
-        datatype: 'XML',
+        datatype: 'json',
         url: 'Provider',
         data: options.data || $('form').serialize(),
         beforeSend: function() {
             nb.utils.blockUI();
             $('.required, [required]', 'form').removeClass('required').removeAttr('required');
         },
-        success: function(xml) {
+        success: function(res) {
             notify.set({
-                'text': nb.getText('document_saved', 'Документ сохраненq od'),
+                'text': res.captions["type"],
                 'type': 'success'
             });
-            /*var jmsg = nb.utils.parseMessageToJson(xml);
+  
+            window.location.href =  res.redirectURL;
+           /*var jmsg = nb.utils.parseMessageToJson(xml);
             var msgText = jmsg.message[0];
             if (jmsg.status === 'ok') {
                 notify.set({
@@ -848,11 +850,15 @@ nb.xhr.saveDocument = function(options) {
                 }
             }*/
         },
-        error: function() {
-            notify.set({
-                'text': nb.getText('error_xhr', 'Ошибка при выполнении запроса'),
-                'type': 'error'
-            });
+        error: function(err) {
+        	var obj = $.parseJSON(err.responseText);
+        	var msg;
+            if (obj.type = 'VALIDATION_ERROR'){
+            	msg = {'text': res.captions['type'],'type': 'error'}
+            }else if (obj.type = 'SERVER_ERROR'){
+            	msg = {'text': res.captions['type'],'type': 'error'}
+            }
+            notify.set(msg);
         },
         complete: function() {
             nb.utils.unblockUI();

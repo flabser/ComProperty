@@ -51,6 +51,7 @@
 								<xsl:attribute name="disabled" select="'disabled'" />
 							</xsl:if>
 						</fieldset>
+						referrer=<xsl:value-of select="@referrer" />
 						<xsl:call-template name="personal-estate-field-set" />
 					</div>
 					<div role="tabpanel" class="tab-pane" id="tabs-2">
@@ -78,7 +79,7 @@
 				</div>
 			</section>			
 			<input type="hidden" name="id" value="{@id}" />
-			<input type="hidden" name="docid" value="{//document/@docid}" />
+			<input type="hidden" name="docid" value="{//document/@docid}" />		
 		</form>
 	</xsl:template>
 

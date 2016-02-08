@@ -34,13 +34,14 @@ public class OrganizationForm extends StaffForm {
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		try {
-			boolean v = validate(formData, lang);
-			if (v == false) {
+
+			if (!validate(formData, lang)) {
 				setBadRequest();
 				return;
 			}
@@ -55,13 +56,10 @@ public class OrganizationForm extends StaffForm {
 				entity = new Organization();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Organization();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
+			entity.setBin(formData.getValue("bin"));
 			entity.setPrimary("1".equals(formData.getValueSilently("is_primary")));
 
 			if (isNew) {
@@ -70,9 +68,25 @@ public class OrganizationForm extends StaffForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
+	}
+
+	@Override
+	protected boolean validate(_WebFormData formData, LanguageType lang) {
+		boolean validationState = true;
+
+		if (!super.validate(formData, lang)) {
+			validationState = false;
+		}
+
+		if (formData.getValueSilently("bin").equals("")) {
+			addValidationError(getLocalizedWord("bin", lang), "bin");
+			validationState = false;
+		}
+
+		return validationState;
 	}
 }
