@@ -11,6 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import kz.flabs.localization.LanguageType;
+
 @Entity
 @Table(name = "orgs")
 @NamedQuery(name = "Organization.findAll", query = "SELECT m FROM Organization AS m ORDER BY m.regDate")
@@ -57,6 +59,14 @@ public class Organization extends Staff {
 
 	public void setBin(String bin) {
 		this.bin = bin;
+	}
+
+	@Override
+	public String getShortXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<name>" + getName() + "</name>");
+		chunk.append("<bin>" + bin + "</bin>");
+		return chunk.toString();
 	}
 
 }
