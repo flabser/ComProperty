@@ -26,7 +26,6 @@ public class FurnitureForm extends MunicipalPropertyForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		println("refferer = " + formData.getReferrer());
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		PersonalEstate entity;
@@ -83,7 +82,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			}
 
 			OrganizationDAO oDao = new OrganizationDAO(ses);
-			Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
+			Organization org = oDao.findById(formData.getValueSilently("balanceholderid"));
 			entity.setBalanceHolder(org);
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
 			entity.setDescription(formData.getValueSilently("description"));
@@ -114,6 +113,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			} else {
 				entity.setReadyToUse(false);
 			}
+			entity.setNotes(formData.getValueSilently("notes"));
 
 			User user = session.getUser();
 			entity.addReaderEditor(user);
@@ -134,7 +134,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 	private boolean validate(_WebFormData webFormData, LanguageType lang) {
 		boolean validationState = true;
 
-		if (webFormData.getValueSilently("balanceholder").isEmpty()) {
+		if (webFormData.getValueSilently("balanceholderid").isEmpty()) {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_holder", lang) + "\""
 			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
@@ -173,7 +173,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("original_cost", lang) + "\""
 			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
-		} else if (webFormData.getNumberValueSilently("originalcost", 0) == 0) {
+		} else if (webFormData.getFloatValueSilently("originalcost", 0) <= 0) {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("original_cost", lang) + "\""
 			        + getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 			validationState = false;
@@ -183,7 +183,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_cost", lang) + "\""
 			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
-		} else if (webFormData.getNumberValueSilently("balancecost", 0) == 0) {
+		} else if (webFormData.getFloatValueSilently("balancecost", 0) <= 0) {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_cost", lang) + "\""
 			        + getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 			validationState = false;

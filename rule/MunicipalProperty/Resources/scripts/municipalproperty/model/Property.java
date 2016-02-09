@@ -337,6 +337,7 @@ public class Property extends SecureAppEntity {
 		chunk.append("<balancecost>" + balanceCost + "</balancecost>");
 		chunk.append("<balanceholder>" + balanceHolder.getName() + "</balanceholder>");
 		chunk.append("<balanceholderbin>" + balanceHolder.getBin() + "</balanceholderbin>");
+		chunk.append("<balanceholderid>" + balanceHolder.getId() + "</balanceholderid>");
 		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
 		chunk.append("<cumulativedepreciation>" + cumulativeDepreciation + "</cumulativedepreciation>");
 		chunk.append("<description>" + description + "</description>");
@@ -365,6 +366,7 @@ public class Property extends SecureAppEntity {
 			chunk.append("<tags></tags>");
 		}
 		chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
+		chunk.append("<notes>" + notes + "</notes>");
 		return chunk.toString();
 	}
 

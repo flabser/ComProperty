@@ -998,7 +998,7 @@ nbApp.dialogChoiceBalanceHolder = function(el) {
     var form = nb.utils.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
-        fieldName: 'balanceholder',
+        fieldName: 'balanceholderid',
         title: el.title,
         href: 'Provider?id=get-organizations',
         buttons: {

@@ -80,7 +80,7 @@
 						onclick="nbApp.dialogChoiceBalanceHolder(this)">
 						<xsl:value-of select="//fields/balanceholder" />
 					</div>
-					<input type="hidden" name="balanceholder" value="{//fields/balanceholder}"
+					<input type="hidden" name="balanceholderid" value="{//fields/balanceholderid}"
 						required="required" />
 				</div>
 			</div>
