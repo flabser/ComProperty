@@ -5,8 +5,11 @@ import javax.persistence.MappedSuperclass;
 
 import kz.flabs.dataengine.jpa.AppEntity;
 
+import com.google.gson.annotations.Expose;
+
 @MappedSuperclass
 public class Staff extends AppEntity {
+	@Expose
 	@Column(length = 128, unique = true)
 	private String name;
 

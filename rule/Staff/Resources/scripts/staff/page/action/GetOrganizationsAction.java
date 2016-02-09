@@ -28,6 +28,7 @@ public class GetOrganizationsAction extends _DoPage {
 		OrganizationDAO dao = new OrganizationDAO(ses);
 		ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
 		setContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), lang));
+		// setPublishAsType(PublishAsType.JSON);
 	}
 
 	@Override
