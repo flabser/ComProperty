@@ -77,7 +77,7 @@
 			<div class="controls">
 				<div class="field-wrapper col-md-6">
 					<div class="form-control selection" data-input="balanceholder"
-						onclick="nbApp.choiceBalanceHolder(this)">
+						onclick="nbApp.dialogChoiceBalanceHolder(this)">
 						<xsl:value-of select="//fields/balanceholder" />
 					</div>
 					<input type="hidden" name="balanceholder" value="{//fields/balanceholder}"

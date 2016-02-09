@@ -19,6 +19,7 @@ import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
+import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class FurnitureForm extends MunicipalPropertyForm {
@@ -81,6 +82,9 @@ public class FurnitureForm extends MunicipalPropertyForm {
 				entity = dao.findById(id);
 			}
 
+			OrganizationDAO oDao = new OrganizationDAO(ses);
+			Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
+			entity.setBalanceHolder(org);
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
 			entity.setDescription(formData.getValueSilently("description"));
 			entity.setObjectName(formData.getValueSilently("objectname"));
@@ -89,9 +93,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			entity.setDescription(formData.getValueSilently("description"));
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
 			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
-			if (pcEntity != null && !entity.getPropertyCode().equals(pcEntity)) {
-				entity.setPropertyCode(pcEntity);
-			}
+			entity.setPropertyCode(pcEntity);
 			entity.setOriginalCost(Util.convertStringToFloat(formData.getValueSilently("originalcost")));
 			entity.setCumulativeDepreciation(Util.convertStringToFloat(formData.getValueSilently("cumulativedepreciation")));
 			entity.setImpairmentLoss(Util.convertStringToFloat(formData.getValueSilently("impairmentloss")));
@@ -100,9 +102,7 @@ public class FurnitureForm extends MunicipalPropertyForm {
 
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
-			if (rrEntity != null && !entity.getPropertyCode().equals(rrEntity)) {
-				entity.setReceivingReason(rrEntity);
-			}
+			entity.setReceivingReason(rrEntity);
 			entity.setModel(formData.getValueSilently("model"));
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
@@ -134,25 +134,49 @@ public class FurnitureForm extends MunicipalPropertyForm {
 	private boolean validate(_WebFormData webFormData, LanguageType lang) {
 		boolean validationState = true;
 
-		if (webFormData.getValueSilently("objectname").isEmpty()) {
-			addValidationError("Поле \"Наименование\" не заполнено.");
+		if (webFormData.getValueSilently("balanceholder").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_holder", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
 		}
-
-		if (webFormData.getValueSilently("objectname").isEmpty()) {
-			addValidationError("Поле \"Наименование\" не заполнено.");
+		if (webFormData.getValueSilently("kof").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("kof", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
 		}
-		if (webFormData.getValueSilently("originalcost").isEmpty()) {
-			addValidationError("Поле \"Первоначальная стоимость\" не заполнено.");
+		if (webFormData.getValueSilently("kuf").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("kuf", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
+			validationState = false;
+		}
+		if (webFormData.getValueSilently("invnumber").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("inv_number", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
+			validationState = false;
+		}
+		if (webFormData.getValueSilently("objectname").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("name", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
 		}
 		if (webFormData.getValueSilently("description").isEmpty()) {
-			addValidationError("Поле \"Описание объекта\" не заполнено.");
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("description", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
 		}
-		if (webFormData.getValueSilently("propertycode").isEmpty()) {
-			addValidationError("Поле \"Код права на имущество\" не заполнено.");
+		if (webFormData.getValueSilently("acceptancedate").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("acceptance_date", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
+			validationState = false;
+		}
+		if (webFormData.getValueSilently("originalcost").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("original_cost", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
+			validationState = false;
+		}
+		if (webFormData.getValueSilently("balancecost").isEmpty()) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_cost", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
 		}
 		return validationState;

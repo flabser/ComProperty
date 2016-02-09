@@ -204,9 +204,9 @@ nb.xhr.saveDocument = function(options) {
         	var obj = $.parseJSON(err.responseText);
         	var msg;
             if (obj.type = 'VALIDATION_ERROR'){
-            	msg = {'text': res.captions['type'],'type': 'error'}
+            	msg = {'text': obj.captions['type'],'type': 'error'}
             }else if (obj.type = 'SERVER_ERROR'){
-            	msg = {'text': res.captions['type'],'type': 'error'}
+            	msg = {'text': obj.captions['type'],'type': 'error'}
             }
             notify.set(msg);
         },

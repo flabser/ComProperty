@@ -13,8 +13,8 @@
 
 	<xsl:template name="_content">
 		<form class="form form-{$editmode}" action="Provider" method="post"
-			enctype="application/x-www-form-urlencoded">
-			<header class="content-header">
+			enctype="application/x-www-form-urlencoded" name="property" >
+			<header class="content-header" >
 				<h1 class="header-title">
 					<xsl:value-of select="//captions/furniture/@caption" />
 				</h1>
@@ -51,7 +51,6 @@
 								<xsl:attribute name="disabled" select="'disabled'" />
 							</xsl:if>
 						</fieldset>
-						referrer=<xsl:value-of select="@referrer" />
 						<xsl:call-template name="personal-estate-field-set" />
 					</div>
 					<div role="tabpanel" class="tab-pane" id="tabs-2">

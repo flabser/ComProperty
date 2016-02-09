@@ -45,6 +45,16 @@
 		<entry lang="KAZ">Поле не заполнено</entry>
 		<entry lang="ENG">The field is empty</entry>
 	</sentence>
+	<sentence mode="on" keyword="the_field">
+		<entry lang="RUS">Поле</entry>
+		<entry lang="KAZ">Поле</entry>
+		<entry lang="ENG">The field</entry>
+	</sentence>
+	<sentence mode="on" keyword="has_been_not_filled">
+		<entry lang="RUS">не заполено</entry>
+		<entry lang="KAZ">не заполнено</entry>
+		<entry lang="ENG">has been not filled</entry>
+	</sentence>
 	<sentence mode="on" keyword="document_was_saved_succesfully">
 		<entry lang="RUS">Документ сохранен</entry>
 		<entry lang="KAZ">Құжат сақталды</entry>
@@ -647,12 +657,14 @@
 		<entry lang="ENG">References</entry>
 		<entry lang="CHI">参考文献</entry>
 	</sentence>
-	<sentence mode="on" keyword="Название">
+	<sentence mode="on" keyword="name">
+		<entry lang="RUS">Наименование</entry>
 		<entry lang="KAZ">Атауы</entry>
 		<entry lang="ENG">Name</entry>
 		<entry lang="CHI">名称</entry>
 	</sentence>
-	<sentence mode="on" keyword="Сокращенное название">
+	<sentence mode="on" keyword="short_name">
+		<entry lang="RUS">Сокращенное наименование</entry>
 		<entry lang="KAZ">Қысқартылған атауы</entry>
 		<entry lang="ENG">Short name</entry>
 		<entry lang="CHI">短名称</entry>

@@ -10,6 +10,16 @@
 		<entry lang="RUS">Объекты коммунальной собственности</entry>
 		<entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
 	</sentence>
+	<sentence mode="on" keyword="kof">
+		<entry lang="ENG">KOF</entry>
+		<entry lang="RUS">КОФ</entry>
+		<entry lang="KAZ">КОФ</entry>
+	</sentence>
+	<sentence mode="on" keyword="kuf">
+		<entry lang="ENG">KUF</entry>
+		<entry lang="RUS">КУФ</entry>
+		<entry lang="KAZ">КУФ</entry>
+	</sentence>
 	<sentence mode="on" keyword="personal_estates">
 		<entry lang="ENG">Personal estate</entry>
 		<entry lang="RUS">Движимое имущество</entry>

@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.jpa.SecureAppEntity;
@@ -28,7 +29,7 @@ import reference.model.Tag;
 import staff.model.Organization;
 
 @Entity
-@Table(name = "properties")
+@Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }))
 @NamedQuery(name = "Property.findAll", query = "SELECT m FROM Property AS m ORDER BY m.regDate")
 public class Property extends SecureAppEntity {
 	@Column(length = 16)
@@ -299,6 +300,11 @@ public class Property extends SecureAppEntity {
 	@Override
 	public String getDefaultFormName() {
 		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
+	}
+
+	@Override
+	public String getDefaultViewName() {
+		return getKuf().name().replace("_", "-").toLowerCase() + "-view";
 	}
 
 	@Override
