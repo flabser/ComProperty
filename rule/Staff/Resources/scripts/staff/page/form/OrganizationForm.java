@@ -83,7 +83,8 @@ public class OrganizationForm extends StaffForm {
 		}
 
 		if (formData.getValueSilently("bin").equals("")) {
-			addValidationError(getLocalizedWord("bin", lang), "bin");
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("bin", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
 		}
 

@@ -16,7 +16,8 @@ public abstract class StaffForm extends _DoPage {
 
 	protected boolean validate(_WebFormData formData, LanguageType lang) {
 		if (formData.getValueSilently("name").equals("")) {
-			addValidationError(getLocalizedWord("field_name_is_empty", lang), "name");
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("name", lang) + "\""
+			        + getLocalizedWord("has_been_not_filled", lang));
 			return false;
 		}
 

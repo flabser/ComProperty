@@ -37,6 +37,7 @@ public class DepartmentForm extends StaffForm {
 		setContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
 		setContent(new _POJOListWrapper(new RoleDAO(session).findAll(), lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -58,10 +59,6 @@ public class DepartmentForm extends StaffForm {
 				entity = new Department();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Department();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -73,9 +70,9 @@ public class DepartmentForm extends StaffForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

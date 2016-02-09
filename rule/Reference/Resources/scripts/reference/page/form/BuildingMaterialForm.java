@@ -27,6 +27,7 @@ public class BuildingMaterialForm extends ReferenceForm {
 		}
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -48,10 +49,6 @@ public class BuildingMaterialForm extends ReferenceForm {
 				entity = new BuildingMaterial();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new BuildingMaterial();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -62,10 +59,10 @@ public class BuildingMaterialForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

@@ -27,6 +27,7 @@ public class PropertyCodeForm extends ReferenceForm {
 		}
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -48,10 +49,7 @@ public class PropertyCodeForm extends ReferenceForm {
 				entity = new PropertyCode();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new PropertyCode();
-				}
+
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -62,9 +60,9 @@ public class PropertyCodeForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

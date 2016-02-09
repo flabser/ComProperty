@@ -38,6 +38,7 @@ public class RegionForm extends ReferenceForm {
 		setContent(new _EnumWrapper<>(RegionType.class.getEnumConstants(), getLocalizedWord(RegionType.class.getEnumConstants(), lang.toString())));
 		setContent(new _POJOListWrapper<>(new CountryDAO(session).findAll(), lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -72,10 +73,10 @@ public class RegionForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 

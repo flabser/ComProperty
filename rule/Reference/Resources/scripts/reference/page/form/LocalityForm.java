@@ -35,6 +35,7 @@ public class LocalityForm extends ReferenceForm {
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(new _EnumWrapper<>(LocalityType.class.getEnumConstants()));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -57,10 +58,6 @@ public class LocalityForm extends ReferenceForm {
 				entity = new Locality();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Locality();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -73,9 +70,9 @@ public class LocalityForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

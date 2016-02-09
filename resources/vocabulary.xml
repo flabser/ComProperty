@@ -40,7 +40,7 @@
 		<entry lang="KAZ">Есептемені құрастыру</entry>
 		<entry lang="ENG">Generate a report</entry>
 	</sentence>	
-	<sentence mode="on" keyword="field_name_is_empty">
+	<sentence mode="on" keyword="field_is_empty">
 		<entry lang="RUS">Поле не заполнено</entry>
 		<entry lang="KAZ">Поле не заполнено</entry>
 		<entry lang="ENG">The field is empty</entry>

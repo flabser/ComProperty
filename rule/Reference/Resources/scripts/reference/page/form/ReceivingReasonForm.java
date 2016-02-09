@@ -27,6 +27,7 @@ public class ReceivingReasonForm extends ReferenceForm {
 		}
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -48,10 +49,6 @@ public class ReceivingReasonForm extends ReferenceForm {
 				entity = new ReceivingReason();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new ReceivingReason();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -62,9 +59,9 @@ public class ReceivingReasonForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }
