@@ -55,6 +55,11 @@
 		<entry lang="KAZ">не заполнено</entry>
 		<entry lang="ENG">has been not filled</entry>
 	</sentence>
+	<sentence mode="on" keyword="should_be_contain_value_more_than_zero">
+		<entry lang="RUS">должно быть содержать значение больше нуля</entry>
+		<entry lang="KAZ">должно быть содержать значение больше нуля</entry>
+		<entry lang="ENG">should be contain value more than zero</entry>
+	</sentence>	
 	<sentence mode="on" keyword="document_was_saved_succesfully">
 		<entry lang="RUS">Документ сохранен</entry>
 		<entry lang="KAZ">Құжат сақталды</entry>

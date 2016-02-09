@@ -173,12 +173,22 @@ public class FurnitureForm extends MunicipalPropertyForm {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("original_cost", lang) + "\""
 			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
+		} else if (webFormData.getNumberValueSilently("originalcost", 0) == 0) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("original_cost", lang) + "\""
+			        + getLocalizedWord("should_be_contain_value_more_than_zero", lang));
+			validationState = false;
 		}
+
 		if (webFormData.getValueSilently("balancecost").isEmpty()) {
 			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_cost", lang) + "\""
 			        + getLocalizedWord("has_been_not_filled", lang));
 			validationState = false;
+		} else if (webFormData.getNumberValueSilently("balancecost", 0) == 0) {
+			addValidationError(getLocalizedWord("the_field", lang) + "\"" + getLocalizedWord("balance_cost", lang) + "\""
+			        + getLocalizedWord("should_be_contain_value_more_than_zero", lang));
+			validationState = false;
 		}
+
 		return validationState;
 
 	}
