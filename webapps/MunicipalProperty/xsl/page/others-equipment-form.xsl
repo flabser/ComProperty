@@ -16,7 +16,7 @@
 			enctype="application/x-www-form-urlencoded" name="property" >
 			<header class="content-header" >
 				<h1 class="header-title">
-					<xsl:value-of select="//captions/others/@caption" />
+					<xsl:value-of select="//captions/others_equipment/@caption" />
 				</h1>
 				<div class="content-actions">
 					<xsl:apply-templates select="//actionbar" />

@@ -43,7 +43,7 @@ public class MainNavigator extends _DoPage {
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("medical_equipment", lang), "medical-equipment-view"));
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("cook_equipment", lang), "cook-equipment-view"));
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("equipment_of_civildefence", lang), "equipment-of-civil-defence-view"));
-		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "other-equipment-view"));
+		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "others-equipment-view"));
 
 		_OutlineEntry realEstateEntry = new _OutlineEntry(getLocalizedWord("real_estates", lang), "real-estate-view");
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "building-view"));

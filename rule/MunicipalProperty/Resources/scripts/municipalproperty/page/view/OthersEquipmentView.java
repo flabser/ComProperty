@@ -11,7 +11,7 @@ import municipalproperty.model.constants.KufType;
  * @author Kayra created 06-01-2016
  */
 
-public class OtherEquipmentView extends MunicipalPropertyView {
+public class OthersEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {

@@ -22,302 +22,356 @@
 		</div>
 	</xsl:template>
 
-<xsl:template name="notes">
+	<xsl:template name="notes">
 
-							<div class="form-group">
-								<div class="control-label">
-									<xsl:value-of select="//captions/notes/@caption" />
-								</div>
-								<div class="controls">
-									<div class="field-wrapper col-md-6">
-										<textarea name="notes">
-											<xsl:value-of select="//fields/notes" />
-										</textarea>
-									</div>
-								</div>
-							</div>
+		<div class="form-group">
+			<div class="control-label">
+				<xsl:value-of select="//captions/notes/@caption" />
+			</div>
+			<div class="controls">
+				<div class="field-wrapper col-md-6">
+					<textarea name="notes">
+						<xsl:value-of select="//fields/notes" />
+					</textarea>
+				</div>
+			</div>
+		</div>
 	</xsl:template>
 
-<xsl:template name="docinfo">
+	<xsl:template name="docinfo">
 
-									<div class="panel panel-default">
-							<div class="form-group">
-								<div class="control-label">
-									<xsl:value-of select="//captions/editable/@caption" />
-								</div>
-								<div class="control-label">
-									<xsl:value-of select="//document/@editable" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="control-label">
-									<xsl:value-of select="//captions/reg_date/@caption" />
-								</div>
-								<div class="control-label">
-									<xsl:value-of select="//fields/regdate" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="control-label">
-									<xsl:value-of select="//captions/author/@caption" />
-								</div>
-								<div class="control-label">
-									<xsl:value-of select="//fields/author" />
-								</div>
-							</div>
-						</div>
+		<div class="panel panel-default">
+			<div class="form-group">
+				<div class="control-label">
+					<xsl:value-of select="//captions/editable/@caption" />
+				</div>
+				<div class="control-label">
+					<xsl:value-of select="//document/@editable" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="control-label">
+					<xsl:value-of select="//captions/reg_date/@caption" />
+				</div>
+				<div class="control-label">
+					<xsl:value-of select="//fields/regdate" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="control-label">
+					<xsl:value-of select="//captions/author/@caption" />
+				</div>
+				<div class="control-label">
+					<xsl:value-of select="//fields/author" />
+				</div>
+			</div>
+		</div>
 	</xsl:template>
 
 
 	<xsl:template name="personal-estate-field-set">
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/balance_holder/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-6">
-					<div class="form-control selection" data-input="balanceholder"
-						onclick="nbApp.dialogChoiceBalanceHolder(this)">
-						<xsl:value-of select="//fields/balanceholder" />
+		<section class="content-body">
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="active">
+					<a href="#tabs-1" role="tab" data-toggle="tab">
+						<xsl:value-of select="//captions/properties/@caption" />
+					</a>
+				</li>
+				<!-- <li> <a href="#tabs-2" role="tab" data-toggle="tab"> <xsl:value-of 
+					select="//captions/documents_of_title/@caption" /> </a> </li> -->
+				<li>
+					<a href="#tabs-3" role="tab" data-toggle="tab">
+						<xsl:value-of select="//captions/notes/@caption" />
+					</a>
+				</li>
+				<!-- <li> <a href="#tabs-4" role="tab" data-toggle="tab"> <xsl:value-of 
+					select="//captions/files/@caption" /> </a> </li> -->
+				<li>
+					<a href="#tabs-5" role="tab" data-toggle="tab">
+						<xsl:value-of select="//captions/additional/@caption" />
+					</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="tabs-1">
+					<fieldset class="fieldset">
+						<xsl:if test="//document/@editable = 'false'">
+							<xsl:attribute name="disabled" select="'disabled'" />
+						</xsl:if>
+					</fieldset>
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/balance_holder/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-6">
+								<div class="form-control selection" data-input="balanceholder"
+									onclick="nbApp.dialogChoiceBalanceHolder(this)">
+									<xsl:value-of select="//fields/balanceholder" />
+								</div>
+								<input type="hidden" name="balanceholderid" value="{//fields/balanceholderid}"
+									required="required" />
+							</div>
+						</div>
 					</div>
-					<input type="hidden" name="balanceholderid" value="{//fields/balanceholderid}"
-						required="required" />
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/bin/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="text" name="balanceholderbin" value="{//fields/balanceholderbin}"
-						class="form-control" disabled="disabled" />
-				</div>
-			</div>
-		</div>
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/bin/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="text" name="balanceholderbin" value="{//fields/balanceholderbin}"
+									class="form-control" disabled="disabled" />
+							</div>
+						</div>
+					</div>
+					<xsl:call-template name="kof-kuf" />
+					<!-- Инвентарный номер -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/inv_number/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="text" name="invnumber" value="{//fields/invnumber}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Наименование объекта -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/object_name/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-6">
+								<textarea name="objectname" class="form-control"
+									required="required">
+									<xsl:value-of select="//fields/objectname" />
+								</textarea>
+							</div>
+						</div>
+					</div>
+					<!-- Описание объекта -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/description/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-6">
+								<textarea name="description" class="form-control"
+									required="required">
+									<xsl:value-of select="//fields/description" />
+								</textarea>
+							</div>
+						</div>
+					</div>
+					<!-- Код права на имущество -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/property_code/@caption" />
+						</div>
+						<div class="controls">
+							<div class="col-lg-5">
+								<select name="propertycode" class="form-control">
+									<xsl:apply-templates select="//query[@entity = 'propertycode']/entry"
+										mode="select_options">
+										<xsl:with-param name="select" select="//fields/propertycode" />
+									</xsl:apply-templates>
+								</select>
+							</div>
 
-		<xsl:call-template name="kof-kuf" />
-		<!-- Инвентарный номер -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/inv_number/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="text" name="invnumber" value="{//fields/invnumber}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Наименование объекта -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/object_name/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-6">
-					<textarea name="objectname" class="form-control" required="required">
-						<xsl:value-of select="//fields/objectname" />
-					</textarea>
-				</div>
-			</div>
-		</div>
-		<!-- Описание объекта -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/description/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-6">
-					<textarea name="description" class="form-control"
-						required="required">
-						<xsl:value-of select="//fields/description" />
-					</textarea>
-				</div>
-			</div>
-		</div>
-		<!-- Код права на имущество -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/property_code/@caption" />
-			</div>
-			<div class="controls">
-				<div class="col-lg-5">
-					<select name="propertycode" class="form-control">
-						<xsl:apply-templates select="//query[@entity = 'propertycode']/entry"
-							mode="select_options">
-							<xsl:with-param name="select" select="//fields/propertycode" />
-						</xsl:apply-templates>
-					</select>
-				</div>
+						</div>
+					</div>
+					<!-- Дата принятия на баланс -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/acceptance_date/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="date" name="acceptancedate" value="{//fields/acceptancedate}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
 
-			</div>
-		</div>
-		<!-- Дата принятия на баланс -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/acceptance_date/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="date" name="acceptancedate" value="{//fields/acceptancedate}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
+					<!-- Первоначальная стоимость -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/original_cost/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="number" name="originalcost" value="{//fields/originalcost}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Накопленная амортизация -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/cumulative_depreciation/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="number" name="cumulativedepreciation"
+									value="{//fields/cumulativedepreciation}" class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Убыток от обесценения -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/impairment_loss/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="number" name="impairmentloss" value="{//fields/impairmentloss}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Балансовая стоимость -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/balance_cost/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="number" name="balancecost" value="{//fields/balancecost}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
 
-		<!-- Первоначальная стоимость -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/original_cost/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="number" name="originalcost" value="{//fields/originalcost}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Накопленная амортизация -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/cumulative_depreciation/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="number" name="cumulativedepreciation" value="{//fields/cumulativedepreciation}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Убыток от обесценения -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/impairment_loss/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="number" name="impairmentloss" value="{//fields/impairmentloss}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Балансовая стоимость -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/balance_cost/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="number" name="balancecost" value="{//fields/balancecost}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
+					<!-- Сумма переоценки -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/revaluation_amount/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="number" name="revaluationamount" value="{//fields/revaluationamount}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Балансовая стоимость после переоценки -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/after_revaluation_amount/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-2">
+								<input type="number" name="afterrevaluationamount"
+									value="{//fields/afterevaluationamount}" class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Основание поступления на баланс -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/receiving_reason/@caption" />
+						</div>
+						<div class="controls">
+							<div class="col-lg-5">
+								<select name="receivingreason" class="form-control">
+									<xsl:apply-templates
+										select="//query[@entity = 'receivingreason']/entry" mode="select_options">
+										<xsl:with-param name="select" select="//fields/receivingreason" />
+									</xsl:apply-templates>
+								</select>
+							</div>
 
-		<!-- Сумма переоценки -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/revaluation_amount/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="number" name="revaluationamount" value="{//fields/revaluationamount}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Балансовая стоимость после переоценки -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/after_revaluation_amount/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-2">
-					<input type="number" name="afterrevaluationamount" value="{//fields/afterevaluationamount}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Основание поступления на баланс -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/receiving_reason/@caption" />
-			</div>
-			<div class="controls">
-				<div class="col-lg-5">
-					<select name="receivingreason" class="form-control">
-						<xsl:apply-templates select="//query[@entity = 'receivingreason']/entry"
-							mode="select_options">
-							<xsl:with-param name="select" select="//fields/receivingreason" />
-						</xsl:apply-templates>
-					</select>
-				</div>
+						</div>
+					</div>
 
-			</div>
-		</div>
+					<!-- Модель -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/model/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-6">
+								<textarea name="model" class="form-control">
+									<xsl:value-of select="//fields/model" />
+								</textarea>
+							</div>
+						</div>
+					</div>
+					<!-- Год ввода в эксплуатацию -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/commissioning_year/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-1">
+								<input type="text" name="commissioningyear" value="{//fields/commissioningyear}"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<!-- Год приобретения -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/acquisition_year/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-md-1">
+								<input type="text" name="acquisitionyear" value="{//fields/acquisitionyear}"
+									class="form-control" readonly="readonly" />
+							</div>
+						</div>
+					</div>
+					<!-- Сведения о годности к эксплуатации -->
+					<div class="form-group">
+						<div class="control-label">
+							<xsl:value-of select="//captions/is_ready_to_use/@caption" />
+						</div>
+						<div class="controls">
+							<div class="field-wrapper col-lg-6">
 
-		<!-- Модель -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/model/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-6">
-					<textarea name="model" class="form-control">
-						<xsl:value-of select="//fields/model" />
-					</textarea>
-				</div>
-			</div>
-		</div>
-		<!-- Год ввода в эксплуатацию -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/commissioning_year/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-1">
-					<input type="text" name="commissioningyear" value="{//fields/commissioningyear}"
-						class="form-control" />
-				</div>
-			</div>
-		</div>
-		<!-- Год приобретения -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/acquisition_year/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-md-1">
-					<input type="text" name="acquisitionyear" value="{//fields/acquisitionyear}"
-						class="form-control" readonly="readonly" />
-				</div>
-			</div>
-		</div>
-		<!-- Сведения о годности к эксплуатации -->
-		<div class="form-group">
-			<div class="control-label">
-				<xsl:value-of select="//captions/is_ready_to_use/@caption" />
-			</div>
-			<div class="controls">
-				<div class="field-wrapper col-lg-6">
+								<label class="btn btn-sm">
+									<input type="checkbox" name="isreadytouse" value="1">
+										<xsl:if test="//fields/isreadytouse = 'true'">
+											<xsl:attribute name="checked" select="'checked'" />
+										</xsl:if>
+									</input>
+									<span>
+										Годен
+									</span>
+								</label>
 
-					<label class="btn btn-sm">
-						<input type="checkbox" name="isreadytouse" value="1">
-							<xsl:if test="//fields/isreadytouse = 'true'">
-								<xsl:attribute name="checked" select="'checked'" />
-							</xsl:if>
-						</input>
-						<span>
-							Годен
-						</span>
-					</label>
+							</div>
+						</div>
+					</div>				</div>
+				<div role="tabpanel" class="tab-pane" id="tabs-2">
+					<fieldset class="fieldset">
+						<xsl:if test="//document/@editable = 'false'">
+							<xsl:attribute name="disabled" select="'disabled'" />
+						</xsl:if>
+						<xsl:call-template name="documents-of-title" />
+					</fieldset>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="tabs-3">
+					<fieldset class="fieldset">
+						<xsl:if test="//document/@editable = 'false'">
+							<xsl:attribute name="disabled" select="'disabled'" />
+						</xsl:if>
+						<xsl:call-template name="notes" />
+					</fieldset>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="tabs-4">
 
 				</div>
+				<div role="tabpanel" class="tab-pane" id="tabs-5">
+					<xsl:call-template name="docinfo" />
+				</div>
 			</div>
-		</div>
-
+		</section>
+		<input type="hidden" name="id" value="{@id}" />
+		<input type="hidden" name="docid" value="{//document/@docid}" />
 	</xsl:template>
 
 	<xsl:template name="documents-of-title">
@@ -462,20 +516,14 @@
 		</div> <div class="controls"> <div class="field-wrapper col-md-6"> <input 
 		type="text" name="legalclaim" value="{//fields/legalclaim}" class="form-control"/> 
 		</div> </div> </div> </fieldset> -->
-		
-		<!-- <form action="Uploader" name="upload" id="upload" method="post"
-							enctype="multipart/form-data">
-							<input type="hidden" name="type" value="rtfcontent" />
-							<input type="hidden" name="formsesid" value="{formsesid}" />
-							Секция "Вложения"
-							<div display="block" id="att">
-								<br />
-								<xsl:call-template name="attach" />
-							</div>
-						</form> -->
-						
-						
-		<xsl:template match="entry" mode="select_options">
+
+	<!-- <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data"> 
+		<input type="hidden" name="type" value="rtfcontent" /> <input type="hidden" 
+		name="formsesid" value="{formsesid}" /> Секция "Вложения" <div display="block" 
+		id="att"> <br /> <xsl:call-template name="attach" /> </div> </form> -->
+
+
+	<xsl:template match="entry" mode="select_options">
 		<xsl:param name="select" />
 		<option value="viewcontent/name">
 			<xsl:if test="@id = $select">

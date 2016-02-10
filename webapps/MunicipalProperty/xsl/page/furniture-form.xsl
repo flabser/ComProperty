@@ -22,65 +22,7 @@
 					<xsl:apply-templates select="//actionbar" />
 				</div>
 			</header>
-			<section class="content-body">
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="active">
-						<a href="#tabs-1" role="tab" data-toggle="tab">
-							<xsl:value-of select="//captions/properties/@caption" />
-						</a>
-					</li>
-					<!-- <li> <a href="#tabs-2" role="tab" data-toggle="tab"> <xsl:value-of 
-						select="//captions/documents_of_title/@caption" /> </a> </li> -->
-					<li>
-						<a href="#tabs-3" role="tab" data-toggle="tab">
-							<xsl:value-of select="//captions/notes/@caption" />
-						</a>
-					</li>
-					<!-- <li> <a href="#tabs-4" role="tab" data-toggle="tab"> <xsl:value-of 
-						select="//captions/files/@caption" /> </a> </li> -->
-					<li>
-						<a href="#tabs-5" role="tab" data-toggle="tab">
-							<xsl:value-of select="//captions/additional/@caption" />
-						</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="tabs-1">
-						<fieldset class="fieldset">
-							<xsl:if test="//document/@editable = 'false'">
-								<xsl:attribute name="disabled" select="'disabled'" />
-							</xsl:if>
-						</fieldset>
-						<xsl:call-template name="personal-estate-field-set" />
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tabs-2">
-						<fieldset class="fieldset">
-							<xsl:if test="//document/@editable = 'false'">
-								<xsl:attribute name="disabled" select="'disabled'" />
-							</xsl:if>
-							<xsl:call-template name="documents-of-title" />
-						</fieldset>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tabs-3">
-						<fieldset class="fieldset">
-							<xsl:if test="//document/@editable = 'false'">
-								<xsl:attribute name="disabled" select="'disabled'" />
-							</xsl:if>
-							<xsl:call-template name="notes" />
-						</fieldset>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tabs-4">
-						
-					</div>
-					<div role="tabpanel" class="tab-pane" id="tabs-5">
-						<xsl:call-template name="docinfo" />
-					</div>
-				</div>
-			</section>			
-			<input type="hidden" name="id" value="{@id}" />
-			<input type="hidden" name="docid" value="{//document/@docid}" />		
+			<xsl:call-template name="personal-estate-field-set" />					
 		</form>
 	</xsl:template>
-
-
 </xsl:stylesheet>
