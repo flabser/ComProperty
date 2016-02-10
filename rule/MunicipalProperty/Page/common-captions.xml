@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
-    <caption name="new_" source="KEYWORD">new_</caption>
+    <caption name="new_">new_</caption>
 
-    <caption name="brand" source="KEYWORD">brand</caption>
-    <caption name="viewnamecaption" source="KEYWORD">Область</caption>
-    <caption name="page" source="KEYWORD">Страница</caption>
-    <caption name="documents" source="KEYWORD">Документов</caption>
-    <caption name="updates" source="KEYWORD">Обновлено</caption>
-    <caption name="from" source="KEYWORD">из</caption>
-    <caption name="del_document" source="KEYWORD"></caption>
-    <caption name="helpcaption" source="KEYWORD">Помощь</caption>
-    <caption name="logout" source="KEYWORD">Завершить работу</caption>
-    <caption name="view_userprofile" source="KEYWORD">Посмотреть свойства текущего пользователя</caption>
-    <caption name="search" source="KEYWORD">Поиск</caption>
+    <caption name="brand">brand</caption>
+    <caption name="viewnamecaption">Область</caption>
+    <caption name="page">Страница</caption>
+    <caption name="documents">Документов</caption>
+    <caption name="updates">Обновлено</caption>
+    <caption name="from">из</caption>
+    <caption name="del_document"></caption>
+    <caption name="helpcaption">Помощь</caption>
+    <caption name="logout">Завершить работу</caption>
+    <caption name="view_userprofile">Посмотреть свойства текущего пользователя</caption>
+    <caption name="search">Поиск</caption>
 
-    <caption name="airports" source="KEYWORD">airports</caption>
-    <caption name="animals" source="KEYWORD">animals</caption>
-    <caption name="automobiles" source="KEYWORD">automobiles</caption>
-    <caption name="billboards" source="KEYWORD">billboards</caption>
-    <caption name="bomb_proofs" source="KEYWORD">bombproofs</caption>
-    <caption name="buildings" source="KEYWORD">buildings</caption>
-    <caption name="buses" source="KEYWORD">buses</caption>
-    <caption name="cars" source="KEYWORD">cars</caption>
-    <caption name="cargoes" source="KEYWORD">cargoes</caption>
-    <caption name="columns" source="KEYWORD">columns</caption>
-    <caption name="combines" source="KEYWORD">combines</caption>
-    <caption name="computer_equipment" source="KEYWORD">computer_equipment</caption>
-    <caption name="cook_equipment" source="KEYWORD">cook_equipment</caption>
-    <caption name="drains" source="KEYWORD">drains</caption>
-    <caption name="electric_networks" source="KEYWORD">electric_networks</caption>
-    <caption name="eng_infrastructures" source="KEYWORD">eng_infrastructures</caption>
-    <caption name="equipment" source="KEYWORD">equipment</caption>
-    <caption name="equities" source="KEYWORD">equities</caption>
-    <caption name="factories" source="KEYWORD">factories</caption>
-    <caption name="furniture" source="KEYWORD">furniture</caption>
-    <caption name="intangible_assets" source="KEYWORD">intangible_assets</caption>
-    <caption name="inventories" source="KEYWORD">inventory</caption>
-    <caption name="lands" source="KEYWORD">land</caption>
-    <caption name="medical_equipment" source="KEYWORD">medical_equipment</caption>
-    <caption name="monuments" source="KEYWORD">monuments</caption>
-    <caption name="motorcycles" source="KEYWORD">motorcycles</caption>
-    <caption name="networks" source="KEYWORD">networks</caption>
-    <caption name="objects_reserved_fund" source="KEYWORD">objects_reserved_fund</caption>
-    <caption name="official_transports" source="KEYWORD">official_transports</caption>
-    <caption name="others_equipment" source="KEYWORD">others_equipment</caption>
-    <caption name="others" source="KEYWORD">others</caption>
-    <caption name="parking_lots" source="KEYWORD">parking_lots</caption>
-    <caption name="passenger_transports" source="KEYWORD">passenger_transports</caption>
-    <caption name="personal_estates" source="KEYWORD">personal_estates</caption>
-    <caption name="real_estates" source="KEYWORD">real_estates</caption>
-    <caption name="reports" source="KEYWORD">reports</caption>
+    <caption name="airports">airports</caption>
+    <caption name="animals">animals</caption>
+    <caption name="automobiles">automobiles</caption>
+    <caption name="billboards">billboards</caption>
+    <caption name="bomb_proofs">bombproofs</caption>
+    <caption name="buildings">buildings</caption>
+    <caption name="buses">buses</caption>
+    <caption name="cars">cars</caption>
+    <caption name="cargoes">cargoes</caption>
+    <caption name="columns">columns</caption>
+    <caption name="combines">combines</caption>
+    <caption name="computer_equipment"></caption>
+    <caption name="cook_equipment">cook_equipment</caption>
+    <caption name="drains">drains</caption>
+    <caption name="electric_networks">electric_networks</caption>
+    <caption name="eng_infrastructures">eng_infrastructures</caption>
+    <caption name="equipment">equipment</caption>
+    <caption name="equities">equities</caption>
+    <caption name="factories">factories</caption>
+    <caption name="furniture">furniture</caption>
+    <caption name="intangible_assets">intangible_assets</caption>
+    <caption name="inventories">inventory</caption>
+    <caption name="lands">land</caption>
+    <caption name="medical_equipment">medical_equipment</caption>
+    <caption name="monuments">monuments</caption>
+    <caption name="motorcycles">motorcycles</caption>
+    <caption name="networks">networks</caption>
+    <caption name="objects_reserved_fund">objects_reserved_fund</caption>
+    <caption name="official_transports">official_transports</caption>
+    <caption name="others_equipment"></caption>
+    <caption name="others"></caption>
+    <caption name="parking_lots">parking_lots</caption>
+    <caption name="passenger_transports">passenger_transports</caption>
+    <caption name="personal_estates">personal_estates</caption>
+    <caption name="real_estates">real_estates</caption>
+    <caption name="reports">reports</caption>
 </rule>

@@ -31,6 +31,8 @@ public class PropertyFactory {
 			return new Equipment();
 		case COMPUTER_EQUIPMENT:
 			return new Equipment();
+		case OFFICE_EQUIPMENT:
+			return new Equipment();
 		case MEDICAL_EQUIPMENT:
 			return new Equipment();
 		case COOK_EQUIPMENT:

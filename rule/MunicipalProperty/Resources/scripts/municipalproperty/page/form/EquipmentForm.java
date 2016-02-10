@@ -14,7 +14,7 @@ import municipalproperty.model.Equipment;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
-public class ComputerEquipmentForm extends _DoPage {
+public class EquipmentForm extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {

@@ -633,6 +633,11 @@
 		<entry lang="RUS">Прочее</entry>
 		<entry lang="KAZ">Басқалары</entry>
 	</sentence>
+	<sentence mode="on" keyword="others_equipment">
+		<entry lang="ENG">Others equipment</entry>
+		<entry lang="RUS">Прочее оборудование</entry>
+		<entry lang="KAZ">Басқалары</entry>
+	</sentence>
 	<sentence mode="on" keyword="inventory">
 		<entry lang="RUS">Инвентарь</entry>
 		<entry lang="KAZ">Инвентарь</entry>
