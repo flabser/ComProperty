@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.nextbase.script._Session;

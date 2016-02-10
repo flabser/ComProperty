@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
-    <caption name="new_">new_</caption>
-
-    <caption name="brand">brand</caption>
+    <caption name="new_"></caption>
+   	<caption name="close"/>
+   	<caption name="properties"/>
+   	<caption name="interface"/>
+    <caption name="brand"></caption>
     <caption name="del_document"></caption>
     <caption name="logout"></caption>
     <caption name="userprofile"></caption>
     <caption name="search"></caption>
-
+    <caption name="change_skin"></caption>
+ 	<caption name="employee"/>
+ 	<caption name="position"/>
+ 	<caption name="user_name"/> 	
+ 	<caption name="login_name"/> 
+ 	<caption name="email"/> 
+ 	<caption name="password"/> 
+ 	<caption name="reenterpassword"/>  	
+ 	<caption name="email"/> 
+ 	<caption name="org_name"/> 
+ 	<caption name="department"/> 
+ 	<caption name="countdocinview"/> 
+ 	<caption name="interface_lang"/> 	
     <caption name="airports">airports</caption>
     <caption name="animals">animals</caption>
     <caption name="automobiles">automobiles</caption>

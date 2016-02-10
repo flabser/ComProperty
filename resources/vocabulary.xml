@@ -2,7 +2,6 @@
 <!-- common vocabulary file -->
 <vocabulary primary="ENG">
 	<sentence mode="on" keyword="action_completed_successfully">
-		<entry lang="ENG">Action completed successfully</entry>
 		<entry lang="RUS">Действие выполнено успешно</entry>
 		<entry lang="KAZ">Действие выполнено успешно</entry>		
 		<entry lang="CHI"></entry>
@@ -47,18 +46,23 @@
 	</sentence>
 	<sentence mode="on" keyword="the_field">
 		<entry lang="RUS">Поле</entry>
-		<entry lang="KAZ">Поле</entry>
+		<entry lang="KAZ"></entry>
 		<entry lang="ENG">The field</entry>
 	</sentence>
 	<sentence mode="on" keyword="has_been_not_filled">
 		<entry lang="RUS">не заполено</entry>
-		<entry lang="KAZ">не заполнено</entry>
+		<entry lang="KAZ">жолы толтырылмады</entry>
 		<entry lang="ENG">has been not filled</entry>
 	</sentence>
 	<sentence mode="on" keyword="should_be_contain_value_more_than_zero">
 		<entry lang="RUS">должно быть содержать значение больше нуля</entry>
 		<entry lang="KAZ">должно быть содержать значение больше нуля</entry>
 		<entry lang="ENG">should be contain value more than zero</entry>
+	</sentence>	
+	<sentence mode="on" keyword="change_skin">
+		<entry lang="RUS">Изменить оформление</entry>
+		<entry lang="KAZ">Изменить оформление</entry>
+		<entry lang="ENG">Change interface skin</entry>
 	</sentence>	
 	<sentence mode="on" keyword="document_was_saved_succesfully">
 		<entry lang="RUS">Документ сохранен</entry>
@@ -153,11 +157,6 @@
 		<entry lang="ENG">Clear Recycle Bin</entry>
 		<entry lang="CHI">清空回收站 </entry>
 	</sentence>
-	<sentence mode="on" keyword="Периодичность обновления видов">
-		<entry lang="KAZ">Жаңару аралығы</entry>
-		<entry lang="ENG">Periodicity of updating of types</entry>
-		<entry lang="CHI">更新數據的頻率 </entry>
-	</sentence>
 	<sentence mode="on" keyword="Старый пароль">
 		<entry lang="KAZ">Ескі құпия сөз</entry>
 		<entry lang="ENG">Old password</entry>
@@ -167,11 +166,6 @@
 		<entry lang="KAZ">Жаңа құпия сөз</entry>
 		<entry lang="ENG">New password</entry>
 		<entry lang="CHI">新密码</entry>
-	</sentence>
-	<sentence mode="on" keyword="Повтор нового пароля">
-		<entry lang="KAZ">Жаңа құпия сөзді қайталау</entry>
-		<entry lang="ENG">Repeat new password</entry>
-		<entry lang="CHI">重复新密码</entry>
 	</sentence>
 	<sentence mode="on" keyword="Группы">
 		<entry lang="KAZ">Топтар</entry>
@@ -183,7 +177,8 @@
 		<entry lang="ENG">Groups of users</entry>
 		<entry lang="CHI">該組的用戶 </entry>
 	</sentence>
-	<sentence mode="on" keyword="Повтор пароля">
+	<sentence mode="on" keyword="reenterpassword">
+		<entry lang="RUS">Повтор нового пароля</entry>
 		<entry lang="KAZ">Құпия сөзді қайталау</entry>
 		<entry lang="ENG">Password repetition</entry>
 		<entry lang="CHI">重復密碼: </entry>
@@ -265,7 +260,8 @@
 		<entry lang="ENG">Logout</entry>
 		<entry lang="CHI">退出</entry>
 	</sentence>
-	<sentence mode="on" keyword="Количество документов в виде">
+	<sentence mode="on" keyword="countdocinview">	
+		<entry lang="RUS">Количество документов в виде</entry>
 		<entry lang="KAZ">Көрінетін құжаттардың саны</entry>
 		<entry lang="ENG">An amount of documents is in a kind</entry>
 		<entry lang="CHI">表单中的文件数量</entry>
@@ -285,11 +281,6 @@
 		<entry lang="ENG">Updated</entry>
 		<entry lang="CHI">更新</entry>
 	</sentence>
-	<sentence mode="on" keyword="поиск">
-		<entry lang="KAZ">іздеу</entry>
-		<entry lang="ENG">search</entry>
-		<entry lang="CHI">搜索</entry>
-	</sentence>
 	<sentence mode="on" keyword="Запомнить пароль">
 		<entry lang="KAZ">Құпия сөзді есте сақтау</entry>
 		<entry lang="ENG">Remember password</entry>
@@ -300,7 +291,8 @@
 		<entry lang="ENG">Username</entry>
 		<entry lang="CHI">用户</entry>
 	</sentence>
-	<sentence mode="on" keyword="Пароль">
+	<sentence mode="on" keyword="password">
+		<entry lang="RUS">Пароль</entry>
 		<entry lang="KAZ">Құпия сөз</entry>
 		<entry lang="ENG">Password</entry>
 		<entry lang="CHI">密码</entry>
@@ -474,25 +466,10 @@
 		<entry lang="ENG">New document</entry>
 		<entry lang="CHI">新的文档</entry>
 	</sentence>
-	<sentence mode="on" keyword="Новая группа">
-		<entry lang="KAZ">Жаңа топ</entry>
-		<entry lang="ENG">New group</entry>
-		<entry lang="CHI">新的组</entry>
-	</sentence>
-	<sentence mode="on" keyword="Группа пользователей">
-		<entry lang="KAZ">Қолданушылардың тобы</entry>
-		<entry lang="ENG">User group</entry>
-		<entry lang="CHI">新的组</entry>
-	</sentence>
 	<sentence mode="on" keyword="Новая роль">
 		<entry lang="KAZ">Жаңа рөл</entry>
 		<entry lang="ENG">New role</entry>
 		<entry lang="CHI">新角色</entry>
-	</sentence>
-	<sentence mode="on" keyword="Новый">
-		<entry lang="KAZ">Жаңа</entry>
-		<entry lang="ENG">New</entry>
-		<entry lang="CHI">新</entry>
 	</sentence>
 	<sentence mode="on" keyword="Содержание отчета">
 		<entry lang="KAZ">Есептеменің мазмұны</entry>
@@ -532,21 +509,39 @@
 		<entry lang="ENG">Date</entry>
 		<entry lang="CHI">日期</entry>
 	</sentence>
-	<sentence mode="on" keyword="Сотрудник">
+	<sentence mode="on" keyword="employee">
+		<entry lang="RUS">Сотрудник</entry>
 		<entry lang="KAZ">Қызметкер</entry>
 		<entry lang="ENG">Employee</entry>
 		<entry lang="CHI">雇员</entry>
 	</sentence>
-	<sentence mode="on" keyword="Департамент">
+	<sentence mode="on" keyword="department">
+		<entry lang="RUS">Департамент</entry>
 		<entry lang="KAZ">Бөлім</entry>
 		<entry lang="ENG">Department</entry>
 		<entry lang="CHI">部</entry>
 	</sentence>
-	<sentence mode="on" keyword="Должность">
+	<sentence mode="on" keyword="position">
+	 	<entry lang="RUS">Должность</entry>
 		<entry lang="KAZ">Қызмет</entry>
 		<entry lang="ENG">Position</entry>
 		<entry lang="CHI">文章</entry>
 	</sentence>
+	 <sentence mode="on" keyword="user_name">
+        <entry lang="ENG">User name</entry>
+        <entry lang="RUS">Имя пользователя</entry>
+        <entry lang="KAZ">Есімі</entry>
+    </sentence>
+     <sentence mode="on" keyword="login_name">
+        <entry lang="ENG">Login</entry>
+        <entry lang="RUS">Логин</entry>
+        <entry lang="KAZ">Логин</entry>
+    </sentence>
+    <sentence mode="on" keyword="email">
+        <entry lang="ENG">E-mail</entry>
+        <entry lang="RUS">Электронная почта</entry>
+        <entry lang="KAZ">Электронная почта</entry>
+    </sentence>
 	<sentence mode="on" keyword="Сокращенное имя">
 		<entry lang="KAZ">Қысқартылған есімі</entry>
 		<entry lang="ENG">Short name</entry>
@@ -557,7 +552,8 @@
 		<entry lang="ENG">Full name</entry>
 		<entry lang="CHI">全名</entry>
 	</sentence>
-	<sentence mode="on" keyword="Язык интерфейса">
+	<sentence mode="on" keyword="interface_lang">
+		<entry lang="RUS">Язык интерфейса</entry>
 		<entry lang="KAZ">Интерфейс тілі</entry>
 		<entry lang="ENG">Interface language</entry>
 		<entry lang="CHI">语言</entry>
@@ -677,7 +673,8 @@
 		<entry lang="ENG">Short name</entry>
 		<entry lang="CHI">短名称</entry>
 	</sentence>
-	<sentence mode="on" keyword="Организация">
+	<sentence mode="on" keyword="org_name">
+		<entry lang="RUS">Организация</entry>
 		<entry lang="KAZ">Мекеме</entry>
 		<entry lang="ENG">Organization</entry>
 		<entry lang="CHI">组织</entry>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
-    <caption name="properties"></caption>
     <caption name="notes"></caption>
      <caption name="files"></caption>
       <caption name="additional"></caption>

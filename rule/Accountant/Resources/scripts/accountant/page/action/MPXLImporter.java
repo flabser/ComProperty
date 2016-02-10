@@ -15,8 +15,8 @@ import jxl.Cell;
 import jxl.CellType;
 import jxl.DateCell;
 import jxl.Sheet;
-import kz.flabs.dataengine.jpa.IAppEntity;
 import kz.flabs.util.Util;
+import kz.lof.dataengine.jpa.IAppEntity;
 import kz.lof.server.Server;
 import kz.nextbase.script._Session;
 import municipalproperty.dao.PropertyDAO;
@@ -109,12 +109,12 @@ public class MPXLImporter {
 				List<Property> pList = propertyDao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
 
 				for (Property p : pList) {
-					/*
-					 * if (p.getBalanceHolder().equals(bh)) { rowErr.add(new
-					 * CheVal("3, Инвентарный номер",
-					 * invNumber).isNotUniqueMessage().getErr()); skipped++;
-					 * break; }
-					 */
+					if (p.getObjectName().equalsIgnoreCase(name)) {
+						rowErr.add(new CheVal("3, Инвентарный номер, наименование", invNumber + "," + name).isNotUniqueMessage().getErr());
+						skipped++;
+						break;
+					}
+
 				}
 
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());

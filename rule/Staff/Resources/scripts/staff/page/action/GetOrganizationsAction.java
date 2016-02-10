@@ -1,6 +1,6 @@
 package staff.page.action;
 
-import kz.flabs.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;

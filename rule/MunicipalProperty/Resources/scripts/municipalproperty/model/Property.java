@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.dataengine.jpa.SecureAppEntity;
+import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
 import kz.nextbase.script._URL;

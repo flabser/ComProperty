@@ -3,7 +3,7 @@ package municipalproperty.page.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._IPOJOObject;
 import kz.nextbase.script._POJOListWrapper;

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
 import kz.lof.server.Server;
 import kz.nextbase.script._Session;

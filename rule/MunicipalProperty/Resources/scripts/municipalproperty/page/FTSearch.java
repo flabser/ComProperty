@@ -2,9 +2,9 @@ package municipalproperty.page;
 
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
-import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -24,7 +24,7 @@ public class FTSearch extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		String keyWord = formData.getEncodedValueSilently("keyword");
+		String keyWord = formData.getValueSilently("keyword");
 		if (keyWord.equals("")) {
 			setBadRequest();
 			return;
@@ -36,7 +36,7 @@ public class FTSearch extends _DoPage {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 
-		IDatabase db = ses.getCurrentDatabase().getBaseObject();
+		IDatabase db = ses.getCurrentDatabase();
 		IFTIndexEngine ftEngine = db.getFTSearchEngine();
 		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
 		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));

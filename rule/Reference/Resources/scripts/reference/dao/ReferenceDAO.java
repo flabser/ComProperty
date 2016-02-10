@@ -11,9 +11,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import kz.flabs.dataengine.jpa.DAO;
-import kz.flabs.dataengine.jpa.IAppEntity;
-import kz.flabs.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.DAO;
+import kz.lof.dataengine.jpa.IAppEntity;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.nextbase.script._Session;
 
