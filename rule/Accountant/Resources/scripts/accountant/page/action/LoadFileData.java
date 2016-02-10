@@ -35,7 +35,9 @@ public class LoadFileData extends _DoPage {
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
-			String fileName = userTmpDir + File.separator + formData.getEncodedValueSilently("fileid");
+			// String fileName = userTmpDir + File.separator +
+			// formData.getEncodedValueSilently("fileid");
+			String fileName = userTmpDir + File.separator + formData.getValueSilently("fileid");
 			String ext = FilenameUtils.getExtension(fileName);
 			Organization org = null;
 			if (ext.equalsIgnoreCase("xls")) {

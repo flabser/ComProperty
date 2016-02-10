@@ -33,7 +33,9 @@ public class ImportFileChecker extends _DoPage {
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
 			_Tag rootTag = new _Tag("result");
-			String excelFile = userTmpDir + File.separator + formData.getEncodedValueSilently("fileid");
+			// String excelFile = userTmpDir + File.separator +
+			// formData.getEncodedValueSilently("fileid");
+			String excelFile = userTmpDir + File.separator + formData.getValueSilently("fileid");
 			String ext = FilenameUtils.getExtension(excelFile);
 			if (ext.equalsIgnoreCase("xls")) {
 				File xlsFile = new File(excelFile);

@@ -218,7 +218,8 @@
 		<entry lang="ENG">Role of the user</entry>
 		<entry lang="CHI">用户角色</entry>
 	</sentence>
-	<sentence mode="on" keyword="Отмена">
+	<sentence mode="on" keyword="cancel">
+		<entry lang="RUS">Отмена</entry>
 		<entry lang="KAZ">Болдырмау</entry>
 		<entry lang="ENG">Cancel</entry>
 		<entry lang="CHI">廢除 </entry>
@@ -258,7 +259,8 @@
 		<entry lang="ENG">Find</entry>
 		<entry lang="CHI">找到</entry>
 	</sentence>
-	<sentence mode="on" keyword="Завершить работу">
+	<sentence mode="on" keyword="logout">
+		<entry lang="RUS">Завершить работу</entry>
 		<entry lang="KAZ">Жұмысты аяқтау</entry>
 		<entry lang="ENG">Logout</entry>
 		<entry lang="CHI">退出</entry>
@@ -364,9 +366,10 @@
 		<entry lang="ENG">Attachments</entry>
 		<entry lang="CHI">嵌入</entry>
 	</sentence>
-	<sentence mode="on" keyword="Прикрепить">
+	<sentence mode="on" keyword="attach_file">
+		<entry lang="RUS">Прикрепить файл</entry>
 		<entry lang="KAZ">Тіркеу</entry>
-		<entry lang="ENG">Attach</entry>
+		<entry lang="ENG">Attach file</entry>
 		<entry lang="CHI">附上</entry>
 	</sentence>
 	<sentence mode="on" keyword="Ход исполнения">
@@ -769,7 +772,8 @@
 		<entry lang="ENG">Fill the search field</entry>
 		<entry lang="CHI">在搜索框中填寫</entry>
 	</sentence>
-	<sentence mode="on" keyword="Посмотреть свойства текущего пользователя">
+	<sentence mode="on" keyword="user_profile">
+		<entry lang="RUS">Посмотреть свойства текущего пользователя</entry>
 		<entry lang="KAZ">Ағымдағы қолданушының қасиеттерін көру</entry>
 		<entry lang="ENG">View the properties current user</entry>
 		<entry lang="CHI">查看當前用戶的屬性</entry>

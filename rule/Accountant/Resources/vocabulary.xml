@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
+	<sentence mode="on" keyword="brand">
+		<entry lang="RUS">АИС 'Коммунальное Имущество'</entry>
+		<entry lang="KAZ">АИС 'Коммунальное Имущество'</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+	<sentence mode="on" keyword="title">
+		<entry lang="RUS">Страница загрузки обновлений</entry>
+		<entry lang="KAZ">Страница загрузки обновлений</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
 	<sentence mode="on" keyword="incorrect_xls_file">
 		<entry lang="RUS">Не корректный файл Excel 97-2003</entry>
 		<entry lang="KAZ">Не корректный файл Excel 97-2003</entry>
