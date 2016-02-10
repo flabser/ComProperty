@@ -15,7 +15,7 @@ public class OfficeEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "office_equipment", lang));
+		setContent(getSimpleActionBar(session, "office-equipment-form", lang));
 		setContent(getPropertyViewPage(session, formData, KufType.OFFICE_EQUIPMENT, lang));
 	}
 

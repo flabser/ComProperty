@@ -4,16 +4,10 @@
     <caption name="new_">new_</caption>
 
     <caption name="brand">brand</caption>
-    <caption name="viewnamecaption">Область</caption>
-    <caption name="page">Страница</caption>
-    <caption name="documents">Документов</caption>
-    <caption name="updates">Обновлено</caption>
-    <caption name="from">из</caption>
     <caption name="del_document"></caption>
-    <caption name="helpcaption">Помощь</caption>
-    <caption name="logout">Завершить работу</caption>
-    <caption name="view_userprofile">Посмотреть свойства текущего пользователя</caption>
-    <caption name="search">Поиск</caption>
+    <caption name="logout"></caption>
+    <caption name="userprofile"></caption>
+    <caption name="search"></caption>
 
     <caption name="airports">airports</caption>
     <caption name="animals">animals</caption>
@@ -27,6 +21,7 @@
     <caption name="columns">columns</caption>
     <caption name="combines">combines</caption>
     <caption name="computer_equipment"></caption>
+    <caption name="office_equipment"></caption>
     <caption name="cook_equipment">cook_equipment</caption>
     <caption name="drains">drains</caption>
     <caption name="electric_networks">electric_networks</caption>
@@ -36,7 +31,7 @@
     <caption name="factories">factories</caption>
     <caption name="furniture">furniture</caption>
     <caption name="intangible_assets">intangible_assets</caption>
-    <caption name="inventories">inventory</caption>
+    <caption name="inventory"></caption>
     <caption name="lands">land</caption>
     <caption name="medical_equipment">medical_equipment</caption>
     <caption name="monuments">monuments</caption>

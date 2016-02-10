@@ -15,7 +15,7 @@ public class MedicalEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "medical_equipment", lang));
+		setContent(getSimpleActionBar(session, "medical-equipment-form", lang));
 		setContent(getPropertyViewPage(session, formData, KufType.MEDICAL_EQUIPMENT, lang));
 	}
 

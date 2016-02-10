@@ -5,7 +5,7 @@
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
-            <doscript source="JAVA_CLASS">municipalproperty.page.form.EquipmentForm</doscript>
+            <doscript source="JAVA_CLASS">municipalproperty.page.form.equipment.OfficeEquipmentForm</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">

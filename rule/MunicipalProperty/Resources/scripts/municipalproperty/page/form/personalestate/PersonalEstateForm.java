@@ -1,20 +1,18 @@
-package municipalproperty.page.form;
+package municipalproperty.page.form.personalestate;
 
 import java.util.Date;
-import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
-import kz.nextbase.script._POJOListWrapper;
-import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.dao.PersonalEstateDAO;
 import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.constants.KufType;
+import municipalproperty.page.form.MunicipalPropertyForm;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.PropertyCode;
@@ -22,42 +20,10 @@ import reference.model.ReceivingReason;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
-public class FurnitureForm extends MunicipalPropertyForm {
+public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
-		PersonalEstate entity;
-		if (!id.equals("")) {
-			PersonalEstateDAO dao = new PersonalEstateDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		} else {
-			entity = new PersonalEstate();
-			entity.setAuthor(user);
-			entity.setRegDate(new Date());
-			Organization tempEmptyOrg = new Organization();
-			tempEmptyOrg.setName("");
-			tempEmptyOrg.setBin("");
-			entity.setBalanceHolder(tempEmptyOrg);
-			entity.setKuf(KufType.FURNITURE);
-			entity.setKof("");
-			entity.setInvNumber("");
-			entity.setObjectName("");
-			PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
-			entity.setPropertyCode(pcDao.findByName("Собственность"));
-			entity.setModel("");
-			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
-			entity.setReceivingReason(rrDao.findByName("Приобретено"));
-			entity.setReadyToUse(true);
-
-		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
-		setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
-		setContent(getActionBar(session, lang, entity));
-		startSaveFormTransact(entity);
-	}
+	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
@@ -191,5 +157,26 @@ public class FurnitureForm extends MunicipalPropertyForm {
 
 		return validationState;
 
+	}
+
+	protected PersonalEstate getDefaultEntity(User user, KufType type) {
+		PersonalEstate entity = new PersonalEstate();
+		entity.setAuthor(user);
+		entity.setRegDate(new Date());
+		Organization tempEmptyOrg = new Organization();
+		tempEmptyOrg.setName("");
+		tempEmptyOrg.setBin("");
+		entity.setBalanceHolder(tempEmptyOrg);
+		entity.setKuf(type);
+		entity.setKof("");
+		entity.setInvNumber("");
+		entity.setObjectName("");
+		PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
+		entity.setPropertyCode(pcDao.findByName("Собственность"));
+		entity.setModel("");
+		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
+		entity.setReceivingReason(rrDao.findByName("Приобретено"));
+		entity.setReadyToUse(true);
+		return entity;
 	}
 }

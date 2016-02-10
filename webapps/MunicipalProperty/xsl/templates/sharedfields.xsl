@@ -16,7 +16,7 @@
 					<xsl:value-of select="'/'" />
 				</div>
 				<div class="field-wrapper col-md-1">
-					<input type="text" name="kuf" value="{//fields/kuf}" class="form-control" />
+					<input type="text" name="kuf" value="{//fields/kuf}" class="form-control" disabled="disabled"/>
 				</div>
 			</div>
 		</div>
