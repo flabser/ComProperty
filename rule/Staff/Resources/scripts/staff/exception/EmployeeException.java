@@ -5,10 +5,10 @@ package staff.exception;
  * Created by Kayra on 28/12/15.
  */
 
-public class EmployеeException extends Exception {
+public class EmployeeException extends Exception {
 	private static final long serialVersionUID = 8827412325999342962L;
 
-	public EmployеeException(String addInfo) {
+	public EmployeeException(String addInfo) {
 		super(addInfo);
 	}
 

@@ -15,7 +15,7 @@ import staff.dao.DepartmentDAO;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Role;
 
@@ -92,7 +92,7 @@ public class EmployeeForm extends StaffForm {
 		} catch (_Exception e) {
 			setBadRequest();
 			error(e);
-		} catch (EmployеeException e) {
+		} catch (EmployeeException e) {
 			setBadRequest();
 			error(e);
 		}

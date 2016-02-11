@@ -18,7 +18,7 @@ import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.users.User;
 import kz.lof.dataengine.system.IEmployee;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 
 @Entity
 @Table(name = "employees")
@@ -66,13 +66,13 @@ public class Employee extends Staff implements IEmployee {
 		return login;
 	}
 
-	public void setLogin(String login) throws EmployеeException {
+	public void setLogin(String login) throws EmployeeException {
 		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
 		User user = sysDb.getUser(login);
 		if (user != null) {
 			this.login = user.getUserID();
 		} else {
-			throw new EmployеeException("Login " + login + " is not been associated with some user. Register a User before");
+			throw new EmployeeException("Login " + login + " is not been associated with some user. Register a User before");
 		}
 
 	}
@@ -93,13 +93,13 @@ public class Employee extends Staff implements IEmployee {
 		this.iin = iin;
 	}
 
-	public User getUser() throws EmployеeException {
+	public User getUser() throws EmployeeException {
 		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
 		User user = sysDb.getUser(login);
 		if (user != null) {
 			return user;
 		} else {
-			throw new EmployеeException("User who associated with the Employer has not been found");
+			throw new EmployeeException("User who associated with the Employer has not been found");
 		}
 
 	}

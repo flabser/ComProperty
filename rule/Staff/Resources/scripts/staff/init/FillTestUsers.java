@@ -18,7 +18,7 @@ import kz.pchelka.env.Environment;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
@@ -62,7 +62,7 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 		c.setName(getRndFirstName() + " " + getRndLastName());
 		try {
 			c.setLogin(user.getUserID());
-		} catch (EmployеeException e) {
+		} catch (EmployeeException e) {
 			e.printStackTrace();
 		}
 		Organization o = new OrganizationDAO(ses).findPrimaryOrg();

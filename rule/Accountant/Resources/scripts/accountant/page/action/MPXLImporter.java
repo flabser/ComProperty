@@ -44,7 +44,7 @@ import reference.model.Region;
 import reference.model.Street;
 import reference.model.Tag;
 import staff.dao.EmployeeDAO;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 
@@ -207,7 +207,7 @@ public class MPXLImporter {
 					Employee emp = empDao.findById(UUID.fromString(uuid));
 					try {
 						prop.addReaderEditor(emp.getUser());
-					} catch (EmployеeException e) {
+					} catch (EmployeeException e) {
 						Server.logger.errorLogEntry(e);
 					}
 				}
