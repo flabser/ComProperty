@@ -26,7 +26,7 @@ public class StructureView extends _DoPage {
 		if (org != null) {
 			content.add(new _POJOObjectWrapper(org, lang));
 		} else {
-			content.add(new _POJOListWrapper(getLocalizedWord("no_primary_org", lang)));
+			content.add(new _POJOListWrapper(getLocalizedWord("no_primary_org", lang), ""));
 		}
 
 		_ActionBar actionBar = new _ActionBar(session);
