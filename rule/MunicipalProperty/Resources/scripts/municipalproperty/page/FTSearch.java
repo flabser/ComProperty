@@ -3,7 +3,6 @@ package municipalproperty.page;
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
 import kz.flabs.localization.LanguageType;
-import kz.flabs.users.User;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
@@ -29,7 +28,6 @@ public class FTSearch extends _DoPage {
 			setBadRequest();
 			return;
 		}
-		User user = session.getUser();
 		int pageNum = 1;
 		int pageSize = session.pageSize;
 		if (formData.containsField("page")) {
@@ -39,7 +37,8 @@ public class FTSearch extends _DoPage {
 		IDatabase db = ses.getCurrentDatabase();
 		IFTIndexEngine ftEngine = db.getFTSearchEngine();
 		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
-		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
+		setContent(new _ActionBar(ses).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back_to_doc_list", lang),
+		        _ActionType.BACK)));
 		if (result != null) {
 			setContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang));
 		} else {

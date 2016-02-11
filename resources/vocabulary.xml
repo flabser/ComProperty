@@ -249,11 +249,6 @@
 		<entry lang="ENG">hours</entry>
 		<entry lang="CHI">時間  </entry>
 	</sentence>
-	<sentence mode="on" keyword="Найти">
-		<entry lang="KAZ">Табу</entry>
-		<entry lang="ENG">Find</entry>
-		<entry lang="CHI">找到</entry>
-	</sentence>
 	<sentence mode="on" keyword="logout">
 		<entry lang="RUS">Завершить работу</entry>
 		<entry lang="KAZ">Жұмысты аяқтау</entry>
@@ -733,12 +728,7 @@
 		<entry lang="KAZ">сағат</entry>
 		<entry lang="ENG">hours</entry>
 		<entry lang="CHI">小时 </entry>
-	</sentence>
-	<sentence mode="on" keyword="Вернуться к списку документов">
-		<entry lang="KAZ">Құжаттар тізіміне оралу</entry>
-		<entry lang="ENG">Return to the list of documents</entry>
-		<entry lang="CHI">備份的文件清單</entry>
-	</sentence>
+	</sentence>	
 	<sentence mode="on" keyword="мин">
 		<entry lang="KAZ">мин</entry>
 		<entry lang="ENG">min</entry>
@@ -784,6 +774,17 @@
 		<entry lang="ENG">There is no any data</entry>
 		<entry lang="RUS">Нет данных</entry>
 		<entry lang="KAZ"></entry>
+	</sentence>
+	<sentence mode="on" keyword="ft_search_result">
+		<entry lang="RUS">Найдено</entry>
+		<entry lang="KAZ"></entry>
+		<entry lang="ENG">Search result</entry>
+	</sentence>
+	<sentence mode="on" keyword="back_to_doc_list">
+		<entry lang="RUS">Вернуться к списку документов</entry>
+		<entry lang="KAZ">Құжаттар тізіміне оралу</entry>
+		<entry lang="ENG">Return to the list of documents</entry>
+		<entry lang="CHI">備份的文件清單</entry>
 	</sentence>
 	<sentence mode="on" keyword="ft_search_resturn_null">
 		<entry lang="ENG">Documnets have been not found, keyword</entry>

@@ -22,7 +22,9 @@
  	<caption name="org_name"/> 
  	<caption name="department"/> 
  	<caption name="countdocinview"/> 
- 	<caption name="interface_lang"/> 	
+ 	<caption name="interface_lang"/>
+ 	<caption name="back_to_doc_list"/>	 
+ 	<caption name="ft_search_result"/>	
     <caption name="airports">airports</caption>
     <caption name="animals">animals</caption>
     <caption name="automobiles">automobiles</caption>
