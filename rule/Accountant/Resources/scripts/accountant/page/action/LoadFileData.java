@@ -45,11 +45,12 @@ public class LoadFileData extends _DoPage {
 					UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
 					OrganizationDAO dao = new OrganizationDAO(session);
 					org = dao.findById(bhId);
+					String[] readers = formData.getListOfValuesSilently("reader");
 					File xlsFile = new File(fileName);
 					MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
 					Workbook workbook = Workbook.getWorkbook(xlsFile);
 					Sheet sheet = workbook.getSheet(0);
-					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org);
+					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org, readers);
 					if (sheetErrs == null) {
 						setError(getLocalizedWord("internal_error", lang));
 					}

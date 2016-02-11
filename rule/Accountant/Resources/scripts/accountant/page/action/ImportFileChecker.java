@@ -48,8 +48,9 @@ public class ImportFileChecker extends _DoPage {
 				OrganizationDAO oDao = new OrganizationDAO(ses);
 				List<Organization> oList = oDao.findAll();
 				Organization org = (Organization) Util.getRndListElement(oList);
+				String[] readers = formData.getListOfValuesSilently("reader");
 
-				Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, false, org);
+				Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, false, org, readers);
 				for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {
 					_Tag entry = rootTag.addTag("entry");
 					entry.setAttr("row", row.getKey());
