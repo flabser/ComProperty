@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.dataengine.jpa.AppEntity;
+import kz.lof.dataengine.jpa.AppEntity;
 import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._URL;
 import municipalproperty.model.constants.KufType;

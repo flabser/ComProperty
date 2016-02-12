@@ -115,7 +115,7 @@ nb.setFormValues = function(currentNode) {
             }
 
             $fieldNode.val(nodeList[0].value);
-            $('[data-input=' + fieldName + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+           $('[data-input=' + fieldName.replace('id','') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
         }
 
         return true;

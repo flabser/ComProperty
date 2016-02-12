@@ -2,7 +2,7 @@ package staff.dao;
 
 import java.util.UUID;
 
-import kz.flabs.dataengine.jpa.DAO;
+import kz.lof.dataengine.jpa.DAO;
 import kz.nextbase.script._Session;
 import staff.model.Department;
 

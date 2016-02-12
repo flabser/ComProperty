@@ -34,6 +34,7 @@ public class CountryForm extends ReferenceForm {
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(new _EnumWrapper<>(CountryCode.class.getEnumConstants()));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -55,10 +56,6 @@ public class CountryForm extends ReferenceForm {
 				entity = new Country();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Country();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -69,9 +66,10 @@ public class CountryForm extends ReferenceForm {
 			} else {
 				dao.update(entity);
 			}
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

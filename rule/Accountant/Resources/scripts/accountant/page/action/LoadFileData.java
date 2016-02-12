@@ -11,10 +11,10 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
+import kz.lof.env.Environment;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
-import kz.pchelka.env.Environment;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -35,7 +35,9 @@ public class LoadFileData extends _DoPage {
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
-			String fileName = userTmpDir + File.separator + formData.getEncodedValueSilently("fileid");
+			// String fileName = userTmpDir + File.separator +
+			// formData.getEncodedValueSilently("fileid");
+			String fileName = userTmpDir + File.separator + formData.getValueSilently("fileid");
 			String ext = FilenameUtils.getExtension(fileName);
 			Organization org = null;
 			if (ext.equalsIgnoreCase("xls")) {
@@ -43,11 +45,12 @@ public class LoadFileData extends _DoPage {
 					UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
 					OrganizationDAO dao = new OrganizationDAO(session);
 					org = dao.findById(bhId);
+					String[] readers = formData.getListOfValuesSilently("reader");
 					File xlsFile = new File(fileName);
 					MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
 					Workbook workbook = Workbook.getWorkbook(xlsFile);
 					Sheet sheet = workbook.getSheet(0);
-					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org);
+					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org, readers);
 					if (sheetErrs == null) {
 						setError(getLocalizedWord("internal_error", lang));
 					}

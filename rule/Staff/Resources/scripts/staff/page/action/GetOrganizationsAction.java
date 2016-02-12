@@ -1,6 +1,6 @@
 package staff.page.action;
 
-import kz.flabs.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
@@ -21,13 +21,15 @@ public class GetOrganizationsAction extends _DoPage {
 	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
 		String keyword = formData.getEncodedValueSilently("keyword");
 		int pageNum = 1;
-		int pageSize = ses.getUser().getSession().pageSize;
+		// int pageSize = ses.pageSize;
+		int pageSize = 100;
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 		OrganizationDAO dao = new OrganizationDAO(ses);
 		ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
 		setContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), lang));
+		// setPublishAsType(PublishAsType.JSON);
 	}
 
 	@Override

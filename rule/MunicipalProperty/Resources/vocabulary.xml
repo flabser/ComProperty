@@ -10,6 +10,16 @@
 		<entry lang="RUS">Объекты коммунальной собственности</entry>
 		<entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
 	</sentence>
+	<sentence mode="on" keyword="kof">
+		<entry lang="ENG">KOF</entry>
+		<entry lang="RUS">КОФ</entry>
+		<entry lang="KAZ">КОФ</entry>
+	</sentence>
+	<sentence mode="on" keyword="kuf">
+		<entry lang="ENG">KUF</entry>
+		<entry lang="RUS">КУФ</entry>
+		<entry lang="KAZ">КУФ</entry>
+	</sentence>
 	<sentence mode="on" keyword="personal_estates">
 		<entry lang="ENG">Personal estate</entry>
 		<entry lang="RUS">Движимое имущество</entry>
@@ -29,6 +39,11 @@
 		<entry lang="ENG">Equipments</entry>
 		<entry lang="RUS">Оборудование</entry>
 		<entry lang="KAZ">Оборудование</entry>
+	</sentence>
+	<sentence mode="on" keyword="documents_of_title">
+		<entry lang="ENG">Documents of the title</entry>
+		<entry lang="RUS">Правоустанавливающие документы</entry>
+		<entry lang="KAZ"></entry>
 	</sentence>
 	<sentence mode="on" keyword="intangible_assets">
 		<entry lang="RUS">Нематериальные активы</entry>
@@ -55,8 +70,34 @@
 		<entry lang="KAZ"></entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Балансодержатель">
+	 <sentence mode="on" keyword="property_code">
+        <entry lang="ENG">Property code</entry>
+        <entry lang="RUS">Код права на имущество</entry>
+        <entry lang="KAZ">Мүлікке құқықтың коды</entry>       
+    </sentence>
+	<sentence mode="on" keyword="balance_holder">
+	 	<entry lang="RUS">Балансодержатель</entry>
 		<entry lang="KAZ">Теңгерім ұстаушы</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+		<sentence mode="on" keyword="balance_cost">
+	 	<entry lang="RUS">Балансовая стоимость</entry>
+		<entry lang="KAZ">Балансовая стоимость</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+			<sentence mode="on" keyword="revaluation_amount">
+	 	<entry lang="RUS">Сумма переоценки</entry>
+		<entry lang="KAZ">Сумма переоценки</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+	<sentence mode="on" keyword="after_revaluation_amount">
+	 	<entry lang="RUS">Сумма переоценки</entry>
+		<entry lang="KAZ">Сумма переоценки</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
+	<sentence mode="on" keyword="commissioning_year">
+	 	<entry lang="RUS">Год ввода в эксплуатацию</entry>
+		<entry lang="KAZ">Год ввода в эксплуатацию</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Наименование Гос. учреждения (каз.)">
@@ -67,7 +108,8 @@
 		<entry lang="KAZ">Коммуналды Мем. мекемелердің БСН</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Инвентарный номер">
+	<sentence mode="on" keyword="inv_number">
+		<entry lang="RUS">Инвентарный номер</entry>
 		<entry lang="KAZ">Инвентарлы нөмір</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -75,27 +117,34 @@
 		<entry lang="KAZ">Объектінің сипаттамасы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Код права на имущество">
-		<entry lang="KAZ">Мүлікке құқықтың коды</entry>
+	
+	<sentence mode="on" keyword="acquisition_year">
+		<entry lang="RUS">Год прибретения</entry>
+		<entry lang="KAZ">Год прибретения</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Дата принятия на баланс">
+	<sentence mode="on" keyword="acceptance_date">
+		<entry lang="RUS">Дата принятия на баланс</entry>
 		<entry lang="KAZ">Балансқа алу датасы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Область">
+	<sentence mode="on" keyword="region">
+		<entry lang="RUS">Область</entry>
 		<entry lang="KAZ">Облыс</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Город">
+	<sentence mode="on" keyword="city">
+	<entry lang="RUS">Город</entry>
 		<entry lang="KAZ">Қала</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Район">
+	<sentence mode="on" keyword="district">
+	<entry lang="RUS">Район</entry>
 		<entry lang="KAZ">Аудан</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Улица">
+	<sentence mode="on" keyword="street">
+	<entry lang="RUS">Улица</entry>
 		<entry lang="KAZ">Көше</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -103,7 +152,8 @@
 		<entry lang="KAZ">Саны</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Первоначальная стоимость">
+	<sentence mode="on" keyword="original_cost">
+		<entry lang="RUS">Первоначальная стоимость</entry>
 		<entry lang="KAZ">Бастапқы құны</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -122,19 +172,20 @@
 	<sentence mode="on" keyword="Основание поступления в Гос. собственность">
 		<entry lang="KAZ">Мемлекеттік меншікке өту негізі</entry>
 		<entry lang="ENG"></entry>
-	</sentence>
-	<sentence mode="on" keyword="Основание поступления на баланс">
+	</sentence>	
+	<sentence mode="on" keyword="receiving_reason">
+		<entry lang="RUS">Основание поступления на баланс</entry>
 		<entry lang="KAZ">Балансқа өту негізі</entry>
-		<entry lang="ENG"></entry>
-
+		<entry lang="ENG">Receiving reason on the balance</entry>
 	</sentence>
 	<sentence mode="on" keyword="Основание снятия с баланса">
 		<entry lang="KAZ">Баланстан алу негізі</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Модель">
+	<sentence mode="on" keyword="model">
+		<entry lang="RUS">Модель</entry>
 		<entry lang="KAZ">Үлгісі</entry>
-		<entry lang="ENG"></entry>
+		<entry lang="ENG">Model</entry>
 	</sentence>
 	<sentence mode="on" keyword="Цвет">
 		<entry lang="KAZ">Түсі</entry>
@@ -168,7 +219,8 @@
 		<entry lang="KAZ">Құнсыздану</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Накопленная амортизация">
+	<sentence mode="on" keyword="cumulative_depreciation">
+		<entry lang="RUS">Накопленная амортизация</entry>
 		<entry lang="KAZ">Қорланған өтемпұл</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -220,7 +272,8 @@
 		<entry lang="KAZ">Реңі</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Обесценение">
+	<sentence mode="on" keyword="impairment_loss">
+		<entry lang="RUS">Убыток от обесценения</entry>
 		<entry lang="KAZ">Құнсыздану</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -446,6 +499,11 @@
 		<entry lang="KAZ">Пайдаланудың нормалық мерзімі</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
+		<sentence mode="on" keyword="is_ready_to_use">
+		<entry lang="RUS">Сведения о годности</entry>
+		<entry lang="KAZ">Сведения о годности</entry>
+		<entry lang="ENG"></entry>
+	</sentence>
 	<sentence mode="on" keyword="Состояние">
 		<entry lang="KAZ">Жағдайы</entry>
 		<entry lang="ENG"></entry>
@@ -577,6 +635,11 @@
 	<sentence mode="on" keyword="others">
 		<entry lang="ENG">Others</entry>
 		<entry lang="RUS">Прочее</entry>
+		<entry lang="KAZ">Басқалары</entry>
+	</sentence>
+	<sentence mode="on" keyword="others_equipment">
+		<entry lang="ENG">Others equipment</entry>
+		<entry lang="RUS">Прочее оборудование</entry>
 		<entry lang="KAZ">Басқалары</entry>
 	</sentence>
 	<sentence mode="on" keyword="inventory">
@@ -782,11 +845,13 @@
 		<entry lang="KAZ">Мемлекеттік мекеменің атауы (орысша)</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Адрес места нахождения объекта">
+	<sentence mode="on" keyword="address">
+		<entry lang="RUS">Адрес места нахождения объекта</entry>
 		<entry lang="KAZ">Объектінің орналасу мекен-жайы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Дом">
+	<sentence mode="on" keyword="home">
+		<entry lang="RUS">Дом</entry>
 		<entry lang="KAZ">Үй</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -959,13 +1024,9 @@
 		<entry lang="KAZ">Акт қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Наименование">
+	<sentence mode="on" keyword="object_name">
+		<entry lang="RUS">Наименование</entry>
 		<entry lang="KAZ">Атауы</entry>
-		<entry lang="ENG"></entry>
-	</sentence>
-	<sentence mode="on" keyword="new_furniture-form">
-		<entry lang="RUS">Добавить мебель</entry>
-		<entry lang="KAZ">Жаңа жиһаз қосу</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword='Поле "Наименование" не заполнено.'>
@@ -1017,11 +1078,7 @@
 		<entry lang="RUS"></entry>
 		<entry lang="KAZ">Қанағаттанарлық</entry>
 		<entry lang="ENG"></entry>
-	</sentence>
-	<sentence mode="on" keyword="Описание">
-		<entry lang="KAZ">Сипаттама</entry>
-		<entry lang="ENG"></entry>
-	</sentence>
+	</sentence>	
 	<sentence mode="on" keyword="Наименование акта">
 		<entry lang="KAZ">Акттың атауы</entry>
 		<entry lang="ENG"></entry>

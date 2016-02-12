@@ -15,7 +15,7 @@ public class CookEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "cook_equipment", lang));
+		setContent(getSimpleActionBar(session, "cook-equipment-form", lang));
 		setContent(getPropertyViewPage(session, formData, KufType.COOK_EQUIPMENT, lang));
 	}
 

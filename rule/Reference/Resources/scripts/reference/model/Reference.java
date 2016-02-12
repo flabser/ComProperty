@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import kz.flabs.dataengine.jpa.AppEntity;
+import kz.lof.dataengine.jpa.AppEntity;
 import kz.flabs.localization.LanguageType;
 
 @MappedSuperclass

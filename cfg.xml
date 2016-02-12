@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <nextbase>
-    <name>Nopanic</name>
-    <adminapp mode="on"/>
     <hostname>localhost</hostname>
-    <port>3838</port>
-    <webserver>
-        <version>7</version>
-        <webservices mode="OFF"/>
-    </webserver>
-    <ssl mode="OFF">
-        <port>38789</port>
-        <keypass>123456</keypass>
-        <keystore>c:\tmp\ssl\aikonamedia.jks</keystore>
-        <clientauth mode="OFF">
-            <truststorepass>123456</truststorepass>
-            <truststorefile>c:\tmp\ssl\truststore.jks</truststorefile>
-        </clientauth>
-    </ssl>
+    <port>3838</port>  
     <applications>
        <app>
-            <name mode="on">Administrator</name>
+            <name mode="off">Administrator</name>
         </app>
         <app>
             <name mode="off">Structure</name>
@@ -58,12 +43,17 @@
 		<entry>KAZ</entry>
 		<entry>ENG</entry>
 	</langs>
-    <logging>
-        <verbose>true</verbose>
-    </logging>
     <mailagent mode="ON">
         <smtphost>192.168.0.1</smtphost>
         <defaultsender>info@flabs.kz</defaultsender>
     </mailagent>
-    <debug mode="ON"></debug>
+   <ssl mode="OFF">
+        <port>38789</port>
+        <keypass>123456</keypass>
+        <keystore>c:\tmp\ssl\aikonamedia.jks</keystore>
+        <clientauth mode="OFF">
+            <truststorepass>123456</truststorepass>
+            <truststorefile>c:\tmp\ssl\truststore.jks</truststorefile>
+        </clientauth>
+    </ssl>
 </nextbase>

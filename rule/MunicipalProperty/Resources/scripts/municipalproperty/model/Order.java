@@ -8,7 +8,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.dataengine.jpa.SecureAppEntity;
+import kz.lof.dataengine.jpa.SecureAppEntity;
 
 @Entity
 @Table(name = "orders")

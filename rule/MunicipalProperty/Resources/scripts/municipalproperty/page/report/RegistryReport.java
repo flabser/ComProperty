@@ -8,12 +8,12 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
+import kz.lof.env.Environment;
+import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
-import kz.pchelka.env.Environment;
-import kz.pchelka.server.Server;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;
@@ -122,7 +122,7 @@ public class RegistryReport extends _DoPage {
 				exporter.exportReport();
 			}
 
-			showFile(filePath, fileName);
+			// showFile(filePath, fileName);
 			Environment.fileToDelete.add(filePath);
 			log("Report \"" + reportName + "\" is ready, estimated time is " + Util.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {

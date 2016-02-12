@@ -14,10 +14,10 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import kz.flabs.dataengine.Const;
-import kz.flabs.dataengine.jpa.DAO;
-import kz.flabs.dataengine.jpa.SecureAppEntity;
-import kz.flabs.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
+import kz.lof.dataengine.jpa.DAO;
+import kz.lof.dataengine.jpa.SecureAppEntity;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.nextbase.script._Session;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;

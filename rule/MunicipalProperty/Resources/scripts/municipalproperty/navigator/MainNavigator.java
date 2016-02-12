@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._IXMLContent;
+import kz.nextbase.script._IPOJOObject;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
@@ -21,7 +21,7 @@ public class MainNavigator extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		List<_IXMLContent> list = new ArrayList<_IXMLContent>();
+		List<_IPOJOObject> list = new ArrayList<_IPOJOObject>();
 
 		_Outline munPropOutline = new _Outline(getLocalizedWord("municipal_property", lang), "municipal_property");
 
@@ -43,7 +43,7 @@ public class MainNavigator extends _DoPage {
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("medical_equipment", lang), "medical-equipment-view"));
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("cook_equipment", lang), "cook-equipment-view"));
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("equipment_of_civildefence", lang), "equipment-of-civil-defence-view"));
-		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "other-equipment-view"));
+		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "others-equipment-view"));
 
 		_OutlineEntry realEstateEntry = new _OutlineEntry(getLocalizedWord("real_estates", lang), "real-estate-view");
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "building-view"));

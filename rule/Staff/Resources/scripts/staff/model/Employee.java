@@ -16,13 +16,17 @@ import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
-import staff.exception.EmployеeException;
+import kz.flabs.util.Util;
+import kz.lof.dataengine.system.IEmployee;
+import reference.model.Position;
+import staff.exception.EmployeeException;
 
 @Entity
 @Table(name = "employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
-public class Employee extends Staff {
+public class Employee extends Staff implements IEmployee {
 	@Column(nullable = false, length = 32)
 	private String login;
 
@@ -40,6 +44,10 @@ public class Employee extends Staff {
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)
 	private Department department;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Position position;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "employee_role")
@@ -61,17 +69,25 @@ public class Employee extends Staff {
 		this.department = department;
 	}
 
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 	public String getLogin() {
 		return login;
 	}
 
-	public void setLogin(String login) throws EmployеeException {
+	public void setLogin(String login) throws EmployeeException {
 		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
 		User user = sysDb.getUser(login);
 		if (user != null) {
 			this.login = user.getUserID();
 		} else {
-			throw new EmployеeException("Login " + login + " is not been associated with some user. Register a User before");
+			throw new EmployeeException("Login " + login + " is not been associated with some user. Register a User before");
 		}
 
 	}
@@ -92,13 +108,13 @@ public class Employee extends Staff {
 		this.iin = iin;
 	}
 
-	public User getUser() throws EmployеeException {
+	public User getUser() throws EmployeeException {
 		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
 		User user = sysDb.getUser(login);
 		if (user != null) {
 			return user;
 		} else {
-			throw new EmployеeException("User who associated with the Employer has not been found");
+			throw new EmployeeException("User who associated with the Employer has not been found");
 		}
 
 	}
@@ -116,5 +132,25 @@ public class Employee extends Staff {
 			roles = new ArrayList<Role>();
 		}
 		roles.add(r);
+	}
+
+	@Override
+	public String getFullXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		chunk.append("<name>" + getName() + "</name>");
+		chunk.append("<email>" + login + "</email>");
+		chunk.append("<login>" + login + "</login>");
+		chunk.append("<birthdate>" + getName() + "</birthdate>");
+		if (department != null) {
+			chunk.append("<department>" + department + "</department>");
+		} else {
+			chunk.append("<department></department>");
+		}
+		chunk.append("<iin>" + iin + "</iin>");
+		chunk.append("<organization>" + organization + "</organization>");
+		chunk.append("<position>" + position + "</position>");
+		chunk.append("<roles>" + roles + "</roles>");
+		return chunk.toString();
 	}
 }

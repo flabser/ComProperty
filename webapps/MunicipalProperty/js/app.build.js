@@ -8,7 +8,7 @@ var nb = {
     APP_NAME: location.hostname,
     LANG_ID: 'RUS',
     debug: true,
-    translations: {
+    strings: {
         'yes': 'Да',
         'no': 'Нет',
         ok: 'Ok',
@@ -16,7 +16,9 @@ var nb = {
         select: 'Выбрать',
         dialog_select_value: 'Вы не сделали выбор'
     },
+    form: {},
     dialog: {},
+    utils: {},
     xhr: {}
 };
 
@@ -26,29 +28,53 @@ var nbApp = { /* local application namespace */ };
  * ajax
  */
 nb.ajax = function(options) {
-    return $.ajax(options);
+
+    var deferred = $.ajax(options);
+
+    // error
+    deferred.error(function(xhr) {
+        console.error('nb.ajax : error', xhr);
+
+        if (xhr.status == 400) {
+            nb.dialog.error({
+                title: nb.getText('error_xhr', 'Ошибка запроса'),
+                message: xhr.responseText
+            });
+        }
+
+        return xhr;
+    });
+
+    return deferred;
 };
 
 /**
  * getText
  */
-nb.getText = function(stringKey, defaultText) {
-    if (this.translations[stringKey]) {
-        return this.translations[stringKey];
+nb.getText = function(stringKey, defaultText, langId) {
+    if (nbStrings[langId || this.LANG_ID][stringKey]) {
+        return nbStrings[langId || this.LANG_ID][stringKey];
     } else {
         return (defaultText !== undefined) ? defaultText : stringKey;
     }
 };
 
 /**
- * setFormValues
+ * openXML
  */
-nb.setFormValues = function(currentNode) {
+nb.openXML = function() {
+    window.location.href = window.location + '&onlyxml';
+};
+
+/**
+ * setValues
+ */
+nb.form.setValues = function(currentNode) {
 
     var $dlgw = $(currentNode).parents('[role=dialog]');
     var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
 
-    var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
+    var form = nb.utils.getForm($dlgWgt[0].dialogOptions.targetForm);
     var fieldName = $dlgWgt[0].dialogOptions.fieldName;
 
     var nodeList; // коллекция выбранных
@@ -59,7 +85,7 @@ nb.setFormValues = function(currentNode) {
     if (!form) {
         nb.dialog.warn({
             title: 'Error',
-            message: 'Error nb.setFormValues > form is not found: ' + form
+            message: 'Error nb.form.setValues > form is not found: ' + form
         });
         return false;
     }
@@ -115,7 +141,7 @@ nb.setFormValues = function(currentNode) {
             }
 
             $fieldNode.val(nodeList[0].value);
-            $('[data-input=' + fieldName + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+           $('[data-input=' + fieldName.replace('id','') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
         }
 
         return true;
@@ -123,17 +149,17 @@ nb.setFormValues = function(currentNode) {
 };
 
 /**
- * clearFormField
+ * clearField
  */
-nb.clearFormField = function(fieldName, context) {
-    $('[name=' + fieldName + ']', context).val('');
-    $('[data-input=' + fieldName + ']', context).html('');
+nb.utils.clearField = function(fieldName, context) {
+    $('[name=' + fieldName + ']').val('');
+    $('[data-input=' + fieldName + ']').html('');
 };
 
 /**
  * getForm
  */
-nb.getForm = function(el) {
+nb.utils.getForm = function(el) {
     if (el === null || el === undefined) {
         return el;
     }
@@ -151,9 +177,9 @@ nb.getForm = function(el) {
 };
 
 /**
- * uiBlock
+ * blockUI
  */
-nb.uiBlock = function() {
+nb.utils.blockUI = function() {
     var $el = $('#nb-block-ui');
     if ($el.length === 0) {
         $el = $('<div id="nb-block-ui" style="background:rgba(0,0,0,0.1);cursor:wait;position:fixed;top:0;left:0;bottom:0;right:0;z-index:999;"/>');
@@ -164,16 +190,16 @@ nb.uiBlock = function() {
 };
 
 /**
- * uiUnblock
+ * unblockUI
  */
-nb.uiUnblock = function() {
+nb.utils.unblockUI = function() {
     $('#nb-block-ui').css('display', 'none');
 };
 
 /**
  * notify
  */
-nb.notify = function(opt) {
+nb.utils.notify = function(opt) {
 
     var $nwrap = $('#nb-notify-wrapper');
     if (!$nwrap.length) {
@@ -394,13 +420,11 @@ nb.dialog = {
         options.dialogFilterListItem = options.dialogFilterListItem || 'li';
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
-        options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
+        options.errorMessage = options.errorMessage || nb.strings.dialog_select_value;
 
         options.onLoad = options.onLoad || null;
-
-        // onExecute
         options.onExecute = options.onExecute || function() {
-            if (nb.setFormValues($dialog)) {
+            if (nb.form.setValues($dialog, null)) {
                 $dialog.dialog('close');
             }
         };
@@ -625,52 +649,6 @@ nb.windowOpen = function(url, id, callbacks) {
 };
 
 /**
- * saveDocument
- */
-nb.xhr.saveDocument = function(options) {
-
-    options = options || {};
-    var notify = nb.notify({
-        message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
-        type: 'process'
-    }).show();
-
-    var xhrArgs = {
-        cache: false,
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        data: options.data || $('form').serialize(),
-        beforeSend: function() {
-            nb.uiBlock();
-            $('.required', 'form').removeClass('required').removeAttr('required');
-        },
-        success: function(response) {
-            notify.set({
-                'text': nb.getText('document_saved', 'Документ сохранен'),
-                'type': 'success'
-            });
-
-            return response;
-        },
-        error: function(err) {
-            notify.set({
-                'text': nb.getText('error_xhr', 'Ошибка при выполнении запроса'),
-                'type': 'error'
-            });
-
-            return err;
-        },
-        complete: function() {
-            nb.uiUnblock();
-            notify.remove(2000);
-        }
-    };
-
-    return nb.ajax(xhrArgs);
-};
-
-/**
  * deleteDocument
  */
 nb.xhr.deleteDocument = function(ck, typeDel) {
@@ -691,13 +669,336 @@ nb.xhr.deleteDocument = function(ck, typeDel) {
     });
 };
 
+/**
+ * restoreDeletedDocument
+ */
+nb.xhr.restoreDeletedDocument = function(ck) {
 
+    if (nb.debug === true) {
+        console.log('nb.xhr.restoreDeletedDocument: ', ck);
+    }
+
+    return nb.ajax({
+        type: 'POST',
+        datatype: 'XML',
+        url: 'Provider',
+        data: {
+            'type': 'undelete',
+            'ck': ck
+        }
+    });
+};
+
+/**
+ * addDocumentToFavorite
+ */
+nb.xhr.addDocumentToFavorite = function(docId, docType) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.addDocumentToFavorite: ', docId, docType);
+    }
+
+    return nb.ajax({
+        type: 'POST',
+        datatype: 'XML',
+        url: 'Provider',
+        data: {
+            'type': 'service',
+            'operation': 'add_to_favourites',
+            'doctype': docType,
+            'key': docId
+        }
+    })
+};
+
+/**
+ * removeDocumentFromFavorite
+ */
+nb.xhr.removeDocumentFromFavorite = function(docId, docType) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.removeDocumentFromFavorite: ', docId, docType);
+    }
+
+    return nb.ajax({
+        type: 'POST',
+        datatype: 'XML',
+        url: 'Provider',
+        data: {
+            'type': 'service',
+            'operation': 'remove_from_favourites',
+            'doctype': docType,
+            'key': docId
+        }
+    });
+};
+
+/**
+ * markDocumentAsRead
+ */
+nb.xhr.markDocumentAsRead = function(docId, docType) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.markDocumentAsRead: ', docId, docType);
+    }
+
+    return nb.ajax({
+        type: 'POST',
+        datatype: 'XML',
+        url: 'Provider',
+        data: {
+            'type': 'service',
+            'operation': 'mark_as_read',
+            'id': 'mark_as_read',
+            'doctype': docType,
+            'key': docId
+        }
+    });
+};
+
+/**
+ * getUsersWichRead
+ */
+nb.xhr.getUsersWichRead = function(docId, docType) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.getUsersWichRead: ', docId, docType);
+    }
+
+    return nb.ajax({
+        type: 'GET',
+        datatype: 'XML',
+        url: 'Provider',
+        data: {
+            'type': 'service',
+            'operation': 'users_which_read',
+            'id': 'users_which_read',
+            'doctype': docType,
+            'key': docId
+        }
+    });
+};
+
+/**
+ * saveDocument
+ */
+nb.xhr.saveDocument = function(options) {
+
+    options = options || {};
+    var notify = nb.utils.notify({
+        message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
+        type: 'process'
+    }).show();
+
+    var xhrArgs = {
+        cache: false,
+        type: 'POST',
+        datatype: 'json',
+        url: 'Provider',
+        data: options.data || $('form').serialize(),
+        beforeSend: function() {
+            nb.utils.blockUI();
+            $('.required, [required]', 'form').removeClass('required').removeAttr('required');
+        },
+        success: function(res) {
+            notify.set({
+                'text': res.captions["type"],
+                'type': 'success'
+            });
+  
+            window.location.href =  res.redirectURL;
+           /*var jmsg = nb.utils.parseMessageToJson(xml);
+            var msgText = jmsg.message[0];
+            if (jmsg.status === 'ok') {
+                notify.set({
+                    'text': nb.getText('document_saved', 'Документ сохранен'),
+                    'type': 'success'
+                });
+                //
+                if (msgText.length > 0) {
+                    nb.dialog.info({
+                        message: msgText,
+                        close: function() {
+                            if (jmsg.redirect || options.redirect) {
+                                window.location.href = jmsg.redirect || options.redirect;
+                            }
+                        }
+                    });
+                } else {
+                    if (jmsg.redirect || options.redirect) {
+                        setTimeout(function() {
+                            window.location.href = jmsg.redirect || options.redirect;
+                        }, 300);
+                    }
+                }
+            } else {
+                if (msgText.indexOf('require:') === 0) {
+                    var fields = msgText.substr('require:'.length).split(',');
+                    for (i = 0; i < fields.length; i++) {
+                        $('#' + fields[i] + 'tbl').addClass('required');
+                        $('[name=' + fields[i] + ']').attr('required', 'required').addClass('required');
+                    }
+                    notify.set({
+                        'text': nb.getText('required_field_not_filled', 'Не заполнены обязательные поля'),
+                        'type': 'error'
+                    });
+                } else {
+                    notify.set({
+                        'text': msgText,
+                        'type': 'error'
+                    });
+                }
+            }*/
+        },
+        error: function(err) {
+        	var obj = $.parseJSON(err.responseText);
+        	var msg;
+            if (obj.type = 'VALIDATION_ERROR'){
+            	msg = {'text': obj.captions['type'],'type': 'error'}
+            }else if (obj.type = 'SERVER_ERROR'){
+            	msg = {'text': obj.captions['type'],'type': 'error'}
+            }
+            notify.set(msg);
+        },
+        complete: function() {
+            nb.utils.unblockUI();
+            notify.remove(2000);
+        }
+    };
+
+    return nb.ajax(xhrArgs);
+};
+
+/**
+ * parseMessageToJson
+ */
+nb.utils.parseMessageToJson = function(xml) {
+
+    var msg = {};
+    $(xml).find('response').each(function(it) {
+        msg.status = $(this).attr('status');
+        msg.redirect = $('redirect', this).text();
+        msg.message = [];
+        $(this).find('message').each(function(it) {
+            msg.message.push($(this).text());
+        });
+    });
+    return msg;
+};
+
+/**
+ * chooseFilter
+ */
+nb.xhr.chooseFilter = function(pageId, column, keyword) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.chooseFilter: ', pageId, column, keyword);
+    }
+
+    return nb.ajax({
+        type: 'GET',
+        datatype: 'XML',
+        url: 'Provider?param=filter_mode~on&param=filtered_column~' + column + '&param=key_word~' + keyword,
+        cache: false,
+        data: {
+            'type': 'service',
+            'operation': 'tune_session',
+            'element': 'page',
+            'id': pageId
+        }
+    });
+};
+
+/**
+ * resetFilter
+ */
+nb.xhr.resetFilter = function(pageId) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.resetFilter: ', pageId);
+    }
+
+    return nb.ajax({
+        type: 'POST',
+        datatype: 'XML',
+        url: 'Provider',
+        cache: false,
+        data: {
+            'type': 'service',
+            'operation': 'tune_session',
+            'element': 'page',
+            'id': pageId,
+            'param': 'filter_mode~reset_all'
+        }
+    });
+};
+
+/**
+ * resetCurrentFilter
+ */
+nb.xhr.resetCurrentFilter = function(pageId, column) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.resetCurrentFilter: ', pageId, column);
+    }
+
+    return nb.ajax({
+        type: 'GET',
+        datatype: 'XML',
+        url: 'Provider?param=filter_mode~on&param=filtered_column~' + column,
+        cache: false,
+        data: {
+            'type': 'service',
+            'operation': 'tune_session',
+            'element': 'page',
+            'id': pageId
+        }
+    });
+};
+
+var nbStrings = {
+    'RUS': {},
+    'KAZ': {},
+    'ENG': {},
+    'CHN': {}
+};
+
+nbStrings.RUS = {
+    'yes': 'Да',
+    'no': 'Нет',
+    ok: 'Ok',
+    cancel: 'Отмена',
+    select: 'Выбрать',
+    dialog_select_value: 'Вы не сделали выбор'
+};
+
+/**
+ * sendSortRequest
+ */
+nb.xhr.sendSortRequest = function(pageId, column, direction) {
+
+    if (nb.debug === true) {
+        console.log('nb.xhr.sendSortRequest: ', pageId, column, direction);
+    }
+
+    return nb.ajax({
+        type: 'POST',
+        datatype: 'XML',
+        url: 'Provider?param=sorting_mode~on&param=sorting_column~' + column.toLowerCase() + '&param=sorting_direction~' + direction.toLowerCase(),
+        data: {
+            'type': 'service',
+            'operation': 'tune_session',
+            'element': 'page',
+            'id': pageId
+        }
+    });
+};
 
 nbApp.dialogChoiceBalanceHolder = function(el) {
-    var form = nb.getForm(el);
+    var form = nb.utils.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
-        fieldName: 'balanceholder',
+        fieldName: 'balanceholderid',
         title: el.title,
         href: 'Provider?id=get-organizations',
         buttons: {
@@ -721,10 +1022,6 @@ $(function() {
     $('[data-action=save_and_close]').click(function() {
         nb.xhr.saveDocument().then(function() {
             $('[data-action=close]')[0].click();
-        }, function(xhr) {
-            nb.dialog.error({
-                message: xhr.responseJSON.message[0]
-            });
         });
     });
 

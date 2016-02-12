@@ -9,11 +9,11 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
-import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
+import kz.lof.env.EnvConst;
 import kz.nextbase.script._Session;
-import kz.pchelka.env.EnvConst;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._IXMLContent;
+import kz.nextbase.script._IPOJOObject;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
@@ -20,13 +20,13 @@ public class StructureView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		List<_IXMLContent> content = new ArrayList<_IXMLContent>();
+		List<_IPOJOObject> content = new ArrayList<_IPOJOObject>();
 		OrganizationDAO dao = new OrganizationDAO(session);
 		Organization org = dao.findPrimaryOrg();
 		if (org != null) {
 			content.add(new _POJOObjectWrapper(org, lang));
 		} else {
-			content.add(new _POJOListWrapper(getLocalizedWord("no_primary_org", lang)));
+			content.add(new _POJOListWrapper(getLocalizedWord("no_primary_org", lang), ""));
 		}
 
 		_ActionBar actionBar = new _ActionBar(session);

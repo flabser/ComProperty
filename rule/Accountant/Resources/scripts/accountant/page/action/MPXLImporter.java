@@ -15,10 +15,10 @@ import jxl.Cell;
 import jxl.CellType;
 import jxl.DateCell;
 import jxl.Sheet;
-import kz.flabs.dataengine.jpa.IAppEntity;
 import kz.flabs.util.Util;
+import kz.lof.dataengine.jpa.IAppEntity;
+import kz.lof.server.Server;
 import kz.nextbase.script._Session;
-import kz.pchelka.server.Server;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;
@@ -44,7 +44,7 @@ import reference.model.Region;
 import reference.model.Street;
 import reference.model.Tag;
 import staff.dao.EmployeeDAO;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 
@@ -63,12 +63,12 @@ public class MPXLImporter {
 		this.mode = mode;
 	}
 
-	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh) {
+	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh, String[] readers) {
 		PropertyDAO propertyDao = new PropertyDAO(ses);
 		int processed = 0, skipped = 0;
 		if (mode == MPXLImporter.LOAD) {
 			mode = MPXLImporter.CHECK;
-			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, bh);
+			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, bh, readers);
 			if (res.size() > 0) {
 				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 				return null;
@@ -109,12 +109,12 @@ public class MPXLImporter {
 				List<Property> pList = propertyDao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
 
 				for (Property p : pList) {
-					/*
-					 * if (p.getBalanceHolder().equals(bh)) { rowErr.add(new
-					 * CheVal("3, Инвентарный номер",
-					 * invNumber).isNotUniqueMessage().getErr()); skipped++;
-					 * break; }
-					 */
+					if (p.getObjectName().equalsIgnoreCase(name)) {
+						rowErr.add(new CheVal("3, Инвентарный номер, наименование", invNumber + "," + name).isNotUniqueMessage().getErr());
+						skipped++;
+						break;
+					}
+
 				}
 
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());
@@ -203,11 +203,13 @@ public class MPXLImporter {
 				prop.addTag(tag);
 				prop.setAuthor(ses.getUser());
 				EmployeeDAO empDao = new EmployeeDAO(ses);
-				Employee emp = empDao.findByLogin("cgalina");
-				try {
-					prop.addReaderEditor(emp.getUser());
-				} catch (EmployеeException e) {
-					Server.logger.errorLogEntry(e);
+				for (String uuid : readers) {
+					Employee emp = empDao.findById(UUID.fromString(uuid));
+					try {
+						prop.addReaderEditor(emp.getUser());
+					} catch (EmployeeException e) {
+						Server.logger.errorLogEntry(e);
+					}
 				}
 				propertyDao.add(prop);
 				processed++;

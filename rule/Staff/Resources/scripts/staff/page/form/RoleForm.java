@@ -31,6 +31,7 @@ public class RoleForm extends StaffForm {
 		}
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -52,10 +53,6 @@ public class RoleForm extends StaffForm {
 				entity = new Role();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Role();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -67,9 +64,9 @@ public class RoleForm extends StaffForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

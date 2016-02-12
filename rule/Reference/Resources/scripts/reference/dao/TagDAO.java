@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import kz.flabs.dataengine.jpa.DAO;
+import kz.lof.dataengine.jpa.DAO;
 import kz.nextbase.script._Session;
 import reference.model.Tag;
 

@@ -1,6 +1,7 @@
 package workspace.page;
 
 import kz.flabs.localization.LanguageType;
+import kz.lof.env.Environment;
 import kz.nextbase.script._AppEntourage;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
@@ -17,9 +18,8 @@ public class Workspace extends _DoPage {
 		publishElement("org", ent.getGeneralName());
 		publishElement("img", ent.getLogoImg());
 		publishElement("appname", ent.getAppName());
-		publishElement("availablelangs", ent.getAvailableLangs());
-		publishElement("availableskins", ent.getAvailableSkins());
 		publishElement("availableapps", ent.getAvailableApps());
+		setContent("availablelangs", Environment.langs);
 
 	}
 

@@ -32,6 +32,7 @@ public class DistrictForm extends ReferenceForm {
 		}
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -54,10 +55,6 @@ public class DistrictForm extends ReferenceForm {
 				entity = new District();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new District();
-				}
 			}
 
 			entity.setName(webFormData.getValue("name"));
@@ -69,9 +66,9 @@ public class DistrictForm extends ReferenceForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			log(e);
+			error(e);
 		}
 	}
 }

@@ -11,6 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import kz.flabs.localization.LanguageType;
+
 @Entity
 @Table(name = "orgs")
 @NamedQuery(name = "Organization.findAll", query = "SELECT m FROM Organization AS m ORDER BY m.regDate")
@@ -27,6 +29,9 @@ public class Organization extends Staff {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "org_org_label")
 	private List<OrganizationLabel> labels;
+
+	@Column(length = 12)
+	private String bin;
 
 	public List<Department> getDepartments() {
 		return departments;
@@ -46,6 +51,22 @@ public class Organization extends Staff {
 
 	public void setEmployers(List<Employee> employers) {
 		this.employers = employers;
+	}
+
+	public String getBin() {
+		return bin;
+	}
+
+	public void setBin(String bin) {
+		this.bin = bin;
+	}
+
+	@Override
+	public String getShortXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<name>" + getName() + "</name>");
+		chunk.append("<bin>" + bin + "</bin>");
+		return chunk.toString();
 	}
 
 }

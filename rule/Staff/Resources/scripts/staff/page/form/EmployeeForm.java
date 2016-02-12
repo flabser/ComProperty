@@ -15,7 +15,7 @@ import staff.dao.DepartmentDAO;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Role;
 
@@ -40,6 +40,7 @@ public class EmployeeForm extends StaffForm {
 		setContent(new _POJOObjectWrapper(entity, lang));
 		setContent(new _POJOListWrapper(new RoleDAO(session).findAll(), lang));
 		setContent(getSimpleActionBar(session, lang));
+		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -64,10 +65,6 @@ public class EmployeeForm extends StaffForm {
 				entity = new Employee();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
-				if (entity == null) {
-					isNew = true;
-					entity = new Employee();
-				}
 			}
 
 			entity.setName(formData.getValue("name"));
@@ -91,13 +88,13 @@ public class EmployeeForm extends StaffForm {
 				dao.update(entity);
 			}
 
-			addMsg(getLocalizedWord("document_was_saved_succesfully", lang));
+			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
 			setBadRequest();
-			log(e);
-		} catch (EmployеeException e) {
+			error(e);
+		} catch (EmployeeException e) {
 			setBadRequest();
-			log(e);
+			error(e);
 		}
 	}
 }

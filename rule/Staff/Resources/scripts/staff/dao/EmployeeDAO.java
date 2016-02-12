@@ -11,13 +11,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import kz.flabs.dataengine.jpa.DAO;
-import kz.flabs.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.DAO;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
+import kz.lof.dataengine.system.IEmployee;
+import kz.lof.dataengine.system.IEmployeeDAO;
 import kz.nextbase.script._Session;
 import staff.model.Employee;
 
-public class EmployeeDAO extends DAO<Employee, UUID> {
+public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 
 	public EmployeeDAO(_Session session) {
 		super(Employee.class, session);
@@ -65,6 +67,11 @@ public class EmployeeDAO extends DAO<Employee, UUID> {
 		} finally {
 			em.close();
 		}
+	}
+
+	@Override
+	public IEmployee getEmployee(String login) {
+		return findByLogin(login);
 	}
 
 }

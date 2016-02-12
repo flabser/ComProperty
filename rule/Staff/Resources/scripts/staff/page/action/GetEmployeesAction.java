@@ -1,6 +1,6 @@
 package staff.page.action;
 
-import kz.flabs.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
 import kz.nextbase.script._POJOListWrapper;
 import kz.nextbase.script._Session;
@@ -20,7 +20,7 @@ public class GetEmployeesAction extends _DoPage {
 	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
 		String keyword = formData.getEncodedValueSilently("keyword");
 		int pageNum = 1;
-		int pageSize = ses.getUser().getSession().pageSize;
+		int pageSize = ses.pageSize;
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}

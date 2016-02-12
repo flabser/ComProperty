@@ -15,9 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.dataengine.jpa.SecureAppEntity;
+import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
 import kz.nextbase.script._URL;
@@ -28,7 +29,7 @@ import reference.model.Tag;
 import staff.model.Organization;
 
 @Entity
-@Table(name = "properties")
+@Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }))
 @NamedQuery(name = "Property.findAll", query = "SELECT m FROM Property AS m ORDER BY m.regDate")
 public class Property extends SecureAppEntity {
 	@Column(length = 16)
@@ -93,6 +94,8 @@ public class Property extends SecureAppEntity {
 
 	@Column(name = "ready_to_use")
 	private boolean readyToUse;
+
+	private String notes = "";
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
@@ -286,9 +289,22 @@ public class Property extends SecureAppEntity {
 		this.acquisitionYear = acquisitionYear;
 	}
 
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	@Override
 	public String getDefaultFormName() {
 		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
+	}
+
+	@Override
+	public String getDefaultViewName() {
+		return getKuf().name().replace("_", "-").toLowerCase() + "-view";
 	}
 
 	@Override
@@ -311,30 +327,46 @@ public class Property extends SecureAppEntity {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
 		chunk.append("<author>" + author + "</author>");
-		chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
+		try {
+			chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
+		} catch (NullPointerException e) {
+			chunk.append("<acceptancedate></acceptancedate>");
+		}
 		chunk.append("<acquisitionyear>" + acquisitionYear + "</acquisitionyear>");
 		chunk.append("<assignment>" + assignment + "</assignment>");
 		chunk.append("<balancecost>" + balanceCost + "</balancecost>");
-		chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
+		chunk.append("<balanceholder>" + balanceHolder.getName() + "</balanceholder>");
+		chunk.append("<balanceholderbin>" + balanceHolder.getBin() + "</balanceholderbin>");
+		chunk.append("<balanceholderid>" + balanceHolder.getId() + "</balanceholderid>");
 		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
 		chunk.append("<cumulativedepreciation>" + cumulativeDepreciation + "</cumulativedepreciation>");
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<impairmentloss>" + impairmentLoss + "</impairmentloss>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
-		chunk.append("<kuf>" + kuf.getCode() + "</kuf>");
+		chunk.append("<kof>" + kof + "</kof>");
+		try {
+			chunk.append("<kuf>" + kuf.getCode() + "</kuf>");
+		} catch (NullPointerException e) {
+			chunk.append("<acceptancedate></acceptancedate>");
+		}
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + originalCost + "</originalcost>");
-		chunk.append("<propertycode>" + propertyCode + "</propertycode>");
+		chunk.append("<propertycode>" + propertyCode.getId() + "</propertycode>");
 		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
-		chunk.append("<receivingreason>" + receivingReason + "</receivingreason>");
+		chunk.append("<receivingreason>" + receivingReason.getId() + "</receivingreason>");
 		chunk.append("<residualcost>" + residualCost + "</residualcost>");
 		chunk.append("<revaluationamount>" + revaluationAmount + "</revaluationamount>");
-		String tagsAsText = "";
-		for (Tag t : tags) {
-			tagsAsText += t.getLocalizedName().get(lang);
+		try {
+			String tagsAsText = "";
+			for (Tag t : tags) {
+				tagsAsText += t.getLocalizedName().get(lang);
+			}
+			chunk.append("<tags>" + tagsAsText + "</tags>");
+		} catch (NullPointerException e) {
+			chunk.append("<tags></tags>");
 		}
-		chunk.append("<tags>" + tagsAsText + "</tags>");
 		chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
+		chunk.append("<notes>" + notes + "</notes>");
 		return chunk.toString();
 	}
 

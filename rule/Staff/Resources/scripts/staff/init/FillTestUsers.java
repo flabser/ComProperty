@@ -6,19 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
+import kz.lof.env.EnvConst;
+import kz.lof.env.Environment;
+import kz.lof.server.Server;
 import kz.nextbase.script._Session;
-import kz.pchelka.env.EnvConst;
-import kz.pchelka.env.Environment;
-import kz.pchelka.server.Server;
+import reference.dao.PositionDAO;
+import reference.model.Position;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
-import staff.exception.EmployеeException;
+import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
@@ -58,23 +60,26 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 	}
 
 	private Employee getMock(User user) {
-		Employee c = new Employee();
-		c.setName(getRndFirstName() + " " + getRndLastName());
+		Employee emp = new Employee();
+		emp.setName(getRndFirstName() + " " + getRndLastName());
 		try {
-			c.setLogin(user.getUserID());
-		} catch (EmployеeException e) {
+			emp.setLogin(user.getUserID());
+		} catch (EmployeeException e) {
 			e.printStackTrace();
 		}
 		Organization o = new OrganizationDAO(ses).findPrimaryOrg();
-		c.setOrganization(o);
+		emp.setOrganization(o);
 		RoleDAO roleDao = new RoleDAO(ses);
 		List<Role> rl = roleDao.findAll();
 		Role role = (Role) Util.getRndListElement(rl);
 		if (role != null) {
-			c.addRole(role);
+			emp.addRole(role);
 		}
 
-		return c;
+		PositionDAO postDao = new PositionDAO(ses);
+		List<Position> posts = postDao.findAll();
+		emp.setPosition((Position) Util.getRndListElement(posts));
+		return emp;
 
 	}
 
