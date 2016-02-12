@@ -16,8 +16,11 @@ import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
+import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
+import kz.flabs.util.Util;
 import kz.lof.dataengine.system.IEmployee;
+import reference.model.Position;
 import staff.exception.EmployeeException;
 
 @Entity
@@ -42,6 +45,10 @@ public class Employee extends Staff implements IEmployee {
 	@JoinColumn(nullable = false)
 	private Department department;
 
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Position position;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "employee_role")
 	private List<Role> roles;
@@ -60,6 +67,14 @@ public class Employee extends Staff implements IEmployee {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 
 	public String getLogin() {
@@ -117,5 +132,25 @@ public class Employee extends Staff implements IEmployee {
 			roles = new ArrayList<Role>();
 		}
 		roles.add(r);
+	}
+
+	@Override
+	public String getFullXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		chunk.append("<name>" + getName() + "</name>");
+		chunk.append("<email>" + login + "</email>");
+		chunk.append("<login>" + login + "</login>");
+		chunk.append("<birthdate>" + getName() + "</birthdate>");
+		if (department != null) {
+			chunk.append("<department>" + department + "</department>");
+		} else {
+			chunk.append("<department></department>");
+		}
+		chunk.append("<iin>" + iin + "</iin>");
+		chunk.append("<organization>" + organization + "</organization>");
+		chunk.append("<position>" + position + "</position>");
+		chunk.append("<roles>" + roles + "</roles>");
+		return chunk.toString();
 	}
 }

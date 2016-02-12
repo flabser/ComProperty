@@ -314,6 +314,24 @@
 		<entry lang="ENG">Close</entry>
 		<entry lang="CHI">关闭</entry>
 	</sentence>
+	<sentence mode="on" keyword="just_close">
+		<entry lang="RUS">Закрыть форму</entry>
+		<entry lang="KAZ">Жабу</entry>
+		<entry lang="ENG">Just close the form</entry>
+		<entry lang="CHI">关闭</entry>
+	</sentence>
+	<sentence mode="on" keyword="back">
+		<entry lang="RUS">Назад</entry>
+		<entry lang="KAZ">Назад</entry>
+		<entry lang="ENG">Back</entry>
+		<entry lang="CHI"></entry>
+	</sentence>
+	<sentence mode="on" keyword="just_back">
+		<entry lang="RUS">Вернутся на предыдущую страницу</entry>
+		<entry lang="KAZ">Жабу</entry>
+		<entry lang="ENG">Return to the previous page</entry>
+		<entry lang="CHI"></entry>
+	</sentence>
 	<sentence mode="on" keyword="basic_properties">
 		<entry lang="RUS">Основные свойства</entry>
 		<entry lang="KAZ">Негізгі қасиеттері</entry>

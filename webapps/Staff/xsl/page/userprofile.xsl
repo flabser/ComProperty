@@ -9,7 +9,34 @@
 
 	<xsl:template name="_content">
 		<xsl:variable name="editmode" select="//document/@editmode"/>
+		
+		 <script type="text/javascript">
+      		function changeEventHandler(event) {
+          			var xhrArgs = {
+        				cache: false,
+        				type: 'POST',
+        				datatype: 'json',
+        				url: 'Provider',
+       					data: {
+            				'id': 'change-lang-action',
+           					'lang': event.target.value,
+        				},
+        
+        				success: function(res) {
+            				window.location.reload(false);          
+        				},
+        				error: function(err) {
+        	
+       					 },
+        				complete: function() {
+           
+        				}
+    			};
+        	return nb.ajax(xhrArgs);        	
 
+      }
+    </script>
+    
 		<form name="{//page/@entity}">
 			<header class="content-header">
 				<h1 class="header-title">
@@ -218,25 +245,18 @@
 								<xsl:value-of select="//captions/interface_lang/@caption"/>
 							</div>
 							<div class="controls">
-								<div class="field-wrapper col-md-2">
-									<select name="lang" class="form-control">
-										<xsl:variable name='chinese' select="//captions/chinese/@caption"/>
+								<div class="field-wrapper col-md-1">
+									<select name="lang" class="form-control"  onchange="changeEventHandler(event);">
 										<xsl:variable name='currentlang' select="../@lang"/>
-										<xsl:for-each select="//glossaries/langs/entry">
+										<xsl:for-each select="//availablelangs/entry">
 											<option id="{id}" value="{id}">
-												<xsl:if test="$currentlang = id">
+												 <xsl:if test=". = $currentlang">
 													<xsl:attribute name="selected">selected
 													</xsl:attribute>
-												</xsl:if>
-												<xsl:if test="id = 'CHN'">
-													<xsl:value-of select="$chinese"/>
-												</xsl:if>
-												<xsl:if test="id = 'KAZ'">
-													Қазақша
-												</xsl:if>
-												<xsl:if test="id != 'CHN' and id != 'KAZ'">
-													<xsl:value-of select="name"/>
-												</xsl:if>
+													
+												</xsl:if>	
+													<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute> 								
+												<xsl:value-of select="."/>										
 											</option>
 										</xsl:for-each>
 									</select>

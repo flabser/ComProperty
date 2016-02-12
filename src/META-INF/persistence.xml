@@ -111,6 +111,7 @@
 		<class>staff.model.Employee</class>
 		<class>staff.model.Role</class>
 		<class>staff.model.OrganizationLabel</class>
+		<class>reference.model.Position</class>	
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 </persistence>
