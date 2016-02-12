@@ -8,7 +8,7 @@ var nb = {
     APP_NAME: location.hostname,
     LANG_ID: 'RUS',
     debug: true,
-    strings: {
+    translations: {
         'yes': 'Да',
         'no': 'Нет',
         ok: 'Ok',
@@ -16,9 +16,7 @@ var nb = {
         select: 'Выбрать',
         dialog_select_value: 'Вы не сделали выбор'
     },
-    form: {},
     dialog: {},
-    utils: {},
     xhr: {}
 };
 
@@ -28,53 +26,29 @@ var nbApp = { /* local application namespace */ };
  * ajax
  */
 nb.ajax = function(options) {
-
-    var deferred = $.ajax(options);
-
-    // error
-    deferred.error(function(xhr) {
-        console.error('nb.ajax : error', xhr);
-
-        if (xhr.status == 400) {
-            nb.dialog.error({
-                title: nb.getText('error_xhr', 'Ошибка запроса'),
-                message: xhr.responseText
-            });
-        }
-
-        return xhr;
-    });
-
-    return deferred;
+    return $.ajax(options);
 };
 
 /**
  * getText
  */
-nb.getText = function(stringKey, defaultText, langId) {
-    if (nbStrings[langId || this.LANG_ID][stringKey]) {
-        return nbStrings[langId || this.LANG_ID][stringKey];
+nb.getText = function(stringKey, defaultText) {
+    if (this.translations[stringKey]) {
+        return this.translations[stringKey];
     } else {
         return (defaultText !== undefined) ? defaultText : stringKey;
     }
 };
 
 /**
- * openXML
+ * setFormValues
  */
-nb.openXML = function() {
-    window.location.href = window.location + '&onlyxml';
-};
-
-/**
- * setValues
- */
-nb.form.setValues = function(currentNode) {
+nb.setFormValues = function(currentNode) {
 
     var $dlgw = $(currentNode).parents('[role=dialog]');
     var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
 
-    var form = nb.utils.getForm($dlgWgt[0].dialogOptions.targetForm);
+    var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
     var fieldName = $dlgWgt[0].dialogOptions.fieldName;
 
     var nodeList; // коллекция выбранных
@@ -85,7 +59,7 @@ nb.form.setValues = function(currentNode) {
     if (!form) {
         nb.dialog.warn({
             title: 'Error',
-            message: 'Error nb.form.setValues > form is not found: ' + form
+            message: 'Error nb.setFormValues > form is not found: ' + form
         });
         return false;
     }
@@ -149,17 +123,17 @@ nb.form.setValues = function(currentNode) {
 };
 
 /**
- * clearField
+ * clearFormField
  */
-nb.utils.clearField = function(fieldName, context) {
-    $('[name=' + fieldName + ']').val('');
-    $('[data-input=' + fieldName + ']').html('');
+nb.clearFormField = function(fieldName, context) {
+    $('[name=' + fieldName + ']', context).val('');
+    $('[data-input=' + fieldName + ']', context).html('');
 };
 
 /**
  * getForm
  */
-nb.utils.getForm = function(el) {
+nb.getForm = function(el) {
     if (el === null || el === undefined) {
         return el;
     }
@@ -177,9 +151,9 @@ nb.utils.getForm = function(el) {
 };
 
 /**
- * blockUI
+ * uiBlock
  */
-nb.utils.blockUI = function() {
+nb.uiBlock = function() {
     var $el = $('#nb-block-ui');
     if ($el.length === 0) {
         $el = $('<div id="nb-block-ui" style="background:rgba(0,0,0,0.1);cursor:wait;position:fixed;top:0;left:0;bottom:0;right:0;z-index:999;"/>');
@@ -190,16 +164,16 @@ nb.utils.blockUI = function() {
 };
 
 /**
- * unblockUI
+ * uiUnblock
  */
-nb.utils.unblockUI = function() {
+nb.uiUnblock = function() {
     $('#nb-block-ui').css('display', 'none');
 };
 
 /**
  * notify
  */
-nb.utils.notify = function(opt) {
+nb.notify = function(opt) {
 
     var $nwrap = $('#nb-notify-wrapper');
     if (!$nwrap.length) {
@@ -420,11 +394,13 @@ nb.dialog = {
         options.dialogFilterListItem = options.dialogFilterListItem || 'li';
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
-        options.errorMessage = options.errorMessage || nb.strings.dialog_select_value;
+        options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
 
         options.onLoad = options.onLoad || null;
+
+        // onExecute
         options.onExecute = options.onExecute || function() {
-            if (nb.form.setValues($dialog, null)) {
+            if (nb.setFormValues($dialog)) {
                 $dialog.dialog('close');
             }
         };
@@ -886,110 +862,4 @@ nb.utils.parseMessageToJson = function(xml) {
     return msg;
 };
 
-/**
- * chooseFilter
- */
-nb.xhr.chooseFilter = function(pageId, column, keyword) {
 
-    if (nb.debug === true) {
-        console.log('nb.xhr.chooseFilter: ', pageId, column, keyword);
-    }
-
-    return nb.ajax({
-        type: 'GET',
-        datatype: 'XML',
-        url: 'Provider?param=filter_mode~on&param=filtered_column~' + column + '&param=key_word~' + keyword,
-        cache: false,
-        data: {
-            'type': 'service',
-            'operation': 'tune_session',
-            'element': 'page',
-            'id': pageId
-        }
-    });
-};
-
-/**
- * resetFilter
- */
-nb.xhr.resetFilter = function(pageId) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.resetFilter: ', pageId);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        cache: false,
-        data: {
-            'type': 'service',
-            'operation': 'tune_session',
-            'element': 'page',
-            'id': pageId,
-            'param': 'filter_mode~reset_all'
-        }
-    });
-};
-
-/**
- * resetCurrentFilter
- */
-nb.xhr.resetCurrentFilter = function(pageId, column) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.resetCurrentFilter: ', pageId, column);
-    }
-
-    return nb.ajax({
-        type: 'GET',
-        datatype: 'XML',
-        url: 'Provider?param=filter_mode~on&param=filtered_column~' + column,
-        cache: false,
-        data: {
-            'type': 'service',
-            'operation': 'tune_session',
-            'element': 'page',
-            'id': pageId
-        }
-    });
-};
-
-var nbStrings = {
-    'RUS': {},
-    'KAZ': {},
-    'ENG': {},
-    'CHN': {}
-};
-
-nbStrings.RUS = {
-    'yes': 'Да',
-    'no': 'Нет',
-    ok: 'Ok',
-    cancel: 'Отмена',
-    select: 'Выбрать',
-    dialog_select_value: 'Вы не сделали выбор'
-};
-
-/**
- * sendSortRequest
- */
-nb.xhr.sendSortRequest = function(pageId, column, direction) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.sendSortRequest: ', pageId, column, direction);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider?param=sorting_mode~on&param=sorting_column~' + column.toLowerCase() + '&param=sorting_direction~' + direction.toLowerCase(),
-        data: {
-            'type': 'service',
-            'operation': 'tune_session',
-            'element': 'page',
-            'id': pageId
-        }
-    });
-};
