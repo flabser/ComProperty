@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:import href="../layout.xsl" />
-	<xsl:import href="../templates/sharedfields.xsl" />
+	<xsl:import href="../templates/personal-estate.xsl" />
 
 	<xsl:variable name="editmode" select="/request/document/@editmode" />
 	<xsl:variable name="status" select="document/@status" />

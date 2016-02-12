@@ -47,8 +47,8 @@
     <caption name="factories">factories</caption>
     <caption name="furniture">furniture</caption>
     <caption name="intangible_assets">intangible_assets</caption>
-    <caption name="inventory"></caption>
-    <caption name="lands">land</caption>
+    <caption name="inventory"/>
+    <caption name="land"/>
     <caption name="medical_equipment">medical_equipment</caption>
     <caption name="monuments">monuments</caption>
     <caption name="motorcycles">motorcycles</caption>

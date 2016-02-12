@@ -8,6 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.flabs.localization.LanguageType;
 import reference.model.embedded.Address;
 
 @Entity
@@ -45,6 +46,22 @@ public class RealEstate extends Property {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+
+	@Override
+	public String getFullXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<countfloors>" + countFloors + "</countfloors>");
+		chunk.append("<material>" + material + "</material>");
+		chunk.append("<country>" + address.getCountry().getName() + "</country>");
+		chunk.append("<region>" + address.getRegion().getName() + "</region>");
+		chunk.append("<district>" + address.getDistrict().getName() + "</district>");
+		chunk.append("<locality>" + address.getLocality().getName() + "</locality>");
+		chunk.append("<street>" + address.getStreet().getName() + "</street>");
+		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");
+		chunk.append("<additionalinfo>" + address.getAdditionalInfo() + "</additionalinfo>");
+
+		return super.getFullXMLChunk(lang) + chunk;
 	}
 
 }

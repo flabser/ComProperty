@@ -2,6 +2,7 @@ package staff.page;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
+import kz.lof.env.Environment;
 import kz.nextbase.script._POJOObjectWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
@@ -25,6 +26,7 @@ public class UserProfile extends _DoPage {
 		Employee emp = dao.findByLogin(user.getUserID());
 		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
 		setContent(new _POJOObjectWrapper(emp, lang));
+		setContent("langs", Environment.langs);
 	}
 
 	@Override

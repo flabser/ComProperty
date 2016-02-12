@@ -2,8 +2,8 @@
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
     <caption name="notes"></caption>
-     <caption name="files"></caption>
-      <caption name="additional"></caption>
+    <caption name="files"></caption>
+    <caption name="additional"></caption>
    <caption name="save_close"></caption>
     <caption name="close"></caption>
     <caption name="bin"></caption>
@@ -19,12 +19,12 @@
     <caption name="property_type">Тип имущество</caption>
     <caption name="acquisition_year">Год приобретения</caption>
     <caption name="acceptance_date"></caption>
-    <caption name="address">Адрес места нахождения объекта</caption>
-    <caption name="region">Область</caption>
-    <caption name="city">Город</caption>
-    <caption name="district">Район</caption>
-    <caption name="street">Улица</caption>
-    <caption name="home">Дом</caption>
+    <caption name="address"/>
+    <caption name="region"/>
+    <caption name="city"/>
+    <caption name="district"/>
+    <caption name="street"/>
+    <caption name="home"/>
     <caption name="appartament">Квартира</caption>
     <caption name="regdoc">Регистрационные документы</caption>
     <caption name="original_cost"></caption>
@@ -41,7 +41,7 @@
     <caption name="receiving_reason"></caption>
     <caption name="deterioration">Износ</caption>
     <caption name="repair">Ремонт</caption>
-    <caption name="amount">Количество</caption>
+    <caption name="additional_info"/>
 
     <caption name="model"></caption>
     <caption name="color">Цвет</caption>

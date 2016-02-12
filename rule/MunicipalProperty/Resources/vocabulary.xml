@@ -128,19 +128,23 @@
 		<entry lang="KAZ">Балансқа алу датасы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Область">
+	<sentence mode="on" keyword="region">
+		<entry lang="RUS">Область</entry>
 		<entry lang="KAZ">Облыс</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Город">
+	<sentence mode="on" keyword="city">
+	<entry lang="RUS">Город</entry>
 		<entry lang="KAZ">Қала</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Район">
+	<sentence mode="on" keyword="district">
+	<entry lang="RUS">Район</entry>
 		<entry lang="KAZ">Аудан</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Улица">
+	<sentence mode="on" keyword="street">
+	<entry lang="RUS">Улица</entry>
 		<entry lang="KAZ">Көше</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
@@ -496,8 +500,8 @@
 		<entry lang="ENG"></entry>
 	</sentence>
 		<sentence mode="on" keyword="is_ready_to_use">
-		<entry lang="RUS">Сведения о годности к эксплуатации</entry>
-		<entry lang="KAZ">Сведения о годности к эксплуатации</entry>
+		<entry lang="RUS">Сведения о годности</entry>
+		<entry lang="KAZ">Сведения о годности</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Состояние">
@@ -841,11 +845,13 @@
 		<entry lang="KAZ">Мемлекеттік мекеменің атауы (орысша)</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Адрес места нахождения объекта">
+	<sentence mode="on" keyword="address">
+		<entry lang="RUS">Адрес места нахождения объекта</entry>
 		<entry lang="KAZ">Объектінің орналасу мекен-жайы</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Дом">
+	<sentence mode="on" keyword="home">
+		<entry lang="RUS">Дом</entry>
 		<entry lang="KAZ">Үй</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
