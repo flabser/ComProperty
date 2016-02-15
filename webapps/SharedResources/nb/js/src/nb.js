@@ -9,8 +9,8 @@ var nb = {
     LANG_ID: 'RUS',
     debug: true,
     translations: {
-        'yes': 'Да',
-        'no': 'Нет',
+        yes: 'Да',
+        no: 'Нет',
         ok: 'Ok',
         cancel: 'Отмена',
         select: 'Выбрать',
@@ -115,7 +115,7 @@ nb.setFormValues = function(currentNode) {
             }
 
             $fieldNode.val(nodeList[0].value);
-           $('[data-input=' + fieldName.replace('id','') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+            $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
         }
 
         return true;

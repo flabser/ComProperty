@@ -4,7 +4,7 @@ $(function() {
             $('[data-action=close]')[0].click();
         }, function(xhr) {
             nb.dialog.error({
-                message: xhr.responseJSON.message[0]
+                message: xhr.responseJSON.messages[0]
             });
         });
     });

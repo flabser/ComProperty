@@ -9,8 +9,8 @@ var nb = {
     LANG_ID: 'RUS',
     debug: true,
     translations: {
-        'yes': 'Да',
-        'no': 'Нет',
+        yes: 'Да',
+        no: 'Нет',
         ok: 'Ok',
         cancel: 'Отмена',
         select: 'Выбрать',
@@ -115,7 +115,7 @@ nb.setFormValues = function(currentNode) {
             }
 
             $fieldNode.val(nodeList[0].value);
-           $('[data-input=' + fieldName.replace('id','') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+            $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
         }
 
         return true;
@@ -625,143 +625,12 @@ nb.windowOpen = function(url, id, callbacks) {
 };
 
 /**
- * deleteDocument
- */
-nb.xhr.deleteDocument = function(ck, typeDel) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.deleteDocument: ', ck, typeDel);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        data: {
-            'type': 'delete',
-            'ck': ck,
-            'typedel': typeDel
-        }
-    });
-};
-
-/**
- * restoreDeletedDocument
- */
-nb.xhr.restoreDeletedDocument = function(ck) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.restoreDeletedDocument: ', ck);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        data: {
-            'type': 'undelete',
-            'ck': ck
-        }
-    });
-};
-
-/**
- * addDocumentToFavorite
- */
-nb.xhr.addDocumentToFavorite = function(docId, docType) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.addDocumentToFavorite: ', docId, docType);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        data: {
-            'type': 'service',
-            'operation': 'add_to_favourites',
-            'doctype': docType,
-            'key': docId
-        }
-    })
-};
-
-/**
- * removeDocumentFromFavorite
- */
-nb.xhr.removeDocumentFromFavorite = function(docId, docType) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.removeDocumentFromFavorite: ', docId, docType);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        data: {
-            'type': 'service',
-            'operation': 'remove_from_favourites',
-            'doctype': docType,
-            'key': docId
-        }
-    });
-};
-
-/**
- * markDocumentAsRead
- */
-nb.xhr.markDocumentAsRead = function(docId, docType) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.markDocumentAsRead: ', docId, docType);
-    }
-
-    return nb.ajax({
-        type: 'POST',
-        datatype: 'XML',
-        url: 'Provider',
-        data: {
-            'type': 'service',
-            'operation': 'mark_as_read',
-            'id': 'mark_as_read',
-            'doctype': docType,
-            'key': docId
-        }
-    });
-};
-
-/**
- * getUsersWichRead
- */
-nb.xhr.getUsersWichRead = function(docId, docType) {
-
-    if (nb.debug === true) {
-        console.log('nb.xhr.getUsersWichRead: ', docId, docType);
-    }
-
-    return nb.ajax({
-        type: 'GET',
-        datatype: 'XML',
-        url: 'Provider',
-        data: {
-            'type': 'service',
-            'operation': 'users_which_read',
-            'id': 'users_which_read',
-            'doctype': docType,
-            'key': docId
-        }
-    });
-};
-
-/**
  * saveDocument
  */
 nb.xhr.saveDocument = function(options) {
 
     options = options || {};
-    var notify = nb.utils.notify({
+    var notify = nb.notify({
         message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
         type: 'process'
     }).show();
@@ -773,93 +642,80 @@ nb.xhr.saveDocument = function(options) {
         url: 'Provider',
         data: options.data || $('form').serialize(),
         beforeSend: function() {
-            nb.utils.blockUI();
+            nb.uiBlock();
             $('.required, [required]', 'form').removeClass('required').removeAttr('required');
         },
-        success: function(res) {
+        success: function(response) {
             notify.set({
-                'text': res.captions["type"],
-                'type': 'success'
+                text: response.captions.type,
+                type: 'success'
             });
-  
-            window.location.href =  res.redirectURL;
-           /*var jmsg = nb.utils.parseMessageToJson(xml);
-            var msgText = jmsg.message[0];
-            if (jmsg.status === 'ok') {
-                notify.set({
-                    'text': nb.getText('document_saved', 'Документ сохранен'),
-                    'type': 'success'
-                });
-                //
-                if (msgText.length > 0) {
-                    nb.dialog.info({
-                        message: msgText,
-                        close: function() {
-                            if (jmsg.redirect || options.redirect) {
-                                window.location.href = jmsg.redirect || options.redirect;
-                            }
-                        }
-                    });
-                } else {
-                    if (jmsg.redirect || options.redirect) {
-                        setTimeout(function() {
-                            window.location.href = jmsg.redirect || options.redirect;
-                        }, 300);
-                    }
-                }
-            } else {
-                if (msgText.indexOf('require:') === 0) {
-                    var fields = msgText.substr('require:'.length).split(',');
-                    for (i = 0; i < fields.length; i++) {
-                        $('#' + fields[i] + 'tbl').addClass('required');
-                        $('[name=' + fields[i] + ']').attr('required', 'required').addClass('required');
-                    }
-                    notify.set({
-                        'text': nb.getText('required_field_not_filled', 'Не заполнены обязательные поля'),
-                        'type': 'error'
-                    });
-                } else {
-                    notify.set({
-                        'text': msgText,
-                        'type': 'error'
-                    });
-                }
-            }*/
+
+            window.location.href = response.redirectURL;
+            return response;
+            /*var jmsg = nb.parseMessageToJson(xml);
+             var msgText = jmsg.message[0];
+             if (jmsg.status === 'ok') {
+                 notify.set({
+                     'text': nb.getText('document_saved', 'Документ сохранен'),
+                     'type': 'success'
+                 });
+                 //
+                 if (msgText.length > 0) {
+                     nb.dialog.info({
+                         message: msgText,
+                         close: function() {
+                             if (jmsg.redirect || options.redirect) {
+                                 window.location.href = jmsg.redirect || options.redirect;
+                             }
+                         }
+                     });
+                 } else {
+                     if (jmsg.redirect || options.redirect) {
+                         setTimeout(function() {
+                             window.location.href = jmsg.redirect || options.redirect;
+                         }, 300);
+                     }
+                 }
+             } else {
+                 if (msgText.indexOf('require:') === 0) {
+                     var fields = msgText.substr('require:'.length).split(',');
+                     for (i = 0; i < fields.length; i++) {
+                         $('#' + fields[i] + 'tbl').addClass('required');
+                         $('[name=' + fields[i] + ']').attr('required', 'required').addClass('required');
+                     }
+                     notify.set({
+                         'text': nb.getText('required_field_not_filled', 'Не заполнены обязательные поля'),
+                         'type': 'error'
+                     });
+                 } else {
+                     notify.set({
+                         'text': msgText,
+                         'type': 'error'
+                     });
+                 }
+             }*/
         },
         error: function(err) {
-        	var obj = $.parseJSON(err.responseText);
-        	var msg;
-            if (obj.type = 'VALIDATION_ERROR'){
-            	msg = {'text': obj.captions['type'],'type': 'error'}
-            }else if (obj.type = 'SERVER_ERROR'){
-            	msg = {'text': obj.captions['type'],'type': 'error'}
+            var response = err.responseJSON;
+            var msg = {
+                type: 'error'
+            };
+            if (response.type === 'VALIDATION_ERROR') {
+                msg.text = response.captions.type;
+            } else if (response.type === 'SERVER_ERROR') {
+                msg.text = response.captions.type;
             }
             notify.set(msg);
+            return err;
         },
         complete: function() {
-            nb.utils.unblockUI();
+            nb.uiUnblock();
             notify.remove(2000);
         }
     };
 
     return nb.ajax(xhrArgs);
-};
-
-/**
- * parseMessageToJson
- */
-nb.utils.parseMessageToJson = function(xml) {
-
-    var msg = {};
-    $(xml).find('response').each(function(it) {
-        msg.status = $(this).attr('status');
-        msg.redirect = $('redirect', this).text();
-        msg.message = [];
-        $(this).find('message').each(function(it) {
-            msg.message.push($(this).text());
-        });
-    });
-    return msg;
 };
 
 
@@ -870,7 +726,7 @@ $(function() {
             $('[data-action=close]')[0].click();
         }, function(xhr) {
             nb.dialog.error({
-                message: xhr.responseJSON.message[0]
+                message: xhr.responseJSON.messages[0]
             });
         });
     });

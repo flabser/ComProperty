@@ -1,3 +1,8 @@
+.col-lg-5 {
+    padding-left: 0px;
+}
+
+
 /* progress */
 
 progress[value='0'] {
