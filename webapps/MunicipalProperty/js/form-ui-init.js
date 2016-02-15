@@ -1,12 +1,6 @@
 $(function() {
     $('[data-action=save_and_close]').click(function() {
-        nb.submitForm(nb.getForm(this)).then(function() {
-            // $('[data-action=close]')[0].click();
-        }, function(xhr) {
-            /*nb.dialog.error({
-                message: xhr.responseJSON.messages[0]
-            });*/
-        });
+        nb.submitForm(nb.getForm(this));
     });
 
     $('[data-toggle-theme]').click(function() {
@@ -21,7 +15,7 @@ $(function() {
     });
 
     var theme = localStorage.getItem('theme');
-    if (theme != null && theme != '') {
+    if (theme) {
         $('body').addClass(theme);
     }
 });
