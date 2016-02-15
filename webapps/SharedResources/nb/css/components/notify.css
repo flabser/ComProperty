@@ -40,9 +40,9 @@
 }
 
 .nb-notify-entry-error {
-    background: rgba(255, 0, 0, 0.95);
-    border-color: #E00000;
-    color: #FFF;
+    background: #FFBABA;
+    border-color: #FFD8D8;
+    color: #000;
 }
 
 .nb-notify-entry-process {

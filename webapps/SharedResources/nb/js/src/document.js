@@ -1,9 +1,8 @@
 /**
  * saveDocument
  */
-nb.xhr.saveDocument = function(options) {
+nb.xhr.saveDocument = function(form) {
 
-    options = options || {};
     var notify = nb.notify({
         message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
         type: 'process'
@@ -14,10 +13,10 @@ nb.xhr.saveDocument = function(options) {
         type: 'POST',
         datatype: 'json',
         url: 'Provider',
-        data: options.data || $('form').serialize(),
+        data: $(form).serialize(),
         beforeSend: function() {
             nb.uiBlock();
-            $('.required, [required]', 'form').removeClass('required').removeAttr('required');
+            $('.required, [required]', form).removeClass('required');
         },
         success: function(response) {
             notify.set({
@@ -25,50 +24,10 @@ nb.xhr.saveDocument = function(options) {
                 type: 'success'
             });
 
-            window.location.href = response.redirectURL;
+            if (response.redirectURL) {
+                window.location.href = response.redirectURL;
+            }
             return response;
-            /*var jmsg = nb.parseMessageToJson(xml);
-             var msgText = jmsg.message[0];
-             if (jmsg.status === 'ok') {
-                 notify.set({
-                     'text': nb.getText('document_saved', 'Документ сохранен'),
-                     'type': 'success'
-                 });
-                 //
-                 if (msgText.length > 0) {
-                     nb.dialog.info({
-                         message: msgText,
-                         close: function() {
-                             if (jmsg.redirect || options.redirect) {
-                                 window.location.href = jmsg.redirect || options.redirect;
-                             }
-                         }
-                     });
-                 } else {
-                     if (jmsg.redirect || options.redirect) {
-                         setTimeout(function() {
-                             window.location.href = jmsg.redirect || options.redirect;
-                         }, 300);
-                     }
-                 }
-             } else {
-                 if (msgText.indexOf('require:') === 0) {
-                     var fields = msgText.substr('require:'.length).split(',');
-                     for (i = 0; i < fields.length; i++) {
-                         $('#' + fields[i] + 'tbl').addClass('required');
-                         $('[name=' + fields[i] + ']').attr('required', 'required').addClass('required');
-                     }
-                     notify.set({
-                         'text': nb.getText('required_field_not_filled', 'Не заполнены обязательные поля'),
-                         'type': 'error'
-                     });
-                 } else {
-                     notify.set({
-                         'text': msgText,
-                         'type': 'error'
-                     });
-                 }
-             }*/
         },
         error: function(err) {
             var response = err.responseJSON;
@@ -77,6 +36,7 @@ nb.xhr.saveDocument = function(options) {
             };
             if (response.type === 'VALIDATION_ERROR') {
                 msg.text = response.captions.type;
+                nb.showValidationError(response.validation, form);
             } else if (response.type === 'SERVER_ERROR') {
                 msg.text = response.captions.type;
             }
@@ -90,4 +50,17 @@ nb.xhr.saveDocument = function(options) {
     };
 
     return nb.ajax(xhrArgs);
+};
+
+nb.showValidationError = function(validation, form) {
+    if (validation && validation.errors) {
+        var ers = validation.errors;
+        for (var index in ers) {
+            if (index == 0) {
+                $('[name=' + ers[index].field + ']').focus();
+            }
+            $('[name=' + ers[index].field + ']', form).attr('required', 'required').addClass('required');
+            $('[data-input=' + ers[index].field + ']', form).addClass('required');
+        }
+    }
 };
