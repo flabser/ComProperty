@@ -1,7 +1,5 @@
 package municipalproperty.page.form.equipment;
 
-import java.util.UUID;
-
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.nextbase.script._POJOListWrapper;
@@ -14,24 +12,26 @@ import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
+import java.util.UUID;
+
+
 public class OthersEquipmentForm extends EquipmentForm {
 
-	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
-		Equipment entity;
-		if (!id.equals("")) {
-			EquipmentDAO dao = new EquipmentDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		} else {
-			entity = getDefaultEntity(user, KufType.OTHERS_EQUIPMENT);
-		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
-		setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
-		setContent(getActionBar(session, lang, entity));
-		startSaveFormTransact(entity);
-	}
-
+    @Override
+    public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+        String id = formData.getValueSilently("docid");
+        User user = session.getUser();
+        Equipment entity;
+        if (!id.isEmpty()) {
+            EquipmentDAO dao = new EquipmentDAO(session);
+            entity = dao.findById(UUID.fromString(id));
+        } else {
+            entity = getDefaultEntity(user, KufType.OTHERS_EQUIPMENT);
+        }
+        setContent(new _POJOObjectWrapper(entity, lang));
+        setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
+        setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
+        setContent(getActionBar(session, lang, entity));
+        startSaveFormTransact(entity);
+    }
 }
