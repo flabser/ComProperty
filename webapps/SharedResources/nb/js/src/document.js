@@ -36,7 +36,7 @@ nb.xhr.saveDocument = function(form) {
             };
             if (response.type === 'VALIDATION_ERROR') {
                 msg.text = response.captions.type;
-                nb.showValidationError(response.validation, form);
+                nb.validateForm(form, response.validation);
             } else if (response.type === 'SERVER_ERROR') {
                 msg.text = response.captions.type;
             }
@@ -52,7 +52,7 @@ nb.xhr.saveDocument = function(form) {
     return nb.ajax(xhrArgs);
 };
 
-nb.showValidationError = function(validation, form) {
+nb.validateForm = function(form, validation) {
     if (validation && validation.errors) {
         var ers = validation.errors;
         for (var index in ers) {
