@@ -1,67 +1,65 @@
 package reference.page.form;
 
-import java.util.UUID;
-
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
-import kz.nextbase.script._Exception;
-import kz.nextbase.script._POJOObjectWrapper;
-import kz.nextbase.script._Session;
-import kz.nextbase.script._WebFormData;
+import kz.nextbase.script.*;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.ReceivingReason;
 
+import java.util.UUID;
+
 public class ReceivingReasonForm extends ReferenceForm {
 
-	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
-		ReceivingReason entity;
-		if (!id.equals("")) {
-			ReceivingReasonDAO dao = new ReceivingReasonDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		} else {
-			entity = new ReceivingReason();
-			entity.setAuthor(user);
-		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(getSimpleActionBar(session, lang));
-		startSaveFormTransact(entity);
-	}
+    @Override
+    public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+        String id = formData.getValueSilently("docid");
+        User user = session.getUser();
+        ReceivingReason entity;
+        if (!id.isEmpty()) {
+            ReceivingReasonDAO dao = new ReceivingReasonDAO(session);
+            entity = dao.findById(UUID.fromString(id));
+        } else {
+            entity = new ReceivingReason();
+            entity.setAuthor(user);
+        }
+        setContent(new _POJOObjectWrapper(entity, lang));
+        setContent(getSimpleActionBar(session, lang));
+        startSaveFormTransact(entity);
+    }
 
-	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
-		try {
-			boolean v = validate(formData, lang);
-			if (v == false) {
-				setBadRequest();
-				return;
-			}
+    @Override
+    public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+        try {
+            _Validation ve = validate(formData, lang);
+            if (ve.hasError()) {
+                setBadRequest();
+                setValidation(ve);
+                return;
+            }
 
-			boolean isNew = false;
-			String id = formData.getValueSilently("docid");
-			ReceivingReasonDAO dao = new ReceivingReasonDAO(session);
-			ReceivingReason entity;
+            boolean isNew = false;
+            String id = formData.getValueSilently("docid");
+            ReceivingReasonDAO dao = new ReceivingReasonDAO(session);
+            ReceivingReason entity;
 
-			if (id.equals("")) {
-				isNew = true;
-				entity = new ReceivingReason();
-			} else {
-				entity = dao.findById(UUID.fromString(id));
-			}
+            if (id.isEmpty()) {
+                isNew = true;
+                entity = new ReceivingReason();
+            } else {
+                entity = dao.findById(UUID.fromString(id));
+            }
 
-			entity.setName(formData.getValue("name"));
+            entity.setName(formData.getValue("name"));
 
-			if (isNew) {
-				dao.add(entity);
-			} else {
-				dao.update(entity);
-			}
+            if (isNew) {
+                dao.add(entity);
+            } else {
+                dao.update(entity);
+            }
 
-			finishSaveFormTransact(entity);
-		} catch (_Exception e) {
-			error(e);
-		}
-	}
+            finishSaveFormTransact(entity);
+        } catch (_Exception e) {
+            error(e);
+        }
+    }
 }
