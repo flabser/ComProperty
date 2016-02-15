@@ -486,10 +486,10 @@ nb.windowOpen = function(url, id, callbacks) {
  */
 nb.submitForm = function(form) {
 
-    /*if (!nb.validateForm(form)) {
+    if (!nb.validateForm(form)) {
         var dfd = $.Deferred();
         return dfd.reject(false);
-    }*/
+    }
 
     var notify = nb.notify({
         message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
