@@ -41,96 +41,6 @@ nb.getText = function(stringKey, defaultText) {
 };
 
 /**
- * setFormValues
- */
-nb.setFormValues = function(currentNode) {
-
-    var $dlgw = $(currentNode).parents('[role=dialog]');
-    var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
-
-    var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
-    var fieldName = $dlgWgt[0].dialogOptions.fieldName;
-
-    var nodeList; // коллекция выбранных
-    var isMulti = false;
-    var itemSeparate = '';
-    var displaySeparate = '<br/>'; // отобразить мульти значения разделителем
-
-    if (!form) {
-        nb.dialog.warn({
-            title: 'Error',
-            message: 'Error nb.setFormValues > form is not found: ' + form
-        });
-        return false;
-    }
-
-    nodeList = $('[data-type=select]:checked', $dlgWgt[0]);
-    if (nodeList.length > 0) {
-        isMulti = nodeList.length > 1;
-        if (!isMulti) {
-            itemSeparate = '';
-        }
-
-        return _writeValues(nodeList);
-    } else {
-        if ($dlgWgt[0].dialogOptions.effect) {
-            $dlgw.stop();
-            $dlgw.effect($dlgWgt[0].dialogOptions.effect, {
-                times: 2
-            }, 300);
-        }
-
-        if ($('.js-no-selected-value', $dlgw[0]).length === 0) {
-            (function() {
-                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + $dlgWgt[0].dialogOptions.errorMessage + '</div>');
-                $dlgWgt.after($_html);
-                setTimeout(function() {
-                    $_html.fadeOut({
-                        always: function() {
-                            $_html.remove();
-                        }
-                    });
-                }, 800);
-            })();
-        }
-
-        return false;
-    }
-
-    // write values to form
-    function _writeValues() {
-        if (isMulti) {
-            $('[name=' + fieldName + ']', form).remove();
-            var htm = [];
-            nodeList.each(function(index, node) {
-                $('<input type="hidden" name="' + fieldName + '" value="' + node.value + '" />').appendTo(form);
-                htm.push('<li>' + $(node).data('text') + '</li>');
-            });
-            $('[data-input=' + fieldName + ']', form).html(htm.join(''));
-        } else {
-            var $fieldNode = $('[name=' + fieldName + ']', form);
-            if ($fieldNode.length === 0) {
-                $fieldNode = $('<input type="hidden" name="' + fieldName + '" />');
-                $(form).append($fieldNode[0]);
-            }
-
-            $fieldNode.val(nodeList[0].value);
-            $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
-        }
-
-        return true;
-    }
-};
-
-/**
- * clearFormField
- */
-nb.clearFormField = function(fieldName, context) {
-    $('[name=' + fieldName + ']', context).val('');
-    $('[data-input=' + fieldName + ']', context).html('');
-};
-
-/**
  * getForm
  */
 nb.getForm = function(el) {
@@ -170,61 +80,7 @@ nb.uiUnblock = function() {
     $('#nb-block-ui').css('display', 'none');
 };
 
-/**
- * notify
- */
-nb.notify = function(opt) {
-
-    var $nwrap = $('#nb-notify-wrapper');
-    if (!$nwrap.length) {
-        $nwrap = $('<div id=nb-notify-wrapper class=nb-notify></div>').appendTo('body');
-    }
-    var $el = $('<div class=nb-notify-entry-' + (opt.type || 'info') + '>' + opt.message + '</div>').appendTo($nwrap);
-
-    return {
-        show: function(timeout) {
-            $el.css('display', 'block');
-            if (timeout && timeout > 0) {
-                this.remove(timeout);
-                return;
-            }
-            return this;
-        },
-        hide: function() {
-            $el.css('display', 'none');
-            return this;
-        },
-        set: function(opt) {
-            for (var key in opt) {
-                if (key === 'text') {
-                    $el.text(opt[key]);
-                } else if (key === 'type') {
-                    $el.attr('class', 'nb-notify-entry-' + opt[key]);
-                }
-            }
-            return this;
-        },
-        remove: function(timeout, callback) {
-            if ($el === null) {
-                return;
-            }
-
-            if (timeout && timeout > 0) {
-                var _this = this;
-                setTimeout(function() {
-                    $el.remove();
-                    $el = null;
-                    callback && callback();
-                }, timeout);
-            } else {
-                $el.remove();
-                $el = null;
-                callback && callback();
-            }
-        }
-    };
-};
-
+// init
 $(document).ready(function() {
     nb.LANG_ID = $.cookie('lang') || 'RUS';
 
@@ -624,10 +480,11 @@ nb.windowOpen = function(url, id, callbacks) {
     w.focus();
 };
 
+
 /**
- * saveDocument
+ * submitForm
  */
-nb.xhr.saveDocument = function(form) {
+nb.submitForm = function(form) {
 
     var notify = nb.notify({
         message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
@@ -642,7 +499,7 @@ nb.xhr.saveDocument = function(form) {
         data: $(form).serialize(),
         beforeSend: function() {
             nb.uiBlock();
-            $('.required, [required]', form).removeClass('required');
+            $('.required', form).removeClass('required');
         },
         success: function(response) {
             notify.set({
@@ -678,6 +535,9 @@ nb.xhr.saveDocument = function(form) {
     return nb.ajax(xhrArgs);
 };
 
+/**
+ * validateForm
+ */
 nb.validateForm = function(form, validation) {
     if (validation && validation.errors) {
         var ers = validation.errors;
@@ -691,4 +551,149 @@ nb.validateForm = function(form, validation) {
     }
 };
 
+
+/**
+ * setFormValues
+ */
+nb.setFormValues = function(currentNode) {
+
+    var $dlgw = $(currentNode).parents('[role=dialog]');
+    var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
+
+    var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
+    var fieldName = $dlgWgt[0].dialogOptions.fieldName;
+
+    var nodeList; // коллекция выбранных
+    var isMulti = false;
+    var itemSeparate = '';
+    var displaySeparate = '<br/>'; // отобразить мульти значения разделителем
+
+    if (!form) {
+        nb.dialog.warn({
+            title: 'Error',
+            message: 'Error nb.setFormValues > form is not found: ' + form
+        });
+        return false;
+    }
+
+    nodeList = $('[data-type=select]:checked', $dlgWgt[0]);
+    if (nodeList.length > 0) {
+        isMulti = nodeList.length > 1;
+        if (!isMulti) {
+            itemSeparate = '';
+        }
+
+        return _writeValues(nodeList);
+    } else {
+        if ($dlgWgt[0].dialogOptions.effect) {
+            $dlgw.stop();
+            $dlgw.effect($dlgWgt[0].dialogOptions.effect, {
+                times: 2
+            }, 300);
+        }
+
+        if ($('.js-no-selected-value', $dlgw[0]).length === 0) {
+            (function() {
+                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + $dlgWgt[0].dialogOptions.errorMessage + '</div>');
+                $dlgWgt.after($_html);
+                setTimeout(function() {
+                    $_html.fadeOut({
+                        always: function() {
+                            $_html.remove();
+                        }
+                    });
+                }, 800);
+            })();
+        }
+
+        return false;
+    }
+
+    // write values to form
+    function _writeValues() {
+        if (isMulti) {
+            $('[name=' + fieldName + ']', form).remove();
+            var htm = [];
+            nodeList.each(function(index, node) {
+                $('<input type="hidden" name="' + fieldName + '" value="' + node.value + '" />').appendTo(form);
+                htm.push('<li>' + $(node).data('text') + '</li>');
+            });
+            $('[data-input=' + fieldName + ']', form).html(htm.join(''));
+        } else {
+            var $fieldNode = $('[name=' + fieldName + ']', form);
+            if ($fieldNode.length === 0) {
+                $fieldNode = $('<input type="hidden" name="' + fieldName + '" />');
+                $(form).append($fieldNode[0]);
+            }
+
+            $fieldNode.val(nodeList[0].value);
+            $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+        }
+
+        return true;
+    }
+};
+
+/**
+ * clearFormField
+ */
+nb.clearFormField = function(fieldName, context) {
+    $('[name=' + fieldName + ']', context).val('');
+    $('[data-input=' + fieldName + ']', context).html('');
+};
+
+/**
+ * notify
+ */
+nb.notify = function(opt) {
+
+    var $nwrap = $('#nb-notify-wrapper');
+    if (!$nwrap.length) {
+        $nwrap = $('<div id=nb-notify-wrapper class=nb-notify></div>').appendTo('body');
+    }
+    var $el = $('<div class=nb-notify-entry-' + (opt.type || 'info') + '>' + opt.message + '</div>').appendTo($nwrap);
+
+    return {
+        show: function(timeout) {
+            $el.css('display', 'block');
+            if (timeout && timeout > 0) {
+                this.remove(timeout);
+                return;
+            }
+            return this;
+        },
+        hide: function() {
+            $el.css('display', 'none');
+            return this;
+        },
+        set: function(opt) {
+            for (var key in opt) {
+                if (key === 'text') {
+                    $el.text(opt[key]);
+                } else if (key === 'type') {
+                    $el.attr('class', 'nb-notify-entry-' + opt[key]);
+                }
+            }
+            return this;
+        },
+        remove: function(timeout, callback) {
+            if ($el === null) {
+                return;
+            }
+
+            if (timeout && timeout > 0) {
+                var _this = this;
+                setTimeout(function() {
+                    $el.remove();
+                    $el = null;
+                    callback && callback();
+                }, timeout);
+            } else {
+                $el.remove();
+                $el = null;
+                callback && callback();
+            }
+        }
+    };
+};
 
