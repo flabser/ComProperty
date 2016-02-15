@@ -5,7 +5,6 @@
     <xsl:import href="templates/outline.xsl"/>
     <xsl:import href="templates/view.xsl"/>
     <xsl:import href="templates/actions.xsl"/>
-    <xsl:import href="templates/utils.xsl"/>
 
     <xsl:variable name="isAjaxRequest" select="//ajax = '1'"/>
 
@@ -107,8 +106,11 @@
                         </li>
                     </ul>
                     <xsl:if test="not(//document)">
-                        <form class="navbar-form navbar-right" role="search" onsubmit="return false;">
-                            <input type="text" class="form-control" name="keyword" placeholder="Search"/>
+                        <form class="navbar-form navbar-right" role="search" action="Provider">
+                            <input type="hidden" name="id" value="search"/>
+                            <input type="text" class="form-control" name="keyword" required="required">
+                                <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
+                            </input>
                         </form>
                     </xsl:if>
                 </nav>

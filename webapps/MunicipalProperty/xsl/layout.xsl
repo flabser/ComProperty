@@ -67,7 +67,6 @@
             <script src="/SharedResources/vendor/jquery/jquery.cookie.min.js"></script>
             <script src="/SharedResources/vendor/bootstrap/js/bootstrap.min.js"></script>
             <script src="js/app.build.js"></script>
-            <script src="js/ftsearch.js"></script>
 
             <xsl:copy-of select="$include"/>
         </head>
@@ -99,7 +98,7 @@
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)" data-toggle-theme="theme1">
-                                       <xsl:value-of select="//captions/change_skin/@caption"/>
+                                        <xsl:value-of select="//captions/change_skin/@caption"/>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
@@ -112,12 +111,11 @@
                         </li>
                     </ul>
                     <xsl:if test="not(//document)">
-                        <form class="navbar-form navbar-right" role="search" onsubmit="return false;" action="Provider" >
-                          	<input type="hidden" name="id" value="search"/>
-                            <input type="text" class="form-control" name="keyword" onKeyPress="return doSearch(this,event)">
-                            	<xsl:attribute name="placeholder"> <xsl:value-of select="//captions/search/@caption"/></xsl:attribute>
+                        <form class="navbar-form navbar-right" role="search" action="Provider">
+                            <input type="hidden" name="id" value="search"/>
+                            <input type="text" class="form-control" name="keyword" required="required">
+                                <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
                             </input>
-                          
                         </form>
                     </xsl:if>
                 </nav>

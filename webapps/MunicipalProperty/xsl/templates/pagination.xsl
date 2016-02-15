@@ -18,15 +18,13 @@
     </xsl:variable>
 
     <xsl:variable name="select_always" select="true()"/>
-    <xsl:variable name="page_id" select="//request/@id"/>
     <xsl:variable name="current_page" select="//view_content//query/@currentpage"/>
     <xsl:variable name="pagination_maxpage" select="//view_content//query/@maxpage"/>
     <xsl:variable name="pagination_count" select="7"/>
     <xsl:variable name="pagination_center" select="3"/>
-    <xsl:variable name="c_o_e_id" select="//outline//current/entry/@entryid"/>
 
     <xsl:variable name="refer_url">
-        <xsl:value-of select="concat('Provider?type=', //request/@type, '&amp;id=', $page_id, '&amp;entryid=', $c_o_e_id, '&amp;page=')"/>
+        <xsl:value-of select="concat('?id=', //request/@id, '&amp;page=')"/>
     </xsl:variable>
 
     <xsl:template match="view_content" mode="page-navigator">
@@ -55,7 +53,8 @@
                     <span class="pagination-select">
                         <select>
                             <xsl:attribute name="onchange">
-                                <xsl:value-of select="concat('window.location.href = &quot;', $refer_url, '&quot; + this.value')"/>
+                                <xsl:value-of
+                                        select="concat('window.location.href = &quot;', $refer_url, '&quot; + this.value')"/>
                             </xsl:attribute>
                             <xsl:call-template name="combobox"/>
                         </select>

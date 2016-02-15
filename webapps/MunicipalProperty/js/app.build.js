@@ -723,6 +723,11 @@ nbApp.dialogChoiceBalanceHolder = function(el) {
 };
 
 $(function() {
+    var sf = $('form[role=search]');
+    if (sf.length) {
+        sf[0].reset();
+    }
+
     $('[data-action=save_and_close]').click(function() {
         nb.submitForm(nb.getForm(this));
     });
@@ -743,18 +748,3 @@ $(function() {
         $('body').addClass(theme);
     }
 });
-
-function doSearch(myfield, e) {
-    var keycode;
-    if (window.event)
-        keycode = window.event.keyCode;
-    else if (e)
-        keycode = e.which;
-    else
-        return true;
-    if (keycode == 13) {
-        myfield.form.submit();
-        return false;
-    } else
-        return true;
-}
