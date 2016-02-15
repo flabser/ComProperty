@@ -710,7 +710,7 @@ footer.content-actions {
     display: none;
 }
 
-.field-wrapper.has-error > .error-massage {
+.has-error > .error-massage {
     display: block;
 }
 

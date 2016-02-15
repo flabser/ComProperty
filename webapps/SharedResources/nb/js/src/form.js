@@ -3,6 +3,11 @@
  */
 nb.submitForm = function(form) {
 
+    /*if (!nb.validateForm(form)) {
+        var dfd = $.Deferred();
+        return dfd.reject(false);
+    }*/
+
     var notify = nb.notify({
         message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
         type: 'process'
@@ -56,6 +61,8 @@ nb.submitForm = function(form) {
  * validateForm
  */
 nb.validateForm = function(form, validation) {
+    var result = true;
+
     if (validation && validation.errors) {
         var ers = validation.errors;
         for (var index in ers) {
@@ -63,11 +70,25 @@ nb.validateForm = function(form, validation) {
                 $('[name=' + ers[index].field + ']').focus();
             }
             $('[name=' + ers[index].field + ']', form).attr('required', 'required').addClass('required');
-            $('[data-input=' + ers[index].field + ']', form).addClass('required');
+            var $di = $('[data-input=' + ers[index].field + ']', form).addClass('required');
+            var erms = $('<div class=error-massage>' + ers[index].message + '</div>');
+            if ($di.length) {
+                $di.after(erms);
+                $di.parent().addClass('has-error');
+            } else {
+                $('[name=' + ers[index].field + ']', form).after(erms);
+                $('[name=' + ers[index].field + ']', form).parent().addClass('has-error');
+            }
         }
     }
-};
 
+    if ($('[required]:invalid', form).length) {
+        $('[required]:invalid', form).first().focus();
+        result = false;
+    }
+
+    return result;
+};
 
 /**
  * setFormValues
