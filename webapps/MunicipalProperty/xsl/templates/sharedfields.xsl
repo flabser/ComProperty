@@ -46,7 +46,7 @@
 				</div>
 				<div class="field-wrapper col-md-1">
 					<input type="text" name="kuf" value="{//fields/kuf}" class="form-control"
-						disabled="disabled" />
+						readonly="readonly" />
 				</div>
 			</div>
 		</div>
