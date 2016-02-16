@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<vocabulary primary="ENG">   
+<vocabulary primary="ENG">
+    <sentence mode="on" keyword="brand">
+        <entry lang="ENG">Staff</entry>
+        <entry lang="RUS">Staff</entry>
+        <entry lang="KAZ">Staff</entry>
+    </sentence>
     <sentence mode="on" keyword="common_staff_data">
         <entry lang="ENG">Structure and Organizations</entry>
         <entry lang="RUS">Структура и организации</entry>

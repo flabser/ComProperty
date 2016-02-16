@@ -137,7 +137,9 @@ public class Employee extends Staff implements IEmployee {
 	@Override
 	public String getFullXMLChunk(LanguageType lang) {
 		StringBuilder chunk = new StringBuilder(1000);
-		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		if (regDate != null) {
+			chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		}
 		chunk.append("<name>" + getName() + "</name>");
 		chunk.append("<email>" + login + "</email>");
 		chunk.append("<login>" + login + "</login>");
