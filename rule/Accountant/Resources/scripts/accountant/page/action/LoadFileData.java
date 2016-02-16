@@ -13,6 +13,7 @@ import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.env.Environment;
 import kz.nextbase.script._Session;
+import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 
@@ -55,11 +56,12 @@ public class LoadFileData extends _DoPage {
 						setError(getLocalizedWord("internal_error", lang));
 					}
 				} catch (IllegalArgumentException e) {
-					addValidationError(getLocalizedWord("incorrect_balanceholder_org_field", lang));
+					_Validation ve = new _Validation();
+					ve.addError("balanceholderid", "empty", getLocalizedWord("incorrect_balanceholder_org_fieldc", lang));
+					setValidation(ve);
 				}
-
 			} else {
-				addValidationError(getLocalizedWord("incorrect_xls_file", lang));
+				setValidation(getLocalizedWord("incorrect_xls_file", lang));
 			}
 
 		} catch (BiffException | IOException e) {
