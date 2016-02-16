@@ -19,7 +19,7 @@
                             @caption
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="" class="form-control"/>
+                            <input type="text" name="name" value=""/>
                         </div>
                     </div>
                 </fieldset>
