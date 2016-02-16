@@ -725,7 +725,8 @@ $(function() {
         sf[0].reset();
     }
 
-    $('[data-action=save_and_close]').click(function() {
+    $('[data-action=save_and_close]').click(function(event) {
+        event.preventDefault();
         nb.submitForm(nb.getForm(this));
     });
 });

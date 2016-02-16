@@ -23,10 +23,8 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="name" value="{//fields/name}" class="form-control"
-                                       required="required"/>
-                            </div>
+                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                                   autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -34,9 +32,7 @@
                             <xsl:value-of select="//captions/organization/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="code" value="{//fields/organization}" class="form-control"/>
-                            </div>
+                            <input type="text" name="organization" value="{//fields/organization}" class="span7"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,9 +40,7 @@
                             <xsl:value-of select="//captions/department/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="code" value="{//fields/department}" class="form-control"/>
-                            </div>
+                            <input type="text" name="department" value="{//fields/department}" class="span7"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,9 +48,7 @@
                             <xsl:value-of select="//captions/roles/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="code" value="{//fields/roles}" class="form-control"/>
-                            </div>
+                            <input type="text" name="roles" value="{//fields/roles}" class="span7"/>
                         </div>
                     </div>
                 </fieldset>

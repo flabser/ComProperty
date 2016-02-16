@@ -23,10 +23,8 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="name" value="{//fields/name}" class="form-control"
-                                       required="required"/>
-                            </div>
+                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                                   autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -34,10 +32,7 @@
                             <xsl:value-of select="//captions/type/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="type" value="{//fields/type}" class="form-control"
-                                       required="required"/>
-                            </div>
+                            <input type="text" name="type" value="{//fields/type}" class="span7" required="required"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,10 +40,8 @@
                             <xsl:value-of select="//captions/district/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="district" value="{//fields/district}" class="form-control"
-                                       required="required"/>
-                            </div>
+                            <input type="text" name="district" value="{//fields/district}" class="span7"
+                                   required="required"/>
                         </div>
                     </div>
                 </fieldset>

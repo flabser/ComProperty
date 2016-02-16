@@ -23,37 +23,31 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="field-wrapper col-lg-6">
-                                <input type="text" name="name" value="{//fields/name}" class="form-control"
-                                       required="required"/>
-                            </div>
+                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                                   autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="control-label"></div>
                         <div class="controls">
-                            <div class="field-wrapper col-lg-6">
-                                <label class="btn btn-sm">
-                                    <input type="checkbox" name="is_primary" value="1">
-                                        <xsl:if test="//fields/is_primary  = '1'">
-                                            <xsl:attribute name="checked">checked</xsl:attribute>
-                                        </xsl:if>
-                                        <span>
-                                        	<xsl:value-of select="//captions/is_primary_organization/@caption"/>
-                                        </span>
-                                    </input>
-                                </label>
-                            </div>
+                            <label class="btn btn-sm">
+                                <input type="checkbox" name="is_primary" value="1">
+                                    <xsl:if test="//fields/is_primary  = '1'">
+                                        <xsl:attribute name="checked">checked</xsl:attribute>
+                                    </xsl:if>
+                                    <span>
+                                        <xsl:value-of select="//captions/is_primary_organization/@caption"/>
+                                    </span>
+                                </input>
+                            </label>
                         </div>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <div class="control-label">
-                        	  <xsl:value-of select="//captions/bin/@caption"/>
+                            <xsl:value-of select="//captions/bin/@caption"/>
                         </div>
                         <div class="controls">
-                          <div class="field-wrapper col-lg-2">
-                                <input type="text" name="bin" value="{//fields/bin}" class="form-control"/>
-                            </div>
+                            <input type="text" name="bin" value="{//fields/bin}" class="span4"/>
                         </div>
                     </div>
                 </fieldset>

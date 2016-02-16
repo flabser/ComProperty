@@ -130,7 +130,7 @@
     border-color: #DE3309;
 }
 
-.field-wrapper {
+.field-wrap {
     padding: 0;
     position: relative;
 }
@@ -143,9 +143,9 @@
     display: block;
 }
 
-.field-wrapper.has-error input,
-.field-wrapper.has-error textarea,
-.field-wrapper.has-error select {
+.field-wrap.has-error input,
+.field-wrap.has-error textarea,
+.field-wrap.has-error select {
     border-color: #DE3309;
 }
 
