@@ -17,8 +17,13 @@ select {
     max-width: 100%;
     outline: 0;
     padding: 7px;
+    position: relative;
     vertical-align: middle;
     width: 100%;
+}
+
+select {
+    background: #FFF linear-gradient(#FFF, #F7F7F7);
 }
 
 input[type=date] {
@@ -59,7 +64,7 @@ input[readonly]:focus {
 input[readonly],
 .input[disabled],
 input[disabled] {
-    background: #FAFAFA;
+    background: #F6F6F6;
 }
 
 input[type=checkbox][disabled],
@@ -67,11 +72,12 @@ input[type=radio][disabled] {
     background: #DDD;
 }
 
-input[required]:invalid:not(:focus),
+
+/* input[required]:invalid:not(:focus),
 textarea[required]:invalid:not(:focus) {
     box-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
     border-color: #FF845D;
-}
+} */
 
 input[type=checkbox],
 input[type=radio] {
@@ -124,23 +130,16 @@ textarea {
     }
 }
 
+.has-error > .input.required,
+.has-error > input[required]:not(:focus),
+.has-error > textarea[required]:not(:focus) {
+    box-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
+    border-color: #FF845D;
+}
+
 .input-placeholder {
     display: inline-block;
     min-height: 34px;
     font-size: 1em;
     padding: 7px;
-}
-
-.selectize-dialog {
-    cursor: pointer;
-}
-
-.selectize-dialog:before {
-    content: "\f044";
-    display: block;
-    font: 14px/1 FontAwesome;
-    margin-top: -7px;
-    position: absolute;
-    right: 8px;
-    top: 50%;
 }

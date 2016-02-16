@@ -257,6 +257,20 @@
     background-color: #fff2ad;
 }
 
+.selectize-dialog {
+    cursor: pointer;
+}
+
+.selectize-dialog:before {
+    content: "\f044";
+    display: block;
+    font: 14px/1 FontAwesome;
+    margin-top: -7px;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+}
+
 .nb-notify {
     border: 1px solid #FFF;
     border-top: none;
@@ -633,7 +647,7 @@ footer.content-actions {
     border-bottom: 1px solid #E6E6E6;
     color: #000;
     display: block;
-    font-size: .9em;
+    font-size: 1em;
     margin: 0;
     padding: 0 0 0 1em;
     width: 100%;
@@ -648,8 +662,6 @@ footer.content-actions {
     padding: 4px 0;
 }
 
-.form-group.has-controls-label {}
-
 .form-group:after {
     content: ' ';
     clear: both;
@@ -659,13 +671,15 @@ footer.content-actions {
     visibility: hidden;
 }
 
-.form-group-last {
-    border-bottom: none;
-}
-
 .tablet .form-group,
 .phone .form-group {
     border-bottom-color: #F2F2F4;
+}
+
+.form-group.has-controls-label {}
+
+.form-group-last {
+    border-bottom: none;
 }
 
 .form-group-divider {
@@ -748,28 +762,24 @@ footer.content-actions {
     display: block;
 }
 
-.has-error>.controls input,
-.has-error>.controls textarea,
-.has-error>.controls select {
-    border-color: #DE3309;
-}
-
 .field-wrap {
     padding: 0;
     position: relative;
 }
 
 .error-massage {
+    color: #F00;
     display: none;
+    padding: 2px;
 }
 
 .has-error > .error-massage {
     display: block;
 }
 
-.field-wrap.has-error input,
-.field-wrap.has-error textarea,
-.field-wrap.has-error select {
+.has-error input,
+.has-error textarea,
+.has-error select {
     border-color: #DE3309;
 }
 
@@ -2085,8 +2095,13 @@ select {
     max-width: 100%;
     outline: 0;
     padding: 7px;
+    position: relative;
     vertical-align: middle;
     width: 100%;
+}
+
+select {
+    background: #FFF linear-gradient(#FFF, #F7F7F7);
 }
 
 input[type=date] {
@@ -2127,7 +2142,7 @@ input[readonly]:focus {
 input[readonly],
 .input[disabled],
 input[disabled] {
-    background: #FAFAFA;
+    background: #F6F6F6;
 }
 
 input[type=checkbox][disabled],
@@ -2135,11 +2150,12 @@ input[type=radio][disabled] {
     background: #DDD;
 }
 
-input[required]:invalid:not(:focus),
+
+/* input[required]:invalid:not(:focus),
 textarea[required]:invalid:not(:focus) {
     box-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
     border-color: #FF845D;
-}
+} */
 
 input[type=checkbox],
 input[type=radio] {
@@ -2192,25 +2208,18 @@ textarea {
     }
 }
 
+.has-error > .input.required,
+.has-error > input[required]:not(:focus),
+.has-error > textarea[required]:not(:focus) {
+    box-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
+    border-color: #FF845D;
+}
+
 .input-placeholder {
     display: inline-block;
     min-height: 34px;
     font-size: 1em;
     padding: 7px;
-}
-
-.selectize-dialog {
-    cursor: pointer;
-}
-
-.selectize-dialog:before {
-    content: "\f044";
-    display: block;
-    font: 14px/1 FontAwesome;
-    margin-top: -7px;
-    position: absolute;
-    right: 8px;
-    top: 50%;
 }
 
 label > input + span {
