@@ -49,7 +49,7 @@
     border: none;
     border-bottom: 1px dotted #D9D9D9;
     height: 1px;
-    margin: 4px 0;
+    margin: 8px 0;
 }
 
 .form-group .control-label {
@@ -63,7 +63,7 @@
     overflow: hidden;
     padding: 5px 0px 0px;
     text-align: right;
-    width: 200px;
+    width: 220px;
 }
 
 .form-group .control-label-icon {
@@ -102,7 +102,7 @@
 }
 
 .form-group .control-label + .controls {
-    margin: 0 0 0 210px;
+    margin: 0 0 0 235px;
 }
 
 .form-group .controls-label {

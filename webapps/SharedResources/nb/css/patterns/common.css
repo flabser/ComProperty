@@ -71,16 +71,16 @@ table {
 }
 
 
-/* .hidden-mobile */
+/* .hidden-md */
 
-.hidden-mobile {}
+.hidden-md {}
 
-html body.phone .hidden-mobile {
+html body.phone .hidden-md {
     display: none !important;
 }
 
 @media ( max-width: 768px) {
-    html body .hidden-mobile {
+    html body .hidden-md {
         display: none !important;
     }
 }
@@ -147,21 +147,21 @@ html body.phone .hidden-mobile {
     margin: 2px 0;
 }
 
-.text-muted {
-    color: #888;
+.inline {
+    display: inline-block;
+    vertical-align: top;
 }
 
-.wsnowrap {
-    white-space: nowrap;
+.text-muted {
+    color: #888;
 }
 
 .text-center {
     text-align: center;
 }
 
-.error-message {
-    color: #DD3207;
-    font-size: 13px;
+.wsnowrap {
+    white-space: nowrap;
 }
 
 .img-thumbnail {
