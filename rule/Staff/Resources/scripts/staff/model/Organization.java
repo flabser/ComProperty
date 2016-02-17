@@ -5,13 +5,16 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import kz.flabs.localization.LanguageType;
+import reference.model.OrgCategory;
 
 import com.google.gson.annotations.Expose;
 
@@ -19,6 +22,11 @@ import com.google.gson.annotations.Expose;
 @Table(name = "orgs")
 @NamedQuery(name = "Organization.findAll", query = "SELECT m FROM Organization AS m ORDER BY m.regDate")
 public class Organization extends Staff {
+
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private OrgCategory orgCategory;
+
 	@Expose
 	@OneToMany(mappedBy = "organization")
 	private List<Department> departments;
@@ -35,6 +43,14 @@ public class Organization extends Staff {
 
 	@Column(length = 12)
 	private String bin;
+
+	public OrgCategory getOrgCategory() {
+		return orgCategory;
+	}
+
+	public void setOrgCategory(OrgCategory orgCategory) {
+		this.orgCategory = orgCategory;
+	}
 
 	public List<Department> getDepartments() {
 		return departments;

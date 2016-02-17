@@ -28,6 +28,7 @@
 		<class>reference.model.Street</class>			
 		<class>reference.model.Position</class>	
 		<class>reference.model.Tag</class>	
+		<class>reference.model.OrgCategory</class>
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
@@ -59,6 +60,7 @@
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.Tag</class>	
+		<class>reference.model.OrgCategory</class>
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	
@@ -80,6 +82,7 @@
 		<class>reference.model.Locality</class>
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
+		<class>reference.model.OrgCategory</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Reference" transaction-type="RESOURCE_LOCAL">
@@ -97,6 +100,7 @@
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.Tag</class>	
+		<class>reference.model.OrgCategory</class>
 		<!-- Specific Reference module entities -->
 		<class>reference.model.PropertyCode</class>	
 		<class>reference.model.BuildingMaterial</class>	

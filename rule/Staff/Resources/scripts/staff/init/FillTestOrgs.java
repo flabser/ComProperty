@@ -9,11 +9,14 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
-import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
+import kz.flabs.util.Util;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
 import kz.nextbase.script._Session;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
@@ -23,7 +26,7 @@ import staff.model.Organization;
  * @author Kayra created 24-01-2016
  */
 
-public class FillDefaultOrgs extends InitialDataAdapter<Organization, OrganizationDAO> {
+public class FillTestOrgs extends InitialDataAdapter<Organization, OrganizationDAO> {
 	private static String excelFile = EnvConst.RESOURCES_DIR + File.separator + "orgs.xls";
 
 	@Override
@@ -41,6 +44,7 @@ public class FillDefaultOrgs extends InitialDataAdapter<Organization, Organizati
 			} catch (BiffException | IOException e) {
 				System.out.println(e);
 			}
+			OrgCategoryDAO ocDao = new OrgCategoryDAO(ses);
 			Sheet sheet = workbook.getSheet(0);
 			int rCount = sheet.getRows();
 			for (int i = 2; i < rCount; i++) {
@@ -49,6 +53,7 @@ public class FillDefaultOrgs extends InitialDataAdapter<Organization, Organizati
 					Organization entity = new Organization();
 					entity.setName(orgName);
 					entity.setPrimary(isPrimary);
+					entity.setOrgCategory((OrgCategory) Util.getRndListElement(ocDao.findAll()));
 					isPrimary = false;
 					entities.add(entity);
 				}
