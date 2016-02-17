@@ -1,7 +1,6 @@
 package staff.page.action;
 
 import kz.flabs.localization.LanguageType;
-import kz.flabs.servlets.PublishAsType;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.nextbase.script._Session;
@@ -29,7 +28,7 @@ public class GetOrganizationsAction extends _DoPage {
 		OrganizationDAO dao = new OrganizationDAO(ses);
 		ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
 		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), lang));
-		setPublishAsType(PublishAsType.JSON);
+		// setPublishAsType(PublishAsType.JSON);
 	}
 
 	@Override
