@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._POJOListWrapper;
+import kz.lof.scripting._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;

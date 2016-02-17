@@ -411,6 +411,20 @@
 			</legend>
 			<div class="form-group">
 				<div class="control-label">
+					<xsl:value-of select="//captions/country/@caption" />
+				</div>
+				<div class="controls">
+					<div class="field-wrapper col-md-6">
+						<div class="form-control selection" data-input="region"
+							onclick="nbApp.choiceRegion(this)">
+							<xsl:value-of select="//fields/country" />
+						</div>
+					</div>
+					<input type="hidden" name="region" value="{//fields/country}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="control-label">
 					<xsl:value-of select="//captions/region/@caption" />
 				</div>
 				<div class="controls">
@@ -425,16 +439,16 @@
 			</div>
 			<div class="form-group">
 				<div class="control-label">
-					<xsl:value-of select="//captions/city/@caption" />
+					<xsl:value-of select="//captions/locality/@caption" />
 				</div>
 				<div class="controls">
 					<div class="field-wrapper col-md-6">
-						<div class="form-control selection" data-input="city"
+						<div class="form-control selection" data-input="locality"
 							onclick="nbApp.choiceCity(this)">
-							<xsl:value-of select="//fields/city" />
+							<xsl:value-of select="//fields/locality" />
 						</div>
 					</div>
-					<input type="hidden" name="region" value="{//fields/city}" />
+					<input type="hidden" name="region" value="{//fields/locality}" />
 				</div>
 			</div>
 			<div class="form-group">

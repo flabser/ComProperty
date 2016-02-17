@@ -13,10 +13,13 @@ import javax.persistence.Table;
 
 import kz.flabs.localization.LanguageType;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "orgs")
 @NamedQuery(name = "Organization.findAll", query = "SELECT m FROM Organization AS m ORDER BY m.regDate")
 public class Organization extends Staff {
+	@Expose
 	@OneToMany(mappedBy = "organization")
 	private List<Department> departments;
 

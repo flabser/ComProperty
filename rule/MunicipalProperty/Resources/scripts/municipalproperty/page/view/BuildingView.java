@@ -15,7 +15,7 @@ public class BuildingView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "building", lang));
+		setContent(getSimpleActionBar(session, "buildings-form", lang));
 		setContent(getPropertyViewPage(session, formData, KufType.BUILDINGS, lang));
 	}
 

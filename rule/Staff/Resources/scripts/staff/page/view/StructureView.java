@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._IPOJOObject;
-import kz.nextbase.script._POJOListWrapper;
-import kz.nextbase.script._POJOObjectWrapper;
+import kz.lof.scripting._POJOListWrapper;
+import kz.lof.scripting._POJOObjectWrapper;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
@@ -20,7 +20,7 @@ public class StructureView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		List<_IPOJOObject> content = new ArrayList<_IPOJOObject>();
+		List<IOutcomeObject> content = new ArrayList<IOutcomeObject>();
 		OrganizationDAO dao = new OrganizationDAO(session);
 		Organization org = dao.findPrimaryOrg();
 		if (org != null) {

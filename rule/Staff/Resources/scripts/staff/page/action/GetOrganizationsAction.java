@@ -1,8 +1,8 @@
 package staff.page.action;
 
-import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._POJOListWrapper;
+import kz.lof.dataengine.jpa.ViewPage;
+import kz.lof.scripting._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -19,7 +19,7 @@ public class GetOrganizationsAction extends _DoPage {
 
 	@Override
 	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
-		String keyword = formData.getEncodedValueSilently("keyword");
+		String keyword = formData.getValueSilently("keyword");
 		int pageNum = 1;
 		// int pageSize = ses.pageSize;
 		int pageSize = 100;

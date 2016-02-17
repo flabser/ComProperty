@@ -17,11 +17,12 @@
     <caption name="description"></caption>
     <caption name="property_code"></caption>
     <caption name="property_type">Тип имущество</caption>
-    <caption name="acquisition_year">Год приобретения</caption>
+    <caption name="acquisition_year"/>
     <caption name="acceptance_date"></caption>
     <caption name="address"/>
+    <caption name="country"/>
     <caption name="region"/>
-    <caption name="city"/>
+    <caption name="locality"/>
     <caption name="district"/>
     <caption name="street"/>
     <caption name="home"/>

@@ -24,21 +24,9 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="country">
-        <entry lang="ENG">Country</entry>
-        <entry lang="RUS">Страна</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
     <sentence mode="on" keyword="regions">
         <entry lang="ENG">Regions</entry>
         <entry lang="RUS">Регионы</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
-    <sentence mode="on" keyword="region">
-        <entry lang="ENG">Region</entry>
-        <entry lang="RUS">Регион</entry>
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
@@ -47,34 +35,16 @@
         <entry lang="RUS">Районы</entry>
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
-    </sentence>
-    <sentence mode="on" keyword="district">
-        <entry lang="ENG">District</entry>
-        <entry lang="RUS">Район</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
+    </sentence> 
     <sentence mode="on" keyword="localities">
         <entry lang="ENG">Localities</entry>
         <entry lang="RUS">Населенные пункты</entry>
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="locality">
-        <entry lang="ENG">Locality</entry>
-        <entry lang="RUS">Населенный пункт</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
     <sentence mode="on" keyword="streets">
         <entry lang="ENG">Streets</entry>
         <entry lang="RUS">Улицы</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
-    </sentence>
-    <sentence mode="on" keyword="street">
-        <entry lang="ENG">Street</entry>
-        <entry lang="RUS">Улица</entry>
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>

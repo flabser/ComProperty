@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._IPOJOObject;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
@@ -21,7 +21,7 @@ public class MainNavigator extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		List<_IPOJOObject> list = new ArrayList<_IPOJOObject>();
+		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Tag currentTag = new _Tag("current");
 		currentTag.setAttr("id", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("docid"));

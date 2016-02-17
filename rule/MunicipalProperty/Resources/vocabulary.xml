@@ -128,26 +128,6 @@
 		<entry lang="KAZ">Балансқа алу датасы</entry>
 		<entry lang="ENG">Acceptance date</entry>
 	</sentence>
-	<sentence mode="on" keyword="region">
-		<entry lang="RUS">Область</entry>
-		<entry lang="KAZ">Облыс</entry>
-		<entry lang="ENG">Region</entry>
-	</sentence>
-	<sentence mode="on" keyword="city">
-	<entry lang="RUS">Город</entry>
-		<entry lang="KAZ">Қала</entry>
-		<entry lang="ENG">City</entry>
-	</sentence>
-	<sentence mode="on" keyword="district">
-	<entry lang="RUS">Район</entry>
-		<entry lang="KAZ">Аудан</entry>
-		<entry lang="ENG">District</entry>
-	</sentence>
-	<sentence mode="on" keyword="street">
-	<entry lang="RUS">Улица</entry>
-		<entry lang="KAZ">Көше</entry>
-		<entry lang="ENG">Street</entry>
-	</sentence>
 	<sentence mode="on" keyword="Количество">
 		<entry lang="KAZ">Саны</entry>
 		<entry lang="ENG"></entry>

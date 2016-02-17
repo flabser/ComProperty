@@ -3,10 +3,9 @@ package municipalproperty.page.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._IPOJOObject;
-import kz.nextbase.script._POJOListWrapper;
+import kz.lof.dataengine.jpa.ViewPage;
+import kz.lof.scripting._POJOListWrapper;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -23,13 +22,13 @@ import municipalproperty.model.constants.KufType;
 
 public abstract class MunicipalPropertyView extends _DoPage {
 
-	protected _IPOJOObject getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
+	protected _POJOListWrapper<Property> getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
 		return getPropertyViewPage(session, formData, params, lang);
 	}
 
-	protected _IPOJOObject getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
+	protected _POJOListWrapper<Property> getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
 		int pageNum = 1;
 		int pageSize = session.getPageSize();
 		if (formData.containsField("page")) {
