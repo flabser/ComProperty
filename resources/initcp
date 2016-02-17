@@ -10,7 +10,7 @@ stini reference.init.FillReceivingReasons
 stini reference.init.FillBuildingMaterials
 stini reference.init.FillStructureTypes
 stini reference.init.FillTags
-stini reference.init.OrgCategories
+stini reference.init.FillOrgCategories
 stini staff.init.FillDefaultLabels
 stini staff.init.FillDefaultRoles
 stini staff.init.FillTestOrgs
