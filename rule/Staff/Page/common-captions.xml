@@ -2,9 +2,31 @@
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
+    <caption name="page"/>
+    <caption name="documents"/>
+    <caption name="logout"/>
+    <caption name="user_profile"/>
+    <caption name="search"/>
+
+    <caption name="structure"/>
+    <caption name="organizations"/>
+    <caption name="employees"/>
+    <caption name="roles"/>
+    <caption name="organization_labels"/>
+    <caption name="responsible_persons"/>
+    <caption name="legal_entities"/>
+    <caption name="individuals"/>
+    <caption name="contractors"/>
+
+    <caption name="organization"/>
+    <caption name="department"/>
+    <caption name="employee"/>
+    <caption name="organization_label"/>
+    <caption name="role"/>
+
     <caption name="brand"/>
     <caption name="bin"/>
-    <caption name="name"></caption>
-    <caption name="description"></caption>
-    <caption name="is_primary_organization"></caption>
+    <caption name="name"/>
+    <caption name="description"/>
+    <caption name="is_primary_organization"/>
 </rule>

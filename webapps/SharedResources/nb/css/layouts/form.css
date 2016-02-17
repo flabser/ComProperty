@@ -9,7 +9,7 @@
     border-bottom: 1px solid #E6E6E6;
     color: #000;
     display: block;
-    font-size: .9em;
+    font-size: 1em;
     margin: 0;
     padding: 0 0 0 1em;
     width: 100%;
@@ -24,8 +24,6 @@
     padding: 4px 0;
 }
 
-.form-group.has-controls-label {}
-
 .form-group:after {
     content: ' ';
     clear: both;
@@ -35,13 +33,15 @@
     visibility: hidden;
 }
 
-.form-group-last {
-    border-bottom: none;
-}
-
 .tablet .form-group,
 .phone .form-group {
     border-bottom-color: #F2F2F4;
+}
+
+.form-group.has-controls-label {}
+
+.form-group-last {
+    border-bottom: none;
 }
 
 .form-group-divider {
@@ -49,7 +49,7 @@
     border: none;
     border-bottom: 1px dotted #D9D9D9;
     height: 1px;
-    margin: 4px 0;
+    margin: 8px 0;
 }
 
 .form-group .control-label {
@@ -63,7 +63,7 @@
     overflow: hidden;
     padding: 5px 0px 0px;
     text-align: right;
-    width: 200px;
+    width: 220px;
 }
 
 .form-group .control-label-icon {
@@ -102,7 +102,7 @@
 }
 
 .form-group .control-label + .controls {
-    margin: 0 0 0 210px;
+    margin: 0 0 0 235px;
 }
 
 .form-group .controls-label {
@@ -124,28 +124,24 @@
     display: block;
 }
 
-.has-error>.controls input,
-.has-error>.controls textarea,
-.has-error>.controls select {
-    border-color: #DE3309;
-}
-
-.field-wrapper {
+.field-wrap {
     padding: 0;
     position: relative;
 }
 
 .error-massage {
+    color: #F00;
     display: none;
+    padding: 2px;
 }
 
 .has-error > .error-massage {
     display: block;
 }
 
-.field-wrapper.has-error input,
-.field-wrapper.has-error textarea,
-.field-wrapper.has-error select {
+.has-error input,
+.has-error textarea,
+.has-error select {
     border-color: #DE3309;
 }
 

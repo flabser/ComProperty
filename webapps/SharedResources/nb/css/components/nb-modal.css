@@ -114,3 +114,17 @@
 .nb-dialog-list-it input:checked + span {
     background-color: #fff2ad;
 }
+
+.selectize-dialog {
+    cursor: pointer;
+}
+
+.selectize-dialog:before {
+    content: "\f044";
+    display: block;
+    font: 14px/1 FontAwesome;
+    margin-top: -7px;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+}

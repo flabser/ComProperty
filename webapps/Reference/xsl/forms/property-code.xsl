@@ -23,10 +23,8 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="col-lg-6">
-                                <input type="text" name="name" value="{//fields/name}" class="form-control"
-                                       required="required"/>
-                            </div>
+                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                                   autofocus="true"/>
                         </div>
                     </div>
                 </fieldset>

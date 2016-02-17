@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:import href="../templates/sharedfields.xsl"/>
 
     <xsl:template name="personal-estate-field-set">
@@ -78,4 +78,5 @@
         <input type="hidden" name="id" value="{@id}"/>
         <input type="hidden" name="docid" value="{//document/@docid}"/>
     </xsl:template>
+
 </xsl:stylesheet>

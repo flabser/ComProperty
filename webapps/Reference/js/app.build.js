@@ -504,7 +504,9 @@ nb.submitForm = function(form) {
         data: $(form).serialize(),
         beforeSend: function() {
             nb.uiBlock();
-            $('.required', form).removeClass('required');
+            // clear errors
+            $('.required, .has-error', form).removeClass('required has-error');
+            $('.error-massage', form).remove();
         },
         success: function(response) {
             notify.set({
@@ -554,12 +556,12 @@ nb.validateForm = function(form, validation) {
             }
             $('[name=' + ers[index].field + ']', form).attr('required', 'required').addClass('required');
             var $di = $('[data-input=' + ers[index].field + ']', form).addClass('required');
-            var erms = $('<div class=error-massage>' + ers[index].message + '</div>');
+            var $erms = $('<div class=error-massage>' + ers[index].message + '</div>');
             if ($di.length) {
-                $di.after(erms);
+                $di.after($erms);
                 $di.parent().addClass('has-error');
             } else {
-                $('[name=' + ers[index].field + ']', form).after(erms);
+                $('[name=' + ers[index].field + ']', form).after($erms);
                 $('[name=' + ers[index].field + ']', form).parent().addClass('has-error');
             }
         }
@@ -725,7 +727,8 @@ $(function() {
         sf[0].reset();
     }
 
-    $('[data-action=save_and_close]').click(function() {
+    $('[data-action=save_and_close]').click(function(event) {
+        event.preventDefault();
         nb.submitForm(nb.getForm(this));
     });
 });

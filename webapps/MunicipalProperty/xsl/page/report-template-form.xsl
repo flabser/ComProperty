@@ -20,8 +20,8 @@
                             <xsl:value-of select="//captions/balanceholder/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="field-wrapper col-lg-6">
-                                <div class="form-control selectize-dialog" data-input="balanceholder"
+                            <div class="span8">
+                                <div class="input selectize-dialog" data-input="balanceholder"
                                      onclick="nbApp.dialogChoiceBalanceHolder(this)">
                                     <xsl:value-of select="//fields/balanceholdername"/>
                                 </div>
@@ -34,7 +34,7 @@
                             <xsl:value-of select="//captions/property_type/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="field-wrapper col-lg-6">
+                            <div class="span8">
                                 <xsl:for-each select="//fields/propertytype/entry">
                                     <label class="btn btn-sm">
                                         <input type="checkbox" name="propertycode" value="{@id}"/>

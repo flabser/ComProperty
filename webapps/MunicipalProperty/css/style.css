@@ -1,3 +1,8 @@
 .col-lg-5 {
     padding-left: 0px;
 }
+
+.fieldset > .legend-address {
+    background: #F7F7F7;
+    padding: 6px;
+}
