@@ -18,10 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
-import kz.nextbase.script._URL;
+import kz.lof.dataengine.jpa.SecureAppEntity;
 import municipalproperty.model.constants.KufType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
@@ -308,8 +307,8 @@ public class Property extends SecureAppEntity {
 	}
 
 	@Override
-	public _URL getURL() {
-		return new _URL("Provider?id=" + getForm() + "&amp;docid=" + getId());
+	public String getURL() {
+		return "Provider?id=" + getForm() + "&amp;docid=" + getId();
 	}
 
 	@Override

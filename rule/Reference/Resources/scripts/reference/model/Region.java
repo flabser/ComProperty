@@ -13,7 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import kz.flabs.localization.LanguageType;
 import reference.model.constants.RegionType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "regions")
@@ -42,11 +45,13 @@ public class Region extends Reference {
 		this.districts = districts;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "region")
 	public List<District> getDistricts() {
 		return districts;
 	}
 
+	@JsonIgnore
 	public Country getCountry() {
 		return country;
 	}
@@ -55,4 +60,12 @@ public class Region extends Reference {
 		this.country = country;
 	}
 
+	@Override
+	public String getShortXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<name>" + getName() + "</name>");
+		chunk.append("<country>" + country + "</country>");
+		return chunk.toString();
+
+	}
 }

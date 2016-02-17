@@ -30,6 +30,7 @@ public class MainNavigator extends _DoPage {
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("districts", lang), "district-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("localities", lang), "locality-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("streets", lang), "street-view"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("org_categories", lang), "orgcategory-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("positions", lang), "position-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("tags", lang), "tag-view"));
 

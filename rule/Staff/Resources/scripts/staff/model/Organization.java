@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import kz.flabs.localization.LanguageType;
 import reference.model.OrgCategory;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orgs")
@@ -27,7 +27,6 @@ public class Organization extends Staff {
 	@JoinColumn(nullable = false)
 	private OrgCategory orgCategory;
 
-	@Expose
 	@OneToMany(mappedBy = "organization")
 	private List<Department> departments;
 
@@ -44,6 +43,7 @@ public class Organization extends Staff {
 	@Column(length = 12)
 	private String bin;
 
+	@JsonIgnore
 	public OrgCategory getOrgCategory() {
 		return orgCategory;
 	}
@@ -52,6 +52,7 @@ public class Organization extends Staff {
 		this.orgCategory = orgCategory;
 	}
 
+	@JsonIgnore
 	public List<Department> getDepartments() {
 		return departments;
 	}
@@ -64,6 +65,7 @@ public class Organization extends Staff {
 		this.isPrimary = isPrimary;
 	}
 
+	@JsonIgnore
 	public List<Employee> getEmployers() {
 		return employers;
 	}

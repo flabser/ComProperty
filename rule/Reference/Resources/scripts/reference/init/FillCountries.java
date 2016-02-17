@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.nextbase.script._Session;
 import reference.dao.CountryDAO;
 import reference.model.Country;
@@ -22,10 +22,10 @@ public class FillCountries extends InitialDataAdapter<Country, CountryDAO> {
 	@Override
 	public List<Country> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
 		List<Country> entities = new ArrayList<Country>();
-		String[] data = { "Казахстан", "Россия", "Беларуссия", "Украина", "Германия", "Франция", "Турция", "США", "Китай", "Болгария" };
-		String[] dataEng = { "Kazakhstan", "Russia", "Byelorussia", "Ukraine", "Germany", "France", "Turkey", "USA", "China", "Bulgaria" };
+		String[] data = { "Казахстан", "Россия", "Беларуссия", "Украина", "Германия", "Франция", "Турция", "США", "Китай", "Болгария", "Португалия" };
+		String[] dataEng = { "Kazakhstan", "Russia", "Byelorussia", "Ukraine", "Germany", "France", "Turkey", "USA", "China", "Bulgaria", "Portugal" };
 		CountryCode[] code = { CountryCode.KZ, CountryCode.RU, CountryCode.BY, CountryCode.UA, CountryCode.DE, CountryCode.FR, CountryCode.TR,
-		        CountryCode.US, CountryCode.CN, CountryCode.BG };
+		        CountryCode.US, CountryCode.CN, CountryCode.BG, CountryCode.PT };
 
 		for (int i = 0; i < data.length; i++) {
 			Country entity = new Country();

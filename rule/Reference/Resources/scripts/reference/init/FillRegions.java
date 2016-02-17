@@ -3,9 +3,9 @@ package reference.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.nextbase.script._Session;
 import reference.dao.CountryDAO;
 import reference.dao.RegionDAO;
@@ -31,13 +31,44 @@ public class FillRegions extends InitialDataAdapter<Region, RegionDAO> {
 			Region entity = new Region();
 			entity.setCountry(country);
 			entity.setName(data[i]);
-			if (data.equals("Алматы") || data.equals("Астана")) {
+			if (data[i].equals("Алматы") || data[i].equals("Астана")) {
 				entity.setType(RegionType.URBAN_AGGLOMERATION);
 			} else {
 				entity.setType(RegionType.REGION);
 			}
 			entities.add(entity);
 		}
+
+		String[] data1 = { "Москва", "Санкт-Петербург", "Рязаньская", "Ростовская" };
+		Country country1 = cDao.findByName("Россия");
+
+		for (int i = 0; i < data1.length; i++) {
+			Region entity = new Region();
+			entity.setCountry(country1);
+			entity.setName(data1[i]);
+			if (data1[i].equals("Москва") || data1[i].equals("Санкт-Петербург")) {
+				entity.setType(RegionType.URBAN_AGGLOMERATION);
+			} else {
+				entity.setType(RegionType.REGION);
+			}
+			entities.add(entity);
+		}
+
+		String[] data2 = { "Lisbon", "Leiria" };
+		Country country2 = cDao.findByName("Португалия");
+
+		for (int i = 0; i < data2.length; i++) {
+			Region entity = new Region();
+			entity.setCountry(country2);
+			entity.setName(data2[i]);
+			if (data2[i].equals("Lisbon")) {
+				entity.setType(RegionType.URBAN_AGGLOMERATION);
+			} else {
+				entity.setType(RegionType.REGION);
+			}
+			entities.add(entity);
+		}
+
 		return entities;
 
 	}

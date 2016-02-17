@@ -8,7 +8,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._URL;
 
 @Entity
 @Table(name = "org_labels")
@@ -38,8 +37,8 @@ public class OrganizationLabel extends Staff {
 	}
 
 	@Override
-	public _URL getURL() {
-		return new _URL("Provider?id=organization-label-form&amp;docid=" + getId());
+	public String getURL() {
+		return "Provider?id=organization-label-form&amp;docid=" + getId();
 	}
 
 }

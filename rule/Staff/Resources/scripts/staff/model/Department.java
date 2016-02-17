@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 import staff.model.constants.DepartmentType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "departments")
 @NamedQuery(name = "Department.findAll", query = "SELECT m FROM Department AS m ORDER BY m.regDate")
@@ -34,6 +36,7 @@ public class Department extends Staff {
 		this.organization = organization;
 	}
 
+	@JsonIgnore
 	public List<Employee> getEmployees() {
 		return employees;
 	}

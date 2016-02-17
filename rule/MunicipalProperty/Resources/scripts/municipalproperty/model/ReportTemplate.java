@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.lof.dataengine.jpa.AppEntity;
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._URL;
+import kz.lof.dataengine.jpa.AppEntity;
 import municipalproperty.model.constants.KufType;
 
 /**
@@ -59,8 +58,8 @@ public class ReportTemplate extends AppEntity {
 	}
 
 	@Override
-	public _URL getURL() {
-		return new _URL("Provider?id=report-template-form&amp;docid=" + getId());
+	public String getURL() {
+		return "Provider?id=report-template-form&amp;docid=" + getId();
 	}
 
 	// TODO need to add something to localize propertyType list

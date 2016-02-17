@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:import href="../layout.xsl"/>
@@ -10,7 +10,7 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/regions/@caption"/>
+                <xsl:with-param name="title" select="//captions/org_categories/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
@@ -49,13 +49,8 @@
                         <span>
                             <xsl:value-of select="viewcontent/name"/>
                         </span>
-                        <span>
-                            <xsl:value-of select="viewcontent/country"/>
-                        </span>
                     </div>
-                    
-                </a> 
-                                
+                </a>
             </div>
         </div>
     </xsl:template>
