@@ -15,8 +15,8 @@ public class WaterSystemView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "water_system", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.WATER_SYSTEM, lang));
+		addContent(getSimpleActionBar(session, "water_system", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.WATER_SYSTEM, lang));
 	}
 
 	@Override

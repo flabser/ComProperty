@@ -15,8 +15,8 @@ public class MonumentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "monument", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.MONUMENT, lang));
+		addContent(getSimpleActionBar(session, "monument", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.MONUMENT, lang));
 	}
 
 	@Override

@@ -34,10 +34,10 @@ public class DepartmentForm extends StaffForm {
 			entity = new Department();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
-		setContent(new _POJOListWrapper(new RoleDAO(session).findAll(), lang));
-		setContent(getSimpleActionBar(session, lang));
+		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
+		addContent(new _POJOListWrapper(new RoleDAO(session).findAll(), lang));
+		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}
 

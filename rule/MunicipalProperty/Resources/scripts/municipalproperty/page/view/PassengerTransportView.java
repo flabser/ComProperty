@@ -24,7 +24,7 @@ public class PassengerTransportView extends MunicipalPropertyView {
 		params.add(KufType.TRAM);
 		params.add(KufType.WATER_TRANSPORT);
 		params.add(KufType.TAXI);
-		setContent(getPropertyViewPage(session, formData, params, lang));
+		addContent(getPropertyViewPage(session, formData, params, lang));
 	}
 
 	@Override

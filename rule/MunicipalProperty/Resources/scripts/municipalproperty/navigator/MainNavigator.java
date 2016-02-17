@@ -113,8 +113,8 @@ public class MainNavigator extends _DoPage {
 		_Tag currentTag = new _Tag("current");
 		currentTag.setAttr("id", formData.getValueSilently("id").replace("-form", "-view"));
 
-		setContent(new _XMLDocument(currentTag));
-		setContent(list);
+		addContent(new _XMLDocument(currentTag));
+		addContent(list);
 	}
 
 	@Override

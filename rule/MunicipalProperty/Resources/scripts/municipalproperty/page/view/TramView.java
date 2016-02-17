@@ -15,8 +15,8 @@ public class TramView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "tram", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.TRAM, lang));
+		addContent(getSimpleActionBar(session, "tram", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.TRAM, lang));
 	}
 
 	@Override

@@ -22,6 +22,7 @@
     <caption name="locality"/>
     <caption name="street"/>
     <caption name="position"/>
+    <caption name="org_categories"/>
     <caption name="property_code"/>
     <caption name="receiving_reason"/>
     <caption name="structure_type"/>

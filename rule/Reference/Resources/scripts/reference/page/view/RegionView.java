@@ -19,8 +19,8 @@ public class RegionView extends _DoPage {
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(actionBar);
-		setContent(getViewPage(new RegionDAO(session), formData));
+		addContent(actionBar);
+		addContent(getViewPage(new RegionDAO(session), formData));
 	}
 
 	@Override

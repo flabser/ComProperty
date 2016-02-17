@@ -15,8 +15,8 @@ public class StructureView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "structure", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.STRUCTURES, lang));
+		addContent(getSimpleActionBar(session, "structure", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.STRUCTURES, lang));
 	}
 
 	@Override

@@ -15,8 +15,8 @@ public class OthersEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "others-equipment-form", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.OTHERS_EQUIPMENT, lang));
+		addContent(getSimpleActionBar(session, "others-equipment-form", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.OTHERS_EQUIPMENT, lang));
 	}
 
 	@Override

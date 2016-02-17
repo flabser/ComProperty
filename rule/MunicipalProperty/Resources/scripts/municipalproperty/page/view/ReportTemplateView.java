@@ -15,7 +15,7 @@ public class ReportTemplateView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getViewPage(new ReportTemplateDAO(session), formData));
+		addContent(getViewPage(new ReportTemplateDAO(session), formData));
 
 	}
 

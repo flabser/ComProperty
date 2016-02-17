@@ -15,8 +15,8 @@ public class TransitionView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "transition", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.TRANSITIONS, lang));
+		addContent(getSimpleActionBar(session, "transition", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.TRANSITIONS, lang));
 	}
 
 	@Override

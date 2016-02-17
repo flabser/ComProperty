@@ -15,8 +15,8 @@ public class SpecialEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "special_equipment", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.SPECIAL_EQUIPMENT, lang));
+		addContent(getSimpleActionBar(session, "special_equipment", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.SPECIAL_EQUIPMENT, lang));
 	}
 
 	@Override

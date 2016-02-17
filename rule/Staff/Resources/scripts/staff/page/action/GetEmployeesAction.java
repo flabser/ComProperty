@@ -27,7 +27,7 @@ public class GetEmployeesAction extends _DoPage {
 
 		EmployeeDAO empDao = new EmployeeDAO(ses);
 		ViewPage emps = empDao.findAllByName(keyword, pageNum, pageSize);
-		setContent(new _POJOListWrapper(emps.getResult(), emps.getMaxPage(), emps.getCount(), emps.getPageNum(), lang));
+		addContent(new _POJOListWrapper(emps.getResult(), emps.getMaxPage(), emps.getCount(), emps.getPageNum(), lang));
 	}
 
 	@Override

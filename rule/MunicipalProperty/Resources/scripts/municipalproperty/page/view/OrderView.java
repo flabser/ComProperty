@@ -13,8 +13,8 @@ public class OrderView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "order-form", lang));
-		setContent(getViewPage(new OrderDAO(session), formData));
+		addContent(getSimpleActionBar(session, "order-form", lang));
+		addContent(getViewPage(new OrderDAO(session), formData));
 	}
 
 	@Override

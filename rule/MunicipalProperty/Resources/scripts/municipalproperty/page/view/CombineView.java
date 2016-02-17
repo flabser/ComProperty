@@ -15,8 +15,8 @@ public class CombineView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "combine", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.COMBINES, lang));
+		addContent(getSimpleActionBar(session, "combine", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.COMBINES, lang));
 	}
 
 	@Override

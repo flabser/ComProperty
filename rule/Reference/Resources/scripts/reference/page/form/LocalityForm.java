@@ -33,9 +33,9 @@ public class LocalityForm extends ReferenceForm {
 			entity = new Locality();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(new _EnumWrapper<>(LocalityType.class.getEnumConstants()));
-		setContent(getSimpleActionBar(session, lang));
+		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(new _EnumWrapper<>(LocalityType.class.getEnumConstants()));
+		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}
 

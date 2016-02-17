@@ -15,8 +15,8 @@ public class OfficialTransportView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "official_transport", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.OFFICIAL_TRANSPORT, lang));
+		addContent(getSimpleActionBar(session, "official_transport", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.OFFICIAL_TRANSPORT, lang));
 	}
 
 	@Override

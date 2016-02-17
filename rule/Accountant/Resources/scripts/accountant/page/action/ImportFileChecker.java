@@ -65,7 +65,7 @@ public class ImportFileChecker extends _DoPage {
 				entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
 			}
 
-			setContent(rootTag);
+			addContent(rootTag);
 		} catch (BiffException | IOException e) {
 			setBadRequest();
 			error(e);

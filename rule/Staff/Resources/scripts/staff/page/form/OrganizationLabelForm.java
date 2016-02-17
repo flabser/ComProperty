@@ -30,8 +30,8 @@ public class OrganizationLabelForm extends StaffForm {
 			entity = new OrganizationLabel();
 			entity.setAuthor(user);
 		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(getSimpleActionBar(session, lang));
+		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}
 

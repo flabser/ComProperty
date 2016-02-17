@@ -19,8 +19,8 @@ public class DistrictView extends _DoPage {
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(actionBar);
-		setContent(getViewPage(new DistrictDAO(session), formData));
+		addContent(actionBar);
+		addContent(getViewPage(new DistrictDAO(session), formData));
 	}
 
 	@Override

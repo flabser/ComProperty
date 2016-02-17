@@ -15,8 +15,8 @@ public class TrolleybusView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "trolleybus", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.TROLLEYBUS, lang));
+		addContent(getSimpleActionBar(session, "trolleybus", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.TROLLEYBUS, lang));
 	}
 
 	@Override

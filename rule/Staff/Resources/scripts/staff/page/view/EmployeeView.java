@@ -23,8 +23,8 @@ public class EmployeeView extends _DoPage {
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(actionBar);
-		setContent(getViewPage(new EmployeeDAO(session), formData));
+		addContent(actionBar);
+		addContent(getViewPage(new EmployeeDAO(session), formData));
 	}
 
 	@Override

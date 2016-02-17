@@ -24,8 +24,8 @@ public class UserProfile extends _DoPage {
 		User user = ses.getUser();
 		EmployeeDAO dao = new EmployeeDAO(ses);
 		Employee emp = dao.findByLogin(user.getUserID());
-		setContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
-		setContent(new _POJOObjectWrapper(emp, lang));
+		addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
+		addContent(new _POJOObjectWrapper(emp, lang));
 		setContent("availablelangs", Environment.langs);
 	}
 

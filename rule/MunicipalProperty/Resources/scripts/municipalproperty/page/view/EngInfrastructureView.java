@@ -14,7 +14,7 @@ public class EngInfrastructureView extends MunicipalPropertyView {
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		ArrayList<KufType> params = new ArrayList<KufType>(Arrays.asList(KufType.BILLBOARD, KufType.COLUMNS, KufType.ELECTRIC_NETWORKS,
 		        KufType.THERMAL_NETWORKS, KufType.GAS, KufType.WATER_SYSTEM, KufType.DRAIN, KufType.ROAD, KufType.PARKING));
-		setContent(getPropertyViewPage(session, formData, params, lang));
+		addContent(getPropertyViewPage(session, formData, params, lang));
 	}
 
 	@Override

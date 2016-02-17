@@ -15,8 +15,8 @@ public class DrainView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "drain", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.DRAIN, lang));
+		addContent(getSimpleActionBar(session, "drain", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.DRAIN, lang));
 	}
 
 	@Override

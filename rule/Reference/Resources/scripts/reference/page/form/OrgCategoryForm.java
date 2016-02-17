@@ -5,34 +5,28 @@ import java.util.UUID;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOObjectWrapper;
-import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
-import reference.dao.TagDAO;
-import reference.model.Tag;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 
-/**
- * @author Kayra created 28-01-2016
- */
-
-public class TagForm extends ReferenceForm {
+public class OrgCategoryForm extends ReferenceForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		Tag entity;
+		OrgCategory entity;
 		if (!id.isEmpty()) {
-			TagDAO dao = new TagDAO(session);
+			OrgCategoryDAO dao = new OrgCategoryDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new Tag();
+			entity = new OrgCategory();
 			entity.setAuthor(user);
 		}
 		addContent(new _POJOObjectWrapper(entity, lang));
-		addContent(new _EnumWrapper<>(LanguageType.class.getEnumConstants()));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}
@@ -49,12 +43,12 @@ public class TagForm extends ReferenceForm {
 
 			boolean isNew = false;
 			String id = formData.getValueSilently("docid");
-			TagDAO dao = new TagDAO(session);
-			Tag entity;
+			OrgCategoryDAO dao = new OrgCategoryDAO(session);
+			OrgCategory entity;
 
 			if (id.isEmpty()) {
 				isNew = true;
-				entity = new Tag();
+				entity = new OrgCategory();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
 			}
@@ -68,6 +62,7 @@ public class TagForm extends ReferenceForm {
 			}
 
 			finishSaveFormTransact(entity);
+
 		} catch (_Exception e) {
 			error(e);
 		}

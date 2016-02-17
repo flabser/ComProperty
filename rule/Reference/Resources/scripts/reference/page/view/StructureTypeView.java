@@ -19,8 +19,8 @@ public class StructureTypeView extends _DoPage {
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(actionBar);
-		setContent(getViewPage(new StructureTypeDAO(session), formData));
+		addContent(actionBar);
+		addContent(getViewPage(new StructureTypeDAO(session), formData));
 	}
 
 	@Override

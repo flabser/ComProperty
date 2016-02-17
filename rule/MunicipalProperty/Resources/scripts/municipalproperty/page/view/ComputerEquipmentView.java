@@ -15,8 +15,8 @@ public class ComputerEquipmentView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "computer-equipment-form", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.COMPUTER_EQUIPMENT, lang));
+		addContent(getSimpleActionBar(session, "computer-equipment-form", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.COMPUTER_EQUIPMENT, lang));
 	}
 
 	@Override

@@ -15,8 +15,8 @@ public class TaxiView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "taxi", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.TAXI, lang));
+		addContent(getSimpleActionBar(session, "taxi", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.TAXI, lang));
 	}
 
 	@Override

@@ -15,8 +15,8 @@ public class FactoryView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "factory", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.FACTORY, lang));
+		addContent(getSimpleActionBar(session, "factory", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.FACTORY, lang));
 	}
 
 	@Override

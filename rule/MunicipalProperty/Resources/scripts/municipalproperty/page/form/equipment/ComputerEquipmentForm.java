@@ -27,10 +27,10 @@ public class ComputerEquipmentForm extends EquipmentForm {
 		} else {
 			entity = getDefaultEntity(user, KufType.COMPUTER_EQUIPMENT);
 		}
-		setContent(new _POJOObjectWrapper(entity, lang));
-		setContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
-		setContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
-		setContent(getActionBar(session, lang, entity));
+		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
+		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
+		addContent(getActionBar(session, lang, entity));
 		startSaveFormTransact(entity);
 	}
 

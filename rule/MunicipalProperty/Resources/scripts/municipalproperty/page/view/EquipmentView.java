@@ -24,7 +24,7 @@ public class EquipmentView extends MunicipalPropertyView {
 		params.add(KufType.COOK_EQUIPMENT);
 		params.add(KufType.EQUIPMENT_OF_CIVIL_DEFENSE);
 		params.add(KufType.OTHERS_EQUIPMENT);
-		setContent(getPropertyViewPage(session, formData, params, lang));
+		addContent(getPropertyViewPage(session, formData, params, lang));
 	}
 
 	@Override

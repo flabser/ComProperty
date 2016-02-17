@@ -32,12 +32,12 @@ public class FTSearch extends _DoPage {
 		IDatabase db = ses.getCurrentDatabase();
 		IFTIndexEngine ftEngine = db.getFTSearchEngine();
 		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
-		setContent(new _ActionBar(ses).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back_to_doc_list", lang),
+		addContent(new _ActionBar(ses).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back_to_doc_list", lang),
 		        _ActionType.BACK)));
 		if (result != null) {
-			setContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang, keyWord));
+			addContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang, keyWord));
 		} else {
-			setContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": " + keyWord, keyWord));
+			addContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": " + keyWord, keyWord));
 		}
 	}
 

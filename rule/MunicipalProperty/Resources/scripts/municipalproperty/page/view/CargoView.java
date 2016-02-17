@@ -15,8 +15,8 @@ public class CargoView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "cargo", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.CARGO, lang));
+		addContent(getSimpleActionBar(session, "cargo", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.CARGO, lang));
 	}
 
 	@Override

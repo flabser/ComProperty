@@ -16,8 +16,8 @@ public class ResidentialObjectView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		// println(formData);
-		setContent(getSimpleActionBar(session, "residential_object", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.RESIDENTIAL_OBJECTS, lang));
+		addContent(getSimpleActionBar(session, "residential_object", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.RESIDENTIAL_OBJECTS, lang));
 	}
 
 	@Override

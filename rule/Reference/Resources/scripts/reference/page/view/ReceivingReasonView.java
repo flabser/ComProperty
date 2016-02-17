@@ -19,8 +19,8 @@ public class ReceivingReasonView extends _DoPage {
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(actionBar);
-		setContent(getViewPage(new ReceivingReasonDAO(session), formData));
+		addContent(actionBar);
+		addContent(getViewPage(new ReceivingReasonDAO(session), formData));
 	}
 
 	@Override

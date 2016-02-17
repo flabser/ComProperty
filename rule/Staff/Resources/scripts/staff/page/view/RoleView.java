@@ -28,7 +28,7 @@ public class RoleView extends _DoPage {
 		if (!id.isEmpty()) {
 			Role role = dao.findById(UUID.fromString(id));
 			List<Employee> emps = role.getEmployees();
-			setContent(new _POJOListWrapper(emps, lang));
+			addContent(new _POJOListWrapper(emps, lang));
 		} else {
 			_ActionBar actionBar = new _ActionBar(session);
 			_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_role");
@@ -36,8 +36,8 @@ public class RoleView extends _DoPage {
 			actionBar.addAction(newDocAction);
 			actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-			setContent(actionBar);
-			setContent(getViewPage(dao, formData));
+			addContent(actionBar);
+			addContent(getViewPage(dao, formData));
 		}
 	}
 

@@ -19,7 +19,7 @@ public class ReportTemplateForm extends _DoPage {
 		if (!id.equals("")) {
 			ReportTemplateDAO dao = new ReportTemplateDAO(session);
 			entity = dao.findById(UUID.fromString(id));
-			setContent(new _POJOObjectWrapper(entity, lang));
+			addContent(new _POJOObjectWrapper(entity, lang));
 			// setContent(new _POJOListWrapper(entity.getPropertyType()));
 		} else {
 			setBadRequest();

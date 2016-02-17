@@ -15,8 +15,8 @@ public class ObjectReservedFundView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		setContent(getSimpleActionBar(session, "object_reserved_fund", lang));
-		setContent(getPropertyViewPage(session, formData, KufType.OBJECT_RESERVED_FUND, lang));
+		addContent(getSimpleActionBar(session, "object_reserved_fund", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.OBJECT_RESERVED_FUND, lang));
 	}
 
 	@Override

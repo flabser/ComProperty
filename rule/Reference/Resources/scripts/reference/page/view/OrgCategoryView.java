@@ -19,8 +19,8 @@ public class OrgCategoryView extends _DoPage {
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
-		setContent(actionBar);
-		setContent(getViewPage(new OrgCategoryDAO(session), formData));
+		addContent(actionBar);
+		addContent(getViewPage(new OrgCategoryDAO(session), formData));
 	}
 
 	@Override

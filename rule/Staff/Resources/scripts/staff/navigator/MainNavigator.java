@@ -56,8 +56,8 @@ public class MainNavigator extends _DoPage {
 		list.add(common_outline);
 		list.add(specific_outline);
 
-		setContent(new _XMLDocument(currentTag));
-		setContent(list);
+		addContent(new _XMLDocument(currentTag));
+		addContent(list);
 	}
 
 	@Override
