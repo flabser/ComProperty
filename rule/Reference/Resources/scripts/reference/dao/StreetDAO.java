@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.model.Street;
 
 public class StreetDAO extends ReferenceDAO<Street, UUID> {

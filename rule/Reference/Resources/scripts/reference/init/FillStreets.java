@@ -14,7 +14,7 @@ import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.dao.LocalityDAO;
 import reference.dao.StreetDAO;
 import reference.model.Locality;

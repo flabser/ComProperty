@@ -19,6 +19,7 @@
     <caption name="contractors"/>
 
     <caption name="organization"/>
+    <caption name="org_category"/>
     <caption name="department"/>
     <caption name="employee"/>
     <caption name="organization_label"/>
@@ -29,4 +30,7 @@
     <caption name="name"/>
     <caption name="description"/>
     <caption name="is_primary_organization"/>
+    
+    
+    <caption name="bin_value_should_be_consist_from_12_symbols"/>
 </rule>

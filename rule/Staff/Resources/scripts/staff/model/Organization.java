@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import kz.flabs.localization.LanguageType;
+import kz.flabs.util.Util;
 import reference.model.OrgCategory;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,11 +38,13 @@ public class Organization extends Staff {
 	private boolean isPrimary;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "org_org_label")
+	@JoinTable(name = "orgs_labels", joinColumns = @JoinColumn(name = "org_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "label_id", referencedColumnName = "id"))
 	private List<OrganizationLabel> labels;
 
 	@Column(length = 12)
 	private String bin;
+
+	private int rank = 999;
 
 	@JsonIgnore
 	public OrgCategory getOrgCategory() {
@@ -80,6 +83,39 @@ public class Organization extends Staff {
 
 	public void setBin(String bin) {
 		this.bin = bin;
+	}
+
+	public List<OrganizationLabel> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(List<OrganizationLabel> labels) {
+		this.labels = labels;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	@Override
+	public String getFullXMLChunk(LanguageType lang) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
+		chunk.append("<author>" + author + "</author>");
+		chunk.append("<name>" + getName() + "</name>");
+		chunk.append("<bin>" + bin + "</bin>");
+		chunk.append("<orgcategory>" + orgCategory.getId() + "</orgcategory>");
+		chunk.append("<labels>");
+		for (OrganizationLabel l : labels) {
+			chunk.append("<entry id=\"" + l.getId() + "\">" + l.getName() + "</entry>");
+		}
+		chunk.append("</labels>");
+		chunk.append("<isprimary>" + isPrimary + "</isprimary>");
+		return chunk.toString();
 	}
 
 	@Override

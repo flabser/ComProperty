@@ -1,7 +1,7 @@
 package staff.page.form;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;

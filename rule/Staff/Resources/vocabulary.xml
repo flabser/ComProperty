@@ -110,7 +110,12 @@
         <entry lang="RUS">Первичная организация не найдена</entry>
         <entry lang="KAZ"></entry>
     </sentence>
-      <sentence mode="on" keyword="name">
+    <sentence mode="on" keyword="bin_value_should_be_consist_from_12_symbols">
+        <entry lang="ENG">BIN value should be consist from 12 symbols maximum</entry>
+        <entry lang="RUS">БИН может состоять из 12 символов максимум</entry>
+        <entry lang="KAZ"></entry>
+    </sentence>
+     <sentence mode="on" keyword="name">
         <entry lang="ENG">Name</entry>
         <entry lang="RUS">Имя</entry>
         <entry lang="KAZ"></entry>

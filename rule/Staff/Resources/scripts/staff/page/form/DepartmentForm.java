@@ -8,7 +8,7 @@ import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._POJOObjectWrapper;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import staff.dao.DepartmentDAO;

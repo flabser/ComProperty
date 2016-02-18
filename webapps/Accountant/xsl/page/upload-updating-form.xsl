@@ -41,12 +41,11 @@
             </div>
         </section>
 
-        <input type="hidden" name="type" value="save"/>
-        <input type="hidden" name="id" value="{@id}"/>
-        <input type="hidden" name="key" value="{//document/@docid}"/>
+
         <form class="hidden" method="POST" enctype="multipart/form-data">
-            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this)"
-                   accept="application/vnd.ms-excel"/>
+        	<xsl:variable name="fsid" select="//document/fields//formsesid" />
+            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this,{$fsid})"
+                   accept="application/vnd.ms-excel"/>           
         </form>
         <xsl:call-template name="tpl_update_file_panel"/>
     </xsl:template>

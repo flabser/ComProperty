@@ -11,7 +11,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import kz.lof.dataengine.jpa.DAO;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.model.Tag;
 
 public class TagDAO extends DAO<Tag, UUID> {

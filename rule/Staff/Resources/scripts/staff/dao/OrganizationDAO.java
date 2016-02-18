@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import staff.model.Organization;
 
 public class OrganizationDAO extends DAO<Organization, UUID> {

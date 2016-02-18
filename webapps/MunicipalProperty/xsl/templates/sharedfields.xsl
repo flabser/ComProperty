@@ -536,6 +536,7 @@
             <xsl:attribute name="value" select="@id"/>
             <xsl:value-of select="."/>
         </option>
+       
     </xsl:template>
 
 </xsl:stylesheet>

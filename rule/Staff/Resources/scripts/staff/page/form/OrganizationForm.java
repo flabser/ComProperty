@@ -1,18 +1,23 @@
 package staff.page.form;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
-import kz.lof.scripting._POJOObjectWrapper;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 import staff.dao.OrganizationDAO;
 import staff.dao.OrganizationLabelDAO;
 import staff.model.Organization;
+import staff.model.OrganizationLabel;
 
 /**
  * @author Kayra created 09-01-2016
@@ -31,15 +36,21 @@ public class OrganizationForm extends StaffForm {
 		} else {
 			entity = new Organization();
 			entity.setAuthor(user);
+			entity.setName("");
+			entity.setBin("");
+			entity.setRegDate(new Date());
+			entity.setOrgCategory(new OrgCategory());
 		}
-		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(entity);
 		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), lang));
+		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), lang));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+		println(formData);
 		try {
 			_Validation ve = validate(formData, lang);
 			if (ve.hasError()) {
@@ -61,8 +72,19 @@ public class OrganizationForm extends StaffForm {
 			}
 
 			entity.setName(formData.getValue("name"));
+			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+			entity.setOrgCategory(ocDao.findById(formData.getValue("orgcategory")));
 			entity.setBin(formData.getValue("bin"));
-			entity.setPrimary("1".equals(formData.getValueSilently("is_primary")));
+			entity.setPrimary("true".equals(formData.getValueSilently("is_primary")));
+			OrganizationLabelDAO olDao = new OrganizationLabelDAO(session);
+			List<OrganizationLabel> labels = new ArrayList<OrganizationLabel>();
+			for (String labelId : formData.getListOfValuesSilently("labels")) {
+				OrganizationLabel prgLabel = olDao.findById(labelId);
+				if (prgLabel != null) {
+					labels.add(prgLabel);
+				}
+			}
+			entity.setLabels(labels);
 
 			if (isNew) {
 				dao.add(entity);
@@ -82,8 +104,13 @@ public class OrganizationForm extends StaffForm {
 		if (formData.getValueSilently("name").isEmpty()) {
 			ve.addError("name", "empty", getLocalizedWord("required", lang));
 		}
+		if (formData.getValueSilently("orgcategory").isEmpty()) {
+			ve.addError("orgcategory", "empty", getLocalizedWord("required", lang));
+		}
 		if (formData.getValueSilently("bin").isEmpty()) {
 			ve.addError("bin", "empty", getLocalizedWord("required", lang));
+		} else if (formData.getValueSilently("bin").length() > 12) {
+			ve.addError("bin", "empty", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
 		}
 
 		return ve;

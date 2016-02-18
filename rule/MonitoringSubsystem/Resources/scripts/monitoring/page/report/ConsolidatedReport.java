@@ -15,7 +15,7 @@ import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.h2.Database;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.pchelka.env.Environment;
 import kz.pchelka.server.Server;

@@ -15,7 +15,7 @@ import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.IAppEntity;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 
 /**
  * 

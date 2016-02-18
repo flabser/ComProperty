@@ -13,7 +13,7 @@ import kz.flabs.dataengine.DatabaseUtil;
 import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
 import kz.lof.dataengine.jpadatabase.Database;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import municipalproperty.model.constants.KufType;
 
 public class ReportUtil {

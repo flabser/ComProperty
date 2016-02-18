@@ -1,6 +1,7 @@
-function uploadUpdate(fileInput) {
+function uploadUpdate(fileInput, fsid) {
     var formData = new FormData();
     formData.append('file', fileInput.files[0]);
+    formData.append('fsid', fsid);
     var time = new Date().getTime();
 
     return $.ajax({
@@ -104,6 +105,7 @@ function checkFile(fileId) {
         complete: function() {
             nb.uiUnblock();
             noty.remove(200);
+         
         }
     })
 }

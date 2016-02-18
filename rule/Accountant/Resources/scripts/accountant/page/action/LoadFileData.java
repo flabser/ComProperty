@@ -1,7 +1,6 @@
 package accountant.page.action;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -12,7 +11,8 @@ import jxl.read.biff.BiffException;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.env.Environment;
-import kz.nextbase.script._Session;
+import kz.nextbase.script._Exception;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -46,10 +46,18 @@ public class LoadFileData extends _DoPage {
 					UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
 					OrganizationDAO dao = new OrganizationDAO(session);
 					org = dao.findById(bhId);
-					String[] readers = formData.getListOfValuesSilently("reader");
+					String[] readers = formData.getListOfValues("reader");
 					File xlsFile = new File(fileName);
 					MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
-					Workbook workbook = Workbook.getWorkbook(xlsFile);
+					Workbook workbook = null;
+					try {
+						workbook = Workbook.getWorkbook(xlsFile);
+					} catch (BiffException e) {
+						setValidation(getLocalizedWord("incorrect_xls_file", lang));
+						setBadRequest();
+						error(e);
+						return;
+					}
 					Sheet sheet = workbook.getSheet(0);
 					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org, readers);
 					if (sheetErrs == null) {
@@ -57,14 +65,18 @@ public class LoadFileData extends _DoPage {
 					}
 				} catch (IllegalArgumentException e) {
 					_Validation ve = new _Validation();
-					ve.addError("balanceholderid", "empty", getLocalizedWord("incorrect_balanceholder_org_fieldc", lang));
+					ve.addError("balanceholderid", "empty", getLocalizedWord("incorrect_balanceholder_org_field", lang));
+					setValidation(ve);
+				} catch (_Exception e) {
+					_Validation ve = new _Validation();
+					ve.addError("reader", "empty", getLocalizedWord("readers_has_not_been_pointed", lang));
 					setValidation(ve);
 				}
 			} else {
 				setValidation(getLocalizedWord("incorrect_xls_file", lang));
 			}
 
-		} catch (BiffException | IOException e) {
+		} catch (Exception e) {
 			error(e);
 			setBadRequest();
 		}

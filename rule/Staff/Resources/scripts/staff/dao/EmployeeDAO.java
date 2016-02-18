@@ -16,7 +16,7 @@ import kz.lof.dataengine.jpa.ViewPage;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.dataengine.system.IEmployeeDAO;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import staff.model.Employee;
 
 public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {

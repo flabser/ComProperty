@@ -8,7 +8,7 @@ import java.util.Map;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.dao.CountryDAO;
 import reference.model.Country;
 import reference.model.constants.CountryCode;

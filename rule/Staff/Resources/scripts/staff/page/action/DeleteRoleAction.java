@@ -3,7 +3,7 @@ package staff.page.action;
 import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import staff.dao.EmployeeDAO;
@@ -26,7 +26,7 @@ public class DeleteRoleAction extends _DoPage {
 		String id = webFormData.getValueSilently("docid");
 		EmployeeDAO dao = new EmployeeDAO(session);
 		dao.delete(dao.findById(UUID.fromString(id)));
-		addMsg(getLocalizedWord("document_was_deleted_succesfully", lang));
+		addContent("msg", getLocalizedWord("document_was_deleted_succesfully", lang));
 	}
 
 }

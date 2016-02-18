@@ -18,7 +18,7 @@ import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.lof.dataengine.jpa.ViewPage;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;
 

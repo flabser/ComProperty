@@ -4,7 +4,7 @@ import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.env.Environment;
 import kz.lof.scripting._POJOObjectWrapper;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
@@ -26,7 +26,7 @@ public class UserProfile extends _DoPage {
 		Employee emp = dao.findByLogin(user.getUserID());
 		addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
 		addContent(new _POJOObjectWrapper(emp, lang));
-		setContent("availablelangs", Environment.langs);
+		addContent("availablelangs", Environment.langs);
 	}
 
 	@Override

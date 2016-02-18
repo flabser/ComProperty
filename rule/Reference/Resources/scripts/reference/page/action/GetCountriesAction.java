@@ -4,7 +4,7 @@ import kz.flabs.localization.LanguageType;
 import kz.flabs.servlets.PublishAsType;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import reference.dao.CountryDAO;

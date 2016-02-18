@@ -5,7 +5,7 @@ import java.util.List;
 
 import kz.flabs.localization.LanguageType;
 import kz.lof.webserver.servlet.IOutcomeObject;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script._XMLDocument;

@@ -710,11 +710,23 @@
 		<entry lang="ENG">Short name</entry>
 		<entry lang="CHI">短名称</entry>
 	</sentence>
+	<sentence mode="on" keyword="organization">
+		<entry lang="RUS">Организация</entry>
+		<entry lang="KAZ">Мекеме</entry>
+		<entry lang="ENG">Organization</entry>
+		<entry lang="CHI">组织</entry>
+	</sentence>
 	<sentence mode="on" keyword="org_name">
 		<entry lang="RUS">Организация</entry>
 		<entry lang="KAZ">Мекеме</entry>
 		<entry lang="ENG">Organization</entry>
 		<entry lang="CHI">组织</entry>
+	</sentence>
+	<sentence mode="on" keyword="org_category">
+		<entry lang="RUS">Тип организации</entry>
+		<entry lang="KAZ">Мекеме</entry>
+		<entry lang="ENG">Organization type</entry>
+		<entry lang="CHI"></entry>
 	</sentence>
 	<sentence mode="on" keyword="Все">
 		<entry lang="KAZ">Барлығы</entry>

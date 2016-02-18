@@ -6,7 +6,7 @@ import java.util.List;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.dao.LocalityDAO;
 import reference.dao.RegionDAO;
 import reference.model.Locality;

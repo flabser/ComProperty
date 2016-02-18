@@ -11,7 +11,7 @@ import kz.flabs.util.Util;
 import kz.lof.env.Environment;
 import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.dao.PropertyDAO;

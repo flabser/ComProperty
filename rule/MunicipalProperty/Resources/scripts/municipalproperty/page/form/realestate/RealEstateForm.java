@@ -7,7 +7,7 @@ import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.dao.PersonalEstateDAO;

@@ -18,7 +18,7 @@ import jxl.Sheet;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.IAppEntity;
 import kz.lof.server.Server;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;

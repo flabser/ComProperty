@@ -14,7 +14,7 @@ import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.server.Server;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.dao.PositionDAO;
 import reference.model.Position;
 import staff.dao.EmployeeDAO;

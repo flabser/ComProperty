@@ -32,6 +32,7 @@
     <caption name="billboards"/>
     <caption name="bomb_proofs"/>
     <caption name="buildings"/>
+       <caption name="structures"/>
     <caption name="buses"/>
     <caption name="cars"/>
     <caption name="cargoes"/>

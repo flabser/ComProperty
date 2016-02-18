@@ -8,7 +8,7 @@ import java.util.Map;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.localization.Vocabulary;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.dao.TagDAO;
 import reference.model.Tag;
 

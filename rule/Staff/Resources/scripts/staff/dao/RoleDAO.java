@@ -3,7 +3,7 @@ package staff.dao;
 import java.util.UUID;
 
 import kz.lof.dataengine.jpa.DAO;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import staff.model.Role;
 
 public class RoleDAO extends DAO<Role, UUID> {

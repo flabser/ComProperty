@@ -1,7 +1,6 @@
 package accountant.page.action;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,7 +12,7 @@ import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.env.Environment;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -29,6 +28,7 @@ public class ImportFileChecker extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		println(formData);
+		// setPublishAsType(PublishAsType.JSON);
 		User user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
@@ -41,8 +41,15 @@ public class ImportFileChecker extends _DoPage {
 				File xlsFile = new File(excelFile);
 
 				MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
-
-				Workbook workbook = Workbook.getWorkbook(xlsFile);
+				Workbook workbook = null;
+				try {
+					workbook = Workbook.getWorkbook(xlsFile);
+				} catch (BiffException e) {
+					setValidation(getLocalizedWord("incorrect_xls_file", lang));
+					setBadRequest();
+					error(e);
+					return;
+				}
 				Sheet sheet = workbook.getSheet(0);
 
 				OrganizationDAO oDao = new OrganizationDAO(ses);
@@ -66,7 +73,7 @@ public class ImportFileChecker extends _DoPage {
 			}
 
 			addContent(rootTag);
-		} catch (BiffException | IOException e) {
+		} catch (Exception e) {
 			setBadRequest();
 			error(e);
 		}

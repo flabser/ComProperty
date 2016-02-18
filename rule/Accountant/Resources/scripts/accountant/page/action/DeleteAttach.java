@@ -6,7 +6,7 @@ import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.env.Environment;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 

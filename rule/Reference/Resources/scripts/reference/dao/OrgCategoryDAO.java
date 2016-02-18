@@ -2,7 +2,7 @@ package reference.dao;
 
 import java.util.UUID;
 
-import kz.nextbase.script._Session;
+import kz.lof.scripting._Session;
 import reference.model.OrgCategory;
 
 public class OrgCategoryDAO extends ReferenceDAO<OrgCategory, UUID> {
