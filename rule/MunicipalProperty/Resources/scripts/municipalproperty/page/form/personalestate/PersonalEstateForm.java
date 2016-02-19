@@ -104,37 +104,37 @@ public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 		_Validation ve = new _Validation();
 
 		if (formData.getValueSilently("balanceholderid").isEmpty()) {
-			ve.addError("balanceholderid", "empty", getLocalizedWord("required", lang));
+			ve.addError("balanceholderid", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("kof").isEmpty()) {
-			ve.addError("kof", "empty", getLocalizedWord("required", lang));
+			ve.addError("kof", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("kuf").isEmpty()) {
-			ve.addError("kuf", "empty", getLocalizedWord("required", lang));
+			ve.addError("kuf", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("invnumber").isEmpty()) {
-			ve.addError("invnumber", "empty", getLocalizedWord("required", lang));
+			ve.addError("invnumber", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("objectname").isEmpty()) {
-			ve.addError("objectname", "empty", getLocalizedWord("required", lang));
+			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("description").isEmpty()) {
-			ve.addError("description", "empty", getLocalizedWord("required", lang));
+			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
-			ve.addError("acceptancedate", "empty", getLocalizedWord("required", lang));
+			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		if (formData.getValueSilently("originalcost").isEmpty()) {
-			ve.addError("originalcost", "empty", getLocalizedWord("required", lang));
+			ve.addError("originalcost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("originalcost", 0) <= 0) {
-			ve.addError("originalcost", "le_zero", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
+			ve.addError("originalcost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
 
 		if (formData.getValueSilently("balancecost").isEmpty()) {
-			ve.addError("balancecost", "empty", getLocalizedWord("required", lang));
+			ve.addError("balancecost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("balancecost", 0) <= 0) {
-			ve.addError("balancecost", "le_zero", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
+			ve.addError("balancecost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
 
 		return ve;
