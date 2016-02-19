@@ -86,7 +86,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <xsl:value-of select="@username"/>
+                                <span>
+                                    <xsl:value-of select="@username"/>
+                                </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu right">

@@ -32,8 +32,12 @@
                             <xsl:value-of select="//captions/region/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="region" value="{//fields/region}" class="span7"
-                                   required="required"/>
+                            <select name="region" class="span7" required="required">
+                                <xsl:apply-templates select="//query[@entity = 'region']/entry"
+                                                     mode="region_option">
+                                    <xsl:with-param name="selected" select="//fields/region"/>
+                                </xsl:apply-templates>
+                            </select>
                         </div>
                     </div>
                 </fieldset>
@@ -42,6 +46,17 @@
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
         </form>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="region_option">
+        <xsl:param name="selected"/>
+
+        <option value="{@id}">
+            <xsl:if test="@id = $selected">
+                <xsl:attribute name="selected" select="'selected'"/>
+            </xsl:if>
+            <xsl:value-of select="viewcontent/name"/>
+        </option>
     </xsl:template>
 
 </xsl:stylesheet>
