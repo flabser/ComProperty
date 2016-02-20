@@ -9,7 +9,7 @@
             <div class="controls">
                 <div class="span8">
                     <div class="input selectize-dialog" data-input="balanceholder"
-                         onclick="nbApp.dialogChoiceBalanceHolder(this)">
+                         onclick="nbApp.choiceBalanceHolder(this)">
                         <xsl:value-of select="//fields/balanceholder"/>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                 <xsl:value-of select="//captions/original_cost/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="originalcost" value="{//fields/originalcost}" class="span4"/>
+                <input type="number" name="originalcost" value="{//fields/originalcost}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -135,7 +135,7 @@
             </div>
             <div class="controls">
                 <input type="number" name="cumulativedepreciation" value="{//fields/cumulativedepreciation}"
-                       class="span4"/>
+                       class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -147,7 +147,7 @@
                 <xsl:value-of select="//captions/impairment_loss/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="impairmentloss" value="{//fields/impairmentloss}" class="span4"/>
+                <input type="number" name="impairmentloss" value="{//fields/impairmentloss}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -159,7 +159,7 @@
                 <xsl:value-of select="//captions/balance_cost/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="balancecost" value="{//fields/balancecost}" class="span4"/>
+                <input type="number" name="balancecost" value="{//fields/balancecost}" class="span3"/>
             </div>
         </div>
 
@@ -172,7 +172,7 @@
                 <xsl:value-of select="//captions/revaluation_amount/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="revaluationamount" value="{//fields/revaluationamount}" class="span4"/>
+                <input type="number" name="revaluationamount" value="{//fields/revaluationamount}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -185,7 +185,7 @@
             </div>
             <div class="controls">
                 <input type="number" name="afterrevaluationamount" value="{//fields/afterevaluationamount}"
-                       class="span4"/>
+                       class="span3"/>
             </div>
         </div>
     </xsl:template>

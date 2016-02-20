@@ -47,6 +47,47 @@ nb.dialog = {
 
         $dlgWgt[0].dialogOptions.onExecute(arguments);
     },
+    load: function(url, $container, options) {
+        return $.ajax({
+            url: url,
+            success: function(response, status, xhr) {
+                if (status === 'error') {
+                    $container.html('<div class="alert alert-danger">' + status + '</div>');
+
+                    if (nb.debug === true) {
+                        console.log('nb.dialog : load callback', xhr);
+                    }
+                } else {
+                    $container.html(response);
+
+                    try {
+                        if (options.onLoad !== null) {
+                            options.onLoad(response, status, xhr);
+                        }
+                    } catch (e) {
+                        console.log('nb.dialog', e);
+                    }
+
+                    try {
+                        if (options.filter !== false) {
+                            new nb.dialog.Filter($container, options.dialogFilterListItem, 13);
+                        }
+                    } catch (e) {
+                        console.log('nb.dialog', e);
+                    }
+                }
+            },
+            error: function(response, status, xhr) {
+                if (status === 'error') {
+                    $container.html('<div class="alert alert-danger">' + status + '</div>');
+
+                    if (nb.debug === true) {
+                        console.log('nb.dialog : load callback', xhr);
+                    }
+                }
+            }
+        });
+    },
     show: function(options) {
         var $dialog;
 
@@ -125,41 +166,21 @@ nb.dialog = {
             }
         }
 
+        var self = this;
+
         if (options.href) {
-            $dialog = $dlgContainer.load(options.href, '', function(response, status, xhr) {
-                if (status === 'error') {
-                    $dlgContainer.html('<div class="alert alert-danger">' + status + '</div>');
+            self.load(options.href, $dlgContainer, options);
 
-                    if (nb.debug === true) {
-                        console.log('nb.dialog : load callback', xhr);
-                    }
-                } else {
-                    try {
-                        if (options.onLoad !== null) {
-                            options.onLoad(response, status, xhr);
-                        }
-                    } catch (e) {
-                        console.log('nb.dialog', e);
-                    }
-
-                    try {
-                        if (options.filter !== false) {
-                            new nb.dialog.Filter($dlgContainer, options.dialogFilterListItem, 13);
-                        }
-                    } catch (e) {
-                        console.log('nb.dialog', e);
-                    }
-                }
-            }).dialog(options);
+            $dialog = $dlgContainer.dialog(options);
 
             $dialog.on('click', 'a', function(e) {
                 e.preventDefault();
-                $dlgContainer.load(this.href);
+                self.load(this.href, $dlgContainer, options);
             });
 
             $dialog.on('change', 'select', function(e) {
                 e.preventDefault();
-                $dlgContainer.load(this.href);
+                self.load(this.href, $dlgContainer, options);
             });
         } else {
             $dialog = $dlgContainer.dialog(options);
