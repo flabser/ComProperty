@@ -22,7 +22,7 @@
                         <div class="controls">
                             <div class="span8">
                                 <div class="input selectize-dialog" data-input="balanceholder"
-                                     onclick="nbApp.dialogChoiceBalanceHolder(this)">
+                                     onclick="nbApp.choiceBalanceHolder(this)">
                                     <xsl:value-of select="//fields/balanceholdername"/>
                                 </div>
                                 <input type="hidden" name="balanceholder" value="{//fields/balanceholder}"/>
