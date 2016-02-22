@@ -33,7 +33,7 @@ function uploadUpdate(fileInput, fsid) {
                 max: 100
             });
             fileInput.form.reset();
-            insertParam("fsid",fsid);
+            insertParam('fsid', fsid);
         }
     });
 }
@@ -58,7 +58,7 @@ function loadFile(fileId, data, fsid) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
-        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId,
+        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId + '&fsid=' + fsid,
         data: data,
         success: function(result) {
             return result;
@@ -73,7 +73,6 @@ function loadFile(fileId, data, fsid) {
         complete: function() {
             nb.uiUnblock();
             noty.remove();
-            insertParam("fsid",fsid);
         }
     });
 }
@@ -82,8 +81,7 @@ function delFile(fileId, fsid) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
-        url: 'Provider?type=page&id=delete-attach&fileid=' + fileId
-        
+        url: 'Provider?type=page&id=delete-attach&fileid=' + fileId + '&fsid=' + fsid
     });
 }
 
@@ -108,10 +106,8 @@ function checkFile(fileId, fsid) {
         complete: function() {
             nb.uiUnblock();
             noty.remove(200);
-            insertParam("fsid",fsid);
-         
         }
-    })
+    });
 }
 
 function renderFilePanel(fileName, fsid) {
@@ -176,17 +172,42 @@ function renderFilePanel(fileName, fsid) {
     $('.js-uploaded-files').append($tpl);
 }
 
-function insertParam(key, value){
-    key = encodeURI(key); value = encodeURI(value);
+function insertParam(_key, _value) {
+    var key = encodeURI(_key);
+    var value = encodeURI(_value);
     var kvp = document.location.search.substr(1).split('&');
-    var i=kvp.length; var x; while(i--) {
+    var i = kvp.length;
+    var x;
+
+    while (i--) {
         x = kvp[i].split('=');
-        if (x[0]==key){
+        if (x[0] == key) {
             x[1] = value;
             kvp[i] = x.join('=');
             break;
         }
     }
-    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-    document.location.search = kvp.join('&'); 
+    if (i < 0) {
+        kvp[kvp.length] = [key, value].join('=');
+    }
+    history.replaceState(null, null, location.pathname + '?' + kvp.join('&'));
 }
+
+function getDataByFormSessionId() {
+    if (location.search.indexOf('fsid') !== -1) {
+        var fsid = location.search.split('fsid=')[1];
+        $.ajax({
+            url: location.href + '&as=json',
+            success: function(result) {
+                var list = result.objects[1].list;
+                for (var index in list) {
+                    renderFilePanel(list[index].name, fsid);
+                }
+            }
+        });
+    }
+}
+
+$(document).ready(function() {
+    getDataByFormSessionId();
+});

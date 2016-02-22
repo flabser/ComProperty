@@ -41,11 +41,10 @@
             </div>
         </section>
 
-
         <form class="hidden" method="POST" enctype="multipart/form-data">
-        	<xsl:variable name="fsid" select="//document/fields//formsesid" />
-            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this,{$fsid})"
-                   accept="application/vnd.ms-excel"/>           
+            <xsl:variable name="fsid" select="//fields/formsesid"/>
+            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this, {$fsid})"
+                   accept="application/vnd.ms-excel"/>
         </form>
         <xsl:call-template name="tpl_update_file_panel"/>
     </xsl:template>
@@ -57,9 +56,7 @@
                     <div class="panel__header blink-anim">
                         <div class="panel-title panel-toggle" data-toggle="panel">
                             <i class="fa"></i>
-                            <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link">
-                            	
-                            </a>
+                            <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link"></a>
                             <span>
                                 <button type="button" class="btn btn-sm js-check">проверить</button>
                                 <button type="button" class="btn btn-sm js-select-balance-holder" disabled="disabled">

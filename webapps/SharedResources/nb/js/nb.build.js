@@ -158,7 +158,7 @@ $(document).ready(function() {
         $('body').toggleClass('side-nav-toggle');
     });
 
-    if ($('#content-overlay')) {
+    if ($('#content-overlay').length) {
         $('#content-overlay').mousedown(function(event) {
             event.preventDefault();
             $('body').removeClass('side-nav-toggle');
