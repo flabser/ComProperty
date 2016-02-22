@@ -47,6 +47,7 @@ public class UploadUpdatingForm extends _DoPage {
 			}
 			addContent(new _POJOListWrapper(filesToPublish, lang));
 		}
+		// setPublishAsType(PublishAsType.JSON);
 	}
 
 	@Override
