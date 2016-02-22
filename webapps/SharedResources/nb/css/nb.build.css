@@ -1729,9 +1729,11 @@ i.has-parent {
 }
 
 .btn {
-    background-color: #FFF;
-    border: 1px solid #CDCDCD;
-    border-radius: 3px;
+    /* background-color: #FFF;
+    border: 1px solid #CDCDCD; */
+    background: #fff linear-gradient(#fff, #f1f1f1);
+    border: 1px solid #ccc;
+    border-radius: 2px;
     box-sizing: border-box;
     color: #243140;
     cursor: pointer;
@@ -1762,13 +1764,21 @@ i.has-parent {
 }
 
 .btn:hover {
-    background-color: #efefef;
-    color: #243140;
+    /* background-color: #efefef; */
+    border-color: #aaa;
     text-decoration: none;
 }
 
+.btn:focus {
+    border-color: #aaa;
+    outline: 0;
+}
+
 .btn:active {
-    background-color: #dfdfdf;
+    /* background-color: #dfdfdf; */
+    background: #f8f8f8;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+    outline: 0;
 }
 
 .tablet .btn,
@@ -1788,31 +1798,31 @@ i.has-parent {
 }
 
 .btn-primary {
-    background-color: #FFED81;
+    background: #FFED81;
     border: 1px solid #FFCE00;
 }
 
 .btn-primary:hover {
-    background-color: #FFF1A8;
+    background: #FFF1A8;
 }
 
 .btn-primary:active {
-    background-color: #FFED81;
+    background: #FFED81;
 }
 
 .btn-warning {
-    background-color: #F44336;
+    background: #F44336;
     border: 1px solid #E00000;
     color: #FFF;
 }
 
 .btn-warning:hover {
-    background-color: #FF5722;
+    background: #FF5722;
     color: #FFF;
 }
 
 .btn-warning:active {
-    background-color: #F44336;
+    background: #F44336;
     color: #FFF;
 }
 

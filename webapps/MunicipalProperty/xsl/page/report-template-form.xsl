@@ -75,7 +75,7 @@
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
             <footer class="content-actions">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn" type="submit">
                     <xsl:value-of select="//captions/create_report/@caption"/>
                 </button>
             </footer>
