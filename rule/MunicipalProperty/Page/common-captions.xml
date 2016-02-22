@@ -32,15 +32,27 @@
     <caption name="billboards"/>
     <caption name="bomb_proofs"/>
     <caption name="buildings"/>
-       <caption name="structures"/>
+   <caption name="structures"/>
+    <caption name="residential_objects"/>
+   
     <caption name="buses"/>
     <caption name="cars"/>
-    <caption name="cargoes"/>
+    <caption name="cargo"/>
+    <caption name="dej_transport"/>
+        <caption name="official_transport"/>
+    <caption name="passenger_transports"/>
+    <caption name="trolleybuses"/>
+     <caption name="trams"/>
+         <caption name="water_transports"/>
+        <caption name="taxi"/>
+              
     <caption name="columns"/>
     <caption name="combines"/>
     <caption name="computer_equipment"/>
     <caption name="office_equipment"/>
     <caption name="cook_equipment"/>
+     <caption name="equipment_of_civildefence"/>
+    
     <caption name="drains"/>
     <caption name="electric_networks"/>
     <caption name="eng_infrastructures"/>
@@ -53,14 +65,15 @@
     <caption name="land"/>
     <caption name="medical_equipment"/>
     <caption name="monuments"/>
+    <caption name="transport"/>
     <caption name="motorcycles"/>
     <caption name="networks"/>
     <caption name="objects_reserved_fund"/>
-    <caption name="official_transports"/>
+
     <caption name="others_equipment"/>
     <caption name="others"/>
     <caption name="parking_lots"/>
-    <caption name="passenger_transports"/>
+
     <caption name="personal_estates"/>
     <caption name="real_estates"/>
     <caption name="reports"/>

@@ -29,11 +29,11 @@ public class FTSearch extends _DoPage {
 		int pageNum = formData.getNumberValueSilently("page", 1);
 		int pageSize = session.pageSize;
 
-		IDatabase db = ses.getCurrentDatabase();
+		IDatabase db = session.getCurrentDatabase();
 		IFTIndexEngine ftEngine = db.getFTSearchEngine();
 		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
-		addContent(new _ActionBar(ses).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back_to_doc_list", lang),
-		        _ActionType.BACK)));
+		addContent(new _ActionBar(session).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back_to_doc_list",
+		        lang), _ActionType.BACK)));
 		if (result != null) {
 			addContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang, keyWord));
 		} else {

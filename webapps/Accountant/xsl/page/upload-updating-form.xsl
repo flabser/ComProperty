@@ -57,7 +57,9 @@
                     <div class="panel__header blink-anim">
                         <div class="panel-title panel-toggle" data-toggle="panel">
                             <i class="fa"></i>
-                            <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link"></a>
+                            <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link">
+                            	
+                            </a>
                             <span>
                                 <button type="button" class="btn btn-sm js-check">проверить</button>
                                 <button type="button" class="btn btn-sm js-select-balance-holder" disabled="disabled">

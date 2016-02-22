@@ -23,12 +23,15 @@ import staff.model.Organization;
 
 public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 
+	private _Session session;
+
 	@Override
 	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		println(formData);
+		this.session = session;
 		try {
 			_Validation ve = validate(formData, lang);
 			if (ve.hasError()) {
@@ -49,7 +52,7 @@ public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 				entity = dao.findById(id);
 			}
 
-			OrganizationDAO oDao = new OrganizationDAO(ses);
+			OrganizationDAO oDao = new OrganizationDAO(session);
 			Organization org = oDao.findById(formData.getValueSilently("balanceholderid"));
 			entity.setBalanceHolder(org);
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
@@ -58,7 +61,7 @@ public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 			entity.setKof(formData.getValueSilently("kof"));
 			entity.setKuf(KufType.getType(formData.getNumberValueSilently("kuf", 0)));
 			entity.setDescription(formData.getValueSilently("description"));
-			PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
+			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
 			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
 			entity.setPropertyCode(pcEntity);
 			entity.setOriginalCost(Util.convertStringToFloat(formData.getValueSilently("originalcost")));
@@ -67,7 +70,7 @@ public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 			entity.setBalanceCost(Util.convertStringToFloat(formData.getValueSilently("balancecost")));
 			entity.setRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("afterrevaluationamount")));
 
-			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
+			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
 			entity.setModel(formData.getValueSilently("model"));
@@ -152,10 +155,10 @@ public abstract class PersonalEstateForm extends MunicipalPropertyForm {
 		entity.setKof("");
 		entity.setInvNumber("");
 		entity.setObjectName("");
-		PropertyCodeDAO pcDao = new PropertyCodeDAO(ses);
+		PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
 		entity.setPropertyCode(pcDao.findByName("Собственность"));
 		entity.setModel("");
-		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(ses);
+		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 		entity.setReceivingReason(rrDao.findByName("Приобретено"));
 		entity.setReadyToUse(true);
 		return entity;

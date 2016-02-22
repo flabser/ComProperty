@@ -10,10 +10,10 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
+import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Validation;
+import kz.nextbase.script._Exception;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 
@@ -22,6 +22,7 @@ import org.apache.commons.io.FilenameUtils;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 import accountant.page.action.MPXLImporter.ErrorDescription;
+import accountant.page.form.UploadedFile;
 
 public class LoadFileData extends _DoPage {
 
@@ -33,49 +34,56 @@ public class LoadFileData extends _DoPage {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		println(formData);
-		User user = session.getUser();
-		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
-			// String fileName = userTmpDir + File.separator +
-			// formData.getEncodedValueSilently("fileid");
-			String fileName = userTmpDir + File.separator + formData.getValueSilently("fileid");
-			String ext = FilenameUtils.getExtension(fileName);
-			Organization org = null;
-			if (ext.equalsIgnoreCase("xls")) {
-				try {
-					UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
-					OrganizationDAO dao = new OrganizationDAO(session);
-					org = dao.findById(bhId);
-					String[] readers = formData.getListOfValues("reader");
-					File xlsFile = new File(fileName);
-					MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
-					Workbook workbook = null;
-					try {
-						workbook = Workbook.getWorkbook(xlsFile);
-					} catch (BiffException e) {
-						setValidation(getLocalizedWord("incorrect_xls_file", lang));
-						setBadRequest();
-						error(e);
-						return;
-					}
-					Sheet sheet = workbook.getSheet(0);
-					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, ses, true, org, readers);
-					if (sheetErrs == null) {
-						setError(getLocalizedWord("internal_error", lang));
-					}
-				} catch (IllegalArgumentException e) {
-					_Validation ve = new _Validation();
-					ve.addError("balanceholderid", "empty", getLocalizedWord("incorrect_balanceholder_org_field", lang));
-					setValidation(ve);
-				} catch (_Exception e) {
-					_Validation ve = new _Validation();
-					ve.addError("reader", "empty", getLocalizedWord("readers_has_not_been_pointed", lang));
-					setValidation(ve);
-				}
-			} else {
-				setValidation(getLocalizedWord("incorrect_xls_file", lang));
-			}
+			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
+			if (!fsid.isEmpty()) {
+				String fn = formData.getValueSilently("fileid");
+				UploadedFile uf = (UploadedFile) session.getAttribute(fsid + "_file" + fn);
+				if (uf != null) {
+					User user = session.getUser();
+					File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
+					String fileName = userTmpDir + File.separator + fn;
+					String ext = FilenameUtils.getExtension(fileName);
+					Organization org = null;
+					if (ext.equalsIgnoreCase("xls")) {
+						try {
+							UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
+							OrganizationDAO dao = new OrganizationDAO(session);
+							org = dao.findById(bhId);
+							String[] readers = formData.getListOfValues("reader");
+							File xlsFile = new File(fileName);
+							MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
+							Workbook workbook = null;
+							try {
+								workbook = Workbook.getWorkbook(xlsFile);
+							} catch (BiffException e) {
+								uf.setStatus(UploadedFile.LOADING_ERROR);
+								uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+								return;
+							}
+							Sheet sheet = workbook.getSheet(0);
+							Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, true, org, readers);
 
+							if (sheetErrs.size() > 0) {
+								uf.setStatus(UploadedFile.LOADING_ERROR);
+								uf.setLocalizedErrorMsg(getLocalizedWord("file_has_been_not_loaded", lang));
+								uf.setSheetErrs(sheetErrs);
+							} else {
+								uf.setStatus(UploadedFile.LOADED);
+							}
+						} catch (IllegalArgumentException e) {
+							uf.setStatus(UploadedFile.LOADING_ERROR);
+							uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
+						} catch (_Exception e) {
+							uf.setStatus(UploadedFile.LOADING_ERROR);
+							uf.setLocalizedErrorMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
+						}
+					} else {
+						uf.setStatus(UploadedFile.LOADING_ERROR);
+						uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+					}
+				}
+			}
 		} catch (Exception e) {
 			error(e);
 			setBadRequest();

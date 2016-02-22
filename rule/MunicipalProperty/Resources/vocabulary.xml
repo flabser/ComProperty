@@ -384,16 +384,16 @@
 		<entry lang="ENG">Cargo</entry>
 	</sentence>
 	<sentence mode="on" keyword="dej_transport">
-		<entry lang="RUS">Дежурный</entry>
-		<entry lang="KAZ">Кезекші</entry>
+		<entry lang="RUS">Дежурный транспорт</entry>
+		<entry lang="KAZ">Кезекші автокөліктер</entry>
 		<entry lang="ENG">Special transport</entry>
 	</sentence>
 	<sentence mode="on" keyword="official_transport">
-		<entry lang="RUS">Служебный</entry>
-		<entry lang="KAZ">Қызметтік</entry>
+		<entry lang="RUS">Служебный транспорт</entry>
+		<entry lang="KAZ">Қызметтік транспорт</entry>
 		<entry lang="ENG">Official transport</entry>
 	</sentence>
-	<sentence mode="on" keyword="hospita_transport">
+	<sentence mode="on" keyword="hospital_transport">
 		<entry lang="RUS">Санитарный транспорт</entry>
 		<entry lang="KAZ">Санитарлық транспорт</entry>
 		<entry lang="ENG">Hospital transport</entry>

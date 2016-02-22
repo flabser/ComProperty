@@ -9,9 +9,9 @@ import java.util.UUID;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
 import kz.lof.env.Environment;
+import kz.lof.scripting._Session;
 import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
-import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.dao.PropertyDAO;
@@ -75,13 +75,13 @@ public class RegistryReport extends _DoPage {
 
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			log("Filling report \"" + reportName + "\"...");
-			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator + ses.getGlobalSettings().id
+			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator + session.getGlobalSettings().id
 			        + File.separator + "reports";
 
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, Environment.trash);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
-			PropertyDAO dao = new PropertyDAO(ses);
+			PropertyDAO dao = new PropertyDAO(session);
 			List<Property> result = dao.find(cat, bhId, from, to);
 
 			// ArrayList<IPropertyBean> result = fetchReportData(cat,
@@ -89,7 +89,7 @@ public class RegistryReport extends _DoPage {
 
 			parameters.put("grandtotal", "");
 			if (checkBalanceHolder) {
-				OrganizationDAO orgDao = new OrganizationDAO(ses);
+				OrganizationDAO orgDao = new OrganizationDAO(session);
 				Organization org = orgDao.findById(bhId);
 				parameters.put("balanceholder", org.getName());
 			} else {

@@ -21,7 +21,7 @@ function uploadUpdate(fileInput, fsid) {
         },
         success: function(result) {
             var fileName = result.files[0];
-            renderFilePanel(fileName);
+            renderFilePanel(fileName, fsid);
             return result;
         },
         error: function(err) {
@@ -33,6 +33,7 @@ function uploadUpdate(fileInput, fsid) {
                 max: 100
             });
             fileInput.form.reset();
+            insertParam("fsid",fsid);
         }
     });
 }
@@ -46,7 +47,7 @@ function onProgress(e) {
     }
 }
 
-function loadFile(fileId, data) {
+function loadFile(fileId, data, fsid) {
     nb.uiBlock();
 
     var noty = nb.notify({
@@ -72,19 +73,21 @@ function loadFile(fileId, data) {
         complete: function() {
             nb.uiUnblock();
             noty.remove();
+            insertParam("fsid",fsid);
         }
     });
 }
 
-function delFile(fileId) {
+function delFile(fileId, fsid) {
     return $.ajax({
         type: 'post',
         datatype: 'html',
         url: 'Provider?type=page&id=delete-attach&fileid=' + fileId
+        
     });
 }
 
-function checkFile(fileId) {
+function checkFile(fileId, fsid) {
     nb.uiBlock();
 
     var noty = nb.notify({
@@ -95,7 +98,7 @@ function checkFile(fileId) {
     return $.ajax({
         type: 'get',
         datatype: 'html',
-        url: 'Provider?type=page&id=check-file-structure&fileid=' + fileId,
+        url: 'Provider?type=page&id=check-file-structure&fileid=' + fileId + '&fsid=' + fsid,
         success: function(data) {
             return data;
         },
@@ -105,12 +108,13 @@ function checkFile(fileId) {
         complete: function() {
             nb.uiUnblock();
             noty.remove(200);
+            insertParam("fsid",fsid);
          
         }
     })
 }
 
-function renderFilePanel(fileName) {
+function renderFilePanel(fileName, fsid) {
     var template = $('#tpl_update_file_panel').clone();
     var $tpl = $(template.html().trim());
 
@@ -125,7 +129,7 @@ function renderFilePanel(fileName) {
         var $btn = $(this);
         $btn.attr('disabled', true);
         //
-        checkFile(fileName).then(function(result) {
+        checkFile(fileName, fsid).then(function(result) {
             $btn.parents('.panel').addClass('open');
             if (result == '') {
                 $tpl.find('.js-load').removeAttr('disabled');
@@ -142,7 +146,7 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-delete').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        delFile(fileName).then(function() {
+        delFile(fileName, fsid).then(function() {
             $tpl.remove();
         });
     });
@@ -150,7 +154,7 @@ function renderFilePanel(fileName) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        loadFile(fileName, $tpl.serialize()).then(function() {
+        loadFile(fileName, $tpl.serialize(), fsid).then(function() {
             $tpl.addClass('upload-success');
         });
     });
@@ -170,4 +174,19 @@ function renderFilePanel(fileName) {
     });
 
     $('.js-uploaded-files').append($tpl);
+}
+
+function insertParam(key, value){
+    key = encodeURI(key); value = encodeURI(value);
+    var kvp = document.location.search.substr(1).split('&');
+    var i=kvp.length; var x; while(i--) {
+        x = kvp[i].split('=');
+        if (x[0]==key){
+            x[1] = value;
+            kvp[i] = x.join('=');
+            break;
+        }
+    }
+    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+    document.location.search = kvp.join('&'); 
 }

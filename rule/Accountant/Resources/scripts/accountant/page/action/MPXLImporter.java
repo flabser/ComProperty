@@ -17,8 +17,8 @@ import jxl.DateCell;
 import jxl.Sheet;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.IAppEntity;
-import kz.lof.server.Server;
 import kz.lof.scripting._Session;
+import kz.lof.server.Server;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;
@@ -215,7 +215,7 @@ public class MPXLImporter {
 				processed++;
 			}
 		}
-		Server.logger.verboseLogEntry("processed=" + processed + ", skipped=" + skipped);
+		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
 		return sheetErr;
 
 	}
