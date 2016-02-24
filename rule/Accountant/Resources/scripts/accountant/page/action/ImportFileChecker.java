@@ -35,61 +35,66 @@ public class ImportFileChecker extends _DoPage {
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
 				UploadedFile uf = (UploadedFile) session.getAttribute(fsid + "_file" + fn);
-				if (uf != null) {
-					User user = session.getUser();
-					File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
+				if (uf == null) {
+					uf = new UploadedFile();
+					uf.setName(fn);
+					uf.setStatus(UploadedFile.JUST_UPLOADED);
+					session.setAttribute(fsid + "_file" + fn, uf);
+				}
 
-					_Tag rootTag = new _Tag("result");
-					String excelFile = userTmpDir + File.separator + fn;
-					String ext = FilenameUtils.getExtension(excelFile);
-					if (ext.equalsIgnoreCase("xls")) {
-						File xlsFile = new File(excelFile);
+				User user = session.getUser();
+				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
-						MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
-						Workbook workbook = null;
-						try {
-							workbook = Workbook.getWorkbook(xlsFile);
-						} catch (BiffException e) {
-							uf.setStatus(UploadedFile.CHECKING_ERROR);
-							uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
-							return;
-						}
-						Sheet sheet = workbook.getSheet(0);
+				_Tag rootTag = new _Tag("result");
+				String excelFile = userTmpDir + File.separator + fn;
+				String ext = FilenameUtils.getExtension(excelFile);
+				if (ext.equalsIgnoreCase("xls")) {
+					File xlsFile = new File(excelFile);
 
-						OrganizationDAO oDao = new OrganizationDAO(session);
-						List<Organization> oList = oDao.findAll();
-						Organization org = (Organization) Util.getRndListElement(oList);
-						String[] readers = formData.getListOfValuesSilently("reader");
-
-						Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, false, org, readers);
-
-						if (sheetErrs.size() > 0) {
-							uf.setStatus(UploadedFile.CHECKING_ERROR);
-							uf.setLocalizedErrorMsg(getLocalizedWord("file_data_is_incorrect", lang));
-							uf.setSheetErrs(sheetErrs);
-						} else {
-							uf.setStatus(UploadedFile.CHECKED);
-						}
-
-						for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {
-							_Tag entry = rootTag.addTag("entry");
-							entry.setAttr("row", row.getKey());
-							for (List<ErrorDescription> colList : row.getValue()) {
-								for (ErrorDescription val : colList) {
-									entry.addTag("column", val.toString());
-								}
-							}
-						}
-					} else {
+					MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
+					Workbook workbook = null;
+					try {
+						workbook = Workbook.getWorkbook(xlsFile);
+					} catch (BiffException e) {
 						uf.setStatus(UploadedFile.CHECKING_ERROR);
 						uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
-						_Tag entry = rootTag.addTag("entry");
-						entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
 						return;
 					}
-					addContent(rootTag);
+					Sheet sheet = workbook.getSheet(0);
 
+					OrganizationDAO oDao = new OrganizationDAO(session);
+					List<Organization> oList = oDao.findAll();
+					Organization org = (Organization) Util.getRndListElement(oList);
+					String[] readers = formData.getListOfValuesSilently("reader");
+
+					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, false, org, readers);
+
+					if (sheetErrs.size() > 0) {
+						uf.setStatus(UploadedFile.CHECKING_ERROR);
+						uf.setLocalizedErrorMsg(getLocalizedWord("file_data_is_incorrect", lang));
+						uf.setSheetErrs(sheetErrs);
+					} else {
+						uf.setStatus(UploadedFile.CHECKED);
+					}
+
+					for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {
+						_Tag entry = rootTag.addTag("entry");
+						entry.setAttr("row", row.getKey());
+						for (List<ErrorDescription> colList : row.getValue()) {
+							for (ErrorDescription val : colList) {
+								entry.addTag("column", val.toString());
+							}
+						}
+					}
+				} else {
+					uf.setStatus(UploadedFile.CHECKING_ERROR);
+					uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+					_Tag entry = rootTag.addTag("entry");
+					entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
+					return;
 				}
+				// addContent(rootTag);
+
 			}
 		} catch (Exception e) {
 			setBadRequest();
