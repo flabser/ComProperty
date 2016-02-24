@@ -18,7 +18,10 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import kz.flabs.dataengine.DatabaseFactory;
+import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.localization.LanguageType;
+import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.SecureAppEntity;
 import municipalproperty.model.constants.KufType;
@@ -325,7 +328,9 @@ public class Property extends SecureAppEntity {
 	public String getFullXMLChunk(LanguageType lang) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
-		chunk.append("<author>" + author + "</author>");
+		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
+		User user = sysDb.getUser(author);
+		chunk.append("<author>" + user.getUserID() + "</author>");
 		try {
 			chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
 		} catch (NullPointerException e) {

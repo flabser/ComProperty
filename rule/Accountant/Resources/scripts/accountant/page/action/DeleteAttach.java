@@ -24,6 +24,7 @@ public class DeleteAttach extends _DoPage {
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
 				session.removeAttribute(fsid + "_file" + fn);
+				session.removeAttribute(fsid);
 				User user = session.getUser();
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 

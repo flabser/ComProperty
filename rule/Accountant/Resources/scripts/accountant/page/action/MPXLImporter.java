@@ -26,6 +26,9 @@ import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.model.util.PropertyFactory;
+
+import org.apache.commons.lang3.StringUtils;
+
 import reference.dao.CountryDAO;
 import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
@@ -51,7 +54,7 @@ import staff.model.Organization;
 public class MPXLImporter {
 	public final static int LOAD = 100;
 	public final static int CHECK = 99;
-	public final static int FROM_YEAR = 1950;
+	public final static int FROM_YEAR = 1930;
 	public Map<Integer, List<List<ErrorDescription>>> sheetErr = new HashMap<Integer, List<List<ErrorDescription>>>();
 
 	private final static String trueVal = "годен";
@@ -222,7 +225,7 @@ public class MPXLImporter {
 
 	private String normalizeString(String cap) {
 		cap = cap.trim().toLowerCase();
-		cap = cap.substring(0, 1).toUpperCase() + cap.substring(1);
+		cap = StringUtils.capitalize(cap);
 		return cap;
 	}
 

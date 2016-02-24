@@ -49,6 +49,7 @@
     <caption name="columns"/>
     <caption name="combines"/>
     <caption name="computer_equipment"/>
+    <caption name="school_equipment"/>
     <caption name="office_equipment"/>
     <caption name="cook_equipment"/>
      <caption name="equipment_of_civildefence"/>
@@ -61,6 +62,7 @@
     <caption name="factories"/>
     <caption name="furniture"/>
     <caption name="intangible_assets"/>
+ <caption name="share_blocks"/>
     <caption name="inventory"/>
     <caption name="land"/>
     <caption name="medical_equipment"/>

@@ -1,4 +1,4 @@
-package municipalproperty.page.form.personalestate;
+package municipalproperty.page.form.equipment;
 
 import java.util.UUID;
 
@@ -7,24 +7,24 @@ import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
-import municipalproperty.dao.PersonalEstateDAO;
-import municipalproperty.model.PersonalEstate;
+import municipalproperty.dao.EquipmentDAO;
+import municipalproperty.model.Equipment;
 import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
-public class FurnitureForm extends PersonalEstateForm {
+public class SchoolEquipmentForm extends EquipmentForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		PersonalEstate entity;
+		Equipment entity;
 		if (!id.isEmpty()) {
-			PersonalEstateDAO dao = new PersonalEstateDAO(session);
+			EquipmentDAO dao = new EquipmentDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user, KufType.FURNITURE, session);
+			entity = getDefaultEntity(user, KufType.SCHOOL_EQUIPMENT);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
@@ -32,4 +32,5 @@ public class FurnitureForm extends PersonalEstateForm {
 		addContent(getActionBar(session, lang, entity));
 		startSaveFormTransact(entity);
 	}
+
 }

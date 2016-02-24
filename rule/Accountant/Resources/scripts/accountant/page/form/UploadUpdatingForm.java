@@ -20,6 +20,7 @@ public class UploadUpdatingForm extends _DoPage {
 	@Override
 	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
 		println(formData);
+
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		if (fsid.isEmpty()) {
 			addContent("formsesid", Util.generateRandomAsText());
@@ -47,6 +48,7 @@ public class UploadUpdatingForm extends _DoPage {
 			}
 			addContent(new _POJOListWrapper(filesToPublish, lang));
 		}
+
 		// setPublishAsType(PublishAsType.JSON);
 	}
 
