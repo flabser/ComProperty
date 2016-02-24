@@ -39,6 +39,9 @@ public class LoadFileData extends _DoPage {
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
 				UploadedFile uf = (UploadedFile) session.getAttribute(fsid + "_file" + fn);
+				if (uf.geSheetErrs() != null && uf.geSheetErrs().size() > 0) {
+					return;
+				}
 				if (uf != null) {
 					User user = session.getUser();
 					File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
