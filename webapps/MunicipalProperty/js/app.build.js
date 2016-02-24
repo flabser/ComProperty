@@ -520,7 +520,7 @@ nb.submitForm = function(form) {
     var xhrArgs = {
         cache: false,
         type: 'POST',
-        datatype: 'json',
+        dataType: 'json',
         url: 'Provider',
         data: $(form).serialize(),
         beforeSend: function() {
