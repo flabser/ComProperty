@@ -32,15 +32,12 @@ import staff.model.Organization;
 
 public abstract class RealEstateForm extends MunicipalPropertyForm {
 
-	private _Session session;
-
 	@Override
 	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
 		println(formData);
-		this.session = session;
 		try {
 			_Validation ve = validate(formData, lang);
 			if (ve.hasError()) {
@@ -152,7 +149,7 @@ public abstract class RealEstateForm extends MunicipalPropertyForm {
 		return ve;
 	}
 
-	protected RealEstate getDefaultEntity(User user, KufType type) {
+	protected RealEstate getDefaultEntity(User user, KufType type, _Session session) {
 		RealEstate entity = new RealEstate();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

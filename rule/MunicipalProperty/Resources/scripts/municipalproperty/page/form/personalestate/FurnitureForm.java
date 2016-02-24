@@ -25,7 +25,7 @@ public class FurnitureForm extends PersonalEstateForm {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user, KufType.FURNITURE);
+			entity = getDefaultEntity(user, KufType.FURNITURE, session);
 		}
 		addContent(new _POJOObjectWrapper(entity, lang));
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));

@@ -27,7 +27,7 @@ public class StructureForm extends RealEstateForm {
 				entity.getAddress().getStreet().setName("");
 			}
 		} else {
-			entity = getDefaultEntity(user, KufType.STRUCTURES);
+			entity = getDefaultEntity(user, KufType.STRUCTURES, session);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
