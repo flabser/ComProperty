@@ -18,9 +18,6 @@
             <h1 class="header-title">
                 <xsl:value-of select="//captions/title/@caption"/>
             </h1>
-            <!--<div class="content-actions">
-                <xsl:apply-templates select="//actionbar"/>
-            </div>-->
         </header>
         <section class="content-body">
             <fieldset class="fieldset">
@@ -37,7 +34,9 @@
                 </div>
             </fieldset>
             <div class="upload-result">
-                <div class="js-uploaded-files"></div>
+                <div class="js-uploaded-files">
+                    <xsl:apply-templates select="//query[@entity='uploadedfile']/entry"/>
+                </div>
             </div>
         </section>
 
@@ -83,6 +82,74 @@
                 </div>
             </form>
         </template>
+    </xsl:template>
+
+    <xsl:template match="entry">
+        <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
+            <div class="panel update-file-panel js-file-panel">
+                <div class="panel__header">
+                    <div class="panel-title panel-toggle" data-toggle="panel">
+                        <i class="fa"></i>
+                        <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link">
+                            <xsl:value-of select="viewcontent/name"/>
+                        </a>
+                        <span>
+                            <button type="button" class="btn btn-sm js-check">проверить</button>
+                            <button type="button" class="btn btn-sm js-select-balance-holder">
+                                <xsl:if test="viewcontent/errormsg != ''">
+                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                </xsl:if>
+                                <span>выбрать балансодержателя</span>
+                            </button>
+                            <button type="button" class="btn btn-sm js-select-readers">
+                                <xsl:if test="viewcontent/errormsg != ''">
+                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                </xsl:if>
+                                <span>выбрать читателей</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-primary js-load">
+                                <xsl:if test="viewcontent/errormsg != ''">
+                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                </xsl:if>
+                                загрузить
+                            </button>
+                            <button type="button" class="btn btn-sm js-delete">удалить</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="panel__body">
+                    <input type="hidden" name="balanceholder" value=""/>
+                    <div>
+                        <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                        <ul class="update-readers" data-input="reader"></ul>
+                    </div>
+                    <div class="js-check-result">
+                        <xsl:apply-templates select="viewcontent/sheeterrs"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </xsl:template>
+
+    <xsl:template match="sheeterrs">
+        <xsl:if test="row">
+            <div class="upload-checking-result">
+                <table class="table table-bordered">
+                    <xsl:for-each select="row">
+                        <tr>
+                            <td>
+                                <xsl:value-of select="@number"/>
+                            </td>
+                            <xsl:for-each select="column">
+                                <td>
+                                    <xsl:value-of select="text()"/>
+                                </td>
+                            </xsl:for-each>
+                        </tr>
+                    </xsl:for-each>
+                </table>
+            </div>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

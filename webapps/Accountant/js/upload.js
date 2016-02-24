@@ -111,8 +111,17 @@ function checkFile(fileId, fsid) {
 }
 
 function renderFilePanel(fileName, fsid) {
-    var template = $('#tpl_update_file_panel').clone();
-    var $tpl = $(template.html().trim());
+    var $cacheUpdateForm = $('form[name=js-init-update-panel][data-file-name="' + fileName + '"]');
+    var initMode = $cacheUpdateForm.length;
+    var template;
+    var $tpl;
+
+    if (initMode) {
+        $tpl = $cacheUpdateForm;
+    } else {
+        template = $('#tpl_update_file_panel').clone();
+        $tpl = $(template.html().trim());
+    }
 
     $tpl.attr('name', 'form' + (new Date().getTime()));
 
@@ -169,7 +178,9 @@ function renderFilePanel(fileName, fsid) {
         nbApp.dialogChoiceReaders(this);
     });
 
-    $('.js-uploaded-files').append($tpl);
+    if (!initMode) {
+        $('.js-uploaded-files').append($tpl);
+    }
 }
 
 function insertParam(_key, _value) {
@@ -193,21 +204,15 @@ function insertParam(_key, _value) {
     history.replaceState(null, null, location.pathname + '?' + kvp.join('&'));
 }
 
-function getDataByFormSessionId() {
+function initCachedUpdateForm() {
     if (location.search.indexOf('fsid') !== -1) {
         var fsid = location.search.split('fsid=')[1];
-        $.ajax({
-            url: location.href + '&as=json',
-            success: function(result) {
-                var list = result.objects[1].list;
-                for (var index in list) {
-                    renderFilePanel(list[index].name, fsid);
-                }
-            }
+        $('form[name=js-init-update-panel][data-file-name]').each(function() {
+            renderFilePanel($(this).data('file-name'), fsid);
         });
     }
 }
 
 $(document).ready(function() {
-    getDataByFormSessionId();
+    initCachedUpdateForm();
 });
