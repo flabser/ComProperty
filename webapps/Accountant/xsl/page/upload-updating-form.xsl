@@ -86,7 +86,7 @@
 
     <xsl:template match="entry">
         <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
-            <div class="panel update-file-panel js-file-panel">
+            <div class="panel update-status-{viewcontent/status} update-file-panel js-file-panel">
                 <div class="panel__header">
                     <div class="panel-title panel-toggle" data-toggle="panel">
                         <i class="fa"></i>
