@@ -135,20 +135,20 @@ function renderFilePanel(fileName, fsid) {
         $btn.attr('disabled', true);
         //
         checkFile(fileName, fsid).then(function(result) {
-            $btn.parents('.panel').addClass('open');
+            /*$btn.parents('.panel').addClass('open');
             if (result == '') {
                 $tpl.find('.js-load').removeAttr('disabled');
                 $tpl.find('.js-select-balance-holder').removeAttr('disabled');
                 $tpl.find('.js-select-readers').removeAttr('disabled');
             }
-            $tpl.find('.js-check-result').html(result);
+            $tpl.find('.js-check-result').html(result);*/
             //
-            // location.reload();
+            location.reload();
         }, function(err) {
-            $btn.parents('.panel').addClass('open');
-            $tpl.find('.js-check-result').html(err.statusText);
+            // $btn.parents('.panel').addClass('open');
+            // $tpl.find('.js-check-result').html(err.statusText);
             //
-            // location.reload();
+            location.reload();
         });
     });
 
@@ -165,9 +165,9 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         loadFile(fileName, $tpl.serialize(), fsid).then(function() {
             // $tpl.addClass('upload-success');
-            // location.reload();
+            location.reload();
         }, function() {
-            // location.reload();
+            location.reload();
         });
     });
 
