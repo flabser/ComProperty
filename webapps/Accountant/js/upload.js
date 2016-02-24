@@ -160,7 +160,7 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         loadFile(fileName, $tpl.serialize(), fsid).then(function() {
-            $tpl.addClass('upload-success');
+            // $tpl.addClass('upload-success');
         });
     });
 

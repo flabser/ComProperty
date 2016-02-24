@@ -8,7 +8,7 @@ progress[value='0'] {
 /* .update-file-panel */
 
 .update-file-panel {
-    margin: 0 auto 8px;
+    margin: 0 auto 9px;
     width: 99%;
 }
 
@@ -16,15 +16,8 @@ progress[value='0'] {
     max-height: 500px;
 }
 
-.update-file-link {
-    display: inline-block;
-    margin-right: 3px;
-    padding: 4px;
-}
-
-.upload-success .panel__header {
-    background: #C5E1A5 !important;
-    border-bottom: 2px solid #4CAF50;
+.update-file-panel.open {
+    box-shadow: 0 0 7px #ccc;
 }
 
 .update-file-panel .panel__header,
@@ -54,6 +47,13 @@ progress[value='0'] {
     vertical-align: middle;
 }
 
+.update-file-link {
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 3px;
+    padding: 6px 9px;
+}
+
 .upload-checking-result {
     margin: 1em;
 }
@@ -72,31 +72,47 @@ progress[value='0'] {
 
 
 /* 
-public final static int JUST_UPLOADED = 1;
-public final static int CHECKED = 2;
-public final static int LOADED = 3;
-public final static int CHECKING_ERROR = 4;
-public final static int LOADING_ERROR = 5;
+JUST_UPLOADED = 1;
+CHECKED = 2;
+LOADED = 3;
+CHECKING_ERROR = 4;
+LOADING_ERROR = 5;
  */
 
-.update-status-1 .panel__header {}
+.update-status-1 .panel__header {
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.update-status-1 .update-file-link {}
 
 .update-status-2 .panel__header {
-    background: #C5E1A5 !important;
     border-bottom: 2px solid #4CAF50;
+}
+
+.update-status-2 .update-file-link {
+    background: #C5E1A5;
 }
 
 .update-status-3 .panel__header {
-    background: #C5E1A5 !important;
     border-bottom: 2px solid #4CAF50;
 }
 
+.update-status-3 .update-file-link {
+    background: #C5E1A5;
+}
+
 .update-status-4 .panel__header {
-    background: #FFADA7 !important;
     border-bottom: 2px solid #F44336;
 }
 
+.update-status-4 .update-file-link {
+    background: #FFADA7;
+}
+
 .update-status-5 .panel__header {
-    background: #FFC107 !important;
     border-bottom: 2px solid #FF9800;
+}
+
+.update-status-5 .update-file-link {
+    background: #FFC107;
 }
