@@ -52,6 +52,10 @@ public class UploadedFile extends POJOObjectAdapter {
 		this.sheetErrs = sheetErrs;
 	}
 
+	public Map<Integer, List<List<ErrorDescription>>> geSheetErrs() {
+		return sheetErrs;
+	}
+
 	@Override
 	public String getURL() {
 		return "Provider?id=get-attach&amp;fileid=" + name;

@@ -81,12 +81,12 @@ public class MPXLImporter {
 			String kuf = sheet.getCell(1, i).getContents().trim();
 			String invNumber = sheet.getCell(2, i).getContents().trim();
 			String name = sheet.getCell(3, i).getContents().trim();
-			String propertyCode = sheet.getCell(4, i).getContents().trim();
+			String propertyCode = normalizeString(sheet.getCell(4, i).getContents());
 			Cell acceptanceDateCell = sheet.getCell(5, i);
-			String country = sheet.getCell(6, i).getContents().trim();
-			String region = sheet.getCell(7, i).getContents().trim();
-			String preparedRegion = region.replace("г.а.", "").replace("область", "").trim();
-			String district = sheet.getCell(8, i).getContents().trim();
+			String country = normalizeString(sheet.getCell(6, i).getContents());
+			String region = normalizeString(sheet.getCell(7, i).getContents());
+			String preparedRegion = normalizeString(region.replace("г.а.", "").replace("область", ""));
+			String district = normalizeString(sheet.getCell(8, i).getContents());
 			String preparedDistrict = district.replace("район", "").trim();
 			String address = sheet.getCell(9, i).getContents().trim();
 			String originalCost = sheet.getCell(10, i).getContents().trim();
@@ -95,7 +95,7 @@ public class MPXLImporter {
 			String balanceCost = sheet.getCell(13, i).getContents().trim();
 			String revaluationAmount = sheet.getCell(14, i).getContents().trim();
 			String residualCost = sheet.getCell(15, i).getContents().trim();
-			String receiptBasisinBalance = sheet.getCell(16, i).getContents().trim();
+			String receiptBasisinBalance = normalizeString(sheet.getCell(16, i).getContents());
 			String model = sheet.getCell(17, i).getContents().trim();
 			Cell commissioningYear = sheet.getCell(18, i);
 			Cell acquisitionYear = sheet.getCell(19, i);
@@ -218,6 +218,12 @@ public class MPXLImporter {
 		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
 		return sheetErr;
 
+	}
+
+	private String normalizeString(String cap) {
+		cap = cap.trim().toLowerCase();
+		cap = cap.substring(0, 1).toUpperCase() + cap.substring(1);
+		return cap;
 	}
 
 	class CheVal {
