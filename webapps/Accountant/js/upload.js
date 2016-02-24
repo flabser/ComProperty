@@ -11,7 +11,7 @@ function uploadUpdate(fileInput, fsid) {
         contentType: false,
         processData: false,
         data: formData,
-        datatype: 'json',
+        dataType: 'json',
         xhr: function() {
             var customXhr = $.ajaxSettings.xhr();
             if (customXhr.upload) {
@@ -57,7 +57,7 @@ function loadFile(fileId, data, fsid) {
 
     return $.ajax({
         type: 'post',
-        datatype: 'html',
+        dataType: 'json',
         url: 'Provider?type=page&id=load-file-data&fileid=' + fileId + '&fsid=' + fsid,
         data: data,
         success: function(result) {
@@ -80,7 +80,7 @@ function loadFile(fileId, data, fsid) {
 function delFile(fileId, fsid) {
     return $.ajax({
         type: 'post',
-        datatype: 'html',
+        dataType: 'json',
         url: 'Provider?type=page&id=delete-attach&fileid=' + fileId + '&fsid=' + fsid
     });
 }
@@ -95,7 +95,7 @@ function checkFile(fileId, fsid) {
 
     return $.ajax({
         type: 'get',
-        datatype: 'html',
+        dataType: 'html',
         url: 'Provider?type=page&id=check-file-structure&fileid=' + fileId + '&fsid=' + fsid,
         success: function(data) {
             return data;
@@ -142,9 +142,13 @@ function renderFilePanel(fileName, fsid) {
                 $tpl.find('.js-select-readers').removeAttr('disabled');
             }
             $tpl.find('.js-check-result').html(result);
+            //
+            // location.reload();
         }, function(err) {
             $btn.parents('.panel').addClass('open');
             $tpl.find('.js-check-result').html(err.statusText);
+            //
+            // location.reload();
         });
     });
 
@@ -161,6 +165,9 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         loadFile(fileName, $tpl.serialize(), fsid).then(function() {
             // $tpl.addClass('upload-success');
+            // location.reload();
+        }, function() {
+            // location.reload();
         });
     });
 
