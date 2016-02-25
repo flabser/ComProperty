@@ -1,4 +1,4 @@
-package municipalproperty.page.form.equipment;
+package municipalproperty.page.form.transport;
 
 import java.util.Date;
 
@@ -10,9 +10,8 @@ import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
-import municipalproperty.dao.PersonalEstateDAO;
-import municipalproperty.model.Equipment;
-import municipalproperty.model.PersonalEstate;
+import municipalproperty.dao.VehicleDAO;
+import municipalproperty.model.Vehicle;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.page.form.MunicipalPropertyForm;
 import reference.dao.PropertyCodeDAO;
@@ -22,16 +21,14 @@ import reference.model.ReceivingReason;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
-public abstract class EquipmentForm extends MunicipalPropertyForm {
-	_Session session;
+public abstract class VehicleAbstractForm extends MunicipalPropertyForm {
 
 	@Override
 	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
-		// println(formData);
-		this.session = session;
+		println(formData);
 		try {
 			_Validation ve = validate(formData, lang);
 			if (ve.hasError()) {
@@ -42,12 +39,12 @@ public abstract class EquipmentForm extends MunicipalPropertyForm {
 
 			boolean isNew = false;
 			String id = formData.getValueSilently("docid");
-			PersonalEstateDAO dao = new PersonalEstateDAO(session);
-			PersonalEstate entity;
+			VehicleDAO dao = new VehicleDAO(session);
+			Vehicle entity;
 
-			if (id.equals("")) {
+			if (id.isEmpty()) {
 				isNew = true;
-				entity = new PersonalEstate();
+				entity = new Vehicle();
 			} else {
 				entity = dao.findById(id);
 			}
@@ -73,7 +70,7 @@ public abstract class EquipmentForm extends MunicipalPropertyForm {
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
-			entity.setModel(formData.getValueSilently("model"));
+			// entity.setModel(formData.getValueSilently("model"));
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
@@ -143,8 +140,8 @@ public abstract class EquipmentForm extends MunicipalPropertyForm {
 		return ve;
 	}
 
-	protected Equipment getDefaultEntity(User user, KufType type) {
-		Equipment entity = new Equipment();
+	protected Vehicle getDefaultEntity(User user, KufType type, _Session session) {
+		Vehicle entity = new Vehicle();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());
 		Organization tempEmptyOrg = new Organization();
@@ -157,7 +154,7 @@ public abstract class EquipmentForm extends MunicipalPropertyForm {
 		entity.setObjectName("");
 		PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
 		entity.setPropertyCode(pcDao.findByName("Собственность"));
-		entity.setModel("");
+		// entity.setModel("");
 		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 		entity.setReceivingReason(rrDao.findByName("Приобретено"));
 		entity.setReadyToUse(true);

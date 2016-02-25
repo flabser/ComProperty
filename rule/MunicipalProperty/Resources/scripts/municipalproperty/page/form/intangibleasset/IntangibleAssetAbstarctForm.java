@@ -1,4 +1,4 @@
-package municipalproperty.page.form.realestate;
+package municipalproperty.page.form.intangibleasset;
 
 import java.util.Date;
 
@@ -10,27 +10,18 @@ import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
-import municipalproperty.dao.PersonalEstateDAO;
-import municipalproperty.model.PersonalEstate;
-import municipalproperty.model.RealEstate;
+import municipalproperty.dao.IntangibleAssetDAO;
+import municipalproperty.model.IntangibleAsset;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.page.form.MunicipalPropertyForm;
-import reference.dao.CountryDAO;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
-import reference.dao.RegionDAO;
-import reference.model.Country;
-import reference.model.District;
-import reference.model.Locality;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
-import reference.model.Region;
-import reference.model.Street;
-import reference.model.embedded.Address;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
-public abstract class RealEstateForm extends MunicipalPropertyForm {
+public abstract class IntangibleAssetAbstarctForm extends MunicipalPropertyForm {
 
 	@Override
 	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
@@ -48,12 +39,12 @@ public abstract class RealEstateForm extends MunicipalPropertyForm {
 
 			boolean isNew = false;
 			String id = formData.getValueSilently("docid");
-			PersonalEstateDAO dao = new PersonalEstateDAO(session);
-			PersonalEstate entity;
+			IntangibleAssetDAO dao = new IntangibleAssetDAO(session);
+			IntangibleAsset entity;
 
 			if (id.isEmpty()) {
 				isNew = true;
-				entity = new PersonalEstate();
+				entity = new IntangibleAsset();
 			} else {
 				entity = dao.findById(id);
 			}
@@ -79,7 +70,7 @@ public abstract class RealEstateForm extends MunicipalPropertyForm {
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
-			entity.setModel(formData.getValueSilently("model"));
+
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
@@ -149,8 +140,8 @@ public abstract class RealEstateForm extends MunicipalPropertyForm {
 		return ve;
 	}
 
-	protected RealEstate getDefaultEntity(User user, KufType type, _Session session) {
-		RealEstate entity = new RealEstate();
+	protected IntangibleAsset getDefaultEntity(User user, KufType type, _Session session) {
+		IntangibleAsset entity = new IntangibleAsset();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());
 		Organization tempEmptyOrg = new Organization();
@@ -163,29 +154,9 @@ public abstract class RealEstateForm extends MunicipalPropertyForm {
 		entity.setObjectName("");
 		PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
 		entity.setPropertyCode(pcDao.findByName("Собственность"));
-		// entity.setModel("");
 		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 		entity.setReceivingReason(rrDao.findByName("Приобретено"));
 		entity.setReadyToUse(true);
-
-		Address addr = new Address();
-		CountryDAO cDao = new CountryDAO(session);
-		Country country = cDao.findByName("Казахстан");
-		addr.setCountry(country);
-		RegionDAO rDao = new RegionDAO(session);
-		Region region = rDao.findByName("Алматы");
-		addr.setRegion(region);
-		District district = new District();
-		district.setName("");
-		addr.setDistrict(district);
-		Locality locality = new Locality();
-		locality.setName("");
-		addr.setLocality(locality);
-		Street street = new Street();
-		street.setName("");
-		addr.setStreet(street);
-		addr.setAdditionalInfo("");
-		entity.setAddress(addr);
 
 		return entity;
 	}

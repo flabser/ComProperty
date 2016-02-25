@@ -37,7 +37,7 @@ public class PropertyFactory {
 			return new Equipment();
 		case COOK_EQUIPMENT:
 			return new Equipment();
-		case EQUIPMENT_OF_CIVIL_DEFENSE:
+		case EQUIPMENT_OF_CIVIL_DEFENCE:
 			return new Equipment();
 		case OTHERS_EQUIPMENT:
 			return new Equipment();

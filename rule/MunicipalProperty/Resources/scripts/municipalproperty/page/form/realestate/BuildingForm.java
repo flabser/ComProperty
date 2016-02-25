@@ -5,7 +5,6 @@ import java.util.UUID;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
-import kz.lof.scripting._POJOObjectWrapper;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.dao.RealEstateDAO;
@@ -14,7 +13,7 @@ import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
-public class BuildingForm extends RealEstateForm {
+public class BuildingForm extends RealEstateAbstractForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
@@ -30,7 +29,7 @@ public class BuildingForm extends RealEstateForm {
 		} else {
 			entity = getDefaultEntity(user, KufType.BUILDINGS, session);
 		}
-		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(entity);
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
 		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
 		addContent(getActionBar(session, lang, entity));

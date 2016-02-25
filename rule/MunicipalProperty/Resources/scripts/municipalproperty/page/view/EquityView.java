@@ -15,7 +15,7 @@ public class EquityView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getSimpleActionBar(session, "equity", lang));
+		addContent(getSimpleActionBar(session, "equity-form", lang));
 		addContent(getPropertyViewPage(session, formData, KufType.EQUITY, lang));
 	}
 

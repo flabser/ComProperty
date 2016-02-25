@@ -16,7 +16,7 @@ public class ShareBlockView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		// println(formData);
-		addContent(getSimpleActionBar(session, "share_block", lang));
+		addContent(getSimpleActionBar(session, "share-block-form", lang));
 		addContent(getPropertyViewPage(session, formData, KufType.SHARE_BLOCK, lang));
 	}
 

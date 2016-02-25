@@ -13,7 +13,7 @@ import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
-public class FurnitureForm extends PersonalEstateForm {
+public class FurnitureForm extends PersonalEstateAbstractForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {

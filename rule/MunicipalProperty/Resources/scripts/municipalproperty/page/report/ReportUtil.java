@@ -26,7 +26,7 @@ public class ReportUtil {
 		cat.put("personalestate_report", peList);
 
 		ArrayList<KufType> eList = new ArrayList<KufType>(Arrays.asList(KufType.SCHOOL_EQUIPMENT, KufType.OFFICE_EQUIPMENT,
-		        KufType.COMPUTER_EQUIPMENT, KufType.MEDICAL_EQUIPMENT, KufType.COOK_EQUIPMENT, KufType.EQUIPMENT_OF_CIVIL_DEFENSE));
+		        KufType.COMPUTER_EQUIPMENT, KufType.MEDICAL_EQUIPMENT, KufType.COOK_EQUIPMENT, KufType.EQUIPMENT_OF_CIVIL_DEFENCE));
 		cat.put("equipmentCat", eList);
 		cat.put("equipment_report", eList);
 

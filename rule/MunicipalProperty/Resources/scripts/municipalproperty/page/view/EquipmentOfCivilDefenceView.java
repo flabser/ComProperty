@@ -15,8 +15,8 @@ public class EquipmentOfCivilDefenceView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getSimpleActionBar(session, "equipment_of_civildefence", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.EQUIPMENT_OF_CIVIL_DEFENSE, lang));
+		addContent(getSimpleActionBar(session, "equipment-of-civil-defence-form", lang));
+		addContent(getPropertyViewPage(session, formData, KufType.EQUIPMENT_OF_CIVIL_DEFENCE, lang));
 	}
 
 	@Override

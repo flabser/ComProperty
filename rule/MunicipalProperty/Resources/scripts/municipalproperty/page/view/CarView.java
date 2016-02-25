@@ -15,7 +15,7 @@ public class CarView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getSimpleActionBar(session, "car", lang));
+		addContent(getSimpleActionBar(session, "car-form", lang));
 		addContent(getPropertyViewPage(session, formData, KufType.CAR, lang));
 	}
 

@@ -13,7 +13,7 @@ import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
-public class SchoolEquipmentForm extends EquipmentForm {
+public class SchoolEquipmentForm extends EquipmentAbstractForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
@@ -24,7 +24,7 @@ public class SchoolEquipmentForm extends EquipmentForm {
 			EquipmentDAO dao = new EquipmentDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user, KufType.SCHOOL_EQUIPMENT);
+			entity = getDefaultEntity(user, KufType.SCHOOL_EQUIPMENT, session);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
