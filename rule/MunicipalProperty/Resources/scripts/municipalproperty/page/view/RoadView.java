@@ -16,7 +16,7 @@ public class RoadView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "road", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.ROAD, lang));
+		addContent(getViewPage(session, formData, KufType.ROAD, lang));
 	}
 
 	@Override

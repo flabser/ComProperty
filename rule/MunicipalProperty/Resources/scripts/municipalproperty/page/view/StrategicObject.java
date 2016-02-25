@@ -19,7 +19,7 @@ public class StrategicObject extends MunicipalPropertyView {
 		params.add(KufType.COMBINES);
 		params.add(KufType.AIRPORT);
 		params.add(KufType.TRANSITIONS);
-		addContent(getPropertyViewPage(session, formData, params, lang));
+		addContent(getViewPage(session, formData, params, lang));
 	}
 
 	@Override

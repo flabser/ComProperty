@@ -14,7 +14,7 @@ public class AirportView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "airport-form", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.AIRPORT, lang));
+		addContent(getViewPage(session, formData, KufType.AIRPORT, lang));
 	}
 
 	@Override

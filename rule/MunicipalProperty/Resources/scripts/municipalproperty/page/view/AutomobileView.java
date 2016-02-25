@@ -15,7 +15,7 @@ public class AutomobileView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getPropertyViewPage(session, formData, KufType.AUTOMOBILE, lang));
+		addContent(getViewPage(session, formData, KufType.AUTOMOBILE, lang));
 	}
 
 	@Override

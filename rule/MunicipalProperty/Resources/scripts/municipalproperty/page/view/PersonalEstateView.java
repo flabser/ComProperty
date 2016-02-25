@@ -24,7 +24,7 @@ public class PersonalEstateView extends MunicipalPropertyView {
 		params.add(KufType.ANIMALS);
 		params.add(KufType.SPORT_EQUIPMENT);
 		params.add(KufType.OTHERS);
-		addContent(getPropertyViewPage(session, formData, params, lang));
+		addContent(getViewPage(session, formData, params, lang));
 	}
 
 	@Override

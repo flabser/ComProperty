@@ -16,7 +16,7 @@ public class GasView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "gas", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.GAS, lang));
+		addContent(getViewPage(session, formData, KufType.GAS, lang));
 	}
 
 	@Override

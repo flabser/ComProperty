@@ -22,13 +22,13 @@ import municipalproperty.model.constants.KufType;
 
 public abstract class MunicipalPropertyView extends _DoPage {
 
-	protected _POJOListWrapper<Property> getPropertyViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
+	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
-		return getPropertyViewPage(session, formData, params, lang);
+		return getViewPage(session, formData, params, lang);
 	}
 
-	protected _POJOListWrapper<Property> getPropertyViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
+	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
 		int pageNum = 1;
 		int pageSize = session.getPageSize();
 		if (formData.containsField("page")) {

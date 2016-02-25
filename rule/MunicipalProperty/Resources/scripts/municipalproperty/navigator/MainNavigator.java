@@ -47,8 +47,8 @@ public class MainNavigator extends _DoPage {
 
 		_OutlineEntry realEstateEntry = new _OutlineEntry(getLocalizedWord("real_estates", lang), "real-estate-view");
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "buildings-view"));
-		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("structures", lang), "structure-view"));
-		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("residential_objects", lang), "residential-object-view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("structures", lang), "structures-view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("residential_objects", lang), "residential-objects-view"));
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("land", lang), "land-view"));
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("monuments", lang), "monument-view"));
 

@@ -16,7 +16,7 @@ public class ParkingView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "parking", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.PARKING, lang));
+		addContent(getViewPage(session, formData, KufType.PARKING, lang));
 	}
 
 	@Override

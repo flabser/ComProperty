@@ -16,7 +16,7 @@ public class OthersView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "others-form", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.OTHERS, lang));
+		addContent(getViewPage(session, formData, KufType.OTHERS, lang));
 	}
 
 	@Override

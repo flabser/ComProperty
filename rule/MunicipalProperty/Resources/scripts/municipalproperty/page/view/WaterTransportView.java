@@ -16,7 +16,7 @@ public class WaterTransportView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "water_transport", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.WATER_TRANSPORT, lang));
+		addContent(getViewPage(session, formData, KufType.WATER_TRANSPORT, lang));
 	}
 
 	@Override
