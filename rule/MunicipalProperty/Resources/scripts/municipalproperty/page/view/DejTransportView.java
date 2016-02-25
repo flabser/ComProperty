@@ -15,7 +15,7 @@ public class DejTransportView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getSimpleActionBar(session, "dejtransport", lang));
+		addContent(getSimpleActionBar(session, "dej-transport-form", lang));
 		addContent(getPropertyViewPage(session, formData, KufType.DEJ_TRANSPORT, lang));
 	}
 

@@ -15,7 +15,7 @@ public class BusView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getSimpleActionBar(session, "bus", lang));
+		addContent(getSimpleActionBar(session, "bus-form", lang));
 		addContent(getPropertyViewPage(session, formData, KufType.BUS, lang));
 	}
 
