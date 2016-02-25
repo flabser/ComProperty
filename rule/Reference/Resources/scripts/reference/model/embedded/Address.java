@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import kz.flabs.util.Util;
+import kz.lof.scripting._Session;
+import reference.dao.CountryDAO;
+import reference.dao.RegionDAO;
 import reference.model.Country;
 import reference.model.District;
 import reference.model.Locality;
@@ -103,6 +106,28 @@ public class Address {
 
 	public void setDistrict(District district) {
 		this.district = district;
+	}
+
+	public static Address getStub(_Session session) {
+		Address addr = new Address();
+		CountryDAO cDao = new CountryDAO(session);
+		Country country = cDao.findByName("Казахстан");
+		addr.setCountry(country);
+		RegionDAO rDao = new RegionDAO(session);
+		Region region = rDao.findByName("Алматы");
+		addr.setRegion(region);
+		District district = new District();
+		district.setName("");
+		addr.setDistrict(district);
+		Locality locality = new Locality();
+		locality.setName("");
+		addr.setLocality(locality);
+		Street street = new Street();
+		street.setName("");
+		addr.setStreet(street);
+		addr.setAdditionalInfo("");
+		return addr;
+
 	}
 
 }

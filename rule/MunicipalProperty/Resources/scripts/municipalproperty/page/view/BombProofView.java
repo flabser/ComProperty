@@ -16,7 +16,7 @@ public class BombProofView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "boombproof", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.BOMBPROOF, lang));
+		addContent(getViewPage(session, formData, KufType.BOMBPROOF, lang));
 	}
 
 	@Override

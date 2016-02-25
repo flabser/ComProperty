@@ -24,7 +24,7 @@ public class TransportView extends MunicipalPropertyView {
 		params.add(KufType.DEJ_TRANSPORT);
 		params.add(KufType.OFFICIAL_TRANSPORT);
 		params.add(KufType.HOSPITAL_TRANSPORT);
-		addContent(getPropertyViewPage(session, formData, params, lang));
+		addContent(getViewPage(session, formData, params, lang));
 	}
 
 	@Override

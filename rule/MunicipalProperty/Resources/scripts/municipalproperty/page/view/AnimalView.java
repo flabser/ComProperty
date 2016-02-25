@@ -17,7 +17,7 @@ public class AnimalView extends MunicipalPropertyView {
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		// println(formData);
 		addContent(getSimpleActionBar(session, "animal", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.ANIMALS, lang));
+		addContent(getViewPage(session, formData, KufType.ANIMALS, lang));
 	}
 
 	@Override

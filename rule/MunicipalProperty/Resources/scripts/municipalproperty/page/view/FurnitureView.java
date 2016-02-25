@@ -10,7 +10,7 @@ public class FurnitureView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		addContent(getSimpleActionBar(session, "furniture-form", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.FURNITURE, lang));
+		addContent(getViewPage(session, formData, KufType.FURNITURE, lang));
 	}
 
 	@Override

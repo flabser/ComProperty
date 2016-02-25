@@ -17,7 +17,7 @@ public class InventoryView extends MunicipalPropertyView {
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
 		// println(formData);
 		addContent(getSimpleActionBar(session, "others", lang));
-		addContent(getPropertyViewPage(session, formData, KufType.SPORT_EQUIPMENT, lang));
+		addContent(getViewPage(session, formData, KufType.SPORT_EQUIPMENT, lang));
 	}
 
 	@Override

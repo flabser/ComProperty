@@ -1,13 +1,10 @@
 package municipalproperty.page.form.realestate;
 
-import java.util.UUID;
-
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
-import municipalproperty.dao.RealEstateDAO;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
@@ -21,11 +18,7 @@ public class MonumentForm extends RealEstateAbstractForm {
 		User user = session.getUser();
 		RealEstate entity;
 		if (!id.isEmpty()) {
-			RealEstateDAO dao = new RealEstateDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-			if (entity.getAddress().getStreet().getName().equalsIgnoreCase("unknown")) {
-				entity.getAddress().getStreet().setName("");
-			}
+			entity = getEntity(id, session);
 		} else {
 			entity = getDefaultEntity(user, KufType.MONUMENT, session);
 		}

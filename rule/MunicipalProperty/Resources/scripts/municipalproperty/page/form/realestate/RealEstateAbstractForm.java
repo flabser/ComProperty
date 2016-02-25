@@ -15,17 +15,10 @@ import municipalproperty.dao.RealEstateDAO;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.page.form.MunicipalPropertyForm;
-import reference.dao.CountryDAO;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
-import reference.dao.RegionDAO;
-import reference.model.Country;
-import reference.model.District;
-import reference.model.Locality;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
-import reference.model.Region;
-import reference.model.Street;
 import reference.model.embedded.Address;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
@@ -154,11 +147,7 @@ public abstract class RealEstateAbstractForm extends MunicipalPropertyForm {
 		RealEstate entity = dao.findById(UUID.fromString(id));
 		Address addr = entity.getAddress();
 		if (addr == null) {
-			addr = new Address();
-			Street street = new Street();
-			street.setName("");
-			addr.setStreet(street);
-			entity.setAddress(addr);
+			entity.setAddress(Address.getStub(session));
 		} else if (addr.getStreet().getName().equalsIgnoreCase("unknown")) {
 			entity.getAddress().getStreet().setName("");
 		}
@@ -183,26 +172,8 @@ public abstract class RealEstateAbstractForm extends MunicipalPropertyForm {
 		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 		entity.setReceivingReason(rrDao.findByName("Приобретено"));
 		entity.setReadyToUse(true);
-
-		Address addr = new Address();
-		CountryDAO cDao = new CountryDAO(session);
-		Country country = cDao.findByName("Казахстан");
-		addr.setCountry(country);
-		RegionDAO rDao = new RegionDAO(session);
-		Region region = rDao.findByName("Алматы");
-		addr.setRegion(region);
-		District district = new District();
-		district.setName("");
-		addr.setDistrict(district);
-		Locality locality = new Locality();
-		locality.setName("");
-		addr.setLocality(locality);
-		Street street = new Street();
-		street.setName("");
-		addr.setStreet(street);
-		addr.setAdditionalInfo("");
-		entity.setAddress(addr);
-
+		entity.setAddress(Address.getStub(session));
 		return entity;
 	}
+
 }
