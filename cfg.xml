@@ -4,7 +4,7 @@
     <port>3838</port>  
     <applications>
        <app>
-            <name mode="off">Administrator</name>
+            <name mode="on">Administrator</name>
         </app>
         <app>
             <name mode="off">Structure</name>

@@ -1,6 +1,7 @@
 package municipalproperty.page.form.realestate;
 
 import java.util.Date;
+import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
@@ -146,6 +147,22 @@ public abstract class RealEstateAbstractForm extends MunicipalPropertyForm {
 		}
 
 		return ve;
+	}
+
+	protected RealEstate getEntity(String id, _Session session) {
+		RealEstateDAO dao = new RealEstateDAO(session);
+		RealEstate entity = dao.findById(UUID.fromString(id));
+		Address addr = entity.getAddress();
+		if (addr == null) {
+			addr = new Address();
+			Street street = new Street();
+			street.setName("");
+			addr.setStreet(street);
+			entity.setAddress(addr);
+		} else if (addr.getStreet().getName().equalsIgnoreCase("unknown")) {
+			entity.getAddress().getStreet().setName("");
+		}
+		return entity;
 	}
 
 	protected RealEstate getDefaultEntity(User user, KufType type, _Session session) {

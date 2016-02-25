@@ -13,7 +13,7 @@ import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 
-public class FurnitureForm extends VehicleAbstractForm {
+public class DejTransportForm extends VehicleAbstractForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
@@ -24,7 +24,7 @@ public class FurnitureForm extends VehicleAbstractForm {
 			VehicleDAO dao = new VehicleDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user, KufType.AUTOMOBILE, session);
+			entity = getDefaultEntity(user, KufType.DEJ_TRANSPORT, session);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
