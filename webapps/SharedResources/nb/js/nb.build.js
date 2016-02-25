@@ -501,7 +501,6 @@ nb.windowOpen = function(url, id, callbacks) {
     w.focus();
 };
 
-
 /**
  * submitForm
  */
@@ -741,3 +740,27 @@ nb.notify = function(opt) {
     };
 };
 
+/**
+ * doDelete
+ */
+nb.xhr.doDelete = function(data) {
+    return $.ajax({
+        type: 'DELETE',
+        dataType: 'json',
+        url: location.href + '&' + data
+    });
+};
+
+nb.getSelectedEntityIDs = function(checkboxName) {
+    var $checked = $('input[name=' + (checkboxName || 'docid') + ']:checked');
+    if ($checked.length === 0) {
+        return [];
+    }
+
+    var result = [];
+    $checked.each(function() {
+        result.push(this.value);
+    });
+
+    return result;
+};

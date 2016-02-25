@@ -8,4 +8,15 @@ $(function() {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));
     });
+
+    $('[data-action=delete_document]').click(function(event) {
+        event.preventDefault();
+
+        var docids = nb.getSelectedEntityIDs('docid');
+        if (!docids.length) {
+            return;
+        }
+
+        nb.xhr.doDelete('docid=' + docids.join('&docid='));
+    });
 });
