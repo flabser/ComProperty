@@ -844,6 +844,12 @@ $(function() {
         });
     });
 
+    $('[data-action=delete_document]').attr('disabled', true);
+    $(':checkbox').bind('change', function() {
+        var countChecked = $('[name=docid]:checked').length;
+        $('[data-action=delete_document]').attr('disabled', countChecked === 0);
+    });
+
     $('[data-toggle-theme]').click(function() {
         var themeName = $(this).data('toggle-theme');
         if ($('body').hasClass('theme1')) {
