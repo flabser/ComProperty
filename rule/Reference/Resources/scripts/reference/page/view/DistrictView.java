@@ -8,6 +8,9 @@ import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import reference.dao.DistrictDAO;
+import reference.model.District;
+
+import java.util.UUID;
 
 
 public class DistrictView extends _DoPage {
@@ -22,5 +25,16 @@ public class DistrictView extends _DoPage {
 
         addContent(actionBar);
         addContent(getViewPage(new DistrictDAO(session), formData));
+    }
+
+    @Override
+    public void doDELETE(_Session session, _WebFormData formData, LanguageType lang) {
+        println(formData);
+
+        DistrictDAO dao = new DistrictDAO(session);
+        for (String id : formData.getListOfValuesSilently("docid")) {
+            District m = dao.findById(UUID.fromString(id));
+            dao.delete(m);
+        }
     }
 }
