@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageType;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._Session;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script._XMLDocument;
@@ -46,7 +46,7 @@ public class MainNavigator extends _DoPage {
 		equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "others-equipment-view"));
 
 		_OutlineEntry realEstateEntry = new _OutlineEntry(getLocalizedWord("real_estates", lang), "real-estate-view");
-		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "building-view"));
+		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "buildings-view"));
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("structures", lang), "structure-view"));
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("residential_objects", lang), "residential-object-view"));
 		realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("land", lang), "land-view"));
