@@ -839,7 +839,9 @@ $(function() {
             return;
         }
 
-        nb.xhr.doDelete('docid=' + docids.join('&docid='));
+        nb.xhr.doDelete('docid=' + docids.join('&docid=')).then(function() {
+            location.reload();
+        });
     });
 
     $('[data-toggle-theme]').click(function() {
