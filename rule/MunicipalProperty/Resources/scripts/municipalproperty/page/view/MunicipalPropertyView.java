@@ -2,6 +2,7 @@ package municipalproperty.page.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.lof.dataengine.jpa.ViewPage;
@@ -44,4 +45,15 @@ public abstract class MunicipalPropertyView extends _DoPage {
 
 	@Override
 	public abstract void doPOST(_Session session, _WebFormData formData, LanguageType lang);
+
+	@Override
+	public void doDELETE(_Session session, _WebFormData formData, LanguageType lang) {
+		println(formData);
+
+		PropertyDAO dao = new PropertyDAO(session);
+		for (String id : formData.getListOfValuesSilently("docid")) {
+			Property c = dao.findById(UUID.fromString(id));
+			dao.delete(c);
+		}
+	}
 }
