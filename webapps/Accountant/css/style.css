@@ -42,9 +42,19 @@ progress[value='0'] {
     z-index: 2;
 }
 
+.update-file-panel .panel-toggle > i.fa.no-errs {
+    font-size: 1em;
+}
+
+.update-file-panel .panel-toggle > i.fa.no-errs:before {
+    content: "\f1db";
+}
+
 .update-file-panel .panel-toggle i.fa {
     font-size: 22px;
+    text-align: center;
     vertical-align: middle;
+    width: 24px;
 }
 
 .update-file-link {

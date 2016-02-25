@@ -79,7 +79,7 @@ function loadFile(fileId, data, fsid) {
 
 function delFile(fileId, fsid) {
     return $.ajax({
-        type: 'post',
+        type: 'delete',
         dataType: 'json',
         url: 'Provider?type=page&id=delete-attach&fileid=' + fileId + '&fsid=' + fsid
     });

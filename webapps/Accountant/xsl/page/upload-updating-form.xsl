@@ -89,7 +89,11 @@
             <div class="panel update-status-{viewcontent/status} update-file-panel js-file-panel">
                 <div class="panel__header">
                     <div class="panel-title panel-toggle" data-toggle="panel">
-                        <i class="fa"></i>
+                        <i class="fa">
+                            <xsl:if test="viewcontent/sheeterrs = ''">
+                                <xsl:attribute name="class" select="'fa no-errs'"/>
+                            </xsl:if>
+                        </i>
                         <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link">
                             <xsl:value-of select="viewcontent/name"/>
                         </a>
