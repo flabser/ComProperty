@@ -8,8 +8,8 @@ import java.util.UUID;
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Session;
+import kz.nextbase.script._Exception;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import reference.dao.OrgCategoryDAO;
@@ -75,7 +75,6 @@ public class OrganizationForm extends StaffForm {
 			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
 			entity.setOrgCategory(ocDao.findById(formData.getValue("orgcategory")));
 			entity.setBin(formData.getValue("bin"));
-			entity.setPrimary("true".equals(formData.getValueSilently("is_primary")));
 			OrganizationLabelDAO olDao = new OrganizationLabelDAO(session);
 			List<OrganizationLabel> labels = new ArrayList<OrganizationLabel>();
 			for (String labelId : formData.getListOfValuesSilently("labels")) {
@@ -102,10 +101,10 @@ public class OrganizationForm extends StaffForm {
 	protected _Validation validate(_WebFormData formData, LanguageType lang) {
 		_Validation ve = new _Validation();
 		if (formData.getValueSilently("name").isEmpty()) {
-			ve.addError("name", "empty", getLocalizedWord("required", lang));
+			ve.addError("name", "empty", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("orgcategory").isEmpty()) {
-			ve.addError("orgcategory", "empty", getLocalizedWord("required", lang));
+			ve.addError("orgcategory", "empty", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("bin").isEmpty()) {
 			ve.addError("bin", "empty", getLocalizedWord("required", lang));

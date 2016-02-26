@@ -57,7 +57,7 @@ public class ImportFileChecker extends _DoPage {
 						workbook = Workbook.getWorkbook(xlsFile);
 					} catch (BiffException e) {
 						uf.setStatus(UploadedFile.CHECKING_ERROR);
-						uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+						uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
 						return;
 					}
 					Sheet sheet = workbook.getSheet(0);
@@ -71,7 +71,7 @@ public class ImportFileChecker extends _DoPage {
 
 					if (sheetErrs.size() > 0) {
 						uf.setStatus(UploadedFile.CHECKING_ERROR);
-						uf.setLocalizedErrorMsg(getLocalizedWord("file_data_is_incorrect", lang));
+						uf.setLocalizedMsg(getLocalizedWord("file_data_is_incorrect", lang));
 						uf.setSheetErrs(sheetErrs);
 					} else {
 						uf.setStatus(UploadedFile.CHECKED);
@@ -88,7 +88,7 @@ public class ImportFileChecker extends _DoPage {
 					}
 				} else {
 					uf.setStatus(UploadedFile.CHECKING_ERROR);
-					uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
 					_Tag entry = rootTag.addTag("entry");
 					entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
 					return;

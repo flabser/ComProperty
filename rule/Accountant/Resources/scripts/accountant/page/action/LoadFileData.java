@@ -61,7 +61,7 @@ public class LoadFileData extends _DoPage {
 								workbook = Workbook.getWorkbook(xlsFile);
 							} catch (BiffException e) {
 								uf.setStatus(UploadedFile.LOADING_ERROR);
-								uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+								uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
 								return;
 							}
 							Sheet sheet = workbook.getSheet(0);
@@ -69,21 +69,22 @@ public class LoadFileData extends _DoPage {
 
 							if (sheetErrs.size() > 0) {
 								uf.setStatus(UploadedFile.LOADING_ERROR);
-								uf.setLocalizedErrorMsg(getLocalizedWord("file_has_been_not_loaded", lang));
+								uf.setLocalizedMsg(getLocalizedWord("file_has_been_not_loaded", lang));
 								uf.setSheetErrs(sheetErrs);
 							} else {
 								uf.setStatus(UploadedFile.LOADED);
+								uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang));
 							}
 						} catch (IllegalArgumentException e) {
 							uf.setStatus(UploadedFile.LOADING_ERROR);
-							uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
+							uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
 						} catch (_Exception e) {
 							uf.setStatus(UploadedFile.LOADING_ERROR);
-							uf.setLocalizedErrorMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
+							uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
 						}
 					} else {
 						uf.setStatus(UploadedFile.LOADING_ERROR);
-						uf.setLocalizedErrorMsg(getLocalizedWord("incorrect_xls_file", lang));
+						uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
 					}
 				}
 			}

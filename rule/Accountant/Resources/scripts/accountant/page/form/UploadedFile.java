@@ -21,7 +21,7 @@ public class UploadedFile extends POJOObjectAdapter {
 	private UUID balanceHolderId;
 	private List<String[]> readers;
 	private int status;
-	private String localizedErrorMsg = "";
+	private String localizedMsg = "";
 	private Map<Integer, List<List<ErrorDescription>>> sheetErrs;
 
 	public void setName(String name) {
@@ -44,8 +44,8 @@ public class UploadedFile extends POJOObjectAdapter {
 		this.status = status;
 	}
 
-	public void setLocalizedErrorMsg(String localizedErrorMsg) {
-		this.localizedErrorMsg = localizedErrorMsg;
+	public void setLocalizedMsg(String localizedErrorMsg) {
+		this.localizedMsg = localizedErrorMsg;
 	}
 
 	public void setSheetErrs(Map<Integer, List<List<ErrorDescription>>> sheetErrs) {
@@ -69,7 +69,7 @@ public class UploadedFile extends POJOObjectAdapter {
 		chunk.append("<balanceholdername>" + balanceHolderName + "</balanceholdername>");
 		chunk.append("<balanceholderid>" + balanceHolderId + "</balanceholderid>");
 		chunk.append("<readers>" + readers + "</readers>");
-		chunk.append("<errormsg>" + localizedErrorMsg + "</errormsg>");
+		chunk.append("<msg>" + localizedMsg + "</msg>");
 		chunk.append("<sheeterrs>");
 		if (sheetErrs != null) {
 			for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {

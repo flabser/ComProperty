@@ -41,21 +41,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="control-label"></div>
-                        <div class="controls">
-                            <label class="btn btn-sm">
-                                <input type="checkbox" name="is_primary" value="true">
-                                    <xsl:if test="//fields/isprimary  = 'true'">
-                                        <xsl:attribute name="checked">checked</xsl:attribute>
-                                    </xsl:if>
-                                    <span>
-                                        <xsl:value-of select="//captions/is_primary_organization/@caption"/>
-                                    </span>
-                                </input>
-                            </label>
-                        </div>
-                    </div>
+                 
                     <div class="form-group">
                         <div class="control-label">
                             <xsl:value-of select="//captions/bin/@caption"/>
