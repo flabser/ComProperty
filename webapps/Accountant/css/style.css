@@ -64,6 +64,7 @@ progress[value='0'] {
 }
 
 .update-file-link {
+    background: #f7f7f7;
     border-radius: 2px;
     display: inline-block;
     margin: 0 3px;
@@ -110,6 +111,10 @@ LOADED = 3;
 CHECKING_ERROR = 4;
 LOADING_ERROR = 5;
 */
+
+.panel__header {
+    border-bottom: 1px solid #ddd;
+}
 
 .update-status-1 .panel__header {
     border-bottom: 1px solid #ddd;
