@@ -1,4 +1,4 @@
-nbApp.dialogChoiceBalanceHolder = function(el) {
+nbApp.dialogChoiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -10,6 +10,7 @@ nbApp.dialogChoiceBalanceHolder = function(el) {
                 text: nb.getText('select'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
+                    callback();
                 }
             },
             'cancel': {
@@ -20,9 +21,10 @@ nbApp.dialogChoiceBalanceHolder = function(el) {
             }
         }
     });
+    return dlg;
 };
 
-nbApp.dialogChoiceReaders = function(el) {
+nbApp.dialogChoiceReaders = function(el, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -34,6 +36,7 @@ nbApp.dialogChoiceReaders = function(el) {
                 text: nb.getText('select'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
+                    callback();
                 }
             },
             'cancel': {
@@ -44,4 +47,5 @@ nbApp.dialogChoiceReaders = function(el) {
             }
         }
     });
+    return dlg;
 };

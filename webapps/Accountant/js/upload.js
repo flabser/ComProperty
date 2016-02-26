@@ -176,7 +176,9 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
-        nbApp.dialogChoiceBalanceHolder(this);
+        nbApp.dialogChoiceBalanceHolder(this, function() {
+            toggleLoadButtonState($tpl);
+        });
         $tpl.find('.errormsg').remove();
     });
 
@@ -184,12 +186,22 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
-        nbApp.dialogChoiceReaders(this);
+        nbApp.dialogChoiceReaders(this, function() {
+            toggleLoadButtonState($tpl);
+        });
         $tpl.find('.errormsg').remove();
     });
 
     if (!initMode) {
         $('.js-uploaded-files').append($tpl);
+    }
+}
+
+function toggleLoadButtonState($form) {
+    var b = $form.find('[name=balanceholder]').val();
+    var r = $form.find('[name=reader]').val();
+    if (b && r) {
+        $form.find('.js-load').attr('disabled', false);
     }
 }
 
