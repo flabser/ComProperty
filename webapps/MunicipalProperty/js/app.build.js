@@ -406,6 +406,10 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
+        if ($('.dialog-filter', $dlgw).length !== 0) {
+            return;
+        }
+
         $collection = $(filterNode, $containerNode[0]);
 
         var isHierarchical = $('.toggle-response', $containerNode[0]).length > 0;
@@ -605,6 +609,10 @@ nb.setFormValues = function(currentNode) {
 
     var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
     var fieldName = $dlgWgt[0].dialogOptions.fieldName;
+    var fields = $dlgWgt[0].dialogOptions.fields;
+    if (fields == fieldName) {
+        fields = null;
+    }
 
     var nodeList; // коллекция выбранных
     var isMulti = false;
@@ -663,14 +671,40 @@ nb.setFormValues = function(currentNode) {
             });
             $('[data-input=' + fieldName + ']', form).html(htm.join(''));
         } else {
-            var $fieldNode = $('[name=' + fieldName + ']', form);
-            if ($fieldNode.length === 0) {
-                $fieldNode = $('<input type="hidden" name="' + fieldName + '" />');
-                $(form).append($fieldNode[0]);
-            }
+            if (fields) {
+                var fn;
+                for (var i in fields) {
+                    fn = fields[i];
+                    //
+                    //$('[name=' + fn + ']', form)
+                    //$('[data-input=' + fn.replace('id', '') + ']', form)
+                        //
 
-            $fieldNode.val(nodeList[0].value);
-            $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+                    var dataId = nodeList[0].value;
+                    var $valNode = $('[data-id=' + dataId + '][name=' + i + ']', $dlgw);
+                    var value = $valNode.val();
+                    var text = $valNode.data('text');
+                    if (!text) text = value;
+
+                    var $fieldNode = $('[name=' + fn + ']', form);
+                    if ($fieldNode.length === 0) {
+                        $fieldNode = $('<input type="hidden" name="' + fn + '" />');
+                        $(form).append($fieldNode[0]);
+                    }
+                    //
+                    $fieldNode.val(value);
+                    $('[data-input=' + fn.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                }
+            } else {
+                var $fieldNode = $('[name=' + fieldName + ']', form);
+                if ($fieldNode.length === 0) {
+                    $fieldNode = $('<input type="hidden" name="' + fieldName + '" />');
+                    $(form).append($fieldNode[0]);
+                }
+
+                $fieldNode.val(nodeList[0].value);
+                $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+            }
         }
 
         return true;
@@ -770,14 +804,14 @@ nb.getSelectedEntityIDs = function(checkboxName) {
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
 */
-nbApp.choiceDialog = function(el, id, fieldName) {
+nbApp.choiceDialog = function(el, id, fields) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
-        fieldName: fieldName,
+        fields: fields,
         title: el.title,
         href: 'Provider?id=' + id,
-        datatype: 'json',
+        dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -797,7 +831,10 @@ nbApp.choiceDialog = function(el, id, fieldName) {
 };
 
 nbApp.choiceBalanceHolder = function(el) {
-    return this.choiceDialog(el, 'get-organizations', 'balanceholderid');
+    return this.choiceDialog(el, 'get-organizations', {
+        docid: 'balanceholderid',
+        bin: 'balanceholderbin'
+    });
 };
 
 nbApp.choiceCountries = function(el) {

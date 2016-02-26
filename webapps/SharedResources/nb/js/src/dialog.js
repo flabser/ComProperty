@@ -215,6 +215,10 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
+        if ($('.dialog-filter', $dlgw).length !== 0) {
+            return;
+        }
+
         $collection = $(filterNode, $containerNode[0]);
 
         var isHierarchical = $('.toggle-response', $containerNode[0]).length > 0;

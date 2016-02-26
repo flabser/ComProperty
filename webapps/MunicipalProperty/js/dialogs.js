@@ -3,14 +3,14 @@
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
 */
-nbApp.choiceDialog = function(el, id, fieldName) {
+nbApp.choiceDialog = function(el, id, fields) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
-        fieldName: fieldName,
+        fields: fields,
         title: el.title,
         href: 'Provider?id=' + id,
-        datatype: 'json',
+        dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -30,7 +30,10 @@ nbApp.choiceDialog = function(el, id, fieldName) {
 };
 
 nbApp.choiceBalanceHolder = function(el) {
-    return this.choiceDialog(el, 'get-organizations', 'balanceholderid');
+    return this.choiceDialog(el, 'get-organizations', {
+        docid: 'balanceholderid',
+        bin: 'balanceholderbin'
+    });
 };
 
 nbApp.choiceCountries = function(el) {

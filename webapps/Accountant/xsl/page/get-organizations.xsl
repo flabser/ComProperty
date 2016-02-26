@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:import href="../templates/pagination.xsl"/>
 
     <xsl:output method="html" encoding="utf-8" indent="no"/>
 
     <xsl:template match="//view_content//query">
         <xsl:if test="entry">
+            <xsl:apply-templates select="//view_content" mode="page-navigator"/>
             <ul class="nb-dialog-list">
                 <xsl:apply-templates select="entry" mode="dep"/>
             </ul>
