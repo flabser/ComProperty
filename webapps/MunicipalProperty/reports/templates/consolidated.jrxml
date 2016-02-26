@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
-<!-- 2016-02-26T15:55:31 -->
+<!-- 2016-02-26T17:17:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="balanceholder" class="java.lang.String"/>
@@ -72,7 +72,9 @@
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{class}.getSimpleName().equals("RealEstate") ? "Недвижимость" : 
 	$F{class}.getSimpleName().equals("PersonalEstate") ? "Движимое имущество" : 
-		$F{class}.getSimpleName().equals("Equipment") ? "Оборудование" : $F{class}.getSimpleName()]]></textFieldExpression>
+		$F{class}.getSimpleName().equals("Equipment") ? "Оборудование" : 
+			$F{class}.getSimpleName().equals("IntangibleAsset") ? "Нематериальные активы" :
+				$F{class}.getSimpleName().equals("Transport") ? "Транспорт" : $F{class}.getSimpleName()]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
