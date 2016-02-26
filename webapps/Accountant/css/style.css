@@ -103,6 +103,10 @@ progress[value='0'] {
     padding: 4px 16px;
 }
 
+.errormsg {
+    padding: 4px 16px;
+}
+
 
 /* 
 JUST_UPLOADED = 1;
@@ -131,11 +135,11 @@ LOADING_ERROR = 5;
 }
 
 .update-status-3 .panel__header {
-    border-bottom: 1px solid #4CAF50;
+    border-bottom: 1px solid #4CAF50
 }
 
 .update-status-3 .update-file-link {
-    background: #C5E1A5;
+    background: #BCD0FF;
 }
 
 .update-status-4 .panel__header {

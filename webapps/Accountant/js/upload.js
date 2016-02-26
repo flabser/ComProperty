@@ -177,6 +177,7 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
         nbApp.dialogChoiceBalanceHolder(this);
+        $tpl.find('.errormsg').remove();
     });
 
     $tpl.find('.js-select-readers').on('click', function(e) {
@@ -184,6 +185,7 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
         nbApp.dialogChoiceReaders(this);
+        $tpl.find('.errormsg').remove();
     });
 
     if (!initMode) {

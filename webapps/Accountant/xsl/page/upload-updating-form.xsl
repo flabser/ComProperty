@@ -91,7 +91,7 @@
     <xsl:template match="entry">
         <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
             <xsl:variable name="isOpen">
-                <xsl:if test="viewcontent/sheeterrs != ''">
+                <xsl:if test="viewcontent/status != 3 and (viewcontent/sheeterrs != '' or viewcontent/errormsg != '')">
                     <xsl:value-of select="'open'"/>
                 </xsl:if>
             </xsl:variable>
@@ -99,7 +99,7 @@
                 <div class="panel__header">
                     <div class="panel-title panel-toggle" data-toggle="panel">
                         <i class="fa">
-                            <xsl:if test="viewcontent/sheeterrs = ''">
+                            <xsl:if test="viewcontent/sheeterrs = '' and viewcontent/errormsg = ''">
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
                             </xsl:if>
                         </i>
@@ -111,19 +111,19 @@
                                 <span>Проверить</span>
                             </button>
                             <button type="button" class="btn btn-sm js-select-balance-holder">
-                                <xsl:if test="viewcontent/errormsg != ''">
+                                <xsl:if test="viewcontent/sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Балансодержатель</span>
                             </button>
                             <button type="button" class="btn btn-sm js-select-readers">
-                                <xsl:if test="viewcontent/errormsg != ''">
+                                <xsl:if test="viewcontent/sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn-sm btn-primary js-load">
-                                <xsl:if test="viewcontent/status = 3 or viewcontent/errormsg != ''">
+                                <xsl:if test="viewcontent/status = 3 or viewcontent/sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
@@ -141,11 +141,20 @@
                         <ul class="update-readers" data-input="reader"></ul>
                     </div>
                     <div class="js-check-result">
+                        <xsl:if test="viewcontent/status != 3">
+                            <xsl:apply-templates select="viewcontent/errormsg"/>
+                        </xsl:if>
                         <xsl:apply-templates select="viewcontent/sheeterrs"/>
                     </div>
                 </div>
             </div>
         </form>
+    </xsl:template>
+
+    <xsl:template match="errormsg">
+        <p class="errormsg">
+            <xsl:value-of select="text()"/>
+        </p>
     </xsl:template>
 
     <xsl:template match="sheeterrs">
