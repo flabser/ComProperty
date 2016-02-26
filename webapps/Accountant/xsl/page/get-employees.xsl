@@ -16,11 +16,11 @@
     <xsl:template match="entry" mode="emp">
         <li class="nb-dialog-list-it">
             <label ondblclick="nb.dialog.execute(this)">
-                <input data-type="select" type="checkbox" name="employee" value="{@id}" data-text="{viewcontent/name}"/>
+                <input data-type="select" type="checkbox" name="employee" value="{@id}"/>
                 <span>
                     <xsl:value-of select="viewcontent/name"/>
                 </span>
-                <input data-id="{@id}" name="login" value="{viewcontent/login}" type="hidden"/>
+                <input data-id="{@id}" name="docid" value="{@id}" data-text="{viewcontent/name}" type="hidden"/>
             </label>
         </li>
     </xsl:template>

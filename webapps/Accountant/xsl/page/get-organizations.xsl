@@ -18,7 +18,7 @@
     <xsl:template match="entry" mode="dep">
         <li class="nb-dialog-list-it">
             <label ondblclick="nb.dialog.execute(this)">
-                <input data-type="select" type="radio" name="org" value="{@id}" data-text="{viewcontent/name}"/>
+                <input data-type="select" type="radio" name="org" value="{@id}"/>
                 <span>
                     <xsl:value-of select="viewcontent/name"/>
                 </span>

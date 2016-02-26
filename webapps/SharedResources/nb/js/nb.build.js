@@ -406,7 +406,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
-        if ($('.dialog-filter', $dlgw).length !== 0) {
+        if ($('.dialog-filter input[data-role=search', $dlgw).length !== 0) {
             return;
         }
 
@@ -608,16 +608,7 @@ nb.setFormValues = function(currentNode) {
     var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
 
     var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
-    var fieldName = $dlgWgt[0].dialogOptions.fieldName;
     var fields = $dlgWgt[0].dialogOptions.fields;
-    if (fields == fieldName) {
-        fields = null;
-    }
-
-    var nodeList; // коллекция выбранных
-    var isMulti = false;
-    var itemSeparate = '';
-    var displaySeparate = '<br/>'; // отобразить мульти значения разделителем
 
     if (!form) {
         nb.dialog.warn({
@@ -627,14 +618,9 @@ nb.setFormValues = function(currentNode) {
         return false;
     }
 
-    nodeList = $('[data-type=select]:checked', $dlgWgt[0]);
-    if (nodeList.length > 0) {
-        isMulti = nodeList.length > 1;
-        if (!isMulti) {
-            itemSeparate = '';
-        }
-
-        return _writeValues(nodeList);
+    var dataList = $('[data-type=select]:checked', $dlgWgt[0]); // коллекция выбранных
+    if (dataList.length) {
+        return _writeValues();
     } else {
         if ($dlgWgt[0].dialogOptions.effect) {
             $dlgw.stop();
@@ -662,51 +648,62 @@ nb.setFormValues = function(currentNode) {
 
     // write values to form
     function _writeValues() {
-        if (isMulti) {
-            $('[name=' + fieldName + ']', form).remove();
-            var htm = [];
-            nodeList.each(function(index, node) {
-                $('<input type="hidden" name="' + fieldName + '" value="' + node.value + '" />').appendTo(form);
-                htm.push('<li>' + $(node).data('text') + '</li>');
-            });
-            $('[data-input=' + fieldName + ']', form).html(htm.join(''));
-        } else {
-            if (fields) {
-                var fn;
-                for (var i in fields) {
-                    fn = fields[i];
-                    //
-                    //$('[name=' + fn + ']', form)
-                    //$('[data-input=' + fn.replace('id', '') + ']', form)
-                        //
-
-                    var dataId = nodeList[0].value;
-                    var $valNode = $('[data-id=' + dataId + '][name=' + i + ']', $dlgw);
-                    var value = $valNode.val();
-                    var text = $valNode.data('text');
-                    if (!text) text = value;
-
-                    var $fieldNode = $('[name=' + fn + ']', form);
-                    if ($fieldNode.length === 0) {
-                        $fieldNode = $('<input type="hidden" name="' + fn + '" />');
-                        $(form).append($fieldNode[0]);
+        var isMulti = dataList.length > 1;
+        var multiFieldMap = {};
+        //
+        dataList.each(function() {
+            var dataId = this.value;
+            //
+            var field, targetFieldName;
+            var $val;
+            var $targetFieldNode;
+            var value;
+            var text;
+            //
+            for (field in fields) {
+                targetFieldName = fields[field];
+                //
+                $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
+                $targetFieldNode = $('[name=' + targetFieldName + ']', form);
+                value = $val.val();
+                text = $val.data('text');
+                if (!text) text = value;
+                //
+                if (isMulti) {
+                    if (multiFieldMap[field] !== true) {
+                        // multiFieldMap[field] = true;
+                        $targetFieldNode.remove();
                     }
-                    //
-                    $fieldNode.val(value);
-                    $('[data-input=' + fn.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode.appendTo(form);
+                } else {
+                    var $hf = $('[type=hidden][name=' + targetFieldName + ']', form);
+                    if ($hf.length) {
+                        $hf.remove();
+                        $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                        $targetFieldNode.appendTo(form);
+                    }
                 }
-            } else {
-                var $fieldNode = $('[name=' + fieldName + ']', form);
-                if ($fieldNode.length === 0) {
-                    $fieldNode = $('<input type="hidden" name="' + fieldName + '" />');
-                    $(form).append($fieldNode[0]);
+                //
+                if ($targetFieldNode.length === 0) {
+                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode.appendTo(form);
                 }
-
-                $fieldNode.val(nodeList[0].value);
-                $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+                //
+                $targetFieldNode.val(value);
+                //
+                if (isMulti) {
+                    if (multiFieldMap[field] !== true) {
+                        multiFieldMap[field] = true;
+                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                    } else {
+                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).append('<li>' + text + '</li>');
+                    }
+                } else {
+                    $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html(text);
+                }
             }
-        }
-
+        });
         return true;
     }
 };

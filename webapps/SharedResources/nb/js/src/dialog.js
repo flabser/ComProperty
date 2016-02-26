@@ -215,7 +215,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
-        if ($('.dialog-filter', $dlgw).length !== 0) {
+        if ($('.dialog-filter input[data-role=search', $dlgw).length !== 0) {
             return;
         }
 

@@ -3,14 +3,14 @@
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
 */
-nbApp.choiceDialog = function(el, id, fields) {
+nbApp.defaultChoiceDialog = function(el, id, fields) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fields: fields,
         title: el.title,
         href: 'Provider?id=' + id,
-        dataType: 'json',
+        // dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -30,28 +30,28 @@ nbApp.choiceDialog = function(el, id, fields) {
 };
 
 nbApp.choiceBalanceHolder = function(el) {
-    return this.choiceDialog(el, 'get-organizations', {
+    return this.defaultChoiceDialog(el, 'get-organizations', {
         docid: 'balanceholderid',
         bin: 'balanceholderbin'
     });
 };
 
 nbApp.choiceCountries = function(el) {
-    return this.choiceDialog(el, 'get-countries', 'country');
+    return this.defaultChoiceDialog(el, 'get-countries', 'country');
 };
 
 nbApp.choiceRegion = function(el) {
-    return this.choiceDialog(el, 'get-regions', 'region');
+    return this.defaultChoiceDialog(el, 'get-regions', 'region');
 };
 
 nbApp.choiceDistrict = function(el) {
-    return this.choiceDialog(el, 'get-district', 'district');
+    return this.defaultChoiceDialog(el, 'get-district', 'district');
 };
 
 nbApp.choiceCity = function(el) {
-    return this.choiceDialog(el, 'get-city', 'city');
+    return this.defaultChoiceDialog(el, 'get-city', 'city');
 };
 
 nbApp.choiceStreet = function(el) {
-    return this.choiceDialog(el, 'get-street', 'street');
+    return this.defaultChoiceDialog(el, 'get-street', 'street');
 };
