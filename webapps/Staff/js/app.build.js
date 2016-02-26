@@ -794,4 +794,6 @@ $(function() {
         var countChecked = $('[name=docid]:checked').length;
         $('[data-action=delete_document]').attr('disabled', countChecked === 0);
     });
+
+    $('[name=docid]:checked').attr('checked', false);
 });

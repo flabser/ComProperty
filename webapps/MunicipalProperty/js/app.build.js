@@ -850,6 +850,8 @@ $(function() {
         $('[data-action=delete_document]').attr('disabled', countChecked === 0);
     });
 
+    $('[name=docid]:checked').attr('checked', false);
+
     $('[data-toggle-theme]').click(function() {
         var themeName = $(this).data('toggle-theme');
         if ($('body').hasClass('theme1')) {
