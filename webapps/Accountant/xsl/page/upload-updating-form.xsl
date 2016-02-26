@@ -123,7 +123,7 @@
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn-sm btn-primary js-load">
-                                <xsl:if test="viewcontent/status = 3 or viewcontent/sheeterrs != ''">
+                                <xsl:if test="viewcontent/status = 3 or viewcontent/sheeterrs != '' or viewcontent/errormsg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
