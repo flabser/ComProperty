@@ -44,11 +44,6 @@ progress[value='0'] {
     z-index: 2;
 }
 
-
-/* .update-file-panel .panel-toggle > i.fa.no-errs {
-    font-size: 1em;
-} */
-
 .update-file-panel:not(.open) .panel-toggle > i.fa.no-errs:before {
     content: "\f1db";
 }
@@ -103,7 +98,7 @@ progress[value='0'] {
     padding: 4px 16px;
 }
 
-.errormsg {
+.update-file-panel .errormsg {
     padding: 4px 16px;
 }
 
@@ -116,7 +111,7 @@ CHECKING_ERROR = 4;
 LOADING_ERROR = 5;
 */
 
-.panel__header {
+.update-file-panel .panel__header {
     border-bottom: 1px solid #ddd;
 }
 
