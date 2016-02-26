@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2016-02-26T15:55:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="balanceholder" class="java.lang.String"/>
+	<parameter name="grandtotal" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="residualCost" class="java.lang.Float"/>
+	<field name="balanceCost" class="java.lang.Float"/>
+	<field name="cumulativeDepreciation" class="java.lang.Float"/>
+	<field name="originalCost" class="java.lang.Float"/>
+	<field name="kuf" class="municipalproperty.model.constants.KufType"/>
+	<field name="class" class="java.lang.Class"/>
+	<field name="balanceHolder" class="staff.model.Organization"/>
+	<sortField name="balanceHolderName" type="Variable"/>
+	<sortField name="kuf"/>
+	<variable name="subcat_total" class="java.lang.Integer" resetType="Group" resetGroup="subcat" incrementType="Group" incrementGroup="subcat" calculation="Sum">
+		<variableExpression><![CDATA[$V{subcat_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="balanceHolderName" class="java.lang.String" resetType="Group" resetGroup="bh" incrementType="Group" incrementGroup="bh">
+		<variableExpression><![CDATA[$F{balanceHolder}.getName()]]></variableExpression>
+	</variable>
+	<variable name="original_cost_total" class="java.math.BigDecimal" resetType="Group" resetGroup="subcat" calculation="Sum">
+		<variableExpression><![CDATA[$F{originalCost}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="balance_cost_total" class="java.math.BigDecimal" resetType="Group" resetGroup="subcat" calculation="Sum">
+		<variableExpression><![CDATA[$F{balanceCost}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="residual_cost_total" class="java.math.BigDecimal" resetType="Group" resetGroup="subcat" calculation="Sum">
+		<variableExpression><![CDATA[$F{residualCost}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="cum_depr_cost_total" class="java.math.BigDecimal" resetType="Group" resetGroup="subcat" calculation="Sum">
+		<variableExpression><![CDATA[$F{cumulativeDepreciation}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="bh">
+		<groupExpression><![CDATA[$F{balanceHolder}.getName()]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="bh" isBlankWhenNull="true">
+					<reportElement x="30" y="-1" width="140" height="30" isRemoveLineWhenBlank="true" uuid="fbda0356-cdde-41c7-a6b0-fe6ed7480702">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="11" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{balanceHolderName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="cat">
+		<groupExpression><![CDATA[$F{class}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<textField>
+					<reportElement x="170" y="0" width="140" height="30" uuid="908ed2fb-def9-4958-a4e3-33baf009c4f9"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{class}.getSimpleName().equals("RealEstate") ? "Недвижимость" : 
+	$F{class}.getSimpleName().equals("PersonalEstate") ? "Движимое имущество" : 
+		$F{class}.getSimpleName().equals("Equipment") ? "Оборудование" : $F{class}.getSimpleName()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="subcat">
+		<groupExpression><![CDATA[$F{kuf}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<textField>
+					<reportElement x="310" y="0" width="140" height="30" uuid="c3d5cad4-4f63-4637-950a-21a02290f42f"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{kuf}.getCode() == 301 ? "Здания" : 
+$F{kuf}.getCode() == 203 ? "Компьютерное оборудование" : 
+$F{kuf}.getCode() == 101 ? "Мебель" : 
+$F{kuf}.getCode() == 106 ? "Другое" : $F{kuf}.getCode()]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="subcat">
+					<reportElement x="450" y="0" width="70" height="30" uuid="0916a498-4b53-4e8f-b024-c7d2ad88fd46"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$V{subcat_total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="subcat" pattern="#,###">
+					<reportElement x="520" y="0" width="70" height="30" uuid="fc5a353d-06e9-4a26-a019-7e64c9189b4e"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$V{original_cost_total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="subcat" pattern="#,###">
+					<reportElement x="590" y="0" width="70" height="30" uuid="f292524e-e718-4d42-b8d9-9ab31cee037e"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$V{cum_depr_cost_total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="subcat" pattern="#,###">
+					<reportElement x="660" y="0" width="70" height="30" uuid="5966bcb2-4bd1-4ef5-a5b6-1ac260819559"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$V{balance_cost_total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="subcat" pattern="#,###">
+					<reportElement x="730" y="0" width="70" height="30" uuid="d8445605-eefd-468b-8e01-5ff9c27da2ab"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$V{residual_cost_total}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="-19" width="800" height="91" backcolor="#FFFFFF" uuid="98724975-fe61-4ed2-8781-eb7409b2e81e"/>
+				<elementGroup>
+					<elementGroup/>
+				</elementGroup>
+				<staticText>
+					<reportElement x="109" y="9" width="690" height="21" forecolor="#000000" uuid="ead0c733-9d44-4e09-9dd4-20e21c8947dc"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Мониторинг объектов государственной собственности]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="35" width="690" height="21" forecolor="#000000" uuid="859ee929-7ee1-4445-8df9-942784383f96"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="13" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Консолидированный отчет]]></text>
+				</staticText>
+				<image>
+					<reportElement x="20" y="0" width="89" height="91" uuid="6031e52a-81cc-44c0-a474-514234086205"/>
+					<imageExpression><![CDATA["large_logo.png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="60" uuid="59355868-2428-45ef-af2d-e1c27461dd3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[№]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="140" height="61" uuid="e3b98529-45b9-48d5-807d-d8ecba26d34f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Категория]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="140" height="60" uuid="5a6b4087-be26-43a0-ab5e-bab30406c8d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Подкатегория]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="70" height="60" uuid="45ef39ce-e5bf-40d0-9f2f-bd8c1d649923">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Количество]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="0" width="70" height="60" uuid="40277466-b889-431f-a9bf-eb5b2ae6e74b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Накоплен-
+ная аморти-зация]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="660" y="0" width="70" height="60" uuid="8eb1c3ee-7804-4ad5-a480-ac4697ac4148">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Балансовая стоймость]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="730" y="0" width="70" height="60" uuid="cf00ce15-0d22-46da-8c08-49a9f9655a15">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Балансовая стоимость после переоценки ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="0" width="70" height="60" uuid="ac10a68d-5943-47bb-b4f4-d03d4b4cbfdf">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Перво-начальная стоимость]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="61" width="800" height="1" uuid="e7c90483-a463-4674-a741-661cab1c2832"/>
+			</line>
+			<staticText>
+				<reportElement x="30" y="0" width="140" height="60" uuid="86d410ad-17f6-43a7-9de3-636ba7a5b9d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Организация]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="10" splitType="Stretch"/>
+	</summary>
+</jasperReport>
