@@ -34,15 +34,12 @@ public class Organization extends Staff {
 	@OneToMany(mappedBy = "organization")
 	private List<Employee> employers;
 
-	@Column(name = "is_primary")
-	private boolean isPrimary;
-
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "orgs_labels", joinColumns = @JoinColumn(name = "org_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "label_id", referencedColumnName = "id"))
 	private List<OrganizationLabel> labels;
 
 	@Column(length = 12)
-	private String bin;
+	private String bin = "";
 
 	private int rank = 999;
 
@@ -58,14 +55,6 @@ public class Organization extends Staff {
 	@JsonIgnore
 	public List<Department> getDepartments() {
 		return departments;
-	}
-
-	public boolean isPrimary() {
-		return isPrimary;
-	}
-
-	public void setPrimary(boolean isPrimary) {
-		this.isPrimary = isPrimary;
 	}
 
 	@JsonIgnore
@@ -114,7 +103,6 @@ public class Organization extends Staff {
 			chunk.append("<entry id=\"" + l.getId() + "\">" + l.getName() + "</entry>");
 		}
 		chunk.append("</labels>");
-		chunk.append("<isprimary>" + isPrimary + "</isprimary>");
 		return chunk.toString();
 	}
 

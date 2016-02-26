@@ -13,8 +13,8 @@ import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
-import kz.lof.server.Server;
 import kz.lof.scripting._Session;
+import kz.lof.server.Server;
 import reference.dao.PositionDAO;
 import reference.model.Position;
 import staff.dao.EmployeeDAO;
@@ -67,7 +67,7 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 		} catch (EmployeeException e) {
 			e.printStackTrace();
 		}
-		Organization o = new OrganizationDAO(ses).findPrimaryOrg();
+		Organization o = new OrganizationDAO(ses).findAll().get(1);
 		emp.setOrganization(o);
 		RoleDAO roleDao = new RoleDAO(ses);
 		List<Role> rl = roleDao.findAll();
