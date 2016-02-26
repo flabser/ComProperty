@@ -56,22 +56,26 @@
                         <div class="panel-title panel-toggle" data-toggle="panel">
                             <i class="fa"></i>
                             <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link"></a>
-                            <span>
-                                <button type="button" class="btn btn-sm js-check">проверить</button>
+                            <span class="update-file-panel-actions">
+                                <button type="button" class="btn btn-sm js-check">
+                                    <span>Проверить</span>
+                                </button>
                                 <button type="button" class="btn btn-sm js-select-balance-holder" disabled="disabled">
-                                    <span>выбрать балансодержателя</span>
+                                    <span>Балансодержатель</span>
                                 </button>
                                 <button type="button" class="btn btn-sm js-select-readers" disabled="disabled">
-                                    <span>выбрать читателей</span>
+                                    <span>Читатели</span>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">
-                                    загрузить
+                                    Загрузить
                                 </button>
-                                <button type="button" class="btn btn-sm js-delete">удалить</button>
+                                <button type="button" class="btn btn-sm js-delete">
+                                    <span>Удалить</span>
+                                </button>
                             </span>
                         </div>
                     </div>
-                    <div class="panel__body">
+                    <div class="panel__body scroll-shadow">
                         <input type="hidden" name="balanceholder" value=""/>
                         <div>
                             <strong class="update-balance-holder" data-input="balanceholder"></strong>
@@ -86,7 +90,12 @@
 
     <xsl:template match="entry">
         <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
-            <div class="panel update-status-{viewcontent/status} update-file-panel js-file-panel">
+            <xsl:variable name="isOpen">
+                <xsl:if test="viewcontent/sheeterrs != ''">
+                    <xsl:value-of select="'open'"/>
+                </xsl:if>
+            </xsl:variable>
+            <div class="panel update-file-panel {$isOpen} update-status-{viewcontent/status} js-file-panel">
                 <div class="panel__header">
                     <div class="panel-title panel-toggle" data-toggle="panel">
                         <i class="fa">
@@ -97,31 +106,35 @@
                         <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link">
                             <xsl:value-of select="viewcontent/name"/>
                         </a>
-                        <span>
-                            <button type="button" class="btn btn-sm js-check">проверить</button>
+                        <span class="update-file-panel-actions">
+                            <button type="button" class="btn btn-sm js-check">
+                                <span>Проверить</span>
+                            </button>
                             <button type="button" class="btn btn-sm js-select-balance-holder">
                                 <xsl:if test="viewcontent/errormsg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
-                                <span>выбрать балансодержателя</span>
+                                <span>Балансодержатель</span>
                             </button>
                             <button type="button" class="btn btn-sm js-select-readers">
                                 <xsl:if test="viewcontent/errormsg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
-                                <span>выбрать читателей</span>
+                                <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn-sm btn-primary js-load">
-                                <xsl:if test="viewcontent/errormsg != ''">
+                                <xsl:if test="viewcontent/status = 3 or viewcontent/errormsg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
-                                загрузить
+                                <span>Загрузить</span>
                             </button>
-                            <button type="button" class="btn btn-sm js-delete">удалить</button>
+                            <button type="button" class="btn btn-sm js-delete">
+                                <span>Удалить</span>
+                            </button>
                         </span>
                     </div>
                 </div>
-                <div class="panel__body">
+                <div class="panel__body scroll-shadow">
                     <input type="hidden" name="balanceholder" value=""/>
                     <div>
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>

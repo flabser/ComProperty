@@ -163,6 +163,7 @@ function renderFilePanel(fileName, fsid) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
+        $(this).attr('disabled', true);
         loadFile(fileName, $tpl.serialize(), fsid).then(function() {
             // $tpl.addClass('upload-success');
             location.reload();
