@@ -22,7 +22,8 @@
                 <span>
                     <xsl:value-of select="viewcontent/name"/>
                 </span>
-                <input data-id="{@id}" name="login" value="{viewcontent/login}" type="hidden"/>
+                <input data-id="{@id}" name="docid" value="{@id}" data-text="{viewcontent/name}" type="hidden"/>
+                <input data-id="{@id}" name="bin" value="{viewcontent/bin}" type="hidden"/>
             </label>
         </li>
     </xsl:template>
