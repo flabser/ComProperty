@@ -23,6 +23,6 @@ public class GetCountriesAction extends _DoPage {
 
         CountryDAO dao = new CountryDAO(ses);
         ViewPage<Country> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
-        addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), lang));
+        addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), ses));
     }
 }
