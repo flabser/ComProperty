@@ -142,7 +142,6 @@
 }
 
 .nb-dialog {
-    /* border: 1px solid #ccc; */
     border: none;
     border-radius: 0;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 30px -5px rgba(0, 0, 0, .5);

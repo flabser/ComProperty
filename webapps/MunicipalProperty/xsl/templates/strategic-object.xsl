@@ -28,42 +28,42 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tabs-1">
                     <fieldset class="fieldset">
-                        <xsl:if test="//document/@editable = 'false'">
+                        <!--<xsl:if test="//document/@editable = 'false'">
                             <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>
+                        </xsl:if>-->
+                        <xsl:call-template name="balanceholder-bin"/>
+                        <xsl:call-template name="kof-kuf"/>
+                        <xsl:call-template name="invnumber"/>
+                        <xsl:call-template name="objectname"/>
+                        <xsl:call-template name="description"/>
+                        <xsl:call-template name="propertycode"/>
+                        <xsl:call-template name="acceptancedate"/>
+                        <xsl:call-template name="originalcost"/>
+                        <xsl:call-template name="cumulativedepreciation"/>
+                        <xsl:call-template name="impairmentloss"/>
+                        <xsl:call-template name="balancecost"/>
+                        <xsl:call-template name="revaluationamount"/>
+                        <xsl:call-template name="afterrevaluationamount"/>
+                        <xsl:call-template name="receivingreason"/>
+                        <xsl:call-template name="model"/>
+                        <xsl:call-template name="commissioningyear"/>
+                        <xsl:call-template name="acquisitionyear"/>
+                        <xsl:call-template name="isreadytouse"/>
                     </fieldset>
-                    <xsl:call-template name="balanceholder-bin"/>
-                    <xsl:call-template name="kof-kuf"/>
-                    <xsl:call-template name="invnumber"/>
-                    <xsl:call-template name="objectname"/>
-                    <xsl:call-template name="description"/>
-                    <xsl:call-template name="propertycode"/>
-                    <xsl:call-template name="acceptancedate"/>
-                    <xsl:call-template name="originalcost"/>
-                    <xsl:call-template name="cumulativedepreciation"/>
-                    <xsl:call-template name="impairmentloss"/>
-                    <xsl:call-template name="balancecost"/>
-                    <xsl:call-template name="revaluationamount"/>
-                    <xsl:call-template name="afterrevaluationamount"/>
-                    <xsl:call-template name="receivingreason"/>
-                    <xsl:call-template name="model"/>
-                    <xsl:call-template name="commissioningyear"/>
-                    <xsl:call-template name="acquisitionyear"/>
-                    <xsl:call-template name="isreadytouse"/>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-2">
                     <fieldset class="fieldset">
-                        <xsl:if test="//document/@editable = 'false'">
+                        <!--<xsl:if test="//document/@editable = 'false'">
                             <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>
+                        </xsl:if>-->
                         <xsl:call-template name="documents-of-title"/>
                     </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-3">
                     <fieldset class="fieldset">
-                        <xsl:if test="//document/@editable = 'false'">
+                        <!--<xsl:if test="//document/@editable = 'false'">
                             <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>
+                        </xsl:if>-->
                         <xsl:call-template name="notes"/>
                     </fieldset>
                 </div>

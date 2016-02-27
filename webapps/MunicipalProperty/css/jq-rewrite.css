@@ -36,7 +36,7 @@
     color: #243140;
     cursor: pointer;
     display: inline-block;
-    font-size: 1em;
+    font: 13px/1.43 Verdana, Arial, Helvetica, sans-serif;
     font-weight: normal;
     line-height: normal;
     margin: 1px;
