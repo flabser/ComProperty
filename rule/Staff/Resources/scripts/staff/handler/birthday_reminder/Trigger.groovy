@@ -1,3 +1,4 @@
+/*
 package staff.handler.birthday_reminder
 
 import kz.flabs.appenv.AppEnv
@@ -72,4 +73,4 @@ class Trigger extends _DoScheduledHandler {
 		println "test 1**********************************"
 		return 0;
 	}
-}
+}*/

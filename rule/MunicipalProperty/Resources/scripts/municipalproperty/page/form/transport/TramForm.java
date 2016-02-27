@@ -12,6 +12,7 @@ import municipalproperty.model.Vehicle;
 import municipalproperty.model.constants.KufType;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
+import reference.dao.TagDAO;
 
 public class TramForm extends VehicleAbstractForm {
 
@@ -27,8 +28,9 @@ public class TramForm extends VehicleAbstractForm {
 			entity = getDefaultEntity(user, KufType.TRAM, session);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
-		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
+		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new TagDAO(session).findAll(), session));
 		addContent(getActionBar(session, lang, entity));
 		startSaveFormTransact(entity);
 	}

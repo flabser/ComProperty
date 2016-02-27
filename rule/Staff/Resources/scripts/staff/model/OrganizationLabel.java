@@ -7,7 +7,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.localization.LanguageType;
+import kz.lof.scripting._Session;
 
 @Entity
 @Table(name = "org_labels")
@@ -32,7 +32,7 @@ public class OrganizationLabel extends Staff {
 	}
 
 	@Override
-	public String getShortXMLChunk(LanguageType lang) {
+	public String getShortXMLChunk(_Session ses) {
 		return "<name>" + getName() + "</name><description>" + description + "</description>";
 	}
 

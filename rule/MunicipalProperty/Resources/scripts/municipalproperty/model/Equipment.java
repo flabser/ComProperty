@@ -6,7 +6,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.localization.LanguageType;
+import kz.lof.scripting._Session;
 
 @Entity
 @Table(name = "equipments")
@@ -25,8 +25,8 @@ public class Equipment extends Property {
 	}
 
 	@Override
-	public String getFullXMLChunk(LanguageType lang) {
-		return super.getFullXMLChunk(lang) + "<model>" + model + "</model>";
+	public String getFullXMLChunk(_Session ses) {
+		return super.getFullXMLChunk(ses) + "<model>" + model + "</model>";
 	}
 
 }

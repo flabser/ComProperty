@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.localization.LanguageType;
+import kz.lof.scripting._Session;
 import reference.model.constants.RegionType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -61,7 +61,7 @@ public class Region extends Reference {
 	}
 
 	@Override
-	public String getShortXMLChunk(LanguageType lang) {
+	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<name>" + getName() + "</name>");
 		chunk.append("<country>" + country + "</country>");

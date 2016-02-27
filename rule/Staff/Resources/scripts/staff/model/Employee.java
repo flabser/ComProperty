@@ -16,10 +16,10 @@ import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.system.IEmployee;
+import kz.lof.scripting._Session;
 import reference.model.Position;
 import staff.exception.EmployeeException;
 
@@ -135,7 +135,7 @@ public class Employee extends Staff implements IEmployee {
 	}
 
 	@Override
-	public String getFullXMLChunk(LanguageType lang) {
+	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		if (regDate != null) {
 			chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");

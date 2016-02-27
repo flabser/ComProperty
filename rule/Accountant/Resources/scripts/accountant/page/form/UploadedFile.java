@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
 import kz.lof.scripting.POJOObjectAdapter;
+import kz.lof.scripting._Session;
 import accountant.page.action.MPXLImporter.ErrorDescription;
 
 public class UploadedFile extends POJOObjectAdapter {
@@ -62,7 +62,7 @@ public class UploadedFile extends POJOObjectAdapter {
 	}
 
 	@Override
-	public String getShortXMLChunk(LanguageType lang) {
+	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<name>" + name + "</name>");
 		chunk.append("<status>" + status + "</status>");

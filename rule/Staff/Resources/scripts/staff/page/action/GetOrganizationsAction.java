@@ -15,13 +15,13 @@ import staff.model.Organization;
 
 public class GetOrganizationsAction extends _DoPage {
 
-    @Override
-    public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
-        String keyword = formData.getValueSilently("keyword");
-        int pageNum = formData.getNumberValueSilently("page", 1);
-        int pageSize = ses.pageSize;
-        OrganizationDAO dao = new OrganizationDAO(ses);
-        ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
-        addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), lang));
-    }
+	@Override
+	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
+		String keyword = formData.getValueSilently("keyword");
+		int pageNum = formData.getNumberValueSilently("page", 1);
+		int pageSize = ses.pageSize;
+		OrganizationDAO dao = new OrganizationDAO(ses);
+		ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
+		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), ses));
+	}
 }

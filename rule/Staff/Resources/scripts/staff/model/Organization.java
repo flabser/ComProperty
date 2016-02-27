@@ -13,8 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import kz.flabs.localization.LanguageType;
 import kz.flabs.util.Util;
+import kz.lof.scripting._Session;
 import reference.model.OrgCategory;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -91,7 +91,7 @@ public class Organization extends Staff {
 	}
 
 	@Override
-	public String getFullXMLChunk(LanguageType lang) {
+	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
 		chunk.append("<author>" + author + "</author>");
@@ -107,7 +107,7 @@ public class Organization extends Staff {
 	}
 
 	@Override
-	public String getShortXMLChunk(LanguageType lang) {
+	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<name>" + getName() + "</name>");
 		chunk.append("<bin>" + bin + "</bin>");

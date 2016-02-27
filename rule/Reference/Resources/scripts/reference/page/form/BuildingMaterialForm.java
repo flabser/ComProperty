@@ -4,9 +4,8 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
-import kz.lof.scripting._POJOObjectWrapper;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Session;
+import kz.nextbase.script._Exception;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import reference.dao.BuildingMaterialDAO;
@@ -26,7 +25,7 @@ public class BuildingMaterialForm extends ReferenceForm {
 			entity = new BuildingMaterial();
 			entity.setAuthor(user);
 		}
-		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(entity);
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}
