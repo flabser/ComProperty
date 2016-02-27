@@ -806,12 +806,19 @@ nb.getSelectedEntityIDs = function(checkboxName) {
 };
 
 nb.setReferToSessionStorage = function() {
-    sessionStorage.setItem('search_refer', location.href);
+    if (location.href.indexOf('id=search') == -1) {
+        sessionStorage.setItem('search_refer', location.href);
+    }
 };
 
 
 nb.resetSearchFromRefer = function() {
-    location.href = sessionStorage.getItem('search_refer');
+    var refer = sessionStorage.getItem('search_refer');
+    if (refer) {
+        location.href = refer;
+    } else {
+        history.back();
+    }
 };
 
 
