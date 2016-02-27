@@ -6,9 +6,7 @@ import java.util.List;
 import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.webserver.servlet.IOutcomeObject;
-import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
-import kz.nextbase.script._XMLDocument;
 import kz.nextbase.script.events._DoPage;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
@@ -110,10 +108,7 @@ public class MainNavigator extends _DoPage {
 		list.add(orderOutline);
 		list.add(reportOutline);
 
-		_Tag currentTag = new _Tag("current");
-		currentTag.setAttr("id", formData.getValueSilently("id").replace("-form", "-view"));
-
-		addContent(new _XMLDocument(currentTag));
+		addContent("outline_current", formData.getValueSilently("id").replace("-form", "-view"));
 		addContent(list);
 	}
 
@@ -121,4 +116,5 @@ public class MainNavigator extends _DoPage {
 	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
+
 }

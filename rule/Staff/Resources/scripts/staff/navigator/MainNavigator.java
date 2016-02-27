@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageCode;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Tag;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._WebFormData;
-import kz.nextbase.script._XMLDocument;
 import kz.nextbase.script.events._DoPage;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
@@ -22,9 +20,6 @@ public class MainNavigator extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
-
-		_Tag currentTag = new _Tag("current");
-		currentTag.setAttr("id", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("docid"));
 
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure-view"));
@@ -56,7 +51,7 @@ public class MainNavigator extends _DoPage {
 		list.add(common_outline);
 		list.add(specific_outline);
 
-		addContent(new _XMLDocument(currentTag));
+		addContent("outline_current", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("docid"));
 		addContent(list);
 	}
 
@@ -64,4 +59,5 @@ public class MainNavigator extends _DoPage {
 	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
+
 }

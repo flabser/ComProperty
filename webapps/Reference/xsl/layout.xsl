@@ -12,7 +12,7 @@
 
     <xsl:template name="layout">
         <xsl:param name="title" select="concat(//captions/title/@caption, ' - ', $APP_NAME)"/>
-        <xsl:param name="active_aside_id" select="//app_menu//current/@id"/>
+        <xsl:param name="active_aside_id" select="//app_menu//outline_current"/>
         <xsl:param name="aside_collapse" select="''"/>
         <xsl:param name="include_head" select="''"/>
         <xsl:param name="include_body_top" select="''"/>

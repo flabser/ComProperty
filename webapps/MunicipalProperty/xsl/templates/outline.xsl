@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:template match="app_menu" mode="outline">
-        <xsl:param name="active-id" select="//app_menu//current/@id"/>
+        <xsl:param name="active-id" select="//app_menu//outline_current"/>
 
         <aside class="aside side-nav" id="side-nav">
             <xsl:apply-templates select="response/content/outline" mode="outline">
