@@ -3,14 +3,7 @@
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout">
-            <xsl:with-param name="include_head">
-                <link rel="stylesheet" href="css/style.css"/>
-                <link rel="stylesheet" href="css/jq-rewrite.css"/>
-                <script src="js/upload.js"></script>
-                <script src="js/dialogs.js"></script>
-            </xsl:with-param>
-        </xsl:call-template>
+        <xsl:call-template name="layout"/>
     </xsl:template>
 
     <xsl:template name="_content">
