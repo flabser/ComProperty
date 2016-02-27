@@ -145,11 +145,7 @@ $(document).ready(function() {
     // toggle=panel
     $(document).on('click', '[data-toggle=panel]', function() {
         var $panel = $(this).parents('.panel');
-        if ($panel.hasClass('open')) {
-            $panel.removeClass('open');
-        } else {
-            $panel.addClass('open');
-        }
+        $panel.toggleClass('open');
     });
 
     // toggle=side-nav
@@ -161,7 +157,10 @@ $(document).ready(function() {
     if ($('#content-overlay').length) {
         $('#content-overlay').mousedown(function(event) {
             event.preventDefault();
-            $('body').removeClass('side-nav-toggle');
+            $('body').removeClass('side-nav-toggle  search-open');
+            if ($('.navbar-search input.q').length) {
+                $('.navbar-search input.q')[0].blur();
+            }
         });
 
         $('#content-overlay')[0].addEventListener('touchstart', function(event) {
@@ -169,6 +168,14 @@ $(document).ready(function() {
             $('body').removeClass('side-nav-toggle');
         }, false);
     }
+
+    //
+    $('.navbar-search input.q').on('focus', function() {
+        $('body').addClass('search-open');
+    });
+    $('.navbar-search input.q').on('blur', function() {
+        $('body').removeClass('search-open');
+    });
 
     //
     $(window).resize(function() {
@@ -406,7 +413,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
-        if ($('.dialog-filter', $dlgw).length !== 0) {
+        if ($('.dialog-filter input[data-role=search', $dlgw).length !== 0) {
             return;
         }
 
@@ -608,16 +615,7 @@ nb.setFormValues = function(currentNode) {
     var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
 
     var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
-    var fieldName = $dlgWgt[0].dialogOptions.fieldName;
     var fields = $dlgWgt[0].dialogOptions.fields;
-    if (fields == fieldName) {
-        fields = null;
-    }
-
-    var nodeList; // коллекция выбранных
-    var isMulti = false;
-    var itemSeparate = '';
-    var displaySeparate = '<br/>'; // отобразить мульти значения разделителем
 
     if (!form) {
         nb.dialog.warn({
@@ -627,14 +625,9 @@ nb.setFormValues = function(currentNode) {
         return false;
     }
 
-    nodeList = $('[data-type=select]:checked', $dlgWgt[0]);
-    if (nodeList.length > 0) {
-        isMulti = nodeList.length > 1;
-        if (!isMulti) {
-            itemSeparate = '';
-        }
-
-        return _writeValues(nodeList);
+    var dataList = $('[data-type=select]:checked', $dlgWgt[0]); // коллекция выбранных
+    if (dataList.length) {
+        return _writeValues();
     } else {
         if ($dlgWgt[0].dialogOptions.effect) {
             $dlgw.stop();
@@ -662,61 +655,74 @@ nb.setFormValues = function(currentNode) {
 
     // write values to form
     function _writeValues() {
-        if (isMulti) {
-            $('[name=' + fieldName + ']', form).remove();
-            var htm = [];
-            nodeList.each(function(index, node) {
-                $('<input type="hidden" name="' + fieldName + '" value="' + node.value + '" />').appendTo(form);
-                htm.push('<li>' + $(node).data('text') + '</li>');
-            });
-            $('[data-input=' + fieldName + ']', form).html(htm.join(''));
-        } else {
-            if (fields) {
-                var fn;
-                for (var i in fields) {
-                    fn = fields[i];
-                    //
-                    //$('[name=' + fn + ']', form)
-                    //$('[data-input=' + fn.replace('id', '') + ']', form)
-                        //
-
-                    var dataId = nodeList[0].value;
-                    var $valNode = $('[data-id=' + dataId + '][name=' + i + ']', $dlgw);
-                    var value = $valNode.val();
-                    var text = $valNode.data('text');
-                    if (!text) text = value;
-
-                    var $fieldNode = $('[name=' + fn + ']', form);
-                    if ($fieldNode.length === 0) {
-                        $fieldNode = $('<input type="hidden" name="' + fn + '" />');
-                        $(form).append($fieldNode[0]);
+        var isMulti = dataList.length > 1;
+        var multiFieldMap = {};
+        //
+        dataList.each(function() {
+            var dataId = this.value;
+            //
+            var field, targetFieldName;
+            var $val;
+            var $targetFieldNode;
+            var value;
+            var text;
+            //
+            for (field in fields) {
+                targetFieldName = fields[field];
+                //
+                $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
+                $targetFieldNode = $('[name=' + targetFieldName + ']', form);
+                value = $val.val();
+                text = $val.data('text');
+                if (!text) text = value;
+                //
+                if (isMulti) {
+                    if (multiFieldMap[field] !== true) {
+                        $targetFieldNode.remove();
                     }
-                    //
-                    $fieldNode.val(value);
-                    $('[data-input=' + fn.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode.appendTo(form);
+                } else {
+                    var $hf = $('[type=hidden][name=' + targetFieldName + ']', form);
+                    if ($hf.length) {
+                        $hf.remove();
+                        $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                        $targetFieldNode.appendTo(form);
+                    }
                 }
-            } else {
-                var $fieldNode = $('[name=' + fieldName + ']', form);
-                if ($fieldNode.length === 0) {
-                    $fieldNode = $('<input type="hidden" name="' + fieldName + '" />');
-                    $(form).append($fieldNode[0]);
+                //
+                if ($targetFieldNode.length === 0) {
+                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode.appendTo(form);
                 }
-
-                $fieldNode.val(nodeList[0].value);
-                $('[data-input=' + fieldName.replace('id', '') + ']', form).html('<li>' + nodeList.attr('data-text') + '</li>');
+                //
+                $targetFieldNode.val(value);
+                //
+                if (isMulti) {
+                    if (multiFieldMap[field] !== true) {
+                        multiFieldMap[field] = true;
+                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                    } else {
+                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).append('<li>' + text + '</li>');
+                    }
+                } else {
+                    $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html(text);
+                }
             }
-        }
-
+        });
         return true;
     }
 };
 
 /**
- * clearFormField
+ * clearFormFields
  */
-nb.clearFormField = function(fieldName, context) {
-    $('[name=' + fieldName + ']', context).val('');
-    $('[data-input=' + fieldName + ']', context).html('');
+nb.clearFormFields = function(fields, el) {
+    var form = nb.getForm(el);
+    for (var index in fields) {
+        $('[name=' + fields[index] + ']', form).val('');
+        $('[data-input=' + fields[index] + ']', form).html('');
+    }
 };
 
 /**
@@ -804,14 +810,14 @@ nb.getSelectedEntityIDs = function(checkboxName) {
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
 */
-nbApp.choiceDialog = function(el, id, fields) {
+nbApp.defaultChoiceDialog = function(el, id, fields) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fields: fields,
         title: el.title,
         href: 'Provider?id=' + id,
-        dataType: 'json',
+        // dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -831,30 +837,30 @@ nbApp.choiceDialog = function(el, id, fields) {
 };
 
 nbApp.choiceBalanceHolder = function(el) {
-    return this.choiceDialog(el, 'get-organizations', {
+    return this.defaultChoiceDialog(el, 'get-organizations', {
         docid: 'balanceholderid',
         bin: 'balanceholderbin'
     });
 };
 
 nbApp.choiceCountries = function(el) {
-    return this.choiceDialog(el, 'get-countries', 'country');
+    return this.defaultChoiceDialog(el, 'get-countries', 'country');
 };
 
 nbApp.choiceRegion = function(el) {
-    return this.choiceDialog(el, 'get-regions', 'region');
+    return this.defaultChoiceDialog(el, 'get-regions', 'region');
 };
 
 nbApp.choiceDistrict = function(el) {
-    return this.choiceDialog(el, 'get-district', 'district');
+    return this.defaultChoiceDialog(el, 'get-district', 'district');
 };
 
 nbApp.choiceCity = function(el) {
-    return this.choiceDialog(el, 'get-city', 'city');
+    return this.defaultChoiceDialog(el, 'get-city', 'city');
 };
 
 nbApp.choiceStreet = function(el) {
-    return this.choiceDialog(el, 'get-street', 'street');
+    return this.defaultChoiceDialog(el, 'get-street', 'street');
 };
 
 $(function() {

@@ -1,22 +1,20 @@
-nbApp.dialogChoiceBalanceHolder = function(el, callback) {
+nbApp.defaultChoiceDialog = function(el, id, fields, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
-        fields: {
-            docid: 'balanceholder',
-            bin: 'balanceholderbin'
-        },
+        fields: fields,
         title: el.title,
-        href: 'Provider?id=get-organizations&_fn=' + form.name,
+        href: 'Provider?id=' + id,
+        // dataType: 'json',
         buttons: {
-            'ok': {
+            ok: {
                 text: nb.getText('select'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
-                    callback();
+                    callback && callback();
                 }
             },
-            'cancel': {
+            cancel: {
                 text: nb.getText('cancel'),
                 click: function() {
                     dlg.dialog('close');
@@ -27,28 +25,17 @@ nbApp.dialogChoiceBalanceHolder = function(el, callback) {
     return dlg;
 };
 
-nbApp.dialogChoiceReaders = function(el, callback) {
+nbApp.choiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
-    var dlg = nb.dialog.show({
-        targetForm: form.name,
-        fieldName: 'reader',
-        title: el.title,
-        href: 'Provider?id=get-employees&_fn=' + form.name,
-        buttons: {
-            'ok': {
-                text: nb.getText('select'),
-                click: function() {
-                    dlg[0].dialogOptions.onExecute();
-                    callback();
-                }
-            },
-            'cancel': {
-                text: nb.getText('cancel'),
-                click: function() {
-                    dlg.dialog('close');
-                }
-            }
-        }
-    });
-    return dlg;
+    return this.defaultChoiceDialog(el, 'get-organizations&_fn=' + form.name, {
+        docid: 'balanceholder',
+        bin: 'balanceholderbin'
+    }, callback);
+};
+
+nbApp.choiceReaders = function(el, callback) {
+    var form = nb.getForm(el);
+    return this.defaultChoiceDialog(el, 'get-employees&_fn=' + form.name, {
+        docid: 'reader'
+    }, callback);
 };

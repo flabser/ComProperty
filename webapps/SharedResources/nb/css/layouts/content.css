@@ -54,9 +54,8 @@
     color: #303333;
     font-size: 20px;
     font-weight: normal;
-    line-height: 50px;
     margin: 0;
-    padding: 0 16px;
+    padding: 14px 16px;
 }
 
 .tablet .header-title,
