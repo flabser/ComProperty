@@ -8,10 +8,7 @@
             <doscript source="JAVA_CLASS">accountant.page.form.UploadUpdatingForm</doscript>
         </events>
     </element>
-    <caption name="brand"></caption>
-    <caption name="title"></caption>
-    <caption name="logout"></caption>
-    <caption name="user_profile"></caption>
-    <caption name="cancel"></caption>
-    <caption name="attach_file"></caption>
+    <element mode="ON" type="INCLUDED_PAGE">
+        <value>common-captions</value>
+    </element>
 </rule>

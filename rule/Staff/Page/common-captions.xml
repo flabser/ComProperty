@@ -2,11 +2,27 @@
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
+    <caption name="brand"/>
+
     <caption name="page"/>
     <caption name="documents"/>
     <caption name="logout"/>
     <caption name="user_profile"/>
     <caption name="search"/>
+
+    <caption name="properties"/>
+    <caption name="interface"/>
+    <caption name="change_skin"/>
+    <caption name="position"/>
+    <caption name="user_name"/>
+    <caption name="login_name"/>
+    <caption name="email"/>
+    <caption name="password"/>
+    <caption name="reenterpassword"/>
+    <caption name="email"/>
+    <caption name="org_name"/>
+    <caption name="countdocinview"/>
+    <caption name="interface_lang"/>
 
     <caption name="structure"/>
     <caption name="organizations"/>
@@ -25,12 +41,10 @@
     <caption name="organization_label"/>
     <caption name="role"/>
 
-    <caption name="brand"/>
     <caption name="bin"/>
     <caption name="name"/>
     <caption name="description"/>
     <caption name="is_primary_organization"/>
-    
-    
+
     <caption name="bin_value_should_be_consist_from_12_symbols"/>
 </rule>

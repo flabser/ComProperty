@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="page" mode="on">
+    <caching>CACHING_IN_SERVER_SCOPE</caching>
+
+    <caption name="brand"/>
+    <caption name="title"/>
+    <caption name="logout"/>
+    <caption name="user_profile"/>
+    <caption name="cancel"/>
+    <caption name="attach_file"/>
+
+    <caption name="properties"/>
+    <caption name="interface"/>
+    <caption name="change_skin"/>
+    <caption name="position"/>
+    <caption name="user_name"/>
+    <caption name="login_name"/>
+    <caption name="email"/>
+    <caption name="password"/>
+    <caption name="reenterpassword"/>
+    <caption name="email"/>
+    <caption name="org_name"/>
+    <caption name="countdocinview"/>
+    <caption name="interface_lang"/>
+    <caption name="logout"></caption>
+</rule>
