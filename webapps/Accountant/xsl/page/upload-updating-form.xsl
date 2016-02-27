@@ -141,9 +141,7 @@
                         <ul class="update-readers" data-input="reader"></ul>
                     </div>
                     <div class="js-check-result">
-                        <xsl:if test="viewcontent/status != 3">
-                            <xsl:apply-templates select="viewcontent/msg"/>
-                        </xsl:if>
+                        <xsl:apply-templates select="viewcontent/msg"/>
                         <xsl:apply-templates select="viewcontent/sheeterrs"/>
                     </div>
                 </div>

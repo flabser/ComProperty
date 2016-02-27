@@ -78,7 +78,9 @@
         <header class="header navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button class="btn-side-nav-toggle" type="button" data-toggle="side-nav"></button>
+                    <xsl:if test="//app_menu">
+                        <button class="btn-side-nav-toggle" type="button" data-toggle="side-nav"></button>
+                    </xsl:if>
                     <img class="brand-logo" alt="logo" src="{$APP_LOGO_IMG_SRC}"/>
                     <span class="brand-title">
                         <xsl:value-of select="$APP_NAME"/>
@@ -95,11 +97,6 @@
                                     <a class="user-profile" title="{//captions/user_profile/@caption}"
                                        href=" Provider?id=userprofile">
                                         <xsl:value-of select="@username"/>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-toggle-theme="theme1">
-                                        <xsl:value-of select="//captions/change_skin/@caption"/>
                                     </a>
                                 </li>
                                 <li class="divider"></li>

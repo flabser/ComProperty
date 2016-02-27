@@ -78,7 +78,9 @@
         <header class="header navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button class="btn-side-nav-toggle" type="button" data-toggle="side-nav"></button>
+                    <xsl:if test="//app_menu">
+                        <button class="btn-side-nav-toggle" type="button" data-toggle="side-nav"></button>
+                    </xsl:if>
                     <img class="brand-logo" alt="logo" src="{$APP_LOGO_IMG_SRC}"/>
                     <span class="brand-title">
                         <xsl:value-of select="$APP_NAME"/>
