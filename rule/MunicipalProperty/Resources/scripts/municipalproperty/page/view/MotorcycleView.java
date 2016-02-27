@@ -15,7 +15,7 @@ public class MotorcycleView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		addContent(getSimpleActionBar(session, "motorcycle", lang));
+		addContent(getSimpleActionBar(session, "motorcycle-form", lang));
 		addContent(getViewPage(session, formData, KufType.MOTORCYCLE, lang));
 	}
 

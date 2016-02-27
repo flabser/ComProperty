@@ -66,6 +66,7 @@ public class ReportTemplate extends AppEntity {
 	@Override
 	public String getFullXMLChunk(LanguageType lang) {
 		StringBuilder value = new StringBuilder(1000);
+		// KufDAO kDao = new KufDAO(ses);
 		value.append("<name>" + name + "</name>");
 		String enumValue = "";
 		if (propertyType != null) {

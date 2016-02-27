@@ -69,6 +69,7 @@ public class UploadedFile extends POJOObjectAdapter {
 		chunk.append("<balanceholdername>" + balanceHolderName + "</balanceholdername>");
 		chunk.append("<balanceholderid>" + balanceHolderId + "</balanceholderid>");
 		chunk.append("<readers>" + readers + "</readers>");
+		/* chunk.append("<errormsg>" + localizedMsg + "</errormsg>"); */
 		chunk.append("<msg>" + localizedMsg + "</msg>");
 		chunk.append("<sheeterrs>");
 		if (sheetErrs != null) {

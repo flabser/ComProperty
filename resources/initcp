@@ -5,6 +5,7 @@ stini reference.init.FillDistricts
 stini reference.init.FillLocalities
 stini reference.init.FillStreets
 stini reference.init.FillPositions
+stini reference.init.FillKufs
 stini reference.init.FillPropertyCode
 stini reference.init.FillReceivingReasons
 stini reference.init.FillBuildingMaterials
