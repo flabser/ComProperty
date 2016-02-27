@@ -9,7 +9,6 @@ import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
-import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
 import municipalproperty.model.Property;
 
@@ -19,30 +18,25 @@ import municipalproperty.model.Property;
 
 public class FTSearch extends _DoPage {
 
-	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
-		String keyWord = formData.getValueSilently("keyword");
-		if (keyWord.isEmpty()) {
-			setBadRequest();
-			return;
-		}
-		int pageNum = formData.getNumberValueSilently("page", 1);
-		int pageSize = session.pageSize;
+    @Override
+    public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+        String keyWord = formData.getValueSilently("keyword");
+        if (keyWord.isEmpty()) {
+            setBadRequest();
+            return;
+        }
+        int pageNum = formData.getNumberValueSilently("page", 1);
+        int pageSize = session.pageSize;
 
-		IDatabase db = session.getCurrentDatabase();
-		IFTIndexEngine ftEngine = db.getFTSearchEngine();
-		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
-		addContent(new _ActionBar(session).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back_to_doc_list",
-		        lang), _ActionType.BACK)));
-		if (result != null) {
-			addContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang, keyWord));
-		} else {
-			addContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": " + keyWord, keyWord));
-		}
-	}
+        IDatabase db = session.getCurrentDatabase();
+        IFTIndexEngine ftEngine = db.getFTSearchEngine();
+        ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
 
-	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
-
-	}
+        addContent(new _ActionBar(session).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), "", "reset_search")));
+        if (result != null) {
+            addContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), lang, keyWord));
+        } else {
+            addContent(new _POJOListWrapper(getLocalizedWord("ft_search_return_null", lang) + ": " + keyWord, keyWord));
+        }
+    }
 }
