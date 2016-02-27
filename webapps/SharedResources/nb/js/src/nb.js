@@ -157,7 +157,10 @@ $(document).ready(function() {
     if ($('#content-overlay').length) {
         $('#content-overlay').mousedown(function(event) {
             event.preventDefault();
-            $('body').removeClass('side-nav-toggle');
+            $('body').removeClass('side-nav-toggle  search-open');
+            if ($('.navbar-search input.q').length) {
+                $('.navbar-search input.q')[0].blur();
+            }
         });
 
         $('#content-overlay')[0].addEventListener('touchstart', function(event) {
@@ -165,6 +168,14 @@ $(document).ready(function() {
             $('body').removeClass('side-nav-toggle');
         }, false);
     }
+
+    //
+    $('.navbar-search input.q').on('focus', function() {
+        $('body').addClass('search-open');
+    });
+    $('.navbar-search input.q').on('blur', function() {
+        $('body').removeClass('search-open');
+    });
 
     //
     $(window).resize(function() {
