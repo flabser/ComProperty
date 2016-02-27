@@ -28,9 +28,9 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tabs-1">
                     <fieldset class="fieldset">
-                        <xsl:if test="//document/@editable = 'false'">
+                        <!--<xsl:if test="//document/@editable = 'false'">
                             <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>
+                        </xsl:if>-->
                         <xsl:call-template name="balanceholder-bin"/>
                         <xsl:call-template name="kof-kuf"/>
                         <xsl:call-template name="invnumber"/>
@@ -53,17 +53,17 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-2">
                     <fieldset class="fieldset">
-                        <xsl:if test="//document/@editable = 'false'">
+                        <!--<xsl:if test="//document/@editable = 'false'">
                             <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>
+                        </xsl:if>-->
                         <xsl:call-template name="documents-of-title"/>
                     </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-3">
                     <fieldset class="fieldset">
-                        <xsl:if test="//document/@editable = 'false'">
+                        <!--<xsl:if test="//document/@editable = 'false'">
                             <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>
+                        </xsl:if>-->
                         <xsl:call-template name="notes"/>
                     </fieldset>
                 </div>
