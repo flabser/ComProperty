@@ -145,11 +145,7 @@ $(document).ready(function() {
     // toggle=panel
     $(document).on('click', '[data-toggle=panel]', function() {
         var $panel = $(this).parents('.panel');
-        if ($panel.hasClass('open')) {
-            $panel.removeClass('open');
-        } else {
-            $panel.addClass('open');
-        }
+        $panel.toggleClass('open');
     });
 
     // toggle=side-nav
@@ -671,7 +667,6 @@ nb.setFormValues = function(currentNode) {
                 //
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
-                        // multiFieldMap[field] = true;
                         $targetFieldNode.remove();
                     }
                     $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
@@ -709,11 +704,14 @@ nb.setFormValues = function(currentNode) {
 };
 
 /**
- * clearFormField
+ * clearFormFields
  */
-nb.clearFormField = function(fieldName, context) {
-    $('[name=' + fieldName + ']', context).val('');
-    $('[data-input=' + fieldName + ']', context).html('');
+nb.clearFormFields = function(fields, el) {
+    var form = nb.getForm(el);
+    for (var index in fields) {
+        $('[name=' + fields[index] + ']', form).val('');
+        $('[data-input=' + fields[index] + ']', form).html('');
+    }
 };
 
 /**

@@ -145,11 +145,7 @@ $(document).ready(function() {
     // toggle=panel
     $(document).on('click', '[data-toggle=panel]', function() {
         var $panel = $(this).parents('.panel');
-        if ($panel.hasClass('open')) {
-            $panel.removeClass('open');
-        } else {
-            $panel.addClass('open');
-        }
+        $panel.toggleClass('open');
     });
 
     // toggle=side-nav

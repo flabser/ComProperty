@@ -164,7 +164,6 @@ nb.setFormValues = function(currentNode) {
                 //
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
-                        // multiFieldMap[field] = true;
                         $targetFieldNode.remove();
                     }
                     $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
@@ -202,9 +201,12 @@ nb.setFormValues = function(currentNode) {
 };
 
 /**
- * clearFormField
+ * clearFormFields
  */
-nb.clearFormField = function(fieldName, context) {
-    $('[name=' + fieldName + ']', context).val('');
-    $('[data-input=' + fieldName + ']', context).html('');
+nb.clearFormFields = function(fields, el) {
+    var form = nb.getForm(el);
+    for (var index in fields) {
+        $('[name=' + fields[index] + ']', form).val('');
+        $('[data-input=' + fields[index] + ']', form).html('');
+    }
 };

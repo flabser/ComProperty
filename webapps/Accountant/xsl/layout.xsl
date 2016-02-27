@@ -26,9 +26,11 @@
                 <div class="layout {$aside_collapse}">
                     <div class="content-overlay" id="content-overlay"></div>
                     <xsl:call-template name="main-header"/>
-                    <section class="content">
-                        <xsl:call-template name="_content"/>
-                    </section>
+                    <div class="container">
+                        <section class="content">
+                            <xsl:call-template name="_content"/>
+                        </section>
+                    </div>
                     <xsl:call-template name="main-footer"/>
                 </div>
                 <xsl:copy-of select="$include_body_bottom"/>
@@ -68,17 +70,16 @@
         <header class="header navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <img alt="logo" src="{$APP_LOGO_IMG_SRC}" class="brand-logo"/>
+                    <img class="brand-logo" alt="logo" src="{$APP_LOGO_IMG_SRC}"/>
                     <span class="brand-title">
                         <xsl:value-of select="$APP_NAME"/>
                     </span>
                 </div>
                 <nav class="navbar-nav navbar-right">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <xsl:value-of select="@username"/>
-                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-user"></i>
                             </a>
                             <ul class="dropdown-menu right">
                                 <li>

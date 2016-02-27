@@ -35,5 +35,7 @@ nbApp.choiceBalanceHolder = function(el, callback) {
 
 nbApp.choiceReaders = function(el, callback) {
     var form = nb.getForm(el);
-    return this.defaultChoiceDialog(el, 'get-employees&_fn=' + form.name, { docid: 'reader' }, callback);
+    return this.defaultChoiceDialog(el, 'get-employees&_fn=' + form.name, {
+        docid: 'reader'
+    }, callback);
 };

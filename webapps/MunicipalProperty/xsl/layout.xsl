@@ -31,12 +31,14 @@
                 <div class="layout {$aside_collapse}">
                     <div class="content-overlay" id="content-overlay"></div>
                     <xsl:call-template name="main-header"/>
-                    <xsl:apply-templates select="//app_menu" mode="outline">
-                        <xsl:with-param name="active-id" select="$active_aside_id"/>
-                    </xsl:apply-templates>
-                    <section class="content">
-                        <xsl:call-template name="_content"/>
-                    </section>
+                    <div class="container">
+                        <xsl:apply-templates select="//app_menu" mode="outline">
+                            <xsl:with-param name="active-id" select="$active_aside_id"/>
+                        </xsl:apply-templates>
+                        <section class="content">
+                            <xsl:call-template name="_content"/>
+                        </section>
+                    </div>
                     <xsl:call-template name="main-footer"/>
                 </div>
                 <xsl:copy-of select="$include_body_bottom"/>
@@ -77,19 +79,16 @@
             <div class="container">
                 <div class="navbar-header">
                     <button class="btn-side-nav-toggle" type="button" data-toggle="side-nav"></button>
-                    <img alt="logo" src="{$APP_LOGO_IMG_SRC}" class="brand-logo"/>
+                    <img class="brand-logo" alt="logo" src="{$APP_LOGO_IMG_SRC}"/>
                     <span class="brand-title">
                         <xsl:value-of select="$APP_NAME"/>
                     </span>
                 </div>
                 <nav class="navbar-nav navbar-right">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span>
-                                    <xsl:value-of select="@username"/>
-                                </span>
-                                <i class="fa fa-angle-down"></i>
+                                <i class="fa fa-user"></i>
                             </a>
                             <ul class="dropdown-menu right">
                                 <li>
@@ -112,14 +111,13 @@
                             </ul>
                         </li>
                     </ul>
-                    <xsl:if test="not(//document)">
-                        <form class="navbar-form navbar-right" role="search" action="Provider">
-                            <input type="hidden" name="id" value="search"/>
-                            <input type="text" class="form-control" name="keyword" required="required">
-                                <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
-                            </input>
-                        </form>
-                    </xsl:if>
+                    <form class="navbar-form navbar-search" action="Provider">
+                        <input type="hidden" name="id" value="search"/>
+                        <input type="search" class="q" name="keyword" required="required" autocomplete="off">
+                            <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
+                        </input>
+                        <input type="submit" value="search"/>
+                    </form>
                 </nav>
             </div>
         </header>
