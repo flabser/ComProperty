@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
@@ -34,15 +33,19 @@
             </div>
         </header>
         <div class="entries">
-            <xsl:apply-templates select="//view_content//query/entry" mode="view-table-body"/>
+            <xsl:apply-templates select="//view_content//query[@count = 0]/entry" mode="view-table-empty"/>
+            <xsl:apply-templates select="//view_content//query[@count > 0]/entry" mode="view-table-body"/>
         </div>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="view-table-empty">
+        <h5 style="padding:22px">
+            <xsl:value-of select="viewcontent/message"/>
+        </h5>
     </xsl:template>
 
     <xsl:template match="entry" mode="view-table-body">
         <div class="entry-wrap">
-         <span class="vw-inv-number">
-                            <xsl:value-of select="viewcontent/message"/>
-                        </span>
             <div data-ddbid="{@id}" class="entry">
                 <label class="entry-select">
                     <input type="checkbox" name="docid" id="{@id}" value="{@doctype}"/>

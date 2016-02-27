@@ -24,7 +24,14 @@
     <xsl:variable name="pagination_center" select="3"/>
 
     <xsl:variable name="refer_url">
-        <xsl:value-of select="concat('?id=', //request/@id, '&amp;page=')"/>
+        <xsl:choose>
+            <xsl:when test="//query/@keyword != ''">
+                <xsl:value-of select="concat('?id=', //request/@id, '&amp;keyword=', //query/@keyword, '&amp;page=')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('?id=', //request/@id, '&amp;page=')"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:variable>
 
     <xsl:template match="view_content" mode="page-navigator">
