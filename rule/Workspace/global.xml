@@ -7,14 +7,14 @@
     <database autodeploy="OFF">
         <name>ComProperty</name>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://localhost:5433/PropertyObjects</url>
+        <url>jdbc:postgresql://localhost:5433/jpatest</url>
         <implementation>
             <idatabasedeployer>kz.lof.jpadatabase.DatabaseDeployer
             </idatabasedeployer>
             <idatabase>kz.lof.jpadatabase.Database</idatabase>
         </implementation>
         <username>postgres</username>
-        <password>1</password>
+        <password>smartdoc</password>
     </database>
     <externalmodule type="STAFF">Structure</externalmodule>
     <defaultredirecturl>Provider?id=workspace</defaultredirecturl>
