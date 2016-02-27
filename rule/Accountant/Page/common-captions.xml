@@ -16,6 +16,7 @@
     <caption name="user_name"/>
     <caption name="login_name"/>
     <caption name="email"/>
+    <caption name="employee"/>
     <caption name="password"/>
     <caption name="reenterpassword"/>
     <caption name="email"/>
