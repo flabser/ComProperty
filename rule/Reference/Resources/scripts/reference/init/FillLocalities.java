@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.scripting._Session;
 import reference.dao.LocalityDAO;
@@ -20,7 +20,7 @@ import reference.model.constants.LocalityType;
 public class FillLocalities extends InitialDataAdapter<Locality, LocalityDAO> {
 
 	@Override
-	public List<Locality> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Locality> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 
 		List<Locality> entities = new ArrayList<Locality>();
 		String[] data = { "Алматы", "Капчагай", "Талды-Курган" };

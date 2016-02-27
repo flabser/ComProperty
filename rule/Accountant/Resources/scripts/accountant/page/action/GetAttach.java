@@ -1,6 +1,6 @@
 package accountant.page.action;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
@@ -14,7 +14,7 @@ import java.io.File;
 public class GetAttach extends _DoPage {
 
     @Override
-    public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+    public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 
         String fileName = formData.getValueSilently("fileid");
         if (fileName.isEmpty()) {

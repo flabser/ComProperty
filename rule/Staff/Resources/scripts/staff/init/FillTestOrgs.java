@@ -9,7 +9,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
@@ -32,7 +32,7 @@ public class FillTestOrgs extends InitialDataAdapter<Organization, OrganizationD
 	private static String excelFile = EnvConst.RESOURCES_DIR + File.separator + "orgs.xls";
 
 	@Override
-	public List<Organization> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Organization> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Organization> entities = new ArrayList<Organization>();
 
 		File xf = new File(excelFile);

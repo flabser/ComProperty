@@ -504,8 +504,7 @@
 		<entry lang="KAZ">Стратегиялық объектілер</entry>
 		<entry lang="ENG">Strategic objects</entry>
 	</sentence>
-	<sentence mode="on"
-		keyword="object_reserved_fund">
+	<sentence mode="on"	keyword="object_reserved_fund">
 		<entry lang="RUS">Объекты государственного природно-заповедного фонда</entry>
 		<entry lang="KAZ">Мемлекеттік табиғи-қорық қорларының объектілері</entry>
 		<entry lang="ENG">Objects of the reserved fund</entry>

@@ -14,11 +14,14 @@ import javax.persistence.Table;
 import reference.model.constants.CountryCode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 @Entity
 @Table(name = "countries")
 @NamedQuery(name = "Country.findAll", query = "SELECT m FROM Country AS m ORDER BY m.regDate")
+@JsonIgnoreType
 public class Country extends Reference {
+	@JsonIgnore
 	@OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
 	private List<Region> regions;
 
@@ -34,6 +37,7 @@ public class Country extends Reference {
 		this.code = code;
 	}
 
+	@JsonIgnore
 	public List<Region> getRegions() {
 		return regions;
 	}

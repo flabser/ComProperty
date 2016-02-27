@@ -1,6 +1,6 @@
 package accountant.page.action;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
@@ -14,7 +14,7 @@ import java.io.File;
 public class DeleteAttach extends _DoPage {
 
     @Override
-    public void doDELETE(_Session session, _WebFormData formData, LanguageType lang) {
+    public void doDELETE(_Session session, _WebFormData formData, LanguageCode lang) {
 
         String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
         String fn = formData.getValueSilently("fileid");

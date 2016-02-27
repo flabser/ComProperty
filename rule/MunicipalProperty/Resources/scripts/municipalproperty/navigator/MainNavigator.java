@@ -3,7 +3,7 @@ package municipalproperty.navigator;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Tag;
@@ -20,7 +20,7 @@ import kz.nextbase.script.outline._OutlineEntry;
 public class MainNavigator extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Outline munPropOutline = new _Outline(getLocalizedWord("municipal_property", lang), "municipal_property");
@@ -72,11 +72,11 @@ public class MainNavigator extends _DoPage {
 		_OutlineEntry strategicObjectEntry = new _OutlineEntry(getLocalizedWord("strategic_objects", lang), "strategic-object-view");
 		strategicObjectEntry.addEntry(new _OutlineEntry(getLocalizedWord("object_reserved_fund", lang), "object-reserved-fund-view"));
 		_OutlineEntry specialConstructionEntry = new _OutlineEntry(getLocalizedWord("special_constructions", lang), "special-construction-view");
-		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("bombproofs", lang), "bomb-proof-view"));
+		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("bombproofs", lang), "bombproof-view"));
 		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("factory", lang), "factory-view"));
-		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("combines", lang), "combine-view"));
+		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("combines", lang), "combines-view"));
 		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("airports", lang), "airport-view"));
-		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("transitions", lang), "transition-view"));
+		specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("transitions", lang), "transitions-view"));
 		strategicObjectEntry.addEntry(specialConstructionEntry);
 
 		_OutlineEntry engStructureEntry = new _OutlineEntry(getLocalizedWord("eng_infrastructure", lang), "engineering-infrastructure-view");
@@ -118,7 +118,7 @@ public class MainNavigator extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
 }

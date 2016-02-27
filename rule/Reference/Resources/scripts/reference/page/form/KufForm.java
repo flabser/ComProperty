@@ -1,6 +1,6 @@
 package reference.page.form;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._Exception;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public class KufForm extends ReferenceForm {
 
     @Override
-    public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+    public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
         String id = formData.getValueSilently("docid");
         User user = session.getUser();
         Kuf entity;
@@ -32,7 +32,7 @@ public class KufForm extends ReferenceForm {
     }
 
     @Override
-    public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+    public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
         try {
             _Validation ve = validate(formData, lang);
             if (ve.hasError()) {

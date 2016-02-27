@@ -1,6 +1,6 @@
 package staff.page.action;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -14,14 +14,14 @@ import kz.nextbase.script.events._DoPage;
 public class ChangeLang extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session ses, _WebFormData formData, LanguageCode lang) {
 
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 		String anotherLang = formData.getValueSilently("lang");
-		session.setLang(LanguageType.valueOf(anotherLang));
+		session.setLang(LanguageCode.valueOf(anotherLang));
 	}
 
 }

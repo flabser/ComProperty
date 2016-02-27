@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.scripting._Session;
 import staff.dao.RoleDAO;
@@ -19,7 +19,7 @@ import staff.model.Role;
 public class FillDefaultRoles extends InitialDataAdapter<Role, RoleDAO> {
 
 	@Override
-	public List<Role> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Role> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Role> entities = new ArrayList<Role>();
 
 		/* Common roles */

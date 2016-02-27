@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._POJOObjectWrapper;
 import kz.lof.scripting._Session;
@@ -20,7 +20,7 @@ import staff.model.Organization;
 public class StructureView extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		List<IOutcomeObject> content = new ArrayList<IOutcomeObject>();
 		OrganizationDAO dao = new OrganizationDAO(session);
 		Organization org = dao.findPrimaryOrg();
@@ -41,7 +41,7 @@ public class StructureView extends _DoPage {
 	}
 
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doDELETE(_Session session, _WebFormData formData, LanguageCode lang) {
 		println(formData);
 
 		OrganizationDAO dao = new OrganizationDAO(session);

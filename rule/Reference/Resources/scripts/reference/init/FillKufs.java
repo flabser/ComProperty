@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.scripting._Session;
@@ -20,7 +20,7 @@ import reference.model.Kuf;
 public class FillKufs extends InitialDataAdapter<Kuf, KufDAO> {
 
 	@Override
-	public List<Kuf> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Kuf> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Kuf> entities = new ArrayList<Kuf>();
 		String[] data = { "Не определен", "Мебель", "Животные", "Спортивный инвентарь", "Акции", "Долевое участие", "Прочее движимое имущество",
 		        "Школьное оборудование", "Офисное оборудование", "Компьютерное оборудование", "Медицинское оборудование", "Кухонное оборудование",
@@ -50,9 +50,9 @@ public class FillKufs extends InitialDataAdapter<Kuf, KufDAO> {
 		for (int i = 0; i < data.length; i++) {
 			Kuf entity = new Kuf();
 			entity.setName(data[i]);
-			Map<LanguageType, String> name = new HashMap<LanguageType, String>();
-			name.put(LanguageType.KAZ, dataKZ[i]);
-			name.put(LanguageType.RUS, data[i]);
+			Map<LanguageCode, String> name = new HashMap<LanguageCode, String>();
+			name.put(LanguageCode.KAZ, dataKZ[i]);
+			name.put(LanguageCode.RUS, data[i]);
 			entity.setLocalizedName(name);
 			entity.setKuf(code[i]);
 			entities.add(entity);

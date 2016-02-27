@@ -1,6 +1,6 @@
 package reference.page.form;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Validation;
@@ -16,7 +16,7 @@ import kz.nextbase.script.events._DoPage;
 
 public abstract class ReferenceForm extends _DoPage {
 
-    protected _Validation validate(_WebFormData formData, LanguageType lang) {
+    protected _Validation validate(_WebFormData formData, LanguageCode lang) {
         _Validation ve = new _Validation();
         if (formData.getValueSilently("name").isEmpty()) {
             ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
@@ -25,7 +25,7 @@ public abstract class ReferenceForm extends _DoPage {
         return ve;
     }
 
-    protected IOutcomeObject getSimpleActionBar(_Session ses, LanguageType lang) {
+    protected IOutcomeObject getSimpleActionBar(_Session ses, LanguageCode lang) {
         _ActionBar actionBar = new _ActionBar(ses);
         // _Employer user = ses.getCurrentAppUser();
         // if (user.hasRole("supervisor")) {
@@ -38,8 +38,8 @@ public abstract class ReferenceForm extends _DoPage {
     }
 
     @Override
-    public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
+    public abstract void doGET(_Session session, _WebFormData formData, LanguageCode lang);
 
     @Override
-    public abstract void doPOST(_Session session, _WebFormData formData, LanguageType lang);
+    public abstract void doPOST(_Session session, _WebFormData formData, LanguageCode lang);
 }

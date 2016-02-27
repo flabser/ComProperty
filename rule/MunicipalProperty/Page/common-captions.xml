@@ -30,7 +30,7 @@
     <caption name="animals"/>
     <caption name="automobiles"/>
     <caption name="billboards"/>
-    <caption name="bomb_proofs"/>
+    <caption name="bombproofs"/>
     <caption name="buildings"/>
    <caption name="structures"/>
     <caption name="residential_objects"/>
@@ -59,7 +59,7 @@
     <caption name="eng_infrastructures"/>
     <caption name="equipment"/>
     <caption name="equities"/>
-    <caption name="factories"/>
+    <caption name="factory"/>
     <caption name="furniture"/>
     <caption name="intangible_assets"/>
  <caption name="share_blocks"/>
@@ -69,8 +69,12 @@
     <caption name="monuments"/>
     <caption name="transport"/>
     <caption name="motorcycles"/>
+    
+    <caption name="strategic_objects"/>
+      <caption name="transitions"/>
+      
     <caption name="networks"/>
-    <caption name="objects_reserved_fund"/>
+    <caption name="object_reserved_fund"/>
 
     <caption name="others_equipment"/>
     <caption name="others"/>

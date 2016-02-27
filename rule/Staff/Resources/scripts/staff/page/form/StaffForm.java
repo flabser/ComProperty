@@ -1,6 +1,6 @@
 package staff.page.form;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
@@ -15,7 +15,7 @@ import kz.nextbase.script.events._DoPage;
 
 public abstract class StaffForm extends _DoPage {
 
-    protected _Validation validate(_WebFormData formData, LanguageType lang) {
+    protected _Validation validate(_WebFormData formData, LanguageCode lang) {
         _Validation ve = new _Validation();
         if (formData.getValueSilently("name").isEmpty()) {
             ve.addError("name", "empty", getLocalizedWord("required", lang));
@@ -24,7 +24,7 @@ public abstract class StaffForm extends _DoPage {
         return ve;
     }
 
-    protected _ActionBar getSimpleActionBar(_Session ses, LanguageType lang) {
+    protected _ActionBar getSimpleActionBar(_Session ses, LanguageCode lang) {
         _ActionBar actionBar = new _ActionBar(ses);
         // _Employer user = ses.getCurrentAppUser();
         // if (user.hasRole("supervisor")) {

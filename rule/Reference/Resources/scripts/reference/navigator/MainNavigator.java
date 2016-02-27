@@ -3,7 +3,7 @@ package reference.navigator;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Tag;
@@ -16,7 +16,7 @@ import kz.nextbase.script.outline._OutlineEntry;
 public class MainNavigator extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Tag currentTag = new _Tag("current");
@@ -49,7 +49,7 @@ public class MainNavigator extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
 }

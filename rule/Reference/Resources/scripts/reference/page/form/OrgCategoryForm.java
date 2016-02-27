@@ -2,7 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.nextbase.script._Exception;
 import kz.lof.scripting._Session;
@@ -14,7 +14,7 @@ import reference.model.OrgCategory;
 public class OrgCategoryForm extends ReferenceForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		OrgCategory entity;
@@ -31,7 +31,7 @@ public class OrgCategoryForm extends ReferenceForm {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 		try {
 			_Validation ve = validate(formData, lang);
 			if (ve.hasError()) {

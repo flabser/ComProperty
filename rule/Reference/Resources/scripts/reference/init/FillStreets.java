@@ -10,7 +10,7 @@ import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
@@ -28,7 +28,7 @@ public class FillStreets extends InitialDataAdapter<Street, StreetDAO> {
 	private static String excelFile = EnvConst.RESOURCES_DIR + File.separator + "streets.xls";
 
 	@Override
-	public List<Street> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Street> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 
 		List<Street> entities = new ArrayList<Street>();
 		LocalityDAO cDao = new LocalityDAO(ses);

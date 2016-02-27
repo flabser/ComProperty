@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.scripting._Session;
 import reference.dao.TagDAO;
 import reference.model.Tag;
@@ -19,24 +19,24 @@ import reference.model.Tag;
 public class FillTags extends InitialDataAdapter<Tag, TagDAO> {
 
 	@Override
-	public List<Tag> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Tag> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Tag> entities = new ArrayList<Tag>();
 
 		Tag entity = new Tag();
-		entity.setName("on_balance");
-		Map<LanguageType, String> name = new HashMap<LanguageType, String>();
-		name.put(LanguageType.ENG, "On the balance");
-		name.put(LanguageType.RUS, "На балансе");
-		name.put(LanguageType.KAZ, "На балансе");
+		entity.setName("starred");
+		Map<LanguageCode, String> name = new HashMap<LanguageCode, String>();
+		name.put(LanguageCode.ENG, "Starred");
+		name.put(LanguageCode.RUS, "Избранный");
+		name.put(LanguageCode.KAZ, "Сүйікті");
 		entity.setLocalizedName(name);
 		entities.add(entity);
 
 		entity = new Tag();
 		entity.setName("written-off");
-		name = new HashMap<LanguageType, String>();
-		name.put(LanguageType.ENG, "Written-off");
-		name.put(LanguageType.RUS, "Списан");
-		name.put(LanguageType.KAZ, "Списан");
+		name = new HashMap<LanguageCode, String>();
+		name.put(LanguageCode.ENG, "Written-off");
+		name.put(LanguageCode.RUS, "Списан");
+		name.put(LanguageCode.KAZ, "Списан");
 		entity.setLocalizedName(name);
 		entities.add(entity);
 

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -26,7 +26,7 @@ import staff.model.OrganizationLabel;
 public class OrganizationForm extends StaffForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Organization entity;
@@ -49,7 +49,7 @@ public class OrganizationForm extends StaffForm {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 		println(formData);
 		try {
 			_Validation ve = validate(formData, lang);
@@ -98,7 +98,7 @@ public class OrganizationForm extends StaffForm {
 	}
 
 	@Override
-	protected _Validation validate(_WebFormData formData, LanguageType lang) {
+	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
 		if (formData.getValueSilently("name").isEmpty()) {
 			ve.addError("name", "empty", getLocalizedWord("field_is_empty", lang));

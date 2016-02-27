@@ -2,7 +2,7 @@ package municipalproperty.page;
 
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -19,7 +19,7 @@ import municipalproperty.model.Property;
 public class FTSearch extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		String keyWord = formData.getValueSilently("keyword");
 		if (keyWord.isEmpty()) {
 			setBadRequest();
@@ -32,12 +32,13 @@ public class FTSearch extends _DoPage {
 		IFTIndexEngine ftEngine = db.getFTSearchEngine();
 		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
 
-		addContent(new _ActionBar(session).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), "", "reset_search")));
+		addContent(new _ActionBar(session).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back", lang),
+		        "reset_search")));
 		if (result != null) {
 			addContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), session,
 			        keyWord));
 		} else {
-			addContent(new _POJOListWrapper(getLocalizedWord("ft_search_return_null", lang) + ": " + keyWord, keyWord));
+			addContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": '" + keyWord + "'", keyWord));
 		}
 	}
 }

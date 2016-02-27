@@ -1,6 +1,6 @@
 package municipalproperty.page.view;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.dao.OrderDAO;
@@ -12,13 +12,13 @@ import municipalproperty.dao.OrderDAO;
 public class OrderView extends MunicipalPropertyView {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		addContent(getSimpleActionBar(session, "order-form", lang));
 		addContent(getViewPage(new OrderDAO(session), formData));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
 }

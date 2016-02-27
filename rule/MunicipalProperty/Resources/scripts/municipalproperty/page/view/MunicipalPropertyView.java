@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -23,13 +23,13 @@ import municipalproperty.model.constants.KufType;
 
 public abstract class MunicipalPropertyView extends _DoPage {
 
-	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageType lang) {
+	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, KufType kuf, LanguageCode lang) {
 		List<KufType> params = new ArrayList<KufType>();
 		params.add(kuf);
 		return getViewPage(session, formData, params, lang);
 	}
 
-	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageType lang) {
+	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, List<KufType> set, LanguageCode lang) {
 		int pageNum = 1;
 		int pageSize = session.getPageSize();
 		if (formData.containsField("page")) {
@@ -41,13 +41,13 @@ public abstract class MunicipalPropertyView extends _DoPage {
 	}
 
 	@Override
-	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
+	public abstract void doGET(_Session session, _WebFormData formData, LanguageCode lang);
 
 	@Override
-	public abstract void doPOST(_Session session, _WebFormData formData, LanguageType lang);
+	public abstract void doPOST(_Session session, _WebFormData formData, LanguageCode lang);
 
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doDELETE(_Session session, _WebFormData formData, LanguageCode lang) {
 		println(formData);
 
 		PropertyDAO dao = new PropertyDAO(session);

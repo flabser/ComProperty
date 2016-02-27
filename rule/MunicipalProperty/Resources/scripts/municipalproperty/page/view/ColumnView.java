@@ -1,6 +1,6 @@
 package municipalproperty.page.view;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._WebFormData;
 import municipalproperty.model.constants.KufType;
@@ -14,13 +14,13 @@ import municipalproperty.model.constants.KufType;
 public class ColumnView extends MunicipalPropertyView {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		addContent(getSimpleActionBar(session, "column", lang));
 		addContent(getViewPage(session, formData, KufType.COLUMNS, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
 

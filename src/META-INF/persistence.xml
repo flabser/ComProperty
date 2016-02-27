@@ -2,6 +2,9 @@
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="Administrator" transaction-type="RESOURCE_LOCAL">
+		<class>administrator.model.Language</class>
+	</persistence-unit>
 	<persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
@@ -35,6 +38,8 @@
 		<class>reference.model.StructureType</class>	
 		<class>reference.model.ReceivingReason</class>
 		<class>reference.model.Kuf</class>
+		<!-- Obligatory the application module entities -->
+		<class>administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
@@ -68,6 +73,8 @@
 		<class>reference.model.StructureType</class>
 		<class>reference.model.ReceivingReason</class>	
 		<class>reference.model.Kuf</class>
+		<!-- Obligatory the application module entities -->
+		<class>administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>		
 	<persistence-unit name="Staff" transaction-type="RESOURCE_LOCAL">
@@ -85,6 +92,8 @@
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.OrgCategory</class>
+		<!-- Obligatory the application module entities -->
+		<class>administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Reference" transaction-type="RESOURCE_LOCAL">
@@ -108,7 +117,9 @@
 		<class>reference.model.BuildingMaterial</class>	
 		<class>reference.model.StructureType</class>
 		<class>reference.model.ReceivingReason</class>
-		<class>reference.model.Kuf</class>	
+		<class>reference.model.Kuf</class>
+		<!-- Obligatory the application module entities -->
+		<class>administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Workspace" transaction-type="RESOURCE_LOCAL">
@@ -121,6 +132,8 @@
 		<!-- Common Reference module entities -->
 		<class>reference.model.Position</class>	
 		<class>reference.model.OrgCategory</class>
+		<!-- Obligatory the application module entities -->
+		<class>administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 </persistence>

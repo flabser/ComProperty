@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.scripting._Session;
 import reference.dao.BuildingMaterialDAO;
@@ -17,7 +17,7 @@ import reference.model.BuildingMaterial;
 public class FillBuildingMaterials extends InitialDataAdapter<BuildingMaterial, BuildingMaterialDAO> {
 
 	@Override
-	public List<BuildingMaterial> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<BuildingMaterial> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<BuildingMaterial> entities = new ArrayList<BuildingMaterial>();
 		String[] data = { "Кирпич", "Монолитный железобетон", "Железобетонная панель", "Стальной каркас с наполнителем", "Дерево-сруб", "Пеноблок",
 		        "Каркасно-камышитовая панель", "Шлакоблок", "Бут", "Саман", "Дерево-шпала", "Метал", "Смешанный" };

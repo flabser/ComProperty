@@ -3,7 +3,7 @@ package municipalproperty.page.form.realestate;
 import java.util.Date;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.scripting._Session;
@@ -26,10 +26,10 @@ import staff.model.Organization;
 public abstract class RealEstateAbstractForm extends MunicipalPropertyForm {
 
 	@Override
-	public abstract void doGET(_Session session, _WebFormData formData, LanguageType lang);
+	public abstract void doGET(_Session session, _WebFormData formData, LanguageCode lang);
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 		println(formData);
 		try {
 			_Validation ve = validate(formData, lang);
@@ -102,7 +102,7 @@ public abstract class RealEstateAbstractForm extends MunicipalPropertyForm {
 		}
 	}
 
-	private _Validation validate(_WebFormData formData, LanguageType lang) {
+	private _Validation validate(_WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
 
 		if (formData.getValueSilently("balanceholderid").isEmpty()) {

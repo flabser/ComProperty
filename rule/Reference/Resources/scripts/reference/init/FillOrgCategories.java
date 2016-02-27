@@ -3,7 +3,7 @@ package reference.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.scripting._Session;
@@ -17,7 +17,7 @@ import reference.model.OrgCategory;
 public class FillOrgCategories extends InitialDataAdapter<OrgCategory, OrgCategoryDAO> {
 
 	@Override
-	public List<OrgCategory> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<OrgCategory> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<OrgCategory> entities = new ArrayList<OrgCategory>();
 		String[] data = { "ТОО", "Частный предприниматель", "АО", "Государственное ведомство" };
 

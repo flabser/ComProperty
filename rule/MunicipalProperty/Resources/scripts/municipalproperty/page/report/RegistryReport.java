@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.util.Util;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
@@ -43,7 +43,7 @@ public class RegistryReport extends _DoPage {
 	protected long grandTotal;
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 		long start_time = System.currentTimeMillis();
 		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
 		println(formData);
@@ -133,7 +133,7 @@ public class RegistryReport extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
 

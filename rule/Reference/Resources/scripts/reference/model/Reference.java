@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 
 import kz.lof.dataengine.jpa.AppEntity;
 import kz.lof.scripting._Session;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 
 @MappedSuperclass
 public class Reference extends AppEntity {
@@ -15,7 +15,7 @@ public class Reference extends AppEntity {
 	private String name;
 
 	@Column(name = "localized_name")
-	private Map<LanguageType, String> localizedName;
+	private Map<LanguageCode, String> localizedName;
 
 	public String getName() {
 		return name;
@@ -30,11 +30,11 @@ public class Reference extends AppEntity {
 		return name;
 	}
 
-	public Map<LanguageType, String> getLocalizedName() {
+	public Map<LanguageCode, String> getLocalizedName() {
 		return localizedName;
 	}
 
-	public void setLocalizedName(Map<LanguageType, String> name) {
+	public void setLocalizedName(Map<LanguageCode, String> name) {
 		this.localizedName = name;
 	}
 

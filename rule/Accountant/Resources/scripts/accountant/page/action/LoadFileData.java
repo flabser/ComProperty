@@ -8,7 +8,7 @@ import java.util.UUID;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
@@ -27,12 +27,12 @@ import accountant.page.form.UploadedFile;
 public class LoadFileData extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
 
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageType lang) {
+	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 		println(formData);
 		try {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);

@@ -3,7 +3,7 @@ package reference.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageType;
+import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.scripting._Session;
@@ -20,7 +20,7 @@ import reference.model.constants.RegionType;
 public class FillRegions extends InitialDataAdapter<Region, RegionDAO> {
 
 	@Override
-	public List<Region> getData(_Session ses, LanguageType lang, Vocabulary vocabulary) {
+	public List<Region> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Region> entities = new ArrayList<Region>();
 		String[] data = { "Алматы", "Астана", "Алматинская", "Акмолинская", "Джамбульская", "Мангистауская", "ЮКО", "ВКО" };
 

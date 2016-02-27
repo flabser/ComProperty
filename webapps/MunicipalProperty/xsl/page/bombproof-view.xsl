@@ -13,7 +13,7 @@
 		<div class="content-header">
 			<xsl:call-template name="page-info">
 				<xsl:with-param name="title"
-					select="//captions/bomb_proofs/@caption" />
+					select="//captions/bombproofs/@caption" />
 			</xsl:call-template>
 		</div>
 		<div class="content-body">
