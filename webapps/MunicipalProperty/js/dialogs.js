@@ -37,21 +37,21 @@ nbApp.choiceBalanceHolder = function(el) {
 };
 
 nbApp.choiceCountries = function(el) {
-    return this.defaultChoiceDialog(el, 'get-countries', 'json', { id: 'country' });
+    return this.defaultChoiceDialog(el, 'get-countries', 'json', { id: 'countryid' });
 };
 
 nbApp.choiceRegion = function(el) {
-    return this.defaultChoiceDialog(el, 'get-regions', 'json', { id: 'region' });
+    return this.defaultChoiceDialog(el, 'get-regions', 'json', { id: 'regionid' });
 };
 
 nbApp.choiceDistrict = function(el) {
-    return this.defaultChoiceDialog(el, 'get-district', 'json', { id: 'district' });
+    return this.defaultChoiceDialog(el, 'get-district', 'json', { id: 'districtid' });
 };
 
 nbApp.choiceCity = function(el) {
-    return this.defaultChoiceDialog(el, 'get-city', 'json', { id: 'city' });
+    return this.defaultChoiceDialog(el, 'get-city', 'json', { id: 'cityid' });
 };
 
 nbApp.choiceStreet = function(el) {
-    return this.defaultChoiceDialog(el, 'get-street', 'json', { id: 'street' });
+    return this.defaultChoiceDialog(el, 'get-street', 'json', { id: 'streetid' });
 };
