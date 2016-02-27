@@ -248,15 +248,16 @@ nb.dialog = {
     load: function(url, $container, options) {
         return $.ajax({
             url: url,
+            dataType: options.dataType || 'html',
             success: function(response, status, xhr) {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
-
-                    if (nb.debug === true) {
-                        console.log('nb.dialog : load callback', xhr);
-                    }
                 } else {
-                    $container.html(response);
+                    if (options.dataType === 'json') {
+                        $container.html(nb.tplJsonListToDialogHtmlList(response));
+                    } else {
+                        $container.html(response);
+                    }
 
                     try {
                         if (options.onLoad !== null) {
@@ -274,14 +275,18 @@ nb.dialog = {
                         console.log('nb.dialog', e);
                     }
                 }
+                //
+                if (nb.debug === true) {
+                    console.log('nb.dialog : load callback', xhr);
+                }
             },
             error: function(response, status, xhr) {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
-
-                    if (nb.debug === true) {
-                        console.log('nb.dialog : load callback', xhr);
-                    }
+                }
+                //
+                if (nb.debug === true) {
+                    console.log('nb.dialog : load error', xhr);
                 }
             }
         });
@@ -378,6 +383,7 @@ nb.dialog = {
 
             $dialog.on('change', 'select', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 self.load(this.href, $dlgContainer, options);
             });
         } else {
@@ -791,6 +797,36 @@ nb.xhr.doDelete = function(data) {
     });
 };
 
+/**
+ * tplJsonListToDialogHtmlList
+ */
+nb.tplJsonListToDialogHtmlList = function(json) {
+
+    var models = json.objects[0].list;
+    if (!models.length) {
+        return 'empty list';
+    }
+
+    var m, index;
+    var html = [];
+    html.push('<ul class=nb-dialog-list>');
+    for (index in models) {
+        m = models[index];
+        html.push('<li class=nb-dialog-list-it>');
+        html.push(' <label ondblclick="nb.dialog.execute(this)">');
+        html.push('  <input data-type="select" type="radio" name="org" value="' + m.id + '"/>');
+        html.push('  <span>');
+        html.push(m.name);
+        html.push('  </span>');
+        html.push('  <input data-id="' + m.id + '" name="id" value="' + m.id + '" data-text="' + m.name + '" type="hidden"/>');
+        html.push(' </label>');
+        html.push('</li>');
+    }
+    html.push('</ul>');
+
+    return html.join('');
+};
+
 nb.getSelectedEntityIDs = function(checkboxName) {
     var $checked = $('input[name=' + (checkboxName || 'docid') + ']:checked');
     if ($checked.length === 0) {
@@ -842,7 +878,7 @@ nbApp.defaultChoiceDialog = function(el, id, fields, callback) {
         fields: fields,
         title: el.title,
         href: 'Provider?id=' + id,
-        // dataType: 'json',
+        dataType: 'html',
         buttons: {
             ok: {
                 text: nb.getText('select'),

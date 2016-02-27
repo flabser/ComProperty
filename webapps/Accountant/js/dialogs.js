@@ -5,7 +5,7 @@ nbApp.defaultChoiceDialog = function(el, id, fields, callback) {
         fields: fields,
         title: el.title,
         href: 'Provider?id=' + id,
-        // dataType: 'json',
+        dataType: 'html',
         buttons: {
             ok: {
                 text: nb.getText('select'),

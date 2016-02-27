@@ -50,15 +50,16 @@ nb.dialog = {
     load: function(url, $container, options) {
         return $.ajax({
             url: url,
+            dataType: options.dataType || 'html',
             success: function(response, status, xhr) {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
-
-                    if (nb.debug === true) {
-                        console.log('nb.dialog : load callback', xhr);
-                    }
                 } else {
-                    $container.html(response);
+                    if (options.dataType === 'json') {
+                        $container.html(nb.tplJsonListToDialogHtmlList(response));
+                    } else {
+                        $container.html(response);
+                    }
 
                     try {
                         if (options.onLoad !== null) {
@@ -76,14 +77,18 @@ nb.dialog = {
                         console.log('nb.dialog', e);
                     }
                 }
+                //
+                if (nb.debug === true) {
+                    console.log('nb.dialog : load callback', xhr);
+                }
             },
             error: function(response, status, xhr) {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
-
-                    if (nb.debug === true) {
-                        console.log('nb.dialog : load callback', xhr);
-                    }
+                }
+                //
+                if (nb.debug === true) {
+                    console.log('nb.dialog : load error', xhr);
                 }
             }
         });
@@ -180,6 +185,7 @@ nb.dialog = {
 
             $dialog.on('change', 'select', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 self.load(this.href, $dlgContainer, options);
             });
         } else {
