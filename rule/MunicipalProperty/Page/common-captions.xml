@@ -45,7 +45,7 @@
      <caption name="trams"/>
          <caption name="water_transports"/>
         <caption name="taxi"/>
-              
+       <caption name="special_equipment"/>        
     <caption name="columns"/>
     <caption name="combines"/>
     <caption name="computer_equipment"/>

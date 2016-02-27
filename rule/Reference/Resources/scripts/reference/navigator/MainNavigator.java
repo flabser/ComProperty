@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.flabs.localization.LanguageType;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._Session;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script._Tag;
 import kz.nextbase.script._WebFormData;
 import kz.nextbase.script._XMLDocument;
@@ -35,6 +35,7 @@ public class MainNavigator extends _DoPage {
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("tags", lang), "tag-view"));
 
 		_Outline specific_outline = new _Outline(getLocalizedWord("specific_reference_data", lang), "specific");
+		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("kuf", lang), "kuf-view"));
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("property_codes", lang), "propertycode-view"));
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("receiving_reason", lang), "receivingreason-view"));
 		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure_type", lang), "structuretype-view"));
