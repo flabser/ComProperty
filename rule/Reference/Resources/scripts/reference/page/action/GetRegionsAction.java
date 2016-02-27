@@ -13,6 +13,7 @@ import kz.nextbase.script.events._DoPage;
 import reference.dao.CountryDAO;
 import reference.model.Country;
 import reference.model.Region;
+import reference.model.constants.CountryCode;
 
 /**
  * 
@@ -24,14 +25,13 @@ public class GetRegionsAction extends _DoPage {
 
 	@Override
 	public void doGET(_Session ses, _WebFormData formData, LanguageType lang) {
-		String parentId = formData.getValueSilently("countryid");
 		int pageNum = 1;
 		int pageSize = ses.pageSize;
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
 		CountryDAO cDao = new CountryDAO(ses);
-		Country country = cDao.findById(parentId);
+		Country country = cDao.findByCode(CountryCode.KZ);
 		if (country != null) {
 			List<Region> list = country.getRegions();
 			long count = list.size();
