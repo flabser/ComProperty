@@ -16,14 +16,14 @@ public class Kuf extends Reference {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true, length = 32, unique = true)
-	private KufType kuf = KufType.UNKNOWN;
+	private KufType code = KufType.UNKNOWN;
 
 	public KufType getKuf() {
-		return kuf;
+		return code;
 	}
 
 	public void setKuf(KufType kuf) {
-		this.kuf = kuf;
+		this.code = kuf;
 	}
 
 }

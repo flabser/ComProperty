@@ -12,6 +12,7 @@ import reference.model.District;
 import reference.model.Locality;
 import reference.model.Region;
 import reference.model.Street;
+import reference.model.constants.CountryCode;
 
 @Embeddable
 public class Address {
@@ -111,7 +112,7 @@ public class Address {
 	public static Address getStub(_Session session) {
 		Address addr = new Address();
 		CountryDAO cDao = new CountryDAO(session);
-		Country country = cDao.findByName("Казахстан");
+		Country country = cDao.findByCode(CountryCode.KZ);
 		addr.setCountry(country);
 		RegionDAO rDao = new RegionDAO(session);
 		Region region = rDao.findByName("Алматы");

@@ -23,7 +23,7 @@ public class Country extends Reference {
 	private List<Region> regions;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "country_code", nullable = true, length = 7, unique = true)
+	@Column(nullable = true, length = 7, unique = true)
 	private CountryCode code = CountryCode.UNKNOWN;
 
 	public CountryCode getCode() {

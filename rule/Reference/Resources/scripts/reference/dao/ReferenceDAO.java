@@ -11,10 +11,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.IAppEntity;
 import kz.lof.dataengine.jpa.ViewPage;
-import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.scripting._Session;
 
 /**
@@ -37,6 +37,20 @@ public abstract class ReferenceDAO<T extends IAppEntity, K> extends DAO<T, K> {
 			String jpql = "SELECT m FROM " + getEntityClass().getName() + " AS m WHERE m.name = :name";
 			TypedQuery<T> q = em.createQuery(jpql, getEntityClass());
 			q.setParameter("name", name);
+			return q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+
+	public T findByCode(Enum<?> code) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		try {
+			String jpql = "SELECT m FROM " + getEntityClass().getName() + " AS m WHERE m.code = :code";
+			TypedQuery<T> q = em.createQuery(jpql, getEntityClass());
+			q.setParameter("code", code);
 			return q.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
