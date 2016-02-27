@@ -91,7 +91,7 @@
     <xsl:template match="entry">
         <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
             <xsl:variable name="isOpen">
-                <xsl:if test="viewcontent/status != 3 and (viewcontent/sheeterrs != '' or viewcontent/errormsg != '')">
+                <xsl:if test="viewcontent/status != 3 and (viewcontent/sheeterrs != '' or viewcontent/msg != '')">
                     <xsl:value-of select="'open'"/>
                 </xsl:if>
             </xsl:variable>
@@ -99,7 +99,7 @@
                 <div class="panel__header">
                     <div class="panel-title panel-toggle" data-toggle="panel">
                         <i class="fa">
-                            <xsl:if test="viewcontent/sheeterrs = '' and viewcontent/errormsg = ''">
+                            <xsl:if test="viewcontent/sheeterrs = '' and viewcontent/msg = ''">
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
                             </xsl:if>
                         </i>
@@ -123,7 +123,7 @@
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn-sm btn-primary js-load">
-                                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/errormsg != ''">
+                                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="js-check-result">
                         <xsl:if test="viewcontent/status != 3">
-                            <xsl:apply-templates select="viewcontent/errormsg"/>
+                            <xsl:apply-templates select="viewcontent/msg"/>
                         </xsl:if>
                         <xsl:apply-templates select="viewcontent/sheeterrs"/>
                     </div>
@@ -151,7 +151,7 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="errormsg">
+    <xsl:template match="msg">
         <p class="errormsg">
             <xsl:value-of select="text()"/>
         </p>

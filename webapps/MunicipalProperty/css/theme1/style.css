@@ -14,6 +14,10 @@ body.theme1 {
     background: #FFF;
 }
 
+.theme1 .content {
+    background: transparent;
+}
+
 .theme1 .content-body {
     background: #FFF;
 }

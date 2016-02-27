@@ -857,7 +857,9 @@ footer.content-actions {
 }
 
 .content {
+    background: #FFF;
     border: none;
+    /* box-shadow: 0 0 2px rgba(0, 0, 0, .2); */
     height: auto;
     margin: 0 0 10px 0;
     padding: 0 0 20px 0;
@@ -1315,10 +1317,11 @@ button.btn-side-nav-toggle {
 /* desktop */
 
 .side-nav-toggle .side-nav {
-    -moz-transform: translate(-280px, 0);
+    display: none;
+    /* -moz-transform: translate(-280px, 0);
     -webkit-transform: translate(-280px, 0);
     transform: translate(-280px, 0);
-    transform: translate3d(-280px, 0, 0);
+    transform: translate3d(-280px, 0, 0); */
 }
 
 
@@ -1326,6 +1329,7 @@ button.btn-side-nav-toggle {
 
 .tablet.side-nav-toggle .side-nav,
 .phone.side-nav-toggle .side-nav {
+    display: block;
     -moz-transform: translate(280px, 0);
     -webkit-transform: translate(280px, 0);
     transform: translate(280px, 0);
