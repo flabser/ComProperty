@@ -20,10 +20,10 @@ import javax.validation.constraints.NotNull;
 
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.SecureAppEntity;
+import kz.lof.scripting._Session;
 import municipalproperty.model.constants.KufType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
@@ -315,7 +315,7 @@ public class Property extends SecureAppEntity {
 	}
 
 	@Override
-	public String getShortXMLChunk(LanguageType lang) {
+	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<originalcost>" + originalCost + "</originalcost>");
 		chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
@@ -325,7 +325,7 @@ public class Property extends SecureAppEntity {
 	}
 
 	@Override
-	public String getFullXMLChunk(LanguageType lang) {
+	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
 		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
@@ -363,7 +363,7 @@ public class Property extends SecureAppEntity {
 		try {
 			String tagsAsText = "";
 			for (Tag t : tags) {
-				tagsAsText += t.getLocalizedName().get(lang);
+				tagsAsText += "<entry id=\"" + t.getName() + "\">" + t.getLocalizedName().get(ses.getLang()) + "</entry>";
 			}
 			chunk.append("<tags>" + tagsAsText + "</tags>");
 		} catch (NullPointerException e) {

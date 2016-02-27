@@ -42,8 +42,8 @@ public class OrganizationForm extends StaffForm {
 			entity.setOrgCategory(new OrgCategory());
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), lang));
-		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), lang));
+		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

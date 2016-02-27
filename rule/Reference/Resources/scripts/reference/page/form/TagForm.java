@@ -4,10 +4,9 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageType;
 import kz.flabs.users.User;
-import kz.lof.scripting._POJOObjectWrapper;
+import kz.lof.scripting._Session;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
-import kz.lof.scripting._Session;
 import kz.nextbase.script._Validation;
 import kz.nextbase.script._WebFormData;
 import reference.dao.TagDAO;
@@ -31,7 +30,7 @@ public class TagForm extends ReferenceForm {
 			entity = new Tag();
 			entity.setAuthor(user);
 		}
-		addContent(new _POJOObjectWrapper(entity, lang));
+		addContent(entity);
 		addContent(new _EnumWrapper<>(LanguageType.class.getEnumConstants()));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);

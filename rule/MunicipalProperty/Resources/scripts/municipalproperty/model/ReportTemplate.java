@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.localization.LanguageType;
 import kz.lof.dataengine.jpa.AppEntity;
+import kz.lof.scripting._Session;
 import municipalproperty.model.constants.KufType;
+import reference.dao.KufDAO;
+import reference.model.Kuf;
 
 /**
  * 
@@ -62,16 +64,20 @@ public class ReportTemplate extends AppEntity {
 		return "Provider?id=report-template-form&amp;docid=" + getId();
 	}
 
-	// TODO need to add something to localize propertyType list
 	@Override
-	public String getFullXMLChunk(LanguageType lang) {
+	public String getFullXMLChunk(_Session ses) {
 		StringBuilder value = new StringBuilder(1000);
-		// KufDAO kDao = new KufDAO(ses);
+		KufDAO kDao = new KufDAO(ses);
 		value.append("<name>" + name + "</name>");
 		String enumValue = "";
 		if (propertyType != null) {
 			for (KufType val : propertyType) {
-				enumValue += "<entry id=\"" + val + "\">" + val + "</entry>";
+				Kuf kuf = kDao.findByCode(val);
+				if (kuf != null) {
+					enumValue += "<entry id=\"" + val + "\">" + kuf.getLocalizedName().get(ses.getLang()) + "</entry>";
+				} else {
+					enumValue += "<entry id=\"" + val + "\">" + val + "</entry>";
+				}
 			}
 		}
 		value.append("<propertytype>" + enumValue + "</propertytype>");

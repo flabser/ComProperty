@@ -23,8 +23,8 @@ public class BuildingForm extends RealEstateAbstractForm {
 			entity = getDefaultEntity(user, KufType.BUILDINGS, session);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
-		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
+		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), session));
 		addContent(getActionBar(session, lang, entity));
 		startSaveFormTransact(entity);
 	}

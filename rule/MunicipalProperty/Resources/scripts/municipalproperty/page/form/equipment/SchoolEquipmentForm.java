@@ -27,8 +27,8 @@ public class SchoolEquipmentForm extends EquipmentAbstractForm {
 			entity = getDefaultEntity(user, KufType.SCHOOL_EQUIPMENT, session);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), lang));
-		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), lang));
+		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), session));
 		addContent(getActionBar(session, lang, entity));
 		startSaveFormTransact(entity);
 	}

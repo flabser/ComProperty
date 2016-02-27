@@ -8,7 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.localization.LanguageType;
+import kz.lof.scripting._Session;
 import reference.model.embedded.Address;
 
 @Entity
@@ -49,7 +49,7 @@ public class RealEstate extends Property {
 	}
 
 	@Override
-	public String getFullXMLChunk(LanguageType lang) {
+	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<countfloors>" + countFloors + "</countfloors>");
 		chunk.append("<material>" + material + "</material>");
@@ -61,7 +61,7 @@ public class RealEstate extends Property {
 		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");
 		chunk.append("<additionalinfo>" + address.getAdditionalInfo() + "</additionalinfo>");
 
-		return super.getFullXMLChunk(lang) + chunk;
+		return super.getFullXMLChunk(ses) + chunk;
 	}
 
 }
