@@ -113,6 +113,11 @@
 		<entry lang="KAZ">Инвентарлы нөмір</entry>
 		<entry lang="ENG">Inventory number</entry>
 	</sentence>
+	<sentence mode="on" keyword="	inv_number_is_not_unique">
+		<entry lang="RUS">Инвентарный номер уже существует</entry>
+		<entry lang="KAZ">Инвентарный номер уже существует</entry>
+		<entry lang="ENG">The inventory number is exists</entry>
+	</sentence>
 	<sentence mode="on" keyword="Описание объекта">
 		<entry lang="KAZ">Объектінің сипаттамасы</entry>
 		<entry lang="ENG"></entry>

@@ -6,15 +6,16 @@ import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._EnumWrapper;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._EnumWrapper;
+import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.dao.RegionDAO;
 import reference.model.Country;
 import reference.model.Region;
 import reference.model.constants.RegionType;
+import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016
@@ -37,6 +38,7 @@ public class RegionForm extends ReferenceForm {
 		addContent(entity);
 		addContent(new _EnumWrapper<>(RegionType.class.getEnumConstants(), getLocalizedWord(RegionType.class.getEnumConstants(), lang.toString())));
 		addContent(new _POJOListWrapper<>(new CountryDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

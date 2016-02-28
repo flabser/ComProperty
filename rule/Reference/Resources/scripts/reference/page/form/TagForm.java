@@ -4,13 +4,14 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._EnumWrapper;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._Exception;
 import reference.dao.TagDAO;
 import reference.model.Tag;
+import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 28-01-2016
@@ -31,7 +32,7 @@ public class TagForm extends ReferenceForm {
 			entity.setAuthor(user);
 		}
 		addContent(entity);
-		addContent(new _EnumWrapper<>(LanguageCode.class.getEnumConstants()));
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

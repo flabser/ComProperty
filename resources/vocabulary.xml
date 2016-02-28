@@ -44,6 +44,17 @@
 		<entry lang="KAZ">Поле не заполнено</entry>
 		<entry lang="ENG">The field is empty</entry>
 	</sentence>
+	<sentence mode="on" keyword="date_format_does_not_match_to">
+		<entry lang="RUS">Формат даты не соответствует шаблону</entry>
+		<entry lang="KAZ">Формат даты не соответствует шаблону</entry>
+		<entry lang="ENG">Date format does not match to pattern</entry>
+	</sentence>
+	<sentence mode="on" keyword="required">
+		<entry lang="RUS">Обязательноe</entry>
+		<entry lang="KAZ">Обязательноe</entry>
+		<entry lang="ENG">Required</entry>
+	</sentence>
+	
 	<sentence mode="on" keyword="the_field">
 		<entry lang="RUS">Поле</entry>
 		<entry lang="KAZ"></entry>
@@ -55,9 +66,9 @@
 		<entry lang="ENG">has been not filled</entry>
 	</sentence>
 	<sentence mode="on" keyword="should_be_contain_value_more_than_zero">
-		<entry lang="RUS">должно содержать значение больше нуля</entry>
-		<entry lang="KAZ">должно содержать значение больше нуля</entry>
-		<entry lang="ENG">should be contain value more than zero</entry>
+		<entry lang="RUS">Поле должно содержать значение больше нуля</entry>
+		<entry lang="KAZ">Поле должно содержать значение больше нуля</entry>
+		<entry lang="ENG">The fiels should be contain value more than zero</entry>
 	</sentence>	
 	<sentence mode="on" keyword="change_skin">
 		<entry lang="RUS">Изменить оформление</entry>

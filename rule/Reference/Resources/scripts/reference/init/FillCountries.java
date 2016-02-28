@@ -23,6 +23,8 @@ public class FillCountries extends InitialDataAdapter<Country, CountryDAO> {
 	public List<Country> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Country> entities = new ArrayList<Country>();
 		String[] data = { "Казахстан", "Россия", "Беларуссия", "Украина", "Германия", "Франция", "Турция", "США", "Китай", "Болгария", "Португалия" };
+		String[] dataKaz = { "Казахстан", "Россия", "Беларуссия", "Украина", "Германия", "Франция", "Турция", "США", "Китай", "Болгария",
+		        "Португалия" };
 		String[] dataEng = { "Kazakhstan", "Russia", "Byelorussia", "Ukraine", "Germany", "France", "Turkey", "USA", "China", "Bulgaria", "Portugal" };
 		CountryCode[] code = { CountryCode.KZ, CountryCode.RU, CountryCode.BY, CountryCode.UA, CountryCode.DE, CountryCode.FR, CountryCode.TR,
 		        CountryCode.US, CountryCode.CN, CountryCode.BG, CountryCode.PT };
@@ -32,6 +34,7 @@ public class FillCountries extends InitialDataAdapter<Country, CountryDAO> {
 			entity.setName(data[i]);
 			Map<LanguageCode, String> name = new HashMap<LanguageCode, String>();
 			name.put(LanguageCode.ENG, dataEng[i]);
+			name.put(LanguageCode.KAZ, dataKaz[i]);
 			name.put(LanguageCode.RUS, data[i]);
 			entity.setLocalizedName(name);
 			entity.setCode(code[i]);

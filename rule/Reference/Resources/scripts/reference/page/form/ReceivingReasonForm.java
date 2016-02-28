@@ -4,12 +4,14 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._Exception;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.ReceivingReason;
+import administrator.dao.LanguageDAO;
 
 public class ReceivingReasonForm extends ReferenceForm {
 
@@ -26,6 +28,7 @@ public class ReceivingReasonForm extends ReferenceForm {
 			entity.setAuthor(user);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

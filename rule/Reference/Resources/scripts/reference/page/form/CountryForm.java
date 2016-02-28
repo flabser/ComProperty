@@ -6,6 +6,7 @@ import javax.persistence.RollbackException;
 
 import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -14,6 +15,7 @@ import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.model.Country;
 import reference.model.constants.CountryCode;
+import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016
@@ -35,6 +37,7 @@ public class CountryForm extends ReferenceForm {
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(CountryCode.class.getEnumConstants()));
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

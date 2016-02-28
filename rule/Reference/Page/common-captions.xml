@@ -53,4 +53,5 @@
     <caption name="property_codes"/>
     <caption name="receiving_reasons"/>
     <caption name="tags"/>
+     <caption name="kuf"/>
 </rule>

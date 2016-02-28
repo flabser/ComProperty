@@ -9,15 +9,16 @@ import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._Exception;
 import reference.dao.OrgCategoryDAO;
 import reference.model.OrgCategory;
 import staff.dao.OrganizationDAO;
 import staff.dao.OrganizationLabelDAO;
 import staff.model.Organization;
 import staff.model.OrganizationLabel;
+import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 09-01-2016
@@ -44,6 +45,7 @@ public class OrganizationForm extends StaffForm {
 		addContent(entity);
 		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

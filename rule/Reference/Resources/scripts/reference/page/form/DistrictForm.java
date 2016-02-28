@@ -4,13 +4,15 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._Exception;
 import reference.dao.DistrictDAO;
 import reference.dao.RegionDAO;
 import reference.model.District;
+import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016
@@ -31,6 +33,7 @@ public class DistrictForm extends ReferenceForm {
 			entity.setAuthor(user);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

@@ -13,7 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import kz.flabs.util.Util;
 import kz.lof.scripting._Session;
 import reference.model.OrgCategory;
 
@@ -93,14 +92,12 @@ public class Organization extends Staff {
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
-		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
-		chunk.append("<author>" + author + "</author>");
-		chunk.append("<name>" + getName() + "</name>");
+		chunk.append(super.getFullXMLChunk(ses));
 		chunk.append("<bin>" + bin + "</bin>");
 		chunk.append("<orgcategory>" + orgCategory.getId() + "</orgcategory>");
 		chunk.append("<labels>");
 		for (OrganizationLabel l : labels) {
-			chunk.append("<entry id=\"" + l.getId() + "\">" + l.getName() + "</entry>");
+			chunk.append("<entry id=\"" + l.getId() + "\">" + l.getLocalizedName(ses.getLang()) + "</entry>");
 		}
 		chunk.append("</labels>");
 		return chunk.toString();

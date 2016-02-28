@@ -4,12 +4,14 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Exception;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._Exception;
 import reference.dao.PropertyCodeDAO;
 import reference.model.PropertyCode;
+import administrator.dao.LanguageDAO;
 
 public class PropertyCodeForm extends ReferenceForm {
 
@@ -26,6 +28,7 @@ public class PropertyCodeForm extends ReferenceForm {
 			entity.setAuthor(user);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, lang));
 		startSaveFormTransact(entity);
 	}

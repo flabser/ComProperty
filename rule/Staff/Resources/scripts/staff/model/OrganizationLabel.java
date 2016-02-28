@@ -33,7 +33,7 @@ public class OrganizationLabel extends Staff {
 
 	@Override
 	public String getShortXMLChunk(_Session ses) {
-		return "<name>" + getName() + "</name><description>" + description + "</description>";
+		return "<name>" + getLocalizedName(ses.getLang()) + "</name><description>" + description + "</description>";
 	}
 
 	@Override

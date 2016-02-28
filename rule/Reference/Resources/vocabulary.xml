@@ -113,7 +113,11 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-
+<sentence mode="on" keyword="kuf">
+		<entry lang="ENG">KUF</entry>
+		<entry lang="RUS">КУФ</entry>
+		<entry lang="KAZ">КУФ</entry>
+	</sentence>
     <sentence mode="on" keyword="name">
         <entry lang="ENG">Name</entry>
         <entry lang="RUS">Название</entry>
