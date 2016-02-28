@@ -6,10 +6,10 @@ import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.scripting._Session;
+import kz.lof.scripting._Validation;
+import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
-import kz.nextbase.script._Validation;
-import kz.nextbase.script._WebFormData;
 import municipalproperty.dao.VehicleDAO;
 import municipalproperty.model.Vehicle;
 import municipalproperty.model.constants.KufType;
@@ -87,11 +87,7 @@ public abstract class VehicleAbstractForm extends MunicipalPropertyForm {
 			User user = session.getUser();
 			entity.addReaderEditor(user);
 
-			if (isNew) {
-				dao.add(entity);
-			} else {
-				dao.update(entity);
-			}
+			save(entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
@@ -123,6 +119,13 @@ public abstract class VehicleAbstractForm extends MunicipalPropertyForm {
 		}
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
+		} else {
+			try {
+				Date d = _Helper.convertStringToDate(formData.getValueSilently("acceptancedate"));
+			} catch (_Exception e) {
+				ve.addError("acceptancedate", "wrong_date_format", getLocalizedWord("date_format_does_not_match_to", lang) + " dd.MM.YYYY");
+			}
+
 		}
 
 		if (formData.getValueSilently("originalcost").isEmpty()) {

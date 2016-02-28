@@ -1,12 +1,15 @@
 package municipalproperty.page.form;
 
 import kz.flabs.localization.LanguageCode;
+import kz.lof.dataengine.jpa.DAO;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._Validation;
+import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import kz.nextbase.script.events._DoPage;
+import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
 
 /**
@@ -31,6 +34,22 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 			// actionBar.addAction(writtenOffAction);
 		}
 		return actionBar;
+	}
+
+	protected void save(Property entity, DAO dao, boolean isNew) {
+		PropertyDAO pDao = new PropertyDAO(dao.getSession());
+		if (!pDao.isUniqByInvNumAndName(entity.getInvNumber(), entity.getObjectName())) {
+			_Validation ve = new _Validation();
+			ve.addError("invnumber", "unique_error", getLocalizedWord("inv_number_is_not_unique", lang));
+			setBadRequest();
+			setValidation(ve);
+		} else {
+			if (isNew) {
+				dao.add(entity);
+			} else {
+				dao.update(entity);
+			}
+		}
 	}
 
 	@Override

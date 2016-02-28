@@ -5,7 +5,7 @@ import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.nextbase.script._AppEntourage;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.events._DoPage;
 
 public class Workspace extends _DoPage {

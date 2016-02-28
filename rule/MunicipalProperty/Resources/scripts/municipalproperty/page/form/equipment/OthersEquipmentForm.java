@@ -6,7 +6,7 @@ import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._WebFormData;
 import municipalproperty.dao.EquipmentDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.constants.KufType;

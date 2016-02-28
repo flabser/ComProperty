@@ -13,7 +13,7 @@ import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;

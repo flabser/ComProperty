@@ -8,7 +8,7 @@ import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.events._DoPage;
 
 /**

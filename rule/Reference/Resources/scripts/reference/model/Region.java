@@ -51,7 +51,6 @@ public class Region extends Reference {
 		return districts;
 	}
 
-	@JsonIgnore
 	public void setCountry(Country country) {
 		this.country = country;
 	}

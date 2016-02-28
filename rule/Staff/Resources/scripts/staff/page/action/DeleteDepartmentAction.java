@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.events._DoPage;
 import staff.dao.DepartmentDAO;
 

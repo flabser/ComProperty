@@ -6,7 +6,7 @@ import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._WebFormData;
+import kz.lof.scripting._WebFormData;
 import municipalproperty.dao.StrategicObjectDAO;
 import municipalproperty.model.StrategicObject;
 import municipalproperty.model.constants.KufType;
@@ -14,7 +14,7 @@ import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.dao.TagDAO;
 
-public class CombineForm extends StrategicObjectForm {
+public class CombineForm extends StrategicObjectAbstractForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {

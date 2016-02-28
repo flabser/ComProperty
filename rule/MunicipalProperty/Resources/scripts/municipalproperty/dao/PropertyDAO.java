@@ -85,23 +85,24 @@ public class PropertyDAO extends DAO<Property, UUID> {
 
 	}
 
-	public List<Property> findByInvNumAndName(String invNum, String name) {
+	public boolean isUniqByInvNumAndName(String invNum, String name) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
 			CriteriaQuery<Property> cq = cb.createQuery(Property.class);
 			Root<Property> c = cq.from(Property.class);
 			cq.select(c);
-			Predicate condition = cb.equal(c.get("invNumber"), cb.parameter(Long.class, "id"));
+			Predicate condition = cb.equal(c.get("invNumber"), invNum);
+			condition = cb.and(cb.equal(c.get("objectName"), name), condition);
 			cq.where(condition);
 			Query query = em.createQuery(cq);
-			if (!user.getUserID().equals(Const.sysUser)) {
-				condition = cb.and(c.get("readers").in((long) user.docID), condition);
-			}
 			List<Property> entities = query.getResultList();
-			return entities;
+			if (entities.size() == 0) {
+				return true;
+			}
+			return false;
 		} catch (NoResultException e) {
-			return null;
+			return false;
 		} finally {
 			em.close();
 		}
