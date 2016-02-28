@@ -15,7 +15,7 @@ public class ThermalNetworkView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
-		addContent(getSimpleActionBar(session, "thermal_network", lang));
+		addContent(getSimpleActionBar(session, "thermal-network-form", lang));
 		addContent(getViewPage(session, formData, KufType.THERMAL_NETWORKS, lang));
 	}
 

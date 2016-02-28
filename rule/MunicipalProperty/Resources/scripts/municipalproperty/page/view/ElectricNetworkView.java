@@ -15,7 +15,7 @@ public class ElectricNetworkView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
-		addContent(getSimpleActionBar(session, "electric_network", lang));
+		addContent(getSimpleActionBar(session, "electric-network-form", lang));
 		addContent(getViewPage(session, formData, KufType.ELECTRIC_NETWORKS, lang));
 	}
 

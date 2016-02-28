@@ -12,7 +12,7 @@
 		<class>municipalproperty.model.RealEstate</class>
 		<class>municipalproperty.model.PersonalEstate</class>
 		<class>municipalproperty.model.Equipment</class>
-		<class>municipalproperty.model.EngineeringInfrastaff</class>
+		<class>municipalproperty.model.EngineeringInfrastructure</class>
 		<class>municipalproperty.model.StrategicObject</class>
 		<class>municipalproperty.model.IntangibleAsset</class>
 		<class>municipalproperty.model.ReportTemplate</class>
@@ -49,7 +49,7 @@
 		<class>municipalproperty.model.RealEstate</class>
 		<class>municipalproperty.model.PersonalEstate</class>
 		<class>municipalproperty.model.Equipment</class>
-		<class>municipalproperty.model.EngineeringInfrastaff</class>
+		<class>municipalproperty.model.EngineeringInfrastructure</class>
 		<class>municipalproperty.model.StrategicObject</class>
 		<class>municipalproperty.model.IntangibleAsset</class>
 		<!-- Common Staff module entities -->			

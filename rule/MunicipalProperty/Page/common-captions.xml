@@ -54,8 +54,11 @@
     <caption name="cook_equipment"/>
      <caption name="equipment_of_civildefence"/>
     
-    <caption name="drains"/>
+    <caption name="drain"/>
     <caption name="electric_networks"/>
+        <caption name="thermal_networks"/>
+ <caption name="gas"/>
+  <caption name="water_systems"/>
     <caption name="eng_infrastructures"/>
     <caption name="equipment"/>
     <caption name="equities"/>
@@ -79,6 +82,8 @@
     <caption name="others_equipment"/>
     <caption name="others"/>
     <caption name="parking_lots"/>
+       <caption name="parkings"/>
+          <caption name="roads"/>
 
     <caption name="personal_estates"/>
     <caption name="real_estates"/>

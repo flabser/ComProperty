@@ -15,7 +15,7 @@ public class BillboardView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
-		addContent(getSimpleActionBar(session, "billboard", lang));
+		addContent(getSimpleActionBar(session, "billboard-form", lang));
 		addContent(getViewPage(session, formData, KufType.BILLBOARD, lang));
 	}
 

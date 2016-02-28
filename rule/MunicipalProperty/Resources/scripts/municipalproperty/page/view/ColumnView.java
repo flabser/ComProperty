@@ -15,7 +15,7 @@ public class ColumnView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
-		addContent(getSimpleActionBar(session, "column", lang));
+		addContent(getSimpleActionBar(session, "column-form", lang));
 		addContent(getViewPage(session, formData, KufType.COLUMNS, lang));
 	}
 

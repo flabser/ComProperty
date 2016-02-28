@@ -5,8 +5,8 @@ import java.util.List;
 
 import kz.flabs.localization.LanguageCode;
 import kz.lof.scripting._Session;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._WebFormData;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.events._DoPage;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
@@ -79,11 +79,11 @@ public class MainNavigator extends _DoPage {
 
 		_OutlineEntry engStructureEntry = new _OutlineEntry(getLocalizedWord("eng_infrastructure", lang), "engineering-infrastructure-view");
 		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("billboards", lang), "billboard-view"));
-		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("columns", lang), "column-view"));
+		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("columns", lang), "columns-view"));
 		_OutlineEntry networkEntry = new _OutlineEntry(getLocalizedWord("networks", lang), "network-view");
 		engStructureEntry.addEntry(networkEntry);
-		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "electric-network-view"));
-		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("thermal_networks", lang), "thermal-network-view"));
+		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "electric-networks-view"));
+		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("thermal_networks", lang), "thermal-networks-view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("gas", lang), "gas-view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("water_systems", lang), "water-system-view"));
 		networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("drain", lang), "drain-view"));
