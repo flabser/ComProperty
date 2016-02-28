@@ -45,6 +45,7 @@ public class Region extends Reference {
 		this.districts = districts;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "region")
 	public List<District> getDistricts() {
 		return districts;

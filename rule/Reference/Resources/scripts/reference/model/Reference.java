@@ -5,9 +5,9 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import kz.flabs.localization.LanguageCode;
 import kz.lof.dataengine.jpa.AppEntity;
 import kz.lof.scripting._Session;
-import kz.flabs.localization.LanguageCode;
 
 @MappedSuperclass
 public class Reference extends AppEntity {
@@ -42,4 +42,5 @@ public class Reference extends AppEntity {
 	public String getShortXMLChunk(_Session ses) {
 		return "<name>" + getName() + "</name>";
 	}
+
 }
