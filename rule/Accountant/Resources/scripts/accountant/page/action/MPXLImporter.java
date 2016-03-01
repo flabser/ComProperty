@@ -179,6 +179,11 @@ public class MPXLImporter {
                 addr.setRegion((Region) cv.getEntity(new RegionDAO(ses), preparedRegion));
                 addr.setDistrict((District) cv.getEntity(new DistrictDAO(ses), preparedDistrict));
                 addr.setAdditionalInfo(address);
+
+                accountant.page.action.util.AddressParser parser = new accountant.page.action.util.AddressParser();
+                parser.parseAddresses(addr, ses);
+
+
                 prop.setOriginalCost(cv.getFloat(originalCostCell));
                 prop.setCumulativeDepreciation(cv.getFloat(cumulativeDepreciationCell));
                 prop.setCumulativeDepreciation(cv.getFloat(impairmentLossCell));
@@ -186,13 +191,16 @@ public class MPXLImporter {
                 prop.setRevaluationAmount(cv.getFloat(revaluationAmountCell));
                 prop.setResidualCost(cv.getFloat(residualCostCell));
                 prop.setReceivingReason((ReceivingReason) cv.getEntity(new ReceivingReasonDAO(ses), receiptBasisinBalance));
+
                 if (prop instanceof PersonalEstate) {
                     ((PersonalEstate) prop).setModel(model);
                 } else if (prop instanceof Equipment) {
                     ((Equipment) prop).setModel(model);
                 } else if (prop instanceof RealEstate) {
                     addr.setLocality((Locality) cv.getEntity(new LocalityDAO(ses), "Алматы"));
-                    addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "unknown"));
+                    if (addr.getStreet() == null) {
+                        addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "unknown"));
+                    }
                     ((RealEstate) prop).setAddress(addr);
                 }
                 prop.setCommissioningYear(cv.getYear(commissioningYear));
