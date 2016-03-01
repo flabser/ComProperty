@@ -203,13 +203,12 @@
                                 <div class="span2">
                                     <select name="lang" onchange="changeEventHandler(event);">
                                         <xsl:variable name='currentlang' select="../@lang"/>
-                                        <xsl:for-each select="//availablelangs/entry">
-                                            <option id="{id}" value="{id}">
+                                        <xsl:for-each select="//query[@entity = 'language']/entry">
+                                            <option id="{viewcontent/lang/@id}" value="{viewcontent/lang/@id}">
                                                 <xsl:if test=". = $currentlang">
                                                     <xsl:attribute name="selected" select="'selected'"/>
                                                 </xsl:if>
-                                                <xsl:attribute name="value" select="."/>
-                                                <xsl:value-of select="."/>
+                                                <xsl:value-of select="viewcontent/lang"/>
                                             </option>
                                         </xsl:for-each>
                                     </select>
