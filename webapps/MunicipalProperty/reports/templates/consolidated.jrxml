@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
-<!-- 2016-02-26T17:17:27 -->
+<!-- 2016-03-01T11:53:37 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="balanceholder" class="java.lang.String"/>
@@ -87,10 +87,55 @@
 				<textField>
 					<reportElement x="310" y="0" width="140" height="30" uuid="c3d5cad4-4f63-4637-950a-21a02290f42f"/>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{kuf}.getCode() == 301 ? "Здания" : 
-$F{kuf}.getCode() == 203 ? "Компьютерное оборудование" : 
-$F{kuf}.getCode() == 101 ? "Мебель" : 
-$F{kuf}.getCode() == 106 ? "Другое" : $F{kuf}.getCode()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{kuf}.getCode() == 0 ? "" :
+$F{kuf}.getCode() == 101 ? "Мебель" :
+$F{kuf}.getCode() == 102 ? "Животные" :
+$F{kuf}.getCode() == 103 ? "Инвентарь" :
+$F{kuf}.getCode() == 104 ? "Пакеты акций" :
+$F{kuf}.getCode() == 105 ? "Долевое участие" :
+$F{kuf}.getCode() == 106 ? "Другое" :
+$F{kuf}.getCode() == 201 ? "Школьное оборудование" :
+$F{kuf}.getCode() == 202 ? "Офисное оборудование" :
+$F{kuf}.getCode() == 203 ? "Компьютерное оборудование" :
+$F{kuf}.getCode() == 204 ? "Медицинское оборудование" :
+$F{kuf}.getCode() == 205 ? "Кухонное оборудование" :
+$F{kuf}.getCode() == 206 ? "Оборудование гражданской обороны" :
+$F{kuf}.getCode() == 207 ? "Прочее оборудование" :
+$F{kuf}.getCode() == 301 ? "Здания" :
+$F{kuf}.getCode() == 302 ? "Помещения" :
+$F{kuf}.getCode() == 303 ? "Сооружения" :
+$F{kuf}.getCode() == 304 ? "Жилые объекты" :
+$F{kuf}.getCode() == 305 ? "Земля" :
+$F{kuf}.getCode() == 306 ? "Памятники" :
+$F{kuf}.getCode() == 401 ? "Автомашины" :
+$F{kuf}.getCode() == 4011 ? "Легковые" :
+$F{kuf}.getCode() == 4012 ? "Грузовые" :
+$F{kuf}.getCode() == 4013 ? "Дежурные" :
+$F{kuf}.getCode() == 4014 ? "Служебные" :
+$F{kuf}.getCode() == 4015 ? "Санитарные" :
+$F{kuf}.getCode() == 40161 ? "Автобусы" :
+$F{kuf}.getCode() == 40162 ? "Троллейбусы" :
+$F{kuf}.getCode() == 40163 ? "Трамваи" :
+$F{kuf}.getCode() == 40164 ? "Таксопарк" :
+$F{kuf}.getCode() == 40165 ? "Водный транспорт" :
+$F{kuf}.getCode() == 402 ? "Специальная техника" :
+$F{kuf}.getCode() == 403 ? "Мотоциклы" :
+$F{kuf}.getCode() == 501 ? "Объекты заповедного фонда" :
+$F{kuf}.getCode() == 5021 ? "Бомбоубежища" :
+$F{kuf}.getCode() == 5022 ? "Заводы" :
+$F{kuf}.getCode() == 5023 ? "Комбинаты" :
+$F{kuf}.getCode() == 5024 ? "Аэропорты" :
+$F{kuf}.getCode() == 5025 ? "Переходы" :
+$F{kuf}.getCode() == 601 ? "Биллборды" :
+$F{kuf}.getCode() == 602 ? "Колонки" :
+$F{kuf}.getCode() == 6031 ? "Электрические сети" :
+$F{kuf}.getCode() == 6032 ? "Тепловые сети" :
+$F{kuf}.getCode() == 6033 ? "Газовые сети" :
+$F{kuf}.getCode() == 6034 ? "Водопровод" :
+$F{kuf}.getCode() == 6035 ? "Арычные сети" :
+$F{kuf}.getCode() == 604 ? "Дороги" :
+$F{kuf}.getCode() == 605 ? "Парковки" :
+$F{kuf}.getCode()]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Group" evaluationGroup="subcat">
 					<reportElement x="450" y="0" width="70" height="30" uuid="0916a498-4b53-4e8f-b024-c7d2ad88fd46"/>
@@ -203,7 +248,7 @@ $F{kuf}.getCode() == 106 ? "Другое" : $F{kuf}.getCode()]]></textFieldExpre
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[Балансовая стоймость]]></text>
+				<text><![CDATA[Балансовая стоимость]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="730" y="0" width="70" height="60" uuid="cf00ce15-0d22-46da-8c08-49a9f9655a15">
