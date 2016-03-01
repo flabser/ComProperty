@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
-<!-- 2016-02-24T12:45:09 -->
+<!-- 2016-03-01T11:35:56 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="balanceholder" class="java.lang.String"/>
@@ -130,7 +130,7 @@
 		<band height="61" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference">
 				<reportElement key="textField" positionType="Float" x="0" y="0" width="30" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" forecolor="#000099" uuid="c237040a-4dd2-4b6b-a5b3-d0d1a4afd858"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="10" pdfEncoding="Cp1251"/>
 					<paragraph lineSpacing="Double"/>
 				</textElement>
@@ -138,21 +138,21 @@
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="148" y="0" width="118" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fb225fb1-0a7a-4349-92f3-a4abc1424de2"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{invNumber}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" pattern="#,###" isBlankWhenNull="true">
 				<reportElement x="267" y="0" width="105" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d48ba476-f712-4055-bbf6-ae9e3b7dc6d9"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{originalCost}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="372" y="0" width="168" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8e3443fe-f66e-4bce-b593-d13bdb208590"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objectName}]]></textFieldExpression>
@@ -166,20 +166,20 @@
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="750" y="0" width="51" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="78d164a9-3a6c-4a04-90d9-ad65f9e0d3d4"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
 			</textField>
 			<textField>
 				<reportElement x="30" y="0" width="118" height="53" uuid="39fa41b2-e401-4f15-ade0-337dbe559f96"/>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{propertyCode}.getName()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="540" y="0" width="146" height="50" uuid="ce37a37d-28f6-4612-a314-096ee08577f3"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{receivingReason}.getName()]]></textFieldExpression>
