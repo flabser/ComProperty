@@ -151,8 +151,13 @@ public class Employee extends Staff implements IEmployee {
 		}
 		chunk.append("<iin>" + iin + "</iin>");
 		chunk.append("<organization>" + organization + "</organization>");
-		chunk.append("<position>" + position + "</position>");
-		chunk.append("<roles>" + roles + "</roles>");
+		chunk.append("<organizationid>" + organization.getId() + "</organizationid>");
+		chunk.append("<position>" + position.getId() + "</position>");
+		chunk.append("<roles>");
+		for (Role l : roles) {
+			chunk.append("<entry id=\"" + l.getId() + "\">" + l.getLocalizedName(ses.getLang()) + "</entry>");
+		}
+		chunk.append("</roles>");
 		return chunk.toString();
 	}
 }

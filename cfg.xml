@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <nextbase>
     <hostname>localhost</hostname>
-    <port>3838</port>  
+    <port></port>  
     <applications>
        <app>
             <name mode="on">Administrator</name>
-        </app>
-        <app>
-            <name mode="off">Structure</name>
         </app>
          <app>
             <name mode="on">Staff</name>
@@ -24,19 +21,10 @@
          <app>
             <name mode="on">MunicipalProperty</name>
         </app>
-        <app>
-            <name mode="off">MonitoringSubsystem</name>
-        </app>
-        <app>
-            <name mode="off">Glossary</name>
-        </app>
-        <app>
-            <name mode="off">RegistrySubsystem</name>
-        </app>
-        <app>
-            <name mode="off">PropertyLeasingSubsystem</name>
-        </app>
     </applications>
+    <database>
+     	<url>jdbc:postgresql://localhost:5433/jpatest</url> 
+	</database>
     <langs>
     	<!-- https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes  -->
 		<entry>RUS</entry>

@@ -968,12 +968,6 @@ body:not(.side-nav-toggle) .aside + .content {
     }
 }
 
-@media ( max-width: 540px) {
-    .navbar-header .brand-title {
-        display: none;
-    }
-}
-
 .brand-logo + .brand-title {
     margin-left: 10px;
 }

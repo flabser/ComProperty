@@ -802,7 +802,7 @@ nb.xhr.doDelete = function(data) {
  */
 nb.tplJsonListToDialogHtmlList = function(json) {
 
-    var models = json.objects[0].list;
+    var models = json.objects[0];
     if (!models.length) {
         return 'empty list';
     }
