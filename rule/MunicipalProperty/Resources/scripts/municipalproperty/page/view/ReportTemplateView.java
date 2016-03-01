@@ -1,6 +1,6 @@
 package municipalproperty.page.view;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.dao.ReportTemplateDAO;
@@ -14,13 +14,13 @@ import municipalproperty.dao.ReportTemplateDAO;
 public class ReportTemplateView extends MunicipalPropertyView {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		addContent(getViewPage(new ReportTemplateDAO(session), formData));
 
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 

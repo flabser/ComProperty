@@ -8,10 +8,10 @@ import javax.persistence.MappedSuperclass;
 
 import kz.flabs.dataengine.DatabaseFactory;
 import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.AppEntity;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import administrator.dao.LanguageDAO;
 import administrator.model.Language;

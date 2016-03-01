@@ -2,7 +2,7 @@ package municipalproperty.page.form.enginfrastructure;
 
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -14,10 +14,10 @@ import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.dao.TagDAO;
 
-public class BillboardForm extends EngInfrastructureForm {
+public class BillboardForm extends EngInfrastructureAbstractForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		EngineeringInfrastructure entity;

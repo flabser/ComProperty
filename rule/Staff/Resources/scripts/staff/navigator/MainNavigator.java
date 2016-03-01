@@ -3,7 +3,7 @@ package staff.navigator;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._Session;
 import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._WebFormData;
@@ -18,7 +18,7 @@ import staff.model.Role;
 public class MainNavigator extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
@@ -56,7 +56,7 @@ public class MainNavigator extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 

@@ -1,6 +1,6 @@
 package reference.page.form;
 
-import kz.flabs.localization.LanguageCode;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -38,8 +38,8 @@ public abstract class ReferenceForm extends _DoPage {
 	}
 
 	@Override
-	public abstract void doGET(_Session session, _WebFormData formData, LanguageCode lang);
+	public abstract void doGET(_Session session, _WebFormData formData);
 
 	@Override
-	public abstract void doPOST(_Session session, _WebFormData formData, LanguageCode lang);
+	public abstract void doPOST(_Session session, _WebFormData formData);
 }

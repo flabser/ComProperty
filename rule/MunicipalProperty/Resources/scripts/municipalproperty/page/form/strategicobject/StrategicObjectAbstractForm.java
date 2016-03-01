@@ -2,9 +2,9 @@ package municipalproperty.page.form.strategicobject;
 
 import java.util.Date;
 
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -24,10 +24,10 @@ import staff.model.Organization;
 public abstract class StrategicObjectAbstractForm extends MunicipalPropertyForm {
 
 	@Override
-	public abstract void doGET(_Session session, _WebFormData formData, LanguageCode lang);
+	public abstract void doGET(_Session session, _WebFormData formData);
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 		// println(formData);
 		try {
 			_Validation ve = validate(formData, lang);

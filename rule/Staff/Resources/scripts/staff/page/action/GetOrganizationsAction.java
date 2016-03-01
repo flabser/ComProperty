@@ -1,6 +1,6 @@
 package staff.page.action;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -16,7 +16,7 @@ import staff.model.Organization;
 public class GetOrganizationsAction extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session ses, _WebFormData formData) {
 		String keyword = formData.getValueSilently("keyword");
 		int pageNum = formData.getNumberValueSilently("page", 1);
 		int pageSize = ses.pageSize;

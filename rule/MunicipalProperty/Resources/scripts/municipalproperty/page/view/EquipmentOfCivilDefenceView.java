@@ -1,6 +1,6 @@
 package municipalproperty.page.view;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
@@ -14,13 +14,13 @@ import municipalproperty.model.constants.KufType;
 public class EquipmentOfCivilDefenceView extends MunicipalPropertyView {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		addContent(getSimpleActionBar(session, "equipment-of-civil-defence-form", lang));
 		addContent(getViewPage(session, formData, KufType.EQUIPMENT_OF_CIVIL_DEFENCE, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 

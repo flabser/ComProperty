@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.flabs.util.Util;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
@@ -42,7 +42,7 @@ import staff.model.Organization;
 public class ReportTemplateForm extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		ReportTemplate entity;
 		if (!id.equals("")) {
@@ -56,7 +56,7 @@ public class ReportTemplateForm extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 		long start_time = System.currentTimeMillis();
 
 		String id = formData.getValueSilently("docid");

@@ -2,7 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -20,7 +20,7 @@ import administrator.dao.LanguageDAO;
 public class TagForm extends ReferenceForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Tag entity;
@@ -38,7 +38,7 @@ public class TagForm extends ReferenceForm {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 		try {
 			_Validation ve = validate(formData, lang);
 			if (ve.hasError()) {

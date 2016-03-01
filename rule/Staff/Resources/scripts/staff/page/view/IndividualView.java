@@ -1,6 +1,6 @@
 package staff.page.view;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.actions._Action;
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class IndividualView extends _DoPage {
 
     @Override
-    public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+    public void doGET(_Session session, _WebFormData formData) {
         _ActionBar actionBar = new _ActionBar(session);
         _Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization");
         newDocAction.setURL("Provider?id=organization-form");
@@ -31,7 +31,7 @@ public class IndividualView extends _DoPage {
     }
 
     @Override
-    public void doDELETE(_Session session, _WebFormData formData, LanguageCode lang) {
+    public void doDELETE(_Session session, _WebFormData formData) {
         println(formData);
 
         OrganizationDAO dao = new OrganizationDAO(session);

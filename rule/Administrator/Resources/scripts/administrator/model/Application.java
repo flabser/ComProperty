@@ -9,8 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.localization.LanguageCode;
 import kz.lof.dataengine.jpa.AppEntity;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 
 @Entity

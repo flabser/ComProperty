@@ -3,7 +3,7 @@ package staff.page.view;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -22,7 +22,7 @@ import staff.model.Role;
 public class RoleView extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		RoleDAO dao = new RoleDAO(session);
 		String id = formData.getValueSilently("docid");
 		if (!id.isEmpty()) {
@@ -42,7 +42,7 @@ public class RoleView extends _DoPage {
 	}
 
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doDELETE(_Session session, _WebFormData formData) {
 		println(formData);
 
 		RoleDAO dao = new RoleDAO(session);

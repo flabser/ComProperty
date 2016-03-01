@@ -1,6 +1,6 @@
 package staff.page;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.scripting._POJOListWrapper;
@@ -21,7 +21,7 @@ import administrator.dao.LanguageDAO;
 public class UserProfile extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData webFormData, LanguageCode lang) {
+	public void doGET(_Session ses, _WebFormData webFormData) {
 		User user = ses.getUser();
 		EmployeeDAO dao = new EmployeeDAO(ses);
 		Employee emp = dao.findByLogin(user.getUserID());
@@ -34,7 +34,7 @@ public class UserProfile extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData webFormData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData webFormData) {
 
 	}
 }

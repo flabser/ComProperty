@@ -1,6 +1,6 @@
 package staff.page.action;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -17,7 +17,7 @@ import staff.dao.EmployeeDAO;
 public class GetEmployeesAction extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session ses, _WebFormData formData) {
 		String keyword = formData.getEncodedValueSilently("keyword");
 		int pageNum = 1;
 		int pageSize = ses.pageSize;
@@ -31,7 +31,7 @@ public class GetEmployeesAction extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData webFormData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData webFormData) {
 
 	}
 

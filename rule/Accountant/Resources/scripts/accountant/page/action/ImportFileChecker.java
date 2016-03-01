@@ -8,14 +8,13 @@ import java.util.Map.Entry;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
-import kz.nextbase.script._Tag;
 import kz.lof.scripting._WebFormData;
+import kz.nextbase.script._Tag;
 import kz.nextbase.script.events._DoPage;
 
 import org.apache.commons.io.FilenameUtils;
@@ -28,7 +27,7 @@ import accountant.page.form.UploadedFile;
 public class ImportFileChecker extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		println(formData);
 		try {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
@@ -103,7 +102,7 @@ public class ImportFileChecker extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 }

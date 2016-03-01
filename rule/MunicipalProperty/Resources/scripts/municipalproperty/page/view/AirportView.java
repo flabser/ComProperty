@@ -1,6 +1,6 @@
 package municipalproperty.page.view;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
@@ -12,13 +12,13 @@ import municipalproperty.model.constants.KufType;
 public class AirportView extends MunicipalPropertyView {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		addContent(getSimpleActionBar(session, "airport-form", lang));
 		addContent(getViewPage(session, formData, KufType.AIRPORT, lang));
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 }

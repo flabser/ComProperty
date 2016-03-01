@@ -2,7 +2,7 @@ package municipalproperty.page.form.personalestate;
 
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -17,7 +17,7 @@ import reference.dao.TagDAO;
 public class OthersForm extends PersonalEstateAbstractForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		PersonalEstate entity;

@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -27,7 +27,7 @@ import administrator.dao.LanguageDAO;
 public class OrganizationForm extends StaffForm {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
 		Organization entity;
@@ -51,7 +51,7 @@ public class OrganizationForm extends StaffForm {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 		println(formData);
 		try {
 			_Validation ve = validate(formData, lang);

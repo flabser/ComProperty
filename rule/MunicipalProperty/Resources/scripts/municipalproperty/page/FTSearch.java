@@ -2,7 +2,7 @@ package municipalproperty.page;
 
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -19,7 +19,7 @@ import municipalproperty.model.Property;
 public class FTSearch extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		String keyWord = formData.getValueSilently("keyword");
 		if (keyWord.isEmpty()) {
 			setBadRequest();

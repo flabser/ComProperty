@@ -3,7 +3,7 @@ package municipalproperty.navigator;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageCode;
+
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.webserver.servlet.IOutcomeObject;
@@ -18,7 +18,7 @@ import kz.nextbase.script.outline._OutlineEntry;
 public class MainNavigator extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session session, _WebFormData formData) {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Outline munPropOutline = new _Outline(getLocalizedWord("municipal_property", lang), "municipal_property");
@@ -113,7 +113,7 @@ public class MainNavigator extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 

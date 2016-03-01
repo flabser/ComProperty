@@ -3,9 +3,9 @@ package reference.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.localization.Vocabulary;
+import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import reference.dao.StructureTypeDAO;
 import reference.model.StructureType;

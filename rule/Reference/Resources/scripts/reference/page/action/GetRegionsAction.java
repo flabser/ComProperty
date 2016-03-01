@@ -2,7 +2,6 @@ package reference.page.action;
 
 import java.util.List;
 
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
@@ -21,7 +20,7 @@ import reference.model.constants.CountryCode;
 public class GetRegionsAction extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session ses, _WebFormData formData) {
 		int pageNum = formData.getNumberValueSilently("page", 1);
 		int pageSize = ses.pageSize;
 

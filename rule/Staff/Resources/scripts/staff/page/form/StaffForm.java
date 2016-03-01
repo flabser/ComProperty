@@ -1,6 +1,6 @@
 package staff.page.form;
 
-import kz.flabs.localization.LanguageCode;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -15,23 +15,23 @@ import kz.nextbase.script.events._DoPage;
 
 public abstract class StaffForm extends _DoPage {
 
-    protected _Validation validate(_WebFormData formData, LanguageCode lang) {
-        _Validation ve = new _Validation();
-        if (formData.getValueSilently("name").isEmpty()) {
-            ve.addError("name", "empty", getLocalizedWord("required", lang));
-        }
+	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+		_Validation ve = new _Validation();
+		if (formData.getValueSilently("name").isEmpty()) {
+			ve.addError("name", "empty", getLocalizedWord("required", lang));
+		}
 
-        return ve;
-    }
+		return ve;
+	}
 
-    protected _ActionBar getSimpleActionBar(_Session ses, LanguageCode lang) {
-        _ActionBar actionBar = new _ActionBar(ses);
-        // _Employer user = ses.getCurrentAppUser();
-        // if (user.hasRole("supervisor")) {
-        actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
-        // }
+	protected _ActionBar getSimpleActionBar(_Session ses, LanguageCode lang) {
+		_ActionBar actionBar = new _ActionBar(ses);
+		// _Employer user = ses.getCurrentAppUser();
+		// if (user.hasRole("supervisor")) {
+		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+		// }
 
-        actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
-        return actionBar;
-    }
+		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
+		return actionBar;
+	}
 }

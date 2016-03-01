@@ -3,7 +3,6 @@ package accountant.page.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.localization.LanguageCode;
 import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
 import kz.lof.scripting._POJOListWrapper;
@@ -18,7 +17,7 @@ import kz.nextbase.script.events._DoPage;
 public class UploadUpdatingForm extends _DoPage {
 
 	@Override
-	public void doGET(_Session ses, _WebFormData formData, LanguageCode lang) {
+	public void doGET(_Session ses, _WebFormData formData) {
 		println(formData);
 
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
@@ -53,7 +52,7 @@ public class UploadUpdatingForm extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
+	public void doPOST(_Session session, _WebFormData formData) {
 
 	}
 }
