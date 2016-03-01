@@ -22,7 +22,7 @@ public class ChangePageSize extends _DoPage {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData, LanguageCode lang) {
 		String anotherPageSize = formData.getValueSilently("pagesize");
-		session.pageSize = Util.convertStringToInt(anotherPageSize, 20);
+		session.pageSize = Util.convertStringToInt(anotherPageSize);
 	}
 
 }
