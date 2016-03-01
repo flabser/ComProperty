@@ -2,6 +2,7 @@ package staff.page;
 
 import kz.flabs.localization.LanguageCode;
 import kz.flabs.users.User;
+import kz.flabs.util.Util;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -27,6 +28,8 @@ public class UserProfile extends _DoPage {
 		addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
 		addContent(emp);
 		addContent(new _POJOListWrapper(new LanguageDAO(ses).findAll(), ses));
+		String pagesize = String.valueOf(ses.getPageSize());
+		addContent("pagesize", pagesize);
 
 	}
 
