@@ -10,6 +10,12 @@
 		<entry lang="KAZ">Страница загрузки обновлений</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
+	<sentence mode="on" keyword="file_data_is_incorrect">
+		<entry lang="RUS">Не корректныe данные</entry>
+		<entry lang="KAZ">Не корректныe данные</entry>
+		<entry lang="ENG">File data is incorrect</entry>
+	</sentence>
+
 	<sentence mode="on" keyword="incorrect_xls_file">
 		<entry lang="RUS">Не корректный файл Excel 97-2003</entry>
 		<entry lang="KAZ">Не корректный файл Excel 97-2003</entry>
@@ -24,6 +30,12 @@
 		<entry lang="RUS">Не указаны читатели</entry>
 		<entry lang="KAZ">Не указаны читатели</entry>
 		<entry lang="ENG">Readers field is not correct</entry>
+	</sentence>
+	
+	<sentence mode="on" keyword="data_has_been_loaded_succesfully">
+		<entry lang="RUS">Данные успешно загружены</entry>
+		<entry lang="KAZ">Данные успешно загружены</entry>
+		<entry lang="ENG">The data has been loaded successfully</entry>
 	</sentence>
 	
 	
