@@ -201,11 +201,11 @@
                             </div>
                             <div class="controls">
                                 <div class="span2">
-                                    <select name="lang" onchange="changeEventHandler(event);">
-                                        <xsl:variable name='currentlang' select="../@lang"/>
+                                    <xsl:variable name='currentlang' select="/request/@lang"/>
+                                    <select name="lang" onchange="changeEventHandler(event);" autocomplete="off">
                                         <xsl:for-each select="//query[@entity = 'language']/entry">
                                             <option id="{viewcontent/lang/@id}" value="{viewcontent/lang/@id}">
-                                                <xsl:if test=". = $currentlang">
+                                                <xsl:if test="viewcontent/lang/@id = $currentlang">
                                                     <xsl:attribute name="selected" select="'selected'"/>
                                                 </xsl:if>
                                                 <xsl:value-of select="viewcontent/lang"/>
