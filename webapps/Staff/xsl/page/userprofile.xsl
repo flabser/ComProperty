@@ -11,16 +11,16 @@
 
         <script type="text/javascript">
             <![CDATA[
-            function changeEventHandler(event) {
+            function changeEventHandler(event, type) {
+                var obj = {};
+                obj['id'] = 'change-'+type+'-action';
+                obj[type] = event.target.value;
                 var xhrArgs = {
                     cache: false,
                     type: 'POST',
                     dataType: 'json',
                     url: 'Provider',
-                    data: {
-                        id: 'change-lang-action',
-                        lang: event.target.value,
-                    },
+                    data:obj,
                     success: function(res) {
                         window.location.reload(false);
                     },
@@ -166,27 +166,27 @@
                             </div>
                             <div class="controls">
                                 <div class="span2">
-                                    <select name="pagesize">
+                                    <select name="pagesize" onchange="changeEventHandler(event,'pagesize');" autocomplete="off">
                                         <option id="countdocinview10">
-                                            <xsl:if test="//fields/countdocinview = '10'">
+                                            <xsl:if test="//pagesize = '10'">
                                                 <xsl:attribute name="selected" select="'selected'"/>
                                             </xsl:if>
                                             10
                                         </option>
                                         <option id="countdocinview20">
-                                            <xsl:if test="//fields/countdocinview = '20'">
+                                            <xsl:if test="//pagesize = '20'">
                                                 <xsl:attribute name="selected" select="'selected'"/>
                                             </xsl:if>
                                             20
                                         </option>
                                         <option id="countdocinview30">
-                                            <xsl:if test="//fields/countdocinview = '30'">
+                                            <xsl:if test="//pagesize = '30'">
                                                 <xsl:attribute name="selected" select="'selected'"/>
                                             </xsl:if>
                                             30
                                         </option>
                                         <option id="countdocinview50">
-                                            <xsl:if test="//fields/countdocinview = '50'">
+                                            <xsl:if test="//pagesize = '50'">
                                                 <xsl:attribute name="selected" select="'selected'"/>
                                             </xsl:if>
                                             50
@@ -202,7 +202,7 @@
                             <div class="controls">
                                 <div class="span2">
                                     <xsl:variable name='currentlang' select="/request/@lang"/>
-                                    <select name="lang" onchange="changeEventHandler(event);" autocomplete="off">
+                                    <select name="lang" onchange="changeEventHandler(event,'lang');" autocomplete="off">
                                         <xsl:for-each select="//query[@entity = 'language']/entry">
                                             <option id="{viewcontent/lang/@id}" value="{viewcontent/lang/@id}">
                                                 <xsl:if test="viewcontent/lang/@id = $currentlang">
