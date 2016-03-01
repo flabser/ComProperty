@@ -3,7 +3,7 @@
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
 */
-nbApp.defaultChoiceDialog = function(el, id, dataType, fields) {
+nbApp.defaultChoiceDialog = function(el, id, dataType, fields, templateId) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -11,6 +11,7 @@ nbApp.defaultChoiceDialog = function(el, id, dataType, fields) {
         title: el.title,
         href: 'Provider?id=' + id,
         dataType: dataType || 'html',
+        templateId: templateId,
         buttons: {
             ok: {
                 text: nb.getText('select'),

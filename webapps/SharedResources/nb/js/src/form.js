@@ -99,9 +99,10 @@ nb.setFormValues = function(currentNode) {
 
     var $dlgw = $(currentNode).parents('[role=dialog]');
     var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
+    var dialogOptions = $dlgWgt[0].dialogOptions;
 
-    var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
-    var fields = $dlgWgt[0].dialogOptions.fields;
+    var form = nb.getForm(dialogOptions.targetForm);
+    var fields = dialogOptions.fields;
 
     if (!form) {
         nb.dialog.warn({
@@ -111,20 +112,20 @@ nb.setFormValues = function(currentNode) {
         return false;
     }
 
-    var dataList = $('[data-type=select]:checked', $dlgWgt[0]); // коллекция выбранных
+    var dataList = $('[data-type=select]:checked', $dlgw); // коллекция выбранных
     if (dataList.length) {
         return _writeValues();
     } else {
-        if ($dlgWgt[0].dialogOptions.effect) {
+        if (dialogOptions.effect) {
             $dlgw.stop();
-            $dlgw.effect($dlgWgt[0].dialogOptions.effect, {
+            $dlgw.effect(dialogOptions.effect, {
                 times: 2
             }, 300);
         }
 
         if ($('.js-no-selected-value', $dlgw[0]).length === 0) {
             (function() {
-                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + $dlgWgt[0].dialogOptions.errorMessage + '</div>');
+                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + dialogOptions.errorMessage + '</div>');
                 $dlgWgt.after($_html);
                 setTimeout(function() {
                     $_html.fadeOut({

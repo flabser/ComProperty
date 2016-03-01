@@ -12,7 +12,7 @@ nb.getSelectedEntityIDs = function(checkboxName) {
     return result;
 };
 
-nb.setReferToSessionStorage = function() {
+nb.setSearchReferToSessionStorage = function() {
     if (location.href.indexOf('id=search') == -1) {
         sessionStorage.setItem('search_refer', location.href);
     }
@@ -32,7 +32,7 @@ nb.resetSearchFromRefer = function() {
 // init
 $(document).ready(function() {
     $('form[name=ft-search]').on('submit', function() {
-        nb.setReferToSessionStorage();
+        nb.setSearchReferToSessionStorage();
         return true;
     });
 

@@ -7,7 +7,7 @@
 var nb = {
     APP_NAME: location.hostname,
     LANG_ID: 'RUS',
-    debug: true,
+    debug: false,
     translations: {
         yes: 'Да',
         no: 'Нет',
@@ -16,7 +16,6 @@ var nb = {
         select: 'Выбрать',
         dialog_select_value: 'Вы не сделали выбор'
     },
-    dialog: {},
     xhr: {}
 };
 
@@ -78,6 +77,17 @@ nb.uiBlock = function() {
  */
 nb.uiUnblock = function() {
     $('#nb-block-ui').css('display', 'none');
+};
+
+/**
+ * template
+ */
+nb.template = function(templateId, data) {
+    if (nb.tpl[templateId]) {
+        return nb.tpl[templateId].call(this, data);
+    }
+    //
+    throw new Error('nb.error > Template not found: ' + templateId + ', data: ' + data);
 };
 
 // init
@@ -245,6 +255,57 @@ nb.dialog = {
 
         $dlgWgt[0].dialogOptions.onExecute(arguments);
     },
+    resize: function($dialog) {
+        var $dlgw = $($dialog[0]).parents('[role=dialog]');
+        //
+        var titleBarHeight = $('.ui-dialog-titlebar', $dlgw[0]).outerHeight();
+        var actionBarHeight = $('.ui-dialog-buttonpane', $dlgw[0]).outerHeight()
+        var searchBarHeight = $('.dialog-filter', $dlgw[0]).outerHeight()
+        var barHeight = titleBarHeight + actionBarHeight + searchBarHeight;
+        //
+        var wh = window.innerHeight;
+        var top, height;
+        var containerNode = $('.nb-dialog-container', $dlgw[0]).get(0);
+        var fch = containerNode.offsetTop;
+        for (var i = 0; i < containerNode.children.length; i++) {
+            fch += containerNode.children[i].clientHeight;
+        }
+        //
+        if (wh < 500 && fch > 300) {
+            top = window.scrollY + 1;
+            height = wh - 2;
+        } else {
+            if (false && containerNode.clientHeight < fch) {
+                height = wh - barHeight;
+            } else {
+                height = fch + 20 + barHeight;
+            }
+            top = (wh - height) / 2;
+            if (top < 0) {
+                top = window.scrollY;
+                height = wh;
+            } else {
+                top = top + window.scrollY;
+            }
+            //
+            if (fch > 500 && wh < 800) {
+                top = window.scrollY + 1;
+                height = wh - 2;
+            }
+        }
+        //
+        var left = (window.innerWidth - $dlgw.outerWidth()) / 2;
+        //
+        $dlgw.css({
+            height: height + 'px',
+            top: top + 'px',
+            left: left + 'px'
+        });
+        //
+        $(containerNode).css({
+            height: ($dlgw[0].clientHeight - barHeight) + 'px'
+        });
+    },
     load: function(url, $container, options) {
         return $.ajax({
             url: url,
@@ -254,7 +315,7 @@ nb.dialog = {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 } else {
                     if (options.dataType === 'json') {
-                        $container.html(nb.tplJsonListToDialogHtmlList(response));
+                        $container.html(nb.template.call(options, options.templateId, response));
                     } else {
                         $container.html(response);
                     }
@@ -276,6 +337,10 @@ nb.dialog = {
                     }
                 }
                 //
+                try {
+                    window.dispatchEvent(new Event('resize'));
+                } catch (e) {}
+                //
                 if (nb.debug === true) {
                     console.log('nb.dialog : load callback', xhr);
                 }
@@ -285,6 +350,10 @@ nb.dialog = {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 }
                 //
+                try {
+                    window.dispatchEvent(new Event('resize'));
+                } catch (e) {}
+                //
                 if (nb.debug === true) {
                     console.log('nb.dialog : load error', xhr);
                 }
@@ -292,6 +361,7 @@ nb.dialog = {
         });
     },
     show: function(options) {
+        var self = this;
         var $dialog;
 
         options.id = options.id || null;
@@ -304,9 +374,9 @@ nb.dialog = {
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
         options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
+        options.templateId = options.templateId || 'defaultDialogListTemplate';
 
         options.onLoad = options.onLoad || null;
-
         // onExecute
         options.onExecute = options.onExecute || function() {
             if (nb.setFormValues($dialog)) {
@@ -320,13 +390,15 @@ nb.dialog = {
         } else {
             options.modal = true;
         }
-        options.width = options.width || '360';
-        // options.height = options.height || '420';
-        options.position = options.position || 'center';
-        options.resizable = options.resizable || false;
-        options.draggable = options.draggable || false;
 
-        if (options.id === null && options.href) {
+        options.width = options.width || '360';
+        options.position = {
+            top: window.scrollY
+        };
+        options.resizable = false;
+        options.draggable = false;
+
+        if (!options.id && options.href) {
             options.id = 'dlg_' + options.href.replace(/[^a-z0-9]/gi, '');
 
             $dialog = $('#' + options.id);
@@ -335,26 +407,21 @@ nb.dialog = {
                     return;
                 } else {
                     $dialog.dialog('open');
+                    self.resize($dialog);
                     return;
                 }
             }
-        } else if (options.id !== null) {
+        } else if (options.id) {
             $dialog = $('#' + options.id);
             if ($dialog[0]) {
                 if ($dialog.dialog('isOpen') === true) {
                     return;
                 } else {
                     $dialog.dialog('open');
+                    self.resize($dialog);
                     return;
                 }
             }
-        }
-
-        if (options.id === null) {
-            options.close = options.close || function() {
-                $dialog.dialog('destroy');
-                $dialog.remove();
-            };
         }
 
         var $dlgContainer;
@@ -369,32 +436,36 @@ nb.dialog = {
             }
         }
 
-        var self = this;
+        $dlgContainer[0].dialogOptions = options;
 
         if (options.href) {
             self.load(options.href, $dlgContainer, options);
 
             $dialog = $dlgContainer.dialog(options);
 
-            $dialog.on('click', 'a', function(e) {
+            $dlgContainer.on('click', 'a', function(e) {
                 e.preventDefault();
-                self.load(this.href, $dlgContainer, options);
-            });
-
-            $dialog.on('change', 'select', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
                 self.load(this.href, $dlgContainer, options);
             });
         } else {
             $dialog = $dlgContainer.dialog(options);
         }
 
-        $dialog[0].dialogOptions = options;
-
-        if (nb.debug === true) {
-            console.log('nb.dialog: ', options);
+        if (!options.id) {
+            options.close = options.close || function() {
+                $dialog.dialog('destroy');
+                $dialog.remove();
+                $($dialog.resizeEvent).off();
+            };
         }
+
+        var doTimeout;
+        $dialog.resizeEvent = $(window).on('resize', function() {
+            clearTimeout(doTimeout);
+            doTimeout = setTimeout(function() {
+                self.resize($dialog);
+            }, 100);
+        });
 
         return $dialog;
     }
@@ -419,7 +490,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
-        if ($('.dialog-filter input[data-role=search', $dlgw).length !== 0) {
+        if ($('.dialog-filter input[data-role=search]', $dlgw).length !== 0) {
             return;
         }
 
@@ -435,9 +506,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
         if ($('.dialog-filter', $dlgw).length === 0) {
             $containerNode.before('<div class=dialog-filter></div>');
         }
-
         $('.dialog-filter', $dlgw).append('<input type=text name=keyword data-role=search placeholder="' + nb.getText('filter', 'Фильтр') + '" />');
-
         $inputEl = $('.dialog-filter input[data-role=search]', $dlgw);
         $inputEl.on('keyup', function(e) {
             try {
@@ -619,9 +688,10 @@ nb.setFormValues = function(currentNode) {
 
     var $dlgw = $(currentNode).parents('[role=dialog]');
     var $dlgWgt = $('[data-role=nb-dialog]', $dlgw);
+    var dialogOptions = $dlgWgt[0].dialogOptions;
 
-    var form = nb.getForm($dlgWgt[0].dialogOptions.targetForm);
-    var fields = $dlgWgt[0].dialogOptions.fields;
+    var form = nb.getForm(dialogOptions.targetForm);
+    var fields = dialogOptions.fields;
 
     if (!form) {
         nb.dialog.warn({
@@ -631,20 +701,20 @@ nb.setFormValues = function(currentNode) {
         return false;
     }
 
-    var dataList = $('[data-type=select]:checked', $dlgWgt[0]); // коллекция выбранных
+    var dataList = $('[data-type=select]:checked', $dlgw); // коллекция выбранных
     if (dataList.length) {
         return _writeValues();
     } else {
-        if ($dlgWgt[0].dialogOptions.effect) {
+        if (dialogOptions.effect) {
             $dlgw.stop();
-            $dlgw.effect($dlgWgt[0].dialogOptions.effect, {
+            $dlgw.effect(dialogOptions.effect, {
                 times: 2
             }, 300);
         }
 
         if ($('.js-no-selected-value', $dlgw[0]).length === 0) {
             (function() {
-                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + $dlgWgt[0].dialogOptions.errorMessage + '</div>');
+                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + dialogOptions.errorMessage + '</div>');
                 $dlgWgt.after($_html);
                 setTimeout(function() {
                     $_html.fadeOut({
@@ -797,16 +867,19 @@ nb.xhr.doDelete = function(data) {
     });
 };
 
-/**
- * tplJsonListToDialogHtmlList
- */
-nb.tplJsonListToDialogHtmlList = function(json) {
+nb.tpl = {};
 
-    var models = json.objects[0];
+/**
+ * defaultDialogListTemplate
+ */
+nb.tpl.defaultDialogListTemplate = function(data) {
+
+    var models = data.objects[0];
     if (!models.length) {
         return 'empty list';
     }
 
+    var dialogId = this.id;
     var m, index;
     var html = [];
     html.push('<ul class=nb-dialog-list>');
@@ -814,10 +887,8 @@ nb.tplJsonListToDialogHtmlList = function(json) {
         m = models[index];
         html.push('<li class=nb-dialog-list-it>');
         html.push(' <label ondblclick="nb.dialog.execute(this)">');
-        html.push('  <input data-type="select" type="radio" name="org" value="' + m.id + '"/>');
-        html.push('  <span>');
-        html.push(m.name);
-        html.push('  </span>');
+        html.push('  <input data-type="select" type="radio" name="select_' + dialogId + '" value="' + m.id + '"/>');
+        html.push('  <span>' + m.name + '</span>');
         html.push('  <input data-id="' + m.id + '" name="id" value="' + m.id + '" data-text="' + m.name + '" type="hidden"/>');
         html.push(' </label>');
         html.push('</li>');
@@ -841,7 +912,7 @@ nb.getSelectedEntityIDs = function(checkboxName) {
     return result;
 };
 
-nb.setReferToSessionStorage = function() {
+nb.setSearchReferToSessionStorage = function() {
     if (location.href.indexOf('id=search') == -1) {
         sessionStorage.setItem('search_refer', location.href);
     }
@@ -861,7 +932,7 @@ nb.resetSearchFromRefer = function() {
 // init
 $(document).ready(function() {
     $('form[name=ft-search]').on('submit', function() {
-        nb.setReferToSessionStorage();
+        nb.setSearchReferToSessionStorage();
         return true;
     });
 
@@ -876,7 +947,7 @@ $(document).ready(function() {
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
 */
-nbApp.defaultChoiceDialog = function(el, id, dataType, fields) {
+nbApp.defaultChoiceDialog = function(el, id, dataType, fields, templateId) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -884,6 +955,7 @@ nbApp.defaultChoiceDialog = function(el, id, dataType, fields) {
         title: el.title,
         href: 'Provider?id=' + id,
         dataType: dataType || 'html',
+        templateId: templateId,
         buttons: {
             ok: {
                 text: nb.getText('select'),

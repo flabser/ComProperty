@@ -47,6 +47,57 @@ nb.dialog = {
 
         $dlgWgt[0].dialogOptions.onExecute(arguments);
     },
+    resize: function($dialog) {
+        var $dlgw = $($dialog[0]).parents('[role=dialog]');
+        //
+        var titleBarHeight = $('.ui-dialog-titlebar', $dlgw[0]).outerHeight();
+        var actionBarHeight = $('.ui-dialog-buttonpane', $dlgw[0]).outerHeight()
+        var searchBarHeight = $('.dialog-filter', $dlgw[0]).outerHeight()
+        var barHeight = titleBarHeight + actionBarHeight + searchBarHeight;
+        //
+        var wh = window.innerHeight;
+        var top, height;
+        var containerNode = $('.nb-dialog-container', $dlgw[0]).get(0);
+        var fch = containerNode.offsetTop;
+        for (var i = 0; i < containerNode.children.length; i++) {
+            fch += containerNode.children[i].clientHeight;
+        }
+        //
+        if (wh < 500 && fch > 300) {
+            top = window.scrollY + 1;
+            height = wh - 2;
+        } else {
+            if (false && containerNode.clientHeight < fch) {
+                height = wh - barHeight;
+            } else {
+                height = fch + 20 + barHeight;
+            }
+            top = (wh - height) / 2;
+            if (top < 0) {
+                top = window.scrollY;
+                height = wh;
+            } else {
+                top = top + window.scrollY;
+            }
+            //
+            if (fch > 500 && wh < 800) {
+                top = window.scrollY + 1;
+                height = wh - 2;
+            }
+        }
+        //
+        var left = (window.innerWidth - $dlgw.outerWidth()) / 2;
+        //
+        $dlgw.css({
+            height: height + 'px',
+            top: top + 'px',
+            left: left + 'px'
+        });
+        //
+        $(containerNode).css({
+            height: ($dlgw[0].clientHeight - barHeight) + 'px'
+        });
+    },
     load: function(url, $container, options) {
         return $.ajax({
             url: url,
@@ -56,7 +107,7 @@ nb.dialog = {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 } else {
                     if (options.dataType === 'json') {
-                        $container.html(nb.tplJsonListToDialogHtmlList(response));
+                        $container.html(nb.template.call(options, options.templateId, response));
                     } else {
                         $container.html(response);
                     }
@@ -78,6 +129,10 @@ nb.dialog = {
                     }
                 }
                 //
+                try {
+                    window.dispatchEvent(new Event('resize'));
+                } catch (e) {}
+                //
                 if (nb.debug === true) {
                     console.log('nb.dialog : load callback', xhr);
                 }
@@ -87,6 +142,10 @@ nb.dialog = {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 }
                 //
+                try {
+                    window.dispatchEvent(new Event('resize'));
+                } catch (e) {}
+                //
                 if (nb.debug === true) {
                     console.log('nb.dialog : load error', xhr);
                 }
@@ -94,6 +153,7 @@ nb.dialog = {
         });
     },
     show: function(options) {
+        var self = this;
         var $dialog;
 
         options.id = options.id || null;
@@ -106,9 +166,9 @@ nb.dialog = {
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
         options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
+        options.templateId = options.templateId || 'defaultDialogListTemplate';
 
         options.onLoad = options.onLoad || null;
-
         // onExecute
         options.onExecute = options.onExecute || function() {
             if (nb.setFormValues($dialog)) {
@@ -122,13 +182,15 @@ nb.dialog = {
         } else {
             options.modal = true;
         }
-        options.width = options.width || '360';
-        // options.height = options.height || '420';
-        options.position = options.position || 'center';
-        options.resizable = options.resizable || false;
-        options.draggable = options.draggable || false;
 
-        if (options.id === null && options.href) {
+        options.width = options.width || '360';
+        options.position = {
+            top: window.scrollY
+        };
+        options.resizable = false;
+        options.draggable = false;
+
+        if (!options.id && options.href) {
             options.id = 'dlg_' + options.href.replace(/[^a-z0-9]/gi, '');
 
             $dialog = $('#' + options.id);
@@ -137,26 +199,21 @@ nb.dialog = {
                     return;
                 } else {
                     $dialog.dialog('open');
+                    self.resize($dialog);
                     return;
                 }
             }
-        } else if (options.id !== null) {
+        } else if (options.id) {
             $dialog = $('#' + options.id);
             if ($dialog[0]) {
                 if ($dialog.dialog('isOpen') === true) {
                     return;
                 } else {
                     $dialog.dialog('open');
+                    self.resize($dialog);
                     return;
                 }
             }
-        }
-
-        if (options.id === null) {
-            options.close = options.close || function() {
-                $dialog.dialog('destroy');
-                $dialog.remove();
-            };
         }
 
         var $dlgContainer;
@@ -171,32 +228,36 @@ nb.dialog = {
             }
         }
 
-        var self = this;
+        $dlgContainer[0].dialogOptions = options;
 
         if (options.href) {
             self.load(options.href, $dlgContainer, options);
 
             $dialog = $dlgContainer.dialog(options);
 
-            $dialog.on('click', 'a', function(e) {
+            $dlgContainer.on('click', 'a', function(e) {
                 e.preventDefault();
-                self.load(this.href, $dlgContainer, options);
-            });
-
-            $dialog.on('change', 'select', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
                 self.load(this.href, $dlgContainer, options);
             });
         } else {
             $dialog = $dlgContainer.dialog(options);
         }
 
-        $dialog[0].dialogOptions = options;
-
-        if (nb.debug === true) {
-            console.log('nb.dialog: ', options);
+        if (!options.id) {
+            options.close = options.close || function() {
+                $dialog.dialog('destroy');
+                $dialog.remove();
+                $($dialog.resizeEvent).off();
+            };
         }
+
+        var doTimeout;
+        $dialog.resizeEvent = $(window).on('resize', function() {
+            clearTimeout(doTimeout);
+            doTimeout = setTimeout(function() {
+                self.resize($dialog);
+            }, 100);
+        });
 
         return $dialog;
     }
@@ -221,7 +282,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
     init();
 
     function init() {
-        if ($('.dialog-filter input[data-role=search', $dlgw).length !== 0) {
+        if ($('.dialog-filter input[data-role=search]', $dlgw).length !== 0) {
             return;
         }
 
@@ -237,9 +298,7 @@ nb.dialog.Filter = function(_containerNode, _filterNode, _initCount, _triggerLen
         if ($('.dialog-filter', $dlgw).length === 0) {
             $containerNode.before('<div class=dialog-filter></div>');
         }
-
         $('.dialog-filter', $dlgw).append('<input type=text name=keyword data-role=search placeholder="' + nb.getText('filter', 'Фильтр') + '" />');
-
         $inputEl = $('.dialog-filter input[data-role=search]', $dlgw);
         $inputEl.on('keyup', function(e) {
             try {

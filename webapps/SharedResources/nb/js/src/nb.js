@@ -7,7 +7,7 @@
 var nb = {
     APP_NAME: location.hostname,
     LANG_ID: 'RUS',
-    debug: true,
+    debug: false,
     translations: {
         yes: 'Да',
         no: 'Нет',
@@ -16,7 +16,6 @@ var nb = {
         select: 'Выбрать',
         dialog_select_value: 'Вы не сделали выбор'
     },
-    dialog: {},
     xhr: {}
 };
 
@@ -78,6 +77,17 @@ nb.uiBlock = function() {
  */
 nb.uiUnblock = function() {
     $('#nb-block-ui').css('display', 'none');
+};
+
+/**
+ * template
+ */
+nb.template = function(templateId, data) {
+    if (nb.tpl[templateId]) {
+        return nb.tpl[templateId].call(this, data);
+    }
+    //
+    throw new Error('nb.error > Template not found: ' + templateId + ', data: ' + data);
 };
 
 // init
