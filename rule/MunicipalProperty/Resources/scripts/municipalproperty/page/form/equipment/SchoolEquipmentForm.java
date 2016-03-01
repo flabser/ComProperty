@@ -31,7 +31,7 @@ public class SchoolEquipmentForm extends EquipmentAbstractForm {
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new TagDAO(session).findAll(), session));
-		addContent(getActionBar(session, lang, entity));
+		addContent(getActionBar(session, entity));
 		startSaveFormTransact(entity);
 	}
 

@@ -1,6 +1,5 @@
 package municipalproperty.page.view;
 
-
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
@@ -16,8 +15,8 @@ public class AnimalView extends MunicipalPropertyView {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		// println(formData);
-		addContent(getSimpleActionBar(session, "animal", lang));
-		addContent(getViewPage(session, formData, KufType.ANIMALS, lang));
+		addContent(getSimpleActionBar(session, "animal", session.getLang()));
+		addContent(getViewPage(session, formData, KufType.ANIMALS, session.getLang()));
 	}
 
 	@Override

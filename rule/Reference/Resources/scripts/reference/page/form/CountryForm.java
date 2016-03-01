@@ -13,6 +13,7 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.model.Country;
+import reference.model.Reference;
 import reference.model.constants.CountryCode;
 import administrator.dao.LanguageDAO;
 
@@ -26,25 +27,24 @@ public class CountryForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		Country entity;
+		Reference entity;
 		if (!id.isEmpty()) {
 			CountryDAO dao = new CountryDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new Country();
-			entity.setAuthor(user);
+			entity = getDefaultEntity(user);
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(CountryCode.class.getEnumConstants()));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, session.getLang()));
+		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);

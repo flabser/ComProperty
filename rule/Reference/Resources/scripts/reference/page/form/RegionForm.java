@@ -1,5 +1,6 @@
 package reference.page.form;
 
+import java.util.Date;
 import java.util.UUID;
 
 import kz.flabs.users.User;
@@ -8,13 +9,13 @@ import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
-import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.dao.RegionDAO;
+import reference.dao.RegionTypeDAO;
 import reference.model.Country;
 import reference.model.Region;
-import reference.model.constants.RegionType;
+import reference.model.constants.CountryCode;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -34,19 +35,31 @@ public class RegionForm extends ReferenceForm {
 		} else {
 			entity = new Region();
 			entity.setAuthor(user);
+			entity.setRegDate(new Date());
+			entity.setName("");
+			CountryDAO cDao = new CountryDAO(session);
+			Country country = cDao.findByCode(CountryCode.KZ);
+			if (country != null) {
+				entity.setCountry(country);
+			}
+
 		}
 		addContent(entity);
-		addContent(new _EnumWrapper<>(RegionType.class.getEnumConstants(), getLocalizedWord(RegionType.class.getEnumConstants(), lang.toString())));
+		// addContent(new _EnumWrapper<>(RegionCode.class.getEnumConstants(),
+		// getLocalizedWord(RegionCode.class.getEnumConstants(),
+		// session.getLang()
+		// .toString())));
+		addContent(new _POJOListWrapper<>(new RegionTypeDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper<>(new CountryDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, lang));
+		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
@@ -65,7 +78,8 @@ public class RegionForm extends ReferenceForm {
 			}
 
 			entity.setName(formData.getValue("name"));
-			entity.setType(RegionType.valueOf(formData.getValue("type")));
+			RegionTypeDAO rtDao = new RegionTypeDAO(session);
+			entity.setType(rtDao.findById(formData.getValue("type")));
 			CountryDAO countryDao = new CountryDAO(session);
 			Country country = countryDao.findById(UUID.fromString(formData.getValue("country")));
 			entity.setCountry(country);

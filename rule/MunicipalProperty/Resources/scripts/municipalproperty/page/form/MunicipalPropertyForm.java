@@ -23,7 +23,8 @@ import municipalproperty.model.Property;
 
 public abstract class MunicipalPropertyForm extends _DoPage {
 
-	protected _ActionBar getActionBar(_Session ses, LanguageCode lang, Property entity) {
+	protected _ActionBar getActionBar(_Session ses, Property entity) {
+		LanguageCode lang = ses.getLang();
 		_ActionBar actionBar = new _ActionBar(ses);
 		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
 		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
@@ -39,12 +40,13 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 	}
 
 	protected void save(Property entity, DAO dao, boolean isNew) {
-		PropertyDAO pDao = new PropertyDAO(dao.getSession());
+		_Session ses = dao.getSession();
+		PropertyDAO pDao = new PropertyDAO(ses);
 		List<Property> list = pDao.findByInvNumAndName(entity.getInvNumber(), entity.getObjectName());
 		for (Property e : list) {
 			if (!e.equals(entity)) {
 				_Validation ve = new _Validation();
-				ve.addError("invnumber", "unique_error", getLocalizedWord("inv_number_is_not_unique", lang));
+				ve.addError("invnumber", "unique_error", getLocalizedWord("inv_number_is_not_unique", ses.getLang()));
 				setBadRequest();
 				setValidation(ve);
 				return;

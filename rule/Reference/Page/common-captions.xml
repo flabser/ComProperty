@@ -35,6 +35,8 @@
     <caption name="region"/>
     <caption name="country"/>
     <caption name="locality"/>
+    <caption name="region_types"/>
+    <caption name="locality_types"/>
     <caption name="street"/>
     <caption name="position"/>
     <caption name="org_categories"/>

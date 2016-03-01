@@ -2,10 +2,7 @@ package reference.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -14,7 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import kz.lof.scripting._Session;
-import reference.model.constants.RegionType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,9 +25,10 @@ public class Region extends Reference {
 	@JoinColumn(nullable = false)
 	private Country country;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "region_type", nullable = true, length = 32)
-	private RegionType type = RegionType.UNKNOWN;
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private RegionType type;
 
 	public RegionType getType() {
 		return type;
@@ -53,6 +50,15 @@ public class Region extends Reference {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append(super.getFullXMLChunk(ses));
+		chunk.append("<type>" + type.getId() + "</type>");
+		;
+		return chunk.toString();
 	}
 
 	@Override

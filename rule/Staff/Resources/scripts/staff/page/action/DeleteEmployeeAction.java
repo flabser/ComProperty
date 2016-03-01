@@ -2,7 +2,7 @@ package staff.page.action;
 
 import java.util.UUID;
 
-
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -23,6 +23,7 @@ public class DeleteEmployeeAction extends _DoPage {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData webFormData) {
+		LanguageCode lang = session.getLang();
 		String id = webFormData.getValueSilently("docid");
 		EmployeeDAO dao = new EmployeeDAO(session);
 		dao.delete(dao.findById(UUID.fromString(id)));

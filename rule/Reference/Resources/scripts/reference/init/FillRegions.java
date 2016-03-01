@@ -9,9 +9,11 @@ import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import reference.dao.CountryDAO;
 import reference.dao.RegionDAO;
+import reference.dao.RegionTypeDAO;
 import reference.model.Country;
 import reference.model.Region;
-import reference.model.constants.RegionType;
+import reference.model.RegionType;
+import reference.model.constants.RegionCode;
 
 /**
  * Created by Kayra on 30/12/15.
@@ -31,11 +33,14 @@ public class FillRegions extends InitialDataAdapter<Region, RegionDAO> {
 			Region entity = new Region();
 			entity.setCountry(country);
 			entity.setName(data[i]);
+			RegionTypeDAO rtDao = new RegionTypeDAO(ses);
+			RegionType rType = null;
 			if (data[i].equals("Алматы") || data[i].equals("Астана")) {
-				entity.setType(RegionType.URBAN_AGGLOMERATION);
+				rType = rtDao.findByCode(RegionCode.URBAN_AGGLOMERATION);
 			} else {
-				entity.setType(RegionType.REGION);
+				rType = rtDao.findByCode(RegionCode.REGION);
 			}
+			entity.setType(rType);
 			entities.add(entity);
 		}
 
@@ -46,11 +51,14 @@ public class FillRegions extends InitialDataAdapter<Region, RegionDAO> {
 			Region entity = new Region();
 			entity.setCountry(country1);
 			entity.setName(data1[i]);
+			RegionTypeDAO rtDao = new RegionTypeDAO(ses);
+			RegionType rType = null;
 			if (data1[i].equals("Москва") || data1[i].equals("Санкт-Петербург")) {
-				entity.setType(RegionType.URBAN_AGGLOMERATION);
+				rType = rtDao.findByCode(RegionCode.URBAN_AGGLOMERATION);
 			} else {
-				entity.setType(RegionType.REGION);
+				rType = rtDao.findByCode(RegionCode.REGION);
 			}
+			entity.setType(rType);
 			entities.add(entity);
 		}
 
@@ -61,11 +69,14 @@ public class FillRegions extends InitialDataAdapter<Region, RegionDAO> {
 			Region entity = new Region();
 			entity.setCountry(country2);
 			entity.setName(data2[i]);
+			RegionTypeDAO rtDao = new RegionTypeDAO(ses);
+			RegionType rType = null;
 			if (data2[i].equals("Lisbon")) {
-				entity.setType(RegionType.URBAN_AGGLOMERATION);
+				rType = rtDao.findByCode(RegionCode.URBAN_AGGLOMERATION);
 			} else {
-				entity.setType(RegionType.REGION);
+				rType = rtDao.findByCode(RegionCode.REGION);
 			}
+			entity.setType(rType);
 			entities.add(entity);
 		}
 

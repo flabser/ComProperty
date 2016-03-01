@@ -2,7 +2,6 @@ package staff.page.action;
 
 import java.util.UUID;
 
-
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.events._DoPage;
@@ -26,7 +25,7 @@ public class DeleteOrganizationLablelAction extends _DoPage {
 		String id = webFormData.getValueSilently("docid");
 		EmployeeDAO dao = new EmployeeDAO(session);
 		dao.delete(dao.findById(UUID.fromString(id)));
-		addContent("msg", getLocalizedWord("document_was_deleted_succesfully", lang));
+		addContent("msg", getLocalizedWord("document_was_deleted_succesfully", session.getLang()));
 	}
 
 }

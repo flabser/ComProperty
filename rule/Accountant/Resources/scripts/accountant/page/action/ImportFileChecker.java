@@ -12,6 +12,7 @@ import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._Tag;
@@ -29,6 +30,7 @@ public class ImportFileChecker extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		println(formData);
+		LanguageCode lang = session.getLang();
 		try {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {

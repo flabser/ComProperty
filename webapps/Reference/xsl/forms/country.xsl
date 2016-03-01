@@ -43,7 +43,7 @@
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
+               <input type="hidden" name="docid" value="{/request/page/response/content/document/@docid}"/>
             </section>
         </form>
     </xsl:template>

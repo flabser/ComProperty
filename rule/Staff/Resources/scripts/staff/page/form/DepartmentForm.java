@@ -2,7 +2,6 @@ package staff.page.form;
 
 import java.util.UUID;
 
-
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -38,14 +37,14 @@ public class DepartmentForm extends StaffForm {
 		addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
 		addContent(new _POJOListWrapper(new RoleDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, lang));
+		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
