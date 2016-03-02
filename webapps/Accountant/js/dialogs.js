@@ -5,7 +5,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
         fields: fields,
         title: el.title,
         href: url,
-        dataType: 'html',
+        dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -29,8 +29,8 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-organizations&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: 'balanceholder',
-        bin: 'balanceholderbin'
+        id: ['balanceholder', 'name'],
+        bin: ['balanceholderbin']
     }, callback);
 };
 
@@ -38,6 +38,6 @@ nbApp.choiceReaders = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-employees&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: 'reader'
+        id: ['reader', 'name']
     }, callback);
 };

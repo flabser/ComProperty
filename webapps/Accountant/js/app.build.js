@@ -743,7 +743,7 @@ nb.setFormValues = function(currentNode) {
             var text;
             //
             for (field in fields) {
-                targetFieldName = fields[field];
+                targetFieldName = fields[field][0];
                 //
                 $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
                 $targetFieldNode = $('[name=' + targetFieldName + ']', form);
@@ -873,13 +873,16 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
+    console.log(data, this.fields);
+
     var models = data.objects[0];
     if (!models.length) {
         return 'empty';
     }
 
+    var fields = this.fields;
     var dialogId = this.id;
-    var m, index;
+    var m, index, fname, ftext, dataText;
     var html = [];
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
@@ -888,7 +891,17 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push(' <label ondblclick="nb.dialog.execute(this)">');
         html.push('  <input data-type="select" type="radio" name="select_' + dialogId + '" value="' + m.id + '"/>');
         html.push('  <span>' + m.name + '</span>');
-        html.push('  <input data-id="' + m.id + '" name="id" value="' + m.id + '" data-text="' + m.name + '" type="hidden"/>');
+        //
+        for (fname in fields) {
+            ftext = fields[fname][1];
+            if (ftext) {
+                dataText = ' data-text="' + m[ftext] + '"';
+            } else {
+                dataText = '';
+            }
+            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
+        }
+        //
         html.push(' </label>');
         html.push('</li>');
     }
@@ -948,7 +961,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
         fields: fields,
         title: el.title,
         href: url,
-        dataType: 'html',
+        dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -972,8 +985,8 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-organizations&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: 'balanceholder',
-        bin: 'balanceholderbin'
+        id: ['balanceholder', 'name'],
+        bin: ['balanceholderbin']
     }, callback);
 };
 
@@ -981,7 +994,7 @@ nbApp.choiceReaders = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-employees&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: 'reader'
+        id: ['reader', 'name']
     }, callback);
 };
 

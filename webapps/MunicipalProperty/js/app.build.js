@@ -284,7 +284,7 @@ nb.dialog = {
             if (wh > 800 && fch > 600) {
                 height = wh / 1.2;
             } else {
-                height = fch + barHeight;
+                height = (fch > 60 ? fch : 60) + barHeight;
             }
             top = (wh - height) / 2;
             if (top < 0) {
@@ -314,6 +314,9 @@ nb.dialog = {
         return $.ajax({
             url: url,
             dataType: options.dataType || 'html',
+            beforeSend: function() {
+                $container.addClass('loading');
+            },
             success: function(response, status, xhr) {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
@@ -352,6 +355,9 @@ nb.dialog = {
                 if (nb.debug === true) {
                     console.log('nb.dialog : load error', xhr);
                 }
+            },
+            complete: function() {
+                $container.removeClass('loading');
             }
         });
     },
@@ -420,7 +426,7 @@ nb.dialog = {
         var $dlgContainer;
 
         if (options.href) {
-            $dlgContainer = $('<div data-role="nb-dialog" id="' + options.id + '" class="nb-dialog-container ' + options.className + '"><div class="loading-state"></div></div>');
+            $dlgContainer = $('<div data-role="nb-dialog" id="' + options.id + '" class="nb-dialog-container loading ' + options.className + '"></div>');
         } else {
             if (options.id) {
                 $dlgContainer = $('<div data-role="nb-dialog" id="' + options.id + '" class="nb-dialog-container ' + options.className + '">' + options.message + '</div>');
@@ -737,7 +743,7 @@ nb.setFormValues = function(currentNode) {
             var text;
             //
             for (field in fields) {
-                targetFieldName = fields[field];
+                targetFieldName = fields[field][0];
                 //
                 $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
                 $targetFieldNode = $('[name=' + targetFieldName + ']', form);
@@ -867,13 +873,16 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
+    console.log(data, this.fields);
+
     var models = data.objects[0];
     if (!models.length) {
-        return 'empty list';
+        return 'empty';
     }
 
+    var fields = this.fields;
     var dialogId = this.id;
-    var m, index;
+    var m, index, fname, ftext, dataText;
     var html = [];
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
@@ -882,7 +891,17 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push(' <label ondblclick="nb.dialog.execute(this)">');
         html.push('  <input data-type="select" type="radio" name="select_' + dialogId + '" value="' + m.id + '"/>');
         html.push('  <span>' + m.name + '</span>');
-        html.push('  <input data-id="' + m.id + '" name="id" value="' + m.id + '" data-text="' + m.name + '" type="hidden"/>');
+        //
+        for (fname in fields) {
+            ftext = fields[fname][1];
+            if (ftext) {
+                dataText = ' data-text="' + m[ftext] + '"';
+            } else {
+                dataText = '';
+            }
+            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
+        }
+        //
         html.push(' </label>');
         html.push('</li>');
     }
@@ -939,14 +958,28 @@ $(document).ready(function() {
  Не допускать разбухания функции.
  Если нужны условия для какого та диалога, вынести в саму функцию диалога вызывающего эту функцию.
  Не писать условия в кнопке, типа если id == '?' то делать то-то; Вынасите в вызывающую функцию.
+
+ @param fields
+    {
+        'название поля модели':
+            [
+                '* название поля куда прописать значение',
+                'поле по которому будет отображен текст [опционально], иначе значение первого *'
+            ]
+    }
+    пример
+    {
+        id: ['balanceholderid', 'name'],
+        bin: ['balanceholderbin']
+    }
 */
-nbApp.defaultChoiceDialog = function(el, id, dataType, fields, templateId) {
+nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fields: fields,
         title: el.title,
-        href: 'Provider?id=' + id,
+        href: url,
         dataType: dataType || 'html',
         templateId: templateId,
         buttons: {
@@ -968,41 +1001,49 @@ nbApp.defaultChoiceDialog = function(el, id, dataType, fields, templateId) {
 };
 
 nbApp.choiceBalanceHolder = function(el) {
-    return this.defaultChoiceDialog(el, 'get-organizations', 'html', {
-        docid: 'balanceholderid',
-        bin: 'balanceholderbin'
+    var url = 'Provider?id=get-organizations';
+    return this.defaultChoiceDialog(el, url, 'json', {
+        id: ['balanceholderid', 'name'],
+        bin: ['balanceholderbin']
     });
 };
 
 nbApp.choiceCountries = function(el) {
-    return this.defaultChoiceDialog(el, 'get-countries', 'json', { id: 'countryid' });
+    var url = 'Provider?id=get-countries';
+    return this.defaultChoiceDialog(el, url, 'json', {
+        id: ['countryid', 'name']
+    });
 };
 
 nbApp.choiceRegion = function(el) {
-    return this.defaultChoiceDialog(el, 'get-regions', 'json', { id: 'regionid' });
+    var url = 'Provider?id=get-regions';
+    return this.defaultChoiceDialog(el, url, 'json', {
+        id: ['regionid', 'name']
+    });
 };
 
 nbApp.choiceDistrict = function(el) {
-    var regionid = $("input[name=regionid]").val();
-    return this.defaultChoiceDialog(el, 'get-district&regionid='+regionid, 'json', { id: 'districtid' });
+    var url = 'Provider?id=get-district';
+    return this.defaultChoiceDialog(el, url, 'json', {
+        id: ['districtid', 'name']
+    });
 };
 
 nbApp.choiceCity = function(el) {
-    var districtid = $("input[name=districtid]").val();
-    return this.defaultChoiceDialog(el, 'get-city&districtid='+districtid, 'json', { id: 'cityid' });
+    var url = 'Provider?id=get-city';
+    return this.defaultChoiceDialog(el, url, 'json', {
+        id: ['cityid', 'name']
+    });
 };
 
 nbApp.choiceStreet = function(el) {
-    var cityid = $("input[name=cityid]").val();
-    return this.defaultChoiceDialog(el, 'get-street&cityid='+cityid, 'json', { id: 'streetid' });
+    var url = 'Provider?id=get-street';
+    return this.defaultChoiceDialog(el, url, 'json', {
+        id: ['streetid', 'name']
+    });
 };
 
 $(function() {
-    var sf = $('form[role=search]');
-    if (sf.length) {
-        sf[0].reset();
-    }
-
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));

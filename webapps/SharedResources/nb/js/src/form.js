@@ -155,7 +155,7 @@ nb.setFormValues = function(currentNode) {
             var text;
             //
             for (field in fields) {
-                targetFieldName = fields[field];
+                targetFieldName = fields[field][0];
                 //
                 $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
                 $targetFieldNode = $('[name=' + targetFieldName + ']', form);
