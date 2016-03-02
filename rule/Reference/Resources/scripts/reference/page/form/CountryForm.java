@@ -2,8 +2,6 @@ package reference.page.form;
 
 import java.util.UUID;
 
-import javax.persistence.RollbackException;
-
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -65,19 +63,29 @@ public class CountryForm extends ReferenceForm {
 			entity.setName(formData.getValue("name"));
 			entity.setCode(CountryCode.valueOf(formData.getValueSilently("code", "UNKNOWN")));
 
-			if (isNew) {
-				try {
-					dao.add(entity);
-				} catch (RollbackException e) {
-					e.printStackTrace();
-				}
-			} else {
-				dao.update(entity);
-			}
+			save(session, entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
 			error(e);
 		}
+	}
+
+	protected void save(_Session ses, Country entity, CountryDAO dao, boolean isNew) {
+		Country foundEntity = dao.findByCode(entity.getCode());
+		if (foundEntity != null && !foundEntity.equals(entity)) {
+			_Validation ve = new _Validation();
+			ve.addError("code", "unique_error", getLocalizedWord("code_is_not_unique", ses.getLang()));
+			setBadRequest();
+			setValidation(ve);
+			return;
+		}
+
+		if (isNew) {
+			dao.add(entity);
+		} else {
+			dao.update(entity);
+		}
+
 	}
 }
