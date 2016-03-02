@@ -78,7 +78,7 @@ nbApp.choiceLocality = function(el) {
     var districtId = nb.getForm(el).districtid.value;
     var url = 'Provider?id=get-locality&districtid=' + districtId;
     return this.defaultChoiceDialog(el, url, 'json', {
-        cityid: ['id', 'name']
+        localityid: ['id', 'name']
     });
 };
 
