@@ -8,6 +8,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import kz.lof.scripting._Session;
+
 @Entity
 @Table(name = "streets")
 @NamedQuery(name = "Street.findAll", query = "SELECT m FROM Street AS m ORDER BY m.regDate")
@@ -34,6 +36,14 @@ public class Street extends Reference {
 
 	public void setLocality(Locality city) {
 		this.locality = city;
+	}
+
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append(super.getFullXMLChunk(ses));
+		chunk.append("<locality>" + locality.getId() + "</locality>");
+		return chunk.toString();
 	}
 
 }

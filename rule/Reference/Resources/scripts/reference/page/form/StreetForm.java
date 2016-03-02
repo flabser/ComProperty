@@ -28,6 +28,7 @@ public class StreetForm extends ReferenceForm {
 			entity.setAuthor(user);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);

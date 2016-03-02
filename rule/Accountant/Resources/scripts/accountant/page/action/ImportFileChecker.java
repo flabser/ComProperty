@@ -3,7 +3,6 @@ package accountant.page.action;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -15,7 +14,6 @@ import kz.lof.env.Environment;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
-import kz.nextbase.script._Tag;
 import kz.nextbase.script.events._DoPage;
 
 import org.apache.commons.io.FilenameUtils;
@@ -46,7 +44,6 @@ public class ImportFileChecker extends _DoPage {
 				User user = session.getUser();
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
-				_Tag rootTag = new _Tag("result");
 				String excelFile = userTmpDir + File.separator + fn;
 				String ext = FilenameUtils.getExtension(excelFile);
 				if (ext.equalsIgnoreCase("xls")) {
@@ -77,24 +74,11 @@ public class ImportFileChecker extends _DoPage {
 					} else {
 						uf.setStatus(UploadedFile.CHECKED);
 					}
-
-					for (Entry<Integer, List<List<ErrorDescription>>> row : sheetErrs.entrySet()) {
-						_Tag entry = rootTag.addTag("entry");
-						entry.setAttr("row", row.getKey());
-						for (List<ErrorDescription> colList : row.getValue()) {
-							for (ErrorDescription val : colList) {
-								entry.addTag("column", val.toString());
-							}
-						}
-					}
 				} else {
 					uf.setStatus(UploadedFile.CHECKING_ERROR);
 					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
-					_Tag entry = rootTag.addTag("entry");
-					entry.addTag("column", getLocalizedWord("incorrect_xls_file", lang));
 					return;
 				}
-				// addContent(rootTag);
 
 			}
 		} catch (Exception e) {

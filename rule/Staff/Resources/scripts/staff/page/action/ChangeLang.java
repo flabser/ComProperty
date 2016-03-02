@@ -20,7 +20,7 @@ public class ChangeLang extends _DoPage {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		String anotherLang = formData.getValueSilently("lang");
+		String anotherLang = formData.getValueSilently("type");
 		session.setLang(LanguageCode.valueOf(anotherLang));
 	}
 

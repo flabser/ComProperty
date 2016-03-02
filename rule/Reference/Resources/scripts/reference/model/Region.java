@@ -57,8 +57,8 @@ public class Region extends Reference {
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append(super.getFullXMLChunk(ses));
+		chunk.append("<country>" + country.getId() + "</country>");
 		chunk.append("<type>" + type.getId() + "</type>");
-		;
 		return chunk.toString();
 	}
 

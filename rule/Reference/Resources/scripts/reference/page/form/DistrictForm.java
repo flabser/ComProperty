@@ -33,6 +33,7 @@ public class DistrictForm extends ReferenceForm {
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new RegionDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
 	}

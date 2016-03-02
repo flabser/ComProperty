@@ -8,13 +8,11 @@ import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
-import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
 import reference.dao.LocalityTypeDAO;
 import reference.model.Locality;
-import reference.model.constants.LocalityCode;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -38,7 +36,7 @@ public class LocalityForm extends ReferenceForm {
 			entity.setName("");
 		}
 		addContent(entity);
-		addContent(new _EnumWrapper<>(LocalityCode.class.getEnumConstants()));
+		addContent(new _POJOListWrapper(new LocalityTypeDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
