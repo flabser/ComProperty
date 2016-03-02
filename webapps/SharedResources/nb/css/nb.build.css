@@ -141,7 +141,7 @@
     padding-top: 1em;
 }
 
-.dialog-open {
+.body-dialog-open {
     overflow: hidden;
 }
 
@@ -151,14 +151,7 @@
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 30px -5px rgba(0, 0, 0, .5);
     margin: auto;
     max-width: 100%;
-    min-height: 180px;
     position: absolute;
-}
-
-@media ( min-width: 768px) {
-    .nb-dialog {
-        width: 500px !important;
-    }
 }
 
 .nb-dialog .nb-dialog-container {
@@ -168,9 +161,21 @@
 }
 
 .nb-dialog .loading-state {
-    background: url(/SharedResources/img/classic/ajax-loader-small.gif) no-repeat left top;
+    background: url(../img/loading.gif) no-repeat left top;
     display: block;
     height: 2em;
+}
+
+.nb-dialog .no-selected-value {
+    background: #F44336;
+    color: #fff;
+    font-size: 1.1em;
+    left: 5%;
+    margin-top: -27px;
+    padding: 16px;
+    position: absolute;
+    right: 5%;
+    top: 50%;
 }
 
 .nb-dialog .dialog-error {
@@ -630,6 +635,11 @@ footer.content-actions {
     font-size: 0;
     height: 0;
     visibility: hidden;
+}
+
+.form {
+    margin: 0;
+    padding: 0;
 }
 
 .fieldset {
@@ -1612,10 +1622,14 @@ button.btn-side-nav-toggle {
 
 .entry-link {
     display: inline-block;
-    padding: 11px 11px 11px 40px;
+    padding: 11px;
     position: relative;
     vertical-align: top;
     width: 100%;
+}
+
+.entry-select + .entry-link {
+    padding-left: 40px;
 }
 
 .tablet .entry-link,
@@ -2037,29 +2051,6 @@ html body.phone .hidden-md {
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-}
-
-.form-control {
-    border-radius: 2px;
-    height: auto;
-    min-height: 34px;
-    padding: 6px 7px;
-    position: relative;
-}
-
-.form-control:focus,
-.form-control:active {
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(81, 167, 232, 0.5);
-}
-
-.form-control:hover {
-    border-color: #888;
-}
-
-.form-control[disabled],
-.form-control[readonly],
-fieldset[disabled] .form-control {
-    background-color: #F9F9F9;
 }
 
 .input {

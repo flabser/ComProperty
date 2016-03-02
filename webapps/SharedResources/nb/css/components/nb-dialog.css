@@ -1,4 +1,4 @@
-.dialog-open {
+.body-dialog-open {
     overflow: hidden;
 }
 
@@ -8,14 +8,7 @@
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 30px -5px rgba(0, 0, 0, .5);
     margin: auto;
     max-width: 100%;
-    min-height: 180px;
     position: absolute;
-}
-
-@media ( min-width: 768px) {
-    .nb-dialog {
-        width: 500px !important;
-    }
 }
 
 .nb-dialog .nb-dialog-container {
@@ -25,9 +18,21 @@
 }
 
 .nb-dialog .loading-state {
-    background: url(/SharedResources/img/classic/ajax-loader-small.gif) no-repeat left top;
+    background: url(../img/loading.gif) no-repeat left top;
     display: block;
     height: 2em;
+}
+
+.nb-dialog .no-selected-value {
+    background: #F44336;
+    color: #fff;
+    font-size: 1.1em;
+    left: 5%;
+    margin-top: -27px;
+    padding: 16px;
+    position: absolute;
+    right: 5%;
+    top: 50%;
 }
 
 .nb-dialog .dialog-error {

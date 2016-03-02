@@ -156,10 +156,14 @@
 
 .entry-link {
     display: inline-block;
-    padding: 11px 11px 11px 40px;
+    padding: 11px;
     position: relative;
     vertical-align: top;
     width: 100%;
+}
+
+.entry-select + .entry-link {
+    padding-left: 40px;
 }
 
 .tablet .entry-link,

@@ -7,8 +7,8 @@ nb.dialog = {
     },
     info: function(opt) {
         opt.className = 'dialog-info';
-        opt.width = opt.width || '360';
-        opt.height = opt.height || '210';
+        opt.width = opt.width || 360;
+        opt.height = opt.height || 210;
         opt.buttons = opt.buttons || {
             'Ok': function() {
                 $(this).dialog('close');
@@ -19,8 +19,8 @@ nb.dialog = {
     },
     warn: function(opt) {
         opt.className = 'dialog-warn';
-        opt.width = opt.width || '360';
-        opt.height = opt.height || '210';
+        opt.width = opt.width || 360;
+        opt.height = opt.height || 210;
         opt.buttons = opt.buttons || {
             'Ok': function() {
                 $(this).dialog('close');
@@ -31,8 +31,8 @@ nb.dialog = {
     },
     error: function(opt) {
         opt.className = 'dialog-error';
-        opt.width = opt.width || '360';
-        opt.height = opt.height || '210';
+        opt.width = opt.width || 360;
+        opt.height = opt.height || 210;
         opt.buttons = opt.buttons || {
             'Ok': function() {
                 $(this).dialog('close');
@@ -50,6 +50,10 @@ nb.dialog = {
     resize: function($dialog) {
         var $dlgw = $($dialog[0]).parents('[role=dialog]');
         //
+        if ($dlgw.css('display') === 'none') {
+            return;
+        }
+        //
         var titleBarHeight = $('.ui-dialog-titlebar', $dlgw[0]).outerHeight();
         var actionBarHeight = $('.ui-dialog-buttonpane', $dlgw[0]).outerHeight()
         var searchBarHeight = $('.dialog-filter', $dlgw[0]).outerHeight()
@@ -60,29 +64,20 @@ nb.dialog = {
         var containerNode = $('.nb-dialog-container', $dlgw[0]).get(0);
         var fch = containerNode.offsetTop;
         for (var i = 0; i < containerNode.children.length; i++) {
-            fch += containerNode.children[i].clientHeight;
+            fch += containerNode.children[i].clientHeight + containerNode.children[i].offsetTop;
         }
         //
-        if (wh < 500 && fch > 300) {
+        if (wh < 600 && fch > 300) {
             top = window.scrollY + 1;
-            height = wh - 2;
+            height = wh - 3;
         } else {
-            if (false && containerNode.clientHeight < fch) {
-                height = wh - barHeight;
-            } else {
-                height = fch + 20 + barHeight;
-            }
+            height = fch + barHeight;
             top = (wh - height) / 2;
             if (top < 0) {
-                top = window.scrollY;
-                height = wh;
+                top = window.scrollY + 1;
+                height = wh - 3;
             } else {
                 top = top + window.scrollY;
-            }
-            //
-            if (fch > 500 && wh < 800) {
-                top = window.scrollY + 1;
-                height = wh - 2;
             }
         }
         //
@@ -94,8 +89,11 @@ nb.dialog = {
             left: left + 'px'
         });
         //
+        // console.log('bh:' + barHeight, 'wh:' + wh, 'fch:' + fch, 'top:' + top, 'dlgH:' + $dlgw[0].clientHeight, 'ch:' + containerNode.clientHeight);
+        //
         $(containerNode).css({
-            height: ($dlgw[0].clientHeight - barHeight) + 'px'
+            height: ($dlgw[0].clientHeight - barHeight) + 'px',
+            maxHeight: 'none'
         });
     },
     load: function(url, $container, options) {
@@ -112,27 +110,18 @@ nb.dialog = {
                         $container.html(response);
                     }
 
-                    try {
-                        if (options.onLoad !== null) {
-                            options.onLoad(response, status, xhr);
-                        }
-                    } catch (e) {
-                        console.log('nb.dialog', e);
+                    if (options.onLoad !== null) {
+                        options.onLoad(response, status, xhr);
                     }
-
-                    try {
-                        if (options.filter !== false) {
-                            new nb.dialog.Filter($container, options.dialogFilterListItem, 13);
-                        }
-                    } catch (e) {
-                        console.log('nb.dialog', e);
+                    if (options.filter !== false) {
+                        new nb.dialog.Filter($container, options.dialogFilterListItem, 13);
                     }
                 }
-                //
+
                 try {
                     window.dispatchEvent(new Event('resize'));
                 } catch (e) {}
-                //
+
                 if (nb.debug === true) {
                     console.log('nb.dialog : load callback', xhr);
                 }
@@ -141,11 +130,11 @@ nb.dialog = {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 }
-                //
+
                 try {
                     window.dispatchEvent(new Event('resize'));
                 } catch (e) {}
-                //
+
                 if (nb.debug === true) {
                     console.log('nb.dialog : load error', xhr);
                 }
@@ -183,10 +172,8 @@ nb.dialog = {
             options.modal = true;
         }
 
-        options.width = options.width || '360';
-        options.position = {
-            top: window.scrollY
-        };
+        options.width = options.width || 500;
+        options.position = { top: window.scrollY };
         options.resizable = false;
         options.draggable = false;
 

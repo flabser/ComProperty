@@ -16,7 +16,7 @@ var nb = {
         select: 'Выбрать',
         dialog_select_value: 'Вы не сделали выбор'
     },
-    xhr: {}
+    tpl: {}
 };
 
 var nbApp = { /* local application namespace */ };
@@ -81,6 +81,8 @@ nb.uiUnblock = function() {
 
 /**
  * template
+ * @param templateId - template function name defined in nb.tpl
+ * @param data - data for tamplate
  */
 nb.template = function(templateId, data) {
     if (nb.tpl[templateId]) {
@@ -215,8 +217,8 @@ nb.dialog = {
     },
     info: function(opt) {
         opt.className = 'dialog-info';
-        opt.width = opt.width || '360';
-        opt.height = opt.height || '210';
+        opt.width = opt.width || 360;
+        opt.height = opt.height || 210;
         opt.buttons = opt.buttons || {
             'Ok': function() {
                 $(this).dialog('close');
@@ -227,8 +229,8 @@ nb.dialog = {
     },
     warn: function(opt) {
         opt.className = 'dialog-warn';
-        opt.width = opt.width || '360';
-        opt.height = opt.height || '210';
+        opt.width = opt.width || 360;
+        opt.height = opt.height || 210;
         opt.buttons = opt.buttons || {
             'Ok': function() {
                 $(this).dialog('close');
@@ -239,8 +241,8 @@ nb.dialog = {
     },
     error: function(opt) {
         opt.className = 'dialog-error';
-        opt.width = opt.width || '360';
-        opt.height = opt.height || '210';
+        opt.width = opt.width || 360;
+        opt.height = opt.height || 210;
         opt.buttons = opt.buttons || {
             'Ok': function() {
                 $(this).dialog('close');
@@ -258,6 +260,10 @@ nb.dialog = {
     resize: function($dialog) {
         var $dlgw = $($dialog[0]).parents('[role=dialog]');
         //
+        if ($dlgw.css('display') === 'none') {
+            return;
+        }
+        //
         var titleBarHeight = $('.ui-dialog-titlebar', $dlgw[0]).outerHeight();
         var actionBarHeight = $('.ui-dialog-buttonpane', $dlgw[0]).outerHeight()
         var searchBarHeight = $('.dialog-filter', $dlgw[0]).outerHeight()
@@ -268,29 +274,20 @@ nb.dialog = {
         var containerNode = $('.nb-dialog-container', $dlgw[0]).get(0);
         var fch = containerNode.offsetTop;
         for (var i = 0; i < containerNode.children.length; i++) {
-            fch += containerNode.children[i].clientHeight;
+            fch += containerNode.children[i].clientHeight + containerNode.children[i].offsetTop;
         }
         //
-        if (wh < 500 && fch > 300) {
+        if (wh < 600 && fch > 300) {
             top = window.scrollY + 1;
-            height = wh - 2;
+            height = wh - 3;
         } else {
-            if (false && containerNode.clientHeight < fch) {
-                height = wh - barHeight;
-            } else {
-                height = fch + 20 + barHeight;
-            }
+            height = fch + barHeight;
             top = (wh - height) / 2;
             if (top < 0) {
-                top = window.scrollY;
-                height = wh;
+                top = window.scrollY + 1;
+                height = wh - 3;
             } else {
                 top = top + window.scrollY;
-            }
-            //
-            if (fch > 500 && wh < 800) {
-                top = window.scrollY + 1;
-                height = wh - 2;
             }
         }
         //
@@ -302,8 +299,11 @@ nb.dialog = {
             left: left + 'px'
         });
         //
+        // console.log('bh:' + barHeight, 'wh:' + wh, 'fch:' + fch, 'top:' + top, 'dlgH:' + $dlgw[0].clientHeight, 'ch:' + containerNode.clientHeight);
+        //
         $(containerNode).css({
-            height: ($dlgw[0].clientHeight - barHeight) + 'px'
+            height: ($dlgw[0].clientHeight - barHeight) + 'px',
+            maxHeight: 'none'
         });
     },
     load: function(url, $container, options) {
@@ -320,27 +320,18 @@ nb.dialog = {
                         $container.html(response);
                     }
 
-                    try {
-                        if (options.onLoad !== null) {
-                            options.onLoad(response, status, xhr);
-                        }
-                    } catch (e) {
-                        console.log('nb.dialog', e);
+                    if (options.onLoad !== null) {
+                        options.onLoad(response, status, xhr);
                     }
-
-                    try {
-                        if (options.filter !== false) {
-                            new nb.dialog.Filter($container, options.dialogFilterListItem, 13);
-                        }
-                    } catch (e) {
-                        console.log('nb.dialog', e);
+                    if (options.filter !== false) {
+                        new nb.dialog.Filter($container, options.dialogFilterListItem, 13);
                     }
                 }
-                //
+
                 try {
                     window.dispatchEvent(new Event('resize'));
                 } catch (e) {}
-                //
+
                 if (nb.debug === true) {
                     console.log('nb.dialog : load callback', xhr);
                 }
@@ -349,11 +340,11 @@ nb.dialog = {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 }
-                //
+
                 try {
                     window.dispatchEvent(new Event('resize'));
                 } catch (e) {}
-                //
+
                 if (nb.debug === true) {
                     console.log('nb.dialog : load error', xhr);
                 }
@@ -391,10 +382,8 @@ nb.dialog = {
             options.modal = true;
         }
 
-        options.width = options.width || '360';
-        options.position = {
-            top: window.scrollY
-        };
+        options.width = options.width || 500;
+        options.position = { top: window.scrollY };
         options.resizable = false;
         options.draggable = false;
 
@@ -712,9 +701,9 @@ nb.setFormValues = function(currentNode) {
             }, 300);
         }
 
-        if ($('.js-no-selected-value', $dlgw[0]).length === 0) {
+        if ($('.no-selected-value', $dlgw[0]).length === 0) {
             (function() {
-                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + dialogOptions.errorMessage + '</div>');
+                var $_html = $('<div class=no-selected-value>' + dialogOptions.errorMessage + '</div>');
                 $dlgWgt.after($_html);
                 setTimeout(function() {
                     $_html.fadeOut({
@@ -722,7 +711,7 @@ nb.setFormValues = function(currentNode) {
                             $_html.remove();
                         }
                     });
-                }, 800);
+                }, 500);
             })();
         }
 
@@ -804,19 +793,19 @@ nb.clearFormFields = function(fields, el) {
 /**
  * notify
  */
-nb.notify = function(opt) {
+nb.notify = function(options) {
 
     var $nwrap = $('#nb-notify-wrapper');
     if (!$nwrap.length) {
         $nwrap = $('<div id=nb-notify-wrapper class=nb-notify></div>').appendTo('body');
     }
-    var $el = $('<div class=nb-notify-entry-' + (opt.type || 'info') + '>' + opt.message + '</div>').appendTo($nwrap);
+    var $el = $('<div class=nb-notify-entry-' + (options.type || 'info') + '>' + options.message + '</div>').appendTo($nwrap);
 
     return {
-        show: function(timeout) {
+        show: function(timeout, callback) {
             $el.css('display', 'block');
             if (timeout && timeout > 0) {
-                this.remove(timeout);
+                this.remove(timeout, callback);
                 return;
             }
             return this;
@@ -825,12 +814,12 @@ nb.notify = function(opt) {
             $el.css('display', 'none');
             return this;
         },
-        set: function(opt) {
-            for (var key in opt) {
+        set: function(options) {
+            for (var key in options) {
                 if (key === 'text') {
-                    $el.text(opt[key]);
+                    $el.text(options[key]);
                 } else if (key === 'type') {
-                    $el.attr('class', 'nb-notify-entry-' + opt[key]);
+                    $el.attr('class', 'nb-notify-entry-' + options[key]);
                 }
             }
             return this;
@@ -859,7 +848,7 @@ nb.notify = function(opt) {
 /**
  * doDelete
  */
-nb.xhr.doDelete = function(data) {
+nb.xhrDelete = function(data) {
     return $.ajax({
         type: 'DELETE',
         dataType: 'json',
@@ -1020,7 +1009,7 @@ $(function() {
             return;
         }
 
-        nb.xhr.doDelete('docid=' + docids.join('&docid=')).then(function() {
+        nb.xhrDelete('docid=' + docids.join('&docid=')).then(function() {
             location.reload();
         });
     });

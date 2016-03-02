@@ -7,7 +7,7 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form>
+        <form class="form">
             <header class="content-header">
                 <h1 class="header-title"></h1>
                 <div class="content-actions"></div>

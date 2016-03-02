@@ -17,7 +17,7 @@ $(function() {
             return;
         }
 
-        nb.xhr.doDelete('docid=' + docids.join('&docid=')).then(function() {
+        nb.xhrDelete('docid=' + docids.join('&docid=')).then(function() {
             location.reload();
         });
     });

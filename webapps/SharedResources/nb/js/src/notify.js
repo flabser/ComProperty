@@ -1,19 +1,19 @@
 /**
  * notify
  */
-nb.notify = function(opt) {
+nb.notify = function(options) {
 
     var $nwrap = $('#nb-notify-wrapper');
     if (!$nwrap.length) {
         $nwrap = $('<div id=nb-notify-wrapper class=nb-notify></div>').appendTo('body');
     }
-    var $el = $('<div class=nb-notify-entry-' + (opt.type || 'info') + '>' + opt.message + '</div>').appendTo($nwrap);
+    var $el = $('<div class=nb-notify-entry-' + (options.type || 'info') + '>' + options.message + '</div>').appendTo($nwrap);
 
     return {
-        show: function(timeout) {
+        show: function(timeout, callback) {
             $el.css('display', 'block');
             if (timeout && timeout > 0) {
-                this.remove(timeout);
+                this.remove(timeout, callback);
                 return;
             }
             return this;
@@ -22,12 +22,12 @@ nb.notify = function(opt) {
             $el.css('display', 'none');
             return this;
         },
-        set: function(opt) {
-            for (var key in opt) {
+        set: function(options) {
+            for (var key in options) {
                 if (key === 'text') {
-                    $el.text(opt[key]);
+                    $el.text(options[key]);
                 } else if (key === 'type') {
-                    $el.attr('class', 'nb-notify-entry-' + opt[key]);
+                    $el.attr('class', 'nb-notify-entry-' + options[key]);
                 }
             }
             return this;

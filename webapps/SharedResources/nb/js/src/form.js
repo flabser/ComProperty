@@ -123,9 +123,9 @@ nb.setFormValues = function(currentNode) {
             }, 300);
         }
 
-        if ($('.js-no-selected-value', $dlgw[0]).length === 0) {
+        if ($('.no-selected-value', $dlgw[0]).length === 0) {
             (function() {
-                var $_html = $('<div class="alert alert-danger js-no-selected-value" style="border-radius:2px;bottom:80px;left:4%;right:4%;position:absolute;">' + dialogOptions.errorMessage + '</div>');
+                var $_html = $('<div class=no-selected-value>' + dialogOptions.errorMessage + '</div>');
                 $dlgWgt.after($_html);
                 setTimeout(function() {
                     $_html.fadeOut({
@@ -133,7 +133,7 @@ nb.setFormValues = function(currentNode) {
                             $_html.remove();
                         }
                     });
-                }, 800);
+                }, 500);
             })();
         }
 

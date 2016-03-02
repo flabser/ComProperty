@@ -16,7 +16,7 @@ var nb = {
         select: 'Выбрать',
         dialog_select_value: 'Вы не сделали выбор'
     },
-    xhr: {}
+    tpl: {}
 };
 
 var nbApp = { /* local application namespace */ };
@@ -81,6 +81,8 @@ nb.uiUnblock = function() {
 
 /**
  * template
+ * @param templateId - template function name defined in nb.tpl
+ * @param data - data for tamplate
  */
 nb.template = function(templateId, data) {
     if (nb.tpl[templateId]) {

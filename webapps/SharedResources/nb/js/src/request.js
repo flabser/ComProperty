@@ -1,7 +1,7 @@
 /**
  * doDelete
  */
-nb.xhr.doDelete = function(data) {
+nb.xhrDelete = function(data) {
     return $.ajax({
         type: 'DELETE',
         dataType: 'json',
