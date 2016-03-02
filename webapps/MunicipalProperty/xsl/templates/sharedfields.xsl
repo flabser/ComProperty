@@ -358,6 +358,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="region" value="{//fields/region}"/>
+                    <input type="hidden" name="regionid" value="{//fields/regionid}"/>
                 </div>
             </div>
             <div class="form-group">
