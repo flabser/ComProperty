@@ -7,6 +7,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kz.lof.scripting._Session;
 
 @Entity
@@ -27,6 +28,7 @@ public class OrganizationLabel extends Staff {
 		this.description = description;
 	}
 
+	@JsonIgnore
 	public List<Organization> getLabels() {
 		return labels;
 	}
