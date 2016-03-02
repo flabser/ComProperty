@@ -2,7 +2,6 @@ package reference.page.form;
 
 import java.util.UUID;
 
-
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -12,6 +11,7 @@ import kz.nextbase.script._Exception;
 import reference.dao.DistrictDAO;
 import reference.dao.RegionDAO;
 import reference.model.District;
+import reference.model.Reference;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -24,24 +24,23 @@ public class DistrictForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		District entity;
+		Reference entity;
 		if (!id.isEmpty()) {
 			DistrictDAO dao = new DistrictDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new District();
-			entity.setAuthor(user);
+			entity = getDefaultEntity(user);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, lang));
+		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);

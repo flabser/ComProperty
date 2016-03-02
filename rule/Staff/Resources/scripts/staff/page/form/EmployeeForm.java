@@ -48,7 +48,7 @@ public class EmployeeForm extends StaffForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);

@@ -26,6 +26,8 @@
 		<class>staff.model.Role</class>
 		<class>staff.model.OrganizationLabel</class>
 		<!-- Common Reference module entities -->
+		<class>reference.model.RegionType</class>
+		<class>reference.model.LocalityType</class>
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
@@ -61,6 +63,8 @@
 		<class>staff.model.Role</class>
 		<class>staff.model.OrganizationLabel</class>
 		<!-- Common Reference module entities -->	
+		<class>reference.model.RegionType</class>
+		<class>reference.model.LocalityType</class>
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
@@ -87,6 +91,8 @@
 		<class>staff.model.Role</class>
 		<class>staff.model.OrganizationLabel</class>
 		<!-- Common Reference module entities -->
+		<class>reference.model.RegionType</class>
+		<class>reference.model.LocalityType</class>
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
@@ -106,6 +112,8 @@
 		<class>staff.model.Role</class>
 		<class>staff.model.OrganizationLabel</class>
 		<!-- Common Reference module entities -->
+		<class>reference.model.RegionType</class>
+		<class>reference.model.LocalityType</class>
 		<class>reference.model.Country</class>	
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>

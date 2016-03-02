@@ -2,8 +2,6 @@ package reference.page.form;
 
 import java.util.UUID;
 
-import javax.persistence.RollbackException;
-
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -13,6 +11,7 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.model.Country;
+import reference.model.Reference;
 import reference.model.constants.CountryCode;
 import administrator.dao.LanguageDAO;
 
@@ -26,25 +25,24 @@ public class CountryForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		Country entity;
+		Reference entity;
 		if (!id.isEmpty()) {
 			CountryDAO dao = new CountryDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new Country();
-			entity.setAuthor(user);
+			entity = getDefaultEntity(user);
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(CountryCode.class.getEnumConstants()));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, session.getLang()));
+		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
@@ -65,19 +63,29 @@ public class CountryForm extends ReferenceForm {
 			entity.setName(formData.getValue("name"));
 			entity.setCode(CountryCode.valueOf(formData.getValueSilently("code", "UNKNOWN")));
 
-			if (isNew) {
-				try {
-					dao.add(entity);
-				} catch (RollbackException e) {
-					e.printStackTrace();
-				}
-			} else {
-				dao.update(entity);
-			}
+			save(session, entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
 			error(e);
 		}
+	}
+
+	protected void save(_Session ses, Country entity, CountryDAO dao, boolean isNew) {
+		Country foundEntity = dao.findByCode(entity.getCode());
+		if (foundEntity != null && !foundEntity.equals(entity)) {
+			_Validation ve = new _Validation();
+			ve.addError("code", "unique_error", getLocalizedWord("code_is_not_unique", ses.getLang()));
+			setBadRequest();
+			setValidation(ve);
+			return;
+		}
+
+		if (isNew) {
+			dao.add(entity);
+		} else {
+			dao.update(entity);
+		}
+
 	}
 }

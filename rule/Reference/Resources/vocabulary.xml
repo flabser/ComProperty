@@ -48,6 +48,18 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
+     <sentence mode="on" keyword="region_types">
+        <entry lang="ENG">Region types</entry>
+        <entry lang="RUS">Типы регионов</entry>
+        <entry lang="KAZ">Типы регионов</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+     <sentence mode="on" keyword="locality_types">
+        <entry lang="ENG">Locality types</entry>
+        <entry lang="RUS">Типы населенных пунктов</entry>
+        <entry lang="KAZ">Типы населенных пунктов</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
     <sentence mode="on" keyword="positions">
         <entry lang="ENG">Positions</entry>
         <entry lang="RUS">Должности</entry>

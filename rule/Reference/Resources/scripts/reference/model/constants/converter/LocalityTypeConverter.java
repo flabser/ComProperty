@@ -3,18 +3,18 @@ package reference.model.constants.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import reference.model.constants.LocalityType;
+import reference.model.constants.LocalityCode;
 
 @Converter(autoApply = true)
-public class LocalityTypeConverter implements AttributeConverter<LocalityType, Integer> {
+public class LocalityTypeConverter implements AttributeConverter<LocalityCode, Integer> {
 
 	@Override
-	public Integer convertToDatabaseColumn(LocalityType lt) {
+	public Integer convertToDatabaseColumn(LocalityCode lt) {
 		return lt.getCode();
 	}
 
 	@Override
-	public LocalityType convertToEntityAttribute(Integer lt) {
-		return LocalityType.getType(lt);
+	public LocalityCode convertToEntityAttribute(Integer lt) {
+		return LocalityCode.getType(lt);
 	}
 }

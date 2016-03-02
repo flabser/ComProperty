@@ -1,7 +1,7 @@
 package reference.page.form;
 
+import java.util.Date;
 import java.util.UUID;
-
 
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
@@ -12,8 +12,9 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
+import reference.dao.LocalityTypeDAO;
 import reference.model.Locality;
-import reference.model.constants.LocalityType;
+import reference.model.constants.LocalityCode;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -33,18 +34,20 @@ public class LocalityForm extends ReferenceForm {
 		} else {
 			entity = new Locality();
 			entity.setAuthor(user);
+			entity.setRegDate(new Date());
+			entity.setName("");
 		}
 		addContent(entity);
-		addContent(new _EnumWrapper<>(LocalityType.class.getEnumConstants()));
+		addContent(new _EnumWrapper<>(LocalityCode.class.getEnumConstants()));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, lang));
+		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
 	}
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
@@ -65,7 +68,8 @@ public class LocalityForm extends ReferenceForm {
 			}
 
 			entity.setName(formData.getValue("name"));
-			entity.setType(LocalityType.valueOf(formData.getValueSilently("type", "UNKNOWN")));
+			LocalityTypeDAO ltDao = new LocalityTypeDAO(session);
+			entity.setType(ltDao.findById(formData.getValue("type")));
 			entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("district"))));
 
 			if (isNew) {

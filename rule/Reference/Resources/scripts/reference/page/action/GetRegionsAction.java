@@ -37,7 +37,7 @@ public class GetRegionsAction extends _DoPage {
 			ViewPage<Region> vp = new ViewPage(list, count, maxPage, pageNum);
 			addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), ses));
 		} else {
-			setValidation(getLocalizedWord("country_has_not_found", lang));
+			setValidation(getLocalizedWord("country_has_not_found", ses.getLang()));
 		}
 	}
 }

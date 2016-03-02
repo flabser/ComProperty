@@ -30,7 +30,7 @@ public abstract class IntangibleAssetAbstarctForm extends MunicipalPropertyForm 
 	public void doPOST(_Session session, _WebFormData formData) {
 		println(formData);
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);

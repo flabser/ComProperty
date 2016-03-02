@@ -1,6 +1,6 @@
 package municipalproperty.page.view;
 
-
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
@@ -14,7 +14,8 @@ import municipalproperty.model.constants.KufType;
 public class CargoView extends MunicipalPropertyView {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, _WebFormData formData) { 
+		LanguageCode lang = session.getLang();
 		addContent(getSimpleActionBar(session, "cargo-form", lang));
 		addContent(getViewPage(session, formData, KufType.CARGO, lang));
 	}

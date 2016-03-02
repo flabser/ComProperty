@@ -3,7 +3,7 @@ package staff.page.view;
 import java.util.List;
 import java.util.UUID;
 
-
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -23,6 +23,7 @@ public class RoleView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
+		LanguageCode lang = session.getLang();
 		RoleDAO dao = new RoleDAO(session);
 		String id = formData.getValueSilently("docid");
 		if (!id.isEmpty()) {

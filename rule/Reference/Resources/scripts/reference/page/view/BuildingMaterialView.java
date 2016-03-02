@@ -18,10 +18,10 @@ public class BuildingMaterialView extends _DoPage {
     @Override
     public void doGET(_Session session, _WebFormData formData) {
         _ActionBar actionBar = new _ActionBar(session);
-        _Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_building_material");
+        _Action newDocAction = new _Action(getLocalizedWord("new_", session.getLang()), "", "new_building_material");
         newDocAction.setURL("Provider?id=buildingmaterial-form");
         actionBar.addAction(newDocAction);
-        actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+        actionBar.addAction(new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
 
         addContent(actionBar);
         addContent(getViewPage(new BuildingMaterialDAO(session), formData));

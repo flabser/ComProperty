@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._POJOObjectWrapper;
 import kz.lof.scripting._Session;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._WebFormData;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
@@ -21,6 +21,7 @@ public class StructureView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
+		LanguageCode lang = session.getLang();
 		List<IOutcomeObject> content = new ArrayList<IOutcomeObject>();
 		OrganizationDAO dao = new OrganizationDAO(session);
 		Organization org = dao.findPrimaryOrg();

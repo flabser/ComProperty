@@ -2,8 +2,8 @@ package municipalproperty.page;
 
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
-
 import kz.lof.dataengine.jpa.ViewPage;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -20,6 +20,7 @@ public class FTSearch extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
+		LanguageCode lang = session.getLang();
 		String keyWord = formData.getValueSilently("keyword");
 		if (keyWord.isEmpty()) {
 			setBadRequest();

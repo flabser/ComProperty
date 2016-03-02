@@ -2,7 +2,6 @@ package municipalproperty.page.form.enginfrastructure;
 
 import java.util.UUID;
 
-
 import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -31,7 +30,7 @@ public class WaterSystemForm extends EngInfrastructureAbstractForm {
 		addContent(new _POJOListWrapper(new PropertyCodeDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new ReceivingReasonDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new TagDAO(session).findAll(), session));
-		addContent(getActionBar(session, lang, entity));
+		addContent(getActionBar(session, entity));
 		startSaveFormTransact(entity);
 	}
 }

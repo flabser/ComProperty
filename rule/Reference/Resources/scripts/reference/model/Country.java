@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import kz.lof.scripting._Session;
 import reference.model.constants.CountryCode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,6 +46,15 @@ public class Country extends Reference {
 	@JsonIgnore
 	public void setRegions(List<Region> regions) {
 		this.regions = regions;
+	}
+
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append(super.getFullXMLChunk(ses));
+		chunk.append("<code>" + code + "</code>");
+		;
+		return chunk.toString();
 	}
 
 }

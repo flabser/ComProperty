@@ -3,10 +3,10 @@ package staff.navigator;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting._WebFormData;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.events._DoPage;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
@@ -19,6 +19,7 @@ public class MainNavigator extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
+		LanguageCode lang = session.getLang();
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");

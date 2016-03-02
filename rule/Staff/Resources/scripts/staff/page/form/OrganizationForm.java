@@ -46,7 +46,7 @@ public class OrganizationForm extends StaffForm {
 		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, lang));
+		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);
 	}
 
@@ -54,7 +54,7 @@ public class OrganizationForm extends StaffForm {
 	public void doPOST(_Session session, _WebFormData formData) {
 		println(formData);
 		try {
-			_Validation ve = validate(formData, lang);
+			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
