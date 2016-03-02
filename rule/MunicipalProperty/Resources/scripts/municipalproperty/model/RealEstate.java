@@ -53,11 +53,16 @@ public class RealEstate extends Property {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<countfloors>" + countFloors + "</countfloors>");
 		chunk.append("<material>" + material + "</material>");
-		chunk.append("<country>" + address.getCountry().getName() + "</country>");
+		chunk.append("<regiontype>" + address.getRegion().getType() + "</regiontype>");
 		chunk.append("<region>" + address.getRegion().getName() + "</region>");
+		chunk.append("<regionid>" + address.getRegion().getId() + "</regionid>");
 		chunk.append("<district>" + address.getDistrict().getName() + "</district>");
+		chunk.append("<districtid>" + address.getDistrict().getId() + "</districtid>");
+		chunk.append("<localitytype>" + address.getLocality().getType() + "</localitytype>");
 		chunk.append("<locality>" + address.getLocality().getName() + "</locality>");
+		chunk.append("<localityid>" + address.getLocality().getId() + "</localityid>");
 		chunk.append("<street>" + address.getStreet().getName() + "</street>");
+		chunk.append("<streetid>" + address.getStreet().getId() + "</streetid>");
 		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");
 		chunk.append("<additionalinfo>" + address.getAdditionalInfo() + "</additionalinfo>");
 

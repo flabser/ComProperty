@@ -362,19 +362,6 @@
             </div>
             <div class="form-group">
                 <div class="control-label">
-                    <xsl:value-of select="//captions/city/@caption"/>
-                </div>
-                <div class="controls">
-                    <div class="span8">
-                        <div class="input selectize-dialog" data-input="city" onclick="nbApp.choiceCity(this)">
-                            <xsl:value-of select="//fields/city"/>
-                        </div>
-                    </div>
-                    <input type="hidden" name="region" value="{//fields/city}"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="control-label">
                     <xsl:value-of select="//captions/district/@caption"/>
                 </div>
                 <div class="controls">
@@ -386,6 +373,20 @@
                     <input type="hidden" name="region" value="{//fields/district}"/>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="control-label">
+                    <xsl:value-of select="//captions/locality/@caption"/>
+                </div>
+                <div class="controls">
+                    <div class="span8">
+                        <div class="input selectize-dialog" data-input="city" onclick="nbApp.choiceCity(this)">
+                            <xsl:value-of select="//fields/locality"/>
+                        </div>
+                    </div>
+                    <input type="hidden" name="region" value="{//fields/locality}"/>
+                </div>
+            </div>
+            
             <div class="form-group">
                 <div class="control-label">
                     <xsl:value-of select="//captions/street/@caption"/>

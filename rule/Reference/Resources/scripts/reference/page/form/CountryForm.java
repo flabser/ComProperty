@@ -3,6 +3,7 @@ package reference.page.form;
 import java.util.UUID;
 
 import kz.flabs.users.User;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -71,7 +72,7 @@ public class CountryForm extends ReferenceForm {
 		}
 	}
 
-	protected void save(_Session ses, Country entity, CountryDAO dao, boolean isNew) {
+	private void save(_Session ses, Country entity, CountryDAO dao, boolean isNew) {
 		Country foundEntity = dao.findByCode(entity.getCode());
 		if (foundEntity != null && !foundEntity.equals(entity)) {
 			_Validation ve = new _Validation();
@@ -87,5 +88,21 @@ public class CountryForm extends ReferenceForm {
 			dao.update(entity);
 		}
 
+	}
+
+	@Override
+	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+		_Validation ve = new _Validation();
+		if (formData.getValueSilently("name").isEmpty()) {
+			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		if (formData.getValueSilently("code").isEmpty()) {
+			ve.addError("code", "required", getLocalizedWord("field_is_empty", lang));
+		} else if (formData.getValueSilently("code").equalsIgnoreCase(CountryCode.UNKNOWN.name())) {
+			ve.addError("code", "wrong_value", getLocalizedWord("field_cannot_be_unknown", lang));
+		}
+
+		return ve;
 	}
 }
