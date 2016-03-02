@@ -983,7 +983,8 @@ nbApp.choiceRegion = function(el) {
 };
 
 nbApp.choiceDistrict = function(el) {
-    return this.defaultChoiceDialog(el, 'get-district', 'json', { id: 'districtid' });
+    var regionid = $("input[name=regionid]").val();
+    return this.defaultChoiceDialog(el, 'get-district&regionid='+regionid, 'json', { id: 'districtid' });
 };
 
 nbApp.choiceCity = function(el) {
