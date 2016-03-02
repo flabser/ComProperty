@@ -18,6 +18,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "regions")
 @NamedQuery(name = "Region.findAll", query = "SELECT m FROM Region AS m ORDER BY m.regDate")
 public class Region extends Reference {
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "region")
 	private List<District> districts;
 
 	@NotNull
@@ -42,8 +45,6 @@ public class Region extends Reference {
 		this.districts = districts;
 	}
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "region")
 	public List<District> getDistricts() {
 		return districts;
 	}
