@@ -7,7 +7,7 @@ nb.tpl.defaultDialogListTemplate = function(data) {
 
     var models = data.objects[0];
     if (!models.length) {
-        return 'empty list';
+        return 'empty';
     }
 
     var dialogId = this.id;

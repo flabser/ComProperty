@@ -284,7 +284,7 @@ nb.dialog = {
             if (wh > 800 && fch > 600) {
                 height = wh / 1.2;
             } else {
-                height = fch + barHeight;
+                height = (fch > 60 ? fch : 60) + barHeight;
             }
             top = (wh - height) / 2;
             if (top < 0) {
@@ -314,6 +314,9 @@ nb.dialog = {
         return $.ajax({
             url: url,
             dataType: options.dataType || 'html',
+            beforeSend: function() {
+                $container.addClass('loading');
+            },
             success: function(response, status, xhr) {
                 if (status === 'error') {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
@@ -352,6 +355,9 @@ nb.dialog = {
                 if (nb.debug === true) {
                     console.log('nb.dialog : load error', xhr);
                 }
+            },
+            complete: function() {
+                $container.removeClass('loading');
             }
         });
     },
@@ -420,7 +426,7 @@ nb.dialog = {
         var $dlgContainer;
 
         if (options.href) {
-            $dlgContainer = $('<div data-role="nb-dialog" id="' + options.id + '" class="nb-dialog-container ' + options.className + '"><div class="loading-state"></div></div>');
+            $dlgContainer = $('<div data-role="nb-dialog" id="' + options.id + '" class="nb-dialog-container loading ' + options.className + '"></div>');
         } else {
             if (options.id) {
                 $dlgContainer = $('<div data-role="nb-dialog" id="' + options.id + '" class="nb-dialog-container ' + options.className + '">' + options.message + '</div>');
@@ -869,7 +875,7 @@ nb.tpl.defaultDialogListTemplate = function(data) {
 
     var models = data.objects[0];
     if (!models.length) {
-        return 'empty list';
+        return 'empty';
     }
 
     var dialogId = this.id;

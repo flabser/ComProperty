@@ -1,10 +1,10 @@
-nbApp.defaultChoiceDialog = function(el, id, fields, callback) {
+nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fields: fields,
         title: el.title,
-        href: 'Provider?id=' + id,
+        href: url,
         dataType: 'html',
         buttons: {
             ok: {
@@ -27,15 +27,17 @@ nbApp.defaultChoiceDialog = function(el, id, fields, callback) {
 
 nbApp.choiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
-    return this.defaultChoiceDialog(el, 'get-organizations&_fn=' + form.name, {
-        docid: 'balanceholder',
+    var url = 'Provider?id=get-organizations&_fn=' + form.name;
+    return this.defaultChoiceDialog(el, url, {
+        id: 'balanceholder',
         bin: 'balanceholderbin'
     }, callback);
 };
 
 nbApp.choiceReaders = function(el, callback) {
     var form = nb.getForm(el);
-    return this.defaultChoiceDialog(el, 'get-employees&_fn=' + form.name, {
-        docid: 'reader'
+    var url = 'Provider?id=get-employees&_fn=' + form.name;
+    return this.defaultChoiceDialog(el, url, {
+        id: 'reader'
     }, callback);
 };

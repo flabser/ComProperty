@@ -12,20 +12,18 @@
         <script type="text/javascript">
             <![CDATA[
             function changeEventHandler(event, type) {
-                var obj = {};
-                obj['id'] = 'change-'+type+'-action';
-                obj[type] = event.target.value;
                 var xhrArgs = {
                     cache: false,
                     type: 'POST',
                     dataType: 'json',
                     url: 'Provider',
-                    data:obj,
+                    data: {
+                        id: 'change-' + type + '-action',
+                        type: event.target.value
+                    },
                     success: function(res) {
                         window.location.reload(false);
-                    },
-                    error: function(err) {},
-                    complete: function() {}
+                    }
                 };
                 return nb.ajax(xhrArgs);
             }]]>
@@ -166,7 +164,8 @@
                             </div>
                             <div class="controls">
                                 <div class="span2">
-                                    <select name="pagesize" onchange="changeEventHandler(event,'pagesize');" autocomplete="off">
+                                    <select name="pagesize" onchange="changeEventHandler(event,'pagesize');"
+                                            autocomplete="off">
                                         <option id="countdocinview10">
                                             <xsl:if test="//pagesize = '10'">
                                                 <xsl:attribute name="selected" select="'selected'"/>
