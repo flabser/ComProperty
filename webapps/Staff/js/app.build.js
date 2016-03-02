@@ -281,7 +281,11 @@ nb.dialog = {
             top = window.scrollY + 1;
             height = wh - 3;
         } else {
-            height = fch + barHeight;
+            if (wh > 800 && fch > 600) {
+                height = wh / 1.2;
+            } else {
+                height = fch + barHeight;
+            }
             top = (wh - height) / 2;
             if (top < 0) {
                 top = window.scrollY + 1;
