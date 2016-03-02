@@ -42,7 +42,7 @@
 												<div style="margin-left:10px; width:120px; height:16px; padding: 3px 2px 2px 2px; margin-top:5px" class="ui-button ui-widget ui-state-default  ui-button-text-only ui-corner-all">
 													<xsl:attribute name="onclick">javascript:window.location.href='Logout'</xsl:attribute>
 													<font class="button" style=" font-size:11px; margin-top:5px">
-														Выйти...
+														<xsl:value-of select="page/captions/logout /@caption"/>...
 													</font>
 												</div>
 											</div>

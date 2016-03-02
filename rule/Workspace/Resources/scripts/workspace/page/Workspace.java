@@ -1,11 +1,12 @@
 package workspace.page;
 
-import kz.lof.env.Environment;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._AppEntourage;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script.events._DoPage;
+import administrator.dao.LanguageDAO;
 
 public class Workspace extends _DoPage {
 
@@ -18,7 +19,7 @@ public class Workspace extends _DoPage {
 		publishElement("img", ent.getLogoImg());
 		publishElement("appname", ent.getAppName());
 		publishElement("availableapps", ent.getAvailableApps());
-		addContent("availablelangs", Environment.langs);
+		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 
 	}
 
