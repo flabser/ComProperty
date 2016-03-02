@@ -1,3 +1,18 @@
+/*
+ @param fields
+    {
+        'целевое поле':
+            [
+                '* название поля модели от куда брать значение',
+                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
+            ]
+    }
+    пример
+    {
+        balanceholderid: ['id', 'name'],
+        balanceholderbin: ['bin']
+    }
+*/
 nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
@@ -5,7 +20,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
         fields: fields,
         title: el.title,
         href: url,
-        dataType: 'json',
+        dataType: 'html',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -29,8 +44,8 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-organizations&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: ['balanceholder', 'name'],
-        bin: ['balanceholderbin']
+        balanceholder: ['id', 'name'],
+        balanceholderbin: ['bin']
     }, callback);
 };
 
@@ -38,6 +53,6 @@ nbApp.choiceReaders = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-employees&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: ['reader', 'name']
+        reader: ['id', 'name']
     }, callback);
 };

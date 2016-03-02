@@ -736,17 +736,16 @@ nb.setFormValues = function(currentNode) {
         dataList.each(function() {
             var dataId = this.value;
             //
-            var field, targetFieldName;
+            var field;
             var $val;
             var $targetFieldNode;
             var value;
             var text;
             //
             for (field in fields) {
-                targetFieldName = fields[field][0];
                 //
-                $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
-                $targetFieldNode = $('[name=' + targetFieldName + ']', form);
+                $val = $('[data-id=' + dataId + '][name=' + fields[field][0] + ']', $dlgw);
+                $targetFieldNode = $('[name=' + field + ']', form);
                 value = $val.val();
                 text = $val.data('text');
                 if (!text) text = value;
@@ -755,19 +754,19 @@ nb.setFormValues = function(currentNode) {
                     if (multiFieldMap[field] !== true) {
                         $targetFieldNode.remove();
                     }
-                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 } else {
-                    var $hf = $('[type=hidden][name=' + targetFieldName + ']', form);
-                    if ($hf.length) {
+                    var $hf = $('[type=hidden][name=' + field + ']', form);
+                    if ($hf.length > 1) {
                         $hf.remove();
-                        $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                        $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                         $targetFieldNode.appendTo(form);
                     }
                 }
                 //
                 if ($targetFieldNode.length === 0) {
-                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 }
                 //
@@ -776,12 +775,12 @@ nb.setFormValues = function(currentNode) {
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         multiFieldMap[field] = true;
-                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                        $('[data-input=' + field.replace('id', '') + ']', form).html('<li>' + text + '</li>');
                     } else {
-                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).append('<li>' + text + '</li>');
+                        $('[data-input=' + field.replace('id', '') + ']', form).append('<li>' + text + '</li>');
                     }
                 } else {
-                    $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html(text);
+                    $('[data-input=' + field.replace('id', '') + ']', form).html(text);
                 }
             }
         });
@@ -873,8 +872,6 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
-    console.log(data, this.fields);
-
     var models = data.objects[0];
     if (!models.length) {
         return 'empty';
@@ -882,7 +879,7 @@ nb.tpl.defaultDialogListTemplate = function(data) {
 
     var fields = this.fields;
     var dialogId = this.id;
-    var m, index, fname, ftext, dataText;
+    var m, index, fname, fvname, ftext, dataText;
     var html = [];
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
@@ -893,13 +890,14 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push('  <span>' + m.name + '</span>');
         //
         for (fname in fields) {
+            fvname = fields[fname][0];
             ftext = fields[fname][1];
             if (ftext) {
                 dataText = ' data-text="' + m[ftext] + '"';
             } else {
                 dataText = '';
             }
-            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
+            html.push('<input data-id="' + m.id + '" name="' + fvname + '" value="' + m[fvname] + '"' + dataText + ' type="hidden"/>');
         }
         //
         html.push(' </label>');
@@ -954,6 +952,21 @@ $(document).ready(function() {
     });
 });
 
+/*
+ @param fields
+    {
+        'целевое поле':
+            [
+                '* название поля модели от куда брать значение',
+                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
+            ]
+    }
+    пример
+    {
+        balanceholderid: ['id', 'name'],
+        balanceholderbin: ['bin']
+    }
+*/
 nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
@@ -961,7 +974,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
         fields: fields,
         title: el.title,
         href: url,
-        dataType: 'json',
+        dataType: 'html',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -985,8 +998,8 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-organizations&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: ['balanceholder', 'name'],
-        bin: ['balanceholderbin']
+        balanceholder: ['id', 'name'],
+        balanceholderbin: ['bin']
     }, callback);
 };
 
@@ -994,7 +1007,7 @@ nbApp.choiceReaders = function(el, callback) {
     var form = nb.getForm(el);
     var url = 'Provider?id=get-employees&_fn=' + form.name;
     return this.defaultChoiceDialog(el, url, {
-        id: ['reader', 'name']
+        reader: ['id', 'name']
     }, callback);
 };
 

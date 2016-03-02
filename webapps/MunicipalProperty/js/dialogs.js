@@ -5,16 +5,16 @@
 
  @param fields
     {
-        'название поля модели':
+        'целевое поле':
             [
-                '* название поля куда прописать значение',
-                'поле по которому будет отображен текст [опционально], иначе значение первого *'
+                '* название поля модели от куда брать значение',
+                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
             ]
     }
     пример
     {
-        id: ['balanceholderid', 'name'],
-        bin: ['balanceholderbin']
+        balanceholderid: ['id', 'name'],
+        balanceholderbin: ['bin']
     }
 */
 nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
@@ -47,42 +47,44 @@ nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
 nbApp.choiceBalanceHolder = function(el) {
     var url = 'Provider?id=get-organizations';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['balanceholderid', 'name'],
-        bin: ['balanceholderbin']
+        balanceholderid: ['id', 'name'],
+        balanceholderbin: ['bin']
     });
 };
 
 nbApp.choiceCountries = function(el) {
     var url = 'Provider?id=get-countries';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['countryid', 'name']
+        countryid: ['id', 'name']
     });
 };
 
 nbApp.choiceRegion = function(el) {
     var url = 'Provider?id=get-regions';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['regionid', 'name']
+        regionid: ['id', 'name']
     });
 };
 
 nbApp.choiceDistrict = function(el) {
-    var url = 'Provider?id=get-district';
+    var form = nb.getForm(el);
+    var regionId = form.regionid.value;
+    var url = 'Provider?id=get-district&regionid=' + regionId;
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['districtid', 'name']
+        districtid: ['id', 'name']
     });
 };
 
 nbApp.choiceCity = function(el) {
     var url = 'Provider?id=get-city';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['cityid', 'name']
+        cityid: ['id', 'name']
     });
 };
 
 nbApp.choiceStreet = function(el) {
     var url = 'Provider?id=get-street';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['streetid', 'name']
+        streetid: ['id', 'name']
     });
 };

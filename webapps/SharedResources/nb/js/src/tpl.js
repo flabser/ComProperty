@@ -5,8 +5,6 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
-    console.log(data, this.fields);
-
     var models = data.objects[0];
     if (!models.length) {
         return 'empty';
@@ -14,7 +12,7 @@ nb.tpl.defaultDialogListTemplate = function(data) {
 
     var fields = this.fields;
     var dialogId = this.id;
-    var m, index, fname, ftext, dataText;
+    var m, index, fname, fvname, ftext, dataText;
     var html = [];
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
@@ -25,13 +23,14 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push('  <span>' + m.name + '</span>');
         //
         for (fname in fields) {
+            fvname = fields[fname][0];
             ftext = fields[fname][1];
             if (ftext) {
                 dataText = ' data-text="' + m[ftext] + '"';
             } else {
                 dataText = '';
             }
-            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
+            html.push('<input data-id="' + m.id + '" name="' + fvname + '" value="' + m[fvname] + '"' + dataText + ' type="hidden"/>');
         }
         //
         html.push(' </label>');

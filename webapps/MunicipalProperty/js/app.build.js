@@ -736,17 +736,16 @@ nb.setFormValues = function(currentNode) {
         dataList.each(function() {
             var dataId = this.value;
             //
-            var field, targetFieldName;
+            var field;
             var $val;
             var $targetFieldNode;
             var value;
             var text;
             //
             for (field in fields) {
-                targetFieldName = fields[field][0];
                 //
-                $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
-                $targetFieldNode = $('[name=' + targetFieldName + ']', form);
+                $val = $('[data-id=' + dataId + '][name=' + fields[field][0] + ']', $dlgw);
+                $targetFieldNode = $('[name=' + field + ']', form);
                 value = $val.val();
                 text = $val.data('text');
                 if (!text) text = value;
@@ -755,19 +754,19 @@ nb.setFormValues = function(currentNode) {
                     if (multiFieldMap[field] !== true) {
                         $targetFieldNode.remove();
                     }
-                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 } else {
-                    var $hf = $('[type=hidden][name=' + targetFieldName + ']', form);
-                    if ($hf.length) {
+                    var $hf = $('[type=hidden][name=' + field + ']', form);
+                    if ($hf.length > 1) {
                         $hf.remove();
-                        $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                        $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                         $targetFieldNode.appendTo(form);
                     }
                 }
                 //
                 if ($targetFieldNode.length === 0) {
-                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 }
                 //
@@ -776,12 +775,12 @@ nb.setFormValues = function(currentNode) {
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         multiFieldMap[field] = true;
-                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                        $('[data-input=' + field.replace('id', '') + ']', form).html('<li>' + text + '</li>');
                     } else {
-                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).append('<li>' + text + '</li>');
+                        $('[data-input=' + field.replace('id', '') + ']', form).append('<li>' + text + '</li>');
                     }
                 } else {
-                    $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html(text);
+                    $('[data-input=' + field.replace('id', '') + ']', form).html(text);
                 }
             }
         });
@@ -873,8 +872,6 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
-    console.log(data, this.fields);
-
     var models = data.objects[0];
     if (!models.length) {
         return 'empty';
@@ -882,7 +879,7 @@ nb.tpl.defaultDialogListTemplate = function(data) {
 
     var fields = this.fields;
     var dialogId = this.id;
-    var m, index, fname, ftext, dataText;
+    var m, index, fname, fvname, ftext, dataText;
     var html = [];
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
@@ -893,13 +890,14 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push('  <span>' + m.name + '</span>');
         //
         for (fname in fields) {
+            fvname = fields[fname][0];
             ftext = fields[fname][1];
             if (ftext) {
                 dataText = ' data-text="' + m[ftext] + '"';
             } else {
                 dataText = '';
             }
-            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
+            html.push('<input data-id="' + m.id + '" name="' + fvname + '" value="' + m[fvname] + '"' + dataText + ' type="hidden"/>');
         }
         //
         html.push(' </label>');
@@ -961,16 +959,16 @@ $(document).ready(function() {
 
  @param fields
     {
-        'название поля модели':
+        'целевое поле':
             [
-                '* название поля куда прописать значение',
-                'поле по которому будет отображен текст [опционально], иначе значение первого *'
+                '* название поля модели от куда брать значение',
+                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
             ]
     }
     пример
     {
-        id: ['balanceholderid', 'name'],
-        bin: ['balanceholderbin']
+        balanceholderid: ['id', 'name'],
+        balanceholderbin: ['bin']
     }
 */
 nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
@@ -1003,43 +1001,45 @@ nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
 nbApp.choiceBalanceHolder = function(el) {
     var url = 'Provider?id=get-organizations';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['balanceholderid', 'name'],
-        bin: ['balanceholderbin']
+        balanceholderid: ['id', 'name'],
+        balanceholderbin: ['bin']
     });
 };
 
 nbApp.choiceCountries = function(el) {
     var url = 'Provider?id=get-countries';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['countryid', 'name']
+        countryid: ['id', 'name']
     });
 };
 
 nbApp.choiceRegion = function(el) {
     var url = 'Provider?id=get-regions';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['regionid', 'name']
+        regionid: ['id', 'name']
     });
 };
 
 nbApp.choiceDistrict = function(el) {
-    var url = 'Provider?id=get-district';
+    var form = nb.getForm(el);
+    var regionId = form.regionid.value;
+    var url = 'Provider?id=get-district&regionid=' + regionId;
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['districtid', 'name']
+        districtid: ['id', 'name']
     });
 };
 
 nbApp.choiceCity = function(el) {
     var url = 'Provider?id=get-city';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['cityid', 'name']
+        cityid: ['id', 'name']
     });
 };
 
 nbApp.choiceStreet = function(el) {
     var url = 'Provider?id=get-street';
     return this.defaultChoiceDialog(el, url, 'json', {
-        id: ['streetid', 'name']
+        streetid: ['id', 'name']
     });
 };
 

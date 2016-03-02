@@ -148,17 +148,16 @@ nb.setFormValues = function(currentNode) {
         dataList.each(function() {
             var dataId = this.value;
             //
-            var field, targetFieldName;
+            var field;
             var $val;
             var $targetFieldNode;
             var value;
             var text;
             //
             for (field in fields) {
-                targetFieldName = fields[field][0];
                 //
-                $val = $('[data-id=' + dataId + '][name=' + field + ']', $dlgw);
-                $targetFieldNode = $('[name=' + targetFieldName + ']', form);
+                $val = $('[data-id=' + dataId + '][name=' + fields[field][0] + ']', $dlgw);
+                $targetFieldNode = $('[name=' + field + ']', form);
                 value = $val.val();
                 text = $val.data('text');
                 if (!text) text = value;
@@ -167,19 +166,19 @@ nb.setFormValues = function(currentNode) {
                     if (multiFieldMap[field] !== true) {
                         $targetFieldNode.remove();
                     }
-                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 } else {
-                    var $hf = $('[type=hidden][name=' + targetFieldName + ']', form);
-                    if ($hf.length) {
+                    var $hf = $('[type=hidden][name=' + field + ']', form);
+                    if ($hf.length > 1) {
                         $hf.remove();
-                        $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                        $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                         $targetFieldNode.appendTo(form);
                     }
                 }
                 //
                 if ($targetFieldNode.length === 0) {
-                    $targetFieldNode = $('<input type="hidden" name="' + targetFieldName + '" />');
+                    $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 }
                 //
@@ -188,12 +187,12 @@ nb.setFormValues = function(currentNode) {
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         multiFieldMap[field] = true;
-                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html('<li>' + text + '</li>');
+                        $('[data-input=' + field.replace('id', '') + ']', form).html('<li>' + text + '</li>');
                     } else {
-                        $('[data-input=' + targetFieldName.replace('id', '') + ']', form).append('<li>' + text + '</li>');
+                        $('[data-input=' + field.replace('id', '') + ']', form).append('<li>' + text + '</li>');
                     }
                 } else {
-                    $('[data-input=' + targetFieldName.replace('id', '') + ']', form).html(text);
+                    $('[data-input=' + field.replace('id', '') + ']', form).html(text);
                 }
             }
         });
