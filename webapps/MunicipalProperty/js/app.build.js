@@ -988,11 +988,13 @@ nbApp.choiceDistrict = function(el) {
 };
 
 nbApp.choiceCity = function(el) {
-    return this.defaultChoiceDialog(el, 'get-city', 'json', { id: 'cityid' });
+    var districtid = $("input[name=districtid]").val();
+    return this.defaultChoiceDialog(el, 'get-city&districtid='+districtid, 'json', { id: 'cityid' });
 };
 
 nbApp.choiceStreet = function(el) {
-    return this.defaultChoiceDialog(el, 'get-street', 'json', { id: 'streetid' });
+    var cityid = $("input[name=cityid]").val();
+    return this.defaultChoiceDialog(el, 'get-street&cityid='+cityid, 'json', { id: 'streetid' });
 };
 
 $(function() {
