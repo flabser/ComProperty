@@ -8,10 +8,10 @@
         'целевое поле':
             [
                 '* название поля модели от куда брать значение',
-                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
+                'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
             ]
     }
-    пример
+    @example
     {
         balanceholderid: ['id', 'name'],
         balanceholderbin: ['bin']
@@ -67,23 +67,24 @@ nbApp.choiceRegion = function(el) {
 };
 
 nbApp.choiceDistrict = function(el) {
-    var form = nb.getForm(el);
-    var regionId = form.regionid.value;
+    var regionId = nb.getForm(el).regionid.value;
     var url = 'Provider?id=get-district&regionid=' + regionId;
     return this.defaultChoiceDialog(el, url, 'json', {
         districtid: ['id', 'name']
     });
 };
 
-nbApp.choiceCity = function(el) {
-    var url = 'Provider?id=get-city';
+nbApp.choiceLocality = function(el) {
+    var districtId = nb.getForm(el).districtid.value;
+    var url = 'Provider?id=get-locality&districtid=' + districtId;
     return this.defaultChoiceDialog(el, url, 'json', {
         cityid: ['id', 'name']
     });
 };
 
 nbApp.choiceStreet = function(el) {
-    var url = 'Provider?id=get-street';
+    var localityId = nb.getForm(el).localityid.value;
+    var url = 'Provider?id=get-street&localityid=' + localityId;
     return this.defaultChoiceDialog(el, url, 'json', {
         streetid: ['id', 'name']
     });

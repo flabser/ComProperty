@@ -872,15 +872,20 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
+    if (!data) {
+        return 'data_error';
+    }
+
     var models = data.objects[0];
     if (!models.length) {
-        return 'empty';
+        return nb.getText('empty');
     }
 
     var fields = this.fields;
     var dialogId = this.id;
-    var m, index, fname, fvname, ftext, dataText;
+    var m, index, tfname, fname, ftext, dataText;
     var html = [];
+
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
         m = models[index];
@@ -888,18 +893,18 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push(' <label ondblclick="nb.dialog.execute(this)">');
         html.push('  <input data-type="select" type="radio" name="select_' + dialogId + '" value="' + m.id + '"/>');
         html.push('  <span>' + m.name + '</span>');
-        //
-        for (fname in fields) {
-            fvname = fields[fname][0];
-            ftext = fields[fname][1];
+
+        for (tfname in fields) {
+            fname = fields[tfname][0];
+            ftext = fields[tfname][1];
             if (ftext) {
                 dataText = ' data-text="' + m[ftext] + '"';
             } else {
                 dataText = '';
             }
-            html.push('<input data-id="' + m.id + '" name="' + fvname + '" value="' + m[fvname] + '"' + dataText + ' type="hidden"/>');
+            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
         }
-        //
+
         html.push(' </label>');
         html.push('</li>');
     }
@@ -962,10 +967,10 @@ $(document).ready(function() {
         'целевое поле':
             [
                 '* название поля модели от куда брать значение',
-                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
+                'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
             ]
     }
-    пример
+    @example
     {
         balanceholderid: ['id', 'name'],
         balanceholderbin: ['bin']
@@ -1021,23 +1026,24 @@ nbApp.choiceRegion = function(el) {
 };
 
 nbApp.choiceDistrict = function(el) {
-    var form = nb.getForm(el);
-    var regionId = form.regionid.value;
+    var regionId = nb.getForm(el).regionid.value;
     var url = 'Provider?id=get-district&regionid=' + regionId;
     return this.defaultChoiceDialog(el, url, 'json', {
         districtid: ['id', 'name']
     });
 };
 
-nbApp.choiceCity = function(el) {
-    var url = 'Provider?id=get-city';
+nbApp.choiceLocality = function(el) {
+    var districtId = nb.getForm(el).districtid.value;
+    var url = 'Provider?id=get-locality&districtid=' + districtId;
     return this.defaultChoiceDialog(el, url, 'json', {
         cityid: ['id', 'name']
     });
 };
 
 nbApp.choiceStreet = function(el) {
-    var url = 'Provider?id=get-street';
+    var localityId = nb.getForm(el).localityid.value;
+    var url = 'Provider?id=get-street&localityid=' + localityId;
     return this.defaultChoiceDialog(el, url, 'json', {
         streetid: ['id', 'name']
     });

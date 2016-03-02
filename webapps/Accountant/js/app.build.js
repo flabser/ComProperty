@@ -872,15 +872,20 @@ nb.tpl = {};
  */
 nb.tpl.defaultDialogListTemplate = function(data) {
 
+    if (!data) {
+        return 'data_error';
+    }
+
     var models = data.objects[0];
     if (!models.length) {
-        return 'empty';
+        return nb.getText('empty');
     }
 
     var fields = this.fields;
     var dialogId = this.id;
-    var m, index, fname, fvname, ftext, dataText;
+    var m, index, tfname, fname, ftext, dataText;
     var html = [];
+
     html.push('<ul class=nb-dialog-list>');
     for (index in models) {
         m = models[index];
@@ -888,18 +893,18 @@ nb.tpl.defaultDialogListTemplate = function(data) {
         html.push(' <label ondblclick="nb.dialog.execute(this)">');
         html.push('  <input data-type="select" type="radio" name="select_' + dialogId + '" value="' + m.id + '"/>');
         html.push('  <span>' + m.name + '</span>');
-        //
-        for (fname in fields) {
-            fvname = fields[fname][0];
-            ftext = fields[fname][1];
+
+        for (tfname in fields) {
+            fname = fields[tfname][0];
+            ftext = fields[tfname][1];
             if (ftext) {
                 dataText = ' data-text="' + m[ftext] + '"';
             } else {
                 dataText = '';
             }
-            html.push('<input data-id="' + m.id + '" name="' + fvname + '" value="' + m[fvname] + '"' + dataText + ' type="hidden"/>');
+            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
         }
-        //
+
         html.push(' </label>');
         html.push('</li>');
     }
@@ -958,10 +963,10 @@ $(document).ready(function() {
         'целевое поле':
             [
                 '* название поля модели от куда брать значение',
-                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
+                'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
             ]
     }
-    пример
+    @example
     {
         balanceholderid: ['id', 'name'],
         balanceholderbin: ['bin']
@@ -974,7 +979,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
         fields: fields,
         title: el.title,
         href: url,
-        dataType: 'html',
+        dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -995,8 +1000,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
 };
 
 nbApp.choiceBalanceHolder = function(el, callback) {
-    var form = nb.getForm(el);
-    var url = 'Provider?id=get-organizations&_fn=' + form.name;
+    var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
         balanceholder: ['id', 'name'],
         balanceholderbin: ['bin']
@@ -1004,8 +1008,7 @@ nbApp.choiceBalanceHolder = function(el, callback) {
 };
 
 nbApp.choiceReaders = function(el, callback) {
-    var form = nb.getForm(el);
-    var url = 'Provider?id=get-employees&_fn=' + form.name;
+    var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
         reader: ['id', 'name']
     }, callback);

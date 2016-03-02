@@ -371,7 +371,8 @@
                             <xsl:value-of select="//fields/district"/>
                         </div>
                     </div>
-                    <input type="hidden" name="region" value="{//fields/district}"/>
+                    <input type="hidden" name="district" value="{//fields/district}"/>
+                    <input type="hidden" name="districtid" value="{//fields/districtid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -380,14 +381,14 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                        <div class="input selectize-dialog" data-input="city" onclick="nbApp.choiceCity(this)">
+                        <div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">
                             <xsl:value-of select="//fields/locality"/>
                         </div>
                     </div>
-                    <input type="hidden" name="region" value="{//fields/locality}"/>
+                    <input type="hidden" name="locality" value="{//fields/locality}"/>
+                    <input type="hidden" name="localityid" value="{//fields/localityid}"/>
                 </div>
             </div>
-            
             <div class="form-group">
                 <div class="control-label">
                     <xsl:value-of select="//captions/street/@caption"/>
@@ -398,7 +399,8 @@
                             <xsl:value-of select="//fields/street"/>
                         </div>
                     </div>
-                    <input type="hidden" name="region" value="{//fields/street}"/>
+                    <input type="hidden" name="street" value="{//fields/street}"/>
+                    <input type="hidden" name="streetid" value="{//fields/streetid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -406,7 +408,7 @@
                     <xsl:value-of select="//captions/home/@caption"/>
                 </div>
                 <div class="controls">
-                    <input type="text" name="home" value="{//fields/home}" class="span1"/>
+                    <input type="text" name="housenumber" value="{//fields/housenumber}" class="span1"/>
                 </div>
             </div>
             <div class="form-group">
@@ -414,7 +416,7 @@
                     <xsl:value-of select="//captions/additional/@caption"/>
                 </div>
                 <div class="controls">
-                    <input type="text" name="address" value="{//fields/additionalinfo}" class="span8"/>
+                    <input type="text" name="additionalinfo" value="{//fields/additionalinfo}" class="span8"/>
                 </div>
             </div>
         </fieldset>

@@ -4,10 +4,10 @@
         'целевое поле':
             [
                 '* название поля модели от куда брать значение',
-                'название поля модели от куда брать значение для текста, иначе значение первого * [опционально], назначение для [data-input]'
+                'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
             ]
     }
-    пример
+    @example
     {
         balanceholderid: ['id', 'name'],
         balanceholderbin: ['bin']
@@ -20,7 +20,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
         fields: fields,
         title: el.title,
         href: url,
-        dataType: 'html',
+        dataType: 'json',
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -41,8 +41,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
 };
 
 nbApp.choiceBalanceHolder = function(el, callback) {
-    var form = nb.getForm(el);
-    var url = 'Provider?id=get-organizations&_fn=' + form.name;
+    var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
         balanceholder: ['id', 'name'],
         balanceholderbin: ['bin']
@@ -50,8 +49,7 @@ nbApp.choiceBalanceHolder = function(el, callback) {
 };
 
 nbApp.choiceReaders = function(el, callback) {
-    var form = nb.getForm(el);
-    var url = 'Provider?id=get-employees&_fn=' + form.name;
+    var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
         reader: ['id', 'name']
     }, callback);
