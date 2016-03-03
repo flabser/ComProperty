@@ -110,7 +110,6 @@ body {
     margin: 6px;
     position: relative;
     width: 180px;
-    z-index: 2;
 }
 
 .ws-app:hover {
@@ -218,6 +217,7 @@ img.ws-app-logo {
 }
 
 @media (max-width: 970px) {
+    .ws-apps.off,
     .ws-app.off {
         display: none;
     }
