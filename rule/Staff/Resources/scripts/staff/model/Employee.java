@@ -23,6 +23,8 @@ import kz.lof.scripting._Session;
 import reference.model.Position;
 import staff.exception.EmployeeException;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
@@ -108,6 +110,7 @@ public class Employee extends Staff implements IEmployee {
 		this.iin = iin;
 	}
 
+	@JsonIgnore
 	public User getUser() throws EmployeeException {
 		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
 		User user = sysDb.getUser(login);
