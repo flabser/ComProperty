@@ -15,6 +15,9 @@
 
     <xsl:template match="availableapps">
         <section class="ws-apps">
+            <xsl:if test="//@userid = 'anonymous'">
+                <xsl:attribute name="class" select="'ws-apps off'"/>
+            </xsl:if>
             <div class="container">
                 <xsl:choose>
                     <xsl:when test="//@userid != 'anonymous'">
