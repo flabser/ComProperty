@@ -1,5 +1,6 @@
 package staff.page.form;
 
+import java.util.Date;
 import java.util.UUID;
 
 import kz.flabs.users.User;
@@ -10,7 +11,6 @@ import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import staff.dao.DepartmentDAO;
-import staff.dao.RoleDAO;
 import staff.model.Department;
 import staff.model.constants.DepartmentType;
 import administrator.dao.LanguageDAO;
@@ -31,11 +31,12 @@ public class DepartmentForm extends StaffForm {
 			entity = dao.findById(UUID.fromString(id));
 		} else {
 			entity = new Department();
+			entity.setRegDate(new Date());
 			entity.setAuthor(user);
+			entity.setName("");
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
-		addContent(new _POJOListWrapper(new RoleDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);

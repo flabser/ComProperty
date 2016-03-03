@@ -24,12 +24,14 @@ public class MainNavigator extends _DoPage {
 
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure-view"));
-
+		_OutlineEntry departmentEntry = new _OutlineEntry(getLocalizedWord("departments", lang), "department-view");
 		_OutlineEntry employeeEntry = new _OutlineEntry(getLocalizedWord("employees", lang), "employee-view");
 		for (Role role : new RoleDAO(session).findAll()) {
 			employeeEntry.addEntry(new _OutlineEntry(getLocalizedWord(role.getName(), lang), getLocalizedWord("assigned", lang) + " : "
 			        + getLocalizedWord(role.getName(), lang), "role-view" + role.getId(), "Provider?id=role-view&docid=" + role.getId()));
 		}
+
+		common_outline.addEntry(departmentEntry);
 		common_outline.addEntry(employeeEntry);
 
 		_OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");

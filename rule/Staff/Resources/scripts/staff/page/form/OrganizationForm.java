@@ -41,6 +41,7 @@ public class OrganizationForm extends StaffForm {
 			entity.setBin("");
 			entity.setRegDate(new Date());
 			entity.setOrgCategory(new OrgCategory());
+			entity.setLabels(new ArrayList<OrganizationLabel>());
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), session));
