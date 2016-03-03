@@ -380,7 +380,7 @@ public class MPXLImporter {
         }
 
         CheVal isFloatNumber(Cell fCell) {
-            if (fCell.getType() == CellType.NUMBER || fCell.getType() == CellType.NUMBER_FORMULA || fCell.getType() == CellType.EMPTY || NumberUtils.isNumber(fCell.getContents())) {
+            if (fCell.getType() == CellType.NUMBER || fCell.getType() == CellType.NUMBER_FORMULA || fCell.getType() == CellType.EMPTY || NumberUtils.isDigits(fCell.getContents().trim().replaceAll("[.|,]", ""))) {
                 return this;
             }
             errMsg.add(new ErrorDescription(info, sourceValue, "value of the cell is not allowed to convert to float number"));
