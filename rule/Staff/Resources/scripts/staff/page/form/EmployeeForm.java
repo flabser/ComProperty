@@ -5,18 +5,21 @@ import java.util.List;
 import java.util.UUID;
 
 import kz.flabs.users.User;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._Exception;
 import reference.dao.PositionDAO;
+import reference.model.Position;
 import staff.dao.DepartmentDAO;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
 import staff.exception.EmployeeException;
 import staff.model.Employee;
+import staff.model.Organization;
 import staff.model.Role;
 
 /**
@@ -36,6 +39,14 @@ public class EmployeeForm extends StaffForm {
 		} else {
 			entity = new Employee();
 			entity.setAuthor(user);
+			entity.setName("");
+			Organization tmpOrg = new Organization();
+			tmpOrg.setName("");
+			entity.setOrganization(tmpOrg);
+			Position tmpPos = new Position();
+			tmpPos.setName("");
+			entity.setPosition(tmpPos);
+			entity.setRoles(new ArrayList<Role>());
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new OrganizationDAO(session).findAll(), session));
@@ -47,6 +58,7 @@ public class EmployeeForm extends StaffForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
+		println(formData);
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
@@ -72,17 +84,22 @@ public class EmployeeForm extends StaffForm {
 
 			entity.setName(formData.getValue("name"));
 			entity.setLogin(formData.getValueSilently("login"));
-			entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organization_id"))));
-			entity.setDepartment(depDAO.findById(UUID.fromString(formData.getValue("department_id"))));
+			entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organizationid"))));
+			String di = formData.getValue("departmentid");
+			if (!di.isEmpty()) {
+				entity.setDepartment(depDAO.findById(UUID.fromString(di)));
+			}
 
 			String[] roles = formData.getListOfValuesSilently("role");
-			List<Role> roleList = new ArrayList<>();
-			for (String roleId : roles) {
-				Role role = roleDAO.findById(UUID.fromString(roleId));
-				roleList.add(role);
-			}
-			if (!roleList.isEmpty()) {
-				entity.setRoles(roleList);
+			if (roles != null) {
+				List<Role> roleList = new ArrayList<>();
+				for (String roleId : roles) {
+					Role role = roleDAO.findById(UUID.fromString(roleId));
+					roleList.add(role);
+				}
+				if (!roleList.isEmpty()) {
+					entity.setRoles(roleList);
+				}
 			}
 
 			if (isNew) {
@@ -99,5 +116,20 @@ public class EmployeeForm extends StaffForm {
 			setBadRequest();
 			error(e);
 		}
+	}
+
+	@Override
+	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+		_Validation ve = new _Validation();
+
+		if (formData.getValueSilently("organizationid").isEmpty()) {
+			ve.addError("organizationid", "empty", getLocalizedWord("required", lang));
+		}
+
+		if (formData.getValueSilently("name").isEmpty()) {
+			ve.addError("name", "empty", getLocalizedWord("required", lang));
+		}
+
+		return ve;
 	}
 }
