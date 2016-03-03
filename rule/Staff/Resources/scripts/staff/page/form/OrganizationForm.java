@@ -44,9 +44,9 @@ public class OrganizationForm extends StaffForm {
 			entity.setLabels(new ArrayList<OrganizationLabel>());
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new OrganizationLabelDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<>(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);
 	}
@@ -81,9 +81,11 @@ public class OrganizationForm extends StaffForm {
 			OrganizationLabelDAO olDao = new OrganizationLabelDAO(session);
 			List<OrganizationLabel> labels = new ArrayList<OrganizationLabel>();
 			for (String labelId : formData.getListOfValuesSilently("labels")) {
-				OrganizationLabel prgLabel = olDao.findById(labelId);
-				if (prgLabel != null) {
-					labels.add(prgLabel);
+				if (!labelId.isEmpty()) {
+					OrganizationLabel prgLabel = olDao.findById(labelId);
+					if (prgLabel != null) {
+						labels.add(prgLabel);
+					}
 				}
 			}
 			entity.setLabels(labels);
