@@ -1,6 +1,5 @@
 package reference.page.form;
 
-import java.util.Date;
 import java.util.UUID;
 
 import kz.flabs.users.User;
@@ -11,6 +10,7 @@ import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.RegionTypeDAO;
+import reference.model.Reference;
 import reference.model.RegionType;
 import reference.model.constants.LocalityCode;
 import reference.model.constants.RegionCode;
@@ -26,15 +26,12 @@ public class RegionTypeForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		RegionType entity;
+		Reference entity;
 		if (!id.isEmpty()) {
 			RegionTypeDAO dao = new RegionTypeDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new RegionType();
-			entity.setAuthor(user);
-			entity.setRegDate(new Date());
-			entity.setName("");
+			entity = getDefaultEntity(user);
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(LocalityCode.class.getEnumConstants()));

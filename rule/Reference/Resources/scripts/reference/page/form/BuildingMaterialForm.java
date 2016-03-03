@@ -10,6 +10,7 @@ import kz.lof.scripting._WebFormData;
 import kz.nextbase.script._Exception;
 import reference.dao.BuildingMaterialDAO;
 import reference.model.BuildingMaterial;
+import reference.model.Reference;
 import administrator.dao.LanguageDAO;
 
 public class BuildingMaterialForm extends ReferenceForm {
@@ -18,13 +19,12 @@ public class BuildingMaterialForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		BuildingMaterial entity;
+		Reference entity;
 		if (!id.isEmpty()) {
 			BuildingMaterialDAO dao = new BuildingMaterialDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new BuildingMaterial();
-			entity.setAuthor(user);
+			entity = getDefaultEntity(user);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));

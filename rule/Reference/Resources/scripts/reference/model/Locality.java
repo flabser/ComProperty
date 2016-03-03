@@ -12,10 +12,15 @@ import javax.validation.constraints.NotNull;
 
 import kz.lof.scripting._Session;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "localities")
 @NamedQuery(name = "Locality.findAll", query = "SELECT m FROM Locality AS m ORDER BY m.regDate")
 public class Locality extends Reference {
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "locality")
 	private List<Street> streets;
 
 	@NotNull
@@ -41,7 +46,6 @@ public class Locality extends Reference {
 		this.type = type;
 	}
 
-	@OneToMany(mappedBy = "locality")
 	public List<Street> getStreets() {
 		return streets;
 	}

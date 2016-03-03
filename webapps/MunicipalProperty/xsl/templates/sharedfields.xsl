@@ -363,20 +363,6 @@
             </div>
             <div class="form-group">
                 <div class="control-label">
-                    <xsl:value-of select="//captions/district/@caption"/>
-                </div>
-                <div class="controls">
-                    <div class="span8">
-                        <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)">
-                            <xsl:value-of select="//fields/district"/>
-                        </div>
-                    </div>
-                    <input type="hidden" name="district" value="{//fields/district}"/>
-                    <input type="hidden" name="districtid" value="{//fields/districtid}"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="control-label">
                     <xsl:value-of select="//captions/locality/@caption"/>
                 </div>
                 <div class="controls">
@@ -387,6 +373,21 @@
                     </div>
                     <input type="hidden" name="locality" value="{//fields/locality}"/>
                     <input type="hidden" name="localityid" value="{//fields/localityid}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label">
+                    <xsl:value-of select="//captions/district/@caption"/>
+                </div>
+                <div class="controls">
+                    <div class="span8">
+                       <!-- <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)" disabled="disabled">-->
+                        <div class="input selectize-dialog" data-input="district" disabled="disabled">
+                            <xsl:value-of select="//fields/district"/>
+                        </div>
+                    </div>
+                    <input type="hidden" name="district" value="{//fields/district}"/>
+                    <input type="hidden" name="districtid" value="{//fields/districtid}"/>
                 </div>
             </div>
             <div class="form-group">
