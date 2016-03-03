@@ -86,30 +86,27 @@
     <xsl:template name="sign-in-form">
         <xsl:if test="//@userid = 'anonymous'">
             <form class="sign-in" action="Login" method="post">
-                <table>
-                    <tr>
-                        <td>
-                            <input type="text" name="login" id="login"/>
-                        </td>
-                        <td>
-                            <input type="password" name="pwd" value="" id="pwd"/>
-                        </td>
-                        <td>
-                            <button type="submit">sign in</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="cbx" name="noauth" value="1"/>
-                            <font>
-                                Чужой компьютер
-                            </font>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-                <input type="hidden" name="type" value="login"/>
+                <div class="fg-login">
+                    <label>
+                        <xsl:value-of select="//captions/user/@caption"/>
+                    </label>
+                    <input type="text" name="login" required="required"/>
+                </div>
+                <div class="fg-pwd">
+                    <label>
+                        <xsl:value-of select="//captions/password/@caption"/>
+                    </label>
+                    <input type="password" name="pwd" required="required"/>
+                </div>
+                <button class="btn" type="submit">
+                    <xsl:value-of select="//captions/login/@caption"/>
+                </button>
+                <label class="fg-noauth">
+                    <input type="checkbox" name="noauth" value="1"/>
+                    <span>
+                        <xsl:value-of select="//captions/anothercomp/@caption"/>
+                    </span>
+                </label>
             </form>
         </xsl:if>
     </xsl:template>

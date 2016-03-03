@@ -169,7 +169,7 @@ $(document).ready(function() {
     if ($('#content-overlay').length) {
         $('#content-overlay').mousedown(function(event) {
             event.preventDefault();
-            $('body').removeClass('side-nav-toggle  search-open');
+            $('body').removeClass('side-nav-toggle search-open');
             if ($('.navbar-search input.q').length) {
                 $('.navbar-search input.q')[0].blur();
             }
@@ -177,7 +177,10 @@ $(document).ready(function() {
 
         $('#content-overlay')[0].addEventListener('touchstart', function(event) {
             event.preventDefault();
-            $('body').removeClass('side-nav-toggle');
+            $('body').removeClass('side-nav-toggle search-open');
+            if ($('.navbar-search input.q').length) {
+                $('.navbar-search input.q')[0].blur();
+            }
         }, false);
     }
 
