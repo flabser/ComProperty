@@ -127,6 +127,7 @@ public class Address {
 		Street street = new Street();
 		street.setName("");
 		addr.setStreet(street);
+		addr.setHouseNumber("");
 		addr.setAdditionalInfo("");
 		return addr;
 

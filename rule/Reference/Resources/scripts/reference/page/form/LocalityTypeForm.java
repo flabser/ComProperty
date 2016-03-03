@@ -1,6 +1,5 @@
 package reference.page.form;
 
-import java.util.Date;
 import java.util.UUID;
 
 import kz.flabs.users.User;
@@ -12,6 +11,7 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import reference.dao.LocalityTypeDAO;
 import reference.model.LocalityType;
+import reference.model.Reference;
 import reference.model.constants.LocalityCode;
 import administrator.dao.LanguageDAO;
 
@@ -25,15 +25,12 @@ public class LocalityTypeForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		User user = session.getUser();
-		LocalityType entity;
+		Reference entity;
 		if (!id.isEmpty()) {
 			LocalityTypeDAO dao = new LocalityTypeDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = new LocalityType();
-			entity.setAuthor(user);
-			entity.setRegDate(new Date());
-			entity.setName("");
+			entity = getDefaultEntity(user);
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(LocalityCode.class.getEnumConstants()));
