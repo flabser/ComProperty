@@ -1,6 +1,7 @@
 package staff.page.form;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +39,7 @@ public class EmployeeForm extends StaffForm {
 			entity = dao.findById(UUID.fromString(id));
 		} else {
 			entity = new Employee();
+			entity.setRegDate(new Date());
 			entity.setAuthor(user);
 			entity.setName("");
 			Organization tmpOrg = new Organization();
@@ -50,6 +52,7 @@ public class EmployeeForm extends StaffForm {
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new OrganizationDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new DepartmentDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new PositionDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new RoleDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
