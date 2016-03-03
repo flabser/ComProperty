@@ -142,7 +142,8 @@ body {
 
 span.ws-app-logo {
     display: inline-block;
-    height: 50%;
+    padding-top: 11px;
+    height: 56%;
     width: 100%;
 }
 
@@ -154,8 +155,9 @@ img.ws-app-logo {
 }
 
 .ws-app-type {
-    color: #444;
+    color: #888;
     display: block;
+    font-size: .9em;
     padding: 3px;
 }
 
@@ -164,7 +166,7 @@ img.ws-app-logo {
     max-height: 3em;
     min-height: 24px;
     overflow: hidden;
-    padding: 3px;
+    padding: 4px;
     text-overflow: ellipsis;
     width: 100%;
 }
@@ -202,6 +204,7 @@ img.ws-app-logo {
         bottom: 4px;
         height: auto;
         left: 4px;
+        padding: 0;
         position: absolute;
         top: 4px;
         width: 100px;

@@ -38,10 +38,10 @@
                     <img class="ws-app-logo" src="/{viewcontent/viewtext}/img/logo.png" alt="logo"/>
                 </span>
                 <span class="ws-app-type">
-                    <xsl:value-of select="viewcontent/viewtext4"/>
+                    <xsl:value-of select="viewcontent/viewtext"/>
                 </span>
                 <span class="ws-app-name">
-                    <xsl:value-of select="viewcontent/viewtext3"/>
+                    <xsl:value-of select="viewcontent/viewtext4"/>
                 </span>
             </a>
         </div>
