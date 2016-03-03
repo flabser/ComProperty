@@ -15,6 +15,15 @@
     z-index: 5;
 }
 
+.header:after {
+    content: ' ';
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
 .aside {
     background-color: #F7F7F7;
     bottom: 0;

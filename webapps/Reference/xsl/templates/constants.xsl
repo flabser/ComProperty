@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:variable name="APP_NAME" select="//captions/brand/@caption"/>
-    <xsl:variable name="APP_LOGO_IMG_SRC" select="'/SharedResources/logos/workflow_small.png'"/>
+    <xsl:variable name="APP_LOGO_IMG_SRC" select="'img/logo.png'"/>
 
     <!-- html5 doctype -->
     <xsl:template name="HTML-DOCTYPE">
