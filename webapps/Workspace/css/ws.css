@@ -38,6 +38,7 @@ body {
 @media (max-width: 768px) {
     .brand-title {
         display: inline-block;
+        font-size: 18px;
     }
 }
 
