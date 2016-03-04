@@ -68,6 +68,8 @@ input[readonly]:focus {
     background: white;
 }
 
+.readonly,
+.disabled,
 .input[readonly],
 input[readonly],
 .input[disabled],

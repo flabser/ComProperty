@@ -8,6 +8,9 @@ var nb = {
     APP_NAME: location.hostname,
     LANG_ID: 'RUS',
     debug: false,
+    options: {
+        dateFormat: 'yy-mm-dd'
+    },
     translations: {
         yes: 'Да',
         no: 'Нет',

@@ -1248,6 +1248,9 @@ var nb = {
     APP_NAME: location.hostname,
     LANG_ID: 'RUS',
     debug: false,
+    options: {
+        dateFormat: 'yy-mm-dd'
+    },
     translations: {
         yes: 'Да',
         no: 'Нет',
@@ -2280,6 +2283,8 @@ this["nb"]["templates"]["dialog-list"] = Handlebars.template({"1":function(conta
     + "</ul>\r\n";
 },"useData":true,"useDepths":true,"useBlockParams":true});
 $(function() {
+    $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
+
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));

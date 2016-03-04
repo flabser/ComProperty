@@ -1,4 +1,6 @@
 $(function() {
+    $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
+
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));
