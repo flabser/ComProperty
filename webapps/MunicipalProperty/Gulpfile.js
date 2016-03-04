@@ -12,7 +12,7 @@ var js_files = ['../SharedResources/nb/js/nb.build.js',
 ];
 
 var css_files = ['../SharedResources/css/normalize.css',
-    '../SharedResources/nb/css/nb.build.css',
+    '../SharedResources/nb/css/nb.min.css',
     './css/**/*.css',
     '!./css/all.min.css'
 ];
@@ -37,8 +37,7 @@ gulp.task('minify_css', function() {
         .pipe(gulp.dest('./css'));
 });
 
-gulp.task('default', function() {
-    gulp.run('minify_css', 'minify_js');
+gulp.task('default', ['minify_css', 'lint', 'minify_js'], function() {
 
     gulp.watch(js_files, function(event) {
         gulp.run('minify_js');

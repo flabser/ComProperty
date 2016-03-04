@@ -1,9 +1,22 @@
 nb.tpl = {};
 
+nb.tpl.defaultDialogListTemplate = function(data) {
+    return nb.templates['dialog-list']({
+        dialogId: this.id,
+        fields: this.fields,
+        isMulti: this.isMulti === true,
+        models: data.objects[0]
+    });
+};
+
+Handlebars.registerHelper('mapValue', function(context, options) {
+    return context[options];
+});
+
 /**
  * defaultDialogListTemplate
  */
-nb.tpl.defaultDialogListTemplate = function(data) {
+nb.tpl.defaultDialogListTemplate2 = function(data) {
 
     if (!data) {
         return 'data_error';

@@ -42,7 +42,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
             <link rel="stylesheet" href="/SharedResources/vendor/font-awesome/css/font-awesome.min.css"/>
-            <link rel="stylesheet" href="/SharedResources/nb/css/nb.build.css"/>
+            <link rel="stylesheet" href="/SharedResources/nb/css/nb.min.css"/>
             <link rel="stylesheet" href="css/ws.css"/>
         </head>
     </xsl:template>
@@ -55,9 +55,9 @@
                         <xsl:value-of select="//org"/>
                     </span>
                 </div>
-                <nav class="navbar-nav navbar-right">
-                    <xsl:if test="//@userid != 'anonymous'">
-                        <ul class="nav navbar-right">
+                <xsl:if test="//@userid != 'anonymous'">
+                    <nav class="navbar-nav navbar-right">
+                        <ul class="nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-user"></i>
@@ -77,8 +77,8 @@
                                 </ul>
                             </li>
                         </ul>
-                    </xsl:if>
-                </nav>
+                    </nav>
+                </xsl:if>
             </div>
         </header>
     </xsl:template>
@@ -86,27 +86,24 @@
     <xsl:template name="sign-in-form">
         <xsl:if test="//@userid = 'anonymous'">
             <form class="sign-in" action="Login" method="post">
-                <div class="fg-login">
-                    <label>
-                        <xsl:value-of select="//captions/user/@caption"/>
-                    </label>
+                <label class="login">
+                    <xsl:value-of select="//captions/user/@caption"/>
                     <input type="text" name="login" required="required"/>
-                </div>
-                <div class="fg-pwd">
-                    <label>
-                        <xsl:value-of select="//captions/password/@caption"/>
-                    </label>
+                </label>
+                <label class="pwd">
+                    <xsl:value-of select="//captions/password/@caption"/>
                     <input type="password" name="pwd" required="required"/>
-                </div>
+                </label>
                 <button class="btn" type="submit">
                     <xsl:value-of select="//captions/login/@caption"/>
                 </button>
-                <label class="fg-noauth">
+                <label class="noauth">
                     <input type="checkbox" name="noauth" value="1"/>
                     <span>
                         <xsl:value-of select="//captions/anothercomp/@caption"/>
                     </span>
                 </label>
+                <div class="clearfix"></div>
             </form>
         </xsl:if>
     </xsl:template>

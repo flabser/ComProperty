@@ -13,11 +13,12 @@
         balanceholderbin: ['bin']
     }
 */
-nbApp.defaultChoiceDialog = function(el, url, fields, callback) {
+nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
         fields: fields,
+        isMulti: isMulti,
         title: el.title,
         href: url,
         dataType: 'json',
@@ -45,12 +46,12 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     return this.defaultChoiceDialog(el, url, {
         balanceholder: ['id', 'name'],
         balanceholderbin: ['bin']
-    }, callback);
+    }, false, callback);
 };
 
 nbApp.choiceReaders = function(el, callback) {
     var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
         reader: ['id', 'name']
-    }, callback);
+    }, true, callback);
 };

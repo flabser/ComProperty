@@ -82,7 +82,7 @@ nb.uiUnblock = function() {
 /**
  * template
  * @param templateId - template function name defined in nb.tpl
- * @param data - data for tamplate
+ * @param data - data for template
  */
 nb.template = function(templateId, data) {
     if (nb.tpl[templateId]) {
@@ -190,6 +190,11 @@ $(document).ready(function() {
     });
     $('.navbar-search input.q').on('blur', function() {
         $('body').removeClass('search-open');
+    });
+
+    // data-role="dialog-list-item"
+    $(document).on('dblclick', '[data-role=dialog-list-item]', function() {
+        return nb.dialog.execute(this);
     });
 
     //
