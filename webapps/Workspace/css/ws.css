@@ -82,6 +82,7 @@ body {
     bottom: 0;
     padding: 6px;
     position: absolute;
+    width: 100%;
 }
 
 .footer span {
@@ -280,4 +281,32 @@ img.ws-app-logo {
         margin-top: 23px;
         padding: 5px 9px;
     }
+}
+
+
+/* .lang */
+
+.lang {
+    display: inline-block;
+    position: relative;
+}
+
+.lang-title {
+    display: block;
+}
+
+.lang-menu {
+    bottom: 100%;
+    display: none;
+    right: 4px;
+}
+
+.lang:hover .lang-menu {
+    display: block;
+    position: absolute;
+}
+
+.lang-menu a {
+    display: block;
+    padding: 2px 0;
 }

@@ -55,7 +55,7 @@
                         <xsl:value-of select="//org"/>
                     </span>
                 </div>
-                <xsl:if test="//@userid != 'anonymous'">
+                <xsl:if test="@userid != 'anonymous'">
                     <nav class="navbar-nav navbar-right">
                         <ul class="nav">
                             <li class="dropdown">
@@ -84,7 +84,7 @@
     </xsl:template>
 
     <xsl:template name="sign-in-form">
-        <xsl:if test="//@userid = 'anonymous'">
+        <xsl:if test="@userid = 'anonymous'">
             <form class="sign-in" action="Login" method="post">
                 <label class="login">
                     <xsl:value-of select="//captions/user/@caption"/>
@@ -111,15 +111,37 @@
     <xsl:template name="main-footer">
         <div class="footer-spacer"></div>
         <footer class="footer">
-            <span>v.</span>
-            <span>
-                <xsl:value-of select="//serverversion"/>
-            </span>
-            <span>build:</span>
-            <span>
-                <xsl:value-of select="//build"/>
-            </span>
+            <div class="container">
+                <xsl:apply-templates select="//query[@entity='language']"/>
+                <div class="pull-left">
+                    <span>v.</span>
+                    <span>
+                        <xsl:value-of select="//serverversion"/>
+                    </span>
+                    <span>build:</span>
+                    <span>
+                        <xsl:value-of select="//build"/>
+                    </span>
+                </div>
+            </div>
         </footer>
+    </xsl:template>
+
+    <xsl:template match="query[@entity='language']">
+        <div class="lang pull-right">
+            <a href="#" class="lang-title">
+                <xsl:value-of select="//@lang"/>
+            </a>
+            <div class="lang-menu">
+                <xsl:apply-templates select="entry" mode="lang"/>
+            </div>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="lang">
+        <a href="#{viewcontent/lang/@id}">
+            <xsl:value-of select="viewcontent/lang"/>
+        </a>
     </xsl:template>
 
 </xsl:stylesheet>
