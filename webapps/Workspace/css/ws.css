@@ -172,25 +172,6 @@ img.ws-app-logo {
     width: 100%;
 }
 
-.ws-app-description {
-    background: #F8F8FF !important;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    bottom: 0;
-    color: #999;
-    display: none;
-    height: 32px;
-    right: 0;
-    position: absolute;
-    width: 32px;
-}
-
-.ws-app-description {
-    background: #FFF !important;
-    top: 0;
-    right: 0;
-}
-
 @media ( max-width: 768px) {
     .ws-apps {
         margin: 0;
