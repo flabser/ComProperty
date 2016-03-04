@@ -9,6 +9,7 @@ var declare = require('gulp-declare');
 var handlebars = require('gulp-handlebars');
 
 var js_files = ['../vendor/handlebars/handlebars.runtime-v4.0.5.js',
+    '../vendor/jquery/ui-i18n/*.js'
     'js/src/nb.js',
     'js/src/**/*.js'
 ];

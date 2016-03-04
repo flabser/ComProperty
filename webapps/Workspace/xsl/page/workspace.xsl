@@ -9,48 +9,49 @@
 
     <xsl:template name="_content">
         <section class="ws">
-            <xsl:apply-templates select="//availableapps"/>
+            <xsl:choose>
+                <xsl:when test="//query[@entity='application']">
+                    <xsl:apply-templates select="//query[@entity='application']"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="off-app"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </section>
     </xsl:template>
 
-    <xsl:template match="availableapps">
+    <xsl:template match="query[@entity='application']">
         <section class="ws-apps">
-            <xsl:if test="//@userid = 'anonymous'">
-                <xsl:attribute name="class" select="'ws-apps off'"/>
-            </xsl:if>
             <div class="container">
-                <xsl:choose>
-                    <xsl:when test="//@userid != 'anonymous'">
-                        <xsl:apply-templates select="query/entry" mode="app"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="off-app"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:apply-templates select="entry" mode="app"/>
             </div>
         </section>
     </xsl:template>
 
     <xsl:template match="entry" mode="app">
         <div class="ws-app">
-            <a class="ws-app-link" href="/{viewcontent/viewtext}/{viewcontent/viewtext1}">
+            <a class="ws-app-link" href="/{viewcontent/app/@id}/{viewcontent/url}">
                 <span class="ws-app-logo">
-                    <img class="ws-app-logo" src="/{viewcontent/viewtext}/img/logo.png" alt="logo"/>
+                    <img class="ws-app-logo" src="/{viewcontent/app/@id}/img/logo.png" alt="logo"/>
                 </span>
                 <span class="ws-app-type">
-                    <xsl:value-of select="viewcontent/viewtext"/>
+                    <xsl:value-of select="viewcontent/app/@id"/>
                 </span>
                 <span class="ws-app-name">
-                    <xsl:value-of select="viewcontent/viewtext4"/>
+                    <xsl:value-of select="viewcontent/app"/>
                 </span>
             </a>
         </div>
     </xsl:template>
 
     <xsl:template name="off-app">
-        <div class="ws-app off"></div>
-        <div class="ws-app off"></div>
-        <div class="ws-app off"></div>
+        <section class="ws-apps off">
+            <div class="container">
+                <div class="ws-app off"></div>
+                <div class="ws-app off"></div>
+                <div class="ws-app off"></div>
+            </div>
+        </section>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -144,24 +144,22 @@ nb.setFormValues = function(currentNode) {
     function _writeValues() {
         var isMulti = dataList.length > 1;
         var multiFieldMap = {};
-        //
+
         dataList.each(function() {
             var dataId = this.value;
-            //
             var field;
             var $val;
             var $targetFieldNode;
             var value;
             var text;
-            //
+
             for (field in fields) {
-                //
                 $val = $('[data-id=' + dataId + '][name=' + fields[field][0] + ']', $dlgw);
                 $targetFieldNode = $('[name=' + field + ']', form);
                 value = $val.val();
                 text = $val.data('text');
                 if (!text) text = value;
-                //
+
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         $targetFieldNode.remove();
@@ -176,14 +174,14 @@ nb.setFormValues = function(currentNode) {
                         $targetFieldNode.appendTo(form);
                     }
                 }
-                //
+
                 if ($targetFieldNode.length === 0) {
                     $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 }
-                //
+
                 $targetFieldNode.val(value);
-                //
+
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         multiFieldMap[field] = true;

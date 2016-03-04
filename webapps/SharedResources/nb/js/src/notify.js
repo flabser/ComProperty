@@ -38,16 +38,19 @@ nb.notify = function(options) {
             }
 
             if (timeout && timeout > 0) {
-                var _this = this;
                 setTimeout(function() {
                     $el.remove();
                     $el = null;
-                    callback && callback();
+                    if (typeof(callback) === 'function') {
+                        callback();
+                    }
                 }, timeout);
             } else {
                 $el.remove();
                 $el = null;
-                callback && callback();
+                if (typeof(callback) === 'function') {
+                    callback();
+                }
             }
         }
     };

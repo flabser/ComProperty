@@ -64,7 +64,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="user-profile" title="{//captions/user_profile/@caption}">
+                                        <a class="user-profile">
                                             <xsl:value-of select="@username"/>
                                         </a>
                                     </li>

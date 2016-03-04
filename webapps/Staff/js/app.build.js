@@ -1246,7 +1246,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 var nb = {
     APP_NAME: location.hostname,
-    LANG_ID: 'RUS',
+    LANG_ID: (function() {
+        var ck = document.cookie.match('(lang)=(.*?)($|;|,(?! ))');
+        if (ck) {
+            return ck[2];
+        }
+        return 'RUS';
+    })(),
     debug: false,
     options: {
         dateFormat: 'yy-mm-dd'
@@ -1337,8 +1343,6 @@ nb.template = function(templateId, data) {
 
 // init
 $(document).ready(function() {
-    nb.LANG_ID = $.cookie('lang') || 'RUS';
-
     //
     var oreo = localStorage.getItem('side-tree-toggle');
     var ary = [];
@@ -1983,24 +1987,22 @@ nb.setFormValues = function(currentNode) {
     function _writeValues() {
         var isMulti = dataList.length > 1;
         var multiFieldMap = {};
-        //
+
         dataList.each(function() {
             var dataId = this.value;
-            //
             var field;
             var $val;
             var $targetFieldNode;
             var value;
             var text;
-            //
+
             for (field in fields) {
-                //
                 $val = $('[data-id=' + dataId + '][name=' + fields[field][0] + ']', $dlgw);
                 $targetFieldNode = $('[name=' + field + ']', form);
                 value = $val.val();
                 text = $val.data('text');
                 if (!text) text = value;
-                //
+
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         $targetFieldNode.remove();
@@ -2015,14 +2017,14 @@ nb.setFormValues = function(currentNode) {
                         $targetFieldNode.appendTo(form);
                     }
                 }
-                //
+
                 if ($targetFieldNode.length === 0) {
                     $targetFieldNode = $('<input type="hidden" name="' + field + '" />');
                     $targetFieldNode.appendTo(form);
                 }
-                //
+
                 $targetFieldNode.val(value);
-                //
+
                 if (isMulti) {
                     if (multiFieldMap[field] !== true) {
                         multiFieldMap[field] = true;
@@ -2090,16 +2092,19 @@ nb.notify = function(options) {
             }
 
             if (timeout && timeout > 0) {
-                var _this = this;
                 setTimeout(function() {
                     $el.remove();
                     $el = null;
-                    callback && callback();
+                    if (typeof(callback) === 'function') {
+                        callback();
+                    }
                 }, timeout);
             } else {
                 $el.remove();
                 $el = null;
-                callback && callback();
+                if (typeof(callback) === 'function') {
+                    callback();
+                }
             }
         }
     };

@@ -6,7 +6,13 @@
 
 var nb = {
     APP_NAME: location.hostname,
-    LANG_ID: 'RUS',
+    LANG_ID: (function() {
+        var ck = document.cookie.match('(lang)=(.*?)($|;|,(?! ))');
+        if (ck) {
+            return ck[2];
+        }
+        return 'RUS';
+    })(),
     debug: false,
     options: {
         dateFormat: 'yy-mm-dd'
@@ -97,8 +103,6 @@ nb.template = function(templateId, data) {
 
 // init
 $(document).ready(function() {
-    nb.LANG_ID = $.cookie('lang') || 'RUS';
-
     //
     var oreo = localStorage.getItem('side-tree-toggle');
     var ary = [];
