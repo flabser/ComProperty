@@ -7,13 +7,13 @@ import java.util.Map;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script.events._DoPage;
 
 import org.apache.commons.io.FilenameUtils;
@@ -41,7 +41,7 @@ public class ImportFileChecker extends _DoPage {
 					session.setAttribute(fsid + "_file" + fn, uf);
 				}
 
-				User user = session.getUser();
+				IUser user = session.getUser();
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
 				String excelFile = userTmpDir + File.separator + fn;

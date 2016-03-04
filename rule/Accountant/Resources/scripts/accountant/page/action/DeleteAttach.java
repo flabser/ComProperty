@@ -2,11 +2,11 @@ package accountant.page.action;
 
 import java.io.File;
 
-import kz.flabs.users.User;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script.events._DoPage;
 
 public class DeleteAttach extends _DoPage {
@@ -23,7 +23,7 @@ public class DeleteAttach extends _DoPage {
 		try {
 			session.removeAttribute(fsid + "_file" + fn);
 			session.removeAttribute(fsid);
-			User user = session.getUser();
+			IUser user = session.getUser();
 			File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
 			if (fn.indexOf('/') == -1 && fn.indexOf('\\') == -1) {

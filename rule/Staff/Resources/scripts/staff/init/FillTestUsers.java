@@ -7,7 +7,6 @@ import java.util.List;
 
 import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.localization.Vocabulary;
-import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
@@ -24,6 +23,8 @@ import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
+import administrator.dao.UserDAO;
+import administrator.model.User;
 
 /**
  * 
@@ -42,7 +43,8 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 		List<Employee> entities = new ArrayList<Employee>();
 		if (checkNecessaryFiles()) {
 			ISystemDatabase sysDb = Environment.systemBase;
-			List<User> users = sysDb.getAllUsers("", 0, 10000);
+			UserDAO uDao = new UserDAO();
+			List<User> users = uDao.findAll();
 			int rCount = users.size();
 			System.out.println("System users count = " + rCount);
 			for (int i = 0; i < rCount; i++) {

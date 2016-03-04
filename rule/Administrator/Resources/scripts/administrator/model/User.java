@@ -6,12 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import kz.lof.user.IUser;
 
 @Entity
 @Table(name = "_users")
 @NamedQuery(name = "User.findAll", query = "SELECT m FROM User AS m ORDER BY m.regDate")
-public class User {
+public class User implements IUser {
 	@Id
 	@Column(name = "id", nullable = false)
 	protected long id;
@@ -19,16 +23,34 @@ public class User {
 	@Column(name = "reg_date", nullable = false, updatable = false)
 	protected Date regDate;
 
-	@Column(length = 128, unique = true)
+	@Transient
 	private String userName;
 
 	@Column(length = 64, unique = true)
 	private String login;
 
-	@Column(length = 128, unique = true)
 	private String pwd;
 
+	private String pwdHash;
+
 	private int status;
+
+	@Override
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@Transient
+	private boolean isAuthorized;
+
+	@PrePersist
+	private void prePersist() {
+		regDate = new Date();
+	}
 
 	public Date getRegDate() {
 		return regDate;
@@ -38,10 +60,12 @@ public class User {
 		this.regDate = regDate;
 	}
 
+	@Override
 	public String getUserName() {
 		return userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
@@ -62,12 +86,36 @@ public class User {
 		this.pwd = pwd;
 	}
 
+	@Override
+	public String getPwdHash() {
+		return pwdHash;
+	}
+
+	public void setPwdHash(String pwdHash) {
+		this.pwdHash = pwdHash;
+	}
+
 	public int getStatus() {
 		return status;
 	}
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	@Override
+	public boolean isAuthorized() {
+		return isAuthorized;
+	}
+
+	@Override
+	public void setAuthorized(boolean isAuthorized) {
+		this.isAuthorized = isAuthorized;
+	}
+
+	@Override
+	public String getUserID() {
+		return login;
 	}
 
 }

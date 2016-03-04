@@ -2,10 +2,10 @@ package accountant.page.action;
 
 import java.io.File;
 
-import kz.flabs.users.User;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script.events._DoPage;
 
@@ -19,7 +19,7 @@ public class GetAttach extends _DoPage {
 			return;
 		}
 
-		User user = session.getUser();
+		IUser user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
 			if (fileName.indexOf('/') == -1 && fileName.indexOf('\\') == -1) {

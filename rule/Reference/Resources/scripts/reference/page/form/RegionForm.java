@@ -3,12 +3,12 @@ package reference.page.form;
 import java.util.Date;
 import java.util.UUID;
 
-import kz.flabs.users.User;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.dao.RegionDAO;
@@ -27,7 +27,7 @@ public class RegionForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		Region entity;
 		if (!id.isEmpty()) {
 			RegionDAO dao = new RegionDAO(session);

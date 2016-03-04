@@ -2,7 +2,7 @@ package municipalproperty.page.form.enginfrastructure;
 
 import java.util.UUID;
 
-import kz.flabs.users.User;
+import kz.lof.user.IUser;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -18,7 +18,7 @@ public class GasForm extends EngInfrastructureAbstractForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		EngineeringInfrastructure entity;
 		if (!id.isEmpty()) {
 			EngInfrastructureDAO dao = new EngInfrastructureDAO(session);

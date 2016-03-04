@@ -39,7 +39,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			countCq.select(cb.count(c));
 			Predicate condition = c.get(fieldName).in(value);
 			if (!user.getUserID().equals(Const.sysUser) && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
-				condition = cb.and(c.get("readers").in((long) user.docID), condition);
+				condition = cb.and(c.get("readers").in(user.getId()), condition);
 			}
 			cq.where(condition);
 			countCq.where(condition);
@@ -73,7 +73,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			cq.where(condition);
 			Query query = em.createQuery(cq);
 			if (!user.getUserID().equals(Const.sysUser)) {
-				condition = cb.and(c.get("readers").in((long) user.docID), condition);
+				condition = cb.and(c.get("readers").in(user.getId()), condition);
 			}
 			List<Property> entities = query.getResultList();
 			return entities;
@@ -122,9 +122,9 @@ public class PropertyDAO extends DAO<Property, UUID> {
 
 			if (!user.getUserID().equals(Const.sysUser)) {
 				if (condition != null) {
-					condition = cb.and(c.get("readers").in((long) user.docID), condition);
+					condition = cb.and(c.get("readers").in(user.getId()), condition);
 				} else {
-					condition = c.get("readers").in((long) user.docID);
+					condition = c.get("readers").in(user.getId());
 				}
 			}
 

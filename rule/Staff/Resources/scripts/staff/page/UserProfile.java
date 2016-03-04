@@ -1,11 +1,9 @@
 package staff.page;
 
-
-import kz.flabs.users.User;
-import kz.flabs.util.Util;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
@@ -22,7 +20,7 @@ public class UserProfile extends _DoPage {
 
 	@Override
 	public void doGET(_Session ses, _WebFormData webFormData) {
-		User user = ses.getUser();
+		IUser user = ses.getUser();
 		EmployeeDAO dao = new EmployeeDAO(ses);
 		Employee emp = dao.findByLogin(user.getUserID());
 		addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));

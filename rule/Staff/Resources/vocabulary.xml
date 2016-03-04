@@ -2,7 +2,7 @@
 <vocabulary primary="ENG">
     <sentence mode="on" keyword="brand">
         <entry lang="ENG">Staff</entry>
-        <entry lang="RUS">Staff</entry>
+        <entry lang="RUS">Структура</entry>
         <entry lang="KAZ">Staff</entry>
     </sentence>
     <sentence mode="on" keyword="common_staff_data">

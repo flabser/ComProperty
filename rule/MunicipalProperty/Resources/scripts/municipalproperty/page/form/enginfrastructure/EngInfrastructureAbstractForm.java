@@ -2,12 +2,12 @@ package municipalproperty.page.form.enginfrastructure;
 
 import java.util.Date;
 
-import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
 import municipalproperty.dao.EngInfrastructureDAO;
@@ -84,7 +84,7 @@ public abstract class EngInfrastructureAbstractForm extends MunicipalPropertyFor
 			}
 			entity.setNotes(formData.getValueSilently("notes"));
 
-			User user = session.getUser();
+			IUser user = session.getUser();
 			entity.addReaderEditor(user);
 
 			save(entity, dao, isNew);
@@ -143,7 +143,7 @@ public abstract class EngInfrastructureAbstractForm extends MunicipalPropertyFor
 		return ve;
 	}
 
-	protected EngineeringInfrastructure getDefaultEntity(User user, KufType type, _Session session) {
+	protected EngineeringInfrastructure getDefaultEntity(IUser user, KufType type, _Session session) {
 		EngineeringInfrastructure entity = new EngineeringInfrastructure();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

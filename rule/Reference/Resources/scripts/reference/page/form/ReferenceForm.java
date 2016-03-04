@@ -2,11 +2,11 @@ package reference.page.form;
 
 import java.util.Date;
 
-import kz.flabs.users.User;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
@@ -42,7 +42,7 @@ public abstract class ReferenceForm extends _DoPage {
 
 	}
 
-	protected Reference getDefaultEntity(User user) {
+	protected Reference getDefaultEntity(IUser user) {
 		Reference entity = new Reference();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

@@ -20,8 +20,10 @@ import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.scripting._Session;
+import kz.lof.user.IUser;
 import reference.model.Position;
 import staff.exception.EmployeeException;
+import administrator.dao.UserDAO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -111,9 +113,9 @@ public class Employee extends Staff implements IEmployee {
 	}
 
 	@JsonIgnore
-	public User getUser() throws EmployeeException {
-		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
-		User user = sysDb.getUser(login);
+	public IUser getUser() throws EmployeeException {
+		UserDAO uDao = new UserDAO();
+		IUser user = uDao.findByLogin(login);
 		if (user != null) {
 			return user;
 		} else {

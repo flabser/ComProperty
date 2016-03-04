@@ -3,11 +3,11 @@ package staff.page.form;
 import java.util.Date;
 import java.util.UUID;
 
-import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import staff.dao.DepartmentDAO;
@@ -24,7 +24,7 @@ public class DepartmentForm extends StaffForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		Department entity;
 		if (!id.isEmpty()) {
 			DepartmentDAO dao = new DepartmentDAO(session);

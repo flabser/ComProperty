@@ -3,7 +3,7 @@ package municipalproperty.page.form.intangibleasset;
 import java.util.UUID;
 
 
-import kz.flabs.users.User;
+import kz.lof.user.IUser;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -19,7 +19,7 @@ public class ShareBlockForm extends IntangibleAssetAbstarctForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		IntangibleAsset entity;
 		if (!id.isEmpty()) {
 			IntangibleAssetDAO dao = new IntangibleAssetDAO(session);

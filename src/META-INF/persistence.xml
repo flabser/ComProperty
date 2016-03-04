@@ -133,6 +133,9 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Workspace" transaction-type="RESOURCE_LOCAL">
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>

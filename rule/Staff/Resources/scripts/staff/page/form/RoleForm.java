@@ -2,11 +2,11 @@ package staff.page.form;
 
 import java.util.UUID;
 
-import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import staff.dao.RoleDAO;
 import staff.model.Role;
@@ -21,7 +21,7 @@ public class RoleForm extends StaffForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		Role entity;
 		if (!id.isEmpty()) {
 			RoleDAO dao = new RoleDAO(session);

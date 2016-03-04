@@ -3,7 +3,7 @@ package municipalproperty.page.form.personalestate;
 import java.util.UUID;
 
 
-import kz.flabs.users.User;
+import kz.lof.user.IUser;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -19,7 +19,7 @@ public class OthersForm extends PersonalEstateAbstractForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		PersonalEstate entity;
 		if (!id.isEmpty()) {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);

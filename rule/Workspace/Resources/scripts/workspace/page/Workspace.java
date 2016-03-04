@@ -3,9 +3,11 @@ package workspace.page;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.AnonymousUser;
 import kz.nextbase.script._AppEntourage;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script.events._DoPage;
+import administrator.dao.ApplicationDAO;
 import administrator.dao.LanguageDAO;
 
 public class Workspace extends _DoPage {
@@ -19,6 +21,9 @@ public class Workspace extends _DoPage {
 		publishElement("img", ent.getLogoImg());
 		publishElement("appname", ent.getAppName());
 		publishElement("availableapps", ent.getAvailableApps());
+		if (!session.getUser().getUserID().equalsIgnoreCase(AnonymousUser.USER_NAME)) {
+			addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
+		}
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 
 	}

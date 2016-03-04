@@ -3,11 +3,11 @@ package reference.page.form;
 import java.util.Date;
 import java.util.UUID;
 
-import kz.flabs.users.User;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
@@ -24,7 +24,7 @@ public class LocalityForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		User user = session.getUser();
+		IUser user = session.getUser();
 		Locality entity;
 		if (!id.isEmpty()) {
 			LocalityDAO dao = new LocalityDAO(session);

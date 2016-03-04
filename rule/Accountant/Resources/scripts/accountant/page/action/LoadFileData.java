@@ -8,12 +8,12 @@ import java.util.UUID;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import kz.flabs.users.User;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script.events._DoPage;
 
@@ -44,7 +44,7 @@ public class LoadFileData extends _DoPage {
 					return;
 				}
 				if (uf != null) {
-					User user = session.getUser();
+					IUser user = session.getUser();
 					File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 					String fileName = userTmpDir + File.separator + fn;
 					String ext = FilenameUtils.getExtension(fileName);
