@@ -5,7 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import kz.flabs.dataengine.IDatabase;
 import kz.lof.env.Environment;
@@ -34,6 +40,41 @@ public class UserDAO {
 		} finally {
 			em.close();
 		}
+	}
+
+	public User findById(long id) {
+		EntityManager em = emf.createEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		try {
+			CriteriaQuery<User> cq = cb.createQuery(User.class);
+			Root<User> c = cq.from(User.class);
+			cq.select(c);
+			Predicate condition = c.get("id").in(id);
+			cq.where(condition);
+			Query query = em.createQuery(cq);
+			User entity = (User) query.getSingleResult();
+			return entity;
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+
+	public IUser findByLogin(String login) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			String jpql = "SELECT m FROM User AS m WHERE m.login = :login";
+			TypedQuery<User> q = em.createQuery(jpql, User.class);
+			q.setParameter("login", login);
+			List<User> res = q.getResultList();
+			return res.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		} finally {
+			em.close();
+		}
+
 	}
 
 	public User add(User entity) throws DatabaseException {
@@ -76,19 +117,23 @@ public class UserDAO {
 		}
 	}
 
-	public IUser findByLogin(String login) {
+	public void delete(User entity) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			String jpql = "SELECT m FROM User AS m WHERE m.login = :login";
-			TypedQuery<User> q = em.createQuery(jpql, User.class);
-			q.setParameter("login", login);
-			List<User> res = q.getResultList();
-			return res.get(0);
-		} catch (IndexOutOfBoundsException e) {
-			return null;
+			EntityTransaction t = em.getTransaction();
+			try {
+				t.begin();
+				entity = em.merge(entity);
+				em.remove(entity);
+				t.commit();
+			} finally {
+				if (t.isActive()) {
+					t.rollback();
+				}
+			}
 		} finally {
 			em.close();
 		}
-
 	}
+
 }

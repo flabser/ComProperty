@@ -22,7 +22,7 @@ public class UserProfile extends _DoPage {
 	public void doGET(_Session ses, _WebFormData webFormData) {
 		IUser user = ses.getUser();
 		EmployeeDAO dao = new EmployeeDAO(ses);
-		Employee emp = dao.findByLogin(user.getUserID());
+		Employee emp = dao.findByUserId(user.getId());
 		addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
 		addContent(emp);
 		addContent(new _POJOListWrapper(new LanguageDAO(ses).findAll(), ses));
