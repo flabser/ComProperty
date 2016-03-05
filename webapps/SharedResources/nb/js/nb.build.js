@@ -1406,15 +1406,11 @@ nb.uiUnblock = function() {
 
 /**
  * template
- * @param templateId - template function name defined in nb.tpl
+ * @param templateId - hbs template
  * @param data - data for template
  */
 nb.template = function(templateId, data) {
-    if (nb.tpl[templateId]) {
-        return nb.tpl[templateId].call(this, data);
-    }
-    //
-    throw new Error('nb.error > Template not found: ' + templateId + ', data: ' + data);
+    return nb.templates[templateId].call(this, data);
 };
 
 // init
@@ -1653,7 +1649,12 @@ nb.dialog = {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 } else {
                     if (options.dataType === 'json') {
-                        $container.html(nb.template.call(options, options.templateId, response));
+                        $container.html(nb.template.call(options, options.templateId, {
+                            dialogId: options.id,
+                            fields: options.fields,
+                            isMulti: options.isMulti === true,
+                            models: response.objects[0]
+                        }));
                     } else {
                         $container.html(response);
                     }
@@ -1706,7 +1707,7 @@ nb.dialog = {
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
         options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
-        options.templateId = options.templateId || 'defaultDialogListTemplate';
+        options.templateId = options.templateId || 'dialog-list';
 
         options.onLoad = options.onLoad || null;
         // onExecute
@@ -2128,6 +2129,10 @@ nb.clearFormFields = function(fields, el) {
     }
 };
 
+Handlebars.registerHelper('mapValue', function(context, options) {
+    return context[options];
+});
+
 /**
  * notify
  */
@@ -2195,67 +2200,6 @@ nb.xhrDelete = function(data) {
         dataType: 'json',
         url: location.href + '&' + data
     });
-};
-
-nb.tpl = {};
-
-nb.tpl.defaultDialogListTemplate = function(data) {
-    return nb.templates['dialog-list']({
-        dialogId: this.id,
-        fields: this.fields,
-        isMulti: this.isMulti === true,
-        models: data.objects[0]
-    });
-};
-
-Handlebars.registerHelper('mapValue', function(context, options) {
-    return context[options];
-});
-
-/**
- * defaultDialogListTemplate
- */
-nb.tpl.defaultDialogListTemplate2 = function(data) {
-
-    if (!data) {
-        return 'data_error';
-    }
-
-    var models = data.objects[0];
-    if (!models.length) {
-        return nb.getText('empty');
-    }
-
-    var fields = this.fields;
-    var dialogId = this.id;
-    var m, index, tfname, fname, ftext, dataText;
-    var html = [];
-
-    html.push('<ul class=nb-dialog-list>');
-    for (index in models) {
-        m = models[index];
-        html.push('<li class=nb-dialog-list-it>');
-        html.push(' <label ondblclick="nb.dialog.execute(this)">');
-        html.push('  <input data-type="select" type="radio" name="select_' + dialogId + '" value="' + m.id + '"/>');
-        html.push('  <span>' + m.name + '</span>');
-
-        for (tfname in fields) {
-            fname = fields[tfname][0];
-            ftext = fields[tfname][1];
-            if (ftext) {
-                dataText = ' data-text="' + m[ftext] + '"';
-            } else {
-                dataText = '';
-            }
-            html.push('<input data-id="' + m.id + '" name="' + fname + '" value="' + m[fname] + '"' + dataText + ' type="hidden"/>');
-        }
-
-        html.push(' </label>');
-        html.push('</li>');
-    }
-    html.push('</ul>');
-
-    return html.join('');
 };
 
 nb.getSelectedEntityIDs = function(checkboxName) {

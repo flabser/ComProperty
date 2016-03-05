@@ -112,7 +112,12 @@ nb.dialog = {
                     $container.html('<div class="alert alert-danger">' + status + '</div>');
                 } else {
                     if (options.dataType === 'json') {
-                        $container.html(nb.template.call(options, options.templateId, response));
+                        $container.html(nb.template.call(options, options.templateId, {
+                            dialogId: options.id,
+                            fields: options.fields,
+                            isMulti: options.isMulti === true,
+                            models: response.objects[0]
+                        }));
                     } else {
                         $container.html(response);
                     }
@@ -165,7 +170,7 @@ nb.dialog = {
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
         options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
-        options.templateId = options.templateId || 'defaultDialogListTemplate';
+        options.templateId = options.templateId || 'dialog-list';
 
         options.onLoad = options.onLoad || null;
         // onExecute
