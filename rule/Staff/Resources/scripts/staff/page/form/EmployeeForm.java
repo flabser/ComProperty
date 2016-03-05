@@ -18,10 +18,10 @@ import staff.dao.DepartmentDAO;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
-import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
+import administrator.model.User;
 
 /**
  * @author Kayra created 07-01-2016
@@ -86,7 +86,6 @@ public class EmployeeForm extends StaffForm {
 			}
 
 			entity.setName(formData.getValue("name"));
-			entity.setLogin(formData.getValueSilently("login"));
 			entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organizationid"))));
 			String di = formData.getValue("departmentid");
 			if (!di.isEmpty()) {
@@ -105,6 +104,15 @@ public class EmployeeForm extends StaffForm {
 				}
 			}
 
+			String reguser = formData.getValueSilently("reguser");
+			if (reguser.isEmpty() && reguser.equals("1")) {
+				User user = new User();
+				user.setEmail(formData.getValueSilently("email"));
+				user.setLogin(formData.getValueSilently("login"));
+				user.setPwd(formData.getValueSilently("pwd"));
+				entity.setUser(user);
+			}
+
 			if (isNew) {
 				dao.add(entity);
 			} else {
@@ -113,9 +121,6 @@ public class EmployeeForm extends StaffForm {
 
 			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
-			setBadRequest();
-			error(e);
-		} catch (EmployeeException e) {
 			setBadRequest();
 			error(e);
 		}
@@ -131,6 +136,19 @@ public class EmployeeForm extends StaffForm {
 
 		if (formData.getValueSilently("name").isEmpty()) {
 			ve.addError("name", "empty", getLocalizedWord("required", lang));
+		}
+
+		String reguser = formData.getValueSilently("reguser");
+		if (reguser.isEmpty() && reguser.equals("1")) {
+			if (formData.getValueSilently("email").isEmpty()) {
+				ve.addError("email", "empty", getLocalizedWord("required", lang));
+			}
+			if (formData.getValueSilently("login").isEmpty()) {
+				ve.addError("login", "empty", getLocalizedWord("required", lang));
+			}
+			if (formData.getValueSilently("pwd").isEmpty()) {
+				ve.addError("pwd", "empty", getLocalizedWord("required", lang));
+			}
 		}
 
 		return ve;

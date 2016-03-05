@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
@@ -16,8 +18,10 @@ import kz.lof.user.IUser;
 @Table(name = "_users")
 @NamedQuery(name = "User.findAll", query = "SELECT m FROM User AS m ORDER BY m.regDate")
 public class User implements IUser {
+
 	@Id
-	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
 	protected long id;
 
 	@Column(name = "reg_date", nullable = false, updatable = false)
@@ -26,8 +30,11 @@ public class User implements IUser {
 	@Transient
 	private String userName;
 
-	@Column(length = 64, unique = true)
+	@Column(length = 64, unique = false)
 	private String login;
+
+	@Column(length = 64)
+	private String email = "";
 
 	private String pwd;
 
@@ -76,6 +83,14 @@ public class User implements IUser {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPwd() {
