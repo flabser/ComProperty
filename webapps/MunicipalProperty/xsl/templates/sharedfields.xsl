@@ -367,7 +367,8 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                        <div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">
+                        <!--<div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">-->
+                        <div class="input selectize-dialog" data-input="locality" disabled="disabled">
                             <xsl:value-of select="//fields/locality"/>
                         </div>
                     </div>
@@ -381,8 +382,8 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                       <!-- <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)" disabled="disabled">-->
-                        <div class="input selectize-dialog" data-input="district" disabled="disabled">
+                       <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)">
+                        <!--<div class="input selectize-dialog" data-input="district" disabled="disabled">-->
                             <xsl:value-of select="//fields/district"/>
                         </div>
                     </div>
