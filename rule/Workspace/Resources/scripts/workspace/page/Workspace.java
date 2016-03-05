@@ -18,9 +18,7 @@ public class Workspace extends _DoPage {
 		publishElement("serverversion", ent.getServerVersion());
 		publishElement("build", ent.getBuildTime());
 		publishElement("org", ent.getGeneralName());
-		publishElement("img", ent.getLogoImg());
 		publishElement("appname", ent.getAppName());
-		publishElement("availableapps", ent.getAvailableApps());
 		if (!session.getUser().getUserID().equalsIgnoreCase(AnonymousUser.USER_NAME)) {
 			addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
 		}

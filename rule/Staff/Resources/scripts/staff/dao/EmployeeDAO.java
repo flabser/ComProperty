@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,12 +12,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.ViewPage;
-import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.dataengine.system.IEmployeeDAO;
 import kz.lof.scripting._Session;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import staff.model.Employee;
 
 public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
@@ -25,12 +29,12 @@ public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 		super(Employee.class, session);
 	}
 
-	public Employee findByLogin(String login) {
+	public Employee findByUserId(long id) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
-			String jpql = "SELECT m FROM Employee AS m WHERE m.login = :login";
+			String jpql = "SELECT m FROM Employee AS m WHERE m.user.id = :id";
 			TypedQuery<Employee> q = em.createQuery(jpql, Employee.class);
-			q.setParameter("login", login);
+			q.setParameter("id", id);
 			List<Employee> res = q.getResultList();
 			return res.get(0);
 		} catch (IndexOutOfBoundsException e) {
@@ -70,8 +74,32 @@ public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 	}
 
 	@Override
-	public IEmployee getEmployee(String login) {
-		return findByLogin(login);
+	public IEmployee getEmployee(long id) {
+		return findByUserId(id);
 	}
 
+	@Override
+	public Employee add(Employee entity) throws DatabaseException {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		try {
+			EntityTransaction t = em.getTransaction();
+			try {
+				t.begin();
+				entity.setAuthor(user.getId());
+				entity.setForm(entity.getDefaultFormName());
+				em.persist(entity);
+				t.commit();
+				update(entity);
+				return entity;
+			} finally {
+				if (t.isActive()) {
+					t.rollback();
+				}
+			}
+		} finally {
+			em.close();
+
+		}
+
+	}
 }

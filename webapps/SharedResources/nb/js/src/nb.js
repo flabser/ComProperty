@@ -90,15 +90,11 @@ nb.uiUnblock = function() {
 
 /**
  * template
- * @param templateId - template function name defined in nb.tpl
+ * @param templateId - hbs template
  * @param data - data for template
  */
 nb.template = function(templateId, data) {
-    if (nb.tpl[templateId]) {
-        return nb.tpl[templateId].call(this, data);
-    }
-    //
-    throw new Error('nb.error > Template not found: ' + templateId + ', data: ' + data);
+    return nb.templates[templateId].call(this, data);
 };
 
 // init

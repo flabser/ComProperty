@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kz.flabs.dataengine.ISystemDatabase;
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
-import kz.lof.env.Environment;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.server.Server;
@@ -19,7 +17,6 @@ import reference.model.Position;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.RoleDAO;
-import staff.exception.EmployeeException;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
@@ -42,13 +39,12 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 		this.ses = ses;
 		List<Employee> entities = new ArrayList<Employee>();
 		if (checkNecessaryFiles()) {
-			ISystemDatabase sysDb = Environment.systemBase;
 			UserDAO uDao = new UserDAO();
 			List<User> users = uDao.findAll();
 			int rCount = users.size();
 			System.out.println("System users count = " + rCount);
-			for (int i = 0; i < rCount; i++) {
-				entities.add(getMock(users.get(i)));
+			for (User u : users) {
+				entities.add(getMock(u));
 			}
 		} else {
 			System.out.println("There is no \"" + file1 + "\" or \"" + file2 + "\" file");
@@ -63,12 +59,8 @@ public class FillTestUsers extends InitialDataAdapter<Employee, EmployeeDAO> {
 
 	private Employee getMock(User user) {
 		Employee emp = new Employee();
+		emp.setUser(user);
 		emp.setName(getRndFirstName() + " " + getRndLastName());
-		try {
-			emp.setLogin(user.getUserID());
-		} catch (EmployeeException e) {
-			e.printStackTrace();
-		}
 		Organization o = new OrganizationDAO(ses).findAll().get(1);
 		emp.setOrganization(o);
 		RoleDAO roleDao = new RoleDAO(ses);

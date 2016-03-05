@@ -3,6 +3,7 @@ package staff.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,19 +12,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.dataengine.DatabaseFactory;
-import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.scripting._Session;
-import kz.lof.user.IUser;
 import reference.model.Position;
-import staff.exception.EmployeeException;
-import administrator.dao.UserDAO;
+import administrator.model.User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,13 +28,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
 public class Employee extends Staff implements IEmployee {
-	@Column(nullable = false, length = 32)
-	private String login;
+
+	@OneToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 
 	@Column(name = "birth_date")
 	private String birthDate;
 
-	private String iin;
+	private String iin = "";
 
 	@NotNull
 	@ManyToOne(optional = false)
@@ -81,21 +80,6 @@ public class Employee extends Staff implements IEmployee {
 		this.position = position;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) throws EmployeeException {
-		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
-		User user = sysDb.getUser(login);
-		if (user != null) {
-			this.login = user.getUserID();
-		} else {
-			throw new EmployeeException("Login " + login + " is not been associated with some user. Register a User before");
-		}
-
-	}
-
 	public String getBirthDate() {
 		return birthDate;
 	}
@@ -112,15 +96,13 @@ public class Employee extends Staff implements IEmployee {
 		this.iin = iin;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@JsonIgnore
-	public IUser getUser() throws EmployeeException {
-		UserDAO uDao = new UserDAO();
-		IUser user = uDao.findByLogin(login);
-		if (user != null) {
-			return user;
-		} else {
-			throw new EmployeeException("User who associated with the Employer has not been found");
-		}
+	public User getUser() {
+		return user;
 
 	}
 
@@ -142,13 +124,19 @@ public class Employee extends Staff implements IEmployee {
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
-		if (regDate != null) {
-			chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
-		}
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
 		chunk.append("<name>" + getName() + "</name>");
-		chunk.append("<email>" + login + "</email>");
-		chunk.append("<login>" + login + "</login>");
-		chunk.append("<birthdate>" + getName() + "</birthdate>");
+		if (birthDate != null) {
+			chunk.append("<email>" + user.getEmail() + "</email>");
+			chunk.append("<login>" + user.getLogin() + "</login>");
+		} else {
+			chunk.append("<email></email><login></login>");
+		}
+		if (birthDate != null) {
+			chunk.append("<birthdate>" + Util.simpleDateTimeFormat.format(birthDate) + "</birthdate>");
+		} else {
+			chunk.append("<birthdate></birthdate>");
+		}
 		if (department != null) {
 			chunk.append("<department>" + department + "</department>");
 		} else {
