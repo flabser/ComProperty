@@ -4,7 +4,7 @@ import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
-import kz.nextbase.script.events._DoPage;
+import kz.lof.scripting.event._DoPage;
 import reference.dao.CountryDAO;
 import reference.model.Country;
 

@@ -18,9 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.dataengine.DatabaseFactory;
-import kz.flabs.dataengine.ISystemDatabase;
-import kz.flabs.users.User;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.lof.scripting._Session;
@@ -28,6 +25,8 @@ import municipalproperty.model.constants.KufType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.Tag;
+import staff.dao.EmployeeDAO;
+import staff.model.Employee;
 import staff.model.Organization;
 
 @Entity
@@ -328,9 +327,9 @@ public class Property extends SecureAppEntity {
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
-		ISystemDatabase sysDb = DatabaseFactory.getSysDatabase();
-		User user = sysDb.getUser(author);
-		chunk.append("<author>" + user.getUserID() + "</author>");
+		EmployeeDAO eDao = new EmployeeDAO(ses);
+		Employee user = eDao.findByUserId(author);
+		chunk.append("<author>" + user.getName() + "</author>");
 		try {
 			chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
 		} catch (NullPointerException e) {

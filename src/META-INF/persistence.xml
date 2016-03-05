@@ -16,6 +16,7 @@
 	</persistence-unit>
 	<persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
 		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Vehicle</class>
@@ -56,6 +57,7 @@
 	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
 		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Vehicle</class>
@@ -94,6 +96,7 @@
 	</persistence-unit>		
 	<persistence-unit name="Staff" transaction-type="RESOURCE_LOCAL">
 		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -116,6 +119,7 @@
 	</persistence-unit>	
 	<persistence-unit name="Reference" transaction-type="RESOURCE_LOCAL">
 		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>

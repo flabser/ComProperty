@@ -13,7 +13,7 @@ import kz.lof.scripting._Session;
 import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
 import kz.lof.scripting._WebFormData;
-import kz.nextbase.script.events._DoPage;
+import kz.lof.scripting.event._DoPage;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;

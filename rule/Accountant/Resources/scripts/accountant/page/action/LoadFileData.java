@@ -15,7 +15,7 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
-import kz.nextbase.script.events._DoPage;
+import kz.lof.scripting.event._DoPage;
 
 import org.apache.commons.io.FilenameUtils;
 

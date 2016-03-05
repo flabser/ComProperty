@@ -7,7 +7,7 @@ import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.nextbase.script.events._DoPage;
+import kz.lof.scripting.event._DoPage;
 import reference.dao.LocalityTypeDAO;
 import reference.model.LocalityType;
 

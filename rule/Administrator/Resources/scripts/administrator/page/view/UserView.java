@@ -1,0 +1,57 @@
+package administrator.page.view;
+
+import java.util.List;
+
+import kz.flabs.runtimeobj.RuntimeObjUtil;
+import kz.lof.scripting._POJOListWrapper;
+import kz.lof.scripting._Session;
+import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
+import kz.nextbase.script.actions._Action;
+import kz.nextbase.script.actions._ActionBar;
+import kz.nextbase.script.actions._ActionType;
+import administrator.dao.UserDAO;
+import administrator.model.User;
+
+/**
+ * @author Kayra created 04-01-2016
+ */
+
+public class UserView extends _DoPage {
+
+	@Override
+	public void doGET(_Session session, _WebFormData formData) {
+		_ActionBar actionBar = new _ActionBar(session);
+		_Action newDocAction = new _Action(getLocalizedWord("new_", session.getLang()), "", "new_user");
+		newDocAction.setURL("Provider?id=user-form");
+		actionBar.addAction(newDocAction);
+		actionBar.addAction(new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
+
+		UserDAO dao = new UserDAO();
+		int pageNum = 1;
+		int pageSize = session.pageSize;
+		if (formData.containsField("page")) {
+			pageNum = formData.getNumberValueSilently("page", pageNum);
+		}
+		long count = dao.getCount();
+		int maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
+		if (pageNum == 0) {
+			pageNum = maxPage;
+		}
+		int startRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
+		List<User> list = dao.findAll(startRec, pageSize);
+		addContent(actionBar);
+		addContent(new _POJOListWrapper(list, maxPage, count, pageNum, session));
+	}
+
+	@Override
+	public void doDELETE(_Session session, _WebFormData formData) {
+		println(formData);
+
+		UserDAO dao = new UserDAO();
+		for (String id : formData.getListOfValuesSilently("docid")) {
+			User m = dao.findById(Long.parseLong(id));
+			dao.delete(m);
+		}
+	}
+}

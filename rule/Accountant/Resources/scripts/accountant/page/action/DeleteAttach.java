@@ -6,8 +6,8 @@ import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
-import kz.nextbase.script.events._DoPage;
 
 public class DeleteAttach extends _DoPage {
 

@@ -27,6 +27,12 @@ public class UserDAO {
 	private EntityManagerFactory emf;
 	protected _Session ses;
 
+	public UserDAO(_Session ses) {
+		this.ses = ses;
+		IDatabase db = Environment.dataBase;
+		emf = db.getEntityManagerFactory();
+	}
+
 	public UserDAO() {
 		IDatabase db = Environment.dataBase;
 		emf = db.getEntityManagerFactory();
@@ -37,6 +43,28 @@ public class UserDAO {
 		try {
 			TypedQuery<User> q = em.createNamedQuery("User.findAll", User.class);
 			return q.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+
+	public List<User> findAll(int firstRec, int pageSize) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			TypedQuery<User> q = em.createNamedQuery("User.findAll", User.class);
+			q.setFirstResult(firstRec);
+			q.setMaxResults(pageSize);
+			return q.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+
+	public long getCount() {
+		EntityManager em = emf.createEntityManager();
+		try {
+			Query q = em.createQuery("SELECT count(m) FROM User AS m");
+			return (Long) q.getSingleResult();
 		} finally {
 			em.close();
 		}

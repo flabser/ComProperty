@@ -1,12 +1,16 @@
 package administrator.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -39,6 +43,10 @@ public class User implements IUser {
 	private String pwd;
 
 	private String pwdHash;
+
+	@ManyToMany
+	@JoinTable(name = "_allowed_apps", joinColumns = @JoinColumn(name = "app_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	private List<Application> allowedApps;
 
 	private int status;
 
@@ -108,6 +116,14 @@ public class User implements IUser {
 
 	public void setPwdHash(String pwdHash) {
 		this.pwdHash = pwdHash;
+	}
+
+	public List<Application> getAllowedApps() {
+		return allowedApps;
+	}
+
+	public void setAllowedApps(List<Application> allowedApps) {
+		this.allowedApps = allowedApps;
 	}
 
 	public int getStatus() {
