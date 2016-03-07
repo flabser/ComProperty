@@ -1,4 +1,4 @@
-package reference.navigator;
+package reference.page.navigator;
 
 import java.util.ArrayList;
 import java.util.List;

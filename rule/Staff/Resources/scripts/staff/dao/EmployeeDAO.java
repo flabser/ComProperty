@@ -85,7 +85,7 @@ public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 			EntityTransaction t = em.getTransaction();
 			try {
 				t.begin();
-				entity.setAuthor(user.getId());
+				entity.setAuthor((long) user.getId());
 				entity.setForm(entity.getDefaultFormName());
 				em.persist(entity);
 				t.commit();

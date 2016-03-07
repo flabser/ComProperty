@@ -1,8 +1,6 @@
 package administrator.page.view;
 
-import java.util.List;
-
-import kz.flabs.runtimeobj.RuntimeObjUtil;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -33,15 +31,11 @@ public class UserView extends _DoPage {
 		if (formData.containsField("page")) {
 			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
-		long count = dao.getCount();
-		int maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
-		if (pageNum == 0) {
-			pageNum = maxPage;
-		}
-		int startRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
-		List<User> list = dao.findAll(startRec, pageSize);
+		String keyword = formData.getValueSilently("keyword");
 		addContent(actionBar);
-		addContent(new _POJOListWrapper(list, maxPage, count, pageNum, session));
+		ViewPage<User> vp = dao.findAll(keyword, pageNum, pageSize);
+		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
+
 	}
 
 	@Override

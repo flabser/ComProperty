@@ -1,4 +1,4 @@
-package municipalproperty.navigator;
+package municipalproperty.page.navigator;
 
 import java.util.ArrayList;
 import java.util.List;

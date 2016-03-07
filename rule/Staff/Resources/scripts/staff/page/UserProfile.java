@@ -3,11 +3,11 @@ package staff.page;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 import administrator.dao.LanguageDAO;
@@ -22,7 +22,7 @@ public class UserProfile extends _DoPage {
 	public void doGET(_Session ses, _WebFormData webFormData) {
 		IUser user = ses.getUser();
 		EmployeeDAO dao = new EmployeeDAO(ses);
-		Employee emp = dao.findByUserId(user.getId());
+		Employee emp = dao.findByUserId((long) user.getId());
 		addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
 		addContent(emp);
 		addContent(new _POJOListWrapper(new LanguageDAO(ses).findAll(), ses));

@@ -14,6 +14,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import kz.flabs.dataengine.IDatabase;
+import kz.flabs.runtimeobj.RuntimeObjUtil;
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.lof.user.IUser;
@@ -70,6 +72,38 @@ public class UserDAO {
 		}
 	}
 
+	public ViewPage<User> findAll(String keyword, int pageNum, int pageSize) {
+		EntityManager em = emf.createEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		try {
+			CriteriaQuery<User> cq = cb.createQuery(User.class);
+			CriteriaQuery<Long> countCq = cb.createQuery(Long.class);
+			Root<User> c = cq.from(User.class);
+			cq.select(c);
+			countCq.select(cb.count(c));
+			Predicate condition = null;
+			if (!keyword.isEmpty()) {
+				condition = cb.like(cb.lower(c.<String> get("login")), "%" + keyword.toLowerCase() + "%");
+				cq.where(condition);
+				countCq.where(condition);
+			}
+			TypedQuery<User> typedQuery = em.createQuery(cq);
+			Query query = em.createQuery(countCq);
+			long count = (long) query.getSingleResult();
+			int maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
+			if (pageNum == 0) {
+				pageNum = maxPage;
+			}
+			int firstRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
+			typedQuery.setFirstResult(firstRec);
+			typedQuery.setMaxResults(pageSize);
+			List<User> result = typedQuery.getResultList();
+			return new ViewPage<User>(result, count, maxPage, pageNum);
+		} finally {
+			em.close();
+		}
+	}
+
 	public User findById(long id) {
 		EntityManager em = emf.createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -89,7 +123,7 @@ public class UserDAO {
 		}
 	}
 
-	public IUser findByLogin(String login) {
+	public IUser<Long> findByLogin(String login) {
 		EntityManager em = emf.createEntityManager();
 		try {
 			String jpql = "SELECT m FROM User AS m WHERE m.login = :login";

@@ -1,4 +1,4 @@
-package staff.navigator;
+package staff.page.navigator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -16,17 +16,20 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import kz.flabs.util.Util;
+import kz.lof.scripting.IPOJOObject;
+import kz.lof.scripting._Session;
 import kz.lof.user.IUser;
 
 @Entity
 @Table(name = "_users")
 @NamedQuery(name = "User.findAll", query = "SELECT m FROM User AS m ORDER BY m.regDate")
-public class User implements IUser {
+public class User implements IUser<Long>, IPOJOObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	protected long id;
+	protected Long id;
 
 	@Column(name = "reg_date", nullable = false, updatable = false)
 	protected Date regDate;
@@ -51,12 +54,13 @@ public class User implements IUser {
 	private int status;
 
 	@Override
-	public long getId() {
-		return id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	@Override
+	public Long getId() {
+		return id;
 	}
 
 	@Transient
@@ -147,6 +151,47 @@ public class User implements IUser {
 	@Override
 	public String getUserID() {
 		return login;
+	}
+
+	@Override
+	public String getURL() {
+		return "Provider?id=user-form&amp;docid=" + getId();
+	}
+
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		chunk.append("<login>" + login + "</login>");
+		chunk.append("<email>" + email + "</email>");
+		for (Application a : allowedApps) {
+			chunk.append("<app id=\"" + a.getCode() + "\">" + a.getLocalizedName().get(ses.getLang()) + "</app>");
+		}
+		return chunk.toString();
+	}
+
+	@Override
+	public String getShortXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		chunk.append("<login>" + login + "</login>");
+		chunk.append("<email>" + email + "</email>");
+		return email;
+	}
+
+	@Override
+	public Object getJSONObj(_Session ses) {
+		return this;
+	}
+
+	@Override
+	public boolean isEditable() {
+		return false;
+	}
+
+	@Override
+	public String getIdentifier() {
+		return getId().toString();
 	}
 
 }

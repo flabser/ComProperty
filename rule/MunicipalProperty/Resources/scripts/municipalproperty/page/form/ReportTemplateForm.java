@@ -7,17 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-
 import kz.flabs.util.Util;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
+import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
-import kz.lof.scripting._WebFormData;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.dao.ReportTemplateDAO;
 import municipalproperty.model.Property;
@@ -112,7 +111,7 @@ public class ReportTemplateForm extends _DoPage {
 
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			log("Filling report \"" + reportName + "\"...");
-			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator + session.getGlobalSettings().id
+			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator + session.getAppEnv().appName
 			        + File.separator + "reports";
 
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, Environment.trash);
