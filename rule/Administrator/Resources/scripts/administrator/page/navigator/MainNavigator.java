@@ -20,6 +20,8 @@ public class MainNavigator extends _DoPage {
 
 		_Outline common_outline = new _Outline(getLocalizedWord("administrator", lang), "common");
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("user", lang), "user-view"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("application", lang), "application-view"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("language", lang), "language-view"));
 
 		list.add(common_outline);
 
