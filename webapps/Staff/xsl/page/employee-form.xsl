@@ -108,6 +108,16 @@
                                 </xsl:apply-templates>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/roles/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <xsl:apply-templates select="//query[@entity = 'role']/entry" mode="roles">
+                                    <xsl:with-param name="select" select="//fields/roles"/>
+                                </xsl:apply-templates>
+                            </div>
+                        </div>
                     </div>
                     <fieldset class="fieldset">
                         <legend class="legend legend-address">
@@ -166,16 +176,6 @@
                                 <input type="text" name="roles" value="{//fields/roles}" class="span7"/>
                             </div>
                         </div>-->
-                        <div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="//captions/roles/@caption"/>
-                            </div>
-                            <div class="controls">
-                                <xsl:apply-templates select="//query[@entity = 'role']/entry" mode="roles">
-                                    <xsl:with-param name="select" select="//fields/roles"/>
-                                </xsl:apply-templates>
-                            </div>
-                        </div>
                     </fieldset>
                 </fieldset>
 
