@@ -8,13 +8,11 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
-import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import administrator.dao.ApplicationDAO;
-import administrator.dao.LanguageDAO;
 import administrator.dao.UserDAO;
 import administrator.model.User;
 
@@ -28,7 +26,6 @@ public class UserForm extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
 		String id = formData.getValueSilently("docid");
-		IUser<Long> user = session.getUser();
 		User entity;
 		if (!id.isEmpty()) {
 			UserDAO dao = new UserDAO(session);
@@ -40,7 +37,6 @@ public class UserForm extends _DoPage {
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		_ActionBar actionBar = new _ActionBar(session);
 		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
 		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
