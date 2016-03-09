@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Building material</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>forms/building-material.xsl</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">reference.page.form.BuildingMaterialForm</doscript>

@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Streets</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>views/street.xsl</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>

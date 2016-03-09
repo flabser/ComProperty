@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>BuildingMaterials</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>views/building-material.xsl</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>

@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Localities</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>views/locality.xsl</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
