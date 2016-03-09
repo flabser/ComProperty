@@ -14,5 +14,10 @@
 
     <caption name="login"/>
     <caption name="password"/>
-
+    <caption name="password_confirm"/>
+    <caption name="password_confirm_not_equals"/>
+    <caption name="applications"/>
+    <caption name="name"/>
+    <caption name="default_url"/>
+    <caption name="code"/>
 </rule>

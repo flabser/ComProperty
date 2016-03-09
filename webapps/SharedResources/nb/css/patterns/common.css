@@ -152,6 +152,12 @@ html body.phone .hidden-md {
     vertical-align: top;
 }
 
+.list-style-none {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 .text-muted {
     color: #888;
 }

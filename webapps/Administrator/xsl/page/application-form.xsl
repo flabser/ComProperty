@@ -23,8 +23,26 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                            <input type="text" name="name" value="{//fields/name}" class="span6" required="required"
                                    autofocus="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/code/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <input type="text" name="appcode" value="{//fields/appcode}" class="span6"
+                                   required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/default_url/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <input type="text" name="defaulturl" value="{//fields/defaulturl}" class="span7"
+                                   required="required"/>
                         </div>
                     </div>
                 </fieldset>

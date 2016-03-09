@@ -6,7 +6,6 @@
         <entry lang="KAZ">Administrator</entry>
         <entry lang="CHO">Administrator</entry>
     </sentence>
-
     <sentence mode="on" keyword="administrator">
         <entry lang="ENG">Administrator</entry>
         <entry lang="RUS">Administrator</entry>
@@ -42,5 +41,29 @@
         <entry lang="RUS">Password</entry>
         <entry lang="KAZ">Password</entry>
         <entry lang="CHO">Password</entry>
+    </sentence>
+    <sentence mode="on" keyword="password_confirm">
+        <entry lang="ENG">Confirm password</entry>
+        <entry lang="RUS">Confirm password</entry>
+        <entry lang="KAZ">Confirm password</entry>
+        <entry lang="CHO">Confirm password</entry>
+    </sentence>
+    <sentence mode="on" keyword="password_confirm_not_equals">
+        <entry lang="ENG">Passwords do not match</entry>
+        <entry lang="RUS">Passwords do not match</entry>
+        <entry lang="KAZ">Passwords do not match</entry>
+        <entry lang="CHO">Passwords do not match</entry>
+    </sentence>
+    <sentence mode="on" keyword="applications">
+        <entry lang="ENG">Applications</entry>
+        <entry lang="RUS">Applications</entry>
+        <entry lang="KAZ">Applications</entry>
+        <entry lang="CHO">Applications</entry>
+    </sentence>
+    <sentence mode="on" keyword="default_url">
+        <entry lang="ENG">Default url</entry>
+        <entry lang="RUS">Default url</entry>
+        <entry lang="KAZ">Default url</entry>
+        <entry lang="CHO">Default url</entry>
     </sentence>
 </vocabulary>

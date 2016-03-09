@@ -132,3 +132,11 @@ footer.content-actions {
     height: 0;
     visibility: hidden;
 }
+
+
+/* content-footer */
+
+.content-footer {
+    margin: 0;
+    padding: 0;
+}

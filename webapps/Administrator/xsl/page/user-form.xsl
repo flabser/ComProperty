@@ -23,7 +23,7 @@
                             <xsl:value-of select="//captions/login/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="login" value="{//fields/login}" class="span5" required="required"
+                            <input type="text" name="login" value="{//fields/login}" class="span4" required="required"
                                    autofocus="true"/>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <xsl:value-of select="'E-mail'"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="email" value="{//fields/email}" class="span5"/>
+                            <input type="text" name="email" value="{//fields/email}" class="span4"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -40,19 +40,38 @@
                             <xsl:value-of select="//captions/password/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="pwd" value="{//fields/pwd}" class="span5"/>
+                            <input type="password" name="pwd" value="" class="span3" autocomplete="off"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/application/@caption"/>
+                            <xsl:value-of select="//captions/password_confirm/@caption"/>
                         </div>
                         <div class="controls">
-                            <xsl:for-each select="//fields/app">
-                                <div>
-                                    <xsl:value-of select="."/>
-                                </div>
-                            </xsl:for-each>
+                            <input type="password" name="pwd_confirm" value="" class="span3" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/applications/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <ul class="list-style-none">
+                                <xsl:for-each select="//query[@entity = 'application']/entry">
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" name="app" value="{viewcontent/app/@id}">
+                                                <xsl:if test="//fields/apps/entry/@id = viewcontent/app/@id">
+                                                    <xsl:attribute name="checked" select="'checked'"/>
+                                                </xsl:if>
+                                            </input>
+                                            <span>
+                                                <xsl:value-of select="viewcontent/app"/>
+                                            </span>
+                                        </label>
+                                    </li>
+                                </xsl:for-each>
+                            </ul>
                         </div>
                     </div>
                 </fieldset>
@@ -60,11 +79,6 @@
                 <input type="hidden" name="id" value="{/request/@id}"/>
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
-            <footer class="content-footer">
-                <span>
-                    <xsl:value-of select="concat(//captions/reg_date/@caption, //fields/regdate)"/>
-                </span>
-            </footer>
         </form>
     </xsl:template>
 

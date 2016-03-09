@@ -1,3 +1,7 @@
+label {
+    font-weight: normal;
+}
+
 label > input + span {
     display: inline-block;
     margin-left: .3em;
