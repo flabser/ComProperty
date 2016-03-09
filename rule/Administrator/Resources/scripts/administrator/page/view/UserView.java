@@ -26,11 +26,8 @@ public class UserView extends _DoPage {
         actionBar.addAction(new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
 
         UserDAO dao = new UserDAO();
-        int pageNum = 1;
+        int pageNum = formData.getNumberValueSilently("page", 1);
         int pageSize = session.pageSize;
-        if (formData.containsField("page")) {
-            pageNum = formData.getNumberValueSilently("page", pageNum);
-        }
         String keyword = formData.getValueSilently("keyword");
         addContent(actionBar);
         ViewPage<User> vp = dao.findAll(keyword, pageNum, pageSize);

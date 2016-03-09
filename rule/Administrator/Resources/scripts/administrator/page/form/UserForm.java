@@ -1,21 +1,17 @@
 package administrator.page.form;
 
-import administrator.dao.LanguageDAO;
 import administrator.dao.UserDAO;
 import administrator.model.User;
 import kz.lof.localization.LanguageCode;
-import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
-import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import staff.model.constants.DepartmentType;
 
 import java.util.Date;
 
@@ -39,9 +35,7 @@ public class UserForm extends _DoPage {
             entity.setRegDate(new Date());
             entity.setLogin("");
         }
-        // addContent(entity);
-        addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
-        addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
+        addContent(entity);
         _ActionBar actionBar = new _ActionBar(session);
         actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
         actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
