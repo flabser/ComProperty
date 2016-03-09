@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description>UserView</description>
+    <description>ApplicationView</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
-            <doscript source="JAVA_CLASS">administrator.page.view.UserView</doscript>
+            <doscript source="JAVA_CLASS">administrator.page.view.ApplicationView</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">

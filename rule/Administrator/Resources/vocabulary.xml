@@ -1,4 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
-   
+    <sentence mode="on" keyword="brand">
+        <entry lang="ENG">Administrator</entry>
+        <entry lang="RUS">Administrator</entry>
+        <entry lang="KAZ">Administrator</entry>
+        <entry lang="CHO">Administrator</entry>
+    </sentence>
+
+    <sentence mode="on" keyword="administrator">
+        <entry lang="ENG">Administrator</entry>
+        <entry lang="RUS">Administrator</entry>
+        <entry lang="KAZ">Administrator</entry>
+        <entry lang="CHO">Administrator</entry>
+    </sentence>
+    <sentence mode="on" keyword="user">
+        <entry lang="ENG">User</entry>
+        <entry lang="RUS">User</entry>
+        <entry lang="KAZ">User</entry>
+        <entry lang="CHO">User</entry>
+    </sentence>
+    <sentence mode="on" keyword="application">
+        <entry lang="ENG">Application</entry>
+        <entry lang="RUS">Application</entry>
+        <entry lang="KAZ">Application</entry>
+        <entry lang="CHO">Application</entry>
+    </sentence>
+    <sentence mode="on" keyword="language">
+        <entry lang="ENG">Language</entry>
+        <entry lang="RUS">Language</entry>
+        <entry lang="KAZ">Language</entry>
+        <entry lang="CHO">Language</entry>
+    </sentence>
 </vocabulary>

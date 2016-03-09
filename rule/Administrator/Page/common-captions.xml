@@ -4,4 +4,12 @@
 
     <caption name="brand"/>
 
+    <caption name="logout"/>
+    <caption name="user_profile"/>
+
+    <caption name="administrator"/>
+    <caption name="user"/>
+    <caption name="application"/>
+    <caption name="language"/>
+
 </rule>
