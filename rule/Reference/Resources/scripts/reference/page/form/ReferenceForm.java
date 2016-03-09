@@ -1,18 +1,23 @@
 package reference.page.form;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
 import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import reference.model.Reference;
+import administrator.dao.LanguageDAO;
+import administrator.model.Language;
 
 /**
  * @author Kayra created 03-01-2016
@@ -42,12 +47,26 @@ public abstract class ReferenceForm extends _DoPage {
 
 	}
 
-	protected Reference getDefaultEntity(IUser user) {
+	protected Reference getDefaultEntity(IUser<Long> user) {
 		Reference entity = new Reference();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());
 		entity.setName("");
 		return entity;
+	}
+
+	protected Map<LanguageCode, String> getLocalizedNames(_Session session, _WebFormData formData) {
+		Map<LanguageCode, String> localizedNames = new HashMap<LanguageCode, String>();
+		List<Language> langs = new LanguageDAO(session).findAll();
+		for (Language l : langs) {
+			String ln = formData.getValueSilently(l.getCode().name().toLowerCase() + "localizedname");
+			if (!ln.isEmpty()) {
+				localizedNames.put(l.getCode(), ln);
+			} else {
+				localizedNames.put(l.getCode(), formData.getValueSilently("name"));
+			}
+		}
+		return localizedNames;
 	}
 
 	@Override

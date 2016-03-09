@@ -24,7 +24,7 @@ public class LocalityForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Locality entity;
 		if (!id.isEmpty()) {
 			LocalityDAO dao = new LocalityDAO(session);
@@ -69,6 +69,7 @@ public class LocalityForm extends ReferenceForm {
 			LocalityTypeDAO ltDao = new LocalityTypeDAO(session);
 			entity.setType(ltDao.findById(formData.getValue("type")));
 			entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("district"))));
+			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			if (isNew) {
 				dao.add(entity);

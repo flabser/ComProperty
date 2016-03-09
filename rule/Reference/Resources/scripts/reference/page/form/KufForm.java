@@ -18,7 +18,7 @@ public class KufForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Reference entity;
 		if (!id.isEmpty()) {
 			KufDAO dao = new KufDAO(session);
@@ -55,6 +55,7 @@ public class KufForm extends ReferenceForm {
 			}
 
 			entity.setName(formData.getValue("name"));
+			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			if (isNew) {
 				dao.add(entity);

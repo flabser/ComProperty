@@ -27,7 +27,7 @@ public class RegionForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Region entity;
 		if (!id.isEmpty()) {
 			RegionDAO dao = new RegionDAO(session);
@@ -83,6 +83,7 @@ public class RegionForm extends ReferenceForm {
 			CountryDAO countryDao = new CountryDAO(session);
 			Country country = countryDao.findById(UUID.fromString(formData.getValue("country")));
 			entity.setCountry(country);
+			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			if (isNew) {
 				dao.add(entity);

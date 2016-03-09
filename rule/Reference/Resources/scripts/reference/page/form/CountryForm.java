@@ -25,7 +25,7 @@ public class CountryForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Reference entity;
 		if (!id.isEmpty()) {
 			CountryDAO dao = new CountryDAO(session);
@@ -42,6 +42,7 @@ public class CountryForm extends ReferenceForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
+		println(formData);
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
@@ -63,6 +64,7 @@ public class CountryForm extends ReferenceForm {
 
 			entity.setName(formData.getValue("name"));
 			entity.setCode(CountryCode.valueOf(formData.getValueSilently("code", "UNKNOWN")));
+			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			save(session, entity, dao, isNew);
 

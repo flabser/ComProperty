@@ -18,7 +18,7 @@ public class PropertyCodeForm extends ReferenceForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Reference entity;
 		if (!id.isEmpty()) {
 			PropertyCodeDAO dao = new PropertyCodeDAO(session);
@@ -56,6 +56,7 @@ public class PropertyCodeForm extends ReferenceForm {
 			}
 
 			entity.setName(formData.getValue("name"));
+			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			if (isNew) {
 				dao.add(entity);
