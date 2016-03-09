@@ -2326,7 +2326,7 @@ this["nb"]["templates"]["dialog-list"] = Handlebars.template({"1":function(conta
         balanceholderbin: ['bin']
     }
 */
-nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
+nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId, callback) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -2335,6 +2335,7 @@ nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
         href: url,
         dataType: dataType || 'html',
         templateId: templateId,
+        onExecute: callback,
         buttons: {
             ok: {
                 text: nb.getText('select'),
@@ -2393,10 +2394,17 @@ nbApp.choiceLocality = function(el) {
 
 nbApp.choiceStreet = function(el) {
     var localityId = nb.getForm(el).localityid.value;
+	var callback = function(){
+		var $dialog = $("[data-role=nb-dialog]:visible");
+		if (nb.setFormValues($dialog)) {
+			$("input[name = housenumber]").val('');
+			$dialog.dialog('close');
+		}
+	}
     var url = 'Provider?id=get-street&localityid=' + localityId;
     return this.defaultChoiceDialog(el, url, 'json', {
         streetid: ['id', 'name']
-    });
+    },'', callback);
 };
 
 $(function() {
