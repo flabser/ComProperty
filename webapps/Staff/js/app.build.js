@@ -1479,6 +1479,21 @@ $(document).ready(function() {
         $panel.toggleClass('open');
     });
 
+    // toogle user registration fields
+    $("#reguser").on('click', function() {
+        var $regfields = $(".regfields");
+		$($regfields).prop('disabled', function(i, v) { return !v; }).val("");
+    });
+
+	$("input[name=password], input[name=reenterpassword]").on('change', function() {
+		var $inputs = $("input[name=password], input[name=reenterpassword]");
+		if($("input[name=password]").val() != $("input[name=reenterpassword]").val()){
+			$inputs.css("border","1px solid red").prop("title","Поля пароль и повтор нового пароля не совпадают");
+		}else{
+			$inputs.css("border","1px solid #888").prop("title","");
+		}
+	});
+
     // toggle=side-nav
     $(document).on('click', '[data-toggle=side-nav]', function(event) {
         event.preventDefault();

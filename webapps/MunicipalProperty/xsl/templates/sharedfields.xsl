@@ -8,8 +8,7 @@
             </div>
             <div class="controls">
                 <div class="span8">
-                    <div class="input selectize-dialog" data-input="balanceholder"
-                         onclick="nbApp.choiceBalanceHolder(this)">
+                    <div class="input selectize-dialog" data-input="balanceholder" onclick="nbApp.choiceBalanceHolder(this)">
                         <xsl:value-of select="//fields/balanceholder"/>
                     </div>
                 </div>
@@ -22,7 +21,7 @@
             </div>
             <div class="controls">
                 <input type="text" name="balanceholderbin" value="{//fields/balanceholderbin}" class="span4"
-                       readonly="readonly"/>
+                       readonly="readonly"  style="cursor:not-allowed"/>
             </div>
         </div>
     </xsl:template>
@@ -353,7 +352,8 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                        <div class="input selectize-dialog" data-input="region" onclick="nbApp.choiceRegion(this)">
+                        <!--<div class="input selectize-dialog" data-input="region" onclick="nbApp.choiceRegion(this)">-->
+                        <div class="input" data-input="region" disabled="disabled" style="cursor:not-allowed">
                             <xsl:value-of select="//fields/region"/>
                         </div>
                     </div>
@@ -368,7 +368,7 @@
                 <div class="controls">
                     <div class="span8">
                         <!--<div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">-->
-                        <div class="input selectize-dialog" data-input="locality" disabled="disabled">
+                        <div class="input" data-input="locality" disabled="disabled" style="cursor:not-allowed">
                             <xsl:value-of select="//fields/locality"/>
                         </div>
                     </div>

@@ -15,8 +15,12 @@ import municipalproperty.dao.RealEstateDAO;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.page.form.MunicipalPropertyForm;
+import reference.dao.DistrictDAO;
+import reference.dao.LocalityDAO;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
+import reference.dao.RegionDAO;
+import reference.dao.StreetDAO;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.embedded.Address;
@@ -86,7 +90,14 @@ public abstract class RealEstateAbstractForm extends MunicipalPropertyForm {
 			}
 			entity.setNotes(formData.getValueSilently("notes"));
 
-			IUser user = session.getUser();
+			entity.getAddress().setRegion(new RegionDAO(session).findById(formData.getValueSilently("regionid")));
+			entity.getAddress().setLocality(new LocalityDAO(session).findById(formData.getValueSilently("localityid")));
+			entity.getAddress().setDistrict(new DistrictDAO(session).findById(formData.getValueSilently("districtid")));
+			entity.getAddress().setStreet(new StreetDAO(session).findById(formData.getValueSilently("streetid")));
+			entity.getAddress().setHouseNumber(formData.getValueSilently("housenumber"));
+			entity.getAddress().setAdditionalInfo(formData.getValueSilently("additionalinfo"));
+
+			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
 
 			save(entity, dao, isNew);
