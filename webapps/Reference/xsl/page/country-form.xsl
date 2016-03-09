@@ -27,6 +27,16 @@
                                    autofocus="true"/>
                         </div>
                     </div>
+                    <xsl:for-each select="//fields/localizednames/entry">
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="./@id"/>
+                            </div>
+                            <div class="controls">
+                                <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7" required="required" autofocus="true"/>
+                            </div>
+                        </div>
+                    </xsl:for-each>
                     <div class="form-group">
                         <div class="control-label">
                             <xsl:value-of select="//captions/code/@caption"/>
