@@ -83,7 +83,7 @@
                             <ul class="dropdown-menu right">
                                 <li>
                                     <a class="user-profile" title="{//captions/user_profile/@caption}"
-                                       href=" Provider?id=userprofile">
+                                       href="Provider?id=userprofile">
                                         <xsl:value-of select="@username"/>
                                     </a>
                                 </li>
