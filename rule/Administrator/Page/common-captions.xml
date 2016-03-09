@@ -12,4 +12,7 @@
     <caption name="application"/>
     <caption name="language"/>
 
+    <caption name="login"/>
+    <caption name="password"/>
+
 </rule>

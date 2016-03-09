@@ -2,6 +2,7 @@ package administrator.model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,11 +17,12 @@ import kz.lof.dataengine.jpa.AppEntity;
 import kz.lof.dataengine.jpa.constants.AppCode;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
+import administrator.dao.LanguageDAO;
 
 @Entity
 @Table(name = "_apps")
 @NamedQuery(name = "Application.findAll", query = "SELECT m FROM Application AS m ORDER BY m.regDate")
-public class Application extends AppEntity {
+public class Application extends AppEntity<UUID> {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true, length = 16)
 	private AppCode code = AppCode.UNKNOWN;
@@ -94,9 +96,34 @@ public class Application extends AppEntity {
 	}
 
 	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		chunk.append("<name>" + name + "</name>");
+		chunk.append("<appcode>" + code + "</appcode>");
+		chunk.append("<position>" + position + "</position>");
+		chunk.append("<defaulturl>" + defaultURL + "</defaulturl>");
+		chunk.append("<localizednames>");
+		LanguageDAO lDao = new LanguageDAO(ses);
+		List<Language> list = lDao.findAll();
+		for (Language l : list) {
+			chunk.append("<entry id=\"" + l.getCode() + "\">" + getLocalizedName(ses.getLang()) + "</entry>");
+		}
+		chunk.append("</localizednames>");
+		return chunk.toString();
+	}
+
+	@Override
 	public String getShortXMLChunk(_Session ses) {
 		return "<app id=\"" + name + "\">" + localizedName.get(ses.getLang()) + "</app>" + "<pos>" + position + "</pos><url>"
 		        + Util.getAsTagValue(defaultURL) + "</url>";
 	}
 
+	public String getLocalizedName(LanguageCode lang) {
+		try {
+			return localizedName.get(lang);
+		} catch (Exception e) {
+			return name;
+		}
+	}
 }

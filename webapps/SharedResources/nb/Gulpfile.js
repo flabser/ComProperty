@@ -10,7 +10,7 @@ var handlebars = require('gulp-handlebars');
 
 // npm remove gulp gulp-concat gulp-csso gulp-jshint gulp-rename gulp-uglify jshint
 
-var modules = ['Accountant', 'Staff', 'Reference', 'MunicipalProperty'];
+var modules = ['Administrator', 'Accountant', 'Staff', 'Reference', 'MunicipalProperty'];
 var _styles = {};
 var _templates = {};
 var _scripts = {};

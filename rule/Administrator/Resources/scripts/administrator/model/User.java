@@ -164,9 +164,11 @@ public class User implements IUser<Long>, IPOJOObject {
 		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
 		chunk.append("<login>" + login + "</login>");
 		chunk.append("<email>" + email + "</email>");
+		chunk.append("<apps>");
 		for (Application a : allowedApps) {
-			chunk.append("<app id=\"" + a.getCode() + "\">" + a.getLocalizedName().get(ses.getLang()) + "</app>");
+			chunk.append("<entry id=\"" + a.getName() + "\">" + a.getLocalizedName().get(ses.getLang()) + "</entry>");
 		}
+		chunk.append("</apps>");
 		return chunk.toString();
 	}
 
@@ -176,7 +178,7 @@ public class User implements IUser<Long>, IPOJOObject {
 		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
 		chunk.append("<login>" + login + "</login>");
 		chunk.append("<email>" + email + "</email>");
-		return email;
+		return chunk.toString();
 	}
 
 	@Override

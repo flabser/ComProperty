@@ -47,7 +47,7 @@
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
                         <span>
-                            <xsl:value-of select="viewcontent/name"/>
+                            <xsl:value-of select="viewcontent/lang"/>
                         </span>
                     </div>
                 </a>

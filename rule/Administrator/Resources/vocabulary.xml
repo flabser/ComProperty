@@ -31,4 +31,16 @@
         <entry lang="KAZ">Language</entry>
         <entry lang="CHO">Language</entry>
     </sentence>
+    <sentence mode="on" keyword="login">
+        <entry lang="ENG">Login</entry>
+        <entry lang="RUS">Login</entry>
+        <entry lang="KAZ">Login</entry>
+        <entry lang="CHO">Login</entry>
+    </sentence>
+    <sentence mode="on" keyword="password">
+        <entry lang="ENG">Password</entry>
+        <entry lang="RUS">Password</entry>
+        <entry lang="KAZ">Password</entry>
+        <entry lang="CHO">Password</entry>
+    </sentence>
 </vocabulary>
