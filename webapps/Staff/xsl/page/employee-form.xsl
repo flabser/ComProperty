@@ -58,7 +58,7 @@
                             ИИН <xsl:value-of select="//captions/iin/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{//fields/iin}" class="span7" required="required"/>
+                            <input type="text" name="name" value="{//fields/iin}" class="span4" required="required"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -121,7 +121,7 @@
                     </div>
                     <fieldset class="fieldset">
                         <legend class="legend legend-address">
-                            Системные поля
+                            Учетные данные
                         </legend>
                         <div class="form-group">
                             <div class="control-label">
@@ -141,7 +141,7 @@
                                 <xsl:value-of select="//captions/login_name/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="login_name" value="{//fields/login_name}" class="span7 regfields" autocomplete="off" disabled="disabled"/>
+                                <input type="text" name="login_name" value="{//fields/login_name}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -149,7 +149,7 @@
                                 <xsl:value-of select="//captions/email/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="email" name="email" value="{//fields/email}" class="span7 regfields" autocomplete="off" disabled="disabled"/>
+                                <input type="email" name="email" value="{//fields/email}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -157,7 +157,7 @@
                                 <xsl:value-of select="//captions/password/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="password" value="{//fields/password}" class="span7 regfields" autocomplete="off" disabled="disabled"/>
+                                <input type="password" name="password" value="{//fields/password}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -165,7 +165,7 @@
                                 <xsl:value-of select="//captions/reenterpassword/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="reenterpassword" value="{//fields/reenterpassword}" class="span7 regfields" autocomplete="off" disabled="disabled"/>
+                                <input type="password" name="reenterpassword" value="{//fields/reenterpassword}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <!--<div class="form-group">
