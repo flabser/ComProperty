@@ -26,6 +26,7 @@
 
     <caption name="structure"/>
     <caption name="organizations"/>
+    <caption name="departments"/>
     <caption name="employees"/>
     <caption name="roles"/>
     <caption name="organization_labels"/>

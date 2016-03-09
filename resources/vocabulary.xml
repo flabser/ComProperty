@@ -539,6 +539,12 @@
 		<entry lang="ENG">Employee</entry>
 		<entry lang="CHI">雇员</entry>
 	</sentence>
+	<sentence mode="on" keyword="departments">
+		<entry lang="RUS">Подразделения</entry>
+		<entry lang="KAZ">Бөлім</entry>
+		<entry lang="ENG">Departments</entry>
+		<entry lang="CHI">部</entry>
+	</sentence>
 	<sentence mode="on" keyword="department">
 		<entry lang="RUS">Департамент</entry>
 		<entry lang="KAZ">Бөлім</entry>
