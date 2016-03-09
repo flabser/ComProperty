@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.lof.scripting._Session;
+import kz.lof.util.NumberUtil;
 import municipalproperty.model.constants.KufType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
@@ -316,7 +317,7 @@ public class Property extends SecureAppEntity {
 	@Override
 	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
-		chunk.append("<originalcost>" + originalCost + "</originalcost>");
+		chunk.append("<originalcost>" + NumberUtil.formatFloat(originalCost) + "</originalcost>");
 		chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
 		chunk.append("<objectname>" + objectName + "</objectname>");
@@ -337,14 +338,14 @@ public class Property extends SecureAppEntity {
 		}
 		chunk.append("<acquisitionyear>" + acquisitionYear + "</acquisitionyear>");
 		chunk.append("<assignment>" + assignment + "</assignment>");
-		chunk.append("<balancecost>" + balanceCost + "</balancecost>");
+		chunk.append("<balancecost>" + String.format("%.02f", balanceCost) + "</balancecost>");
 		chunk.append("<balanceholder>" + balanceHolder.getName() + "</balanceholder>");
 		chunk.append("<balanceholderbin>" + balanceHolder.getBin() + "</balanceholderbin>");
 		chunk.append("<balanceholderid>" + balanceHolder.getId() + "</balanceholderid>");
 		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
-		chunk.append("<cumulativedepreciation>" + cumulativeDepreciation + "</cumulativedepreciation>");
+		chunk.append("<cumulativedepreciation>" + String.format("%.02f", cumulativeDepreciation) + "</cumulativedepreciation>");
 		chunk.append("<description>" + description + "</description>");
-		chunk.append("<impairmentloss>" + impairmentLoss + "</impairmentloss>");
+		chunk.append("<impairmentloss>" + String.format("%.02f", impairmentLoss) + "</impairmentloss>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
 		chunk.append("<kof>" + kof + "</kof>");
 		try {
@@ -353,12 +354,12 @@ public class Property extends SecureAppEntity {
 			chunk.append("<acceptancedate></acceptancedate>");
 		}
 		chunk.append("<objectname>" + objectName + "</objectname>");
-		chunk.append("<originalcost>" + originalCost + "</originalcost>");
+		chunk.append("<originalcost>" + String.format("%.02f", originalCost) + "</originalcost>");
 		chunk.append("<propertycode>" + propertyCode.getId() + "</propertycode>");
 		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
 		chunk.append("<receivingreason>" + receivingReason.getId() + "</receivingreason>");
-		chunk.append("<residualcost>" + residualCost + "</residualcost>");
-		chunk.append("<revaluationamount>" + revaluationAmount + "</revaluationamount>");
+		chunk.append("<residualcost>" + String.format("%.02f", residualCost) + "</residualcost>");
+		chunk.append("<revaluationamount>" + String.format("%.02f", revaluationAmount) + "</revaluationamount>");
 		try {
 			String tagsAsText = "";
 			for (Tag t : tags) {
