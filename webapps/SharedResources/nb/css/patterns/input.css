@@ -77,6 +77,11 @@ input[disabled] {
     background: #F6F6F6;
 }
 
+.disabled,
+[disabled] {
+    cursor: not-allowed;
+}
+
 input[type=checkbox][disabled],
 input[type=radio][disabled] {
     background: #DDD;
