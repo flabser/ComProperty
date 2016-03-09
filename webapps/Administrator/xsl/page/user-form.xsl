@@ -7,7 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'user']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'user']">
+        <form name="{@entity}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/user/@caption"/>
@@ -23,7 +27,7 @@
                             <xsl:value-of select="//captions/login/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="login" value="{//fields/login}" class="span4" required="required"
+                            <input type="text" name="login" value="{fields/login}" class="span4" required="required"
                                    autofocus="true"/>
                         </div>
                     </div>
@@ -32,7 +36,7 @@
                             <xsl:value-of select="'E-mail'"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="email" value="{//fields/email}" class="span4"/>
+                            <input type="text" name="email" value="{fields/email}" class="span4"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,7 +81,7 @@
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
+                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
         </form>
     </xsl:template>

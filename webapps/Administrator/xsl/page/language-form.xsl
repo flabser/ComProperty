@@ -7,7 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'language']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'language']">
+        <form name="{@entity}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/language/@caption"/>
@@ -32,13 +36,13 @@
                             <xsl:value-of select="//captions/code/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="code" value="{//fields/code}" class="span2" required="required"/>
+                            <input type="text" name="code" value="{fields/code}" class="span2" required="required"/>
                         </div>
                     </div>
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
+                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
         </form>
     </xsl:template>

@@ -92,7 +92,7 @@ public class UserForm extends _DoPage {
         if (!formData.getValueSilently("pwd").isEmpty()) {
             if (formData.getValueSilently("pwd_confirm").isEmpty()) {
                 ve.addError("pwd_confirm", "required", getLocalizedWord("required", lang));
-            } else if (!formData.getValueSilently("pwd").equals(formData.getValueSilently("pwd_repeat"))) {
+            } else if (!formData.getValueSilently("pwd").equals(formData.getValueSilently("pwd_confirm"))) {
                 ve.addError("pwd_confirm", "required", getLocalizedWord("password_confirm_not_equals", lang));
             }
         }

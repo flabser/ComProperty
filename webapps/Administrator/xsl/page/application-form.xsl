@@ -7,7 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'application']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'application']">
+        <form name="{@entity}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/application/@caption"/>
@@ -23,7 +27,7 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{//fields/name}" class="span6" required="required"
+                            <input type="text" name="name" value="{fields/name}" class="span6" required="required"
                                    autofocus="true"/>
                         </div>
                     </div>
@@ -32,7 +36,7 @@
                             <xsl:value-of select="//captions/code/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="appcode" value="{//fields/appcode}" class="span6"
+                            <input type="text" name="appcode" value="{fields/appcode}" class="span6"
                                    required="required"/>
                         </div>
                     </div>
@@ -41,14 +45,14 @@
                             <xsl:value-of select="//captions/default_url/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="defaulturl" value="{//fields/defaulturl}" class="span7"
+                            <input type="text" name="defaulturl" value="{fields/defaulturl}" class="span7"
                                    required="required"/>
                         </div>
                     </div>
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
+                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
         </form>
     </xsl:template>
