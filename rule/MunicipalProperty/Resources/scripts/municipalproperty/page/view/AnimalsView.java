@@ -10,12 +10,12 @@ import municipalproperty.model.constants.KufType;
  * @author Kayra created 05-01-2016
  */
 
-public class AnimalView extends MunicipalPropertyView {
+public class AnimalsView extends MunicipalPropertyView {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		// println(formData);
-		addContent(getSimpleActionBar(session, "animal-form", session.getLang()));
+		addContent(getSimpleActionBar(session, "animals-form", session.getLang()));
 		addContent(getViewPage(session, formData, KufType.ANIMALS, session.getLang()));
 	}
 

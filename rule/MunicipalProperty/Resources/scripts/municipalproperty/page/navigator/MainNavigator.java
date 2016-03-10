@@ -6,8 +6,8 @@ import java.util.List;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
 
@@ -27,8 +27,8 @@ public class MainNavigator extends _DoPage {
 		// if(cuser.hasRole(["struct_keeper", "supervisor"])) {
 		_OutlineEntry personalEstateEntry = new _OutlineEntry(getLocalizedWord("personal_estates", lang), "personal-estate-view");
 		personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("furnitures", lang), "furniture-view"));
-		personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("animals", lang), "animal-view"));
-		personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("inventory", lang), "inventory-view"));
+		personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("animals", lang), "animals-view"));
+		personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("inventory", lang), "sport-equipment-view"));
 		personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "others-view"));
 
 		_OutlineEntry intangibleAssetsEntry = new _OutlineEntry(getLocalizedWord("intangible_assets", lang), "intangible-asset-view");

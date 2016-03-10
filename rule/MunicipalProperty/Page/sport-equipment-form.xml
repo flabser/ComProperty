@@ -5,7 +5,7 @@
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
-            <doscript source="JAVA_CLASS">municipalproperty.page.form.personalestate.AnimalForm</doscript>
+            <doscript source="JAVA_CLASS">municipalproperty.page.form.personalestate.SportEquipmentForm</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">

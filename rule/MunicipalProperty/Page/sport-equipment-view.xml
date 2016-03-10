@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on" history="on">
-    <description></description>
+    <description>Inventories</description>
     <caching>NO_CACHING</caching>
     <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
+        <name>view_content</name>
         <events>
-            <doscript source="JAVA_CLASS">municipalproperty.page.form.personalestate.InventoryForm</doscript>
+            <doscript source="JAVA_CLASS">municipalproperty.page.view.SportEquipmentView</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
         <value>outline</value>
-    </element>
-    <element mode="ON" type="INCLUDED_PAGE">
-        <value>common-form-captions</value>
     </element>
 </rule>
