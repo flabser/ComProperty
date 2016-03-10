@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.lof.scripting._Session;
 import municipalproperty.model.constants.KufType;
 
 @Entity
@@ -24,6 +25,15 @@ public class Kuf extends Reference {
 
 	public void setKuf(KufType kuf) {
 		this.code = kuf;
+	}
+
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append(super.getFullXMLChunk(ses));
+		chunk.append("<kufcode>" + code + "</kufcode>");
+		;
+		return chunk.toString();
 	}
 
 }

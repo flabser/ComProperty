@@ -126,11 +126,12 @@ public class Employee extends Staff implements IEmployee {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
 		chunk.append("<name>" + getName() + "</name>");
-		if (birthDate != null) {
+		if (user != null) {
+			chunk.append("<reguser>on</reguser>");
 			chunk.append("<email>" + user.getEmail() + "</email>");
 			chunk.append("<login>" + user.getLogin() + "</login>");
 		} else {
-			chunk.append("<email></email><login></login>");
+			chunk.append("<reguser></reguser><email></email><login></login>");
 		}
 		if (birthDate != null) {
 			chunk.append("<birthdate>" + Util.simpleDateTimeFormat.format(birthDate) + "</birthdate>");

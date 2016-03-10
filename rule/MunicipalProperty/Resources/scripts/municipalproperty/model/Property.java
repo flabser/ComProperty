@@ -327,7 +327,7 @@ public class Property extends SecureAppEntity {
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
-		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
 		EmployeeDAO eDao = new EmployeeDAO(ses);
 		Employee user = eDao.findByUserId(author);
 		chunk.append("<author>" + user.getName() + "</author>");
