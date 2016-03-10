@@ -165,8 +165,14 @@ public class User implements IUser<Long>, IPOJOObject {
 		chunk.append("<login>" + login + "</login>");
 		chunk.append("<email>" + email + "</email>");
 		chunk.append("<apps>");
-		for (Application a : allowedApps) {
-			chunk.append("<entry id=\"" + a.getName() + "\">" + a.getLocalizedName().get(ses.getLang()) + "</entry>");
+		try {
+			String asText = "";
+			for (Application a : allowedApps) {
+				asText += "<entry id=\"" + a.getName() + "\">" + a.getLocalizedName().get(ses.getLang()) + "</entry>";
+			}
+			chunk.append("<apps>" + asText + "</apps>");
+		} catch (NullPointerException e) {
+			chunk.append("<apps></apps>");
 		}
 		chunk.append("</apps>");
 		return chunk.toString();
@@ -193,7 +199,12 @@ public class User implements IUser<Long>, IPOJOObject {
 
 	@Override
 	public String getIdentifier() {
-		return getId().toString();
+		Long id = getId();
+		if (id == null) {
+			return "null";
+		} else {
+			return getId().toString();
+		}
 	}
 
 }
