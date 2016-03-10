@@ -56,4 +56,6 @@
     <caption name="receiving_reasons"/>
     <caption name="tags"/>
      <caption name="kuf"/>
+     <caption name="localized_names"/>
+     <caption name="type"/>
 </rule>
