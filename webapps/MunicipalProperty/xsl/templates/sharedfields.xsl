@@ -286,7 +286,7 @@
                 </div>
                 <div class="controls">
                     <span class="input-placeholder">
-                        <i class="fa fa-eye">
+                        <i>
                             <xsl:attribute name="class">
                                 <xsl:choose>
                                     <xsl:when test="/request/page/response/content/document/@editable = 'true'">
