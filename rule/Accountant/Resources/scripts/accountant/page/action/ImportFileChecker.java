@@ -13,8 +13,8 @@ import kz.lof.env.Environment;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
-import kz.lof.user.IUser;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.user.IUser;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -41,7 +41,7 @@ public class ImportFileChecker extends _DoPage {
 					session.setAttribute(fsid + "_file" + fn, uf);
 				}
 
-				IUser user = session.getUser();
+				IUser<Long> user = session.getUser();
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
 				String excelFile = userTmpDir + File.separator + fn;

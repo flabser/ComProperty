@@ -7,10 +7,10 @@ import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
 
