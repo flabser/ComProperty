@@ -65,7 +65,7 @@
                                     <li>
                                         <label>
                                             <input type="checkbox" name="app" value="{@id}">
-                                                <xsl:if test="//fields/apps/entry/@id = viewcontent/app/@id">
+                                                <xsl:if test="//fields/apps/apps/entry/@id = @id">
                                                     <xsl:attribute name="checked" select="'checked'"/>
                                                 </xsl:if>
                                             </input>
