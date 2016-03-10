@@ -17,41 +17,60 @@
                 </div>
             </header>
             <section class="content-body">
-                <fieldset class="fieldset">
-                    <div class="form-group">
-                        <div class="control-label">
-                            <xsl:value-of select="//captions/name/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
-                                   autofocus="true"/>
-                        </div>
-                    </div>
-                    <xsl:for-each select="//fields/localizednames/entry">
-                        <div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="./@id"/>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a href="#tabs-1" role="tab" data-toggle="tab">
+                            <xsl:value-of select="//captions/properties/@caption"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tabs-2" role="tab" data-toggle="tab">
+                            <xsl:value-of select="//captions/localized_names/@caption"/>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tabs-1">
+                        <fieldset class="fieldset">
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/name/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                                           autofocus="true"/>
+                                </div>
                             </div>
-                            <div class="controls">
-                                <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7" required="required" autofocus="true"/>
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/code/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <select name="code" class="span2" required="required">
+                                        <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry"
+                                                             mode="select_options">
+                                            <xsl:with-param name="selected" select="//fields/code"/>
+                                        </xsl:apply-templates>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </xsl:for-each>
-                    <div class="form-group">
-                        <div class="control-label">
-                            <xsl:value-of select="//captions/code/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <select name="code" class="span2" required="required">
-                                <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry"
-                                                     mode="select_options">
-                                    <xsl:with-param name="selected" select="//fields/code"/>
-                                </xsl:apply-templates>
-                            </select>
-                        </div>
+                        </fieldset>
                     </div>
-                </fieldset>
-
+                    <div role="tabpanel" class="tab-pane" id="tabs-2">
+                        <fieldset class="fieldset">
+                            <xsl:for-each select="//fields/localizednames/entry">
+                                <div class="form-group">
+                                    <div class="control-label">
+                                        <xsl:value-of select="./@id"/>
+                                    </div>
+                                    <div class="controls">
+                                        <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7" required="required" autofocus="true"/>
+                                    </div>
+                                </div>
+                            </xsl:for-each>
+                        </fieldset>
+                    </div>
+                </div>
                 <input type="hidden" name="id" value="{/request/@id}"/>
                <input type="hidden" name="docid" value="{/request/page/response/content/document[@entity = 'country']/@docid}"/>
             </section>

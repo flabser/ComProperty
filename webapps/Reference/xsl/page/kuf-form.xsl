@@ -10,7 +10,7 @@
         <form name="{//document/@entity}">
             <header class="content-header">
                 <h1 class="header-title">
-                    <xsl:value-of select="//captions/locality/@caption"/>
+                    <xsl:value-of select="//captions/kuf/@caption"/>
                 </h1>
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
@@ -41,28 +41,6 @@
                                            autofocus="true"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/type/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <select name="type" class="span7" required="required" autocomplete="off">
-                                        <xsl:apply-templates select="//query[@entity = 'localitytype']/entry"
-                                                             mode="locality_type_option">
-                                            <xsl:with-param name="selected" select="//fields/localitytype"/>
-                                        </xsl:apply-templates>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/district/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="text" name="district" value="{//fields/district}" class="span7"
-                                           required="required"/>
-                                </div>
-                            </div>
                         </fieldset>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-2">
@@ -85,16 +63,6 @@
                 <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
         </form>
-    </xsl:template>
-
-    <xsl:template match="entry" mode="locality_type_option">
-        <xsl:param name="selected"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $selected">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
-            <xsl:value-of select="viewcontent/name"/>
-        </option>
     </xsl:template>
 
 </xsl:stylesheet>
