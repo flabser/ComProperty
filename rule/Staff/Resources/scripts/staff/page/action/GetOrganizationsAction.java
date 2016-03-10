@@ -1,6 +1,5 @@
 package staff.page.action;
 
-
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -15,13 +14,13 @@ import staff.model.Organization;
 
 public class GetOrganizationsAction extends _DoPage {
 
-	@Override
-	public void doGET(_Session ses, _WebFormData formData) {
-		String keyword = formData.getValueSilently("keyword");
-		int pageNum = formData.getNumberValueSilently("page", 1);
-		int pageSize = ses.pageSize;
-		OrganizationDAO dao = new OrganizationDAO(ses);
-		ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
-		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), ses));
-	}
+    @Override
+    public void doGET(_Session ses, _WebFormData formData) {
+        String keyword = formData.getValueSilently("keyword");
+        int pageNum = formData.getNumberValueSilently("page", 1);
+        int pageSize = ses.pageSize;
+        OrganizationDAO dao = new OrganizationDAO(ses);
+        ViewPage<Organization> vp = dao.findAllByKeyword(keyword, pageNum, pageSize);
+        addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), ses));
+    }
 }
