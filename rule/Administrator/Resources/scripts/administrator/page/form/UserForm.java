@@ -97,6 +97,9 @@ public class UserForm extends _DoPage {
 	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
 
+		if (formData.getValueSilently("username").isEmpty()) {
+			ve.addError("username", "required", getLocalizedWord("required", lang));
+		}
 		if (formData.getValueSilently("login").isEmpty()) {
 			ve.addError("login", "required", getLocalizedWord("required", lang));
 		}
