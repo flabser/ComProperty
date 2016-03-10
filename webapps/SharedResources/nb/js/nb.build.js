@@ -1651,9 +1651,12 @@ nb.dialog = {
                     if (options.dataType === 'json') {
                         $container.html(nb.template.call(options, options.templateId, {
                             dialogId: options.id,
+                            url: options.href,
                             fields: options.fields,
                             isMulti: options.isMulti === true,
-                            models: response.objects[0]
+                            meta: response.objects[0].meta,
+                            type: response.objects[0].type,
+                            models: response.objects[0].list
                         }));
                     } else {
                         $container.html(response);
@@ -2133,6 +2136,94 @@ Handlebars.registerHelper('mapValue', function(context, options) {
     return context[options];
 });
 
+Handlebars.registerPartial('pagination', function(data) {
+    return nb.html.pagination(data);
+});
+
+nb.html = {};
+
+nb.html.pagination = function(data) {
+
+    var result = '',
+        maxPageControl = 7,
+        maxPage = data.meta.totalPages,
+        curPage = data.meta.page,
+        url = data.url;
+
+    if (maxPage > 1) {
+        var perPage = parseInt(maxPageControl / 2, 10);
+        var startPage = (curPage - perPage);
+        var stopPage = (curPage + perPage);
+
+        if (startPage <= perPage) {
+            startPage = 1;
+        } else if (curPage == maxPage) {
+            startPage = maxPage - maxPageControl;
+        }
+
+        if (stopPage > (maxPage - perPage)) {
+            stopPage = maxPage;
+        } else if (curPage == 1) {
+            stopPage = maxPageControl + 1;
+        }
+
+        if ((maxPageControl + perPage) >= maxPage) {
+            startPage = 1;
+            stopPage = maxPage;
+        }
+
+        try {
+            result = '<div class=pagination>';
+            result += '<span class=text-muted>' + data.models.length + '/' + data.meta.count + ' </span>';
+
+            if (startPage > 1) {
+                result += '<a href="' + url + '&page=1">1</a>';
+                result += '<span>...</span>';
+            }
+
+            for (var p = startPage; p <= stopPage; p++) {
+                if (p == curPage) {
+                    result += '<a class="page-active" href="' + url + '&page=' + p + '">' + p + '</a>';
+                } else {
+                    result += '<a href="' + url + '&page=' + p + '">' + p + '</a>';
+                }
+            }
+
+            if (stopPage < maxPage) {
+                result += '<span>...</span>';
+                result += '<a href="' + url + '&page=' + maxPage + '">' + maxPage + '</a>';
+            }
+
+            /*if ((startPage > 1) || (stopPage < maxPage)) {
+                result += '<li class="page"><div class="gotopage">';
+                result += 'Перейти на страницу <input type="number" min="1" max="' + maxPage + '" class="goToPage" name="goToPage" value="" />';
+                result += '</div></li>';
+            }*/
+
+            result += '</div>';
+
+            /*$("[name='goToPage']").click(function() {
+                $(".gotopage").css("display", "block");
+            }).blur(function() {
+                $(".gotopage").css("display", "");
+            }).keydown(function(e) {
+                if (e.keyCode == 13) {
+                    var goToPage = parseInt($(this).val(), 10);
+                    if ((goToPage >= 0) && (goToPage <= maxPage)) {
+                        getPage(goToPage);
+                    } else {
+                        window.status = "error page number";
+                    }
+                }
+            });*/
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+    return result;
+};
+
 /**
  * notify
  */
@@ -2303,7 +2394,8 @@ this["nb"]["templates"]["dialog-list"] = Handlebars.template({"1":function(conta
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
-  return "<ul class=nb-dialog-list>\r\n"
+  return ((stack1 = container.invokePartial(partials.pagination,depth0,{"name":"pagination","data":data,"blockParams":blockParams,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "<ul class=nb-dialog-list>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.models : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams, depths),"inverse":container.noop,"data":data,"blockParams":blockParams})) != null ? stack1 : "")
     + "</ul>\r\n";
-},"useData":true,"useDepths":true,"useBlockParams":true});
+},"usePartial":true,"useData":true,"useDepths":true,"useBlockParams":true});

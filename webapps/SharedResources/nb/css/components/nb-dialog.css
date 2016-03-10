@@ -20,6 +20,10 @@
     top: 0;
 }
 
+.nb-dialog-container.loading {
+    overflow: hidden;
+}
+
 .nb-dialog-container.loading:before {
     background: rgba(0, 0, 0, .1);
     content: '';

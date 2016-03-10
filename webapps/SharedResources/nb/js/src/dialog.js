@@ -114,9 +114,12 @@ nb.dialog = {
                     if (options.dataType === 'json') {
                         $container.html(nb.template.call(options, options.templateId, {
                             dialogId: options.id,
+                            url: options.href,
                             fields: options.fields,
                             isMulti: options.isMulti === true,
-                            models: response.objects[0]
+                            meta: response.objects[0].meta,
+                            type: response.objects[0].type,
+                            models: response.objects[0].list
                         }));
                     } else {
                         $container.html(response);

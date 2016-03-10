@@ -55,7 +55,8 @@ this["nb"]["templates"]["dialog-list"] = Handlebars.template({"1":function(conta
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
-  return "<ul class=nb-dialog-list>\r\n"
+  return ((stack1 = container.invokePartial(partials.pagination,depth0,{"name":"pagination","data":data,"blockParams":blockParams,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "<ul class=nb-dialog-list>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.models : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams, depths),"inverse":container.noop,"data":data,"blockParams":blockParams})) != null ? stack1 : "")
     + "</ul>\r\n";
-},"useData":true,"useDepths":true,"useBlockParams":true});
+},"usePartial":true,"useData":true,"useDepths":true,"useBlockParams":true});
