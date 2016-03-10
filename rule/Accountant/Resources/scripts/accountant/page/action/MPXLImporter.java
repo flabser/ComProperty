@@ -77,6 +77,13 @@ public class MPXLImporter {
 
         for (int i = 1; i < sheet.getRows(); i++) {
             String kof = sheet.getCell(0, i).getContents().trim();
+
+            if ("".equalsIgnoreCase(kof)) {
+                if (checkForEmptyRow(sheet.getRow(i))) {
+                    continue;
+                }
+            }
+
             String kuf = sheet.getCell(1, i).getContents().trim();
             String invNumber = sheet.getCell(2, i).getContents().trim();
             String name = sheet.getCell(3, i).getContents().trim();
@@ -222,6 +229,19 @@ public class MPXLImporter {
         Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
         return sheetErr;
 
+    }
+
+    private static boolean checkForEmptyRow(Cell[] cells) {
+        String cellContent = "";
+        boolean empty = true;
+        for (int i = 0; i < cells.length; i++) {
+            cellContent = cells[i].getContents().trim();
+            if (!"".equalsIgnoreCase(cellContent)) {
+                empty = false;
+                return empty;
+            }
+        }
+        return empty;
     }
 
     private String normalizeString(String cap) {
