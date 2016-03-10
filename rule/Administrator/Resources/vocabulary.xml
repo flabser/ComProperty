@@ -30,6 +30,12 @@
         <entry lang="KAZ">Language</entry>
         <entry lang="CHO">Language</entry>
     </sentence>
+    <sentence mode="on" keyword="username">
+        <entry lang="ENG">Username</entry>
+        <entry lang="RUS">Username</entry>
+        <entry lang="KAZ">Username</entry>
+        <entry lang="CHO">Username</entry>
+    </sentence>
     <sentence mode="on" keyword="login">
         <entry lang="ENG">Login</entry>
         <entry lang="RUS">Login</entry>

@@ -24,11 +24,20 @@
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
+                            <xsl:value-of select="//captions/username/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <input type="text" name="username" value="{fields/username}" class="span4"
+                                   required="required"
+                                   autofocus="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
                             <xsl:value-of select="//captions/login/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="login" value="{fields/login}" class="span4" required="required"
-                                   autofocus="true"/>
+                            <input type="text" name="login" value="{fields/login}" class="span4" required="required"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,7 +73,7 @@
                                 <xsl:for-each select="//query[@entity = 'application']/entry">
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="app" value="{viewcontent/app/@id}">
+                                            <input type="checkbox" name="app" value="{@id}">
                                                 <xsl:if test="//fields/apps/entry/@id = viewcontent/app/@id">
                                                     <xsl:attribute name="checked" select="'checked'"/>
                                                 </xsl:if>
