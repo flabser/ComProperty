@@ -24,20 +24,11 @@
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/username/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <input type="text" name="username" value="{fields/username}" class="span4"
-                                   required="required"
-                                   autofocus="true"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="control-label">
                             <xsl:value-of select="//captions/login/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="login" value="{fields/login}" class="span4" required="required"/>
+                            <input type="text" name="login" value="{fields/login}" class="span4" required="required"
+                                   autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
