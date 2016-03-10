@@ -286,7 +286,21 @@
                 </div>
                 <div class="controls">
                     <span class="input-placeholder">
-                        <xsl:value-of select="//document/@editable"/>
+                        <i class="fa fa-eye">
+                            <xsl:attribute name="class">
+                                <xsl:choose>
+                                    <xsl:when test="/request/page/response/content/document/@editable = 'true'">
+                                        fa fa-pencil
+                                    </xsl:when>
+                                    <xsl:when test="/request/page/response/content/document/@editable = 'false'">
+                                        fa fa-eye
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        fa fa-warning
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:attribute>
+                        </i>
                     </span>
                 </div>
             </div>
