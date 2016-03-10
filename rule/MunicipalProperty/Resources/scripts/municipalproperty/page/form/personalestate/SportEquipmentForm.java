@@ -13,7 +13,7 @@ import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.dao.TagDAO;
 
-public class InventoryForm extends PersonalEstateAbstractForm {
+public class SportEquipmentForm extends PersonalEstateAbstractForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
