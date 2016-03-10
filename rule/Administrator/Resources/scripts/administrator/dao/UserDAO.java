@@ -81,9 +81,8 @@ public class UserDAO {
 			Root<User> c = cq.from(User.class);
 			cq.select(c);
 			countCq.select(cb.count(c));
-			Predicate condition = null;
 			if (!keyword.isEmpty()) {
-				condition = cb.like(cb.lower(c.<String> get("login")), "%" + keyword.toLowerCase() + "%");
+				Predicate condition = cb.like(cb.lower(c.<String> get("login")), "%" + keyword.toLowerCase() + "%");
 				cq.where(condition);
 				countCq.where(condition);
 			}
