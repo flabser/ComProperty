@@ -207,69 +207,71 @@
                         </fieldset>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-3">
-                        <div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="//captions/countdocinview/@caption"/>
-                            </div>
-                            <div class="controls">
-                                <div class="span2">
-                                    <select name="pagesize" onchange="changeEventHandler(this);">
-                                        <option value="10">
-                                            <xsl:if test="//pagesize = '10'">
-                                                <xsl:attribute name="selected" select="'selected'"/>
-                                            </xsl:if>
-                                            10
-                                        </option>
-                                        <option value="20">
-                                            <xsl:if test="//pagesize = '20'">
-                                                <xsl:attribute name="selected" select="'selected'"/>
-                                            </xsl:if>
-                                            20
-                                        </option>
-                                        <option value="30">
-                                            <xsl:if test="//pagesize = '30'">
-                                                <xsl:attribute name="selected" select="'selected'"/>
-                                            </xsl:if>
-                                            30
-                                        </option>
-                                        <option value="50">
-                                            <xsl:if test="//pagesize = '50'">
-                                                <xsl:attribute name="selected" select="'selected'"/>
-                                            </xsl:if>
-                                            50
-                                        </option>
-                                    </select>
+                        <fieldset class="fieldset">
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/countdocinview/@caption"/>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="//captions/interface_lang/@caption"/>
-                            </div>
-                            <div class="controls">
-                                <div class="span2">
-                                    <xsl:variable name="currentlang" select="/request/@lang"/>
-                                    <select name="lang" onchange="changeEventHandler(this);">
-                                        <xsl:for-each select="//query[@entity = 'language']/entry">
-                                            <option value="{viewcontent/lang/@id}">
-                                                <xsl:if test="viewcontent/lang/@id = $currentlang">
+                                <div class="controls">
+                                    <div class="span2">
+                                        <select name="pagesize" onchange="changeEventHandler(this);">
+                                            <option value="10">
+                                                <xsl:if test="//pagesize = '10'">
                                                     <xsl:attribute name="selected" select="'selected'"/>
                                                 </xsl:if>
-                                                <xsl:value-of select="viewcontent/lang"/>
+                                                10
                                             </option>
-                                        </xsl:for-each>
-                                    </select>
+                                            <option value="20">
+                                                <xsl:if test="//pagesize = '20'">
+                                                    <xsl:attribute name="selected" select="'selected'"/>
+                                                </xsl:if>
+                                                20
+                                            </option>
+                                            <option value="30">
+                                                <xsl:if test="//pagesize = '30'">
+                                                    <xsl:attribute name="selected" select="'selected'"/>
+                                                </xsl:if>
+                                                30
+                                            </option>
+                                            <option value="50">
+                                                <xsl:if test="//pagesize = '50'">
+                                                    <xsl:attribute name="selected" select="'selected'"/>
+                                                </xsl:if>
+                                                50
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="control-label"></div>
-                            <div class="controls">
-                                <a href="javascript:void(0)" data-toggle-theme="theme1" class="input-placeholder">
-                                    <xsl:value-of select="//captions/change_skin/@caption"/>
-                                </a>
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="//captions/interface_lang/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <div class="span2">
+                                        <xsl:variable name="currentlang" select="/request/@lang"/>
+                                        <select name="lang" onchange="changeEventHandler(this);">
+                                            <xsl:for-each select="//query[@entity = 'language']/entry">
+                                                <option value="{viewcontent/lang/@id}">
+                                                    <xsl:if test="viewcontent/lang/@id = $currentlang">
+                                                        <xsl:attribute name="selected" select="'selected'"/>
+                                                    </xsl:if>
+                                                    <xsl:value-of select="viewcontent/lang"/>
+                                                </option>
+                                            </xsl:for-each>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <div class="control-label"></div>
+                                <div class="controls">
+                                    <a href="javascript:void(0)" data-toggle-theme="theme1" class="input-placeholder">
+                                        <xsl:value-of select="//captions/change_skin/@caption"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
             </section>

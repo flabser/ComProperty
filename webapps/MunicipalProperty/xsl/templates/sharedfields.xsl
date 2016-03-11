@@ -281,7 +281,7 @@
     </xsl:template>
 
     <xsl:template name="docinfo">
-        <div class="panel panel-default">
+        <fieldset class="fieldset">
             <div class="form-group">
                 <div class="control-label">
                     <xsl:value-of select="//captions/editable/@caption"/>
@@ -326,7 +326,7 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </fieldset>
     </xsl:template>
 
     <xsl:template name="documents-of-title">
