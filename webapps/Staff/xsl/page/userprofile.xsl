@@ -118,7 +118,7 @@
                                     <xsl:value-of select="//captions/password/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="pwd" class="span3"/>
+                                    <input type="password" name="pwd" class="span3"/>
                                 </div>
                             </div>
                             <div class="form-group">
