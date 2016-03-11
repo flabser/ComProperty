@@ -11,7 +11,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity = 'language']">
-        <form name="{@entity}">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/language/@caption"/>
@@ -27,7 +27,7 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{//fields/name}" class="span4" required="required"
+                            <input type="text" name="name" value="{fields/name}" class="span4" required="required"
                                    autofocus="true"/>
                         </div>
                     </div>
@@ -40,9 +40,6 @@
                         </div>
                     </div>
                 </fieldset>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
         </form>
     </xsl:template>

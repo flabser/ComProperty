@@ -33,7 +33,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'employee']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'employee']">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/employee/@caption"/>
@@ -49,16 +53,17 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                            <input type="text" name="name" value="{fields/name}" class="span7" required="required"
                                    autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            ИИН <xsl:value-of select="//captions/iin/@caption"/>
+                            ИИН
+                            <xsl:value-of select="//captions/iin/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="iin" value="{//fields/iin}" class="span4" required="required"/>
+                            <input type="text" name="iin" value="{fields/iin}" class="span4" required="required"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -71,7 +76,7 @@
                                     <option value="null"></option>
                                     <xsl:apply-templates select="//query[@entity = 'organization']/entry"
                                                          mode="select_options">
-                                        <xsl:with-param name="select" select="//fields/organizationid"/>
+                                        <xsl:with-param name="select" select="fields/organizationid"/>
                                     </xsl:apply-templates>
                                 </select>
                             </div>
@@ -88,7 +93,7 @@
                                         <option value="null"></option>
                                         <xsl:apply-templates select="//query[@entity = 'department']/entry"
                                                              mode="select_options">
-                                            <xsl:with-param name="select" select="//fields/departmentid"/>
+                                            <xsl:with-param name="select" select="fields/departmentid"/>
                                         </xsl:apply-templates>
                                     </select>
                                 </div>
@@ -104,7 +109,7 @@
                                 <option value="null"></option>
                                 <xsl:apply-templates select="//query[@entity = 'position']/entry"
                                                      mode="select_options">
-                                    <xsl:with-param name="select" select="//fields/positionid"/>
+                                    <xsl:with-param name="select" select="fields/positionid"/>
                                 </xsl:apply-templates>
                             </select>
                         </div>
@@ -115,7 +120,7 @@
                         </div>
                         <div class="controls">
                             <xsl:apply-templates select="//query[@entity = 'role']/entry" mode="roles">
-                                <xsl:with-param name="select" select="//fields/roles"/>
+                                <xsl:with-param name="select" select="fields/roles"/>
                             </xsl:apply-templates>
                         </div>
                     </div>
@@ -130,7 +135,7 @@
                                 <label class="btn btn-sm">
                                     <input type="checkbox" name="reguser" id="reguser" autocomplete="off">
                                         <span>
-                                           Зарегистрировать учетную запись
+                                            Зарегистрировать учетную запись
                                         </span>
                                     </input>
                                 </label>
@@ -141,7 +146,8 @@
                                 <xsl:value-of select="//captions/login_name/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="login" value="{//fields/login}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="text" name="login" value="{fields/login}" class="span7 regfields"
+                                       autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -149,7 +155,8 @@
                                 <xsl:value-of select="//captions/email/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="email" name="email" value="{//fields/email}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="email" name="email" value="{fields/email}" class="span7 regfields"
+                                       autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -157,7 +164,8 @@
                                 <xsl:value-of select="//captions/password/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="pwd" value="{//fields/password}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="password" name="pwd" value="{fields/password}" class="span7 regfields"
+                                       autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -165,7 +173,9 @@
                                 <xsl:value-of select="//captions/reenterpassword/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="reenterpassword" value="{//fields/reenterpassword}" class="span7 regfields" autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="password" name="reenterpassword" value="{fields/reenterpassword}"
+                                       class="span7 regfields" autocomplete="off" disabled="disabled"
+                                       style="cursor:not-allowed"/>
                             </div>
                         </div>
                         <!--<div class="form-group">
@@ -178,9 +188,6 @@
                         </div>-->
                     </fieldset>
                 </fieldset>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{/request/page/response/content/document[@entity = 'employee']/@docid}"/>
             </section>
         </form>
     </xsl:template>

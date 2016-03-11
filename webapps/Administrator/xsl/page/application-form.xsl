@@ -11,7 +11,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity = 'application']">
-        <form name="{@entity}">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/application/@caption"/>
@@ -50,9 +50,6 @@
                         </div>
                     </div>
                 </fieldset>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
         </form>
     </xsl:template>

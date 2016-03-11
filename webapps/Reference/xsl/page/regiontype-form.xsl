@@ -7,10 +7,14 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'regiontype']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'regiontype']">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
-                    <xsl:value-of select="//captions/org_category/@caption"/>
+                    <xsl:value-of select="//captions/region_type/@caption"/>
                 </h1>
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
@@ -18,36 +22,34 @@
             </header>
             <section class="content-body">
                 <div class="tab-content">
-                        <fieldset class="fieldset">
+                    <fieldset class="fieldset">
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/name/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <input type="text" name="name" value="{fields/name}" class="span7" required="required"
+                                       autofocus="true"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="fieldset">
+                        <legend class="legend legend-address">
+                            <xsl:value-of select="//captions/localized_names/@caption"/>
+                        </legend>
+                        <xsl:for-each select="fields/localizednames/entry">
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/name/@caption"/>
+                                    <xsl:value-of select="./@id"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
-                                           autofocus="true"/>
+                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"
+                                           required="required"/>
                                 </div>
                             </div>
-                        </fieldset>
-                        <fieldset class="fieldset">
-                            <legend class="legend legend-address">
-                                <xsl:value-of select="//captions/localized_names/@caption"/>
-                            </legend>
-                            <xsl:for-each select="//fields/localizednames/entry">
-                                <div class="form-group">
-                                    <div class="control-label">
-                                        <xsl:value-of select="./@id"/>
-                                    </div>
-                                    <div class="controls">
-                                        <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7" required="required" autofocus="true"/>
-                                    </div>
-                                </div>
-                            </xsl:for-each>
-                        </fieldset>
+                        </xsl:for-each>
+                    </fieldset>
                 </div>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
         </form>
     </xsl:template>

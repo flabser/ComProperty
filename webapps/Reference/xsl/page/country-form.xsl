@@ -7,7 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'country']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'country']">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/country/@caption"/>
@@ -24,7 +28,7 @@
                                 <xsl:value-of select="//captions/name/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
+                                <input type="text" name="name" value="{fields/name}" class="span7" required="required"
                                        autofocus="true"/>
                             </div>
                         </div>
@@ -36,7 +40,7 @@
                                 <select name="code" class="span2" required="required">
                                     <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry"
                                                          mode="select_options">
-                                        <xsl:with-param name="selected" select="//fields/code"/>
+                                        <xsl:with-param name="selected" select="fields/code"/>
                                     </xsl:apply-templates>
                                 </select>
                             </div>
@@ -53,15 +57,12 @@
                                 </div>
                                 <div class="controls">
                                     <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"
-                                           required="required" autofocus="true"/>
+                                           required="required"/>
                                 </div>
                             </div>
                         </xsl:for-each>
                     </fieldset>
                 </div>
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid"
-                       value="{/request/page/response/content/document[@entity = 'country']/@docid}"/>
             </section>
         </form>
     </xsl:template>

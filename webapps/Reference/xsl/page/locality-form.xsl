@@ -7,7 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'locality']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'locality']">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/locality/@caption"/>
@@ -18,58 +22,56 @@
             </header>
             <section class="content-body">
                 <div class="tab-content">
-                        <fieldset class="fieldset">
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/name/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
-                                           autofocus="true"/>
-                                </div>
+                    <fieldset class="fieldset">
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/name/@caption"/>
                             </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/type/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <select name="type" class="span7" required="required" autocomplete="off">
-                                        <xsl:apply-templates select="//query[@entity = 'localitytype']/entry"
-                                                             mode="locality_type_option">
-                                            <xsl:with-param name="selected" select="//fields/localitytype"/>
-                                        </xsl:apply-templates>
-                                    </select>
-                                </div>
+                            <div class="controls">
+                                <input type="text" name="name" value="{fields/name}" class="span7" required="required"
+                                       autofocus="true"/>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/type/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <select name="type" class="span7" required="required" autocomplete="off">
+                                    <xsl:apply-templates select="//query[@entity = 'localitytype']/entry"
+                                                         mode="locality_type_option">
+                                        <xsl:with-param name="selected" select="fields/localitytype"/>
+                                    </xsl:apply-templates>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/district/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <input type="text" name="district" value="{fields/district}" class="span7"
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="fieldset">
+                        <legend class="legend legend-address">
+                            <xsl:value-of select="//captions/localized_names/@caption"/>
+                        </legend>
+                        <xsl:for-each select="fields/localizednames/entry">
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/district/@caption"/>
+                                    <xsl:value-of select="./@id"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="district" value="{//fields/district}" class="span7"
+                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"
                                            required="required"/>
                                 </div>
                             </div>
-                        </fieldset>
-                        <fieldset class="fieldset">
-                            <legend class="legend legend-address">
-                                <xsl:value-of select="//captions/localized_names/@caption"/>
-                            </legend>
-                            <xsl:for-each select="//fields/localizednames/entry">
-                                <div class="form-group">
-                                    <div class="control-label">
-                                        <xsl:value-of select="./@id"/>
-                                    </div>
-                                    <div class="controls">
-                                        <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7" required="required" autofocus="true"/>
-                                    </div>
-                                </div>
-                            </xsl:for-each>
-                        </fieldset>
+                        </xsl:for-each>
+                    </fieldset>
                 </div>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
         </form>
     </xsl:template>

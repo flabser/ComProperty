@@ -11,7 +11,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity = 'user']">
-        <form name="{@entity}">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/user/@caption"/>
@@ -65,7 +65,7 @@
                                     <li>
                                         <label>
                                             <input type="checkbox" name="app" value="{@id}">
-                                                <xsl:if test="//fields/apps/apps/entry/@id = @id">
+                                                <xsl:if test="fields/apps/apps/entry/@id = @id">
                                                     <xsl:attribute name="checked" select="'checked'"/>
                                                 </xsl:if>
                                             </input>
@@ -79,9 +79,6 @@
                         </div>
                     </div>
                 </fieldset>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
         </form>
     </xsl:template>

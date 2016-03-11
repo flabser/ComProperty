@@ -7,7 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity = 'buildingmaterial']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity = 'buildingmaterial']">
+        <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/building_material/@caption"/>
@@ -21,33 +25,31 @@
                     <fieldset class="fieldset">
                         <div class="form-group">
                             <div class="control-label">
-                                    <xsl:value-of select="//captions/name/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="text" name="name" value="{//fields/name}" class="span7" required="required"
-                                           autofocus="true"/>
-                                </div>
+                                <xsl:value-of select="//captions/name/@caption"/>
                             </div>
+                            <div class="controls">
+                                <input type="text" name="name" value="{fields/name}" class="span7" required="required"
+                                       autofocus="true"/>
+                            </div>
+                        </div>
                     </fieldset>
                     <fieldset class="fieldset">
-                            <legend class="legend legend-address">
-                                <xsl:value-of select="//captions/localized_names/@caption"/>
-                            </legend>
-                            <xsl:for-each select="//fields/localizednames/entry">
-                                <div class="form-group">
-                                    <div class="control-label">
-                                        <xsl:value-of select="./@id"/>
-                                    </div>
-                                    <div class="controls">
-                                        <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7" required="required" autofocus="true"/>
-                                    </div>
+                        <legend class="legend legend-address">
+                            <xsl:value-of select="//captions/localized_names/@caption"/>
+                        </legend>
+                        <xsl:for-each select="fields/localizednames/entry">
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="./@id"/>
                                 </div>
-                            </xsl:for-each>
-                        </fieldset>
+                                <div class="controls">
+                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"
+                                           required="required"/>
+                                </div>
+                            </div>
+                        </xsl:for-each>
+                    </fieldset>
                 </div>
-
-                <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
             </section>
         </form>
     </xsl:template>
