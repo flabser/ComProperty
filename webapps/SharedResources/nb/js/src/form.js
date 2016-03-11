@@ -17,7 +17,7 @@ nb.submitForm = function(form) {
         cache: false,
         type: 'POST',
         dataType: 'json',
-        url: 'Provider',
+        url: form.action || form.baseURI,
         data: $(form).serialize(),
         beforeSend: function() {
             nb.uiBlock();

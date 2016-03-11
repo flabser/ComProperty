@@ -89,6 +89,13 @@ nb.uiUnblock = function() {
 };
 
 /**
+ * isMobile
+ */
+nb.isMobile = function() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
+/**
  * template
  * @param templateId - hbs template
  * @param data - data for template
@@ -202,14 +209,14 @@ $(document).ready(function() {
 
     //
     $(window).resize(function() {
-        if (window.innerWidth <= 800) {
+        if (window.innerWidth <= 800 || nb.isMobile()) {
             $('body').addClass('phone');
         } else {
             $('body').removeClass('phone');
         }
     });
 
-    if (window.innerWidth <= 800) {
+    if (nb.isMobile() || window.innerWidth <= 800) {
         $('body').addClass('phone');
     }
 
