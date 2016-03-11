@@ -285,8 +285,9 @@ img.ws-app-logo {
         background: transparent;
         border-color: transparent;
         color: #FFF;
-        margin-top: 23px;
-        padding: 5px 9px;
+        line-height: 20px;
+        margin-top: 10px;
+        padding: 15px;
         position: absolute;
         width: 80px;
     }
