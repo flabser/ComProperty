@@ -15,6 +15,7 @@ import reference.dao.RegionDAO;
 import reference.dao.RegionTypeDAO;
 import reference.model.Country;
 import reference.model.Region;
+import reference.model.RegionType;
 import reference.model.constants.CountryCode;
 import administrator.dao.LanguageDAO;
 
@@ -28,6 +29,8 @@ public class RegionForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
+		CountryDAO cDao = new CountryDAO(session);
+		RegionTypeDAO rtDao = new RegionTypeDAO(session);
 		Region entity;
 		if (!id.isEmpty()) {
 			RegionDAO dao = new RegionDAO(session);
@@ -37,7 +40,8 @@ public class RegionForm extends ReferenceForm {
 			entity.setAuthor(user);
 			entity.setRegDate(new Date());
 			entity.setName("");
-			CountryDAO cDao = new CountryDAO(session);
+			RegionType regionType = rtDao.findByName("Область");
+			entity.setType(regionType);
 			Country country = cDao.findByCode(CountryCode.KZ);
 			if (country != null) {
 				entity.setCountry(country);
@@ -49,8 +53,8 @@ public class RegionForm extends ReferenceForm {
 		// getLocalizedWord(RegionCode.class.getEnumConstants(),
 		// session.getLang()
 		// .toString())));
-		addContent(new _POJOListWrapper<>(new RegionTypeDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper<>(new CountryDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<>(rtDao.findAll(), session));
+		addContent(new _POJOListWrapper<>(cDao.findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);

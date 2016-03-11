@@ -12,8 +12,8 @@ import java.util.List;
 import kz.flabs.dataengine.DatabaseUtil;
 import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
-import kz.lof.dataengine.jpadatabase.Database;
 import kz.lof.scripting._Session;
+import kz.lof.server.Server;
 import municipalproperty.model.constants.KufType;
 
 public class ReportUtil {
@@ -117,7 +117,7 @@ public class ReportUtil {
 		} catch (SQLException e) {
 			DatabaseUtil.errorPrint("", e);
 		} catch (Exception e) {
-			Database.logger.errorLogEntry(e);
+			Server.logger.errorLogEntry(e);
 		} finally {
 			dbPool.returnConnection(conn);
 		}
