@@ -8,8 +8,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form class="form form-{$editmode}" action="Provider" method="post"
-              enctype="application/x-www-form-urlencoded" name="property">
+        <xsl:apply-templates select="//document[@entity != '']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity]">
+        <form class="form form-edit-{@editable}" name="{@entity}" action="" enctype="application/x-www-form-urlencoded">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/special_equipment/@caption"/>

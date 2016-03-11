@@ -8,11 +8,12 @@
             </div>
             <div class="controls">
                 <div class="span8">
-                    <div class="input selectize-dialog" data-input="balanceholder" onclick="nbApp.choiceBalanceHolder(this)">
-                        <xsl:value-of select="//fields/balanceholder"/>
+                    <div class="input selectize-dialog" data-input="balanceholder"
+                         onclick="nbApp.choiceBalanceHolder(this)">
+                        <xsl:value-of select="fields/balanceholder"/>
                     </div>
                 </div>
-                <input type="hidden" name="balanceholderid" value="{//fields/balanceholderid}" required="required"/>
+                <input type="hidden" name="balanceholderid" value="{fields/balanceholderid}" required="required"/>
             </div>
         </div>
         <div class="form-group">
@@ -20,8 +21,8 @@
                 <xsl:value-of select="//captions/bin/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="balanceholderbin" value="{//fields/balanceholderbin}" class="span4"
-                       readonly="readonly"  style="cursor:not-allowed"/>
+                <input type="text" name="balanceholderbin" value="{fields/balanceholderbin}" class="span4 disabled"
+                       readonly="readonly"/>
             </div>
         </div>
     </xsl:template>
@@ -33,14 +34,16 @@
                 <xsl:value-of select="'КОФ/КУФ'"/>
             </div>
             <div class="controls">
-                <div class="inline span3">
-                    <input type="text" name="kof" value="{//fields/kof}"/>
-                </div>
-                <span style="display:inline-block; padding-top:4px; text-align:center; width:19px;">
-                    <xsl:value-of select="'/'"/>
-                </span>
-                <div class="inline span1">
-                    <input type="text" name="kuf" value="{//fields/kuf}" readonly="readonly"/>
+                <div class="kof-kuf">
+                    <div class="inline span3">
+                        <input type="text" name="kof" value="{fields/kof}"/>
+                    </div>
+                    <span style="display:inline-block; padding-top:4px; text-align:center; width:19px;">
+                        <xsl:value-of select="'/'"/>
+                    </span>
+                    <div class="inline span1">
+                        <input type="text" name="kuf" value="{fields/kuf}" readonly="readonly" class="disabled"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,7 +56,7 @@
                 <xsl:value-of select="//captions/inv_number/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="invnumber" value="{//fields/invnumber}" class="span3"/>
+                <input type="text" name="invnumber" value="{fields/invnumber}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -66,7 +69,7 @@
             </div>
             <div class="controls">
                 <textarea name="objectname" class="span8" required="required">
-                    <xsl:value-of select="//fields/objectname"/>
+                    <xsl:value-of select="fields/objectname"/>
                 </textarea>
             </div>
         </div>
@@ -80,7 +83,7 @@
             </div>
             <div class="controls">
                 <textarea name="description" class="span8" required="required">
-                    <xsl:value-of select="//fields/description"/>
+                    <xsl:value-of select="fields/description"/>
                 </textarea>
             </div>
         </div>
@@ -95,7 +98,7 @@
             <div class="controls">
                 <select name="propertycode" class="span8">
                     <xsl:apply-templates select="//query[@entity = 'propertycode']/entry" mode="select_options">
-                        <xsl:with-param name="select" select="//fields/propertycode"/>
+                        <xsl:with-param name="select" select="fields/propertycode"/>
                     </xsl:apply-templates>
                 </select>
             </div>
@@ -109,7 +112,7 @@
                 <xsl:value-of select="//captions/acceptance_date/@caption"/>
             </div>
             <div class="controls">
-                <input type="date" name="acceptancedate" value="{//fields/acceptancedate}" class="span2"/>
+                <input type="date" name="acceptancedate" value="{fields/acceptancedate}" class="span2"/>
             </div>
         </div>
     </xsl:template>
@@ -121,7 +124,7 @@
                 <xsl:value-of select="//captions/original_cost/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="originalcost" value="{//fields/originalcost}" class="span3"/>
+                <input type="number" name="originalcost" value="{fields/originalcost}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -133,7 +136,7 @@
                 <xsl:value-of select="//captions/cumulative_depreciation/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="cumulativedepreciation" value="{//fields/cumulativedepreciation}"
+                <input type="number" name="cumulativedepreciation" value="{fields/cumulativedepreciation}"
                        class="span3"/>
             </div>
         </div>
@@ -146,7 +149,7 @@
                 <xsl:value-of select="//captions/impairment_loss/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="impairmentloss" value="{//fields/impairmentloss}" class="span3"/>
+                <input type="number" name="impairmentloss" value="{fields/impairmentloss}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -158,10 +161,9 @@
                 <xsl:value-of select="//captions/balance_cost/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="balancecost" value="{//fields/balancecost}" class="span3"/>
+                <input type="number" name="balancecost" value="{fields/balancecost}" class="span3"/>
             </div>
         </div>
-
     </xsl:template>
 
     <xsl:template name="revaluationamount">
@@ -171,7 +173,7 @@
                 <xsl:value-of select="//captions/revaluation_amount/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="revaluationamount" value="{//fields/revaluationamount}" class="span3"/>
+                <input type="number" name="revaluationamount" value="{fields/revaluationamount}" class="span3"/>
             </div>
         </div>
     </xsl:template>
@@ -183,7 +185,7 @@
                 <xsl:value-of select="//captions/after_revaluation_amount/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="afterrevaluationamount" value="{//fields/afterevaluationamount}"
+                <input type="number" name="afterrevaluationamount" value="{fields/afterevaluationamount}"
                        class="span3"/>
             </div>
         </div>
@@ -198,7 +200,7 @@
             <div class="controls">
                 <select name="receivingreason" class="span8">
                     <xsl:apply-templates select="//query[@entity = 'receivingreason']/entry" mode="select_options">
-                        <xsl:with-param name="select" select="//fields/receivingreason"/>
+                        <xsl:with-param name="select" select="fields/receivingreason"/>
                     </xsl:apply-templates>
                 </select>
             </div>
@@ -213,7 +215,7 @@
             </div>
             <div class="controls">
                 <textarea name="model" class="span8">
-                    <xsl:value-of select="//fields/model"/>
+                    <xsl:value-of select="fields/model"/>
                 </textarea>
             </div>
         </div>
@@ -226,7 +228,7 @@
                 <xsl:value-of select="//captions/commissioning_year/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="commissioningyear" value="{//fields/commissioningyear}" class="span1"/>
+                <input type="text" name="commissioningyear" value="{fields/commissioningyear}" class="span1"/>
             </div>
         </div>
     </xsl:template>
@@ -238,7 +240,7 @@
                 <xsl:value-of select="//captions/acquisition_year/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="acquisitionyear" value="{//fields/acquisitionyear}" class="span1"
+                <input type="text" name="acquisitionyear" value="{fields/acquisitionyear}" class="span1"
                        readonly="readonly"/>
             </div>
         </div>
@@ -253,7 +255,7 @@
             <div class="controls">
                 <label class="btn btn-sm">
                     <input type="checkbox" name="isreadytouse" value="1">
-                        <xsl:if test="//fields/isreadytouse = 'true'">
+                        <xsl:if test="fields/isreadytouse = 'true'">
                             <xsl:attribute name="checked" select="'checked'"/>
                         </xsl:if>
                     </input>
@@ -272,7 +274,7 @@
             </div>
             <div class="controls">
                 <textarea name="notes" class="span8">
-                    <xsl:value-of select="//fields/notes"/>
+                    <xsl:value-of select="fields/notes"/>
                 </textarea>
             </div>
         </div>
@@ -289,10 +291,10 @@
                         <i>
                             <xsl:attribute name="class">
                                 <xsl:choose>
-                                    <xsl:when test="/request/page/response/content/document/@editable = 'true'">
+                                    <xsl:when test="@editable = 'true'">
                                         fa fa-pencil
                                     </xsl:when>
-                                    <xsl:when test="/request/page/response/content/document/@editable = 'false'">
+                                    <xsl:when test="@editable = 'false'">
                                         fa fa-eye
                                     </xsl:when>
                                     <xsl:otherwise>
@@ -310,7 +312,7 @@
                 </div>
                 <div class="controls">
                     <span class="input-placeholder">
-                        <xsl:value-of select="//fields/regdate"/>
+                        <xsl:value-of select="fields/regdate"/>
                     </span>
                 </div>
             </div>
@@ -320,7 +322,7 @@
                 </div>
                 <div class="controls">
                     <span class="input-placeholder">
-                        <xsl:value-of select="//fields/author"/>
+                        <xsl:value-of select="fields/author"/>
                     </span>
                 </div>
             </div>
@@ -334,7 +336,7 @@
                 <xsl:value-of select="//captions/technical_passport/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="technicalpassport" value="{//fields/technicalpassport}" class="span6"/>
+                <input type="text" name="technicalpassport" value="{fields/technicalpassport}" class="span6"/>
             </div>
         </div>
         <div class="form-group">
@@ -342,7 +344,7 @@
                 <xsl:value-of select="//captions/propertyarticlein/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="propertyarticlein" value="{//fields/propertyarticlein}" class="span6"/>
+                <input type="text" name="propertyarticlein" value="{fields/propertyarticlein}" class="span6"/>
             </div>
         </div>
         <div class="form-group">
@@ -350,7 +352,7 @@
                 <xsl:value-of select="//captions/restransferacceptance/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="restransferacceptance" value="{//fields/restransferacceptance}" class="span6"/>
+                <input type="text" name="restransferacceptance" value="{fields/restransferacceptance}" class="span6"/>
             </div>
         </div>
     </xsl:template>
@@ -367,12 +369,12 @@
                 <div class="controls">
                     <div class="span8">
                         <!--<div class="input selectize-dialog" data-input="region" onclick="nbApp.choiceRegion(this)">-->
-                        <div class="input" data-input="region" disabled="disabled" style="cursor:not-allowed">
-                            <xsl:value-of select="//fields/region"/>
+                        <div class="input disabled" data-input="region">
+                            <xsl:value-of select="fields/region"/>
                         </div>
                     </div>
-                    <input type="hidden" name="region" value="{//fields/region}"/>
-                    <input type="hidden" name="regionid" value="{//fields/regionid}"/>
+                    <input type="hidden" name="region" value="{fields/region}"/>
+                    <input type="hidden" name="regionid" value="{fields/regionid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -382,12 +384,12 @@
                 <div class="controls">
                     <div class="span8">
                         <!--<div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">-->
-                        <div class="input" data-input="locality" disabled="disabled" style="cursor:not-allowed">
-                            <xsl:value-of select="//fields/locality"/>
+                        <div class="input disabled" data-input="locality">
+                            <xsl:value-of select="fields/locality"/>
                         </div>
                     </div>
-                    <input type="hidden" name="locality" value="{//fields/locality}"/>
-                    <input type="hidden" name="localityid" value="{//fields/localityid}"/>
+                    <input type="hidden" name="locality" value="{fields/locality}"/>
+                    <input type="hidden" name="localityid" value="{fields/localityid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -396,13 +398,13 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                       <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)">
-                        <!--<div class="input selectize-dialog" data-input="district" disabled="disabled">-->
-                            <xsl:value-of select="//fields/district"/>
+                        <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)">
+                            <!--<div class="input selectize-dialog" data-input="district">-->
+                            <xsl:value-of select="fields/district"/>
                         </div>
                     </div>
-                    <input type="hidden" name="district" value="{//fields/district}"/>
-                    <input type="hidden" name="districtid" value="{//fields/districtid}"/>
+                    <input type="hidden" name="district" value="{fields/district}"/>
+                    <input type="hidden" name="districtid" value="{fields/districtid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -412,11 +414,11 @@
                 <div class="controls">
                     <div class="span8">
                         <div class="input selectize-dialog" data-input="street" onclick="nbApp.choiceStreet(this)">
-                            <xsl:value-of select="//fields/street"/>
+                            <xsl:value-of select="fields/street"/>
                         </div>
                     </div>
-                    <input type="hidden" name="street" value="{//fields/street}"/>
-                    <input type="hidden" name="streetid" value="{//fields/streetid}"/>
+                    <input type="hidden" name="street" value="{fields/street}"/>
+                    <input type="hidden" name="streetid" value="{fields/streetid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -424,7 +426,7 @@
                     <xsl:value-of select="//captions/home/@caption"/>
                 </div>
                 <div class="controls">
-                    <input type="text" name="housenumber" value="{//fields/housenumber}" class="span1"/>
+                    <input type="text" name="housenumber" value="{fields/housenumber}" class="span1"/>
                 </div>
             </div>
             <div class="form-group">
@@ -432,7 +434,7 @@
                     <xsl:value-of select="//captions/additional/@caption"/>
                 </div>
                 <div class="controls">
-                    <input type="text" name="additionalinfo" value="{//fields/additionalinfo}" class="span8"/>
+                    <input type="text" name="additionalinfo" value="{fields/additionalinfo}" class="span8"/>
                 </div>
             </div>
         </fieldset>
@@ -441,34 +443,34 @@
     <!-- Основание поступления в Гос. собственность <div class="form-group">
         <div class="control-label"> <xsl:value-of select="//captions/receiptbasisingproperty/@caption"/>
         </div> <div class="controls"> <div class="field-wrapper col-md-6"> <input
-        type="text" name="receiptbasisingproperty" value="{//fields/receiptbasisingproperty}"
+        type="text" name="receiptbasisingproperty" value="{fields/receiptbasisingproperty}"
         class="form-control"/> </div> </div> </div> -->
     <!-- Основание снятия с баланса -->
     <!-- <div class="form-group"> <div class="control-label"> <xsl:value-of
         select="//captions/orderofremovalfrombalance/@caption"/> </div> <div class="controls">
         <div class="field-wrapper col-md-6"> <input type="text" name="orderofremovalfrombalance"
-        value="{//fields/orderofremovalfrombalance}" class="form-control"/> </div>
+        value="{fields/orderofremovalfrombalance}" class="form-control"/> </div>
         </div> </div> -->
 
 
     <!-- Цвет -->
     <!-- <div class="form-group"> <div class="control-label"> <xsl:value-of
         select="//captions/color/@caption"/> </div> <div class="controls"> <div class="field-wrapper
-        col-md-6"> <input type="text" name="color" value="{//fields/color}" class="form-control"/>
+        col-md-6"> <input type="text" name="color" value="{fields/color}" class="form-control"/>
         </div> </div> </div> Ширина <div class="form-group"> <div class="control-label">
         <xsl:value-of select="//captions/width/@caption"/> </div> <div class="controls">
-        <div class="field-wrapper col-md-1"> <input type="number" name="width" value="{//fields/width}"
+        <div class="field-wrapper col-md-1"> <input type="number" name="width" value="{fields/width}"
         class="form-control"/> </div> </div> </div> Высота <div class="form-group">
         <div class="control-label"> <xsl:value-of select="//captions/height/@caption"/>
         </div> <div class="controls"> <div class="field-wrapper col-md-1"> <input
-        type="number" name="height" value="{//fields/height}" class="form-control"/>
+        type="number" name="height" value="{fields/height}" class="form-control"/>
         </div> </div> </div> Глубина <div class="form-group"> <div class="control-label">
         <xsl:value-of select="//captions/depth/@caption"/> </div> <div class="controls">
-        <div class="field-wrapper col-md-1"> <input type="number" name="depth" value="{//fields/depth}"
+        <div class="field-wrapper col-md-1"> <input type="number" name="depth" value="{fields/depth}"
         class="form-control"/> </div> </div> </div> Год выпуска <div class="form-group">
         <div class="control-label"> <xsl:value-of select="//captions/yearrelease/@caption"/>
         </div> <div class="controls"> <div class="field-wrapper col-md-1"> <input
-        type="number" name="yearrelease" value="{//fields/yearrelease}" class="date-year
+        type="number" name="yearrelease" value="{fields/yearrelease}" class="date-year
         form-control"/> </div> </div> </div> -->
 
 
@@ -483,7 +485,7 @@
                 </div>
                 <div class="controls">
                     <div class="field-wrapper col-md-6">
-                        <input type="text" name="repair" value="{//fields/repair}"
+                        <input type="text" name="repair" value="{fields/repair}"
                             class="form-control" />
                     </div>
                 </div>
@@ -494,7 +496,7 @@
                 </div>
                 <div class="controls">
                     <div class="field-wrapper col-md-1">
-                        <input type="number" name="depreciating" value="{//fields/depreciating}"
+                        <input type="number" name="depreciating" value="{fields/depreciating}"
                             class="percent
             form-control" />
                     </div>
@@ -506,7 +508,7 @@
                 </div>
                 <div class="controls">
                     <div class="field-wrapper col-md-1">
-                        <input type="number" name="cumulativedepreciation" value="{//fields/cumulativedepreciation}"
+                        <input type="number" name="cumulativedepreciation" value="{fields/cumulativedepreciation}"
                             class="percent
             form-control" />
                     </div>
@@ -518,7 +520,7 @@
                 </div>
                 <div class="controls">
                     <div class="field-wrapper col-md-1">
-                        <input type="number" name="deterioration" value="{//fields/deterioration}"
+                        <input type="number" name="deterioration" value="{fields/deterioration}"
                             class="percent form-control" />
                     </div>
                 </div>
@@ -530,22 +532,21 @@
     <!-- <fieldset class="fieldset"> <legend class="legend"> <xsl:value-of select="//captions/overloadingexistence/@caption"/>
         </legend> <div class="form-group"> <div class="control-label"> <xsl:value-of
         select="//captions/pledge/@caption"/> </div> <div class="controls"> <div
-        class="field-wrapper col-md-6"> <input type="text" name="pledge" value="{//fields/pledge}"
+        class="field-wrapper col-md-6"> <input type="text" name="pledge" value="{fields/pledge}"
         class="form-control"/> </div> </div> </div> <div class="form-group"> <div
         class="control-label"> <xsl:value-of select="//captions/arrestingbyacourtdecision/@caption"/>
         </div> <div class="controls"> <div class="field-wrapper col-md-6"> <input
-        type="text" name="arrestingbyacourtdecision" value="{//fields/arrestingbyacourtdecision}"
+        type="text" name="arrestingbyacourtdecision" value="{fields/arrestingbyacourtdecision}"
         class="form-control"/> </div> </div> </div> <div class="form-group"> <div
         class="control-label"> <xsl:value-of select="//captions/legalclaim/@caption"/>
         </div> <div class="controls"> <div class="field-wrapper col-md-6"> <input
-        type="text" name="legalclaim" value="{//fields/legalclaim}" class="form-control"/>
+        type="text" name="legalclaim" value="{fields/legalclaim}" class="form-control"/>
         </div> </div> </div> </fieldset> -->
 
     <!-- <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
         <input type="hidden" name="type" value="rtfcontent" /> <input type="hidden"
         name="formsesid" value="{formsesid}" /> Секция "Вложения" <div display="block"
         id="att"> <br /> <xsl:call-template name="attach" /> </div> </form> -->
-
 
     <xsl:template match="entry" mode="select_options">
         <xsl:param name="select"/>
@@ -556,7 +557,6 @@
             <xsl:attribute name="value" select="@id"/>
             <xsl:value-of select="."/>
         </option>
-       
     </xsl:template>
 
 </xsl:stylesheet>

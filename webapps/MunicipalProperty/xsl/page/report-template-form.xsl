@@ -7,12 +7,16 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <form method="post" name="{//document/@entity}">
+        <xsl:apply-templates select="//document[@entity != '']"/>
+    </xsl:template>
+
+    <xsl:template match="document[@entity]">
+        <form class="form form-edit-{@editable}" name="{@entity}" action="" enctype="application/x-www-form-urlencoded">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="concat(//captions/report/@caption, ' / ', //fields/name)"/>
                 </h1>
-                 <div class="content-actions">
+                <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
                 </div>
             </header>
@@ -75,7 +79,7 @@
                 </fieldset>
 
                 <input type="hidden" name="id" value="{/request/@id}"/>
-                <input type="hidden" name="docid" value="{//document/@docid}"/>
+                <input type="hidden" name="docid" value="{@docid}"/>
             </section>
             <footer class="content-actions">
                 <button class="btn" type="submit">
