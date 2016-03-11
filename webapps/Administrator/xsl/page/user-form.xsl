@@ -36,7 +36,7 @@
                             <xsl:value-of select="'E-mail'"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="email" value="{fields/email}" class="span4"/>
+                            <input type="email" name="email" value="{fields/email}" class="span4"/>
                         </div>
                     </div>
                     <div class="form-group">
