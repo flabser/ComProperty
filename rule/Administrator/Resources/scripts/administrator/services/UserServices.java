@@ -40,7 +40,6 @@ public class UserServices {
 
 		for (kz.flabs.users.User oldUser : users) {
 			User entity = new User();
-			entity.setUserName(oldUser.getUserName());
 			entity.setLogin(oldUser.getLogin());
 			entity.setPwd(oldUser.getPassword());
 			entity.setPwdHash(oldUser.getPasswordHash());

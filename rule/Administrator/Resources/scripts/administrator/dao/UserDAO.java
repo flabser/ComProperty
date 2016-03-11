@@ -35,6 +35,10 @@ public class UserDAO {
 		emf = db.getEntityManagerFactory();
 	}
 
+	public UserDAO(IDatabase db) {
+		emf = db.getEntityManagerFactory();
+	}
+
 	public UserDAO() {
 		IDatabase db = Environment.dataBase;
 		emf = db.getEntityManagerFactory();
