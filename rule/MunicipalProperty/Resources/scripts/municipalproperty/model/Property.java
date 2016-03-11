@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -98,6 +99,9 @@ public class Property extends SecureAppEntity {
 	private boolean readyToUse;
 
 	private String notes = "";
+
+	@Lob
+	protected byte[] attachment;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
@@ -297,6 +301,14 @@ public class Property extends SecureAppEntity {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public byte[] getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(byte[] attachment) {
+		this.attachment = attachment;
 	}
 
 	@Override

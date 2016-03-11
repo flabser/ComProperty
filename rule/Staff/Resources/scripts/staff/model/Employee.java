@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -55,6 +56,9 @@ public class Employee extends Staff implements IEmployee {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "employee_role")
 	private List<Role> roles;
+
+	@Lob
+	protected byte[] avatar;
 
 	public Organization getOrganization() {
 		return organization;
@@ -119,6 +123,14 @@ public class Employee extends Staff implements IEmployee {
 			roles = new ArrayList<Role>();
 		}
 		roles.add(r);
+	}
+
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
 	}
 
 	@Override

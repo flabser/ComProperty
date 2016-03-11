@@ -1,16 +1,18 @@
 package workspace.page;
 
+import java.util.List;
+
 import kz.lof.env.Environment;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.lof.user.AnonymousUser;
-import kz.lof.user.IUser;
 import kz.nextbase.script._AppEntourage;
 import kz.nextbase.script._Exception;
-import administrator.dao.ApplicationDAO;
 import administrator.dao.LanguageDAO;
+import administrator.model.Application;
+import administrator.model.User;
 
 public class Workspace extends _DoPage {
 
@@ -22,8 +24,9 @@ public class Workspace extends _DoPage {
 		publishElement("org", Environment.orgName);
 		publishElement("appname", ent.getAppName());
 		if (!session.getUser().getUserID().equalsIgnoreCase(AnonymousUser.USER_NAME)) {
-			IUser user = session.getUser();
-			addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
+			User user = (User) session.getUser();
+			List<Application> aa = user.getAllowedApps();
+			addContent(new _POJOListWrapper(aa, session));
 		}
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 
