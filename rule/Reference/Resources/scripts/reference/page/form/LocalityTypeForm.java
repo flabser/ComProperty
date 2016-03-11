@@ -30,7 +30,7 @@ public class LocalityTypeForm extends ReferenceForm {
 			LocalityTypeDAO dao = new LocalityTypeDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user);
+			entity = getDefaultEntity(user, null);
 		}
 		addContent(entity);
 		addContent(new _EnumWrapper<>(LocalityCode.class.getEnumConstants()));

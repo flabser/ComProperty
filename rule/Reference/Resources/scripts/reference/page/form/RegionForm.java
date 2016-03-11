@@ -17,6 +17,7 @@ import reference.model.Country;
 import reference.model.Region;
 import reference.model.RegionType;
 import reference.model.constants.CountryCode;
+import reference.model.constants.RegionCode;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -40,7 +41,7 @@ public class RegionForm extends ReferenceForm {
 			entity.setAuthor(user);
 			entity.setRegDate(new Date());
 			entity.setName("");
-			RegionType regionType = rtDao.findByName("Область");
+			RegionType regionType = rtDao.findByCode(RegionCode.REGION);
 			entity.setType(regionType);
 			Country country = cDao.findByCode(CountryCode.KZ);
 			if (country != null) {

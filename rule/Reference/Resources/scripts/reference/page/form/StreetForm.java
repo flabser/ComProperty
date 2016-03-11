@@ -10,7 +10,7 @@ import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import reference.dao.LocalityDAO;
 import reference.dao.StreetDAO;
-import reference.model.Reference;
+import reference.model.Locality;
 import reference.model.Street;
 import administrator.dao.LanguageDAO;
 
@@ -20,12 +20,15 @@ public class StreetForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
-		Reference entity;
+		Street entity;
 		if (!id.isEmpty()) {
 			StreetDAO dao = new StreetDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user);
+			entity = (Street) getDefaultEntity(user, new Street());
+			LocalityDAO cDao = new LocalityDAO(session);
+			Locality city = cDao.findByName("Алматы");
+			entity.setLocality(city);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
@@ -36,6 +39,7 @@ public class StreetForm extends ReferenceForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
+		println(formData);
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {

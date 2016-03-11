@@ -10,7 +10,6 @@ import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import reference.dao.KufDAO;
 import reference.model.Kuf;
-import reference.model.Reference;
 import administrator.dao.LanguageDAO;
 
 public class KufForm extends ReferenceForm {
@@ -19,12 +18,12 @@ public class KufForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
-		Reference entity;
+		Kuf entity;
 		if (!id.isEmpty()) {
 			KufDAO dao = new KufDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user);
+			entity = (Kuf) getDefaultEntity(user, new Kuf());
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));

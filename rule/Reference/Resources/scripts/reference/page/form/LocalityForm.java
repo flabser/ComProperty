@@ -13,6 +13,8 @@ import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
 import reference.dao.LocalityTypeDAO;
 import reference.model.Locality;
+import reference.model.LocalityType;
+import reference.model.constants.LocalityCode;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -25,6 +27,7 @@ public class LocalityForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
+		LocalityTypeDAO lDao = new LocalityTypeDAO(session);
 		Locality entity;
 		if (!id.isEmpty()) {
 			LocalityDAO dao = new LocalityDAO(session);
@@ -34,9 +37,11 @@ public class LocalityForm extends ReferenceForm {
 			entity.setAuthor(user);
 			entity.setRegDate(new Date());
 			entity.setName("");
+			LocalityType regionType = lDao.findByCode(LocalityCode.CITY);
+			entity.setType(regionType);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new LocalityTypeDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(lDao.findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);

@@ -47,8 +47,7 @@ public abstract class ReferenceForm extends _DoPage {
 
 	}
 
-	protected Reference getDefaultEntity(IUser<Long> user) {
-		Reference entity = new Reference();
+	protected Reference getDefaultEntity(IUser<Long> user, Reference entity) {
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());
 		entity.setName("");

@@ -42,7 +42,7 @@ public class Street extends Reference {
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append(super.getFullXMLChunk(ses));
-		chunk.append("<locality>" + locality.getId() + "</locality>");
+		chunk.append("<localityid>" + locality.getId() + "</localityid>");
 		return chunk.toString();
 	}
 

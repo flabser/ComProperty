@@ -333,7 +333,7 @@
 	</sentence>
 	<sentence mode="on" keyword="back">
 		<entry lang="RUS">Назад</entry>
-		<entry lang="KAZ">Назад</entry>
+		<entry lang="KAZ">Артқа</entry>
 		<entry lang="ENG">Back</entry>
 		<entry lang="CHI"></entry>
 	</sentence>
@@ -349,6 +349,13 @@
 		<entry lang="ENG">Basic properties</entry>
 		<entry lang="CHI">基本性能</entry>
 	</sentence>
+	<sentence mode="on" keyword="localized_names">
+		<entry lang="RUS">Локализованные названия</entry>
+		<entry lang="KAZ">Жекешелендірілген атақтары</entry>
+		<entry lang="ENG">Localized titles</entry>
+		<entry lang="CHI">基本性能</entry>
+	</sentence>
+
 	<sentence mode="on" keyword="bin">
 		<entry lang="RUS">БИН</entry>
 		<entry lang="KAZ">БИН</entry>

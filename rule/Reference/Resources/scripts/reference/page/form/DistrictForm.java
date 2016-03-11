@@ -11,7 +11,7 @@ import kz.nextbase.script._Exception;
 import reference.dao.DistrictDAO;
 import reference.dao.RegionDAO;
 import reference.model.District;
-import reference.model.Reference;
+import reference.model.Region;
 import administrator.dao.LanguageDAO;
 
 /**
@@ -24,12 +24,15 @@ public class DistrictForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
-		Reference entity;
+		District entity;
 		if (!id.isEmpty()) {
 			DistrictDAO dao = new DistrictDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user);
+			entity = (District) getDefaultEntity(user, new District());
+			RegionDAO cDao = new RegionDAO(session);
+			Region region = cDao.findByName("Алматы");
+			entity.setRegion(region);
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));

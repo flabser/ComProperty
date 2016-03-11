@@ -10,7 +10,6 @@ import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
 import reference.dao.ReceivingReasonDAO;
 import reference.model.ReceivingReason;
-import reference.model.Reference;
 import administrator.dao.LanguageDAO;
 
 public class ReceivingReasonForm extends ReferenceForm {
@@ -19,12 +18,12 @@ public class ReceivingReasonForm extends ReferenceForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
-		Reference entity;
+		ReceivingReason entity;
 		if (!id.isEmpty()) {
 			ReceivingReasonDAO dao = new ReceivingReasonDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 		} else {
-			entity = getDefaultEntity(user);
+			entity = (ReceivingReason) getDefaultEntity(user, new ReceivingReason());
 		}
 		addContent(entity);
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
