@@ -315,6 +315,7 @@ img.ws-app-logo {
     }
     .sign-in .noauth {
         clear: both;
+        color: #FFF;
         display: block;
     }
     .sign-in button[type=submit] {
