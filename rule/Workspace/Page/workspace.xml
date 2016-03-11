@@ -9,10 +9,10 @@
             <doscript source="JAVA_CLASS">workspace.page.Workspace</doscript>
         </events>
     </element>
-    <caption name="logout" source="KEYWORD">Завершить работу</caption>
-    <caption name="anothercomp" source="KEYWORD">Чужой компьютер</caption>
-    <caption name="user" source="KEYWORD">Пользователь</caption>
-    <caption name="password" source="KEYWORD">Пароль</caption>
-    <caption name="rememberpassword" source="KEYWORD">Запомнить пароль</caption>
-    <caption name="login" source="KEYWORD">Войти</caption>
+    <caption name="logout"/>
+    <caption name="another_comp"/>
+    <caption name="user"/>
+    <caption name="password"/>
+    <caption name="login"/>
+    <caption name="sign_in"/>
 </rule>

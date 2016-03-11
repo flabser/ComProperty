@@ -86,18 +86,25 @@
     <xsl:template name="sign-in-form">
         <xsl:if test="@userid = 'anonymous'">
             <form class="sign-in" action="Login" method="post">
+                <h1>
+                    <xsl:value-of select="//captions/sign_in/@caption"/>
+                </h1>
                 <label class="login">
-                    <xsl:value-of select="//captions/user/@caption"/>
-                    <input type="text" name="login" required="required"/>
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="login" value="" required="required">
+                        <xsl:attribute name="placeholder" select="//captions/user/@caption"/>
+                    </input>
                 </label>
                 <label class="pwd">
-                    <xsl:value-of select="//captions/password/@caption"/>
-                    <input type="password" name="pwd" required="required"/>
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="pwd" value="" required="required">
+                        <xsl:attribute name="placeholder" select="//captions/password/@caption"/>
+                    </input>
                 </label>
                 <label class="noauth">
                     <input type="checkbox" name="noauth" value="1"/>
                     <span>
-                        <xsl:value-of select="//captions/anothercomp/@caption"/>
+                        <xsl:value-of select="//captions/another_comp/@caption"/>
                     </span>
                 </label>
                 <button class="btn" type="submit">
