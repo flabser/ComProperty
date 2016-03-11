@@ -9,7 +9,7 @@
             <div class="controls">
                 <div class="span8">
                     <div class="input selectize-dialog" data-input="balanceholder"
-                         onclick="nbApp.choiceBalanceHolder(this)">
+                         title="{//captions/balance_holder/@caption}" onclick="nbApp.choiceBalanceHolder(this)">
                         <xsl:value-of select="fields/balanceholder"/>
                     </div>
                 </div>
@@ -398,7 +398,8 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                        <div class="input selectize-dialog" data-input="district" onclick="nbApp.choiceDistrict(this)">
+                        <div class="input selectize-dialog" data-input="district" title="{//captions/district/@caption}"
+                             onclick="nbApp.choiceDistrict(this)">
                             <!--<div class="input selectize-dialog" data-input="district">-->
                             <xsl:value-of select="fields/district"/>
                         </div>
@@ -413,7 +414,8 @@
                 </div>
                 <div class="controls">
                     <div class="span8">
-                        <div class="input selectize-dialog" data-input="street" onclick="nbApp.choiceStreet(this)">
+                        <div class="input selectize-dialog" data-input="street" title="{//captions/street/@caption}"
+                             onclick="nbApp.choiceStreet(this)">
                             <xsl:value-of select="fields/street"/>
                         </div>
                     </div>
