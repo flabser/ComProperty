@@ -94,15 +94,15 @@
                     <xsl:value-of select="//captions/password/@caption"/>
                     <input type="password" name="pwd" required="required"/>
                 </label>
-                <button class="btn" type="submit">
-                    <xsl:value-of select="//captions/login/@caption"/>
-                </button>
                 <label class="noauth">
                     <input type="checkbox" name="noauth" value="1"/>
                     <span>
                         <xsl:value-of select="//captions/anothercomp/@caption"/>
                     </span>
                 </label>
+                <button class="btn" type="submit">
+                    <xsl:value-of select="//captions/login/@caption"/>
+                </button>
                 <div class="clearfix"></div>
             </form>
         </xsl:if>
