@@ -152,8 +152,9 @@ public class Employee extends Staff implements IEmployee {
 		}
 		if (department != null) {
 			chunk.append("<department>" + department + "</department>");
+			chunk.append("<departmentid>" + department.getIdentifier() + "</departmentid>");
 		} else {
-			chunk.append("<department></department>");
+			chunk.append("<department></department><departmentid></departmentid>");
 		}
 		chunk.append("<iin>" + iin + "</iin>");
 		chunk.append("<organization>" + organization + "</organization>");

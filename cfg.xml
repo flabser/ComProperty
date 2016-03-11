@@ -23,9 +23,6 @@
             <name mode="on">MunicipalProperty</name>
         </app>
     </applications>
-    <database>
-     	<url>jdbc:postgresql://localhost:5433/jpatest</url> 
-	</database>
     <langs>
     	<!-- https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes  -->
 		<entry>RUS</entry>

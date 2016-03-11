@@ -27,7 +27,7 @@ public class FillApplications extends InitialDataAdapter<Application, Applicatio
 		String[] dataEng = { "Administrator", "Staff", "Reference", "Accountant", "Municipal property" };
 		String[] dataKaz = { "Администратор", "Құрылым", "Анықтамалар", "Нысан импорт", "Коммуналды меншік объектілерін бақылау" };
 		String[] dataRus = { "Администратор", "Структура", "Справочник", "Импорт объектов", "Коммунальное имущество" };
-		String[] urls = { "Provider?id=user-view", "Provider?id=structure-view", "Provider?id=country-view", "Provider?id=upload-updating-form",
+		String[] urls = { "Provider?id=user-view", "Provider?id=organization-view", "Provider?id=country-view", "Provider?id=upload-updating-form",
 		        "Provider?id=furniture-view" };
 
 		AppCode[] code = { AppCode.ADMINISTRATOR, AppCode.STAFF, AppCode.REFERENCE, AppCode.CUSTOM, AppCode.CUSTOM };
