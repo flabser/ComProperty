@@ -6,8 +6,8 @@ import java.util.List;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
 import staff.dao.OrganizationLabelDAO;
@@ -23,7 +23,15 @@ public class MainNavigator extends _DoPage {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("structure", lang), "structure-view"));
+		// common_outline.addEntry(new
+		// _OutlineEntry(getLocalizedWord("structure", lang),
+		// "structure-view"));
+		_OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");
+		for (OrganizationLabel label : new OrganizationLabelDAO(session).findAll()) {
+			orgEntry.addEntry(new _OutlineEntry(getLocalizedWord(label.getName(), lang), getLocalizedWord("labeled", lang) + " : "
+			        + getLocalizedWord(label.getName(), lang), "organization-label-view" + label.getId(),
+			        "Provider?id=organization-label-view&docid=" + label.getId()));
+		}
 		_OutlineEntry departmentEntry = new _OutlineEntry(getLocalizedWord("departments", lang), "department-view");
 		_OutlineEntry employeeEntry = new _OutlineEntry(getLocalizedWord("employees", lang), "employee-view");
 		for (Role role : new RoleDAO(session).findAll()) {
@@ -31,16 +39,9 @@ public class MainNavigator extends _DoPage {
 			        + getLocalizedWord(role.getName(), lang), "role-view" + role.getId(), "Provider?id=role-view&docid=" + role.getId()));
 		}
 
+		common_outline.addEntry(orgEntry);
 		common_outline.addEntry(departmentEntry);
 		common_outline.addEntry(employeeEntry);
-
-		_OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");
-		for (OrganizationLabel label : new OrganizationLabelDAO(session).findAll()) {
-			orgEntry.addEntry(new _OutlineEntry(getLocalizedWord(label.getName(), lang), getLocalizedWord("labeled", lang) + " : "
-			        + getLocalizedWord(label.getName(), lang), "organization-label-view" + label.getId(),
-			        "Provider?id=organization-label-view&docid=" + label.getId()));
-		}
-		common_outline.addEntry(orgEntry);
 
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("roles", lang), "role-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organization_labels", lang), "organization-label-view"));
