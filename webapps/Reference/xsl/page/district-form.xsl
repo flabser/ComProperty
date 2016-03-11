@@ -7,10 +7,10 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <xsl:apply-templates select="//document[@entity = 'district']"/>
+        <xsl:apply-templates select="//document[@entity != '']"/>
     </xsl:template>
 
-    <xsl:template match="document[@entity = 'district']">
+    <xsl:template match="document[@entity]">
         <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
