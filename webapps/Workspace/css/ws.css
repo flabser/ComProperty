@@ -302,6 +302,10 @@ img.ws-app-logo {
         margin: 2px 4px;
         width: 185px;
     }
+    .sign-in .login input,
+    .sign-in .pwd input {
+        border-color: transparent;
+    }
     .sign-in .noauth {
         clear: both;
         display: block;
