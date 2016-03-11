@@ -100,7 +100,9 @@
                                     <xsl:value-of select="//captions/user_name/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="fio" value="{fields/name}" class="span6"/>
+                                    <span class="input-placeholder">
+                                        <xsl:value-of select="fields/name"/>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -140,7 +142,9 @@
                                     <xsl:value-of select="//captions/org_name/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="orgname" value="{fields/organization}" class="span6"/>
+                                    <span class="input-placeholder">
+                                        <xsl:value-of select="fields/organization"/>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -148,7 +152,9 @@
                                     <xsl:value-of select="//captions/department/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="department" value="{fields/department}" class="span6"/>
+                                    <span class="input-placeholder">
+                                        <xsl:value-of select="fields/department"/>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -156,12 +162,14 @@
                                     <xsl:value-of select="//captions/position/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="post" value="{fields/position}" class="span6"/>
+                                    <span class="input-placeholder">
+                                        <xsl:value-of select="fields/position"/>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/role/@caption"/>
+                                    <xsl:value-of select="//captions/roles/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <div class="span6">

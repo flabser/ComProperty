@@ -19,7 +19,8 @@
     <caption name="email"/>
     <caption name="employee"/>
     <caption name="password"/>
-    <caption name="reenterpassword"/>
+    <caption name="password_confirm"/>
+    <caption name="password_confirm_not_equals"/>
     <caption name="email"/>
     <caption name="org_name"/>
     <caption name="countdocinview"/>
@@ -55,7 +56,7 @@
     <caption name="property_codes"/>
     <caption name="receiving_reasons"/>
     <caption name="tags"/>
-     <caption name="kuf"/>
-     <caption name="localized_names"/>
-     <caption name="type"/>
+    <caption name="kuf"/>
+    <caption name="localized_names"/>
+    <caption name="type"/>
 </rule>

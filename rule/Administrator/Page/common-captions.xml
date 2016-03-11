@@ -12,8 +12,8 @@
     <caption name="application"/>
     <caption name="language"/>
 
-    <caption name="username"/>
-    <caption name="login"/>
+    <caption name="login_name"/>
+    <caption name="email"/>
     <caption name="password"/>
     <caption name="password_confirm"/>
     <caption name="password_confirm_not_equals"/>

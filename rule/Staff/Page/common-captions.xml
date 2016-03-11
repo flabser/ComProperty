@@ -18,7 +18,8 @@
     <caption name="login_name"/>
     <caption name="email"/>
     <caption name="password"/>
-    <caption name="reenterpassword"/>
+    <caption name="password_confirm"/>
+    <caption name="password_confirm_not_equals"/>
     <caption name="email"/>
     <caption name="org_name"/>
     <caption name="countdocinview"/>

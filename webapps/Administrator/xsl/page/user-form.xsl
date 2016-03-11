@@ -24,7 +24,7 @@
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/login/@caption"/>
+                            <xsl:value-of select="//captions/login_name/@caption"/>
                         </div>
                         <div class="controls">
                             <input type="text" name="login" value="{fields/login}" class="span4" required="required"
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="'E-mail'"/>
+                            <xsl:value-of select="//captions/email/@caption"/>
                         </div>
                         <div class="controls">
                             <input type="email" name="email" value="{fields/email}" class="span4"/>
