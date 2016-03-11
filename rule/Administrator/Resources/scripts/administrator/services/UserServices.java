@@ -34,7 +34,10 @@ public class UserServices {
 			System.out.println("System users count = " + rCount);
 		}
 		ApplicationDAO aDao = new ApplicationDAO(new _Session(env, new AnonymousUser()));
-		List<Application> appList = aDao.findAll();
+		List<Application> appList = new ArrayList<Application>();
+		appList.add(aDao.findByName("MunicipalProperty"));
+		appList.add(aDao.findByName("Accountant"));
+
 		for (kz.flabs.users.User oldUser : users) {
 			User entity = new User();
 			entity.setUserName(oldUser.getUserName());
@@ -52,9 +55,9 @@ public class UserServices {
 
 	}
 
-	public IUser getUser(String login) {
+	public IUser<Long> getUser(String login) {
 		UserDAO uDao = new UserDAO();
-		IUser user = uDao.findByLogin(login);
+		IUser<Long> user = uDao.findByLogin(login);
 		return user;
 
 	}
