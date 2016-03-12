@@ -11,19 +11,21 @@
     display: block;
     max-height: 160px;
     text-align: center;
+    vertical-align: top;
 }
 
 .fieldset-user-fields {
     display: block;
+    vertical-align: top;
 }
 
 @media (min-width: 768px) {
     .fieldset-user-avatar {
-        display: inline-block;
+        display: inline-block !important;
         margin-left: 10px;
     }
     .fieldset-user-fields {
-        display: inline-block;
+        display: inline-block !important;
         float: left;
         max-width: 600px;
     }
