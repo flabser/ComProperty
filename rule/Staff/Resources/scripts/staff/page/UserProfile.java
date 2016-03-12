@@ -23,11 +23,13 @@ public class UserProfile extends _DoPage {
         IUser user = ses.getUser();
         EmployeeDAO dao = new EmployeeDAO(ses);
         Employee emp = dao.findByUserId((long) user.getId());
-        addContent(new _ActionBar(ses).addAction(new _Action(_ActionType.CLOSE)));
+        _ActionBar actionBar = new _ActionBar(ses);
+        actionBar.addAction(new _Action(getLocalizedWord("save_close", ses.getLang()), "", _ActionType.SAVE_AND_CLOSE));
+        actionBar.addAction(new _Action(getLocalizedWord("close", ses.getLang()), "", _ActionType.CLOSE));
         addContent(emp);
+        addContent(actionBar);
         addContent(new _POJOListWrapper(new LanguageDAO(ses).findAll(), ses));
-        String pagesize = String.valueOf(ses.getPageSize());
-        addContent("pagesize", pagesize);
+        addContent("pagesize", String.valueOf(ses.getPageSize()));
     }
 
     @Override

@@ -12,13 +12,26 @@
     <caption name="application"/>
     <caption name="language"/>
 
-    <caption name="login_name"/>
-    <caption name="email"/>
-    <caption name="password"/>
-    <caption name="password_confirm"/>
-    <caption name="password_confirm_not_equals"/>
     <caption name="applications"/>
     <caption name="name"/>
     <caption name="default_url"/>
     <caption name="code"/>
+
+    <caption name="properties"/>
+    <caption name="interface"/>
+    <caption name="change_skin"/>
+    <caption name="position"/>
+    <caption name="user_name"/>
+    <caption name="login_name"/>
+    <caption name="email"/>
+    <caption name="employee"/>
+    <caption name="password"/>
+    <caption name="password_confirm"/>
+    <caption name="password_confirm_not_equals"/>
+    <caption name="email"/>
+    <caption name="org_name"/>
+    <caption name="department"/>
+    <caption name="roles"/>
+    <caption name="countdocinview"/>
+    <caption name="interface_lang"/>
 </rule>
