@@ -3,10 +3,15 @@
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
     <caption name="brand"/>
+
+    <caption name="cancel"/>
+    <caption name="select"/>
+    <caption name="close"/>
+    <caption name="wait_while_document_save"/>
+
     <caption name="title"/>
     <caption name="logout"/>
     <caption name="user_profile"/>
-    <caption name="cancel"/>
     <caption name="attach_file"/>
 
     <caption name="properties"/>
@@ -18,11 +23,10 @@
     <caption name="email"/>
     <caption name="employee"/>
     <caption name="password"/>
-    <caption name="reenterpassword"/>
+    <caption name="password_confirm"/>
     <caption name="email"/>
     <caption name="org_name"/>
     <caption name="roles"/>
     <caption name="countdocinview"/>
     <caption name="interface_lang"/>
-    <caption name="logout"/>
 </rule>

@@ -4,6 +4,13 @@
 
     <caption name="brand"/>
 
+    <caption name="cancel"/>
+    <caption name="select"/>
+    <caption name="close"/>
+    <caption name="wait_while_document_save"/>
+    <caption name="add"/>
+    <caption name="delete"/>
+
     <caption name="page"/>
     <caption name="documents"/>
     <caption name="logout"/>
@@ -26,9 +33,6 @@
     <caption name="roles"/>
     <caption name="countdocinview"/>
     <caption name="interface_lang"/>
-
-    <caption name="add"/>
-    <caption name="delete"/>
 
     <caption name="name"/>
     <caption name="code"/>

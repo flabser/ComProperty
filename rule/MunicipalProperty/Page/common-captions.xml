@@ -2,14 +2,19 @@
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
+    <caption name="brand"/>
+
     <caption name="new_"/>
+    <caption name="cancel"/>
+    <caption name="select"/>
     <caption name="close"/>
+    <caption name="wait_while_document_save"/>
+
     <caption name="properties"/>
     <caption name="interface"/>
-    <caption name="brand"/>
     <caption name="del_document"/>
     <caption name="logout"/>
-    <caption name="userprofile"/>
+    <caption name="user_profile"/>
     <caption name="search"/>
     <caption name="change_skin"/>
     <caption name="employee"/>
