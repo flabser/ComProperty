@@ -26,6 +26,7 @@
     <caption name="password_confirm"/>
     <caption name="email"/>
     <caption name="org_name"/>
+    <caption name="department"/>
     <caption name="roles"/>
     <caption name="countdocinview"/>
     <caption name="interface_lang"/>
