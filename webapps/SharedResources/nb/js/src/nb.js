@@ -23,7 +23,7 @@ var nb = {
         ok: 'Ok',
         cancel: 'Отмена',
         select: 'Выбрать',
-        dialog_select_value: 'Вы не сделали выбор'
+        dialog_no_selected_value: 'Вы не сделали выбор'
     },
     tpl: {}
 };
@@ -46,6 +46,17 @@ nb.getText = function(stringKey, defaultText) {
     } else {
         return (defaultText !== undefined) ? defaultText : stringKey;
     }
+};
+
+/**
+ * getTranslations
+ */
+nb.getTranslations = function() {
+    return $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: 'Provider?id=common-captions'
+    });
 };
 
 /**
@@ -161,6 +172,13 @@ $(document).ready(function() {
         } else {
             ary.push(navId);
             localStorage.setItem(storageKey, ary.join(','));
+        }
+    });
+
+    // getTranslations
+    nb.getTranslations().then(function(response) {
+        for (var key in response.captions) {
+            nb.translations[key] = response.captions[key];
         }
     });
 

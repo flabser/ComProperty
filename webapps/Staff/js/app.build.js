@@ -1339,7 +1339,7 @@ var nb = {
         ok: 'Ok',
         cancel: 'Отмена',
         select: 'Выбрать',
-        dialog_select_value: 'Вы не сделали выбор'
+        dialog_no_selected_value: 'Вы не сделали выбор'
     },
     tpl: {}
 };
@@ -1362,6 +1362,17 @@ nb.getText = function(stringKey, defaultText) {
     } else {
         return (defaultText !== undefined) ? defaultText : stringKey;
     }
+};
+
+/**
+ * getTranslations
+ */
+nb.getTranslations = function() {
+    return $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: 'Provider?id=common-captions'
+    });
 };
 
 /**
@@ -1477,6 +1488,13 @@ $(document).ready(function() {
         } else {
             ary.push(navId);
             localStorage.setItem(storageKey, ary.join(','));
+        }
+    });
+
+    // getTranslations
+    nb.getTranslations().then(function(response) {
+        for (var key in response.captions) {
+            nb.translations[key] = response.captions[key];
         }
     });
 
@@ -1716,7 +1734,7 @@ nb.dialog = {
         options.dialogFilterListItem = options.dialogFilterListItem || 'li';
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
-        options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
+        options.errorMessage = options.errorMessage || nb.getText('dialog_no_selected_value');
         options.templateId = options.templateId || 'dialog-list';
 
         options.onLoad = options.onLoad || null;
@@ -1976,6 +1994,8 @@ nb.submitForm = function(form) {
                 nb.validateForm(form, response.validation);
             } else if (response.type === 'SERVER_ERROR') {
                 msg.text = response.captions.type;
+            } else {
+                msg.text = 'Error: ' + err.status;
             }
             notify.set(msg);
             return err;

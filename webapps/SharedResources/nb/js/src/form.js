@@ -46,6 +46,8 @@ nb.submitForm = function(form) {
                 nb.validateForm(form, response.validation);
             } else if (response.type === 'SERVER_ERROR') {
                 msg.text = response.captions.type;
+            } else {
+                msg.text = 'Error: ' + err.status;
             }
             notify.set(msg);
             return err;

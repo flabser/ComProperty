@@ -172,7 +172,7 @@ nb.dialog = {
         options.dialogFilterListItem = options.dialogFilterListItem || 'li';
         options.buttons = options.buttons || null;
         options.dialogClass = 'nb-dialog ' + (options.dialogClass ? options.dialogClass : '');
-        options.errorMessage = options.errorMessage || nb.getText('dialog_select_value');
+        options.errorMessage = options.errorMessage || nb.getText('dialog_no_selected_value');
         options.templateId = options.templateId || 'dialog-list';
 
         options.onLoad = options.onLoad || null;
