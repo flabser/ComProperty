@@ -2,3 +2,12 @@
     background: transparent;
     padding-bottom: 0;
 }
+
+@media ( min-width: 1440px) {
+    .fieldset1,
+    .fieldset2 {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+    }
+}
