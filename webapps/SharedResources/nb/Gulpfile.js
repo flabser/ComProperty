@@ -1,4 +1,6 @@
+var argv = require('yargs').argv;
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
@@ -8,41 +10,45 @@ var wrap = require('gulp-wrap');
 var declare = require('gulp-declare');
 var handlebars = require('gulp-handlebars');
 
-// npm remove gulp gulp-concat gulp-csso gulp-jshint gulp-rename gulp-uglify jshint
+// uglify argument --production
+// gulp --production
+//
+// remove all node modules
+// npm remove yargs gulp gulp-if gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-csso gulp-wrap gulp-declare gulp-handlebars jshint
 
 var modules = ['Administrator', 'Accountant', 'Staff', 'Reference', 'MunicipalProperty'];
 var _styles = {};
 var _templates = {};
 var _scripts = {};
-var upPath = '../../';
+var webAppsPath = '../../';
+var isProduction = argv.production;
 
 // create module task
 for (var i = 0; i < modules.length; i++) {
     var module = modules[i];
     // _styles
     _styles[module] = ['../css/normalize.css',
+        '../vendor/select2/css/select2.min.css',
         'css/nb.min.css',
-        upPath + module + '/css/**/*.css',
-        '!' + upPath + module + '/css/*.min.css'
+        webAppsPath + module + '/css/**/*.css',
+        '!' + webAppsPath + module + '/css/*.min.css'
     ];
     // _templates
-    _templates[module] = [upPath + module + '/js/templates/*.hbs'];
+    _templates[module] = [webAppsPath + module + '/js/templates/*.hbs'];
     // _scripts
     _scripts[module] = ['js/nb.build.js',
-        upPath + module + '/js/**/*.js',
-        '!' + upPath + module + '/js/*.build.js',
-        '!' + upPath + module + '/js/*.min.js'
+        '../vendor/select2/js/select2.full.min.js',
+        webAppsPath + module + '/js/**/*.js',
+        '!' + webAppsPath + module + '/js/app.bundle.js'
     ];
 
-    console.log('task', module, '\n_styles:\n', _styles[module], '\n_templates:\n', _templates[module], '\n_scripts:\n', _scripts[module]);
-
-    (function() {
+    (function() { // scope
         var m = module;
         gulp.task(m + '_styles', function() {
             gulp.src(_styles[m])
                 .pipe(concat('all.min.css'))
                 .pipe(csso())
-                .pipe(gulp.dest(upPath + m + '/css'));
+                .pipe(gulp.dest(webAppsPath + m + '/css'));
         });
 
         gulp.task(m + '_templates', function() {
@@ -56,16 +62,14 @@ for (var i = 0; i < modules.length; i++) {
                     noRedeclare: true,
                 }))
                 .pipe(concat('templates.js'))
-                .pipe(gulp.dest(upPath + m + '/js/templates/compiled'));
+                .pipe(gulp.dest(webAppsPath + m + '/js/templates/compiled'));
         });
 
         gulp.task(m + '_scripts', function() {
             gulp.src(_scripts[m])
-                .pipe(concat('app.build.js'))
-                .pipe(gulp.dest(upPath + m + '/js'))
-                .pipe(rename('app.min.js'))
-                .pipe(uglify())
-                .pipe(gulp.dest(upPath + m + '/js'));
+                .pipe(concat('app.bundle.js'))
+                .pipe(gulpif(isProduction, uglify()))
+                .pipe(gulp.dest(webAppsPath + m + '/js'));
         });
     })();
 }
@@ -119,15 +123,15 @@ gulp.task('styles', function() {
 
 gulp.task('default', ['styles', 'templates', 'lint', 'scripts'], function() {
 
-    gulp.watch(css_files, function(event) {
+    gulp.watch(css_files, function() {
         gulp.run('styles');
     });
 
-    gulp.watch(hbs_templates, function(event) {
+    gulp.watch(hbs_templates, function() {
         gulp.run('templates');
     });
 
-    gulp.watch(js_files, function(event) {
+    gulp.watch(js_files, function() {
         gulp.run('scripts');
     });
 
@@ -140,13 +144,13 @@ gulp.task('default', ['styles', 'templates', 'lint', 'scripts'], function() {
 
         (function() {
             var m = module;
-            gulp.watch(_styles[m], function(event) {
+            gulp.watch(_styles[m], function() {
                 gulp.run(m + '_styles');
             });
-            gulp.watch(_templates[m], function(event) {
+            gulp.watch(_templates[m], function() {
                 gulp.run(m + '_templates');
             });
-            gulp.watch(_scripts[m], function(event) {
+            gulp.watch(_scripts[m], function() {
                 gulp.run(m + '_scripts');
             });
         })();
