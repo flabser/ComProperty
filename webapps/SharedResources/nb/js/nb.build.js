@@ -1980,7 +1980,11 @@ nb.submitForm = function(form) {
             });
 
             if (response.redirectURL) {
-                window.location.href = response.redirectURL;
+                if (response.redirectURL === '_back') {
+                    history.back();
+                } else {
+                    window.location.href = response.redirectURL;
+                }
             }
             return response;
         },
