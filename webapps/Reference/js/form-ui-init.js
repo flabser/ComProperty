@@ -1,4 +1,5 @@
 $(function() {
+    $.datepicker.setDefaults($.datepicker.regional['ru']);
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
 
     if (nb.isMobile()) {

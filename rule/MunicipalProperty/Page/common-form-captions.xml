@@ -37,6 +37,7 @@
     <caption name="after_revaluation_amount"/>
     <caption name="commissioning_year"/>
     <caption name="is_ready_to_use"/>
+    <caption name="tags"/>
 
     <caption name="estimatedcost">Оценочная стоимость</caption>
     <caption name="residualcost">Остаточная стоимость</caption>
@@ -74,7 +75,7 @@
     <caption name="balancecosttitle">Введите балансовую стоимость объекта</caption>
     <caption name="estimatedcosttitle">Введите рыночную стоимость объекта</caption>
     <caption name="residualcosttitle">Введите сумму остаточной стоимости</caption>
-    <caption name="receiptbasisingpropertytitle">Укажите документы, на основании которых объект поступил в Гос. Собственность</caption>
+    <caption name="receiptbasisingpropertytitle">Укажите документы, на основании которых объект поступил в Гос.Собственность</caption>
     <caption name="receiptbasisinbalancetitle">Укажите документы, на основании которых объект поступил на баланс</caption>
     <caption name="orderofremovalfrombalancetitle">Укажите документы, на основании которых объект был снят с баланса</caption>
     <caption name="modeltitle">Укажите модель объекта</caption>

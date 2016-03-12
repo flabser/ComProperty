@@ -47,6 +47,7 @@
                         <xsl:call-template name="receivingreason"/>
                         <xsl:call-template name="commissioningyear"/>
                         <xsl:call-template name="isreadytouse"/>
+                        <xsl:call-template name="tags"/>
                         <xsl:call-template name="address"/>
                     </fieldset>
                 </div>

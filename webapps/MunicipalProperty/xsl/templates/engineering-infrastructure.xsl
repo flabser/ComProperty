@@ -49,6 +49,7 @@
                         <xsl:call-template name="commissioningyear"/>
                         <xsl:call-template name="acquisitionyear"/>
                         <xsl:call-template name="isreadytouse"/>
+                        <xsl:call-template name="tags"/>
                     </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-2">

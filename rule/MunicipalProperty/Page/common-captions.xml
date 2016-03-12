@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <!-- <caching>CACHING_IN_SERVER_SCOPE</caching> -->
-     <caching>NO_CACHING</caching>
+    <caching>NO_CACHING</caching>
 
     <caption name="brand"/>
 
@@ -30,6 +30,7 @@
     <caption name="org_name"/>
     <caption name="roles"/>
     <caption name="department"/>
+    <caption name="iin"/>
     <caption name="countdocinview"/>
     <caption name="interface_lang"/>
     <caption name="back_to_doc_list"/>

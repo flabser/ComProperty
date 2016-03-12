@@ -271,6 +271,24 @@
         </div>
     </xsl:template>
 
+    <xsl:template name="tags">
+        <!-- Метки -->
+        <div class="form-group">
+            <div class="control-label">
+                <xsl:value-of select="//captions/tags/@caption"/>
+            </div>
+            <div class="controls">
+                <div class="span8">
+                    <select name="tags" multiple="true">
+                        <xsl:apply-templates select="//query[@entity = 'tag']/entry" mode="select_options">
+                            <xsl:with-param name="select" select="fields/tags"/>
+                        </xsl:apply-templates>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </xsl:template>
+
     <xsl:template name="notes">
         <div class="form-group">
             <div class="control-label">
