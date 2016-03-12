@@ -155,7 +155,7 @@ textarea {
 
 .input-placeholder {
     display: inline-block;
-    min-height: 34px;
+    min-height: 30px;
     font-size: 1em;
     padding: 7px;
 }
