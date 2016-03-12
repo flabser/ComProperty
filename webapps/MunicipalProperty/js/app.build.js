@@ -1435,6 +1435,10 @@ nb.template = function(templateId, data) {
 $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
     console.log(arguments);
 
+    if (jqxhr.responseJSON) {
+        return;
+    }
+
     var msg,
         bodyStIndex = jqxhr.responseText.indexOf('<body>');
     if (bodyStIndex > -1) {
