@@ -843,8 +843,9 @@
 		<entry lang="KAZ">Қайта құру</entry>
 		<entry lang="ENG"></entry>
 	</sentence>
-	<sentence mode="on" keyword="Тип имущества">
+	<sentence mode="on" keyword="property_type">
 		<entry lang="KAZ">Мүліктің типі</entry>
+		<entry lang="RUS">Тип имущества</entry>
 		<entry lang="ENG"></entry>
 	</sentence>	
 	<sentence mode="on" keyword="gas">

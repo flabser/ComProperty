@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule type="page" mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
-    <caption name="notes"></caption>
-    <caption name="files"></caption>
-    <caption name="additional"></caption>
-   <caption name="save_close"></caption>
-    <caption name="close"></caption>
-    <caption name="bin"></caption>
-    <caption name="editable"></caption>
-     <caption name="reg_date"></caption>
-    <caption name="author"></caption>
+
+    <caption name="notes"/>
+    <caption name="files"/>
+    <caption name="additional"/>
+    <caption name="save_close"/>
+    <caption name="close"/>
+    <caption name="bin"/>
+    <caption name="editable"/>
+    <caption name="reg_date"/>
+    <caption name="author"/>
     <caption name="namerus">Наименование Гос. учреждения (рус.)</caption>
     <caption name="namekaz">Наименование Гос. учреждения (каз.)</caption>
-    <caption name="inv_number"></caption>
-    <caption name="object_name"></caption>
-    <caption name="description"></caption>
-    <caption name="property_code"></caption>
+    <caption name="inv_number"/>
+    <caption name="object_name"/>
+    <caption name="description"/>
+    <caption name="property_code"/>
     <caption name="property_type">Тип имущество</caption>
     <caption name="acquisition_year"/>
-    <caption name="acceptance_date"></caption>
+    <caption name="acceptance_date"/>
     <caption name="address"/>
     <caption name="country"/>
     <caption name="region"/>
@@ -28,23 +29,23 @@
     <caption name="home"/>
     <caption name="appartament">Квартира</caption>
     <caption name="regdoc">Регистрационные документы</caption>
-    <caption name="original_cost"></caption>
-    <caption name="balance_cost"></caption>
-    <caption name="cumulative_depreciation"></caption>
-    <caption name="impairment_loss"/> 
-    <caption name="revaluation_amount"/> 
-     <caption name="after_revaluation_amount"/> 
-    <caption name="commissioning_year"/>  
-     <caption name="is_ready_to_use"/> 
-    
+    <caption name="original_cost"/>
+    <caption name="balance_cost"/>
+    <caption name="cumulative_depreciation"/>
+    <caption name="impairment_loss"/>
+    <caption name="revaluation_amount"/>
+    <caption name="after_revaluation_amount"/>
+    <caption name="commissioning_year"/>
+    <caption name="is_ready_to_use"/>
+
     <caption name="estimatedcost">Оценочная стоимость</caption>
     <caption name="residualcost">Остаточная стоимость</caption>
-    <caption name="receiving_reason"></caption>
+    <caption name="receiving_reason"/>
     <caption name="deterioration">Износ</caption>
     <caption name="repair">Ремонт</caption>
     <caption name="additional_info"/>
 
-    <caption name="model"></caption>
+    <caption name="model"/>
     <caption name="color">Цвет</caption>
     <caption name="size">Размеры</caption>
     <caption name="width">Ширина</caption>
@@ -53,7 +54,7 @@
     <caption name="yearrelease">Год выпуска</caption>
 
     <caption name="orderofremovalfrombalance">Основание снятия с баланса</caption>
-    <caption name="сhange_original_cost"></caption>
+    <caption name="сhange_original_cost"/>
     <caption name="capital">Капитальный</caption>
     <caption name="reconstruction">Реконструкция</caption>
     <caption name="depreciating">Обесценение</caption>
@@ -61,7 +62,7 @@
     <caption name="pledge">Залог</caption>
     <caption name="arrestingbyacourtdecision">Арест по решению суда</caption>
     <caption name="legalclaim">Юридическое притязание</caption>
-    <caption name="balance_holder"></caption>
+    <caption name="balance_holder"/>
     <caption name="limitdepreciation">Предельная норма амортизации</caption>
     <caption name="limitdepreciationtitle">Введите предельную норму амортизации в % (Значение от 0 до 100)</caption>
 
@@ -85,7 +86,7 @@
     <caption name="widthtitle">Укажите ширину объекта в милиметрах</caption>
     <caption name="heighttitle">Укажите высоту объекта в милиметрах</caption>
     <caption name="depthtitle">Укажите глубину объекта в милиметрах</caption>
-    <caption name="documents_of_title"></caption>
+    <caption name="documents_of_title"/>
     <caption name="technicalpassport">Технический паспорт</caption>
     <caption name="propertyarticleincorporation">Свидетельство о регистрации имущества</caption>
     <caption name="resolutiontransferacceptancereport">Постановление акимата и акт приема-передачи, передано в какое упраление</caption>

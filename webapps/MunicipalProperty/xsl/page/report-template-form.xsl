@@ -14,7 +14,7 @@
         <form class="form form-edit-{@editable}" name="{@entity}" action="" enctype="application/x-www-form-urlencoded">
             <header class="content-header">
                 <h1 class="header-title">
-                    <xsl:value-of select="concat(//captions/report/@caption, ' / ', //fields/name)"/>
+                    <xsl:value-of select="concat(//captions/report/@caption, ' / ', fields/name)"/>
                 </h1>
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
@@ -24,15 +24,16 @@
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/balanceholder/@caption"/>
+                            <xsl:value-of select="//captions/balance_holder/@caption"/>
                         </div>
                         <div class="controls">
                             <div class="span8">
                                 <div class="input selectize-dialog" data-input="balanceholder"
+                                     title="{//captions/balance_holder/@caption}"
                                      onclick="nbApp.choiceBalanceHolder(this)">
-                                    <xsl:value-of select="//fields/balanceholdername"/>
+                                    <xsl:value-of select="fields/balanceholdername"/>
                                 </div>
-                                <input type="hidden" name="balanceholder" value="{//fields/balanceholder}"/>
+                                <input type="hidden" name="balanceholder" value="{fields/balanceholder}"/>
                             </div>
                         </div>
                     </div>
@@ -42,7 +43,7 @@
                         </div>
                         <div class="controls">
                             <div class="span8">
-                                <xsl:for-each select="//fields/propertytype/entry">
+                                <xsl:for-each select="fields/propertytype/entry">
                                     <label class="btn btn-sm">
                                         <input type="checkbox" name="propertycode" value="{@id}"/>
                                         <span>
@@ -60,7 +61,7 @@
                         <div class="controls">
                             <label class="btn btn-sm">
                                 <input type="radio" name="typefilereport" value="1">
-                                    <xsl:if test="//document/@status  = 'new' or //fields/typefilereport  = '1' or not(//fields/typefilereport)">
+                                    <xsl:if test="not(fields/typefilereport) or fields/typefilereport  = '1'">
                                         <xsl:attribute name="checked">checked</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -68,7 +69,7 @@
                             </label>
                             <label class="btn btn-sm">
                                 <input type="radio" name="typefilereport" value="2">
-                                    <xsl:if test="//fields/typefilereport  = '2'">
+                                    <xsl:if test="fields/typefilereport  = '2'">
                                         <xsl:attribute name="checked">checked</xsl:attribute>
                                     </xsl:if>
                                 </input>

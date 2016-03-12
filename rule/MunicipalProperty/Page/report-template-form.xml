@@ -14,7 +14,7 @@
     <element mode="ON" type="INCLUDED_PAGE">
         <value>common-form-captions</value>
     </element>
-    <caption name="report" source="KEYWORD">report</caption>
-    <caption name="report_file_type" source="KEYWORD">report_file_type</caption>
-    <caption name="create_report" source="KEYWORD">create_report</caption>
+    <caption name="report"/>
+    <caption name="report_file_type"/>
+    <caption name="create_report"/>
 </rule>
