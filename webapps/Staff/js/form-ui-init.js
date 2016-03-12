@@ -1,6 +1,12 @@
 $(function() {
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
 
+    if (nb.isMobile()) {
+        $('select[multiple]').select2();
+    } else {
+        $('select').select2();
+    }
+
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));
