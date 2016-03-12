@@ -375,7 +375,7 @@ public class Property extends SecureAppEntity {
 		try {
 			String tagsAsText = "";
 			for (Tag t : tags) {
-				tagsAsText += "<entry id=\"" + t.getName() + "\">" + t.getLocalizedName().get(ses.getLang()) + "</entry>";
+				tagsAsText += "<entry id=\"" + t.getId() + "\">" + t.getLocalizedName().get(ses.getLang()) + "</entry>";
 			}
 			chunk.append("<tags>" + tagsAsText + "</tags>");
 		} catch (NullPointerException e) {

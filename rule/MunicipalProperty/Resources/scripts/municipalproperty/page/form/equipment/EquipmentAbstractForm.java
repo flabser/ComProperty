@@ -96,14 +96,14 @@ public abstract class EquipmentAbstractForm extends MunicipalPropertyForm {
                     List<Tag> tags = new ArrayList<>();
                     TagDAO tagDAO = new TagDAO(session);
                     for (String tagId : tagIds) {
-                        Tag tag = tagDAO.findById(UUID.fromString(tagId));
-                        if (tag != null) {
-                            tags.add(tag);
+                        if (!tagId.isEmpty()) {
+                            Tag tag = tagDAO.findById(UUID.fromString(tagId));
+                            if (tag != null) {
+                                tags.add(tag);
+                            }
                         }
                     }
                     entity.setTags(tags);
-                } else {
-                    entity.setTags(null);
                 }
             }
 

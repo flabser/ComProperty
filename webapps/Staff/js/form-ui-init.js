@@ -8,6 +8,15 @@ $(function() {
         $('select').select2();
     }
 
+    // need dummy input if no select value
+    $('select').on('change', function() {
+        if ($(this).val()) {
+            $('[data-role=dummy-select][name=' + this.name + ']').remove();
+        } else {
+            $('<input type=hidden data-role=dummy-select name=' + this.name + '>').appendTo($(this).parent()).val('');
+        }
+    });
+
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));
