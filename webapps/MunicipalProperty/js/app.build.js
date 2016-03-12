@@ -1431,6 +1431,25 @@ nb.template = function(templateId, data) {
     return nb.templates[templateId].call(this, data);
 };
 
+// Global ajax callback functions
+$(document).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log(arguments);
+
+    var msg,
+        bodyStIndex = jqxhr.responseText.indexOf('<body>');
+    if (bodyStIndex > -1) {
+        msg = jqxhr.responseText.substring(bodyStIndex, jqxhr.responseText.indexOf('</body>'))
+    } else {
+        msg = jqxhr.responseText;
+    }
+
+    nb.dialog.error({
+        message: msg,
+        height: 400,
+        width: 600
+    });
+});
+
 // init
 $(document).ready(function() {
     //
