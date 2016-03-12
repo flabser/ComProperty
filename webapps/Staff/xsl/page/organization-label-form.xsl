@@ -7,7 +7,7 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <xsl:apply-templates select="//document[@entity != '']"/>
+        <xsl:apply-templates select="//document[@entity = 'organizationlabel']"/>
     </xsl:template>
 
     <xsl:template match="document[@entity]">

@@ -7,7 +7,7 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <xsl:apply-templates select="//document[@entity != '']"/>
+        <xsl:apply-templates select="//document[@entity = 'tag']"/>
     </xsl:template>
 
     <xsl:template match="document[@entity]">
@@ -34,7 +34,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="fieldset">
-                        <legend class="legend legend-address">
+                        <legend class="legend">
                             <xsl:value-of select="//captions/localized_names/@caption"/>
                         </legend>
                         <xsl:for-each select="fields/localizednames/entry">

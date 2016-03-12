@@ -7,7 +7,7 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <xsl:apply-templates select="//document[@entity != '']"/>
+        <xsl:apply-templates select="//document[@entity = 'user']"/>
     </xsl:template>
 
     <xsl:template match="document[@entity]">
@@ -61,11 +61,12 @@
                         </div>
                         <div class="controls">
                             <ul class="list-style-none">
+                                <xsl:variable name="apps" select="fields/apps/apps"/>
                                 <xsl:for-each select="//query[@entity = 'application']/entry">
                                     <li>
                                         <label>
                                             <input type="checkbox" name="app" value="{@id}">
-                                                <xsl:if test="//fields/apps/apps/entry/@id = @id">
+                                                <xsl:if test="$apps/entry/@id = @id">
                                                     <xsl:attribute name="checked" select="'checked'"/>
                                                 </xsl:if>
                                             </input>

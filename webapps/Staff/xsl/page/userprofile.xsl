@@ -172,36 +172,13 @@
                                     <xsl:value-of select="//captions/roles/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <div class="span6">
-                                        <table>
-                                            <xsl:for-each select="fields/role[not(entry)]">
-                                                <xsl:variable name="role" select="."/>
-                                                <xsl:if test="//glossaries/roles/entry[ison='ON'][name = $role]">
-                                                    <tr>
-                                                        <td>
-                                                            <xsl:value-of select="."/>
-                                                            <xsl:if test="//glossaries/roles/entry[ison='ON'][name = $role]">
-                                                                <input type="hidden" name="role" value="{.}"/>
-                                                            </xsl:if>
-                                                        </td>
-                                                    </tr>
-                                                </xsl:if>
-                                            </xsl:for-each>
-                                            <xsl:for-each select="fields/role/entry">
-                                                <xsl:variable name="role" select="."/>
-                                                <xsl:if test="//glossaries/roles/entry[ison='ON'][name = $role]">
-                                                    <tr>
-                                                        <td>
-                                                            <xsl:value-of select="."/>
-                                                            <xsl:if test="//glossaries/roles/entry[ison='ON'][name = $role]">
-                                                                <input type="hidden" name="role" value="{.}"/>
-                                                            </xsl:if>
-                                                        </td>
-                                                    </tr>
-                                                </xsl:if>
-                                            </xsl:for-each>
-                                        </table>
-                                    </div>
+                                    <ul class="input-placeholder list-style-none">
+                                        <xsl:for-each select="fields/roles">
+                                            <li>
+                                                <xsl:value-of select="."/>
+                                            </li>
+                                        </xsl:for-each>
+                                    </ul>
                                 </div>
                             </div>
                         </fieldset>
