@@ -282,6 +282,7 @@
                     <select name="tags" multiple="true">
                         <xsl:apply-templates select="//query[@entity = 'tag']/entry" mode="select_options">
                             <xsl:with-param name="select" select="fields/tags"/>
+                            <xsl:with-param name="multiple" select="true()"/>
                         </xsl:apply-templates>
                     </select>
                 </div>
@@ -574,11 +575,21 @@
 
     <xsl:template match="entry" mode="select_options">
         <xsl:param name="select"/>
-        <option value="viewcontent/name">
-            <xsl:if test="@id = $select">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
-            <xsl:attribute name="value" select="@id"/>
+        <xsl:param name="multiple" select="false()"/>
+
+        <option value="{@id}">
+            <xsl:choose>
+                <xsl:when test="$multiple">
+                    <xsl:if test="$select/entry/@id = @id">
+                        <xsl:attribute name="selected" select="'selected'"/>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="@id = $select">
+                        <xsl:attribute name="selected" select="'selected'"/>
+                    </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:value-of select="."/>
         </option>
     </xsl:template>
