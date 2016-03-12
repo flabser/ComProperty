@@ -59,6 +59,10 @@
                             $(".nav").find("a[href="+tab+"]").click();
                             eraseCookie("activetab")
                         }
+
+                        $('select[name=pagesize], select[name=lang]').on('change', function() {
+                            changeEventHandler(this);
+                        });
                     }); ]]>
                 </script>
             </xsl:with-param>
@@ -70,7 +74,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity = 'employee']">
-        <form name="{@entity}" action="" autocomplete="off">
+        <form name="{@entity}" class="form form-userprofile" action="" autocomplete="off">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="concat(//captions/employee/@caption, ' - ', fields/name)"/>
@@ -94,7 +98,10 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="tabs-1">
-                        <fieldset class="fieldset">
+                        <fieldset class="fieldset fieldset-user-avatar">
+                            <img class="user-avatar" src="img/avatar.png"/>
+                        </fieldset>
+                        <fieldset class="fieldset fieldset-user-fields">
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/user_name/@caption"/>
@@ -191,7 +198,7 @@
                                 </div>
                                 <div class="controls">
                                     <div class="span2">
-                                        <select name="pagesize" onchange="changeEventHandler(this);">
+                                        <select name="pagesize">
                                             <option value="10">
                                                 <xsl:if test="//pagesize = '10'">
                                                     <xsl:attribute name="selected" select="'selected'"/>
@@ -227,7 +234,7 @@
                                 <div class="controls">
                                     <div class="span2">
                                         <xsl:variable name="currentlang" select="/request/@lang"/>
-                                        <select name="lang" onchange="changeEventHandler(this);">
+                                        <select name="lang">
                                             <xsl:for-each select="//query[@entity = 'language']/entry">
                                                 <option value="{viewcontent/lang/@id}">
                                                     <xsl:if test="viewcontent/lang/@id = $currentlang">
