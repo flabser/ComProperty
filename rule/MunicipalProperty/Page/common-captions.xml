@@ -22,6 +22,7 @@
     <caption name="password_confirm_not_equals"/>
     <caption name="email"/>
     <caption name="org_name"/>
+    <caption name="roles"/>
     <caption name="department"/>
     <caption name="countdocinview"/>
     <caption name="interface_lang"/>
