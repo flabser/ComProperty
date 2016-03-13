@@ -2552,6 +2552,7 @@ $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
 
+    // init select2
     if (nb.isMobile()) {
         $('select[multiple]').select2();
     } else {

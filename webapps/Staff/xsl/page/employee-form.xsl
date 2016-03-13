@@ -70,15 +70,13 @@
                             <xsl:value-of select="//captions/organization/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="span7">
-                                <select name="organizationid" autocomplete="off">
-                                    <option value=""></option>
-                                    <xsl:apply-templates select="//query[@entity = 'organization']/entry"
-                                                         mode="select_options">
-                                        <xsl:with-param name="select" select="fields/organizationid"/>
-                                    </xsl:apply-templates>
-                                </select>
-                            </div>
+                            <select name="organizationid" class="span7" autocomplete="off">
+                                <option value=""></option>
+                                <xsl:apply-templates select="//query[@entity = 'organization']/entry"
+                                                     mode="select_options">
+                                    <xsl:with-param name="select" select="fields/organizationid"/>
+                                </xsl:apply-templates>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -86,15 +84,13 @@
                             <xsl:value-of select="//captions/department/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="span7">
-                                <select name="departmentid" autocomplete="off">
-                                    <option value=""></option>
-                                    <xsl:apply-templates select="//query[@entity = 'department']/entry"
-                                                         mode="select_options">
-                                        <xsl:with-param name="select" select="fields/departmentid"/>
-                                    </xsl:apply-templates>
-                                </select>
-                            </div>
+                            <select name="departmentid" class="span7" autocomplete="off">
+                                <option value=""></option>
+                                <xsl:apply-templates select="//query[@entity = 'department']/entry"
+                                                     mode="select_options">
+                                    <xsl:with-param name="select" select="fields/departmentid"/>
+                                </xsl:apply-templates>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,15 +98,13 @@
                             <xsl:value-of select="//captions/position/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="span7">
-                                <select name="positionid" autocomplete="off">
-                                    <option value=""></option>
-                                    <xsl:apply-templates select="//query[@entity = 'position']/entry"
-                                                         mode="select_options">
-                                        <xsl:with-param name="select" select="fields/positionid"/>
-                                    </xsl:apply-templates>
-                                </select>
-                            </div>
+                            <select name="positionid" class="span7" autocomplete="off">
+                                <option value=""></option>
+                                <xsl:apply-templates select="//query[@entity = 'position']/entry"
+                                                     mode="select_options">
+                                    <xsl:with-param name="select" select="fields/positionid"/>
+                                </xsl:apply-templates>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

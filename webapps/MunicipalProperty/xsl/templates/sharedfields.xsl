@@ -96,13 +96,11 @@
                 <xsl:value-of select="//captions/property_code/@caption"/>
             </div>
             <div class="controls">
-                <div class="span8">
-                    <select name="propertycode">
-                        <xsl:apply-templates select="//query[@entity = 'propertycode']/entry" mode="select_options">
-                            <xsl:with-param name="select" select="fields/propertycode"/>
-                        </xsl:apply-templates>
-                    </select>
-                </div>
+                <select name="propertycode" class="span8">
+                    <xsl:apply-templates select="//query[@entity = 'propertycode']/entry" mode="select_options">
+                        <xsl:with-param name="select" select="fields/propertycode"/>
+                    </xsl:apply-templates>
+                </select>
             </div>
         </div>
     </xsl:template>
@@ -200,13 +198,11 @@
                 <xsl:value-of select="//captions/receiving_reason/@caption"/>
             </div>
             <div class="controls">
-                <div class="span8">
-                    <select name="receivingreason">
-                        <xsl:apply-templates select="//query[@entity = 'receivingreason']/entry" mode="select_options">
-                            <xsl:with-param name="select" select="fields/receivingreason"/>
-                        </xsl:apply-templates>
-                    </select>
-                </div>
+                <select name="receivingreason" class="span8">
+                    <xsl:apply-templates select="//query[@entity = 'receivingreason']/entry" mode="select_options">
+                        <xsl:with-param name="select" select="fields/receivingreason"/>
+                    </xsl:apply-templates>
+                </select>
             </div>
         </div>
     </xsl:template>
@@ -264,7 +260,7 @@
                         </xsl:if>
                     </input>
                     <span>
-                        Годен
+                        <xsl:value-of select="'Годен'"/>
                     </span>
                 </label>
             </div>
@@ -278,14 +274,12 @@
                 <xsl:value-of select="//captions/tags/@caption"/>
             </div>
             <div class="controls">
-                <div class="span8">
-                    <select name="tags" multiple="true">
-                        <xsl:apply-templates select="//query[@entity = 'tag']/entry" mode="select_options">
-                            <xsl:with-param name="select" select="fields/tags"/>
-                            <xsl:with-param name="multiple" select="true()"/>
-                        </xsl:apply-templates>
-                    </select>
-                </div>
+                <select name="tags" class="span8" multiple="true">
+                    <xsl:apply-templates select="//query[@entity = 'tag']/entry" mode="select_options">
+                        <xsl:with-param name="select" select="fields/tags"/>
+                        <xsl:with-param name="multiple" select="true()"/>
+                    </xsl:apply-templates>
+                </select>
             </div>
         </div>
     </xsl:template>

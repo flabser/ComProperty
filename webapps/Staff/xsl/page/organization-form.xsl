@@ -36,7 +36,7 @@
                         </div>
                         <div class="controls">
                             <select name="orgcategory" class="span4">
-                                <option value="null"></option>
+                                <option value=""></option>
                                 <xsl:apply-templates select="//query[@entity = 'orgcategory']/entry"
                                                      mode="select_options">
                                     <xsl:with-param name="select" select="fields/orgcategory"/>
@@ -44,7 +44,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="control-label">
                             <xsl:value-of select="//captions/bin/@caption"/>
@@ -58,8 +57,7 @@
                             <xsl:value-of select="//captions/organization_labels/@caption"/>
                         </div>
                         <div class="controls">
-                            <xsl:apply-templates
-                                    select="//query[@entity = 'organizationlabel']/entry" mode="labels">
+                            <xsl:apply-templates select="//query[@entity = 'organizationlabel']/entry" mode="labels">
                                 <xsl:with-param name="select" select="fields/labels"/>
                             </xsl:apply-templates>
                         </div>
