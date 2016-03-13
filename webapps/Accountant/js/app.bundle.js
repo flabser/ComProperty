@@ -2564,6 +2564,7 @@ function onProgress(e) {
 }
 
 function loadFile(fileId, data, fsid) {
+	fileId = encodeURIComponent(fileId);
     nb.uiBlock();
 
     var noty = nb.notify({
@@ -2602,6 +2603,7 @@ function delFile(fileId, fsid) {
 }
 
 function checkFile(fileId, fsid) {
+	fileId = encodeURIComponent(fileId);
     nb.uiBlock();
 
     var noty = nb.notify({
