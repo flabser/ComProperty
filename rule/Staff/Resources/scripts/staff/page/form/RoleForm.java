@@ -1,7 +1,5 @@
 package staff.page.form;
 
-import administrator.dao.LanguageDAO;
-import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -34,7 +32,6 @@ public class RoleForm extends StaffForm {
             entity.setName("");
         }
         addContent(entity);
-        addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }

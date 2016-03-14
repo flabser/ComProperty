@@ -2050,19 +2050,21 @@ nb.validateForm = function(form, validation) {
     var result = true;
 
     if (validation && validation.errors) {
-        var ers = validation.errors;
+        var ers = validation.errors,
+            er;
         for (var index in ers) {
+            er = ers[index];
             if (index == 0) {
-                $('[name=' + ers[index].field + ']').focus();
+                $('[name=' + er.field + ']').focus();
             }
-            $('[name=' + ers[index].field + ']', form).attr('required', 'required').addClass('required');
-            var $di = $('[data-input=' + ers[index].field + ']', form).addClass('required');
-            var $erms = $('<div class=error-massage>' + ers[index].message + '</div>');
+            $('[name=' + er.field + ']', form).attr('required', 'required').addClass('required');
+            var $di = $('[data-input=' + er.field + ']', form).addClass('required');
+            var $erms = $('<div class=error-massage>' + er.message + '</div>');
             if ($di.length) {
                 $di.after($erms);
                 $di.parent().addClass('has-error');
             } else {
-                $('[name=' + ers[index].field + ']', form).parent().addClass('has-error').append($erms);
+                $('[name=' + er.field + ']', form).parent().addClass('has-error').append($erms);
             }
         }
     }
@@ -2466,13 +2468,6 @@ $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
 
-    // init select2
-    if (nb.isMobile()) {
-        $('select[name][multiple]').select2();
-    } else {
-        $('select[name]').select2();
-    }
-
     // need dummy input if no select value
     $('select[name]').on('change', function() {
         if ($(this).val()) {
@@ -2482,6 +2477,7 @@ $(function() {
         }
     });
 
+    // init action
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));
@@ -2521,6 +2517,85 @@ $(function() {
             $inputs.addClass('invalid').prop('title', 'Поля пароль и повтор пароля не совпадают');
         } else {
             $inputs.removeClass('invalid').prop('title', '');
+        }
+    });
+});
+
+nbApp.selectOptions = {
+    organizationid: {
+        url: 'Provider?id=get-organizations',
+        search: true
+    },
+    orgcategory: {
+        url: 'Provider?id=get-org-categories'
+    },
+    departmentid: {
+        url: 'Provider?id=get-departments',
+        data: ['organizationid']
+    },
+    positionid: {
+        url: 'Provider?id=get-positions'
+    }
+};
+
+nbApp.getSelectOptions = function(optionId) {
+    var options = nbApp.selectOptions[optionId];
+    return {
+        ajax: {
+            url: options.url,
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                console.log(params, this);
+                var _data = {
+                    page: params.page
+                };
+                if (options.search) {
+                    _data.keyword = params.term
+                }
+                for (var k in options.data) {
+                    _data[options.data] = this[0].form[options.data].value;
+                }
+
+                return _data;
+            },
+            processResults: function(data, params) {
+                params.page = params.page || 1;
+                var items = [],
+                    list = data.objects[0].list,
+                    meta = data.objects[0].meta;
+                for (var k in list) {
+                    items.push({
+                        id: list[k].id,
+                        text: list[k].name
+                    });
+                }
+                console.log(items.length, meta.count);
+                return {
+                    results: items,
+                    pagination: {
+                        more: items.length < meta.count
+                    }
+                };
+            },
+            cache: true,
+            minimumResultsForSearch: -1
+        }
+    }
+};
+
+$(document).ready(function() {
+    $('select[name]').each(function() {
+        if (nbApp.selectOptions[this.name]) {
+            $(this).select2(nbApp.getSelectOptions(this.name));
+        } else {
+            if (nb.isMobile()) {
+                if (this.multiple) {
+                    $(this).select2();
+                }
+            } else {
+                $(this).select2();
+            }
         }
     });
 });

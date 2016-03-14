@@ -1,6 +1,5 @@
 package staff.page.form;
 
-import administrator.dao.LanguageDAO;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -14,6 +13,7 @@ import staff.dao.OrganizationDAO;
 import staff.model.Department;
 import staff.model.constants.DepartmentType;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,8 +39,11 @@ public class DepartmentForm extends StaffForm {
         }
         addContent(entity);
         addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
-        addContent(new _POJOListWrapper(new OrganizationDAO(session).findAll(), session));
-        addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
+
+        if (entity.getOrganization() != null && entity.getOrganization().getId() != null) {
+            addContent(new _POJOListWrapper(Arrays.asList(entity.getOrganization()), session));
+        }
+
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }

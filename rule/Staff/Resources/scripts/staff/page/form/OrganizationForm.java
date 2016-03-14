@@ -1,6 +1,5 @@
 package staff.page.form;
 
-import administrator.dao.LanguageDAO;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -15,10 +14,7 @@ import staff.dao.OrganizationLabelDAO;
 import staff.model.Organization;
 import staff.model.OrganizationLabel;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author Kayra created 09-01-2016
@@ -41,12 +37,15 @@ public class OrganizationForm extends StaffForm {
             entity.setBin("");
             entity.setRegDate(new Date());
             entity.setOrgCategory(new OrgCategory());
-            entity.setLabels(new ArrayList<OrganizationLabel>());
+            entity.setLabels(new ArrayList<>());
         }
         addContent(entity);
         addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
-        addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
-        addContent(new _POJOListWrapper<>(new LanguageDAO(session).findAll(), session));
+
+        if (entity.getOrgCategory() != null && entity.getOrgCategory().getId() != null) {
+            addContent(new _POJOListWrapper<>(Arrays.asList(entity.getOrgCategory()), session));
+        }
+
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }

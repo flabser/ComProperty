@@ -2,13 +2,6 @@ $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
 
-    // init select2
-    if (nb.isMobile()) {
-        $('select[name][multiple]').select2();
-    } else {
-        $('select[name]').select2();
-    }
-
     // need dummy input if no select value
     $('select[name]').on('change', function() {
         if ($(this).val()) {

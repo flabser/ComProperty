@@ -2,7 +2,6 @@ package staff.page.form;
 
 import administrator.dao.ApplicationDAO;
 import administrator.dao.UserDAO;
-import administrator.model.Application;
 import administrator.model.User;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
@@ -22,10 +21,7 @@ import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author Kayra created 07-01-2016
@@ -55,12 +51,21 @@ public class EmployeeForm extends StaffForm {
             entity.setRoles(new ArrayList<Role>());
         }
         addContent(entity);
-        addContent(new _POJOListWrapper(new OrganizationDAO(session).findAll(), session));
-        addContent(new _POJOListWrapper(new DepartmentDAO(session).findAll(), session));
-        addContent(new _POJOListWrapper(new PositionDAO(session).findAll(), session));
-        addContent(new _POJOListWrapper(new RoleDAO(session).findAll(), session));
-        List<Application> apps = new ApplicationDAO(session).findAll();
-        addContent(new _POJOListWrapper(apps, session));
+
+        if (entity.getOrganization() != null && entity.getOrganization().getId() != null) {
+            addContent(new _POJOListWrapper(Arrays.asList(entity.getOrganization()), session));
+        }
+        if (entity.getDepartment() != null && entity.getDepartment().getId() != null) {
+            addContent(new _POJOListWrapper(Arrays.asList(entity.getDepartment()), session));
+        }
+        if (entity.getDepartment() != null && entity.getPosition().getId() != null) {
+            addContent(new _POJOListWrapper(Arrays.asList(entity.getPosition()), session));
+        }
+        if (entity.getRoles() != null) {
+            addContent(new _POJOListWrapper(entity.getRoles(), session));
+        }
+
+        addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }
