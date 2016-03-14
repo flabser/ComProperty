@@ -125,6 +125,7 @@
                                 <span>Удалить</span>
                             </button>
                         </span>
+                        <xsl:apply-templates select="viewcontent/msg"/>
                     </div>
                 </div>
                 <div class="panel__body scroll-shadow">
@@ -134,7 +135,6 @@
                         <ul class="update-readers" data-input="reader"></ul>
                     </div>
                     <div class="js-check-result">
-                        <xsl:apply-templates select="viewcontent/msg"/>
                         <xsl:apply-templates select="viewcontent/sheeterrs"/>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
     </xsl:template>
 
     <xsl:template match="msg">
-        <p class="errormsg">
+        <p class="update-file-panel-msg">
             <xsl:value-of select="text()"/>
         </p>
     </xsl:template>

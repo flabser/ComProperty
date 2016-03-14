@@ -78,6 +78,18 @@ progress[value='0'] {
     vertical-align: middle;
 }
 
+.update-file-panel-msg {
+    background: #FFEF61;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 0 8px;
+    padding: 4px;
+}
+
+.update-file-panel-msg:empty {
+    display: none;
+}
+
 .upload-checking-result {
     margin: 1em;
 }

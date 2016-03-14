@@ -1447,11 +1447,18 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
         msg = jqxhr.responseText;
     }
 
-    nb.dialog.error({
-        message: msg,
-        height: 400,
-        width: 600
-    });
+    if (msg) {
+        nb.dialog.error({
+            message: msg,
+            height: 400,
+            width: 600
+        });
+    } else {
+        nb.notify({
+            type: 'error',
+            message: thrownError
+        });
+    }
 });
 
 // init

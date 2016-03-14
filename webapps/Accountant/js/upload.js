@@ -48,7 +48,6 @@ function onProgress(e) {
 }
 
 function loadFile(fileId, data, fsid) {
-    fileId = encodeURIComponent(fileId);
     nb.uiBlock();
 
     var noty = nb.notify({
@@ -59,7 +58,7 @@ function loadFile(fileId, data, fsid) {
     return $.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'Provider?type=page&id=load-file-data&fileid=' + fileId + '&fsid=' + fsid,
+        url: 'Provider?type=page&id=load-file-data&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
         data: data,
         success: function(result) {
             return result;
@@ -82,13 +81,12 @@ function delFile(fileId, fsid) {
     return $.ajax({
         type: 'delete',
         dataType: 'json',
-        url: 'Provider?type=page&id=delete-attach&fileid=' + fileId + '&fsid=' + fsid
+        url: 'Provider?type=page&id=delete-attach&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid
     });
 }
 
 function checkFile(fileId, fsid) {
-    fileId = encodeURIComponent(fileId);
-        nb.uiBlock();
+    nb.uiBlock();
 
     var noty = nb.notify({
         type: 'info',
@@ -98,7 +96,7 @@ function checkFile(fileId, fsid) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?type=page&id=check-file-structure&fileid=' + fileId + '&fsid=' + fsid,
+        url: 'Provider?type=page&id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
         success: function(data) {
             return data;
         },
@@ -145,12 +143,12 @@ function renderFilePanel(fileName, fsid) {
             }
             $tpl.find('.js-check-result').html(result);*/
             //
-            location.reload();
+            reloadPage();
         }, function(err) {
             // $btn.parents('.panel').addClass('open');
             // $tpl.find('.js-check-result').html(err.statusText);
             //
-            location.reload();
+            reloadPage();
         });
     });
 
@@ -168,9 +166,9 @@ function renderFilePanel(fileName, fsid) {
         $(this).attr('disabled', true);
         loadFile(fileName, $tpl.serialize(), fsid).then(function() {
             // $tpl.addClass('upload-success');
-            location.reload();
+            reloadPage();
         }, function() {
-            location.reload();
+            reloadPage();
         });
     });
 
@@ -197,6 +195,12 @@ function renderFilePanel(fileName, fsid) {
     if (!initMode) {
         $('.js-uploaded-files').append($tpl);
     }
+}
+
+function reloadPage() {
+    setTimeout(function() {
+        location.reload();
+    }, 200);
 }
 
 function toggleLoadButtonState($form) {
