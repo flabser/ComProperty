@@ -16,7 +16,7 @@ import administrator.model.Language;
 
 @MappedSuperclass
 public class Reference extends AppEntity<UUID> {
-	@Column(length = 128, unique = true)
+	@Column(length = 128)
 	private String name;
 
 	@Column(name = "localized_name")

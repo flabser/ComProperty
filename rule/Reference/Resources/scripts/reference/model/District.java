@@ -8,12 +8,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import kz.lof.scripting._Session;
 
 @Entity
-@Table(name = "districts")
+@Table(name = "districts", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "region_id" }))
 @NamedQuery(name = "District.findAll", query = "SELECT m FROM District AS m ORDER BY m.regDate")
 public class District extends Reference {
 	private List<Locality> localities;

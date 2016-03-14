@@ -68,6 +68,15 @@ public class DistrictForm extends ReferenceForm {
 			entity.setRegion(regionDAO.findById(UUID.fromString(formData.getValue("region"))));
 			entity.setLocalizedName(getLocalizedNames(session, formData));
 
+			District foundEntity = dao.findByName(entity.getName());
+			if (foundEntity != null && !foundEntity.equals(entity)) {
+				ve = new _Validation();
+				ve.addError("name", "unique_error", getLocalizedWord("name_is_not_unique", session.getLang()));
+				setBadRequest();
+				setValidation(ve);
+				return;
+			}
+
 			if (isNew) {
 				dao.add(entity);
 			} else {
@@ -79,4 +88,5 @@ public class DistrictForm extends ReferenceForm {
 			error(e);
 		}
 	}
+
 }
