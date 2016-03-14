@@ -32,6 +32,14 @@
                                        autofocus="true"/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/kufcode/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <input type="text" name="kufcode" value="{fields/kufcode}" class="span7" readonly="readonly"/>
+                            </div>
+                        </div>
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="legend">
