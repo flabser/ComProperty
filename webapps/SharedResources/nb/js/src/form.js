@@ -84,8 +84,7 @@ nb.validateForm = function(form, validation) {
                 $di.after($erms);
                 $di.parent().addClass('has-error');
             } else {
-                $('[name=' + ers[index].field + ']', form).parent().append($erms);
-                $('[name=' + ers[index].field + ']', form).parent().addClass('has-error');
+                $('[name=' + ers[index].field + ']', form).parent().addClass('has-error').append($erms);
             }
         }
     }

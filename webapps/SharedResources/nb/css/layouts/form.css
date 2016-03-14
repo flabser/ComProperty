@@ -145,27 +145,6 @@
     display: block;
 }
 
-.field-wrap {
-    padding: 0;
-    position: relative;
-}
-
-.error-massage {
-    color: #F00;
-    display: none;
-    padding: 2px;
-}
-
-.has-error > .error-massage {
-    display: block;
-}
-
-.has-error input,
-.has-error textarea,
-.has-error select {
-    border-color: #DE3309;
-}
-
 @media ( max-width: 960px) {
     .form-group .control-label {
         width: 170px;
@@ -198,4 +177,14 @@
     .form-group .control-label + .controls {
         margin-left: 95px;
     }
+}
+
+.error-massage {
+    color: #F00;
+    display: none;
+    padding: 2px;
+}
+
+.has-error > .error-massage {
+    display: block;
 }

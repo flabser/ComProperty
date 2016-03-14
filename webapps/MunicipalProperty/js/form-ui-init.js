@@ -12,7 +12,7 @@ $(function() {
     // need dummy input if no select value
     $('select[name]').on('change', function() {
         if ($(this).val()) {
-            $('[data-role=dummy-select][name=' + this.name + ']').remove();
+            $('[data-role=dummy-select][name=' + this.name + ']', $(this).parent()).remove();
         } else {
             $('<input type=hidden data-role=dummy-select name=' + this.name + ' value="">').appendTo($(this).parent());
         }
