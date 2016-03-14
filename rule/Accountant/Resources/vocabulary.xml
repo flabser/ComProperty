@@ -38,6 +38,11 @@
 		<entry lang="ENG">The data has been loaded successfully</entry>
 	</sentence>
 	
+	<sentence mode="on" keyword="readers_has_not_been_pointed">
+		<entry lang="RUS">Читатели не выбраны</entry>
+		<entry lang="KAZ">Читатели не выбраны</entry>
+		<entry lang="ENG">readers has not been chosen</entry>
+	</sentence>
 	
 		   
 </vocabulary>

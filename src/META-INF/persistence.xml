@@ -41,6 +41,7 @@
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
 		<class>reference.model.Locality</class>
+		<class>reference.model.CityDistrict</class>
 		<class>reference.model.Street</class>			
 		<class>reference.model.Position</class>	
 		<class>reference.model.Tag</class>	
@@ -80,6 +81,7 @@
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
 		<class>reference.model.Locality</class>
+		<class>reference.model.CityDistrict</class>
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.Tag</class>	
@@ -110,6 +112,7 @@
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
 		<class>reference.model.Locality</class>
+		<class>reference.model.CityDistrict</class>
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.OrgCategory</class>
@@ -133,6 +136,7 @@
 		<class>reference.model.Region</class>
 		<class>reference.model.District</class>
 		<class>reference.model.Locality</class>
+		<class>reference.model.CityDistrict</class>
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.Tag</class>	

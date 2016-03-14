@@ -41,6 +41,7 @@ public class LocalityForm extends ReferenceForm {
 			entity.setType(regionType);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new DistrictDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(lDao.findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));

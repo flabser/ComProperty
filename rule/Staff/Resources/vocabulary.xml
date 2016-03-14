@@ -18,12 +18,12 @@
     <sentence mode="on" keyword="structure">
         <entry lang="ENG">Organization structure</entry>
         <entry lang="RUS">Структура основной организации</entry>
-        <entry lang="KAZ"></entry>
+        <entry lang="KAZ">Структура основной организации</entry>
     </sentence>
     <sentence mode="on" keyword="employees">
         <entry lang="ENG">Employees</entry>
         <entry lang="RUS">Сотрудники</entry>
-        <entry lang="KAZ"></entry>
+        <entry lang="KAZ">Сотрудники</entry>
     </sentence>
     <sentence mode="on" keyword="organizations">
         <entry lang="ENG">Organizations</entry>
@@ -33,8 +33,14 @@
     <sentence mode="on" keyword="organization_labels">
         <entry lang="ENG">Organization labels</entry>
         <entry lang="RUS">Признаки для организации</entry>
-        <entry lang="KAZ"></entry>
+        <entry lang="KAZ">Признаки для организации</entry>
     </sentence>
+     <sentence mode="on" keyword="    organization_label">
+        <entry lang="ENG">Organization label</entry>
+        <entry lang="RUS">Признак организации</entry>
+        <entry lang="KAZ">Признак организации</entry>
+    </sentence>
+
     <sentence mode="on" keyword="labeled">
         <entry lang="ENG">Assign label</entry>
         <entry lang="RUS">Организации которым установлен признак</entry>
@@ -48,7 +54,7 @@
     <sentence mode="on" keyword="branch">
         <entry lang="ENG">Branches</entry>
         <entry lang="RUS">Филиалы</entry>
-        <entry lang="KAZ"></entry>
+        <entry lang="KAZ">Филиалы</entry>
     </sentence>
     <sentence mode="on" keyword="roles">
         <entry lang="ENG">Roles</entry>

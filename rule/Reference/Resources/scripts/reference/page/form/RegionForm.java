@@ -50,10 +50,6 @@ public class RegionForm extends ReferenceForm {
 
 		}
 		addContent(entity);
-		// addContent(new _EnumWrapper<>(RegionCode.class.getEnumConstants(),
-		// getLocalizedWord(RegionCode.class.getEnumConstants(),
-		// session.getLang()
-		// .toString())));
 		addContent(new _POJOListWrapper<>(rtDao.findAll(), session));
 		addContent(new _POJOListWrapper<>(cDao.findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
@@ -90,15 +86,28 @@ public class RegionForm extends ReferenceForm {
 			entity.setCountry(country);
 			entity.setLocalizedName(getLocalizedNames(session, formData));
 
-			if (isNew) {
-				dao.add(entity);
-			} else {
-				dao.update(entity);
-			}
+			save(session, entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
 		} catch (_Exception e) {
 			error(e);
+		}
+	}
+
+	private void save(_Session ses, Region entity, RegionDAO dao, boolean isNew) {
+		Region foundEntity = dao.findByName(entity.getName());
+		if (foundEntity != null && !foundEntity.equals(entity)) {
+			_Validation ve = new _Validation();
+			ve.addError("name", "unique_error", getLocalizedWord("name_is_not_unique", ses.getLang()));
+			setBadRequest();
+			setValidation(ve);
+			return;
+		}
+
+		if (isNew) {
+			dao.add(entity);
+		} else {
+			dao.update(entity);
 		}
 	}
 

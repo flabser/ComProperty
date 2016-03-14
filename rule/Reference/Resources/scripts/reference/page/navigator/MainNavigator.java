@@ -5,8 +5,8 @@ import java.util.List;
 
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
-import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.webserver.servlet.IOutcomeObject;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
 
@@ -23,6 +23,7 @@ public class MainNavigator extends _DoPage {
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("regions", session.getLang()), "region-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("districts", session.getLang()), "district-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("localities", session.getLang()), "locality-view"));
+		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("citydistricts", session.getLang()), "citydistrict-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("streets", session.getLang()), "street-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("org_categories", session.getLang()), "orgcategory-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("region_types", session.getLang()), "regiontype-view"));

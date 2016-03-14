@@ -1,6 +1,7 @@
 package staff.page.form;
 
 import administrator.dao.ApplicationDAO;
+import administrator.dao.UserDAO;
 import administrator.model.Application;
 import administrator.model.User;
 import kz.lof.localization.LanguageCode;
@@ -114,9 +115,14 @@ public class EmployeeForm extends StaffForm {
 
             String reguser = formData.getValueSilently("reguser");
             if ("on".equals(reguser)) {
-                User user = new User();
+                String login = formData.getValueSilently("login");
+                UserDAO uDao = new UserDAO();
+                User user = (User) uDao.findByLogin(login);
+                if (user == null) {
+                    user = new User();
+                }
                 user.setEmail(formData.getValueSilently("email"));
-                user.setLogin(formData.getValueSilently("login"));
+                user.setLogin(login);
                 user.setPwd(formData.getValueSilently("pwd"));
                 entity.setUser(user);
             }
@@ -139,19 +145,16 @@ public class EmployeeForm extends StaffForm {
         _Validation ve = new _Validation();
 
         if (formData.getValueSilently("name").isEmpty()) {
-            ve.addError("name", "empty", getLocalizedWord("required", lang));
+            ve.addError("name", "required", getLocalizedWord("required", lang));
         }
-
         if (formData.getValueSilently("iin").isEmpty()) {
-            ve.addError("iin", "empty", getLocalizedWord("required", lang));
+            ve.addError("iin", "required", getLocalizedWord("required", lang));
         }
-
         if (formData.getValueSilently("organizationid").isEmpty()) {
-            ve.addError("organizationid", "empty", getLocalizedWord("required", lang));
+            ve.addError("organizationid", "required", getLocalizedWord("required", lang));
         }
-
         if (formData.getValueSilently("positionid").isEmpty()) {
-            ve.addError("positionid", "empty", getLocalizedWord("required", lang));
+            ve.addError("positionid", "required", getLocalizedWord("required", lang));
         }
 
         String regUser = formData.getValueSilently("reguser");

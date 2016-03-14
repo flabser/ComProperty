@@ -22,6 +22,7 @@ import kz.lof.scripting._Session;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import staff.model.Employee;
+import administrator.dao.UserDAO;
 
 public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 
@@ -87,6 +88,7 @@ public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 				t.begin();
 				entity.setAuthor((long) user.getId());
 				entity.setForm(entity.getDefaultFormName());
+				UserDAO.normalizePwd(entity.getUser());
 				em.persist(entity);
 				t.commit();
 				update(entity);
@@ -101,5 +103,26 @@ public class EmployeeDAO extends DAO<Employee, UUID> implements IEmployeeDAO {
 
 		}
 
+	}
+
+	@Override
+	public Employee update(Employee entity) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		try {
+			EntityTransaction t = em.getTransaction();
+			try {
+				t.begin();
+				UserDAO.normalizePwd(entity.getUser());
+				em.merge(entity);
+				t.commit();
+				return entity;
+			} finally {
+				if (t.isActive()) {
+					t.rollback();
+				}
+			}
+		} finally {
+			em.close();
+		}
 	}
 }

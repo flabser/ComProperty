@@ -22,10 +22,10 @@ public class FillDistricts extends InitialDataAdapter<District, DistrictDAO> {
 	public List<District> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 
 		List<District> entities = new ArrayList<District>();
-		String[] data = { "Алатауский", "Алмалинский", "Ауэзовский", "Бостандыкский", "Жетысуский", "Медеуский", "Наурызбайский", "Турксибский" };
+		String[] data = {};
 
 		RegionDAO cDao = new RegionDAO(ses);
-		Region region = cDao.findByName("Алматы");
+		Region region = cDao.findByName("Алматинская");
 
 		for (int i = 0; i < data.length; i++) {
 			District entity = new District();

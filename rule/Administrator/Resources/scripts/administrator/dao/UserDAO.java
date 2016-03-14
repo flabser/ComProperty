@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -19,6 +18,7 @@ import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.env.Environment;
 import kz.lof.scripting._Session;
 import kz.lof.user.IUser;
+import kz.lof.util.StringUtil;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
@@ -109,17 +109,13 @@ public class UserDAO {
 
 	public User findById(long id) {
 		EntityManager em = emf.createEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
-			CriteriaQuery<User> cq = cb.createQuery(User.class);
-			Root<User> c = cq.from(User.class);
-			cq.select(c);
-			Predicate condition = c.get("id").in(id);
-			cq.where(condition);
-			Query query = em.createQuery(cq);
-			User entity = (User) query.getSingleResult();
-			return entity;
-		} catch (NoResultException e) {
+			String jpql = "SELECT m FROM User AS m WHERE m.id = :id";
+			TypedQuery<User> q = em.createQuery(jpql, User.class);
+			q.setParameter("id", id);
+			List<User> res = q.getResultList();
+			return res.get(0);
+		} catch (IndexOutOfBoundsException e) {
 			return null;
 		} finally {
 			em.close();
@@ -148,6 +144,7 @@ public class UserDAO {
 			EntityTransaction t = em.getTransaction();
 			try {
 				t.begin();
+				normalizePwd(entity);
 				em.persist(entity);
 				t.commit();
 				return entity;
@@ -169,6 +166,7 @@ public class UserDAO {
 			EntityTransaction t = em.getTransaction();
 			try {
 				t.begin();
+				normalizePwd(entity);
 				em.merge(entity);
 				t.commit();
 				return entity;
@@ -198,6 +196,14 @@ public class UserDAO {
 			}
 		} finally {
 			em.close();
+		}
+	}
+
+	public static void normalizePwd(User user) {
+		if (!user.getPwd().isEmpty()) {
+			String pwdHash = StringUtil.encode(user.getPwd());
+			user.setPwdHash(pwdHash);
+			user.setPwd("");
 		}
 	}
 
