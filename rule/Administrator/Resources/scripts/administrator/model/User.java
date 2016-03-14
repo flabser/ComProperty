@@ -21,9 +21,13 @@ import kz.lof.scripting.IPOJOObject;
 import kz.lof.scripting._Session;
 import kz.lof.user.IUser;
 
+import org.eclipse.persistence.annotations.Cache;
+import org.eclipse.persistence.config.CacheIsolationType;
+
 @Entity
 @Table(name = "_users")
 @NamedQuery(name = "User.findAll", query = "SELECT m FROM User AS m ORDER BY m.regDate")
+@Cache(isolation = CacheIsolationType.ISOLATED)
 public class User implements IUser<Long>, IPOJOObject {
 
 	@Id
@@ -89,6 +93,7 @@ public class User implements IUser<Long>, IPOJOObject {
 		this.userName = userName;
 	}
 
+	@Override
 	public String getLogin() {
 		return login;
 	}
@@ -105,6 +110,7 @@ public class User implements IUser<Long>, IPOJOObject {
 		this.email = email;
 	}
 
+	@Override
 	public String getPwd() {
 		return pwd;
 	}
