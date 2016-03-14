@@ -2062,7 +2062,7 @@ nb.validateForm = function(form, validation) {
                 $di.after($erms);
                 $di.parent().addClass('has-error');
             } else {
-                $('[name=' + ers[index].field + ']', form).after($erms);
+                $('[name=' + ers[index].field + ']', form).parent().append($erms);
                 $('[name=' + ers[index].field + ']', form).parent().addClass('has-error');
             }
         }
@@ -2571,7 +2571,7 @@ $(function() {
         if ($(this).val()) {
             $('[data-role=dummy-select][name=' + this.name + ']').remove();
         } else {
-            $('<input type=hidden data-role=dummy-select name=' + this.name + '>').appendTo($(this).parent()).val('');
+            $('<input type=hidden data-role=dummy-select name=' + this.name + ' value="">').appendTo($(this).parent());
         }
     });
 

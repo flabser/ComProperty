@@ -12,6 +12,7 @@ import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
+import kz.nextbase.script._Validator;
 import reference.dao.PositionDAO;
 import reference.model.Position;
 import staff.dao.DepartmentDAO;
@@ -159,16 +160,22 @@ public class EmployeeForm extends StaffForm {
 			ve.addError("positionid", "empty", getLocalizedWord("required", lang));
 		}
 
-		String reguser = formData.getValueSilently("reguser");
-		if (!reguser.isEmpty() && reguser.equals("on")) {
-			if (formData.getValueSilently("email").isEmpty()) {
-				ve.addError("email", "empty", getLocalizedWord("required", lang));
-			}
+		String regUser = formData.getValueSilently("reguser");
+		if ("on".equals(regUser)) {
 			if (formData.getValueSilently("login").isEmpty()) {
-				ve.addError("login", "empty", getLocalizedWord("required", lang));
+				ve.addError("login", "required", getLocalizedWord("required", lang));
 			}
-			if (formData.getValueSilently("pwd").isEmpty()) {
-				ve.addError("pwd", "empty", getLocalizedWord("required", lang));
+			if (formData.getValueSilently("email").isEmpty() || !_Validator.checkEmail(formData.getValueSilently("email"))) {
+				ve.addError("email", "email", getLocalizedWord("email_invalid", lang));
+			}
+			if (!formData.getValueSilently("pwd").isEmpty()) {
+				if (formData.getValueSilently("pwd_confirm").isEmpty()) {
+					ve.addError("pwd_confirm", "required", getLocalizedWord("required", lang));
+				} else if (!formData.getValueSilently("pwd").equals(formData.getValueSilently("pwd_confirm"))) {
+					ve.addError("pwd_confirm", "required", getLocalizedWord("password_confirm_not_equals", lang));
+				}
+			} else {
+				ve.addError("pwd", "required", getLocalizedWord("required", lang));
 			}
 		}
 
