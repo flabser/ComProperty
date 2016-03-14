@@ -28,7 +28,7 @@ nbApp.defaultChoiceDialog = function(el, url, dataType, fields, templateId) {
         templateId: templateId,
         buttons: {
             ok: {
-                text: nb.getText('select'),
+                text: nb.getText('ok'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
                 }

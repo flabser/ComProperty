@@ -24,7 +24,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback) {
         dataType: 'json',
         buttons: {
             ok: {
-                text: nb.getText('select'),
+                text: nb.getText('ok'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
                     callback && callback();
