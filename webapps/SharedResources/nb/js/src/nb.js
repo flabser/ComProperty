@@ -117,11 +117,11 @@ nb.template = function(templateId, data) {
 
 // Global ajax callback functions
 $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
-    console.log(arguments);
-
     if (jqxhr.responseJSON) {
         return;
     }
+
+    console.log(arguments);
 
     var msg,
         bodyStIndex = jqxhr.responseText.indexOf('<body>');

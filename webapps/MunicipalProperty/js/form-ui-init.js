@@ -18,6 +18,7 @@ $(function() {
         }
     });
 
+    // init action
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
         nb.submitForm(nb.getForm(this));
@@ -44,6 +45,7 @@ $(function() {
 
     $('[name=docid]:checked').attr('checked', false);
 
+    // toggle theme
     $('[data-toggle-theme]').click(function() {
         var themeName = $(this).data('toggle-theme');
         if ($('body').hasClass('theme1')) {

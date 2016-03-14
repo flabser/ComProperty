@@ -72,19 +72,21 @@ nb.validateForm = function(form, validation) {
     var result = true;
 
     if (validation && validation.errors) {
-        var ers = validation.errors;
+        var ers = validation.errors,
+            er;
         for (var index in ers) {
+            er = ers[index];
             if (index == 0) {
-                $('[name=' + ers[index].field + ']').focus();
+                $('[name=' + er.field + ']').focus();
             }
-            $('[name=' + ers[index].field + ']', form).attr('required', 'required').addClass('required');
-            var $di = $('[data-input=' + ers[index].field + ']', form).addClass('required');
-            var $erms = $('<div class=error-massage>' + ers[index].message + '</div>');
+            $('[name=' + er.field + ']', form).attr('required', 'required').addClass('required');
+            var $di = $('[data-input=' + er.field + ']', form).addClass('required');
+            var $erms = $('<div class=error-massage>' + er.message + '</div>');
             if ($di.length) {
                 $di.after($erms);
                 $di.parent().addClass('has-error');
             } else {
-                $('[name=' + ers[index].field + ']', form).parent().addClass('has-error').append($erms);
+                $('[name=' + er.field + ']', form).parent().addClass('has-error').append($erms);
             }
         }
     }
