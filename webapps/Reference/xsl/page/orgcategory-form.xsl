@@ -43,8 +43,8 @@
                                     <xsl:value-of select="./@id"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"
-                                           required="required"/>
+                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname"
+                                           class="span7"/>
                                 </div>
                             </div>
                         </xsl:for-each>

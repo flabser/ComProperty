@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <fieldset class="fieldset">
-                        <legend class="legend legend-address">
+                        <legend class="legend">
                             <xsl:value-of select="//captions/credentials/@caption"/>
                         </legend>
                         <div class="form-group">
@@ -141,10 +141,10 @@
                                 <xsl:value-of select="//captions/login_name/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="login" value="{fields/login}" class="span7 regfields" autocomplete="off">
+                                <input type="text" name="login" value="{fields/login}" class="span7"
+                                       autocomplete="off">
                                     <xsl:if test="fields/reguser != 'on'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
-                                        <xsl:attribute name="style">cursor:not-allowed</xsl:attribute>
                                     </xsl:if>
                                 </input>
                             </div>
@@ -154,10 +154,10 @@
                                 <xsl:value-of select="//captions/email/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="email" name="email" value="{fields/email}" class="span4" autocomplete="off">
+                                <input type="email" name="email" value="{fields/email}" class="span4"
+                                       autocomplete="off">
                                     <xsl:if test="fields/reguser != 'on'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
-                                        <xsl:attribute name="style">cursor:not-allowed</xsl:attribute>
                                     </xsl:if>
                                 </input>
                             </div>
@@ -167,10 +167,10 @@
                                 <xsl:value-of select="//captions/password/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="pwd" value="{fields/password}" class="span4" autocomplete="off">
+                                <input type="password" name="pwd" value="{fields/password}" class="span4"
+                                       autocomplete="off">
                                     <xsl:if test="fields/reguser != 'on'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
-                                        <xsl:attribute name="style">cursor:not-allowed</xsl:attribute>
                                     </xsl:if>
                                 </input>
                             </div>
@@ -180,10 +180,10 @@
                                 <xsl:value-of select="//captions/password_confirm/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="pwd_confirm" value="{fields/reenterpassword}" class="span4" autocomplete="off">
+                                <input type="password" name="pwd_confirm" value="{fields/reenterpassword}" class="span4"
+                                       autocomplete="off">
                                     <xsl:if test="fields/reguser != 'on'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
-                                        <xsl:attribute name="style">cursor:not-allowed</xsl:attribute>
                                     </xsl:if>
                                 </input>
                             </div>

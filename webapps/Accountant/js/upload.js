@@ -205,9 +205,7 @@ function renderFilePanel(fileName, fsid) {
 }
 
 function reloadPage() {
-    setTimeout(function() {
-        location.reload();
-    }, 200);
+    location.reload();
 }
 
 function setLastFileToStorage(fileId) {
