@@ -49,13 +49,12 @@ public class RoleForm extends StaffForm {
                 return;
             }
 
-            boolean isNew = false;
             String id = formData.getValueSilently("docid");
             RoleDAO dao = new RoleDAO(session);
             Role entity;
+            boolean isNew = id.isEmpty();
 
-            if (id.isEmpty()) {
-                isNew = true;
+            if (isNew) {
                 entity = new Role();
             } else {
                 entity = dao.findById(UUID.fromString(id));
@@ -63,6 +62,7 @@ public class RoleForm extends StaffForm {
 
             entity.setName(formData.getValue("name"));
             entity.setDescription(formData.getValue("description"));
+            entity.setLocalizedName(getLocalizedNames(session, formData));
 
             if (isNew) {
                 dao.add(entity);

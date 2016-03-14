@@ -50,6 +50,7 @@
 
     <caption name="bin"/>
     <caption name="name"/>
+    <caption name="localized_names"/>
     <caption name="description"/>
     <caption name="is_primary_organization"/>
 

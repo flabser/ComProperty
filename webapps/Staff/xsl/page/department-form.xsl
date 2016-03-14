@@ -24,11 +24,39 @@
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
+                            <xsl:value-of select="//captions/organization/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <select name="organizationid" class="span7" required="required" autocomplete="off">
+                                <option value=""></option>
+                                <xsl:apply-templates select="//query[@entity = 'organization']/entry"
+                                                     mode="select_options">
+                                    <xsl:with-param name="select" select="fields/organizationid"/>
+                                </xsl:apply-templates>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
                             <input type="text" name="name" value="{fields/name}" class="span7" required="required"
                                    autofocus="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/type/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <select name="departmenttype" class="span7">
+                                <option value=""></option>
+                                <xsl:apply-templates select="//constants[@entity = 'departmenttype']/entry"
+                                                     mode="departmenttype_options">
+                                    <xsl:with-param name="select" select="fields/departmenttype"/>
+                                </xsl:apply-templates>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,6 +72,26 @@
                 </fieldset>
             </section>
         </form>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="select_options">
+        <xsl:param name="select"/>
+        <option value="{@id}">
+            <xsl:if test="@id = $select">
+                <xsl:attribute name="selected" select="'selected'"/>
+            </xsl:if>
+            <xsl:value-of select="."/>
+        </option>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="departmenttype_options">
+        <xsl:param name="select"/>
+        <option value="{@attrval}">
+            <xsl:if test="@attrval = $select">
+                <xsl:attribute name="selected" select="'selected'"/>
+            </xsl:if>
+            <xsl:value-of select="."/>
+        </option>
     </xsl:template>
 
 </xsl:stylesheet>
