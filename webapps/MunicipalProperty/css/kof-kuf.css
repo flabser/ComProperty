@@ -1,0 +1,42 @@
+.kof-kuf {
+    display: block;
+    max-width: 100%;
+    position: relative;
+    white-space: nowrap;
+    width: 300px;
+}
+
+.kof-kuf:after {
+    color: #ccc;
+    content: '/';
+    display: inline-block;
+    position: absolute;
+    right: 58px;
+    top: 6px;
+    width: 12px;
+}
+
+.kof-kuf input {
+    display: inline-block;
+}
+
+.kof-kuf input[name=kof] {
+    border-right-color: transparent;
+    padding-right: 72px;
+    width: 100%;
+}
+
+.kof-kuf input[name=kuf] {
+    border-left-color: transparent;
+    text-align: center;
+    margin-left: -2px;
+    position: absolute;
+    right: 0;
+    width: 60px;
+}
+
+@media ( max-width: 768px) {
+    .kof-kuf {
+        width: 100%;
+    }
+}

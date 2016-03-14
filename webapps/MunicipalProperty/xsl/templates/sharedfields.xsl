@@ -35,15 +35,8 @@
             </div>
             <div class="controls">
                 <div class="kof-kuf">
-                    <div class="inline span3">
-                        <input type="text" name="kof" value="{fields/kof}"/>
-                    </div>
-                    <span style="display:inline-block; padding-top:4px; text-align:center; width:19px;">
-                        <xsl:value-of select="'/'"/>
-                    </span>
-                    <div class="inline span1">
-                        <input type="text" name="kuf" value="{fields/kuf}" readonly="readonly" class="disabled"/>
-                    </div>
+                    <input type="text" name="kof" value="{fields/kof}"/>
+                    <input type="text" name="kuf" value="{fields/kuf}" readonly="readonly" class="disabled"/>
                 </div>
             </div>
         </div>
