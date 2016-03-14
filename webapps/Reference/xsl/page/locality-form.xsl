@@ -50,8 +50,12 @@
                                 <xsl:value-of select="//captions/district/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="district" value="{fields/district}" class="span7"
-                                       required="required"/>
+                                <select name="type" class="span7" required="required" autocomplete="off">
+                                    <xsl:apply-templates select="//query[@entity = 'district']/entry"
+                                                         mode="district_option">
+                                        <xsl:with-param name="selected" select="fields/localitytype"/>
+                                    </xsl:apply-templates>
+                                </select>
                             </div>
                         </div>
                     </fieldset>
@@ -77,6 +81,16 @@
     </xsl:template>
 
     <xsl:template match="entry" mode="locality_type_option">
+        <xsl:param name="selected"/>
+        <option value="{@id}">
+            <xsl:if test="@id = $selected">
+                <xsl:attribute name="selected" select="'selected'"/>
+            </xsl:if>
+            <xsl:value-of select="viewcontent/name"/>
+        </option>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="district_option">
         <xsl:param name="selected"/>
         <option value="{@id}">
             <xsl:if test="@id = $selected">

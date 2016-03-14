@@ -1,10 +1,6 @@
 package staff.page.form;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
+import administrator.dao.LanguageDAO;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -18,7 +14,11 @@ import staff.dao.OrganizationDAO;
 import staff.dao.OrganizationLabelDAO;
 import staff.model.Organization;
 import staff.model.OrganizationLabel;
-import administrator.dao.LanguageDAO;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Kayra created 09-01-2016
@@ -26,97 +26,96 @@ import administrator.dao.LanguageDAO;
 
 public class OrganizationForm extends StaffForm {
 
-	@Override
-	public void doGET(_Session session, _WebFormData formData) {
-		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
-		Organization entity;
-		if (!id.isEmpty()) {
-			OrganizationDAO dao = new OrganizationDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		} else {
-			entity = new Organization();
-			entity.setAuthor(user);
-			entity.setName("");
-			entity.setBin("");
-			entity.setRegDate(new Date());
-			entity.setOrgCategory(new OrgCategory());
-			entity.setLabels(new ArrayList<OrganizationLabel>());
-		}
-		addContent(entity);
-		addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper<>(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, session.getLang()));
-		startSaveFormTransact(entity);
-	}
+    @Override
+    public void doGET(_Session session, _WebFormData formData) {
+        String id = formData.getValueSilently("docid");
+        IUser user = session.getUser();
+        Organization entity;
+        if (!id.isEmpty()) {
+            OrganizationDAO dao = new OrganizationDAO(session);
+            entity = dao.findById(UUID.fromString(id));
+        } else {
+            entity = new Organization();
+            entity.setAuthor(user);
+            entity.setName("");
+            entity.setBin("");
+            entity.setRegDate(new Date());
+            entity.setOrgCategory(new OrgCategory());
+            entity.setLabels(new ArrayList<OrganizationLabel>());
+        }
+        addContent(entity);
+        addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
+        addContent(new _POJOListWrapper<>(new OrgCategoryDAO(session).findAll(), session));
+        addContent(new _POJOListWrapper<>(new LanguageDAO(session).findAll(), session));
+        addContent(getSimpleActionBar(session, session.getLang()));
+        startSaveFormTransact(entity);
+    }
 
-	@Override
-	public void doPOST(_Session session, _WebFormData formData) {
-		println(formData);
-		try {
-			_Validation ve = validate(formData, session.getLang());
-			if (ve.hasError()) {
-				setBadRequest();
-				setValidation(ve);
-				return;
-			}
+    @Override
+    public void doPOST(_Session session, _WebFormData formData) {
+        println(formData);
+        try {
+            _Validation ve = validate(formData, session.getLang());
+            if (ve.hasError()) {
+                setBadRequest();
+                setValidation(ve);
+                return;
+            }
 
-			boolean isNew = false;
-			String id = formData.getValueSilently("docid");
-			OrganizationDAO dao = new OrganizationDAO(session);
-			Organization entity;
+            String id = formData.getValueSilently("docid");
+            OrganizationDAO dao = new OrganizationDAO(session);
+            Organization entity;
+            boolean isNew = id.isEmpty();
 
-			if (id.isEmpty()) {
-				isNew = true;
-				entity = new Organization();
-			} else {
-				entity = dao.findById(UUID.fromString(id));
-			}
+            if (isNew) {
+                entity = new Organization();
+            } else {
+                entity = dao.findById(UUID.fromString(id));
+            }
 
-			entity.setName(formData.getValue("name"));
-			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-			entity.setOrgCategory(ocDao.findById(formData.getValue("orgcategory")));
-			entity.setBin(formData.getValue("bin"));
-			OrganizationLabelDAO olDao = new OrganizationLabelDAO(session);
-			List<OrganizationLabel> labels = new ArrayList<OrganizationLabel>();
-			for (String labelId : formData.getListOfValuesSilently("labels")) {
-				if (!labelId.isEmpty()) {
-					OrganizationLabel prgLabel = olDao.findById(labelId);
-					if (prgLabel != null) {
-						labels.add(prgLabel);
-					}
-				}
-			}
-			entity.setLabels(labels);
+            entity.setName(formData.getValue("name"));
+            OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+            entity.setOrgCategory(ocDao.findById(formData.getValue("orgcategory")));
+            entity.setBin(formData.getValue("bin"));
+            OrganizationLabelDAO olDao = new OrganizationLabelDAO(session);
+            List<OrganizationLabel> labels = new ArrayList<OrganizationLabel>();
+            for (String labelId : formData.getListOfValuesSilently("labels")) {
+                if (!labelId.isEmpty()) {
+                    OrganizationLabel prgLabel = olDao.findById(labelId);
+                    if (prgLabel != null) {
+                        labels.add(prgLabel);
+                    }
+                }
+            }
+            entity.setLabels(labels);
 
-			if (isNew) {
-				dao.add(entity);
-			} else {
-				dao.update(entity);
-			}
+            if (isNew) {
+                dao.add(entity);
+            } else {
+                dao.update(entity);
+            }
 
-			finishSaveFormTransact(entity);
-		} catch (_Exception e) {
-			error(e);
-		}
-	}
+            finishSaveFormTransact(entity);
+        } catch (_Exception e) {
+            error(e);
+        }
+    }
 
-	@Override
-	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
-		_Validation ve = new _Validation();
-		if (formData.getValueSilently("name").isEmpty()) {
-			ve.addError("name", "empty", getLocalizedWord("field_is_empty", lang));
-		}
-		if (formData.getValueSilently("orgcategory").isEmpty()) {
-			ve.addError("orgcategory", "empty", getLocalizedWord("field_is_empty", lang));
-		}
-		if (formData.getValueSilently("bin").isEmpty()) {
-			ve.addError("bin", "empty", getLocalizedWord("required", lang));
-		} else if (formData.getValueSilently("bin").length() > 12) {
-			ve.addError("bin", "empty", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
-		}
+    @Override
+    protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+        _Validation ve = new _Validation();
+        if (formData.getValueSilently("name").isEmpty()) {
+            ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
+        }
+        if (formData.getValueSilently("orgcategory").isEmpty()) {
+            ve.addError("orgcategory", "required", getLocalizedWord("field_is_empty", lang));
+        }
+        if (formData.getValueSilently("bin").isEmpty()) {
+            ve.addError("bin", "required", getLocalizedWord("required", lang));
+        } else if (formData.getValueSilently("bin").length() != 12) {
+            ve.addError("bin", "eq_12", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
+        }
 
-		return ve;
-	}
+        return ve;
+    }
 }
