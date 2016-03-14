@@ -2571,7 +2571,7 @@ $(function() {
         if ($(this).val()) {
             $('[data-role=dummy-select][name=' + this.name + ']').remove();
         } else {
-            $('<input type=hidden data-role=dummy-select name=' + this.name + '>').appendTo($(this).parent()).val('');
+            $('<input type=hidden data-role=dummy-select name=' + this.name + ' value="">').appendTo($(this).parent());
         }
     });
 
