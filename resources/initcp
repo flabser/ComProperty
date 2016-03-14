@@ -8,6 +8,7 @@ stini reference.init.FillCountries
 stini reference.init.FillRegions
 stini reference.init.FillDistricts
 stini reference.init.FillLocalities
+stini reference.init.FillCityDistricts
 stini reference.init.FillStreets
 stini reference.init.FillPositions
 stini reference.init.FillKufs
