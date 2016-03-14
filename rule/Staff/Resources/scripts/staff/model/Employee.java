@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
 public class Employee extends Staff implements IEmployee {
 
-	@OneToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.EAGER)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
