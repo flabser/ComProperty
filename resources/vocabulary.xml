@@ -71,6 +71,16 @@
 		<entry lang="KAZ">жолы толтырылмады</entry>
 		<entry lang="ENG">has been not filled</entry>
 	</sentence>
+	<sentence mode="on" keyword="code_is_not_unique">
+		<entry lang="RUS">Запись с таким кодом  уже существует</entry>
+		<entry lang="KAZ">Запись с таким кодом уже существует</entry>
+		<entry lang="ENG">There is a record with such code</entry>
+	</sentence>
+	<sentence mode="on" keyword="name_is_not_unique">
+		<entry lang="RUS">Запись с таким значением поля уже существует</entry>
+		<entry lang="KAZ">Запись с таким значением поля уже существует</entry>
+		<entry lang="ENG">There is a record with such value</entry>
+	</sentence>
 	<sentence mode="on" keyword="should_be_contain_value_more_than_zero">
 		<entry lang="RUS">Поле должно содержать значение больше нуля</entry>
 		<entry lang="KAZ">Поле должно содержать значение больше нуля</entry>
