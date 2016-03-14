@@ -2561,13 +2561,13 @@ $(function() {
 
     // init select2
     if (nb.isMobile()) {
-        $('select[multiple]').select2();
+        $('select[name][multiple]').select2();
     } else {
-        $('select').select2();
+        $('select[name]').select2();
     }
 
     // need dummy input if no select value
-    $('select').on('change', function() {
+    $('select[name]').on('change', function() {
         if ($(this).val()) {
             $('[data-role=dummy-select][name=' + this.name + ']').remove();
         } else {
