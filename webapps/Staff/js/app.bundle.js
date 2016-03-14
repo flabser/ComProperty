@@ -2513,7 +2513,7 @@ $(function() {
     $('#reguser').on('change', function() {
         var fieldset = $(this).parents('fieldset');
         var $regfields = $('[name=login], [name=email], [type=password]', fieldset);
-        $regfields.prop('disabled', !this.checked).val('');
+        $regfields.prop('disabled', !this.checked);
     });
 
     $('input[name=pwd], input[name=pwd_confirm]').on('change', function() {
