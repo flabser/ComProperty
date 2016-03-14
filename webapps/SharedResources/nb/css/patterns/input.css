@@ -77,9 +77,9 @@ input[disabled] {
     background: #F6F6F6;
 }
 
-.disabled,
-[disabled],
-[readonly] {
+html body .disabled,
+html body [disabled],
+html body [readonly] {
     cursor: not-allowed;
 }
 
@@ -129,9 +129,20 @@ textarea {
     padding: 2px;
 }
 
+html body fieldset[disabled] {
+    cursor: default;
+}
+
+.fieldset.disabled input,
 .fieldset[disabled] input,
-.fieldset[disabled] select {
-    background-color: #FAFAFA;
+.fieldset[readonly] input,
+.fieldset.disabled textarea,
+.fieldset[disabled] textarea,
+.fieldset[readonly] textarea,
+.fieldset[disabled] select,
+.fieldset[readonly] select {
+    background-color: #F6F6F6;
+    cursor: not-allowed;
 }
 
 @media ( max-width: 768px) {
@@ -148,7 +159,9 @@ textarea {
 
 .has-error > .input.required,
 .has-error > input[required]:not(:focus),
-.has-error > textarea[required]:not(:focus) {
+.has-error > textarea[required]:not(:focus),
+input.invalid,
+textarea.invalid {
     box-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
     border-color: #FF845D;
 }

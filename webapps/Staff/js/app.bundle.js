@@ -2479,7 +2479,7 @@ $(function() {
         if ($(this).val()) {
             $('[data-role=dummy-select][name=' + this.name + ']').remove();
         } else {
-            $('<input type=hidden data-role=dummy-select name=' + this.name + '>').appendTo($(this).parent()).val('');
+            $('<input type=hidden data-role=dummy-select name=' + this.name + ' value="">').appendTo($(this).parent());
         }
     });
 
@@ -2509,25 +2509,19 @@ $(function() {
 
     $('[name=docid]:checked').attr('checked', false);
 
-    //
-
     // toogle user registration fields
-    $("#reguser").on('change', function() {
-        var $regfields = $(".regfields");
-        $($regfields).prop('disabled', function(i, v) {
-            return !v;
-        }).val("");
-        var cursor = '';
-        if ($("#reguser").prop("checked") != true) cursor = 'not-allowed';
-        $regfields.css("cursor", cursor);
+    $('#reguser').on('change', function() {
+        var fieldset = $(this).parents('fieldset');
+        var $regfields = $('[name=login], [name=email], [type=password]', fieldset);
+        $regfields.prop('disabled', !this.checked).val('');
     });
 
-    $("input[name=password], input[name=reenterpassword]").on('change', function() {
-        var $inputs = $("input[name=password], input[name=reenterpassword]");
-        if ($("input[name=password]").val() != $("input[name=reenterpassword]").val()) {
-            $inputs.css("border", "1px solid red").prop("title", "Поля пароль и повтор нового пароля не совпадают");
+    $('input[name=pwd], input[name=pwd_confirm]').on('change', function() {
+        var $inputs = $('input[type=password]');
+        if ($('input[name=pwd]').val() != $('input[name=pwd_confirm]').val()) {
+            $inputs.addClass('invalid').prop('title', 'Поля пароль и повтор пароля не совпадают');
         } else {
-            $inputs.css("border", "1px solid #888").prop("title", "");
+            $inputs.removeClass('invalid').prop('title', '');
         }
     });
 });

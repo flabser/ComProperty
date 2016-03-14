@@ -122,8 +122,7 @@
                             <xsl:value-of select="//captions/credentials/@caption"/>
                         </legend>
                         <div class="form-group">
-                            <div class="control-label">
-                            </div>
+                            <div class="control-label"></div>
                             <div class="controls">
                                 <label class="btn btn-sm">
                                     <input type="checkbox" name="reguser" id="reguser" autocomplete="off">
@@ -139,8 +138,8 @@
                                 <xsl:value-of select="//captions/login_name/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="login" value="{fields/login}" class="span7 regfields"
-                                       autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="text" name="login" value="{fields/login}" class="span4"
+                                       autocomplete="off" disabled="disabled"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -148,8 +147,8 @@
                                 <xsl:value-of select="//captions/email/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="email" name="email" value="{fields/email}" class="span7 regfields"
-                                       autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="email" name="email" value="{fields/email}" class="span4"
+                                       autocomplete="off" disabled="disabled"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -157,18 +156,17 @@
                                 <xsl:value-of select="//captions/password/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="pwd" value="{fields/password}" class="span7 regfields"
-                                       autocomplete="off" disabled="disabled" style="cursor:not-allowed"/>
+                                <input type="password" name="pwd" value="{fields/password}" class="span4"
+                                       autocomplete="off" disabled="disabled"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="control-label">
-                                <xsl:value-of select="//captions/reenterpassword/@caption"/>
+                                <xsl:value-of select="//captions/password_confirm/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="password" name="reenterpassword" value="{fields/reenterpassword}"
-                                       class="span7 regfields" autocomplete="off" disabled="disabled"
-                                       style="cursor:not-allowed"/>
+                                <input type="password" name="pwd_confirm" value="{fields/reenterpassword}"
+                                       class="span4" autocomplete="off" disabled="disabled"/>
                             </div>
                         </div>
                         <!--<div class="form-group">
