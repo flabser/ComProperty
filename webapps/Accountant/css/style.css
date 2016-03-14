@@ -79,10 +79,9 @@ progress[value='0'] {
 }
 
 .update-file-panel-msg {
-    background: #FFEF61;
     border-radius: 2px;
     display: inline-block;
-    margin: 0 8px;
+    margin: 0 3px;
     padding: 4px;
 }
 
@@ -110,10 +109,6 @@ progress[value='0'] {
     padding: 4px 16px;
 }
 
-.update-file-panel .errormsg {
-    padding: 4px 16px;
-}
-
 
 /* 
 JUST_UPLOADED = 1;
@@ -137,7 +132,8 @@ LOADING_ERROR = 5;
     border-bottom: 1px solid #4CAF50;
 }
 
-.update-status-2 .update-file-link {
+.update-status-2 .update-file-link,
+.update-status-2 .update-file-panel-msg {
     background: #C5E1A5;
 }
 
@@ -145,7 +141,8 @@ LOADING_ERROR = 5;
     border-bottom: 1px solid #4CAF50
 }
 
-.update-status-3 .update-file-link {
+.update-status-3 .update-file-link,
+.update-status-3 .update-file-panel-msg {
     background: #BCD0FF;
 }
 
@@ -153,7 +150,8 @@ LOADING_ERROR = 5;
     border-bottom: 1px solid #F44336;
 }
 
-.update-status-4 .update-file-link {
+.update-status-4 .update-file-link,
+.update-status-4 .update-file-panel-msg {
     background: #FFADA7;
 }
 
@@ -161,6 +159,7 @@ LOADING_ERROR = 5;
     border-bottom: 1px solid #FF9800;
 }
 
-.update-status-5 .update-file-link {
+.update-status-5 .update-file-link,
+.update-status-5 .update-file-panel-msg {
     background: #FFC107;
 }

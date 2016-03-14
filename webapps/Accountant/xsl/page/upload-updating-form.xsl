@@ -84,9 +84,9 @@
     <xsl:template match="entry">
         <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
             <xsl:variable name="isOpen">
-                <xsl:if test="viewcontent/status != 3 and (viewcontent/sheeterrs != '' or viewcontent/msg != '')">
+                <!--<xsl:if test="viewcontent/status != 3 and (viewcontent/sheeterrs != '' or viewcontent/msg != '')">
                     <xsl:value-of select="'open'"/>
-                </xsl:if>
+                </xsl:if>-->
             </xsl:variable>
             <div class="panel update-file-panel {$isOpen} update-status-{viewcontent/status} js-file-panel">
                 <div class="panel__header">

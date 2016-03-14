@@ -2638,6 +2638,7 @@ function renderFilePanel(fileName, fsid) {
     var initMode = $cacheUpdateForm.length;
     var template;
     var $tpl;
+    var activeFile = getLastFileFromStorage();
 
     if (initMode) {
         $tpl = $cacheUpdateForm;
@@ -2656,6 +2657,7 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         var $btn = $(this);
         $btn.attr('disabled', true);
+        setLastFileToStorage(fileName);
         //
         checkFile(fileName, fsid).then(function(result) {
             /*$btn.parents('.panel').addClass('open');
@@ -2686,6 +2688,7 @@ function renderFilePanel(fileName, fsid) {
     $tpl.find('.js-load').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
+        setLastFileToStorage(fileName);
         $(this).attr('disabled', true);
         loadFile(fileName, $tpl.serialize(), fsid).then(function() {
             // $tpl.addClass('upload-success');
@@ -2715,6 +2718,10 @@ function renderFilePanel(fileName, fsid) {
         $tpl.find('.errormsg').remove();
     });
 
+    if (activeFile == fileName) {
+        $tpl.find('.panel').addClass('open');
+    }
+
     if (!initMode) {
         $('.js-uploaded-files').append($tpl);
     }
@@ -2724,6 +2731,14 @@ function reloadPage() {
     setTimeout(function() {
         location.reload();
     }, 200);
+}
+
+function setLastFileToStorage(fileId) {
+    sessionStorage.setItem('accountant_update_last_file', fileId);
+}
+
+function getLastFileFromStorage() {
+    return sessionStorage.getItem('accountant_update_last_file');
 }
 
 function toggleLoadButtonState($form) {
