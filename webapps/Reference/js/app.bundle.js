@@ -2506,19 +2506,21 @@ $(function() {
 });
 
 nbApp.selectOptions = {
-    organizationid: {
-        url: 'Provider?id=get-organizations',
+    country: {
+        url: 'Provider?id=get-countries',
         search: true
     },
-    orgcategory: {
-        url: 'Provider?id=get-org-categories'
+    district: {
+        url: 'Provider?id=get-districts'
     },
-    departmentid: {
-        url: 'Provider?id=get-departments',
-        data: ['organizationid']
+    region: {
+        url: 'Provider?id=get-regions'
     },
-    positionid: {
-        url: 'Provider?id=get-positions'
+    locality: {
+        url: 'Provider?id=get-localities'
+    },
+    street: {
+        url: 'Provider?id=get-streets'
     }
 };
 

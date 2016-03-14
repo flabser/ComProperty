@@ -37,7 +37,7 @@
                                 <xsl:value-of select="//captions/locality/@caption"/>
                             </div>
                             <div class="controls">
-                                <select name="type" class="span7" required="required" autocomplete="off">
+                                <select name="locality" class="span7" required="required" autocomplete="off">
                                     <xsl:apply-templates select="//query[@entity = 'locality']/entry"
                                                          mode="locality_option">
                                         <xsl:with-param name="selected" select="fields/locality"/>

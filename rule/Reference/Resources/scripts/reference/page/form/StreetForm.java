@@ -1,7 +1,6 @@
 package reference.page.form;
 
-import java.util.UUID;
-
+import administrator.dao.LanguageDAO;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -12,68 +11,73 @@ import reference.dao.LocalityDAO;
 import reference.dao.StreetDAO;
 import reference.model.Locality;
 import reference.model.Street;
-import administrator.dao.LanguageDAO;
+
+import java.util.Arrays;
+import java.util.UUID;
+
 
 public class StreetForm extends ReferenceForm {
 
-	@Override
-	public void doGET(_Session session, _WebFormData formData) {
-		String id = formData.getValueSilently("docid");
-		IUser<Long> user = session.getUser();
-		Street entity;
-		if (!id.isEmpty()) {
-			StreetDAO dao = new StreetDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		} else {
-			entity = (Street) getDefaultEntity(user, new Street());
-			LocalityDAO cDao = new LocalityDAO(session);
-			Locality city = cDao.findByName("Алматы");
-			entity.setLocality(city);
-		}
-		addContent(entity);
-		addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session));
-		startSaveFormTransact(entity);
-	}
+    @Override
+    public void doGET(_Session session, _WebFormData formData) {
+        String id = formData.getValueSilently("docid");
+        IUser<Long> user = session.getUser();
+        Street entity;
+        if (!id.isEmpty()) {
+            StreetDAO dao = new StreetDAO(session);
+            entity = dao.findById(UUID.fromString(id));
+        } else {
+            entity = (Street) getDefaultEntity(user, new Street());
+            LocalityDAO cDao = new LocalityDAO(session);
+            Locality city = cDao.findByName("Алматы");
+            entity.setLocality(city);
+        }
+        addContent(entity);
+        // addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
+        if (entity.getLocality() != null && entity.getLocality().getId() != null) {
+            addContent(new _POJOListWrapper(Arrays.asList(entity.getLocality()), session));
+        }
 
-	@Override
-	public void doPOST(_Session session, _WebFormData formData) {
-		println(formData);
-		try {
-			_Validation ve = validate(formData, session.getLang());
-			if (ve.hasError()) {
-				setBadRequest();
-				setValidation(ve);
-				return;
-			}
+        addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
+        addContent(getSimpleActionBar(session));
+        startSaveFormTransact(entity);
+    }
 
-			boolean isNew = false;
-			String id = formData.getValueSilently("docid");
-			StreetDAO dao = new StreetDAO(session);
-			LocalityDAO localityDAO = new LocalityDAO(session);
-			Street entity;
+    @Override
+    public void doPOST(_Session session, _WebFormData formData) {
+        try {
+            _Validation ve = validate(formData, session.getLang());
+            if (ve.hasError()) {
+                setBadRequest();
+                setValidation(ve);
+                return;
+            }
 
-			if (id.isEmpty()) {
-				isNew = true;
-				entity = new Street();
-			} else {
-				entity = dao.findById(UUID.fromString(id));
-			}
+            String id = formData.getValueSilently("docid");
+            StreetDAO dao = new StreetDAO(session);
+            LocalityDAO localityDAO = new LocalityDAO(session);
+            Street entity;
+            boolean isNew = id.isEmpty();
 
-			entity.setName(formData.getValue("name"));
-			entity.setLocality(localityDAO.findByName(formData.getValue("locality")));
-			entity.setLocalizedName(getLocalizedNames(session, formData));
+            if (isNew) {
+                entity = new Street();
+            } else {
+                entity = dao.findById(UUID.fromString(id));
+            }
 
-			if (isNew) {
-				dao.add(entity);
-			} else {
-				dao.update(entity);
-			}
+            entity.setName(formData.getValue("name"));
+            entity.setLocality(localityDAO.findByName(formData.getValue("locality")));
+            entity.setLocalizedName(getLocalizedNames(session, formData));
 
-			finishSaveFormTransact(entity);
-		} catch (_Exception e) {
-			error(e);
-		}
-	}
+            if (isNew) {
+                dao.add(entity);
+            } else {
+                dao.update(entity);
+            }
+
+            finishSaveFormTransact(entity);
+        } catch (_Exception e) {
+            error(e);
+        }
+    }
 }

@@ -50,7 +50,7 @@
                                 <xsl:value-of select="//captions/district/@caption"/>
                             </div>
                             <div class="controls">
-                                <select name="type" class="span7" required="required" autocomplete="off">
+                                <select name="district" class="span7" required="required" autocomplete="off">
                                     <xsl:apply-templates select="//query[@entity = 'district']/entry"
                                                          mode="district_option">
                                         <xsl:with-param name="selected" select="fields/localitytype"/>

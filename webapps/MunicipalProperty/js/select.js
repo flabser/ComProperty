@@ -1,5 +1,5 @@
 nbApp.selectOptions = {
-    organizationid: {
+    balanceholder: {
         url: 'Provider?id=get-organizations',
         search: true
     },
