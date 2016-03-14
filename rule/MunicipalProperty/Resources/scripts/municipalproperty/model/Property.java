@@ -342,7 +342,11 @@ public class Property extends SecureAppEntity {
 		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
 		EmployeeDAO eDao = new EmployeeDAO(ses);
 		Employee user = eDao.findByUserId(author);
-		chunk.append("<author>" + user.getName() + "</author>");
+		if (user != null) {
+			chunk.append("<author>" + user.getName() + "</author>");
+		} else {
+			chunk.append("<author></author>");
+		}
 		try {
 			chunk.append("<acceptancedate>" + Util.simpleDateFormat.format(acceptanceDate) + "</acceptancedate>");
 		} catch (NullPointerException e) {

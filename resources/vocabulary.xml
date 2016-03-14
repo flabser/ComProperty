@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- common vocabulary file -->
 <vocabulary primary="ENG">
+	<sentence mode="on" keyword="select">
+		<entry lang="ENG">Select</entry>
+		<entry lang="RUS">Выбрать</entry>
+		<entry lang="KAZ">Выбрать</entry>		
+		<entry lang="CHI"></entry>
+	</sentence>
 	<sentence mode="on" keyword="action_completed_successfully">
 		<entry lang="RUS">Действие выполнено успешно</entry>
 		<entry lang="KAZ">Действие выполнено успешно</entry>		
