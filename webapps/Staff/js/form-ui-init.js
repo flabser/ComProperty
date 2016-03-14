@@ -51,7 +51,7 @@ $(function() {
         var $regfields = $(".regfields");
         $($regfields).prop('disabled', function(i, v) {
             return !v;
-        }).val("");
+        });
         var cursor = '';
         if ($("#reguser").prop("checked") != true) cursor = 'not-allowed';
         $regfields.css("cursor", cursor);
