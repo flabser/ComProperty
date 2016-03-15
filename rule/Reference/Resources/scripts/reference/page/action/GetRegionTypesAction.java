@@ -15,7 +15,7 @@ public class GetRegionTypesAction extends _DoPage {
     @Override
     public void doGET(_Session ses, _WebFormData formData) {
         RegionTypeDAO dao = new RegionTypeDAO(ses);
-        List<RegionType> regionTypes = dao.findAll();
-        addContent(new _POJOListWrapper(regionTypes, 0, 0, 0, ses));
+        List<RegionType> list = dao.findAll();
+        addContent(new _POJOListWrapper(list, ses));
     }
 }
