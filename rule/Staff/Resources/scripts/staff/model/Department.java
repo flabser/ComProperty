@@ -53,8 +53,8 @@ public class Department extends Staff {
         chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
         chunk.append("<name>" + getName() + "</name>");
         chunk.append("<type>" + getType() + "</type>");
-        if (organization != null) {
-            chunk.append("<organizationid>" + organization.getId() + "</organizationid>");
+        if (organization != null && organization.getId() != null) {
+            chunk.append("<organization id=\"" + organization.getId() + "\">" + organization.getLocalizedName(ses.getLang()) + "</organization>");
         }
         chunk.append("<localizednames>");
         LanguageDAO lDao = new LanguageDAO(ses);

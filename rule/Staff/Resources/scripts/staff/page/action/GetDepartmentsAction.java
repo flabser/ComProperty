@@ -16,7 +16,7 @@ public class GetDepartmentsAction extends _DoPage {
 
     @Override
     public void doGET(_Session ses, _WebFormData formData) {
-        String orgId = formData.getValueSilently("organizationid");
+        String orgId = formData.getValueSilently("organization");
         OrganizationDAO orgDao = new OrganizationDAO(ses);
         Organization org = orgDao.findById(UUID.fromString(orgId));
         List<Department> deps = org.getDepartments();

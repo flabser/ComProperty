@@ -1,10 +1,8 @@
 package staff.page.form;
 
-import administrator.dao.ApplicationDAO;
 import administrator.dao.UserDAO;
 import administrator.model.User;
 import kz.lof.localization.LanguageCode;
-import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -21,7 +19,10 @@ import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Kayra created 07-01-2016
@@ -52,7 +53,7 @@ public class EmployeeForm extends StaffForm {
         }
         addContent(entity);
 
-        if (entity.getOrganization() != null && entity.getOrganization().getId() != null) {
+        /*if (entity.getOrganization() != null && entity.getOrganization().getId() != null) {
             addContent(new _POJOListWrapper(Arrays.asList(entity.getOrganization()), session));
         }
         if (entity.getDepartment() != null && entity.getDepartment().getId() != null) {
@@ -65,14 +66,13 @@ public class EmployeeForm extends StaffForm {
             addContent(new _POJOListWrapper(entity.getRoles(), session));
         }
 
-        addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
+        addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));*/
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }
 
     @Override
     public void doPOST(_Session session, _WebFormData formData) {
-        println(formData);
         try {
             _Validation ve = validate(formData, session.getLang());
             if (ve.hasError()) {
@@ -95,14 +95,14 @@ public class EmployeeForm extends StaffForm {
             entity.setName(formData.getValue("name"));
             entity.setIin(formData.getValue("iin"));
             OrganizationDAO orgDAO = new OrganizationDAO(session);
-            entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organizationid"))));
-            String di = formData.getValueSilently("departmentid");
+            entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organization"))));
+            String di = formData.getValueSilently("department");
             if (!di.isEmpty()) {
                 DepartmentDAO depDAO = new DepartmentDAO(session);
                 entity.setDepartment(depDAO.findById(UUID.fromString(di)));
             }
             PositionDAO posDAO = new PositionDAO(session);
-            entity.setPosition(posDAO.findById(UUID.fromString(formData.getValue("positionid"))));
+            entity.setPosition(posDAO.findById(UUID.fromString(formData.getValue("position"))));
             String[] roles = formData.getListOfValuesSilently("role");
             if (roles != null) {
                 RoleDAO roleDAO = new RoleDAO(session);
@@ -150,34 +150,34 @@ public class EmployeeForm extends StaffForm {
         _Validation ve = new _Validation();
 
         if (formData.getValueSilently("name").isEmpty()) {
-            ve.addError("name", "required", getLocalizedWord("required", lang));
+            ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
         }
         if (formData.getValueSilently("iin").isEmpty()) {
-            ve.addError("iin", "required", getLocalizedWord("required", lang));
+            ve.addError("iin", "required", getLocalizedWord("field_is_empty", lang));
         }
-        if (formData.getValueSilently("organizationid").isEmpty()) {
-            ve.addError("organizationid", "required", getLocalizedWord("required", lang));
+        if (formData.getValueSilently("organization").isEmpty()) {
+            ve.addError("organization", "required", getLocalizedWord("field_is_empty", lang));
         }
-        if (formData.getValueSilently("positionid").isEmpty()) {
-            ve.addError("positionid", "required", getLocalizedWord("required", lang));
+        if (formData.getValueSilently("position").isEmpty()) {
+            ve.addError("position", "required", getLocalizedWord("field_is_empty", lang));
         }
 
         String regUser = formData.getValueSilently("reguser");
         if ("on".equals(regUser)) {
             if (formData.getValueSilently("login").isEmpty()) {
-                ve.addError("login", "required", getLocalizedWord("required", lang));
+                ve.addError("login", "required", getLocalizedWord("field_is_empty", lang));
             }
             if (formData.getValueSilently("email").isEmpty() || !_Validator.checkEmail(formData.getValueSilently("email"))) {
                 ve.addError("email", "email", getLocalizedWord("email_invalid", lang));
             }
             if (!formData.getValueSilently("pwd").isEmpty()) {
                 if (formData.getValueSilently("pwd_confirm").isEmpty()) {
-                    ve.addError("pwd_confirm", "required", getLocalizedWord("required", lang));
+                    ve.addError("pwd_confirm", "required", getLocalizedWord("field_is_empty", lang));
                 } else if (!formData.getValueSilently("pwd").equals(formData.getValueSilently("pwd_confirm"))) {
                     ve.addError("pwd_confirm", "required", getLocalizedWord("password_confirm_not_equals", lang));
                 }
             } else {
-                ve.addError("pwd", "required", getLocalizedWord("required", lang));
+                ve.addError("pwd", "required", getLocalizedWord("field_is_empty", lang));
             }
         }
 

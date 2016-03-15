@@ -14,7 +14,10 @@ import staff.dao.OrganizationLabelDAO;
 import staff.model.Organization;
 import staff.model.OrganizationLabel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Kayra created 09-01-2016
@@ -41,18 +44,12 @@ public class OrganizationForm extends StaffForm {
         }
         addContent(entity);
         addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
-
-        if (entity.getOrgCategory() != null && entity.getOrgCategory().getId() != null) {
-            addContent(new _POJOListWrapper<>(Arrays.asList(entity.getOrgCategory()), session));
-        }
-
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }
 
     @Override
     public void doPOST(_Session session, _WebFormData formData) {
-        println(formData);
         try {
             _Validation ve = validate(formData, session.getLang());
             if (ve.hasError()) {
@@ -103,6 +100,7 @@ public class OrganizationForm extends StaffForm {
     @Override
     protected _Validation validate(_WebFormData formData, LanguageCode lang) {
         _Validation ve = new _Validation();
+
         if (formData.getValueSilently("name").isEmpty()) {
             ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
         }
@@ -110,7 +108,7 @@ public class OrganizationForm extends StaffForm {
             ve.addError("orgcategory", "required", getLocalizedWord("field_is_empty", lang));
         }
         if (formData.getValueSilently("bin").isEmpty()) {
-            ve.addError("bin", "required", getLocalizedWord("required", lang));
+            ve.addError("bin", "required", getLocalizedWord("field_is_empty", lang));
         } else if (formData.getValueSilently("bin").length() != 12) {
             ve.addError("bin", "eq_12", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
         }
