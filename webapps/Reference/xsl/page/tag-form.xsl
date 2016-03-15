@@ -32,6 +32,14 @@
                                        autofocus="true"/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/color/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <input type="color" name="color" value="{fields/color}"/>
+                            </div>
+                        </div>
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="legend">

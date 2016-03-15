@@ -57,6 +57,7 @@ public class TagForm extends ReferenceForm {
             }
 
             entity.setName(formData.getValue("name"));
+            entity.setColor(formData.getValue("color"));
             entity.setLocalizedName(getLocalizedNames(session, formData));
 
             if (isNew) {
