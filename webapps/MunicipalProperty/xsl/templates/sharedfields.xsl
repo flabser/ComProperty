@@ -561,9 +561,11 @@
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <option value="{@id}" selected="selected">
-                    <xsl:value-of select="."/>
-                </option>
+                <xsl:if test="@id">
+                    <option value="{@id}" selected="selected">
+                        <xsl:value-of select="."/>
+                    </option>
+                </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
