@@ -51,6 +51,7 @@
     <caption name="receiving_reason"/>
     <caption name="structure_type"/>
     <caption name="tag"/>
+    <caption name="color"/>
 
     <caption name="building_materials"/>
     <caption name="countries"/>
