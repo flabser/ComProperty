@@ -52,21 +52,7 @@ public class EmployeeForm extends StaffForm {
             entity.setRoles(new ArrayList<Role>());
         }
         addContent(entity);
-
-        /*if (entity.getOrganization() != null && entity.getOrganization().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getOrganization()), session));
-        }
-        if (entity.getDepartment() != null && entity.getDepartment().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getDepartment()), session));
-        }
-        if (entity.getDepartment() != null && entity.getPosition().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getPosition()), session));
-        }
-        if (entity.getRoles() != null) {
-            addContent(new _POJOListWrapper(entity.getRoles(), session));
-        }
-
-        addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));*/
+        /*addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));*/
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }
