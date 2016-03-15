@@ -8,6 +8,10 @@
     }
 }
 
+.select2-container.select2-container--disabled .select2-selection {
+    cursor: not-allowed;
+}
+
 .select2-selection {
     border: 1px solid #d9d9d9;
     border-top: 1px solid silver;

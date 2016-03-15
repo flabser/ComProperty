@@ -7,11 +7,9 @@
                 <xsl:value-of select="//captions/balance_holder/@caption"/>
             </div>
             <div class="controls">
-                <div class="span8">
-                    <select name="balanceholder" class="span8">
-                        <xsl:apply-templates select="fields/balanceholder" mode="selected_options"/>
-                    </select>
-                </div>
+                <select name="balanceholder" class="span8">
+                    <xsl:apply-templates select="fields/balanceholder" mode="selected_options"/>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -360,7 +358,7 @@
 
     <xsl:template name="address">
         <fieldset class="fieldset">
-            <legend class="legend legend-address">
+            <legend class="legend">
                 <xsl:value-of select="//captions/address/@caption"/>
             </legend>
             <div class="form-group">
@@ -368,14 +366,9 @@
                     <xsl:value-of select="//captions/region/@caption"/>
                 </div>
                 <div class="controls">
-                    <div class="span8">
-                        <!--<div class="input selectize-dialog" data-input="region" onclick="nbApp.choiceRegion(this)">-->
-                        <div class="input disabled" data-input="region">
-                            <xsl:value-of select="fields/address/region"/>
-                        </div>
-                    </div>
-                    <input type="hidden" name="region" value="{/addressfields/region}"/>
-                    <input type="hidden" name="regionid" value="{/addressfields/regionid}"/>
+                    <select name="region" class="span8 disabled" readonly="readonly">
+                        <xsl:apply-templates select="fields/address/region" mode="selected_options"/>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -383,14 +376,9 @@
                     <xsl:value-of select="//captions/locality/@caption"/>
                 </div>
                 <div class="controls">
-                    <div class="span8">
-                        <!--<div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">-->
-                        <div class="input disabled" data-input="locality">
-                            <xsl:value-of select="fields/address/locality"/>
-                        </div>
-                    </div>
-                    <input type="hidden" name="locality" value="{fields/address/locality}"/>
-                    <input type="hidden" name="localityid" value="{fields/address/localityid}"/>
+                    <select name="locality" class="span8 disabled" readonly="readonly">
+                        <xsl:apply-templates select="fields/address/locality" mode="selected_options"/>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -398,15 +386,9 @@
                     <xsl:value-of select="//captions/district/@caption"/>
                 </div>
                 <div class="controls">
-                    <div class="span8">
-                        <div class="input selectize-dialog" data-input="district" title="{//captions/district/@caption}"
-                             onclick="nbApp.choiceDistrict(this)">
-                            <!--<div class="input selectize-dialog" data-input="district">-->
-                            <xsl:value-of select="fields/address/district"/>
-                        </div>
-                    </div>
-                    <input type="hidden" name="district" value="{fields/address/district}"/>
-                    <input type="hidden" name="districtid" value="{fields/address/districtid}"/>
+                    <select name="district" class="span8">
+                        <xsl:apply-templates select="fields/address/district" mode="selected_options"/>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -414,14 +396,9 @@
                     <xsl:value-of select="//captions/street/@caption"/>
                 </div>
                 <div class="controls">
-                    <div class="span8">
-                        <div class="input selectize-dialog" data-input="street" title="{//captions/street/@caption}"
-                             onclick="nbApp.choiceStreet(this)">
-                            <xsl:value-of select="fields/address/street"/>
-                        </div>
-                    </div>
-                    <input type="hidden" name="street" value="{fields/address/street}"/>
-                    <input type="hidden" name="streetid" value="{fields/address/streetid}"/>
+                    <select name="street" class="span8">
+                        <xsl:apply-templates select="fields/address/street" mode="selected_options"/>
+                    </select>
                 </div>
             </div>
             <div class="form-group">

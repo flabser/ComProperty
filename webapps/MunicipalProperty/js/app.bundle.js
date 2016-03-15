@@ -2355,6 +2355,7 @@ nb.xhrDelete = function(data) {
     });
 };
 
+
 nb.getSelectedEntityIDs = function(checkboxName) {
     var $checked = $('input[name=' + (checkboxName || 'docid') + ']:checked');
     if ($checked.length === 0) {
@@ -2560,15 +2561,6 @@ $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
 
-    // need dummy input if no select value
-    $('select[name]').on('change', function() {
-        if ($(this).val()) {
-            $('[data-role=dummy-select][name=' + this.name + ']', $(this).parent()).remove();
-        } else {
-            $('<input type=hidden data-role=dummy-select name=' + this.name + ' value="">').appendTo($(this).parent());
-        }
-    });
-
     // init action
     $('[data-action=save_and_close]').click(function(event) {
         event.preventDefault();
@@ -2635,6 +2627,15 @@ nbApp.selectOptions = {
     receivingreason: {
         url: 'Provider?id=get-receiving-reasons'
     },
+    district: {
+        url: 'Provider?id=get-districts',
+        data: ['region']
+    },
+    street: {
+        url: 'Provider?id=get-streets',
+        data: ['district'],
+        search: true
+    },
     tags: {
         url: 'Provider?id=get-tags'
     }
@@ -2648,7 +2649,6 @@ nbApp.getSelectOptions = function(optionId) {
             dataType: 'json',
             delay: 250,
             data: function(params) {
-                console.log(params, this);
                 var _data = {
                     page: params.page
                 };
@@ -2672,7 +2672,7 @@ nbApp.getSelectOptions = function(optionId) {
                         text: list[k].name
                     });
                 }
-                console.log(items.length, meta.count);
+
                 return {
                     results: items,
                     pagination: {
@@ -2680,10 +2680,9 @@ nbApp.getSelectOptions = function(optionId) {
                     }
                 };
             },
-            cache: true,
-            minimumResultsForSearch: -1
+            cache: true
         }
-    }
+    };
 };
 
 $(document).ready(function() {
@@ -2698,6 +2697,15 @@ $(document).ready(function() {
             } else {
                 $(this).select2();
             }
+        }
+    });
+
+    // need dummy input if no select value
+    $('select[name]').on('change', function() {
+        if ($(this).val()) {
+            $('[data-role=dummy-select][name=' + this.name + ']', $(this).parent()).remove();
+        } else {
+            $('<input type=hidden data-role=dummy-select name=' + this.name + ' value="">').appendTo($(this).parent());
         }
     });
 });

@@ -2355,6 +2355,7 @@ nb.xhrDelete = function(data) {
     });
 };
 
+
 nb.getSelectedEntityIDs = function(checkboxName) {
     var $checked = $('input[name=' + (checkboxName || 'docid') + ']:checked');
     if ($checked.length === 0) {
