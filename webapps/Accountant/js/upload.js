@@ -58,7 +58,7 @@ function loadFile(fileId, data, fsid) {
     return $.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'Provider?type=page&id=load-file-data&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
+        url: 'Provider?id=update-file&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
         data: data,
         success: function(result) {
             return result;
@@ -81,7 +81,7 @@ function delFile(fileId, fsid) {
     return $.ajax({
         type: 'delete',
         dataType: 'json',
-        url: 'Provider?type=page&id=delete-attach&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid
+        url: 'Provider?id=update-file&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid
     });
 }
 
@@ -96,7 +96,7 @@ function checkFile(fileId, fsid) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?type=page&id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
+        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
         success: function(data) {
             return data;
         },

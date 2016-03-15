@@ -96,7 +96,7 @@
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
                             </xsl:if>
                         </i>
-                        <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link">
+                        <a href="Provider?id=update-file&amp;fileid=" class="update-file-link js-link">
                             <xsl:value-of select="viewcontent/name"/>
                         </a>
                         <span class="update-file-panel-actions">
