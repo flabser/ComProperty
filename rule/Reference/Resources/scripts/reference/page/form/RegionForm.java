@@ -17,7 +17,6 @@ import reference.model.RegionType;
 import reference.model.constants.CountryCode;
 import reference.model.constants.RegionCode;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -31,7 +30,7 @@ public class RegionForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData) {
         String id = formData.getValueSilently("docid");
         IUser<Long> user = session.getUser();
-        RegionTypeDAO rtDao = new RegionTypeDAO(session);
+        RegionTypeDAO regionTypeDAO = new RegionTypeDAO(session);
         Region entity;
         if (!id.isEmpty()) {
             RegionDAO dao = new RegionDAO(session);
@@ -42,7 +41,7 @@ public class RegionForm extends ReferenceForm {
             entity.setAuthor(user);
             entity.setRegDate(new Date());
             entity.setName("");
-            RegionType regionType = rtDao.findByCode(RegionCode.REGION);
+            RegionType regionType = regionTypeDAO.findByCode(RegionCode.REGION);
             entity.setType(regionType);
             Country country = cDao.findByCode(CountryCode.KZ);
             if (country != null) {
@@ -50,12 +49,6 @@ public class RegionForm extends ReferenceForm {
             }
         }
         addContent(entity);
-        addContent(new _POJOListWrapper<>(rtDao.findAll(), session));
-        // addContent(new _POJOListWrapper<>(cDao.findAll(), session));
-        if (entity.getCountry() != null && entity.getCountry().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getCountry()), session));
-        }
-
         addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
         addContent(getSimpleActionBar(session));
         startSaveFormTransact(entity);
@@ -74,8 +67,8 @@ public class RegionForm extends ReferenceForm {
             RegionDAO dao = new RegionDAO(session);
             Region entity;
             String id = formData.getValueSilently("docid");
-
             boolean isNew = id.isEmpty();
+
             if (isNew) {
                 entity = new Region();
             } else {
@@ -84,7 +77,7 @@ public class RegionForm extends ReferenceForm {
 
             entity.setName(formData.getValue("name"));
             RegionTypeDAO rtDao = new RegionTypeDAO(session);
-            entity.setType(rtDao.findById(formData.getValue("type")));
+            entity.setType(rtDao.findById(formData.getValue("regiontype")));
             CountryDAO countryDao = new CountryDAO(session);
             Country country = countryDao.findById(UUID.fromString(formData.getValue("country")));
             entity.setCountry(country);
@@ -121,8 +114,8 @@ public class RegionForm extends ReferenceForm {
         if (formData.getValueSilently("name").isEmpty()) {
             v.addError("name", "required", getLocalizedWord("field_is_empty", lang));
         }
-        if (formData.getValueSilently("type").isEmpty() || formData.getValueSilently("type").equals("UNKNOWN")) {
-            v.addError("type", "required", getLocalizedWord("field_is_empty", lang));
+        if (formData.getValueSilently("regiontype").isEmpty() || formData.getValueSilently("regiontype").equals("UNKNOWN")) {
+            v.addError("regiontype", "required", getLocalizedWord("field_is_empty", lang));
         }
         if (formData.getValueSilently("country").isEmpty()) {
             v.addError("country", "required", getLocalizedWord("field_is_empty", lang));

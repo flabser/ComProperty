@@ -37,11 +37,8 @@
                                 <xsl:value-of select="//captions/type/@caption"/>
                             </div>
                             <div class="controls">
-                                <select name="type" class="span7" required="required" autocomplete="off">
-                                    <xsl:apply-templates select="//query[@entity = 'localitytype']/entry"
-                                                         mode="locality_type_option">
-                                        <xsl:with-param name="selected" select="fields/localitytype"/>
-                                    </xsl:apply-templates>
+                                <select name="localitytype" class="span7" required="required" autocomplete="off">
+                                    <xsl:apply-templates select="fields/localitytype" mode="selected_options"/>
                                 </select>
                             </div>
                         </div>
@@ -51,10 +48,7 @@
                             </div>
                             <div class="controls">
                                 <select name="district" class="span7" required="required" autocomplete="off">
-                                    <xsl:apply-templates select="//query[@entity = 'district']/entry"
-                                                         mode="district_option">
-                                        <xsl:with-param name="selected" select="fields/localitytype"/>
-                                    </xsl:apply-templates>
+                                    <xsl:apply-templates select="fields/district" mode="selected_options"/>
                                 </select>
                             </div>
                         </div>
@@ -80,23 +74,9 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="entry" mode="locality_type_option">
-        <xsl:param name="selected"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $selected">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
-            <xsl:value-of select="viewcontent/name"/>
-        </option>
-    </xsl:template>
-
-    <xsl:template match="entry" mode="district_option">
-        <xsl:param name="selected"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $selected">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
-            <xsl:value-of select="viewcontent/name"/>
+    <xsl:template match="*" mode="selected_options">
+        <option value="{@id}" selected="selected">
+            <xsl:value-of select="."/>
         </option>
     </xsl:template>
 

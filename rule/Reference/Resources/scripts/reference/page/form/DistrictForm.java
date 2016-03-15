@@ -12,7 +12,6 @@ import reference.dao.RegionDAO;
 import reference.model.District;
 import reference.model.Region;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -37,12 +36,6 @@ public class DistrictForm extends ReferenceForm {
         }
         addContent(entity);
         addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
-
-        // addContent(new _POJOListWrapper(new RegionDAO(session).findAll(), session));
-        if (entity.getRegion() != null && entity.getRegion().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getRegion()), session));
-        }
-
         addContent(getSimpleActionBar(session));
         startSaveFormTransact(entity);
     }

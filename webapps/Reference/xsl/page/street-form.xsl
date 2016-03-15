@@ -38,10 +38,7 @@
                             </div>
                             <div class="controls">
                                 <select name="locality" class="span7" required="required" autocomplete="off">
-                                    <xsl:apply-templates select="//query[@entity = 'locality']/entry"
-                                                         mode="locality_option">
-                                        <xsl:with-param name="selected" select="fields/locality"/>
-                                    </xsl:apply-templates>
+                                    <xsl:apply-templates select="fields/locality" mode="selected_options"/>
                                 </select>
                             </div>
                         </div>
@@ -67,13 +64,9 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="entry" mode="locality_option">
-        <xsl:param name="selected"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $selected">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
-            <xsl:value-of select="viewcontent/name"/>
+    <xsl:template match="*" mode="selected_options">
+        <option value="{@id}" selected="selected">
+            <xsl:value-of select="."/>
         </option>
     </xsl:template>
 

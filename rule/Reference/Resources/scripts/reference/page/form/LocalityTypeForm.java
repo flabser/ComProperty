@@ -48,13 +48,12 @@ public class LocalityTypeForm extends ReferenceForm {
                 return;
             }
 
-            boolean isNew = false;
             String id = formData.getValueSilently("docid");
             LocalityTypeDAO dao = new LocalityTypeDAO(session);
             LocalityType entity;
+            boolean isNew = id.isEmpty();
 
-            if (id.isEmpty()) {
-                isNew = true;
+            if (isNew) {
                 entity = new LocalityType();
             } else {
                 entity = dao.findById(UUID.fromString(id));

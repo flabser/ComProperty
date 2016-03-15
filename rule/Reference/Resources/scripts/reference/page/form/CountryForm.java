@@ -41,7 +41,6 @@ public class CountryForm extends ReferenceForm {
 
     @Override
     public void doPOST(_Session session, _WebFormData formData) {
-        println(formData);
         try {
             _Validation ve = validate(formData, session.getLang());
             if (ve.hasError()) {
@@ -53,8 +52,8 @@ public class CountryForm extends ReferenceForm {
             CountryDAO dao = new CountryDAO(session);
             Country entity;
             String id = formData.getValueSilently("docid");
-
             boolean isNew = id.isEmpty();
+
             if (isNew) {
                 entity = new Country();
             } else {
@@ -100,7 +99,7 @@ public class CountryForm extends ReferenceForm {
         if (formData.getValueSilently("code").isEmpty()) {
             ve.addError("code", "required", getLocalizedWord("field_is_empty", lang));
         } else if (formData.getValueSilently("code").equalsIgnoreCase(CountryCode.UNKNOWN.name())) {
-            ve.addError("code", "wrong_value", getLocalizedWord("field_cannot_be_unknown", lang));
+            ve.addError("code", "ne_unknown", getLocalizedWord("field_cannot_be_unknown", lang));
         }
 
         return ve;

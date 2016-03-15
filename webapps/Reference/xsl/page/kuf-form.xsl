@@ -37,7 +37,8 @@
                                 <xsl:value-of select="//captions/kufcode/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="kufcode" value="{fields/kufcode}" class="span7" readonly="readonly"/>
+                                <input type="text" name="kufcode" value="{fields/kufcode}" class="span7"
+                                       readonly="readonly"/>
                             </div>
                         </div>
                     </fieldset>

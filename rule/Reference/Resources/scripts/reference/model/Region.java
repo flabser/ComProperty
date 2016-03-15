@@ -55,8 +55,12 @@ public class Region extends Reference {
     public String getFullXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
         chunk.append(super.getFullXMLChunk(ses));
-        chunk.append("<country>" + country.getId() + "</country>");
-        chunk.append("<type>" + type.getId() + "</type>");
+        if (type != null && type.getId() != null) {
+            chunk.append("<type id=\"" + type.getId() + "\">" + type.getLocalizedName(ses.getLang()) + "</type>");
+        }
+        if (country != null && country.getId() != null) {
+            chunk.append("<country id=\"" + country.getId() + "\">" + country.getLocalizedName(ses.getLang()) + "</country>");
+        }
         return chunk.toString();
     }
 
@@ -64,7 +68,12 @@ public class Region extends Reference {
     public String getShortXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
         chunk.append("<name>" + getName() + "</name>");
-        chunk.append("<country>" + country + "</country>");
+        if (type != null && type.getId() != null) {
+            chunk.append("<type id=\"" + type.getId() + "\">" + type.getLocalizedName(ses.getLang()) + "</type>");
+        }
+        if (country != null && country.getId() != null) {
+            chunk.append("<country id=\"" + country.getId() + "\">" + country.getLocalizedName(ses.getLang()) + "</country>");
+        }
         return chunk.toString();
     }
 }

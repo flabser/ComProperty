@@ -12,7 +12,6 @@ import reference.dao.StreetDAO;
 import reference.model.Locality;
 import reference.model.Street;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 
@@ -33,11 +32,6 @@ public class StreetForm extends ReferenceForm {
             entity.setLocality(city);
         }
         addContent(entity);
-        // addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
-        if (entity.getLocality() != null && entity.getLocality().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getLocality()), session));
-        }
-
         addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
         addContent(getSimpleActionBar(session));
         startSaveFormTransact(entity);

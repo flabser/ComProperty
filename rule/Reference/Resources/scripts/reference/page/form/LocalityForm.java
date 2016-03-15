@@ -14,7 +14,6 @@ import reference.model.Locality;
 import reference.model.LocalityType;
 import reference.model.constants.LocalityCode;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -28,7 +27,6 @@ public class LocalityForm extends ReferenceForm {
     public void doGET(_Session session, _WebFormData formData) {
         String id = formData.getValueSilently("docid");
         IUser<Long> user = session.getUser();
-        LocalityTypeDAO lDao = new LocalityTypeDAO(session);
         Locality entity;
         if (!id.isEmpty()) {
             LocalityDAO dao = new LocalityDAO(session);
@@ -38,17 +36,10 @@ public class LocalityForm extends ReferenceForm {
             entity.setAuthor(user);
             entity.setRegDate(new Date());
             entity.setName("");
-            LocalityType regionType = lDao.findByCode(LocalityCode.CITY);
+            LocalityType regionType = new LocalityTypeDAO(session).findByCode(LocalityCode.CITY);
             entity.setType(regionType);
         }
         addContent(entity);
-
-        // addContent(new _POJOListWrapper(new DistrictDAO(session).findAll(), session));
-        if (entity.getDistrict() != null && entity.getDistrict().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getDistrict()), session));
-        }
-
-        addContent(new _POJOListWrapper(lDao.findAll(), session));
         addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
         addContent(getSimpleActionBar(session));
         startSaveFormTransact(entity);
@@ -64,22 +55,21 @@ public class LocalityForm extends ReferenceForm {
                 return;
             }
 
-            boolean isNew = false;
             String id = formData.getValueSilently("docid");
             LocalityDAO dao = new LocalityDAO(session);
             DistrictDAO districtDAO = new DistrictDAO(session);
             Locality entity;
+            boolean isNew = id.isEmpty();
 
-            if (id.isEmpty()) {
-                isNew = true;
+            if (isNew) {
                 entity = new Locality();
             } else {
                 entity = dao.findById(UUID.fromString(id));
             }
 
             entity.setName(formData.getValue("name"));
-            LocalityTypeDAO ltDao = new LocalityTypeDAO(session);
-            entity.setType(ltDao.findById(formData.getValue("type")));
+            LocalityTypeDAO localityTypeDAO = new LocalityTypeDAO(session);
+            entity.setType(localityTypeDAO.findById(formData.getValue("localitytype")));
             entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("district"))));
             entity.setLocalizedName(getLocalizedNames(session, formData));
 

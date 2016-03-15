@@ -49,13 +49,12 @@ public class RegionTypeForm extends ReferenceForm {
                 return;
             }
 
-            boolean isNew = false;
             String id = formData.getValueSilently("docid");
             RegionTypeDAO dao = new RegionTypeDAO(session);
             RegionType entity;
+            boolean isNew = id.isEmpty();
 
-            if (id.isEmpty()) {
-                isNew = true;
+            if (isNew) {
                 entity = new RegionType();
             } else {
                 entity = dao.findById(UUID.fromString(id));
