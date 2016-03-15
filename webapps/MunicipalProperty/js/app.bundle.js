@@ -2622,12 +2622,21 @@ nbApp.selectOptions = {
     orgcategory: {
         url: 'Provider?id=get-org-categories'
     },
-    departmentid: {
+    department: {
         url: 'Provider?id=get-departments',
-        data: ['organizationid']
+        data: ['organization']
     },
-    positionid: {
+    position: {
         url: 'Provider?id=get-positions'
+    },
+    propertycode: {
+        url: 'Provider?id=get-property-codes'
+    },
+    receivingreason: {
+        url: 'Provider?id=get-receiving-reasons'
+    },
+    tags: {
+        url: 'Provider?id=get-tags'
     }
 };
 

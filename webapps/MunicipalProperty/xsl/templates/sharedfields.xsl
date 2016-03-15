@@ -8,12 +8,10 @@
             </div>
             <div class="controls">
                 <div class="span8">
-                    <div class="input selectize-dialog" data-input="balanceholder"
-                         title="{//captions/balance_holder/@caption}" onclick="nbApp.choiceBalanceHolder(this)">
-                        <xsl:value-of select="fields/balanceholder"/>
-                    </div>
+                    <select name="balanceholder" class="span8">
+                        <xsl:apply-templates select="fields/balanceholder" mode="selected_options"/>
+                    </select>
                 </div>
-                <input type="hidden" name="balanceholderid" value="{fields/balanceholderid}" required="required"/>
             </div>
         </div>
         <div class="form-group">
@@ -21,8 +19,8 @@
                 <xsl:value-of select="//captions/bin/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="balanceholderbin" value="{fields/balanceholderbin}" class="span4 disabled"
-                       readonly="readonly"/>
+                <input type="text" name="balanceholderbin" value="{fields/balanceholderbin}" class="span4"
+                       disabled="disabled"/>
             </div>
         </div>
     </xsl:template>
@@ -90,9 +88,7 @@
             </div>
             <div class="controls">
                 <select name="propertycode" class="span8">
-                    <xsl:apply-templates select="//query[@entity = 'propertycode']/entry" mode="select_options">
-                        <xsl:with-param name="select" select="fields/propertycode"/>
-                    </xsl:apply-templates>
+                    <xsl:apply-templates select="fields/propertycode" mode="selected_options"/>
                 </select>
             </div>
         </div>
@@ -192,9 +188,7 @@
             </div>
             <div class="controls">
                 <select name="receivingreason" class="span8">
-                    <xsl:apply-templates select="//query[@entity = 'receivingreason']/entry" mode="select_options">
-                        <xsl:with-param name="select" select="fields/receivingreason"/>
-                    </xsl:apply-templates>
+                    <xsl:apply-templates select="fields/receivingreason" mode="selected_options"/>
                 </select>
             </div>
         </div>
@@ -268,10 +262,7 @@
             </div>
             <div class="controls">
                 <select name="tags" class="span8" multiple="true">
-                    <xsl:apply-templates select="//query[@entity = 'tag']/entry" mode="select_options">
-                        <xsl:with-param name="select" select="fields/tags"/>
-                        <xsl:with-param name="multiple" select="true()"/>
-                    </xsl:apply-templates>
+                    <xsl:apply-templates select="fields/tags" mode="selected_options"/>
                 </select>
             </div>
         </div>
@@ -380,11 +371,11 @@
                     <div class="span8">
                         <!--<div class="input selectize-dialog" data-input="region" onclick="nbApp.choiceRegion(this)">-->
                         <div class="input disabled" data-input="region">
-                            <xsl:value-of select="fields/region"/>
+                            <xsl:value-of select="fields/address/region"/>
                         </div>
                     </div>
-                    <input type="hidden" name="region" value="{fields/region}"/>
-                    <input type="hidden" name="regionid" value="{fields/regionid}"/>
+                    <input type="hidden" name="region" value="{/addressfields/region}"/>
+                    <input type="hidden" name="regionid" value="{/addressfields/regionid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -395,11 +386,11 @@
                     <div class="span8">
                         <!--<div class="input selectize-dialog" data-input="locality" onclick="nbApp.choiceLocality(this)">-->
                         <div class="input disabled" data-input="locality">
-                            <xsl:value-of select="fields/locality"/>
+                            <xsl:value-of select="fields/address/locality"/>
                         </div>
                     </div>
-                    <input type="hidden" name="locality" value="{fields/locality}"/>
-                    <input type="hidden" name="localityid" value="{fields/localityid}"/>
+                    <input type="hidden" name="locality" value="{fields/address/locality}"/>
+                    <input type="hidden" name="localityid" value="{fields/address/localityid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -411,11 +402,11 @@
                         <div class="input selectize-dialog" data-input="district" title="{//captions/district/@caption}"
                              onclick="nbApp.choiceDistrict(this)">
                             <!--<div class="input selectize-dialog" data-input="district">-->
-                            <xsl:value-of select="fields/district"/>
+                            <xsl:value-of select="fields/address/district"/>
                         </div>
                     </div>
-                    <input type="hidden" name="district" value="{fields/district}"/>
-                    <input type="hidden" name="districtid" value="{fields/districtid}"/>
+                    <input type="hidden" name="district" value="{fields/address/district}"/>
+                    <input type="hidden" name="districtid" value="{fields/address/districtid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -426,11 +417,11 @@
                     <div class="span8">
                         <div class="input selectize-dialog" data-input="street" title="{//captions/street/@caption}"
                              onclick="nbApp.choiceStreet(this)">
-                            <xsl:value-of select="fields/street"/>
+                            <xsl:value-of select="fields/address/street"/>
                         </div>
                     </div>
-                    <input type="hidden" name="street" value="{fields/street}"/>
-                    <input type="hidden" name="streetid" value="{fields/streetid}"/>
+                    <input type="hidden" name="street" value="{fields/address/street}"/>
+                    <input type="hidden" name="streetid" value="{fields/address/streetid}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -438,7 +429,7 @@
                     <xsl:value-of select="//captions/home/@caption"/>
                 </div>
                 <div class="controls">
-                    <input type="text" name="housenumber" value="{fields/housenumber}" class="span1"/>
+                    <input type="text" name="housenumber" value="{fields/address/housenumber}" class="span1"/>
                 </div>
             </div>
             <div class="form-group">
@@ -446,7 +437,7 @@
                     <xsl:value-of select="//captions/additional/@caption"/>
                 </div>
                 <div class="controls">
-                    <input type="text" name="additionalinfo" value="{fields/additionalinfo}" class="span8"/>
+                    <input type="text" name="additionalinfo" value="{fields/address/additionalinfo}" class="span8"/>
                 </div>
             </div>
         </fieldset>
@@ -560,25 +551,21 @@
         name="formsesid" value="{formsesid}" /> Секция "Вложения" <div display="block"
         id="att"> <br /> <xsl:call-template name="attach" /> </div> </form> -->
 
-    <xsl:template match="entry" mode="select_options">
-        <xsl:param name="select"/>
-        <xsl:param name="multiple" select="false()"/>
-
-        <option value="{@id}">
-            <xsl:choose>
-                <xsl:when test="$multiple">
-                    <xsl:if test="$select/entry/@id = @id">
-                        <xsl:attribute name="selected" select="'selected'"/>
-                    </xsl:if>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:if test="@id = $select">
-                        <xsl:attribute name="selected" select="'selected'"/>
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:value-of select="."/>
-        </option>
+    <xsl:template match="*" mode="selected_options">
+        <xsl:choose>
+            <xsl:when test="entry">
+                <xsl:for-each select="entry">
+                    <option value="{@id}" selected="selected">
+                        <xsl:value-of select="."/>
+                    </option>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <option value="{@id}" selected="selected">
+                    <xsl:value-of select="."/>
+                </option>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
