@@ -2522,18 +2522,18 @@ $(function() {
 });
 
 nbApp.selectOptions = {
-    organizationid: {
+    organization: {
         url: 'Provider?id=get-organizations',
         search: true
     },
     orgcategory: {
         url: 'Provider?id=get-org-categories'
     },
-    departmentid: {
+    department: {
         url: 'Provider?id=get-departments',
-        data: ['organizationid']
+        data: ['organization']
     },
-    positionid: {
+    position: {
         url: 'Provider?id=get-positions'
     }
 };

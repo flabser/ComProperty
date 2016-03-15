@@ -1,7 +1,6 @@
 package staff.page.form;
 
 import kz.lof.localization.LanguageCode;
-import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -13,7 +12,6 @@ import staff.dao.OrganizationDAO;
 import staff.model.Department;
 import staff.model.constants.DepartmentType;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,11 +37,6 @@ public class DepartmentForm extends StaffForm {
         }
         addContent(entity);
         addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
-
-        if (entity.getOrganization() != null && entity.getOrganization().getId() != null) {
-            addContent(new _POJOListWrapper(Arrays.asList(entity.getOrganization()), session));
-        }
-
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }
@@ -72,7 +65,7 @@ public class DepartmentForm extends StaffForm {
             entity.setName(formData.getValue("name"));
             entity.setType(DepartmentType.valueOf(formData.getValueSilently("type", "UNKNOWN")));
             OrganizationDAO orgDAO = new OrganizationDAO(session);
-            entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organizationid"))));
+            entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organization"))));
 
             if (isNew) {
                 dao.add(entity);
@@ -91,10 +84,10 @@ public class DepartmentForm extends StaffForm {
         _Validation ve = new _Validation();
 
         if (formData.getValueSilently("name").isEmpty()) {
-            ve.addError("name", "required", getLocalizedWord("required", lang));
+            ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
         }
-        if (formData.getValueSilently("organizationid").isEmpty()) {
-            ve.addError("organizationid", "required", getLocalizedWord("required", lang));
+        if (formData.getValueSilently("organization").isEmpty()) {
+            ve.addError("organization", "required", getLocalizedWord("field_is_empty", lang));
         }
 
         return ve;

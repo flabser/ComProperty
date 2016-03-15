@@ -37,10 +37,7 @@
                         <div class="controls">
                             <select name="orgcategory" class="span4">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//query[@entity = 'orgcategory']/entry"
-                                                     mode="select_options">
-                                    <xsl:with-param name="select" select="fields/orgcategory"/>
-                                </xsl:apply-templates>
+                                <xsl:apply-templates select="fields/orgcategory" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
@@ -83,12 +80,8 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="entry" mode="select_options">
-        <xsl:param name="select"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $select">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
+    <xsl:template match="*" mode="selected_options">
+        <option value="{@id}" selected="selected">
             <xsl:value-of select="."/>
         </option>
     </xsl:template>

@@ -27,12 +27,9 @@
                             <xsl:value-of select="//captions/organization/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="organizationid" class="span7" required="required" autocomplete="off">
+                            <select name="organization" class="span7" required="required" autocomplete="off">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//query[@entity = 'organization']/entry"
-                                                     mode="select_options">
-                                    <xsl:with-param name="select" select="fields/organizationid"/>
-                                </xsl:apply-templates>
+                                <xsl:apply-templates select="fields/organization" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
@@ -74,12 +71,8 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="entry" mode="select_options">
-        <xsl:param name="select"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $select">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
+    <xsl:template match="*" mode="selected_options">
+        <option value="{@id}" selected="selected">
             <xsl:value-of select="."/>
         </option>
     </xsl:template>

@@ -22,12 +22,8 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="entry" mode="select_options">
-        <xsl:param name="select"/>
-        <option value="{@id}">
-            <xsl:if test="@id = $select">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
+    <xsl:template match="*" mode="selected_options">
+        <option value="{@id}" selected="selected">
             <xsl:value-of select="."/>
         </option>
     </xsl:template>
@@ -61,7 +57,7 @@
                             <xsl:value-of select="//captions/iin/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="iin" value="{fields/iin}" class="span4" />
+                            <input type="text" name="iin" value="{fields/iin}" class="span4"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -69,12 +65,9 @@
                             <xsl:value-of select="//captions/organization/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="organizationid" class="span7" autocomplete="off">
+                            <select name="organization" class="span7" autocomplete="off">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//query[@entity = 'organization']/entry"
-                                                     mode="select_options">
-                                    <xsl:with-param name="select" select="fields/organizationid"/>
-                                </xsl:apply-templates>
+                                <xsl:apply-templates select="fields/organization" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
@@ -83,12 +76,9 @@
                             <xsl:value-of select="//captions/department/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="departmentid" class="span7" autocomplete="off">
+                            <select name="department" class="span7" autocomplete="off">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//query[@entity = 'department']/entry"
-                                                     mode="select_options">
-                                    <xsl:with-param name="select" select="fields/departmentid"/>
-                                </xsl:apply-templates>
+                                <xsl:apply-templates select="fields/department" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
@@ -97,12 +87,9 @@
                             <xsl:value-of select="//captions/position/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="positionid" class="span7" autocomplete="off">
+                            <select name="position" class="span7" autocomplete="off">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//query[@entity = 'position']/entry"
-                                                     mode="select_options">
-                                    <xsl:with-param name="select" select="fields/positionid"/>
-                                </xsl:apply-templates>
+                                <xsl:apply-templates select="fields/position" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
@@ -142,7 +129,7 @@
                             <div class="controls">
                                 <input type="text" name="login" value="{fields/login}" class="span7"
                                        autocomplete="off">
-                                    <xsl:if test="fields/reguser != 'on'">
+                                    <xsl:if test="not(fields/reguser)">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -155,7 +142,7 @@
                             <div class="controls">
                                 <input type="email" name="email" value="{fields/email}" class="span4"
                                        autocomplete="off">
-                                    <xsl:if test="fields/reguser != 'on'">
+                                    <xsl:if test="not(fields/reguser)">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -168,7 +155,7 @@
                             <div class="controls">
                                 <input type="password" name="pwd" value="{fields/password}" class="span4"
                                        autocomplete="off">
-                                    <xsl:if test="fields/reguser != 'on'">
+                                    <xsl:if test="not(fields/reguser)">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -181,7 +168,7 @@
                             <div class="controls">
                                 <input type="password" name="pwd_confirm" value="{fields/reenterpassword}" class="span4"
                                        autocomplete="off">
-                                    <xsl:if test="fields/reguser != 'on'">
+                                    <xsl:if test="not(fields/reguser)">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
