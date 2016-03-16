@@ -50,6 +50,7 @@ public class FillLocalities extends InitialDataAdapter<Locality, LocalityDAO> {
 				entities.add(entity);
 			}
 		}
+
 		return entities;
 
 	}
