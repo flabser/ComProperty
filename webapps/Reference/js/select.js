@@ -1,7 +1,6 @@
 nbApp.selectOptions = {
     country: {
-        url: 'Provider?id=get-countries',
-        search: true
+        url: 'Provider?id=get-countries'
     },
     district: {
         url: 'Provider?id=get-districts'

@@ -1,7 +1,6 @@
 nbApp.selectOptions = {
     organization: {
-        url: 'Provider?id=get-organizations',
-        search: true
+        url: 'Provider?id=get-organizations'
     },
     orgcategory: {
         url: 'Provider?id=get-org-categories'

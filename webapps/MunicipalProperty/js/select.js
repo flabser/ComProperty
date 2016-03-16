@@ -1,7 +1,6 @@
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'Provider?id=get-organizations',
-        search: true
+        url: 'Provider?id=get-organizations'
     },
     orgcategory: {
         url: 'Provider?id=get-org-categories'
@@ -25,8 +24,7 @@ nbApp.selectOptions = {
     },
     street: {
         url: 'Provider?id=get-streets',
-        data: ['district'],
-        search: true
+        data: ['district']
     },
     tags: {
         url: 'Provider?id=get-tags'

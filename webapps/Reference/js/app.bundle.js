@@ -1437,10 +1437,8 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
         return;
     }
 
-    console.log(arguments);
-
     var msg,
-        bodyStIndex = jqxhr.responseText.indexOf('<body>');
+        bodyStIndex = jqxhr.responseText && jqxhr.responseText.indexOf('<body>');
     if (bodyStIndex > -1) {
         msg = jqxhr.responseText.substring(bodyStIndex, jqxhr.responseText.indexOf('</body>'))
     } else {
@@ -2358,19 +2356,47 @@ nb.xhrDelete = function(data) {
 nb.getSelectOptions = function(optionId) {
     var options = nbApp.selectOptions[optionId];
     var cacheDataSource = [];
+    var allDataLoaded = false;
+    var meta = {};
 
-    var jsonToSelect2ItemsAdapter = function(data) {
+    var dataAdapter = function(data) {
         var items = [],
+            meta = {},
+            list = {};
+
+        if (data.objects.length) {
+            meta = data.objects[0].meta;
             list = data.objects[0].list;
-        for (var k in list) {
-            items.push({
-                id: list[k].id,
-                text: list[k].name
-            });
+
+            for (var k in list) {
+                items.push({
+                    id: list[k].id,
+                    text: list[k].name
+                });
+            }
         }
 
         return {
-            meta: data.objects[0].meta,
+            meta: meta,
+            items: items
+        }
+    };
+
+    var filterItems = function(data, term) {
+        if (!term || !term.trim().length) {
+            return data;
+        }
+
+        var _term = term.trim().toLowerCase();
+        var items = [];
+        for (var i in data.items) {
+            if (data.items[i].text.toLowerCase().indexOf(_term) > -1) {
+                items.push(data.items[i]);
+            }
+        }
+
+        return {
+            meta: data.meta,
             items: items
         }
     };
@@ -2382,56 +2408,57 @@ nb.getSelectOptions = function(optionId) {
             delay: 0,
             data: function(params) {
                 var _data = {
-                    page: params.page
+                    page: params.page,
+                    keyword: params.term
                 };
-                if (options.search) {
-                    _data.keyword = params.term
-                }
+
                 for (var k in options.data) {
-                    _data[options.data] = this[0].form[options.data].value;
+                    _data[options.data[k]] = this[0].form[options.data[k]].value;
                 }
 
                 return _data;
             },
             processResults: function(data, params) {
+                var _data = data;
                 params.page = params.page || 1;
-                var _data = data; // jsonToSelect2ItemsAdapter(data);
+                meta = data.meta;
+                allDataLoaded = 1 == meta.totalPages;
 
                 return {
                     results: _data.items,
                     pagination: {
-                        more: false // params.page < _data.meta.totalPages
+                        more: params.page < meta.totalPages
                     }
                 };
             },
             transport: function(params, success, failure) {
-                console.log('transport', arguments);
-
-                //
                 var cachedData,
                     key = params.url,
-                    checkCache = !params.data.keyword;
+                    checkCache = meta.totalPages == 1;
 
                 if (checkCache) {
                     cachedData = cacheDataSource[key];
                 }
 
-                if (cachedData) {
-                    return success(cachedData);
+                if (cachedData && cachedData.items.length) {
+                    var result = filterItems(cachedData, params.data.keyword);
+                    console.log('cachedData', result, params);
+                    return success(result);
                 } else {
                     var $request = $.ajax(params);
                     $request.then(function(data) {
-                        var _data = jsonToSelect2ItemsAdapter(data);
+                        var _data = dataAdapter(data);
                         cacheDataSource[key] = _data;
-                        success(_data);
-                        return _data;
+                        console.log('ajax load', params.data, _data);
+                        return success(_data);
                     });
                     $request.fail(failure);
                     return $request;
                 }
             },
             cache: true
-        }
+        },
+        minimumInputLength: 0
     };
 };
 
@@ -2603,8 +2630,7 @@ $(function() {
 
 nbApp.selectOptions = {
     country: {
-        url: 'Provider?id=get-countries',
-        search: true
+        url: 'Provider?id=get-countries'
     },
     district: {
         url: 'Provider?id=get-districts'

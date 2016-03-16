@@ -371,7 +371,6 @@
 		<entry lang="ENG">Localized titles</entry>
 		<entry lang="CHI">基本性能</entry>
 	</sentence>
-
 	<sentence mode="on" keyword="bin">
 		<entry lang="RUS">БИН</entry>
 		<entry lang="KAZ">БИН</entry>
@@ -586,7 +585,7 @@
         <entry lang="RUS">Имя пользователя</entry>
         <entry lang="KAZ">Есімі</entry>
     </sentence>
-     <sentence mode="on" keyword="login_name">
+	<sentence mode="on" keyword="login_name">
         <entry lang="ENG">Login</entry>
         <entry lang="RUS">Логин</entry>
         <entry lang="KAZ">Логин</entry>
@@ -595,6 +594,11 @@
         <entry lang="ENG">E-mail</entry>
         <entry lang="RUS">Электронная почта</entry>
         <entry lang="KAZ">Электронная почта</entry>
+    </sentence>
+    <sentence mode="on" keyword="color">
+        <entry lang="ENG">Color</entry>
+        <entry lang="RUS">Цвет</entry>
+        <entry lang="KAZ">Түс</entry>
     </sentence>
 	<sentence mode="on" keyword="Сокращенное имя">
 		<entry lang="KAZ">Қысқартылған есімі</entry>
@@ -886,7 +890,4 @@
 		<entry lang="RUS">Документы не найдены, строка поиска</entry>
 		<entry lang="KAZ"></entry>
 	</sentence>
-
 </vocabulary>
-
-

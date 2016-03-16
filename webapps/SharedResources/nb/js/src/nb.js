@@ -121,10 +121,8 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
         return;
     }
 
-    console.log(arguments);
-
     var msg,
-        bodyStIndex = jqxhr.responseText.indexOf('<body>');
+        bodyStIndex = jqxhr.responseText && jqxhr.responseText.indexOf('<body>');
     if (bodyStIndex > -1) {
         msg = jqxhr.responseText.substring(bodyStIndex, jqxhr.responseText.indexOf('</body>'))
     } else {
