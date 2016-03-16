@@ -27,14 +27,7 @@
                             <xsl:value-of select="//captions/balance_holder/@caption"/>
                         </div>
                         <div class="controls">
-                            <div class="span8">
-                                <div class="input selectize-dialog" data-input="balanceholder"
-                                     title="{//captions/balance_holder/@caption}"
-                                     onclick="nbApp.choiceBalanceHolder(this)">
-                                    <xsl:value-of select="fields/balanceholdername"/>
-                                </div>
-                                <input type="hidden" name="balanceholder" value="{fields/balanceholder}"/>
-                            </div>
+                            <select name="balanceholder" class="span8"></select>
                         </div>
                     </div>
                     <div class="form-group">

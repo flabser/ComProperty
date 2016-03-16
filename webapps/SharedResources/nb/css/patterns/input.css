@@ -20,14 +20,16 @@ select {
 
 .input,
 input,
-textarea {
+textarea,
+select {
     /* box-shadow: inset 0px 3px 3px #f5f5f5; */
     border-top: 1px solid #c0c0c0;
 }
 
-select {
+
+/* select {
     background: #FFF linear-gradient(#FFF, #F7F7F7);
-}
+} */
 
 input[type=date] {
     height: 28px;
