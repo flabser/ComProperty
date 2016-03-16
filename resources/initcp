@@ -21,4 +21,4 @@ stini reference.init.FillOrgCategories
 stini staff.init.FillDefaultLabels
 stini staff.init.FillDefaultRoles
 stini staff.init.FillTestOrgs
-#stini staff.init.FillTestUsers
+stini staff.init.FillTestUsers

@@ -8,8 +8,8 @@ import kz.lof.scripting._Session;
 import reference.dao.CountryDAO;
 import reference.dao.LocalityDAO;
 import reference.dao.RegionDAO;
+import reference.model.CityDistrict;
 import reference.model.Country;
-import reference.model.District;
 import reference.model.Locality;
 import reference.model.Region;
 import reference.model.Street;
@@ -28,7 +28,7 @@ public class Address {
 
 	// @ManyToOne
 	// @JoinColumn
-	private District district;
+	private CityDistrict cityDistrict;
 
 	// @ManyToOne
 	// @JoinColumn
@@ -102,12 +102,12 @@ public class Address {
 
 	}
 
-	public District getDistrict() {
-		return district;
+	public CityDistrict getDistrict() {
+		return cityDistrict;
 	}
 
-	public void setDistrict(District district) {
-		this.district = district;
+	public void setCityDistrict(CityDistrict district) {
+		this.cityDistrict = district;
 	}
 
 	public static Address getStub(_Session session) {
@@ -118,9 +118,9 @@ public class Address {
 		RegionDAO rDao = new RegionDAO(session);
 		Region region = rDao.findByName("Алматы");
 		addr.setRegion(region);
-		District district = new District();
-		district.setName("");
-		addr.setDistrict(district);
+		CityDistrict cityDistrict = new CityDistrict();
+		cityDistrict.setName("");
+		addr.setCityDistrict(cityDistrict);
 		LocalityDAO lDao = new LocalityDAO(session);
 		Locality city = lDao.findByName("Алматы");
 		addr.setLocality(city);
