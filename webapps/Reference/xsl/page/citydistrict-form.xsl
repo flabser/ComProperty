@@ -7,14 +7,14 @@
     </xsl:template>
 
     <xsl:template name="_content">
-        <xsl:apply-templates select="//document[@entity = 'country']"/>
+        <xsl:apply-templates select="//document[@entity = 'citydistrict']"/>
     </xsl:template>
 
     <xsl:template match="document[@entity]">
         <form name="{@entity}" action="">
             <header class="content-header">
                 <h1 class="header-title">
-                    <xsl:value-of select="//captions/country/@caption"/>
+                    <xsl:value-of select="//captions/city_district/@caption"/>
                 </h1>
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
@@ -30,6 +30,16 @@
                             <div class="controls">
                                 <input type="text" name="name" value="{fields/name}" class="span7" required="required"
                                        autofocus="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/locality/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <select name="locality" class="span7" required="required">
+                                    <xsl:apply-templates select="fields/locality" mode="selected_options"/>
+                                </select>
                             </div>
                         </div>
                     </fieldset>
@@ -54,14 +64,9 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="entry" mode="select_options">
-        <xsl:param name="selected"/>
-
-        <option value="{@attrval}">
-            <xsl:if test="@attrval = $selected">
-                <xsl:attribute name="selected" select="'selected'"/>
-            </xsl:if>
-            <xsl:value-of select="text()"/>
+    <xsl:template match="*" mode="selected_options">
+        <option value="{@id}" selected="selected">
+            <xsl:value-of select="."/>
         </option>
     </xsl:template>
 
