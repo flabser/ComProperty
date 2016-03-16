@@ -35,7 +35,13 @@
         <entry lang="RUS">Районы</entry>
         <entry lang="KAZ">Районы</entry>
         <entry lang="CHO"></entry>
-    </sentence> 
+    </sentence>
+    <sentence mode="on" keyword="city_districts">
+        <entry lang="ENG">Districts</entry>
+        <entry lang="RUS">Районы</entry>
+        <entry lang="KAZ">Районы</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
     <sentence mode="on" keyword="localities">
         <entry lang="ENG">Localities</entry>
         <entry lang="RUS">Населенные пункты</entry>
@@ -48,13 +54,13 @@
         <entry lang="KAZ">Улицы</entry>
         <entry lang="CHO"></entry>
     </sentence>
-     <sentence mode="on" keyword="region_types">
+    <sentence mode="on" keyword="region_types">
         <entry lang="ENG">Region types</entry>
         <entry lang="RUS">Типы регионов</entry>
         <entry lang="KAZ">Типы регионов</entry>
         <entry lang="CHO"></entry>
     </sentence>
-     <sentence mode="on" keyword="locality_types">
+    <sentence mode="on" keyword="locality_types">
         <entry lang="ENG">Locality types</entry>
         <entry lang="RUS">Типы населенных пунктов</entry>
         <entry lang="KAZ">Типы населенных пунктов</entry>
@@ -66,7 +72,7 @@
         <entry lang="KAZ">Должности</entry>
         <entry lang="CHO"></entry>
     </sentence>
-     <sentence mode="on" keyword="org_categories">
+    <sentence mode="on" keyword="org_categories">
         <entry lang="ENG">Organizaton categories</entry>
         <entry lang="RUS">Типы организации</entry>
         <entry lang="KAZ">Типы организации</entry>
@@ -102,11 +108,11 @@
         <entry lang="KAZ">Материал постройки</entry>
         <entry lang="CHO"></entry>
     </sentence>
-   <sentence mode="on" keyword="receiving_reason">
-		<entry lang="RUS">Основание поступления на баланс</entry>
-		<entry lang="KAZ">Балансқа өту негізі</entry>
-		<entry lang="ENG">Receiving reason</entry>
-	</sentence>
+    <sentence mode="on" keyword="receiving_reason">
+        <entry lang="RUS">Основание поступления на баланс</entry>
+        <entry lang="KAZ">Балансқа өту негізі</entry>
+        <entry lang="ENG">Receiving reason</entry>
+    </sentence>
     <sentence mode="on" keyword="tags">
         <entry lang="ENG">Tags</entry>
         <entry lang="RUS">Метки</entry>
@@ -119,11 +125,11 @@
         <entry lang="KAZ">Метка</entry>
         <entry lang="CHO"></entry>
     </sentence>
-<sentence mode="on" keyword="kuf">
-		<entry lang="ENG">KUF</entry>
-		<entry lang="RUS">КУФ</entry>
-		<entry lang="KAZ">КУФ</entry>
-	</sentence>
+    <sentence mode="on" keyword="kuf">
+        <entry lang="ENG">KUF</entry>
+        <entry lang="RUS">КУФ</entry>
+        <entry lang="KAZ">КУФ</entry>
+    </sentence>
     <sentence mode="on" keyword="name">
         <entry lang="ENG">Name</entry>
         <entry lang="RUS">Название</entry>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:import href="../layout.xsl"/>
@@ -10,7 +10,7 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/citydistrict/@caption"/>
+                <xsl:with-param name="title" select="//captions/city_districts/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
