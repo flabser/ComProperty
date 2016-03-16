@@ -21,6 +21,18 @@
                         <span class="vw-balance-holder">
                             <xsl:value-of select="viewcontent/balanceholder"/>
                         </span>
+                        <span class="vw-tags">
+                            <xsl:if test="viewcontent/tags">
+                                <xsl:for-each select="viewcontent/tags/tag">
+                                    <div class="tag tag-xs">
+                                        <xsl:if test="name != ''">
+                                            <xsl:attribute name="style" select="('color:', color)"/>
+                                        </xsl:if>
+                                        <xsl:value-of select="name"/>
+                                    </div>
+                                </xsl:for-each>
+                            </xsl:if>
+                        </span>
                     </div>
                 </a>
             </div>

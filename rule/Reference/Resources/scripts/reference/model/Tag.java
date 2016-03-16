@@ -82,6 +82,11 @@ public class Tag extends Reference {
     }
 
     @Override
+    public String getShortXMLChunk(_Session ses) {
+        return "<name>" + getLocalizedName(ses.getLang()) + "</name><color>" + color + "</color>";
+    }
+
+    @Override
     public String toString() {
         return "Tag[" + id + ", " + getLocalizedName() + ", " + color + ", " + parent + ", " + getAuthor() + ", " + getRegDate() + "]";
     }

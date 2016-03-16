@@ -321,6 +321,16 @@ public class Property extends SecureAppEntity {
         chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
         chunk.append("<invnumber>" + invNumber + "</invnumber>");
         chunk.append("<objectname>" + objectName + "</objectname>");
+        if (getTags() != null && getTags().size() > 0) {
+            chunk.append("<tags>");
+            for (Tag tag : getTags()) {
+                chunk.append("<tag>");
+                chunk.append("<name>" + tag.getLocalizedName(ses.getLang()) + "</name>");
+                chunk.append("<color>" + tag.getColor() + "</color>");
+                chunk.append("</tag>");
+            }
+            chunk.append("</tags>");
+        }
         return chunk.toString();
     }
 
