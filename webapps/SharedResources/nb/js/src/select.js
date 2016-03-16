@@ -99,14 +99,14 @@ nb.getSelectOptions = function(optionId) {
 
                 if (cachedData && cachedData.items.length) {
                     var result = filterItems(cachedData, params.data.keyword);
-                    console.log('cachedData', result, params);
+                    // console.log('cachedData', result, params);
                     return success(result);
                 } else {
                     var $request = $.ajax(params);
                     $request.then(function(data) {
                         var _data = dataAdapter(data);
                         cacheDataSource[key] = _data;
-                        console.log('ajax load', params.data, _data);
+                        // console.log('ajax load', params.data, _data);
                         return success(_data);
                     });
                     $request.fail(failure);
