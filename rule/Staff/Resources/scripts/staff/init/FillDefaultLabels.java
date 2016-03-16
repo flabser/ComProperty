@@ -29,6 +29,7 @@ public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, Org
 		Map<LanguageCode, String> name = new HashMap<LanguageCode, String>();
 		name.put(LanguageCode.ENG, "Inactive organization");
 		name.put(LanguageCode.RUS, "Не действующая организация");
+		name.put(LanguageCode.RUS, "Ұйымдастыру міндетін атқарушы емес");
 		entity.setLocalizedName(name);
 		entity.setDescription("Inactive organization");
 		entities.add(entity);
@@ -38,6 +39,8 @@ public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, Org
 		name = new HashMap<LanguageCode, String>();
 		name.put(LanguageCode.ENG, "Primary organization");
 		name.put(LanguageCode.RUS, "Первичная организация");
+		name.put(LanguageCode.KAZ, "Бастауыш ұйымы");
+		entity.setLocalizedName(name);
 		entity.setDescription("primary organization");
 		entities.add(entity);
 
@@ -46,6 +49,8 @@ public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, Org
 		name = new HashMap<LanguageCode, String>();
 		name.put(LanguageCode.ENG, "Branch");
 		name.put(LanguageCode.RUS, "Филиал");
+		name.put(LanguageCode.KAZ, "Филиал");
+		entity.setLocalizedName(name);
 		entity.setDescription("organization is a branch of the primary organization");
 		entities.add(entity);
 
@@ -55,6 +60,8 @@ public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, Org
 		name = new HashMap<LanguageCode, String>();
 		name.put(LanguageCode.ENG, "Balance holder");
 		name.put(LanguageCode.RUS, "Организация-балансодержатель");
+		name.put(LanguageCode.KAZ, "Организация-балансодержатель");
+		entity.setLocalizedName(name);
 		entity.setDescription("Организация-балансодержатель");
 		entities.add(entity);
 
