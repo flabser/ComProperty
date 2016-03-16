@@ -28,9 +28,7 @@
                             <xsl:value-of select="//captions/balance_holder/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="balanceholder" class="span8">
-                                <option value=""></option>
-                            </select>
+                            <select name="balanceholder" class="span8"></select>
                         </div>
                     </div>
                     <div class="form-group">
