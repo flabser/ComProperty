@@ -2458,7 +2458,9 @@ nb.getSelectOptions = function(optionId) {
             },
             cache: true
         },
-        minimumInputLength: 0
+        allowClear: true,
+        minimumInputLength: 0,
+        placeholder: ''
     };
 };
 
@@ -2853,6 +2855,7 @@ function renderFilePanel(fileName, fsid) {
 
     if (activeFile == fileName) {
         $tpl.find('.panel').addClass('open');
+        $tpl.find('.panel-title').addClass('blink-anim');
     }
 
     if (!initMode) {

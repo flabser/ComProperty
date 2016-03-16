@@ -4,6 +4,11 @@
 
 @media ( max-width: 768px) {
     .select2-container {
+        left: 0 !important;
+        width: 100% !important;
+    }
+    .select2-container--open .select2-dropdown {
+        left: 0;
         width: 100% !important;
     }
 }

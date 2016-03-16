@@ -2458,7 +2458,9 @@ nb.getSelectOptions = function(optionId) {
             },
             cache: true
         },
-        minimumInputLength: 0
+        allowClear: true,
+        minimumInputLength: 0,
+        placeholder: ''
     };
 };
 
