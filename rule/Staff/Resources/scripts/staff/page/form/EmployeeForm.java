@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import kz.lof.localization.LanguageCode;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -59,6 +60,7 @@ public class EmployeeForm extends StaffForm {
 		 * ApplicationDAO(session).findAll(), session));
 		 */
 		addContent(getSimpleActionBar(session, session.getLang()));
+        addContent(new _POJOListWrapper<>(new RoleDAO(session).findAll(), session));
 		startSaveFormTransact(entity);
 	}
 
