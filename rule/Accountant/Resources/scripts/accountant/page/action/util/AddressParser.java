@@ -140,6 +140,7 @@ public class AddressParser {
 		if (!unit.isDistrict()) {
 			Street street = dao.findByName(unit.name.toUpperCase());
 			if (street != null) {
+				unit.street = street;
 				street = dao.findByName(unit.name.toUpperCase() + " " + nextUnit.name.toUpperCase());
 
 				if (street != null) {
@@ -150,7 +151,7 @@ public class AddressParser {
 				}
 
 				// unit.street = true;
-				unit.street = street;
+
 			} else {
 				ViewPage streetViewPage = dao.findAllByKeyword(unit.name.toUpperCase(), 0, 100);
 				if (streetViewPage.getCount() > 0 && nextUnit != null) {
