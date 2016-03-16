@@ -41,7 +41,7 @@ public class User implements IUser<Long>, IPOJOObject {
 	@Transient
 	private String userName;
 
-	@Column(length = 64, unique = false)
+	@Column(length = 64, unique = true)
 	private String login;
 
 	@Column(length = 64)
