@@ -2362,17 +2362,24 @@ nb.getSelectOptions = function(optionId) {
     var dataAdapter = function(data) {
         var items = [],
             meta = {},
-            list = {};
+            list = {},
+            buff = {};
 
         if (data.objects.length) {
             meta = data.objects[0].meta;
             list = data.objects[0].list;
 
             for (var k in list) {
-                items.push({
+                buff = {
                     id: list[k].id,
                     text: list[k].name
-                });
+                };
+                if (options.fields) {
+                    for (var fi in options.fields) {
+                        buff[options.fields[fi]] = list[k][options.fields[fi]];
+                    }
+                }
+                items.push(buff);
             }
         }
 
@@ -2402,6 +2409,11 @@ nb.getSelectOptions = function(optionId) {
     };
 
     return {
+        allowClear: true,
+        minimumInputLength: 0,
+        placeholder: '',
+        templateResult: options.templateResult,
+        // templateSelection: options.templateResult,
         ajax: {
             url: options.url,
             dataType: 'json',
@@ -2457,10 +2469,7 @@ nb.getSelectOptions = function(optionId) {
                 }
             },
             cache: true
-        },
-        allowClear: true,
-        minimumInputLength: 0,
-        placeholder: ''
+        }
     };
 };
 
@@ -2768,6 +2777,15 @@ nbApp.selectOptions = {
         data: ['district']
     },
     tags: {
-        url: 'Provider?id=get-tags'
+        url: 'Provider?id=get-tags',
+        fields: ['color'],
+        templateResult: function(item) {
+            if (!item.id || !item.color) {
+                return item.text;
+            }
+
+            var $item = $('<span style="color:' + item.color + '">' + item.text + '</span>');
+            return $item;
+        }
     }
 };

@@ -27,6 +27,15 @@ nbApp.selectOptions = {
         data: ['district']
     },
     tags: {
-        url: 'Provider?id=get-tags'
+        url: 'Provider?id=get-tags',
+        fields: ['color'],
+        templateResult: function(item) {
+            if (!item.id || !item.color) {
+                return item.text;
+            }
+
+            var $item = $('<span style="color:' + item.color + '">' + item.text + '</span>');
+            return $item;
+        }
     }
 };
