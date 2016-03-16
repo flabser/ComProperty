@@ -4,7 +4,7 @@ $(document).ready(function() {
         event.preventDefault();
 
         var noty = nb.notify({
-            message: nb.getText('wait_report_loaded', 'Подождите формируется отчет...')
+            message: nb.getText('wait_report', 'Подождите формируется отчет...')
         });
 
         var xhr = new XMLHttpRequest();
@@ -16,12 +16,6 @@ $(document).ready(function() {
             noty.remove();
 
             var arrayBuffer = xhr.response;
-            var byteArray;
-            if (arrayBuffer) {
-                byteArray = new Uint8Array(arrayBuffer);
-
-            }
-
             // check for a filename
             var filename = "";
             var disposition = xhr.getResponseHeader('Content-Disposition');
@@ -33,11 +27,12 @@ $(document).ready(function() {
                 }
             }
 
-            var type = xhr.getResponseHeader('Content-Type') + ';charset=utf-8';
+            var type = xhr.getResponseHeader('Content-Type');
             var blob = new Blob([arrayBuffer], { type: type });
 
             if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created.
+                // These URLs will no longer resolve as the data backing the URL has been freed."
                 window.navigator.msSaveBlob(blob, filename);
             } else {
                 var URL = window.URL || window.webkitURL;
