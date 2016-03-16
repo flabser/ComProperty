@@ -6,3 +6,9 @@ label > input + span {
     display: inline-block;
     margin-left: .3em;
 }
+
+label.btn {
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    margin: 2px;
+}
