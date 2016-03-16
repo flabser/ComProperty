@@ -16,10 +16,16 @@
                 </sup>
             </xsl:if>
         </h1>
-        <div class="content-actions">
-            <xsl:apply-templates select="//actionbar"/>
-            <xsl:apply-templates select="//view_content" mode="page-navigator"/>
-        </div>
+        <xsl:if test="//actionbar or //view_content//query/@maxpage > 1">
+            <div class="content-actions">
+                <div class="pull-left">
+                    <xsl:apply-templates select="//actionbar"/>
+                </div>
+                <div class="pull-right">
+                    <xsl:apply-templates select="//view_content" mode="page-navigator"/>
+                </div>
+            </div>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -2855,6 +2855,7 @@ function renderFilePanel(fileName, fsid) {
 
     if (activeFile == fileName) {
         $tpl.find('.panel').addClass('open');
+        $tpl.find('.panel-title').addClass('blink-anim');
     }
 
     if (!initMode) {
