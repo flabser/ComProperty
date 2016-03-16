@@ -39,6 +39,7 @@
     <caption name="code"/>
     <caption name="building_material"/>
     <caption name="district"/>
+    <caption name="citydistrict"/>
     <caption name="region"/>
     <caption name="country"/>
     <caption name="locality"/>
