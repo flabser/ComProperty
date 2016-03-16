@@ -1,8 +1,10 @@
 package staff.page.form;
 
+import administrator.dao.ApplicationDAO;
 import administrator.dao.UserDAO;
 import administrator.model.User;
 import kz.lof.localization.LanguageCode;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -52,7 +54,8 @@ public class EmployeeForm extends StaffForm {
             entity.setRoles(new ArrayList<Role>());
         }
         addContent(entity);
-        /*addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));*/
+        addContent(new _POJOListWrapper(new RoleDAO(session).findAll(), session));
+        addContent(new _POJOListWrapper(new ApplicationDAO(session).findAll(), session));
         addContent(getSimpleActionBar(session, session.getLang()));
         startSaveFormTransact(entity);
     }

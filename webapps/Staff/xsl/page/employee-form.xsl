@@ -65,8 +65,7 @@
                             <xsl:value-of select="//captions/organization/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="organization" class="span7" autocomplete="off">
-                                <option value=""></option>
+                            <select name="organization" class="span7">
                                 <xsl:apply-templates select="fields/organization" mode="selected_options"/>
                             </select>
                         </div>
@@ -76,8 +75,7 @@
                             <xsl:value-of select="//captions/department/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="department" class="span7" autocomplete="off">
-                                <option value=""></option>
+                            <select name="department" class="span7">
                                 <xsl:apply-templates select="fields/department" mode="selected_options"/>
                             </select>
                         </div>
@@ -87,8 +85,7 @@
                             <xsl:value-of select="//captions/position/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="position" class="span7" autocomplete="off">
-                                <option value=""></option>
+                            <select name="position" class="span7">
                                 <xsl:apply-templates select="fields/position" mode="selected_options"/>
                             </select>
                         </div>
@@ -174,14 +171,6 @@
                                 </input>
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="//captions/roles/@caption"/>
-                            </div>
-                            <div class="controls">
-                                <input type="text" name="roles" value="{//fields/roles}" class="span7"/>
-                            </div>
-                        </div>-->
                     </fieldset>
                 </fieldset>
             </section>
