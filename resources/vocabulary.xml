@@ -102,10 +102,16 @@
         <entry lang="ENG">Registration date</entry>
         <entry lang="CHI"></entry>
     </sentence>
-    <sentence mode="on" keyword="reg_date">
-        <entry lang="RUS">Дата регистрации</entry>
-        <entry lang="KAZ"></entry>
-        <entry lang="ENG">Registration date</entry>
+    <sentence mode="on" keyword="reg_number">
+        <entry lang="RUS">Регистрационный номер</entry>
+        <entry lang="KAZ">Тіркелген нөмір</entry>
+        <entry lang="ENG">Registration number</entry>
+        <entry lang="CHI"></entry>
+    </sentence>
+    <sentence mode="on" keyword="status">
+        <entry lang="RUS">Статус</entry>
+        <entry lang="KAZ">Статус</entry>
+        <entry lang="ENG">Status</entry>
         <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="Свойства пользователя">

@@ -28,6 +28,13 @@ public abstract class MunicipalPropertyForm extends _DoPage {
         _ActionBar actionBar = new _ActionBar(ses);
         actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
         actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
+
+        if (entity.getId() != null) {
+            _Action newOrderAction = new _Action(getLocalizedWord("new_order", lang), "", "new_order");
+            newOrderAction.setURL("Provider?id=order-form&propertyid=" + entity.getId());
+            actionBar.addAction(newOrderAction);
+        }
+
         _Action transferAction = new _Action(getLocalizedWord("transfer", lang), getLocalizedWord("transfer", lang), "transfer");
         transferAction.setURL("Provider?id=transfer");
         // actionBar.addAction(transferAction);

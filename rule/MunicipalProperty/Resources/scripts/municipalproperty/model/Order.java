@@ -1,64 +1,93 @@
 package municipalproperty.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import kz.flabs.util.Util;
+import kz.lof.dataengine.jpa.SecureAppEntity;
+import kz.lof.scripting._Session;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import kz.lof.dataengine.jpa.SecureAppEntity;
 
 @Entity
 @Table(name = "orders")
 @NamedQuery(name = "Order.findAll", query = "SELECT m FROM Order AS m Order BY m.regDate")
 public class Order extends SecureAppEntity {
 
-	@Column(name = "reg_number")
-	private String regNumber;
+    public enum OrderStatus {INACTIVE, ACTIVE}
 
-	@NotNull
-	@ManyToOne(optional = false)
-	@JoinColumn(nullable = false)
-	private Property property;
+    @Column(name = "reg_number")
+    private String regNumber;
 
-	@Lob
-	protected byte[] attachment;
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
+    private Property property;
 
-	private String description;
+    @Lob
+    protected byte[] attachment;
 
-	public String getRegNumber() {
-		return regNumber;
-	}
+    private String description;
 
-	public void setRegNumber(String regNumber) {
-		this.regNumber = regNumber;
-	}
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "order_status")
+    private OrderStatus orderStatus = OrderStatus.ACTIVE;
 
-	public Property getProperty() {
-		return property;
-	}
+    public String getRegNumber() {
+        return regNumber;
+    }
 
-	public void setProperty(Property property) {
-		this.property = property;
-	}
+    public void setRegNumber(String regNumber) {
+        this.regNumber = regNumber;
+    }
 
-	public byte[] getAttachment() {
-		return attachment;
-	}
+    public Property getProperty() {
+        return property;
+    }
 
-	public void setAttachment(byte[] attachment) {
-		this.attachment = attachment;
-	}
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public byte[] getAttachment() {
+        return attachment;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setAttachment(byte[] attachment) {
+        this.attachment = attachment;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String getShortXMLChunk(_Session ses) {
+        StringBuilder chunk = new StringBuilder(1000);
+        chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+        if (regNumber != null) {
+            chunk.append("<regnumber>" + regNumber + "</regnumber>");
+        }
+        if (description != null) {
+            chunk.append("<description>" + description + "</description>");
+        }
+        chunk.append("<orderstatus>" + orderStatus + "</orderstatus>");
+        if (getProperty() != null && getProperty().getId() != null) {
+            chunk.append("<property>");
+            chunk.append("<url>" + property.getURL() + "</url>");
+            chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
+            chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
+            chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
+            chunk.append("</property>");
+        }
+        return chunk.toString();
+    }
+
+    @Override
+    public String getFullXMLChunk(_Session ses) {
+        return getShortXMLChunk(ses);
+    }
 }

@@ -20,6 +20,16 @@
         <entry lang="RUS">КУФ</entry>
         <entry lang="KAZ">КУФ</entry>
     </sentence>
+    <sentence mode="on" keyword="organization">
+        <entry lang="ENG">Organization</entry>
+        <entry lang="RUS">Организация</entry>
+        <entry lang="KAZ">Организация</entry>
+    </sentence>
+    <sentence mode="on" keyword="object">
+        <entry lang="RUS">Объект</entry>
+        <entry lang="KAZ">Объект</entry>
+        <entry lang="ENG">Object</entry>
+    </sentence>
     <sentence mode="on" keyword="personal_estates">
         <entry lang="ENG">Personal estate</entry>
         <entry lang="RUS">Движимое имущество</entry>
@@ -127,6 +137,11 @@
         <entry lang="RUS">Инвентарный номер уже существует</entry>
         <entry lang="KAZ">Инвентарный номер уже существует</entry>
         <entry lang="ENG">The inventory number is exists</entry>
+    </sentence>
+    <sentence mode="on" keyword="reg_documents">
+        <entry lang="RUS">Регистрационные документы</entry>
+        <entry lang="KAZ">Регистрационные документы</entry>
+        <entry lang="ENG">Registration documents</entry>
     </sentence>
     <sentence mode="on" keyword="Описание объекта">
         <entry lang="KAZ">Объектінің сипаттамасы</entry>
@@ -757,6 +772,16 @@
         <entry lang="RUS">Постановление</entry>
         <entry lang="KAZ">Қаулы</entry>
         <entry lang="ENG">Order</entry>
+    </sentence>
+    <sentence mode="on" keyword="new_order">
+        <entry lang="RUS">+Постановление</entry>
+        <entry lang="KAZ">+Қаулы</entry>
+        <entry lang="ENG">+Order</entry>
+    </sentence>
+    <sentence mode="on" keyword="order_name">
+        <entry lang="RUS">Наименование постановления</entry>
+        <entry lang="KAZ">Қаулы атауы</entry>
+        <entry lang="ENG">Order name</entry>
     </sentence>
     <sentence mode="on" keyword="Договора и доп.соглашения">
         <entry lang="KAZ">Келісім-шарттар мен қосымша келісулер</entry>
