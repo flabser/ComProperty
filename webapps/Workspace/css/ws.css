@@ -279,6 +279,10 @@ img.ws-app-logo {
     padding: 0 4px;
 }
 
+.sign-in .noauth span {
+    color: #333;
+}
+
 .sign-in button[type=submit] {
     float: right;
     font-size: 14px;
@@ -317,6 +321,9 @@ img.ws-app-logo {
         clear: both;
         color: #FFF;
         display: block;
+    }
+    .sign-in .noauth span {
+        color: #FFF;
     }
     .sign-in button[type=submit] {
         background: transparent;
