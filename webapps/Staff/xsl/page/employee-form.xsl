@@ -22,6 +22,7 @@
         </div>
     </xsl:template>
 
+
     <xsl:template match="*" mode="selected_options">
         <option value="{@id}" selected="selected">
             <xsl:value-of select="."/>
