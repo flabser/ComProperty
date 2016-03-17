@@ -28,7 +28,7 @@
             </fieldset>
             <div class="upload-result">
                 <div class="js-uploaded-files">
-                    <xsl:apply-templates select="//query[@entity='uploadedfile']/entry"/>
+                    <xsl:apply-templates select="//query[@entity = 'uploadedfile']/entry"/>
                 </div>
             </div>
         </section>
