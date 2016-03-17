@@ -1,6 +1,6 @@
 .pagination {
     margin: 0;
-    padding: 4px 4px 2px;
+    padding: 2px;
     text-align: center;
 }
 
@@ -33,15 +33,13 @@
     display: inline-block !important;
 }
 
-.pagination-select {
-    display: inline-block;
-}
-
-.pagination-select select {
+.pagination > select {
     border-radius: 2px;
+    display: inline-block;
     min-height: auto;
     padding: 4px;
     vertical-align: baseline;
+    width: 50px;
 }
 
 .phone .pagination a {

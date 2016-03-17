@@ -238,7 +238,7 @@
                 <xsl:value-of select="//captions/is_ready_to_use/@caption"/>
             </div>
             <div class="controls">
-                <label class="btn btn-sm">
+                <label class="input">
                     <input type="checkbox" name="isreadytouse" value="1">
                         <xsl:if test="fields/isreadytouse = 'true'">
                             <xsl:attribute name="checked" select="'checked'"/>

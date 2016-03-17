@@ -57,15 +57,13 @@
                 </xsl:if>
                 <xsl:call-template name="pagenavig"/>
                 <xsl:if test="$select_always or $pagination_maxpage > $pagination_count">
-                    <span class="pagination-select">
-                        <select>
-                            <xsl:attribute name="onchange">
-                                <xsl:value-of
-                                        select="concat('window.location.href = &quot;', $refer_url, '&quot; + this.value')"/>
-                            </xsl:attribute>
-                            <xsl:call-template name="combobox"/>
-                        </select>
-                    </span>
+                    <select>
+                        <xsl:attribute name="onchange">
+                            <xsl:value-of
+                                    select="concat('window.location.href=&quot;', $refer_url, '&quot; + this.value')"/>
+                        </xsl:attribute>
+                        <xsl:call-template name="combobox"/>
+                    </select>
                 </xsl:if>
             </div>
         </xsl:if>
