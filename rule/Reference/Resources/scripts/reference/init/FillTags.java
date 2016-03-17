@@ -31,15 +31,6 @@ public class FillTags extends InitialDataAdapter<Tag, TagDAO> {
 		entity.setLocalizedName(name);
 		entities.add(entity);
 
-		entity = new Tag();
-		entity.setName("written-off");
-		name = new HashMap<LanguageCode, String>();
-		name.put(LanguageCode.ENG, "Written-off");
-		name.put(LanguageCode.RUS, "Списан");
-		name.put(LanguageCode.KAZ, "Списан");
-		entity.setLocalizedName(name);
-		entities.add(entity);
-
 		return entities;
 	}
 
