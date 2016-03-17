@@ -23,7 +23,7 @@ public class WrittenOff extends _DoPage {
 		PropertyDAO dao = new PropertyDAO(session);
 		Property entity = dao.findById(UUID.fromString(id));
 		if (entity != null) {
-			// entity.setStatus(StatusType.WRITTENOFF);
+			// entity.setStatus(PropertyStatusType.WRITTENOFF);
 			dao.update(entity);
 		} else {
 			setBadRequest();

@@ -6,11 +6,13 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.user.IUser;
+import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
 import municipalproperty.dao.PersonalEstateDAO;
 import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.constants.KufType;
+import municipalproperty.model.constants.PropertyStatusType;
 import municipalproperty.page.form.MunicipalPropertyForm;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
@@ -30,7 +32,9 @@ import java.util.UUID;
 public abstract class PersonalEstateAbstractForm extends MunicipalPropertyForm {
 
     @Override
-    public abstract void doGET(_Session session, _WebFormData formData);
+    public void doGET(_Session session, _WebFormData formData) {
+        addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
+    }
 
     @Override
     public void doPOST(_Session session, _WebFormData formData) {
@@ -62,6 +66,7 @@ public abstract class PersonalEstateAbstractForm extends MunicipalPropertyForm {
             entity.setObjectName(formData.getValueSilently("objectname"));
             entity.setKof(formData.getValueSilently("kof"));
             entity.setKuf(KufType.getType(formData.getNumberValueSilently("kuf", 0)));
+            entity.setPropertyStatusType(PropertyStatusType.getType(formData.getNumberValueSilently("propertystatus", 0)));
             entity.setDescription(formData.getValueSilently("description"));
             PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
             PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));

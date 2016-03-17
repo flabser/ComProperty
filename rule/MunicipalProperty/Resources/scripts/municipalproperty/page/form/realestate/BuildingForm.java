@@ -11,6 +11,7 @@ public class BuildingForm extends RealEstateAbstractForm {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
+        super.doGET(session, formData);
         String id = formData.getValueSilently("docid");
         IUser<Long> user = session.getUser();
         RealEstate entity;

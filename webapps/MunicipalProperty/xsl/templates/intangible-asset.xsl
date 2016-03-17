@@ -36,6 +36,7 @@
                             <xsl:call-template name="description"/>
                             <xsl:call-template name="propertycode"/>
                             <xsl:call-template name="acceptancedate"/>
+                            <xsl:call-template name="property_status_type"/>
                         </div>
                         <div class="fieldset2">
                             <xsl:call-template name="originalcost"/>

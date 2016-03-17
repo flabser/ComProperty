@@ -110,11 +110,14 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-search" name="ft-search" action="Provider">
-                        <input type="hidden" name="id" value="search"/>
                         <input type="search" class="q" name="keyword" required="required" autocomplete="off">
                             <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
                             <xsl:attribute name="value" select="//query/@keyword"/>
                         </input>
+                        <select name="id" class="native search-target">
+                            <option value="{//request/@id}" selected="selected">Здесь</option>
+                            <option value="search">Везде</option>
+                        </select>
                         <input type="submit" value="search"/>
                     </form>
                 </nav>

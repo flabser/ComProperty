@@ -251,7 +251,18 @@ button.btn-side-nav-toggle {
     margin: 0;
     overflow: hidden;
     padding: 10px 0;
+    position: relative;
     width: 200px;
+}
+
+.navbar-search .search-target {
+    font-size: 13px;
+    height: 28px;
+    min-height: auto;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    width: 80px;
 }
 
 .navbar-search [type=submit] {

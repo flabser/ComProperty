@@ -18,6 +18,7 @@
     <caption name="description"/>
     <caption name="property_code"/>
     <caption name="property_type">Тип имущество</caption>
+    <caption name="property_status"/>
     <caption name="acquisition_year"/>
     <caption name="acceptance_date"/>
     <caption name="address"/>
