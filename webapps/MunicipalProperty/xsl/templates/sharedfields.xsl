@@ -572,7 +572,7 @@
 
         <label class="input">
             <input type="{$type}" name="{$name}" value="{@attrval}">
-                <xsl:if test="contains($select, @attrval)">
+                <xsl:if test="contains($attrval, $select)">
                     <xsl:attribute name="checked" select="checked"/>
                 </xsl:if>
                 <span>
