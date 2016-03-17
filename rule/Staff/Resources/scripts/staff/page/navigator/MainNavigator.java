@@ -46,14 +46,7 @@ public class MainNavigator extends _DoPage {
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("roles", lang), "role-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organization_labels", lang), "organization-label-view"));
 
-		_Outline specific_outline = new _Outline(getLocalizedWord("specific_staff_data", lang), "specific");
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("contractors", lang), "contractor-view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("individuals", lang), "individual-view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("legal_entities", lang), "legal-entity-view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible-person-view"));
-
 		list.add(common_outline);
-		list.add(specific_outline);
 
 		addContent("outline_current", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("docid"));
 		addContent(list);
