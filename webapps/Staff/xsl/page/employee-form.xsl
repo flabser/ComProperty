@@ -11,11 +11,14 @@
         <div>
             <label class="input">
                 <input type="checkbox" name="role" value="{@id}">
-                    <xsl:if test="contains($select, viewcontent/name)">
+                    <xsl:if test="contains($select/@id, @id)">
                         <xsl:attribute name="checked" select="checked"/>
                     </xsl:if>
                     <span>
                         <xsl:value-of select="viewcontent/name"/>
+                        <div class="text-muted">
+                            <xsl:value-of select="viewcontent/description"/>
+                        </div>
                     </span>
                 </input>
             </label>
@@ -96,7 +99,7 @@
                         </div>
                         <div class="controls">
                             <xsl:apply-templates select="//query[@entity = 'role']/entry" mode="roles">
-                                <xsl:with-param name="select" select="fields/roles"/>
+                                <xsl:with-param name="select" select="fields/roles/entry"/>
                             </xsl:apply-templates>
                         </div>
                     </div>
