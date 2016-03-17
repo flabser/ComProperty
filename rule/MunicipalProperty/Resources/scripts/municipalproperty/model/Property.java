@@ -5,6 +5,7 @@ import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.lof.scripting._Session;
 import kz.lof.util.NumberUtil;
 import municipalproperty.model.constants.KufType;
+import municipalproperty.model.constants.PropertyStatusType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.Tag;
@@ -29,6 +30,10 @@ public class Property extends SecureAppEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "kuf", nullable = false, length = 32)
     private KufType kuf;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "property_status", nullable = false, length = 32)
+    private PropertyStatusType propertyStatusType = PropertyStatusType.UNKNOWN;
 
     @Column(name = "balance_cost")
     private float balanceCost;
@@ -130,7 +135,6 @@ public class Property extends SecureAppEntity {
         return false;
     }
 
-    @Column(name = "year_release")
     private String getKof() {
         return kof;
     }
@@ -145,6 +149,14 @@ public class Property extends SecureAppEntity {
 
     public void setKuf(KufType kuf) {
         this.kuf = kuf;
+    }
+
+    public PropertyStatusType getPropertyStatusType() {
+        return propertyStatusType;
+    }
+
+    public void setPropertyStatusType(PropertyStatusType propertyStatusType) {
+        this.propertyStatusType = propertyStatusType;
     }
 
     public float getBalanceCost() {
@@ -321,6 +333,7 @@ public class Property extends SecureAppEntity {
         chunk.append("<balanceholder>" + balanceHolder + "</balanceholder>");
         chunk.append("<invnumber>" + invNumber + "</invnumber>");
         chunk.append("<objectname>" + objectName + "</objectname>");
+        chunk.append("<propertystatus>" + propertyStatusType + "</propertystatus>");
         if (getTags() != null && getTags().size() > 0) {
             chunk.append("<tags>");
             for (Tag tag : getTags()) {
@@ -370,6 +383,7 @@ public class Property extends SecureAppEntity {
         } catch (NullPointerException e) {
             chunk.append("<kuf></kuf>");
         }
+        chunk.append("<propertystatus>" + propertyStatusType + "</propertystatus>");
         chunk.append("<objectname>" + objectName + "</objectname>");
         chunk.append("<originalcost>" + String.format("%.02f", originalCost) + "</originalcost>");
 

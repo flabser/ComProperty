@@ -4,10 +4,6 @@ progress[value='0'] {
     display: none;
 }
 
-label[for=upfile] {
-    background: #fff linear-gradient(#fff, #f1f1f1);
-}
-
 
 /* .update-file-panel */
 

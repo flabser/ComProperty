@@ -9,8 +9,8 @@
     <xsl:template match="entry" mode="roles">
         <xsl:param name="select"/>
         <div>
-            <label class="btn btn-sm">
-                <input type="checkbox" name="roles" value="{@id}">
+            <label class="input">
+                <input type="checkbox" name="role" value="{@id}">
                     <xsl:if test="contains($select, viewcontent/name)">
                         <xsl:attribute name="checked" select="checked"/>
                     </xsl:if>

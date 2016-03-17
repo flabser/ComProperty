@@ -67,7 +67,7 @@
     <xsl:template match="entry" mode="labels">
         <xsl:param name="select"/>
         <div>
-            <label class="btn btn-sm">
+            <label class="input">
                 <input type="checkbox" name="labels" value="{@id}">
                     <xsl:if test="contains($select, viewcontent/name)">
                         <xsl:attribute name="checked" select="checked"/>

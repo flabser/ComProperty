@@ -6,6 +6,7 @@
 
     <caption name="logout"/>
     <caption name="user_profile"/>
+    <caption name="search"/>
 
     <caption name="administrator"/>
     <caption name="user"/>

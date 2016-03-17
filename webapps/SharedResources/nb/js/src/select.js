@@ -119,7 +119,7 @@ nb.getSelectOptions = function(optionId) {
 };
 
 $(document).ready(function() {
-    $('select[name]').each(function() {
+    $('select[name]:not(.native)').each(function() {
         if (nbApp.selectOptions && nbApp.selectOptions[this.name]) {
             $(this).select2(nb.getSelectOptions(this.name));
         } else {

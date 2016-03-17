@@ -38,6 +38,23 @@
         </div>
     </xsl:template>
 
+    <xsl:template name="property_status_type">
+        <!-- property_status -->
+        <div class="form-group">
+            <div class="control-label">
+                <xsl:value-of select="//captions/property_status/@caption"/>
+            </div>
+            <div class="controls">
+                <xsl:apply-templates select="//constants[@entity = 'propertystatustype']/entry[@attrval != 'UNKNOWN']"
+                                     mode="constants">
+                    <xsl:with-param name="name" select="'propertystatus'"/>
+                    <xsl:with-param name="select" select="fields/propertystatus"/>
+                    <xsl:with-param name="type" select="'radio'"/>
+                </xsl:apply-templates>
+            </div>
+        </div>
+    </xsl:template>
+
     <xsl:template name="invnumber">
         <!-- Инвентарный номер -->
         <div class="form-group">
@@ -238,7 +255,7 @@
                 <xsl:value-of select="//captions/is_ready_to_use/@caption"/>
             </div>
             <div class="controls">
-                <label class="btn btn-sm">
+                <label class="input">
                     <input type="checkbox" name="isreadytouse" value="1">
                         <xsl:if test="fields/isreadytouse = 'true'">
                             <xsl:attribute name="checked" select="'checked'"/>
@@ -545,6 +562,24 @@
                 </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="entry" mode="constants">
+        <xsl:param name="select"/>
+        <xsl:param name="type" select="'checkbox'"/>
+        <xsl:param name="name"/>
+        <xsl:variable name="attrval" select="@attrval"/>
+
+        <label class="input">
+            <input type="{$type}" name="{$name}" value="{@attrval}">
+                <xsl:if test="contains($select, @attrval)">
+                    <xsl:attribute name="checked" select="checked"/>
+                </xsl:if>
+                <span>
+                    <xsl:value-of select="//captions/*[name() = $attrval]/@caption"/>
+                </span>
+            </input>
+        </label>
     </xsl:template>
 
 </xsl:stylesheet>

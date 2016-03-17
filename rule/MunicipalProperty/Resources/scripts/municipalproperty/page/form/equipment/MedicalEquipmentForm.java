@@ -14,6 +14,7 @@ public class MedicalEquipmentForm extends EquipmentAbstractForm {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
+        super.doGET(session, formData);
         String id = formData.getValueSilently("docid");
         IUser user = session.getUser();
         Equipment entity;
