@@ -35,7 +35,7 @@
         <entry lang="RUS">Признаки для организации</entry>
         <entry lang="KAZ">Признаки для организации</entry>
     </sentence>
-     <sentence mode="on" keyword="    organization_label">
+     <sentence mode="on" keyword="organization_label">
         <entry lang="ENG">Organization label</entry>
         <entry lang="RUS">Признак организации</entry>
         <entry lang="KAZ">Признак организации</entry>
@@ -56,24 +56,9 @@
         <entry lang="RUS">Филиалы</entry>
         <entry lang="KAZ">Филиалы</entry>
     </sentence>
-    <sentence mode="on" keyword="roles">
-        <entry lang="ENG">Roles</entry>
-        <entry lang="RUS">Роли</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
     <sentence mode="on" keyword="assigned">
         <entry lang="ENG">Assign role</entry>
         <entry lang="RUS">Сотрудники которым назначена роль</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
-    <sentence mode="on" keyword="staff_admin">
-        <entry lang="ENG">Staff adminstrators</entry>
-        <entry lang="RUS">Администраторы структуры</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
-    <sentence mode="on" keyword="reference_admin">
-        <entry lang="ENG">Reference administartors</entry>
-        <entry lang="RUS">Администраторы справочников</entry>
         <entry lang="KAZ"></entry>
     </sentence>
     <sentence mode="on" keyword="contractors">

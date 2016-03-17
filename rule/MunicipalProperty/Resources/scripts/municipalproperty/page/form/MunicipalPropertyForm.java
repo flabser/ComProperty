@@ -30,7 +30,9 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 	protected _ActionBar getActionBar(_Session ses, Property entity) {
 		LanguageCode lang = ses.getLang();
 		_ActionBar actionBar = new _ActionBar(ses);
-		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+		if (entity.isEditable()) {
+			actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+		}
 		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
 
 		if (entity.getId() != null) {
