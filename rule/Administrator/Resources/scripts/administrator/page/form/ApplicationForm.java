@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import kz.lof.dataengine.jpa.constants.AppCode;
+import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -13,6 +14,9 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import administrator.dao.ApplicationDAO;
 import administrator.model.Application;
 
@@ -61,10 +65,14 @@ public class ApplicationForm extends _DoPage {
 			entity = dao.findById(UUID.fromString(id));
 		}
 
-		if (isNew) {
-			dao.add(entity);
-		} else {
-			dao.update(entity);
+		try {
+			if (isNew) {
+				dao.add(entity);
+			} else {
+				dao.update(entity);
+			}
+		} catch (DatabaseException | SecureException e) {
+			setError(e);
 		}
 	}
 
