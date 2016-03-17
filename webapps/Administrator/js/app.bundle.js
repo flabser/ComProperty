@@ -2411,6 +2411,7 @@ nb.getSelectOptions = function(optionId) {
     return {
         allowClear: true,
         minimumInputLength: 0,
+        minimumResultsForSearch: 20,
         placeholder: '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
@@ -2480,10 +2481,14 @@ $(document).ready(function() {
         } else {
             if (nb.isMobile()) {
                 if (this.multiple) {
-                    $(this).select2();
+                    $(this).select2({
+                        minimumResultsForSearch: 20
+                    });
                 }
             } else {
-                $(this).select2();
+                $(this).select2({
+                    minimumResultsForSearch: 20
+                });
             }
         }
     });

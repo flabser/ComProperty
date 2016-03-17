@@ -11,6 +11,7 @@
     <caption name="close"/>
     <caption name="wait_while_document_save"/>
 
+    <caption name="attach_file"/>
     <caption name="properties"/>
     <caption name="interface"/>
     <caption name="del_document"/>

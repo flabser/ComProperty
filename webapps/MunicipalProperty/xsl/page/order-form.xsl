@@ -114,7 +114,12 @@
                                 <xsl:value-of select="//captions/reg_documents/@caption"/>
                             </legend>
                             <div class="form-group">
-
+                                <label class="btn" for="regfile">
+                                    <i class="fa fa-paperclip"></i>
+                                    <span>
+                                        <xsl:value-of select="//captions/attach_file/@caption"/>
+                                    </span>
+                                </label>
                             </div>
                         </fieldset>
                     </div>
@@ -123,6 +128,9 @@
                     </div>
                 </div>
             </section>
+        </form>
+        <form class="hidden" method="POST" enctype="multipart/form-data">
+            <input type="file" id="regfile" name="regfile" onchange=""/>
         </form>
     </xsl:template>
 

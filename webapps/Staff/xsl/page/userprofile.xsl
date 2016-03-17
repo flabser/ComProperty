@@ -98,9 +98,9 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="tabs-1">
-                        <fieldset class="fieldset fieldset-user-avatar">
+                        <!--<fieldset class="fieldset fieldset-user-avatar">
                             <img class="user-avatar" src="img/avatar.png"/>
-                        </fieldset>
+                        </fieldset>-->
                         <fieldset class="fieldset fieldset-user-fields">
                             <div class="form-group">
                                 <div class="control-label">
@@ -197,7 +197,7 @@
                                     <xsl:value-of select="//captions/countdocinview/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <select name="pagesize" class="span2">
+                                    <select name="pagesize" class="native span2">
                                         <option value="10">
                                             <xsl:if test="//pagesize = '10'">
                                                 <xsl:attribute name="selected" select="'selected'"/>
@@ -231,7 +231,7 @@
                                 </div>
                                 <div class="controls">
                                     <xsl:variable name="currentlang" select="/request/@lang"/>
-                                    <select name="lang" class="span2">
+                                    <select name="lang" class="native span2">
                                         <xsl:for-each select="//query[@entity = 'language']/entry">
                                             <option value="{viewcontent/lang/@id}">
                                                 <xsl:if test="viewcontent/lang/@id = $currentlang">
