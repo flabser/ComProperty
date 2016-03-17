@@ -675,7 +675,8 @@
         <entry lang="KAZ"></entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="Роли">
+    <sentence mode="on" keyword="roles">
+     	<entry lang="RUS">Роли</entry>
         <entry lang="KAZ">Рөлдер</entry>
         <entry lang="ENG">Roles</entry>
         <entry lang="CHI">電郵通知</entry>

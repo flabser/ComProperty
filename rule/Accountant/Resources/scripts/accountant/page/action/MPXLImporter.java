@@ -31,7 +31,6 @@ import municipalproperty.model.util.PropertyFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.eclipse.persistence.exceptions.DatabaseException;
 
 import reference.dao.CityDistrictDAO;
 import reference.dao.CountryDAO;
@@ -228,7 +227,7 @@ public class MPXLImporter {
 					try {
 						propertyDao.add(prop);
 						processed++;
-					} catch (DatabaseException | SecureException e) {
+					} catch (SecureException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
