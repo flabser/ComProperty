@@ -55,6 +55,7 @@
                                     <a class="input-placeholder" href="{fields/property/url}">
                                         <xsl:value-of select="fields/property/objectname"/>
                                     </a>
+                                    <input type="hidden" name="propertyid" value="{fields/property/@docid}"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -102,7 +103,6 @@
                                 <div class="controls">
                                     <xsl:apply-templates select="//constants[@entity = 'orderstatus']/entry"
                                                          mode="constants">
-                                        <xsl:with-param name="name" select="'orderstatus'"/>
                                         <xsl:with-param name="select" select="fields/orderstatus"/>
                                         <xsl:with-param name="type" select="'radio'"/>
                                     </xsl:apply-templates>

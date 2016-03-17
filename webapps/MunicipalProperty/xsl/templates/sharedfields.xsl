@@ -47,7 +47,6 @@
             <div class="controls">
                 <xsl:apply-templates select="//constants[@entity = 'propertystatustype']/entry[@attrval != 'UNKNOWN']"
                                      mode="constants">
-                    <xsl:with-param name="name" select="'propertystatus'"/>
                     <xsl:with-param name="select" select="fields/propertystatus"/>
                     <xsl:with-param name="type" select="'radio'"/>
                 </xsl:apply-templates>
@@ -567,7 +566,7 @@
     <xsl:template match="entry" mode="constants">
         <xsl:param name="select"/>
         <xsl:param name="type" select="'checkbox'"/>
-        <xsl:param name="name"/>
+        <xsl:param name="name" select="$select/name()"/>
         <xsl:variable name="attrval" select="@attrval"/>
         <xsl:variable name="caption" select="//captions/*[name() = $attrval]/@caption"/>
 

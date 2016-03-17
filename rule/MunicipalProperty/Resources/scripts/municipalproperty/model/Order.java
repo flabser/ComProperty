@@ -64,6 +64,14 @@ public class Order extends SecureAppEntity {
         this.description = description;
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     @Override
     public String getShortXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
@@ -74,9 +82,9 @@ public class Order extends SecureAppEntity {
         if (description != null) {
             chunk.append("<description>" + description + "</description>");
         }
-        chunk.append("<orderstatus>" + orderStatus + "</orderstatus>");
+        chunk.append("<orderstatus>" + getOrderStatus() + "</orderstatus>");
         if (getProperty() != null && getProperty().getId() != null) {
-            chunk.append("<property>");
+            chunk.append("<property docid=\"" + property.getId() + "\">");
             chunk.append("<url>" + property.getURL() + "</url>");
             chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
             chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
