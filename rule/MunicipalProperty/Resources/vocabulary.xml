@@ -75,6 +75,11 @@
         <entry lang="RUS">Код права на имущество</entry>
         <entry lang="KAZ">Мүлікке құқықтың коды</entry>
     </sentence>
+    <sentence mode="on" keyword="property_status">
+        <entry lang="ENG">Property status</entry>
+        <entry lang="RUS">Статус имущества</entry>
+        <entry lang="KAZ">Мүлік мәртебесі</entry>
+    </sentence>
     <sentence mode="on" keyword="balance_holder">
         <entry lang="RUS">Балансодержатель</entry>
         <entry lang="KAZ">Теңгерім ұстаушы</entry>
