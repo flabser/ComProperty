@@ -12,6 +12,8 @@ import kz.nextbase.script.actions._ActionBar;
 import kz.lof.scripting.event._DoPage;
 import municipalproperty.model.Property;
 
+import java.util.List;
+
 /**
  * @author Kayra created 06-01-2016
  */
@@ -31,12 +33,13 @@ public class FTSearch extends _DoPage {
 
 		IDatabase db = session.getCurrentDatabase();
 		IFTIndexEngine ftEngine = db.getFTSearchEngine();
-		ViewPage result = ftEngine.search(keyWord, session, pageNum, pageSize);
+		List<ViewPage<?>> result = ftEngine.search(keyWord, session, pageNum, pageSize);
 
 		addContent(new _ActionBar(session).addAction(new _Action(getLocalizedWord("back_to_doc_list", lang), getLocalizedWord("back", lang),
 		        "reset_search")));
 		if (result != null) {
-			addContent(new _POJOListWrapper<Property>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), session,
+			ViewPage<Property> res = (ViewPage<Property>) result.get(0);
+			addContent(new _POJOListWrapper<Property>(res.getResult(), res.getMaxPage(), res.getCount(), res.getPageNum(), session,
 			        keyWord));
 		} else {
 			addContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": '" + keyWord + "'", keyWord));
