@@ -10,7 +10,7 @@
         <xsl:param name="select"/>
         <div>
             <label class="input">
-                <input type="checkbox" name="roles" value="{@id}">
+                <input type="checkbox" name="role" value="{@id}">
                     <xsl:if test="contains($select, viewcontent/name)">
                         <xsl:attribute name="checked" select="checked"/>
                     </xsl:if>
