@@ -66,7 +66,7 @@ public abstract class VehicleAbstractForm extends MunicipalPropertyForm {
             entity.setObjectName(formData.getValueSilently("objectname"));
             entity.setKof(formData.getValueSilently("kof"));
             entity.setKuf(KufType.getType(formData.getNumberValueSilently("kuf", 0)));
-            entity.setPropertyStatusType(PropertyStatusType.getType(formData.getNumberValueSilently("propertystatus", 0)));
+            entity.setPropertyStatusType(PropertyStatusType.valueOf(formData.getValue("propertystatus")));
             entity.setDescription(formData.getValueSilently("description"));
             PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
             PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
