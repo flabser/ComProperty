@@ -3,16 +3,20 @@ package municipalproperty.page.form;
 import java.util.List;
 
 import kz.lof.dataengine.jpa.DAO;
+import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.user.IUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 /**
  * Common abstract class for form of the Municipal Property application. Use it
@@ -38,7 +42,7 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 		return actionBar;
 	}
 
-	protected void save(Property entity, DAO dao, boolean isNew) {
+	protected void save(Property entity, DAO dao, boolean isNew) throws DatabaseException, SecureException {
 		_Session ses = dao.getSession();
 		PropertyDAO pDao = new PropertyDAO(ses);
 		List<Property> list = pDao.findByInvNumAndName(entity.getInvNumber(), entity.getObjectName());
@@ -53,6 +57,8 @@ public abstract class MunicipalPropertyForm extends _DoPage {
 		}
 
 		if (isNew) {
+			IUser<Long> user = ses.getUser();
+			entity.addReaderEditor(user);
 			dao.add(entity);
 		} else {
 			dao.update(entity);

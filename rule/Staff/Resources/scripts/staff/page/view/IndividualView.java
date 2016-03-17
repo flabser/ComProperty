@@ -2,13 +2,14 @@ package staff.page.view;
 
 import java.util.UUID;
 
+import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
@@ -38,7 +39,11 @@ public class IndividualView extends _DoPage {
 		OrganizationDAO dao = new OrganizationDAO(session);
 		for (String id : formData.getListOfValuesSilently("docid")) {
 			Organization m = dao.findById(UUID.fromString(id));
-			dao.delete(m);
+			try {
+				dao.delete(m);
+			} catch (SecureException e) {
+				setError(e);
+			}
 		}
 	}
 }

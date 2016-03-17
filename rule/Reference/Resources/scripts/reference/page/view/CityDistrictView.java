@@ -1,5 +1,8 @@
 package reference.page.view;
 
+import java.util.UUID;
+
+import kz.lof.exception.SecureException;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
@@ -8,8 +11,6 @@ import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import reference.dao.CityDistrictDAO;
 import reference.model.CityDistrict;
-
-import java.util.UUID;
 
 public class CityDistrictView extends _DoPage {
 
@@ -32,7 +33,11 @@ public class CityDistrictView extends _DoPage {
 		CityDistrictDAO dao = new CityDistrictDAO(session);
 		for (String id : formData.getListOfValuesSilently("docid")) {
 			CityDistrict m = dao.findById(UUID.fromString(id));
-			dao.delete(m);
+			try {
+				dao.delete(m);
+			} catch (SecureException e) {
+				setError(e);
+			}
 		}
 	}
 }

@@ -17,6 +17,7 @@ import jxl.NumberCell;
 import jxl.Sheet;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.IAppEntity;
+import kz.lof.exception.SecureException;
 import kz.lof.scripting._Session;
 import kz.lof.server.Server;
 import municipalproperty.dao.PropertyDAO;
@@ -30,6 +31,7 @@ import municipalproperty.model.util.PropertyFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 import reference.dao.CityDistrictDAO;
 import reference.dao.CountryDAO;
@@ -223,8 +225,14 @@ public class MPXLImporter {
 						Employee emp = empDao.findById(UUID.fromString(uuid));
 						prop.addReaderEditor(emp.getUser());
 					}
-					propertyDao.add(prop);
-					processed++;
+					try {
+						propertyDao.add(prop);
+						processed++;
+					} catch (DatabaseException | SecureException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				} else {
 					skip = false;
 				}

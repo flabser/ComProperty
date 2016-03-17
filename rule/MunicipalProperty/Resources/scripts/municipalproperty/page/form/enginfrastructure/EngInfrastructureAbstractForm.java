@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import kz.flabs.util.Util;
+import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -19,6 +20,9 @@ import municipalproperty.model.EngineeringInfrastructure;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.model.constants.PropertyStatusType;
 import municipalproperty.page.form.MunicipalPropertyForm;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
 import reference.dao.TagDAO;
@@ -116,7 +120,7 @@ public abstract class EngInfrastructureAbstractForm extends MunicipalPropertyFor
 			save(entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
-		} catch (_Exception e) {
+		} catch (_Exception | DatabaseException | SecureException e) {
 			error(e);
 			setBadRequest();
 		}

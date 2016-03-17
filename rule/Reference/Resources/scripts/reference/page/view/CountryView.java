@@ -2,12 +2,13 @@ package reference.page.view;
 
 import java.util.UUID;
 
+import kz.lof.exception.SecureException;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import reference.dao.CountryDAO;
 import reference.model.Country;
 
@@ -32,7 +33,11 @@ public class CountryView extends _DoPage {
 		CountryDAO dao = new CountryDAO(session);
 		for (String id : formData.getListOfValuesSilently("docid")) {
 			Country c = dao.findById(UUID.fromString(id));
-			dao.delete(c);
+			try {
+				dao.delete(c);
+			} catch (SecureException e) {
+				setError(e);
+			}
 		}
 	}
 }
