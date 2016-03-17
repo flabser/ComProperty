@@ -93,4 +93,8 @@
     <caption name="propertyarticleincorporation">Свидетельство о регистрации имущества</caption>
     <caption name="resolutiontransferacceptancereport">Постановление акимата и акт приема-передачи, передано в какое упраление</caption>
     <caption name="note">Примечание</caption>
+
+    <caption name="UNKNOWN"/>
+    <caption name="ON_BALANCE"/>
+    <caption name="WRITTENOFF"/>
 </rule>

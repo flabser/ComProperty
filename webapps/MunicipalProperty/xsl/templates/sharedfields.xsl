@@ -568,6 +568,7 @@
         <xsl:param name="select"/>
         <xsl:param name="type" select="'checkbox'"/>
         <xsl:param name="name"/>
+        <xsl:variable name="attrval" select="@attrval"/>
 
         <label class="input">
             <input type="{$type}" name="{$name}" value="{@attrval}">
@@ -575,7 +576,7 @@
                     <xsl:attribute name="checked" select="checked"/>
                 </xsl:if>
                 <span>
-                    <xsl:value-of select="."/>
+                    <xsl:value-of select="//captions/*[name() = $attrval]/@caption"/>
                 </span>
             </input>
         </label>

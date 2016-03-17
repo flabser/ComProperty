@@ -132,7 +132,6 @@
         <entry lang="KAZ">Объектінің сипаттамасы</entry>
         <entry lang="ENG"></entry>
     </sentence>
-
     <sentence mode="on" keyword="acquisition_year">
         <entry lang="RUS">Год прибретения</entry>
         <entry lang="KAZ">Год прибретения</entry>
@@ -588,8 +587,7 @@
         <entry lang="KAZ">Көлік тұрақтар</entry>
         <entry lang="ENG">Parkings</entry>
     </sentence>
-    <sentence mode="on"
-              keyword="Мониторинг объектов коммунальной собственности">
+    <sentence mode="on" keyword="Мониторинг объектов коммунальной собственности">
         <entry lang="KAZ">Коммуналды меншік объектілерін бақылау</entry>
         <entry lang="ENG"></entry>
     </sentence>
@@ -601,7 +599,6 @@
     <sentence mode="on" keyword="Движимое имущество - мебель">
         <entry lang="KAZ">Жылжымалы мүлік - жиһаз</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="animals">
         <entry lang="RUS">Животные</entry>
@@ -612,8 +609,7 @@
         <entry lang="KAZ">Түр</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on"
-              keyword="Движимое имущество - Государственные пакеты акций">
+    <sentence mode="on" keyword="Движимое имущество - Государственные пакеты акций">
         <entry lang="KAZ">Жылжымалы мүлік - Мемлекеттік акциялар пакеті</entry>
         <entry lang="ENG"></entry>
     </sentence>
@@ -645,9 +641,7 @@
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Оборудование - Компьютерное оборудование и орг. техника">
-        <entry lang="KAZ">Құрал-жабдық - Компьютер құрал-жабдығы және
-            ұйымдастыру техникасы
-        </entry>
+        <entry lang="KAZ">Құрал-жабдық - Компьютер құрал-жабдығы және ұйымдастыру техникасы</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Оборудование - Медицинское оборудование">
@@ -659,8 +653,7 @@
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Оборудование - Оборудование гражданской обороны">
-        <entry lang="KAZ">Құрал-жабдық - Азаматтық қорғаныс құрал-жабдығы
-        </entry>
+        <entry lang="KAZ">Құрал-жабдық - Азаматтық қорғаныс құрал-жабдығы</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="buildings">
@@ -682,9 +675,7 @@
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Стратегические объекты - Объекты государственного природно-заповедного фонда">
-        <entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық
-            қорларының объектілері
-        </entry>
+        <entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық қорларының объектілері</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="bombproofs">
@@ -770,7 +761,6 @@
     <sentence mode="on" keyword="Договора и доп.соглашения">
         <entry lang="KAZ">Келісім-шарттар мен қосымша келісулер</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Уведомления">
         <entry lang="KAZ">Хабарламалар</entry>
@@ -779,7 +769,6 @@
     <sentence mode="on" keyword="Регистрация объектов">
         <entry lang="KAZ">Объектілерді тіркеу</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Окончание срока действия договора">
         <entry lang="KAZ">Келісім-шарт мерзімінің аяқталуы</entry>
@@ -797,10 +786,9 @@
         <entry lang="KAZ">Тіркеу. №</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on" keyword="Наименование постановления ">
+    <sentence mode="on" keyword="Наименование постановления">
         <entry lang="KAZ">Қаулының атауы</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Дата регистрации ">
         <entry lang="KAZ">Тіркеу датасы</entry>
@@ -866,8 +854,7 @@
         <entry lang="ENG">Drains</entry>
     </sentence>
     <sentence mode="on" keyword="Отчет объекты инженерной инфраструктуры">
-        <entry lang="KAZ">Инженерлік инфрақұрылым объектілері есептемесі
-        </entry>
+        <entry lang="KAZ">Инженерлік инфрақұрылым объектілері есептемесі</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Отчет стратегические объекты">
@@ -907,15 +894,11 @@
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Вклад в уставной капитал - Доверительное управление">
-        <entry lang="KAZ">Жарғылық капиталға салым - Мүлікті сенімгерлікпен
-            басқару
-        </entry>
+        <entry lang="KAZ">Жарғылық капиталға салым - Мүлікті сенімгерлікпен басқару</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Вклад в уставной капитал - Хозяйственное ведение">
-        <entry lang="KAZ">Жарғылық капиталға салым - Шаруашылық жүргізу
-        </entry>
+        <entry lang="KAZ">Жарғылық капиталға салым - Шаруашылық жүргізу</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Вклад в уставной капитал - Оперативное пользование">
@@ -925,7 +908,6 @@
     <sentence mode="on" keyword="Добавить договор">
         <entry lang="KAZ">Келісім-шарт қосу</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Регистр. номер">
         <entry lang="KAZ">Тіркеу нөмірі</entry>
@@ -942,7 +924,6 @@
     <sentence mode="on" keyword="Добавить постановление">
         <entry lang="KAZ">Қаулы қосу</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Новое постановление">
         <entry lang="KAZ">Жаңа қаулы</entry>
@@ -977,9 +958,7 @@
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword='Поле "Дата истечения срока договора" не заполнено.'>
-        <entry lang="KAZ">"Келісім-шарт мерзімінің аяқталу датасы" жолы
-            толтырылмады
-        </entry>
+        <entry lang="KAZ">"Келісім-шарт мерзімінің аяқталу датасы" жолы толтырылмады</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Уведомление отправлено">
@@ -1035,7 +1014,6 @@
         <entry lang="RUS">Добавить животное</entry>
         <entry lang="KAZ">Мем №</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="№ тех. паспорта">
         <entry lang="RUS">Добавить животное</entry>
@@ -1085,12 +1063,10 @@
         <entry lang="KAZ">Инженерлік инфрақұрылым объектілері есептемесі
         </entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Отчет платежный календарь">
         <entry lang="KAZ">Төлем күнтізбесі есептемесі</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword="Отчет транспорт">
         <entry lang="KAZ">Транспорт есептемесі</entry>
@@ -1132,7 +1108,6 @@
     <sentence mode="on" keyword='Поле "Дата регистрации акта" не заполнено.'>
         <entry lang="KAZ">"Актіні тіркеу күні" жолы толтырылмады.</entry>
         <entry lang="ENG"></entry>
-
     </sentence>
     <sentence mode="on" keyword='Поле "Сдал" не заполнено.'>
         <entry lang="KAZ">"Тапсырды" жолы толтырылмады.</entry>
@@ -1145,5 +1120,24 @@
     <sentence mode="on" keyword="Добавить акт приема-передачи">
         <entry lang="KAZ">Қабылдау-тапсыру актісін қосу</entry>
         <entry lang="ENG"></entry>
+    </sentence>
+
+    <sentence mode="on" keyword="UNKNOWN">
+        <entry lang="ENG">Unknown</entry>
+        <entry lang="RUS">Не определен</entry>
+        <entry lang="KAZ">Не определен</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="ON_BALANCE">
+        <entry lang="ENG">Balance</entry>
+        <entry lang="RUS">На балансе</entry>
+        <entry lang="KAZ">На балансе</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="WRITTENOFF">
+        <entry lang="ENG">Written off</entry>
+        <entry lang="RUS">Списан</entry>
+        <entry lang="KAZ">Списан</entry>
+        <entry lang="CHO"></entry>
     </sentence>
 </vocabulary>
