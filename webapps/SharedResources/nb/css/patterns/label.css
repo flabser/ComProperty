@@ -15,3 +15,11 @@ label.input {
     padding: 5px 6px;
     width: auto;
 }
+
+label.input > input + span {
+    color: #666;
+}
+
+label.input > input:checked + span {
+    color: #000;
+}
