@@ -2195,6 +2195,19 @@ nb.clearFormFields = function(fields, el) {
     }
 };
 
+//
+$(document).ready(function() {
+    $('form[name]').each(function() {
+        $('input, select, textarea', this).on('change', function() {
+            if (this.validity && this.validity.valid) {
+                $(this).parent().removeClass('has-error');
+                $(this).removeClass('has-error');
+                $('.error-massage', $(this).parent()).remove();
+            }
+        });
+    });
+});
+
 Handlebars.registerHelper('mapValue', function(context, options) {
     return context[options];
 });
