@@ -47,7 +47,6 @@
             <div class="controls">
                 <xsl:apply-templates select="//constants[@entity = 'propertystatustype']/entry[@attrval != 'UNKNOWN']"
                                      mode="constants">
-                    <xsl:with-param name="name" select="'propertystatus'"/>
                     <xsl:with-param name="select" select="fields/propertystatus"/>
                     <xsl:with-param name="type" select="'radio'"/>
                 </xsl:apply-templates>
@@ -567,16 +566,24 @@
     <xsl:template match="entry" mode="constants">
         <xsl:param name="select"/>
         <xsl:param name="type" select="'checkbox'"/>
-        <xsl:param name="name"/>
+        <xsl:param name="name" select="$select/name()"/>
         <xsl:variable name="attrval" select="@attrval"/>
+        <xsl:variable name="caption" select="//captions/*[name() = $attrval]/@caption"/>
 
         <label class="input">
             <input type="{$type}" name="{$name}" value="{@attrval}">
-                <xsl:if test="contains($select, @attrval)">
+                <xsl:if test="contains($attrval, $select)">
                     <xsl:attribute name="checked" select="checked"/>
                 </xsl:if>
                 <span>
-                    <xsl:value-of select="//captions/*[name() = $attrval]/@caption"/>
+                    <xsl:choose>
+                        <xsl:when test="$caption != ''">
+                            <xsl:value-of select="$caption"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </span>
             </input>
         </label>

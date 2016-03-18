@@ -21,43 +21,40 @@
                 </div>
             </header>
             <section class="content-body">
-                <div class="tab-content">
-                    <fieldset class="fieldset">
+                <fieldset class="fieldset">
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/name/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <input type="text" name="name" value="{fields/name}" class="span7" required="required"
+                                   autofocus="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/color/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <input type="color" name="color" value="{fields/color}"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset">
+                    <legend class="legend">
+                        <xsl:value-of select="//captions/localized_names/@caption"/>
+                    </legend>
+                    <xsl:for-each select="fields/localizednames/entry">
                         <div class="form-group">
                             <div class="control-label">
-                                <xsl:value-of select="//captions/name/@caption"/>
+                                <xsl:value-of select="./@id"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="name" value="{fields/name}" class="span7" required="required"
-                                       autofocus="true"/>
+                                <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="//captions/color/@caption"/>
-                            </div>
-                            <div class="controls">
-                                <input type="color" name="color" value="{fields/color}"/>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset class="fieldset">
-                        <legend class="legend">
-                            <xsl:value-of select="//captions/localized_names/@caption"/>
-                        </legend>
-                        <xsl:for-each select="fields/localizednames/entry">
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="./@id"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname"
-                                           class="span7"/>
-                                </div>
-                            </div>
-                        </xsl:for-each>
-                    </fieldset>
-                </div>
+                    </xsl:for-each>
+                </fieldset>
             </section>
         </form>
     </xsl:template>

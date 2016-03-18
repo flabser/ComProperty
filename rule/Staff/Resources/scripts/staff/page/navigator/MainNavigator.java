@@ -28,15 +28,15 @@ public class MainNavigator extends _DoPage {
 		// "structure-view"));
 		_OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");
 		for (OrganizationLabel label : new OrganizationLabelDAO(session).findAll()) {
-			orgEntry.addEntry(new _OutlineEntry(getLocalizedWord(label.getName(), lang), getLocalizedWord("labeled", lang) + " : "
-			        + getLocalizedWord(label.getName(), lang), "organization-label-view" + label.getId(),
-			        "Provider?id=organization-label-view&docid=" + label.getId()));
+			orgEntry.addEntry(new _OutlineEntry(label.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : "
+			        + label.getLocalizedName(lang), "organization-label-view" + label.getId(), "Provider?id=organization-label-view&categoryid="
+			        + label.getId()));
 		}
 		_OutlineEntry departmentEntry = new _OutlineEntry(getLocalizedWord("departments", lang), "department-view");
 		_OutlineEntry employeeEntry = new _OutlineEntry(getLocalizedWord("employees", lang), "employee-view");
 		for (Role role : new RoleDAO(session).findAll()) {
-			employeeEntry.addEntry(new _OutlineEntry(getLocalizedWord(role.getName(), lang), getLocalizedWord("assigned", lang) + " : "
-			        + getLocalizedWord(role.getName(), lang), "role-view" + role.getId(), "Provider?id=role-view&docid=" + role.getId()));
+			employeeEntry.addEntry(new _OutlineEntry(role.getLocalizedName(lang), getLocalizedWord("assigned", lang) + " : "
+			        + role.getLocalizedName(lang), "role-view" + role.getId(), "Provider?id=role-view&categoryid=" + role.getId()));
 		}
 
 		common_outline.addEntry(orgEntry);
@@ -46,14 +46,7 @@ public class MainNavigator extends _DoPage {
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("roles", lang), "role-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("organization_labels", lang), "organization-label-view"));
 
-		_Outline specific_outline = new _Outline(getLocalizedWord("specific_staff_data", lang), "specific");
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("contractors", lang), "contractor-view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("individuals", lang), "individual-view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("legal_entities", lang), "legal-entity-view"));
-		specific_outline.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible-person-view"));
-
 		list.add(common_outline);
-		list.add(specific_outline);
 
 		addContent("outline_current", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("docid"));
 		addContent(list);

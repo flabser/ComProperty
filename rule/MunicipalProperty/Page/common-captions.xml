@@ -11,6 +11,7 @@
     <caption name="close"/>
     <caption name="wait_while_document_save"/>
 
+    <caption name="attach_file"/>
     <caption name="properties"/>
     <caption name="interface"/>
     <caption name="del_document"/>
@@ -31,6 +32,7 @@
     <caption name="roles"/>
     <caption name="department"/>
     <caption name="iin"/>
+    <caption name="status"/>
     <caption name="countdocinview"/>
     <caption name="interface_lang"/>
     <caption name="back_to_doc_list"/>
@@ -97,4 +99,6 @@
     <caption name="personal_estates"/>
     <caption name="real_estates"/>
     <caption name="reports"/>
+
+    <caption name="new_order"/>
 </rule>

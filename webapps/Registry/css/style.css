@@ -1,0 +1,4 @@
+.fieldset > .legend {
+    background: transparent;
+    padding-bottom: 0;
+}

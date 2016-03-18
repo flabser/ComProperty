@@ -23,14 +23,16 @@ public class FillApplications extends InitialDataAdapter<Application, Applicatio
 	@Override
 	public List<Application> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Application> entities = new ArrayList<Application>();
-		String[] data = { "Administrator", "Staff", "Reference", "Accountant", "MunicipalProperty" };
-		String[] dataEng = { "Administrator", "Staff", "Reference", "Accountant", "Municipal property" };
-		String[] dataKaz = { "Администратор", "Құрылым", "Анықтамалар", "Нысан импорт", "Коммуналды меншік объектілерін бақылау" };
-		String[] dataRus = { "Администратор", "Структура", "Справочник", "Импорт объектов", "Коммунальное имущество" };
+		String[] data = { "Administrator", "Staff", "Reference", "Accountant", "MunicipalProperty", "PropertyLeasing", "Registry" };
+		String[] dataEng = { "Administrator", "Staff", "Reference", "Accountant", "Municipal property", "PropertyLeasing", "Registry" };
+		String[] dataKaz = { "Администратор", "Құрылым", "Анықтамалар", "Нысан импорт", "Коммуналды меншік объектілерін бақылау",
+		        "Имущественный наем", "Реестродержатели" };
+		String[] dataRus = { "Администратор", "Структура", "Справочник", "Импорт объектов", "Коммунальное имущество", "Имущественный наем",
+		        "Реестродержатели" };
 		String[] urls = { "Provider?id=user-view", "Provider?id=organization-view", "Provider?id=country-view", "Provider?id=upload-updating-form",
-		        "Provider?id=furniture-view" };
+		        "Provider?id=furniture-view", "Provider?id=furniture-view", "Provider?id=organization-view" };
 
-		AppCode[] code = { AppCode.ADMINISTRATOR, AppCode.STAFF, AppCode.REFERENCE, AppCode.CUSTOM, AppCode.CUSTOM };
+		AppCode[] code = { AppCode.ADMINISTRATOR, AppCode.STAFF, AppCode.REFERENCE, AppCode.CUSTOM, AppCode.CUSTOM, AppCode.CUSTOM, AppCode.CUSTOM };
 
 		for (int i = 0; i < code.length; i++) {
 			Application entity = new Application();

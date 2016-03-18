@@ -16,7 +16,7 @@ var handlebars = require('gulp-handlebars');
 // remove all node modules
 // npm remove yargs gulp gulp-if gulp-jshint gulp-concat gulp-rename gulp-uglify gulp-csso gulp-wrap gulp-declare gulp-handlebars jshint
 
-var modules = ['Administrator', 'Accountant', 'Staff', 'Reference', 'MunicipalProperty'];
+var modules = ['Administrator', 'Accountant', 'Staff', 'Reference', 'MunicipalProperty', 'PropertyLeasing', 'Registry'];
 var _styles = {};
 var _templates = {};
 var _scripts = {};

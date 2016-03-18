@@ -5,6 +5,16 @@ label {
 label > input + span {
     display: inline-block;
     margin-left: .3em;
+    vertical-align: middle;
+}
+
+label:not(.btn) > input + span {
+    color: #555;
+}
+
+label:hover > input + span,
+label > input:checked + span {
+    color: #000;
 }
 
 label.input {
@@ -14,12 +24,4 @@ label.input {
     min-height: auto;
     padding: 5px 6px;
     width: auto;
-}
-
-label.input > input + span {
-    color: #666;
-}
-
-label.input > input:checked + span {
-    color: #000;
 }

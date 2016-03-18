@@ -126,6 +126,9 @@ public class EmployeeForm extends StaffForm {
 					List<Application> appList = new ArrayList<Application>();
 					appList.add(aDao.findByName("MunicipalProperty"));
 					appList.add(aDao.findByName("Accountant"));
+					appList.add(aDao.findByName("PropertyLeasing"));
+					appList.add(aDao.findByName("Registry"));
+					user.setAllowedApps(appList);
 					uDao.add(user);
 					user = uDao.findById(user.getId());
 				} else {

@@ -37,6 +37,8 @@ public class UserServices {
 		List<Application> appList = new ArrayList<Application>();
 		appList.add(aDao.findByName("MunicipalProperty"));
 		appList.add(aDao.findByName("Accountant"));
+		appList.add(aDao.findByName("PropertyLeasing"));
+		appList.add(aDao.findByName("Registry"));
 
 		for (kz.flabs.users.User oldUser : users) {
 			User entity = new User();

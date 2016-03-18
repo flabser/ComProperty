@@ -1331,7 +1331,8 @@ var nb = {
     })(),
     debug: false,
     options: {
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'yy-mm-dd',
+        translationsUrl: 'Provider?id=common-captions'
     },
     translations: {
         yes: 'Да',
@@ -1371,7 +1372,7 @@ nb.getTranslations = function() {
     return $.ajax({
         type: 'get',
         dataType: 'json',
-        url: 'Provider?id=common-captions'
+        url: nb.options.translationsUrl
     });
 };
 
@@ -1379,7 +1380,7 @@ nb.getTranslations = function() {
  * getForm
  */
 nb.getForm = function(el) {
-    if (el === null || el === undefined) {
+    if (!el) {
         return el;
     }
 
@@ -2411,6 +2412,7 @@ nb.getSelectOptions = function(optionId) {
     return {
         allowClear: true,
         minimumInputLength: 0,
+        minimumResultsForSearch: 20,
         placeholder: '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
@@ -2480,10 +2482,14 @@ $(document).ready(function() {
         } else {
             if (nb.isMobile()) {
                 if (this.multiple) {
-                    $(this).select2();
+                    $(this).select2({
+                        minimumResultsForSearch: 20
+                    });
                 }
             } else {
-                $(this).select2();
+                $(this).select2({
+                    minimumResultsForSearch: 20
+                });
             }
         }
     });

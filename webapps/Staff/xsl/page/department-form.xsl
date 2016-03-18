@@ -47,11 +47,11 @@
                             <xsl:value-of select="//captions/type/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="departmenttype" class="span7">
+                            <select name="type" class="span7">
                                 <option value=""></option>
                                 <xsl:apply-templates select="//constants[@entity = 'departmenttype']/entry"
                                                      mode="departmenttype_options">
-                                    <xsl:with-param name="select" select="fields/departmenttype"/>
+                                    <xsl:with-param name="select" select="fields/type"/>
                                 </xsl:apply-templates>
                             </select>
                         </div>

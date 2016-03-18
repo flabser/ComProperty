@@ -57,15 +57,16 @@ public class UserProfile extends _DoPage {
 				return;
 			}
 
-			IUser user = session.getUser();
+			IUser<Long> user = session.getUser();
 			UserDAO dao = new UserDAO(session);
-			User entity = dao.findById((long) user.getId());
+			User entity = dao.findById(user.getId());
 
 			entity.setLogin(formData.getValue("login"));
 			entity.setEmail(formData.getValue("email"));
 			if (!formData.getValueSilently("pwd").isEmpty()) {
 				entity.setPwd(formData.getValue("pwd"));
 			}
+			dao.update(entity);
 
 			setRedirect("_back");
 		} catch (_Exception e) {

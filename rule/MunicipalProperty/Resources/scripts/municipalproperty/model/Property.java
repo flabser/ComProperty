@@ -33,7 +33,7 @@ public class Property extends SecureAppEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "property_status", nullable = false, length = 32)
-    private PropertyStatusType propertyStatusType = PropertyStatusType.UNKNOWN;
+    private PropertyStatusType propertyStatusType = PropertyStatusType.ON_BALANCE;
 
     @Column(name = "balance_cost")
     private float balanceCost;
@@ -93,6 +93,15 @@ public class Property extends SecureAppEntity {
 
     private String notes = "";
 
+    @Column(name = "tech_cert")
+    private String techCert = "";
+
+    @Column(name = "reg_cert")
+    private String regCert = "";
+
+    @Column(name = "decrees_acts")
+    private String decreesActs = "";
+
     @Lob
     protected byte[] attachment;
 
@@ -123,19 +132,7 @@ public class Property extends SecureAppEntity {
         tags.add(tag);
     }
 
-    // TODO to improve
-    public boolean isTagged(String name) {
-        if (getTags() != null) {
-            for (Tag tag : tags) {
-                if (tag.getName().equals(name)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private String getKof() {
+    public String getKof() {
         return kof;
     }
 
@@ -303,6 +300,30 @@ public class Property extends SecureAppEntity {
         this.notes = notes;
     }
 
+    public String getTechCert() {
+        return techCert;
+    }
+
+    public void setTechCert(String techCert) {
+        this.techCert = techCert;
+    }
+
+    public String getRegCert() {
+        return regCert;
+    }
+
+    public void setRegCert(String regCert) {
+        this.regCert = regCert;
+    }
+
+    public String getDecreesActs() {
+        return decreesActs;
+    }
+
+    public void setDecreesActs(String decreesActs) {
+        this.decreesActs = decreesActs;
+    }
+
     public byte[] getAttachment() {
         return attachment;
     }
@@ -391,7 +412,8 @@ public class Property extends SecureAppEntity {
             chunk.append("<propertycode id=\"" + propertyCode.getId() + "\">" + propertyCode.getLocalizedName(ses.getLang()) + "</propertycode>");
         }
         if (receivingReason.getId() != null) {
-            chunk.append("<receivingreason id=\"" + receivingReason.getId() + "\">" + receivingReason.getLocalizedName(ses.getLang()) + "</receivingreason>");
+            chunk.append("<receivingreason id=\"" + receivingReason.getId() + "\">" + receivingReason.getLocalizedName(ses.getLang())
+                    + "</receivingreason>");
         }
 
         chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");

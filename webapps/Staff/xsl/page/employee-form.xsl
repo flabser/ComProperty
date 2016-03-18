@@ -11,11 +11,14 @@
         <div>
             <label class="input">
                 <input type="checkbox" name="role" value="{@id}">
-                    <xsl:if test="contains($select, viewcontent/name)">
+                    <xsl:if test="@id = $select/entry/@id">
                         <xsl:attribute name="checked" select="checked"/>
                     </xsl:if>
                     <span>
                         <xsl:value-of select="viewcontent/name"/>
+                       <!-- <div class="text-muted">
+                            <xsl:value-of select="viewcontent/description"/>
+                        </div>-->
                     </span>
                 </input>
             </label>

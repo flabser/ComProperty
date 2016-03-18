@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rule type="page" mode="on">
+    <!-- <caching>CACHING_IN_SERVER_SCOPE</caching> -->
+    <caching>NO_CACHING</caching>
+
+    <caption name="brand"/>
+
+    <caption name="new_"/>
+    <caption name="cancel"/>
+    <caption name="select"/>
+    <caption name="close"/>
+    <caption name="wait_while_document_save"/>
+
+    <caption name="properties"/>
+    <caption name="interface"/>
+    <caption name="del_document"/>
+    <caption name="logout"/>
+    <caption name="user_profile"/>
+    <caption name="search"/>
+    <caption name="change_skin"/>
+    <caption name="employee"/>
+    <caption name="position"/>
+    <caption name="user_name"/>
+    <caption name="login_name"/>
+    <caption name="email"/>
+    <caption name="password"/>
+    <caption name="password_confirm"/>
+    <caption name="password_confirm_not_equals"/>
+    <caption name="email"/>
+    <caption name="org_name"/>
+    <caption name="roles"/>
+    <caption name="department"/>
+    <caption name="iin"/>
+    <caption name="status"/>
+    <caption name="countdocinview"/>
+    <caption name="interface_lang"/>
+    <caption name="back_to_doc_list"/>
+    <caption name="ft_search_result"/>
+    <caption name="airports"/>
+    <caption name="animals"/>
+    <caption name="automobiles"/>
+    <caption name="billboards"/>
+    <caption name="bombproofs"/>
+    <caption name="buildings"/>
+    <caption name="structures"/>
+    <caption name="residential_objects"/>
+
+    <caption name="buses"/>
+    <caption name="cars"/>
+    <caption name="cargo"/>
+    <caption name="dej_transport"/>
+    <caption name="official_transport"/>
+    <caption name="passenger_transports"/>
+    <caption name="trolleybuses"/>
+    <caption name="trams"/>
+    <caption name="water_transports"/>
+    <caption name="taxi"/>
+    <caption name="special_equipment"/>
+    <caption name="columns"/>
+    <caption name="combines"/>
+    <caption name="computer_equipment"/>
+    <caption name="school_equipment"/>
+    <caption name="office_equipment"/>
+    <caption name="cook_equipment"/>
+    <caption name="equipment_of_civildefence"/>
+
+    <caption name="drain"/>
+    <caption name="electric_networks"/>
+    <caption name="thermal_networks"/>
+    <caption name="gas"/>
+    <caption name="water_systems"/>
+    <caption name="eng_infrastructures"/>
+    <caption name="equipment"/>
+    <caption name="equities"/>
+    <caption name="factory"/>
+    <caption name="furniture"/>
+    <caption name="intangible_assets"/>
+    <caption name="share_blocks"/>
+    <caption name="inventory"/>
+    <caption name="land"/>
+    <caption name="medical_equipment"/>
+    <caption name="monuments"/>
+    <caption name="transport"/>
+    <caption name="motorcycles"/>
+
+    <caption name="strategic_objects"/>
+    <caption name="transitions"/>
+
+    <caption name="networks"/>
+    <caption name="object_reserved_fund"/>
+
+    <caption name="others_equipment"/>
+    <caption name="others"/>
+    <caption name="parking_lots"/>
+    <caption name="parkings"/>
+    <caption name="roads"/>
+
+    <caption name="personal_estates"/>
+    <caption name="real_estates"/>
+    <caption name="reports"/>
+
+    <caption name="new_order"/>
+</rule>

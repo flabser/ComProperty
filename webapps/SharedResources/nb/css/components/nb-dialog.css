@@ -125,7 +125,9 @@
     background-color: #FFF2AD;
 }
 
+.nb-dialog-list label[data-role=dialog-list-item] > input + span,
 .nb-dialog-list-it label > span {
+    color: #000;
     display: inline-block;
     padding: 4px;
 }

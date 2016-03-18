@@ -3,14 +3,15 @@ package staff.page.view;
 import java.util.List;
 import java.util.UUID;
 
+import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import kz.lof.scripting.event._DoPage;
 import staff.dao.OrganizationLabelDAO;
 import staff.model.Organization;
 import staff.model.OrganizationLabel;
@@ -25,7 +26,7 @@ public class OrganizationLabelView extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
 		OrganizationLabelDAO dao = new OrganizationLabelDAO(session);
-		String id = formData.getValueSilently("docid");
+		String id = formData.getValueSilently("categoryid");
 		if (!id.isEmpty()) {
 			OrganizationLabel role = dao.findById(UUID.fromString(id));
 			List<Organization> emps = role.getLabels();
@@ -49,7 +50,11 @@ public class OrganizationLabelView extends _DoPage {
 		OrganizationLabelDAO dao = new OrganizationLabelDAO(session);
 		for (String id : formData.getListOfValuesSilently("docid")) {
 			OrganizationLabel m = dao.findById(UUID.fromString(id));
-			dao.delete(m);
+			try {
+				dao.delete(m);
+			} catch (SecureException e) {
+				setError(e);
+			}
 		}
 	}
 }
