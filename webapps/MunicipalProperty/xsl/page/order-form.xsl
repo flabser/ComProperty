@@ -42,9 +42,7 @@
                                     <xsl:value-of select="//captions/reg_number/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <div class="input-placeholder span3">
-                                        <xsl:value-of select="fields/regnumber"/>
-                                    </div>
+                                    <input type="text" name="regnumber" value="{fields/regnumber}" class="span4"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -113,14 +111,9 @@
                             <legend class="legend">
                                 <xsl:value-of select="//captions/reg_documents/@caption"/>
                             </legend>
-                            <div class="form-group">
-                                <label class="btn" for="regfile">
-                                    <i class="fa fa-paperclip"></i>
-                                    <span>
-                                        <xsl:value-of select="//captions/attach_file/@caption"/>
-                                    </span>
-                                </label>
-                            </div>
+                            <xsl:call-template name="upload-files">
+                                <xsl:with-param name="input-name" select="'reg-files'"/>
+                            </xsl:call-template>
                         </fieldset>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-3">
@@ -128,9 +121,6 @@
                     </div>
                 </div>
             </section>
-        </form>
-        <form class="hidden" method="POST" enctype="multipart/form-data">
-            <input type="file" id="regfile" name="regfile" onchange=""/>
         </form>
     </xsl:template>
 

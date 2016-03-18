@@ -14,9 +14,12 @@ var nb = {
         return 'RUS';
     })(),
     debug: false,
+    api: {
+        translations: 'Provider?id=common-captions',
+        upload: 'UploadFile'
+    },
     options: {
-        dateFormat: 'yy-mm-dd',
-        translationsUrl: 'Provider?id=common-captions'
+        dateFormat: 'yy-mm-dd'
     },
     translations: {
         yes: 'Да',
@@ -25,8 +28,7 @@ var nb = {
         cancel: 'Отмена',
         select: 'Выбрать',
         dialog_no_selected_value: 'Вы не сделали выбор'
-    },
-    tpl: {}
+    }
 };
 
 var nbApp = { /* local application namespace */ };
@@ -56,7 +58,7 @@ nb.getTranslations = function() {
     return $.ajax({
         type: 'get',
         dataType: 'json',
-        url: nb.options.translationsUrl
+        url: nb.api.translations
     });
 };
 
@@ -116,7 +118,7 @@ nb.template = function(templateId, data) {
     return nb.templates[templateId].call(this, data);
 };
 
-// Global ajax callback functions
+// Global ajax error handling
 $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
     if (jqxhr.responseJSON) {
         return;

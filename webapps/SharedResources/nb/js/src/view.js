@@ -18,7 +18,6 @@ nb.setSearchReferToSessionStorage = function() {
     }
 };
 
-
 nb.resetSearchFromRefer = function() {
     var refer = sessionStorage.getItem('search_refer');
     if (refer) {
@@ -27,7 +26,6 @@ nb.resetSearchFromRefer = function() {
         history.back();
     }
 };
-
 
 // init
 $(document).ready(function() {

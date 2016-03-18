@@ -1330,9 +1330,12 @@ var nb = {
         return 'RUS';
     })(),
     debug: false,
+    api: {
+        translations: 'Provider?id=common-captions',
+        upload: 'UploadFile'
+    },
     options: {
-        dateFormat: 'yy-mm-dd',
-        translationsUrl: 'Provider?id=common-captions'
+        dateFormat: 'yy-mm-dd'
     },
     translations: {
         yes: 'Да',
@@ -1341,8 +1344,7 @@ var nb = {
         cancel: 'Отмена',
         select: 'Выбрать',
         dialog_no_selected_value: 'Вы не сделали выбор'
-    },
-    tpl: {}
+    }
 };
 
 var nbApp = { /* local application namespace */ };
@@ -1372,7 +1374,7 @@ nb.getTranslations = function() {
     return $.ajax({
         type: 'get',
         dataType: 'json',
-        url: nb.options.translationsUrl
+        url: nb.api.translations
     });
 };
 
@@ -1432,7 +1434,7 @@ nb.template = function(templateId, data) {
     return nb.templates[templateId].call(this, data);
 };
 
-// Global ajax callback functions
+// Global ajax error handling
 $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
     if (jqxhr.responseJSON) {
         return;
@@ -2504,6 +2506,52 @@ $(document).ready(function() {
     });
 });
 
+nb.upload = function(fileInput, fsId) {
+    var formData = new FormData();
+    formData.append('file', fileInput.files);
+    formData.append('fsid', fsId);
+
+    return $.ajax({
+        url: nb.api.upload,
+        method: 'POST',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function(result, xhr) {
+            $('[data-upload-files=' + fileInput.name + ']').append(nb.template('attachments', result.files));
+            return result;
+        },
+        error: function(err) {
+            $('[data-upload-files=' + fileInput.name + ']').append("error");
+            return err;
+        },
+        complete: function() {
+            fileInput.form.reset();
+        }
+    });
+};
+
+$(document).ready(function() {
+    var fsId = new Date().getTime();
+    $('[data-upload]').each(function() {
+        var uploadName = $(this).data('upload');
+        if ($('[type=file][name=' + uploadName + ']').length === 0) {
+            var $fileForm = $('<form class=hidden><input type=file name="' + uploadName + '"/></form>');
+            $fileForm.appendTo('body');
+            var $fileInput = $fileForm.find('input');
+
+            $fileInput.on('change', function() {
+                nb.upload($fileInput[0], fsId);
+            });
+
+            $(this).click(function() {
+                $fileInput.click();
+            });
+        }
+    });
+});
+
 nb.getSelectedEntityIDs = function(checkboxName) {
     var $checked = $('input[name=' + (checkboxName || 'docid') + ']:checked');
     if ($checked.length === 0) {
@@ -2524,7 +2572,6 @@ nb.setSearchReferToSessionStorage = function() {
     }
 };
 
-
 nb.resetSearchFromRefer = function() {
     var refer = sessionStorage.getItem('search_refer');
     if (refer) {
@@ -2533,7 +2580,6 @@ nb.resetSearchFromRefer = function() {
         history.back();
     }
 };
-
 
 // init
 $(document).ready(function() {
@@ -2550,6 +2596,17 @@ $(document).ready(function() {
 
 this["nb"] = this["nb"] || {};
 this["nb"]["templates"] = this["nb"]["templates"] || {};
+this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
+    return "    <div class=attachments-file>\r\n        "
+    + container.escapeExpression(container.lambda(blockParams[0][0], depth0))
+    + "\r\n    </div>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "    <div>files empty</div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
+    var stack1;
+
+  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.files : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams),"inverse":container.program(3, data, 0, blockParams),"data":data,"blockParams":blockParams})) != null ? stack1 : "");
+},"useData":true,"useBlockParams":true});
 this["nb"]["templates"]["dialog-list"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 

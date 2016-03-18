@@ -295,6 +295,22 @@
         </div>
     </xsl:template>
 
+    <xsl:template name="upload-files">
+        <xsl:param name="input-name"/>
+
+        <div class="form-group">
+            <label class="btn" data-upload="{$input-name}">
+                <i class="fa fa-paperclip"></i>
+                <span>
+                    <xsl:value-of select="//captions/attach_file/@caption"/>
+                </span>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="attachments" data-upload-files="{$input-name}"></div>
+        </div>
+    </xsl:template>
+
     <xsl:template name="docinfo">
         <fieldset class="fieldset">
             <div class="form-group">
@@ -342,6 +358,34 @@
                 </div>
             </div>
         </fieldset>
+    </xsl:template>
+
+    <xsl:template name="legal-documents">
+        <!-- Технический паспорт -->
+        <div class="form-group">
+            <div class="control-label">
+                <xsl:value-of select="//captions/technical_passport/@caption"/>
+            </div>
+            <div class="controls">
+                <input type="text" name="technicalpassport" value="{fields/technicalpassport}" class="span6"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label">
+                <xsl:value-of select="//captions/propertyarticlein/@caption"/>
+            </div>
+            <div class="controls">
+                <input type="text" name="propertyarticlein" value="{fields/propertyarticlein}" class="span6"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label">
+                <xsl:value-of select="//captions/restransferacceptance/@caption"/>
+            </div>
+            <div class="controls">
+                <input type="text" name="restransferacceptance" value="{fields/restransferacceptance}" class="span6"/>
+            </div>
+        </div>
     </xsl:template>
 
     <xsl:template name="documents-of-title">

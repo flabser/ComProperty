@@ -1,5 +1,16 @@
 this["nb"] = this["nb"] || {};
 this["nb"]["templates"] = this["nb"]["templates"] || {};
+this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
+    return "    <div class=attachments-file>\r\n        "
+    + container.escapeExpression(container.lambda(blockParams[0][0], depth0))
+    + "\r\n    </div>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "    <div>files empty</div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
+    var stack1;
+
+  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.files : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams),"inverse":container.program(3, data, 0, blockParams),"data":data,"blockParams":blockParams})) != null ? stack1 : "");
+},"useData":true,"useBlockParams":true});
 this["nb"]["templates"]["dialog-list"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
