@@ -10,15 +10,21 @@
                         <xsl:value-of select="//captions/properties/@caption"/>
                     </a>
                 </li>
-                <!-- <li> <a href="#tabs-2" role="tab" data-toggle="tab"> <xsl:value-of
-                    select="//captions/documents_of_title/@caption" /> </a> </li> -->
+                <li>
+                    <a href="#tabs-2" role="tab" data-toggle="tab">
+                        <xsl:value-of select="//captions/documents_of_title/@caption"/>
+                    </a>
+                </li>
                 <li>
                     <a href="#tabs-3" role="tab" data-toggle="tab">
                         <xsl:value-of select="//captions/notes/@caption"/>
                     </a>
                 </li>
-                <!-- <li> <a href="#tabs-4" role="tab" data-toggle="tab"> <xsl:value-of
-                    select="//captions/files/@caption" /> </a> </li> -->
+                <li>
+                    <a href="#tabs-4" role="tab" data-toggle="tab">
+                        <xsl:value-of select="//captions/reg_documents/@caption"/>
+                    </a>
+                </li>
                 <li>
                     <a href="#tabs-5" role="tab" data-toggle="tab">
                         <xsl:value-of select="//captions/additional/@caption"/>
@@ -55,22 +61,20 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-2">
                     <fieldset class="fieldset">
-                        <!--<xsl:if test="//document/@editable = 'false'">
-                            <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>-->
                         <xsl:call-template name="documents-of-title"/>
                     </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-3">
                     <fieldset class="fieldset">
-                        <!--<xsl:if test="//document/@editable = 'false'">
-                            <xsl:attribute name="disabled" select="'disabled'"/>
-                        </xsl:if>-->
                         <xsl:call-template name="notes"/>
                     </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-4">
-
+                    <fieldset class="fieldset">
+                        <xsl:call-template name="upload-files">
+                            <xsl:with-param name="input-name" select="'reg-files'"/>
+                        </xsl:call-template>
+                    </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-5">
                     <xsl:call-template name="docinfo"/>

@@ -62,7 +62,7 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-2">
                     <fieldset class="fieldset">
-                        <xsl:call-template name="legal-documents"/>
+                        <xsl:call-template name="documents-of-title"/>
                     </fieldset>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-3">

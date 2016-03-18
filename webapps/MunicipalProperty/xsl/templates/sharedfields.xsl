@@ -360,58 +360,30 @@
         </fieldset>
     </xsl:template>
 
-    <xsl:template name="legal-documents">
-        <!-- Технический паспорт -->
-        <div class="form-group">
-            <div class="control-label">
-                <xsl:value-of select="//captions/technical_passport/@caption"/>
-            </div>
-            <div class="controls">
-                <input type="text" name="technicalpassport" value="{fields/technicalpassport}" class="span6"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label">
-                <xsl:value-of select="//captions/propertyarticlein/@caption"/>
-            </div>
-            <div class="controls">
-                <input type="text" name="propertyarticlein" value="{fields/propertyarticlein}" class="span6"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label">
-                <xsl:value-of select="//captions/restransferacceptance/@caption"/>
-            </div>
-            <div class="controls">
-                <input type="text" name="restransferacceptance" value="{fields/restransferacceptance}" class="span6"/>
-            </div>
-        </div>
-    </xsl:template>
-
     <xsl:template name="documents-of-title">
-        <!-- Технический паспорт -->
+        <!-- Правоустанавливающие документы -->
         <div class="form-group">
             <div class="control-label">
                 <xsl:value-of select="//captions/technical_passport/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="technicalpassport" value="{fields/technicalpassport}" class="span6"/>
+                <input type="text" name="techcert" value="{fields/techcert}" class="span6"/>
             </div>
         </div>
         <div class="form-group">
             <div class="control-label">
-                <xsl:value-of select="//captions/propertyarticlein/@caption"/>
+                <xsl:value-of select="//captions/reg_cert_property/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="propertyarticlein" value="{fields/propertyarticlein}" class="span6"/>
+                <input type="text" name="regcert" value="{fields/regcert}" class="span6"/>
             </div>
         </div>
         <div class="form-group">
             <div class="control-label">
-                <xsl:value-of select="//captions/restransferacceptance/@caption"/>
+                <xsl:value-of select="//captions/decrees_acts/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="restransferacceptance" value="{fields/restransferacceptance}" class="span6"/>
+                <input type="text" name="decreesacts" value="{fields/decreesacts}" class="span6"/>
             </div>
         </div>
     </xsl:template>
