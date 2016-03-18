@@ -9,12 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ForkJoinPool;
 
-import jxl.Cell;
-import jxl.CellType;
-import jxl.DateCell;
-import jxl.NumberCell;
-import jxl.Sheet;
+import jxl.*;
 import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.IAppEntity;
 import kz.lof.exception.SecureException;
@@ -26,27 +23,16 @@ import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.KufType;
+import municipalproperty.model.constants.PropertyStatusType;
 import municipalproperty.model.util.PropertyFactory;
 
 import org.apache.commons.lang3.StringUtils;
+
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
-
-import reference.dao.CityDistrictDAO;
-import reference.dao.CountryDAO;
-import reference.dao.LocalityDAO;
-import reference.dao.PropertyCodeDAO;
-import reference.dao.ReceivingReasonDAO;
-import reference.dao.ReferenceDAO;
-import reference.dao.RegionDAO;
-import reference.dao.StreetDAO;
-import reference.model.CityDistrict;
-import reference.model.Country;
-import reference.model.Locality;
-import reference.model.PropertyCode;
-import reference.model.ReceivingReason;
-import reference.model.Region;
-import reference.model.Street;
+import org.apache.commons.lang3.time.StopWatch;
+import reference.dao.*;
+import reference.model.*;
 import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 import staff.model.Organization;
@@ -67,6 +53,17 @@ public class MPXLImporter {
 	}
 
 	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh, String[] readers) {
+
+		/*long start = System.currentTimeMillis();
+		ForkJoinPool forkJoinPool = new ForkJoinPool();
+		ImportStream is = new ImportStream(sheet, 1, sheet.getRows(), ses, stopIfWrong, bh, readers, mode);
+		sheetErr = (Map<Integer, List<List<ErrorDescription>>>) forkJoinPool.invoke(is);
+		long stop = System.currentTimeMillis();
+		long diff = stop - start;
+		System.out.println("New method: " + diff);
+		return sheetErr;*/
+		//return (Map<Integer, List<List<ErrorDescription>>>) forkJoinPool.invoke(is);
+		long start = System.currentTimeMillis();
 		PropertyDAO propertyDao = new PropertyDAO(ses);
 		boolean skip = false;
 		int processed = 0, skipped = 0;
@@ -98,7 +95,7 @@ public class MPXLImporter {
 			String region = normalizeString(sheet.getCell(7, i).getContents());
 			String preparedRegion = normalizeString(region.replace("г.а.", "").replace("область", ""));
 			String district = normalizeString(sheet.getCell(8, i).getContents());
-			String preparedDistrict = district.replace("район", "").trim();
+			String preparedDistrict = district.replaceAll("(район)|(р-н)", "").trim();
 			String address = sheet.getCell(9, i).getContents().trim();
 			Cell originalCostCell = sheet.getCell(10, i);
 			Cell cumulativeDepreciationCell = sheet.getCell(11, i);
@@ -130,28 +127,26 @@ public class MPXLImporter {
 
 				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());
 				rowErr.add(new CheVal("5, Код права на имущество", propertyCode).isNotEmpty(propertyCode)
-				        .isReferenceValue(new PropertyCodeDAO(ses), propertyCode).getErr());
+						.isReferenceValue(new PropertyCodeDAO(ses), propertyCode).getErr());
 				rowErr.add(new CheVal("6, Дата принятия на баланс", acceptanceDateCell.getContents()).isDate(acceptanceDateCell).getErr());
 				rowErr.add(new CheVal("7, Страна", country).isReferenceValue(new CountryDAO(ses), country).getErr());
 				rowErr.add(new CheVal("8, Регион", region).isNotEmpty(preparedRegion).isReferenceValue(new RegionDAO(ses), preparedRegion).getErr());
 				rowErr.add(new CheVal("9, Район", district).isNotEmpty(preparedDistrict).isReferenceValue(new CityDistrictDAO(ses), preparedDistrict)
-				        .getErr());
+						.getErr());
 				rowErr.add(new CheVal("10, Адрес", address).isNotEmpty(address).getErr());
 				rowErr.add(new CheVal("11, Первоначальная стоимость", originalCostCell.getContents()).isFloatNumber(originalCostCell).getErr());
-				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents()).isFloatNumber(
-				        cumulativeDepreciationCell).getErr());
+				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents()).isFloatNumber(cumulativeDepreciationCell).getErr());
 				rowErr.add(new CheVal("13, Убыток от обесценения", impairmentLossCell.getContents()).isFloatNumber(impairmentLossCell).getErr());
 				rowErr.add(new CheVal("14, Балансовая стоимость", balanceCostCell.getContents()).isFloatNumber(balanceCostCell).getErr());
 				rowErr.add(new CheVal("15, Сумма переоценки", revaluationAmountCell.getContents()).isFloatNumber(revaluationAmountCell).getErr());
-				rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", residualCostCell.getContents()).isFloatNumber(residualCostCell)
-				        .getErr());
+				rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", residualCostCell.getContents()).isFloatNumber(residualCostCell).getErr());
 				rowErr.add(new CheVal("17, Основание поступления на баланс", receiptBasisinBalance).isReferenceValue(new ReceivingReasonDAO(ses),
-				        receiptBasisinBalance).getErr());
+						receiptBasisinBalance).getErr());
 				rowErr.add(new CheVal("18 Модель", model).isOkAnyway().getErr());
 				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", commissioningYear.getContents()).isYear(commissioningYear).getErr());
 				rowErr.add(new CheVal("20, Год приобретения ", acquisitionYear.getContents()).isYear(acquisitionYear).getErr());
 				rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", isReadyToOperation).isNotEmpty(isReadyToOperation)
-				        .isValueOfList(trueVal, falseVal, isReadyToOperation).getErr());
+						.isValueOfList(trueVal, falseVal, isReadyToOperation).getErr());
 
 				rowErr.removeAll(Arrays.asList(null, ""));
 				if (!rowErr.isEmpty()) {
@@ -195,6 +190,7 @@ public class MPXLImporter {
 					accountant.page.action.util.AddressParser parser = new accountant.page.action.util.AddressParser();
 					parser.parseAddresses(addr, ses);
 
+					prop.setPropertyStatusType(PropertyStatusType.ON_BALANCE);
 					prop.setOriginalCost(cv.getFloat(originalCostCell));
 					prop.setCumulativeDepreciation(cv.getFloat(cumulativeDepreciationCell));
 					prop.setCumulativeDepreciation(cv.getFloat(impairmentLossCell));
@@ -228,7 +224,6 @@ public class MPXLImporter {
 						propertyDao.add(prop);
 						processed++;
 					} catch (SecureException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -238,9 +233,11 @@ public class MPXLImporter {
 
 			}
 		}
+		long stop = System.currentTimeMillis();
+		long diff = stop - start;
+		System.out.println("Old method: " + diff);
 		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
 		return sheetErr;
-
 	}
 
 	private static boolean checkForEmptyRow(Cell[] cells) {
@@ -263,7 +260,8 @@ public class MPXLImporter {
 	}
 
 	class CheVal {
-		private List<ErrorDescription> errMsg = new ArrayList<ErrorDescription>();;
+		private List<ErrorDescription> errMsg = new ArrayList<ErrorDescription>();
+		;
 		String info;
 		String sourceValue;
 
@@ -300,7 +298,7 @@ public class MPXLImporter {
 		CheVal isYear(Cell value) {
 			if (getYear(value) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue, "value is larger than " + Calendar.getInstance().get(Calendar.YEAR)
-				        + " or less than " + MPXLImporter.FROM_YEAR + ")"));
+						+ " or less than " + MPXLImporter.FROM_YEAR + ")"));
 			}
 			return this;
 		}
@@ -369,7 +367,7 @@ public class MPXLImporter {
 		CheVal isValueOfList(String trueVal, String falseVal, String value) {
 			if (getBoolean(trueVal, falseVal, value) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue, "value is incorrect, it should be match to: \"" + trueVal + "\" or \"" + falseVal
-				        + "\""));
+						+ "\""));
 			}
 			return this;
 		}
@@ -409,8 +407,7 @@ public class MPXLImporter {
 		}
 
 		CheVal isFloatNumber(Cell fCell) {
-			if (fCell.getType() == CellType.NUMBER || fCell.getType() == CellType.NUMBER_FORMULA || fCell.getType() == CellType.EMPTY
-			        || NumberUtils.isDigits(fCell.getContents().trim().replaceAll("[.|,|\\s|\\uFFFD]", ""))) {
+			if (fCell.getType() == CellType.NUMBER || fCell.getType() == CellType.NUMBER_FORMULA || fCell.getType() == CellType.EMPTY || NumberUtils.isDigits(fCell.getContents().trim().replaceAll("[.|,|\\s|\\uFFFD]", ""))) {
 				return this;
 			}
 			errMsg.add(new ErrorDescription(info, sourceValue, "value of the cell is not allowed to convert to float number"));
@@ -469,21 +466,18 @@ public class MPXLImporter {
 				dateVal = dateCell.getDate();
 			} else {
 				try {
-					dateVal = DateUtils.parseDate(dCell.getContents(), "yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd.MM.yy hh:mm:ss", "dd.MM.yyyy hh:mm:ss",
-					        "yyyy.MM.dd", "yyyy.MM.dd hh:mm:ss");
-					/*
-					 * String acceptancedateStr =
-					 * dCell.getContents().trim().replace("/", ".").replace("-",
-					 * "."); switch (acceptancedateStr.length()) { case 4:
-					 * dateVal = new
-					 * SimpleDateFormat("yyyy").parse(acceptancedateStr); break;
-					 * case 8: dateVal = new
-					 * SimpleDateFormat("dd.MM.yy").parse(acceptancedateStr);
-					 * break; case 10:
-					 * 
-					 * dateVal = new
-					 * SimpleDateFormat("dd.MM.yyyy").parse(acceptancedateStr);
-					 */
+					dateVal = DateUtils.parseDate(dCell.getContents(), "yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd.MM.yy hh:mm:ss", "dd.MM.yyyy hh:mm:ss", "yyyy.MM.dd", "yyyy.MM.dd hh:mm:ss");
+                   /* String acceptancedateStr = dCell.getContents().trim().replace("/", ".").replace("-", ".");
+                    switch (acceptancedateStr.length()) {
+                        case 4:
+                            dateVal = new SimpleDateFormat("yyyy").parse(acceptancedateStr);
+                            break;
+                        case 8:
+                            dateVal = new SimpleDateFormat("dd.MM.yy").parse(acceptancedateStr);
+                            break;
+                        case 10:
+
+                            dateVal = new SimpleDateFormat("dd.MM.yyyy").parse(acceptancedateStr);*/
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
