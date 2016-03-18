@@ -37,8 +37,9 @@
                         </div>
                         <div class="controls">
                             <select name="code" class="span2" required="required">
-                                <xsl:apply-templates select="//constants[@entity = 'countrycode']/entry"
-                                                     mode="select_options">
+                                <xsl:apply-templates
+                                        select="//constants[@entity = 'countrycode']/entry[@attrval != 'UNKNOWN']"
+                                        mode="select_options">
                                     <xsl:with-param name="selected" select="fields/code"/>
                                 </xsl:apply-templates>
                             </select>
