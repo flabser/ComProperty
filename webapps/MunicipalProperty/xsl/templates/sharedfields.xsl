@@ -364,18 +364,18 @@
         <!-- Правоустанавливающие документы -->
         <div class="form-group">
             <div class="control-label">
-                <xsl:value-of select="//captions/technical_passport/@caption"/>
+                <xsl:value-of select="//captions/tech_cert/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="techcert" value="{fields/techcert}" class="span6"/>
+                <input type="text" name="techcert" value="{fields/techcert}" class="span8"/>
             </div>
         </div>
         <div class="form-group">
             <div class="control-label">
-                <xsl:value-of select="//captions/reg_cert_property/@caption"/>
+                <xsl:value-of select="//captions/reg_cert/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="regcert" value="{fields/regcert}" class="span6"/>
+                <input type="text" name="regcert" value="{fields/regcert}" class="span8"/>
             </div>
         </div>
         <div class="form-group">
@@ -383,7 +383,7 @@
                 <xsl:value-of select="//captions/decrees_acts/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="decreesacts" value="{fields/decreesacts}" class="span6"/>
+                <input type="text" name="decreesacts" value="{fields/decreesacts}" class="span8"/>
             </div>
         </div>
     </xsl:template>
