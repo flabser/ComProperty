@@ -6,8 +6,6 @@
     <xsl:import href="templates/view.xsl"/>
     <xsl:import href="templates/actions.xsl"/>
 
-    <xsl:variable name="isAjaxRequest" select="//ajax = '1'"/>
-
     <xsl:output method="html" encoding="utf-8" indent="no"/>
 
     <xsl:template name="layout">
@@ -118,6 +116,9 @@
                             <option value="{//request/@id}" selected="selected">Здесь</option>
                             <option value="search">Везде</option>
                         </select>
+                        <button type="reset">
+                            <i class="fa fa-times"></i>
+                        </button>
                         <input type="submit" value="search"/>
                     </form>
                 </nav>

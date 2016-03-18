@@ -305,6 +305,7 @@
                     <xsl:value-of select="//captions/attach_file/@caption"/>
                 </span>
             </label>
+            <progress id="progress_{$input-name}" class="upload-progress" value="0"/>
         </div>
         <div class="form-group">
             <div class="attachments" data-upload-files="{$input-name}"></div>

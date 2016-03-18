@@ -6,8 +6,6 @@
     <xsl:import href="templates/view.xsl"/>
     <xsl:import href="templates/actions.xsl"/>
 
-    <xsl:variable name="isAjaxRequest" select="//ajax = '1'"/>
-
     <xsl:output method="html" encoding="utf-8" indent="no"/>
 
     <xsl:template name="layout">
@@ -115,6 +113,9 @@
                             <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
                             <xsl:attribute name="value" select="//query/@keyword"/>
                         </input>
+                        <button type="reset">
+                            <i class="fa fa-times"></i>
+                        </button>
                         <input type="submit" value="search"/>
                     </form>
                 </nav>
