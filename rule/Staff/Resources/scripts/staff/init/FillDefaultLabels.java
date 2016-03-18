@@ -29,7 +29,7 @@ public class FillDefaultLabels extends InitialDataAdapter<OrganizationLabel, Org
 		Map<LanguageCode, String> name = new HashMap<LanguageCode, String>();
 		name.put(LanguageCode.ENG, "Inactive organization");
 		name.put(LanguageCode.RUS, "Не действующая организация");
-		name.put(LanguageCode.RUS, "Ұйымдастыру міндетін атқарушы емес");
+		name.put(LanguageCode.KAZ, "Ұйымдастыру міндетін атқарушы емес");
 		entity.setLocalizedName(name);
 		entity.setDescription("Inactive organization");
 		entities.add(entity);

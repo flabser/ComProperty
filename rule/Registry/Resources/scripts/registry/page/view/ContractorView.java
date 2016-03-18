@@ -2,7 +2,9 @@ package registry.page.view;
 
 import java.util.UUID;
 
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.exception.SecureException;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
@@ -27,7 +29,10 @@ public class ContractorView extends _DoPage {
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
 
 		addContent(actionBar);
-		addContent(getViewPage(new OrganizationDAO(session), formData));
+
+		OrganizationDAO dao = new OrganizationDAO(session);
+		ViewPage<Organization> vp = dao.findAllByLabel("balance_holder", formData.getNumberValueSilently("page", 1), session.pageSize);
+		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}
 
 	@Override

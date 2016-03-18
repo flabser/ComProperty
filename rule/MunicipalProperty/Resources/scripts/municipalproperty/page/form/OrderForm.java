@@ -1,8 +1,13 @@
 package municipalproperty.page.form;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.UUID;
 
+import kz.lof.env.Environment;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
@@ -21,6 +26,7 @@ import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Order;
 import municipalproperty.model.Property;
 
+import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 public class OrderForm extends _DoPage {
@@ -84,7 +90,13 @@ public class OrderForm extends _DoPage {
 			entity.setDescription(formData.getValue("description"));
 			entity.setRegDate(_Helper.convertStringToDate(formData.getValueSilently("regdate")));
 			entity.setOrderStatus(Order.OrderStatus.valueOf(formData.getValue("orderstatus")));
-
+			String fn = formData.getValueSilently("fileid");
+			if (!fn.isEmpty()) {
+				File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
+				File file = new File(userTmpDir + File.separator + fn);
+				InputStream is = new FileInputStream(file);
+				entity.setAttachment(IOUtils.toByteArray(is));
+			}
 			if (isNew) {
 				dao.add(entity);
 			} else {
@@ -94,7 +106,7 @@ public class OrderForm extends _DoPage {
 			finishSaveFormTransact(entity);
 		} catch (SecureException e) {
 			setError(e);
-		} catch (_Exception | DatabaseException e) {
+		} catch (_Exception | DatabaseException | IOException e) {
 			error(e);
 			setBadRequest();
 		}
