@@ -9,7 +9,7 @@ label > input + span {
 }
 
 label:not(.btn) > input + span {
-    color: #666;
+    color: #555;
 }
 
 label:hover > input + span,
