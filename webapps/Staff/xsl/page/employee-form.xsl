@@ -16,9 +16,9 @@
                     </xsl:if>
                     <span>
                         <xsl:value-of select="viewcontent/name"/>
-                        <div class="text-muted">
+                       <!-- <div class="text-muted">
                             <xsl:value-of select="viewcontent/description"/>
-                        </div>
+                        </div>-->
                     </span>
                 </input>
             </label>
