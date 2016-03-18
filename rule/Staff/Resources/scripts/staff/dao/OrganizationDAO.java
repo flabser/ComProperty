@@ -70,6 +70,39 @@ public class OrganizationDAO extends DAO<Organization, UUID> {
 		}
 	}
 
+	public ViewPage<Organization> findAllByOrgCategory(String labelName, int pageNum, int pageSize) {
+		List<OrganizationLabel> val = new ArrayList<OrganizationLabel>();
+		OrganizationLabelDAO olDAO = new OrganizationLabelDAO(ses);
+		OrganizationLabel l = olDAO.findByName(labelName);
+		val.add(l);
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		try {
+			CriteriaQuery<Organization> cq = cb.createQuery(getEntityClass());
+			CriteriaQuery<Long> countCq = cb.createQuery(Long.class);
+			Root<Organization> c = cq.from(getEntityClass());
+			cq.select(c);
+			countCq.select(cb.count(c));
+			Predicate condition = c.get("labels").in(val);
+			cq.where(condition);
+			countCq.where(condition);
+			TypedQuery<Organization> typedQuery = em.createQuery(cq);
+			Query query = em.createQuery(countCq);
+			long count = (long) query.getSingleResult();
+			int maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
+			if (pageNum == 0) {
+				pageNum = maxPage;
+			}
+			int firstRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
+			typedQuery.setFirstResult(firstRec);
+			typedQuery.setMaxResults(pageSize);
+			List<Organization> result = typedQuery.getResultList();
+			return new ViewPage<Organization>(result, count, maxPage, pageNum);
+		} finally {
+			em.close();
+		}
+	}
+
 	public ViewPage<Organization> findAllByKeyword(String keyword, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
