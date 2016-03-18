@@ -105,6 +105,15 @@ public class Property extends SecureAppEntity {
 
 	private String notes = "";
 
+	@Column(name = "tech_cert")
+	private String techCert = "";
+
+	@Column(name = "reg_cert")
+	private String regCert = "";
+
+	@Column(name = "decrees_acts")
+	private String decreesActs = "";
+
 	@Lob
 	protected byte[] attachment;
 
@@ -301,6 +310,30 @@ public class Property extends SecureAppEntity {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public String getTechCert() {
+		return techCert;
+	}
+
+	public void setTechCert(String techCert) {
+		this.techCert = techCert;
+	}
+
+	public String getRegCert() {
+		return regCert;
+	}
+
+	public void setRegCert(String regCert) {
+		this.regCert = regCert;
+	}
+
+	public String getDecreesActs() {
+		return decreesActs;
+	}
+
+	public void setDecreesActs(String decreesActs) {
+		this.decreesActs = decreesActs;
 	}
 
 	public byte[] getAttachment() {
