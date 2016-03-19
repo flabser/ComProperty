@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class VehicleForm extends MunicipalPropertyForm {
+public class VehicleForm extends AbstractMunicipalPropertyForm {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

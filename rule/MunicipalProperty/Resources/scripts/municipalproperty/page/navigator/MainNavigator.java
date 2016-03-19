@@ -102,7 +102,7 @@ public class MainNavigator extends _DoPage {
         engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("billboards", lang), "", "engineeringinfrastructure-view601", eiUrl + "601"));
         engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("columns", lang), "", "engineeringinfrastructure-view602", eiUrl + "602"));
 
-        _OutlineEntry networkEntry = new _OutlineEntry(getLocalizedWord("networks", lang), "", "engineeringinfrastructure-viewnetworks", eiUrl + "networks");
+        _OutlineEntry networkEntry = new _OutlineEntry(getLocalizedWord("networks", lang), "", "engineeringinfrastructure-view603", eiUrl + "603");
         networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "", "engineeringinfrastructure-view6031", eiUrl + "6031"));
         networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("thermal_networks", lang), "", "engineeringinfrastructure-view6032", eiUrl + "6032"));
         networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("gas", lang), "", "engineeringinfrastructure-view6033", eiUrl + "6033"));

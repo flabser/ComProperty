@@ -25,7 +25,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
  * @author Kayra created 27-01-2016
  */
 
-public abstract class MunicipalPropertyForm extends _DoPage {
+public abstract class AbstractMunicipalPropertyForm extends _DoPage {
 
 	protected _ActionBar getActionBar(_Session ses, Property entity) {
 		LanguageCode lang = ses.getLang();

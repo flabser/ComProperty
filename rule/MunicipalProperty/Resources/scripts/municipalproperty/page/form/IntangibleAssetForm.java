@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class IntangibleAssetForm extends MunicipalPropertyForm {
+public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

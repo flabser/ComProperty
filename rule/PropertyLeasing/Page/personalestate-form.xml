@@ -8,6 +8,9 @@
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
+        <value>outline</value>
+    </element>
+    <element mode="ON" type="INCLUDED_PAGE">
         <value>common-form-captions</value>
     </element>
 </rule>

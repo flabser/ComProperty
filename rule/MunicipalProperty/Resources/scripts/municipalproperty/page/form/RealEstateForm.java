@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class RealEstateForm extends MunicipalPropertyForm {
+public class RealEstateForm extends AbstractMunicipalPropertyForm {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
