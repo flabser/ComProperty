@@ -42,6 +42,9 @@ public class Application extends AppEntity<UUID> {
 
 	private int position;
 
+	@Column(name = "ftsearch_fields")
+	private List<String> ftSearchFields;
+
 	public String getName() {
 		return name;
 	}
@@ -93,6 +96,14 @@ public class Application extends AppEntity<UUID> {
 
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	public List<String> getFtSearchFields() {
+		return ftSearchFields;
+	}
+
+	public void setFtSearchFields(List<String> ftSearchFields) {
+		this.ftSearchFields = ftSearchFields;
 	}
 
 	@Override

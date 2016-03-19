@@ -1,5 +1,8 @@
 package registry.page.view;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import kz.lof.dataengine.jpa.ViewPage;
@@ -12,6 +15,8 @@ import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
@@ -32,8 +37,9 @@ public class IndividualView extends _DoPage {
 
 		addContent(actionBar);
 		OrganizationDAO dao = new OrganizationDAO(session);
-		ViewPage<Organization> vp = dao.findAllequal("orgCategory", "Частный предприниматель", formData.getNumberValueSilently("page", 1),
-		        session.pageSize);
+		OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+		List<OrgCategory> params = new ArrayList<OrgCategory>(Arrays.asList(ocDao.findByName("Частный предприниматель")));
+		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1), session.pageSize);
 		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}
 

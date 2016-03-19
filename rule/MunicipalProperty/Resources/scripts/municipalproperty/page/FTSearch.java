@@ -1,5 +1,7 @@
 package municipalproperty.page;
 
+import java.util.UUID;
+
 import kz.flabs.dataengine.IDatabase;
 import kz.flabs.dataengine.IFTIndexEngine;
 import kz.lof.dataengine.jpa.AppEntity;
@@ -8,13 +10,9 @@ import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
-import kz.lof.scripting.event._DoPage;
-import municipalproperty.model.Property;
-
-import java.util.List;
-import java.util.UUID;
 
 /**
  * @author Kayra created 06-01-2016
@@ -41,8 +39,7 @@ public class FTSearch extends _DoPage {
 		        "reset_search")));
 		if (result != null) {
 			ViewPage<AppEntity<UUID>> res = (ViewPage<AppEntity<UUID>>) result;
-			addContent(new _POJOListWrapper<>(res.getResult(), res.getMaxPage(), res.getCount(), res.getPageNum(), session,
-			        keyWord));
+			addContent(new _POJOListWrapper<>(res.getResult(), res.getMaxPage(), res.getCount(), res.getPageNum(), session, keyWord));
 		} else {
 			addContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": '" + keyWord + "'", keyWord));
 		}

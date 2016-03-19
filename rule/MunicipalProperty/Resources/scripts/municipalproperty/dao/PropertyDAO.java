@@ -19,6 +19,7 @@ import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._Session;
+import kz.lof.user.SuperUser;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;
 
@@ -38,7 +39,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			cq.select(c);
 			countCq.select(cb.count(c));
 			Predicate condition = c.get(fieldName).in(value);
-			if (!user.getUserID().equals(Const.sysUser) && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
+			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);
 			}
 			cq.where(condition);

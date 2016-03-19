@@ -1,6 +1,7 @@
 package staff.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._Session;
+import reference.model.OrgCategory;
 import staff.model.Organization;
 import staff.model.OrganizationLabel;
 
@@ -70,11 +72,7 @@ public class OrganizationDAO extends DAO<Organization, UUID> {
 		}
 	}
 
-	public ViewPage<Organization> findAllByOrgCategory(String labelName, int pageNum, int pageSize) {
-		List<OrganizationLabel> val = new ArrayList<OrganizationLabel>();
-		OrganizationLabelDAO olDAO = new OrganizationLabelDAO(ses);
-		OrganizationLabel l = olDAO.findByName(labelName);
-		val.add(l);
+	public ViewPage<Organization> findAllByOrgCategory(List<OrgCategory> name, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
@@ -83,9 +81,14 @@ public class OrganizationDAO extends DAO<Organization, UUID> {
 			Root<Organization> c = cq.from(getEntityClass());
 			cq.select(c);
 			countCq.select(cb.count(c));
-			Predicate condition = c.get("labels").in(val);
-			cq.where(condition);
-			countCq.where(condition);
+			List<Predicate> predList = new LinkedList<Predicate>();
+			for (OrgCategory cat : name) {
+				predList.add(cb.or(cb.equal(c.get("orgCategory"), cat)));
+			}
+			Predicate[] predArray = new Predicate[predList.size()];
+			predList.toArray(predArray);
+			cq.where(predArray);
+			countCq.where(predArray);
 			TypedQuery<Organization> typedQuery = em.createQuery(cq);
 			Query query = em.createQuery(countCq);
 			long count = (long) query.getSingleResult();

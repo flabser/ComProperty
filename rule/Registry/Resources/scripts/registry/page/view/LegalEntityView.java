@@ -1,15 +1,21 @@
 package registry.page.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
@@ -29,7 +35,14 @@ public class LegalEntityView extends _DoPage {
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
 		addContent(actionBar);
-		addContent(getViewPage(new OrganizationDAO(session), formData));
+		OrganizationDAO dao = new OrganizationDAO(session);
+		OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+		List<OrgCategory> params = new ArrayList<OrgCategory>();
+		params.add(ocDao.findByName("ТОО"));
+		params.add(ocDao.findByName("АО"));
+		params.add(ocDao.findByName("Государственное ведомство"));
+		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1), session.pageSize);
+		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}
 
 	@Override
