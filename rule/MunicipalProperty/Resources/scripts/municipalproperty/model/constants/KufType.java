@@ -39,44 +39,47 @@ public enum KufType {
     }
 
     public static List<KufType> getListByGroupId(int groupId) {
-        List<KufType> result = new ArrayList<>();
+        List<KufType> result;
 
         switch (groupId) {
             /*case 100:
                 result = new ArrayList<>(Arrays.asList(FURNITURE, ANIMALS, SPORT_EQUIPMENT, SHARE_BLOCK, EQUITY, OTHERS));
                 break;*/
             case 200:
-                result = new ArrayList<>(Arrays.asList(SCHOOL_EQUIPMENT, OFFICE_EQUIPMENT, COMPUTER_EQUIPMENT,
-                        MEDICAL_EQUIPMENT, COOK_EQUIPMENT, EQUIPMENT_OF_CIVIL_DEFENCE, OTHERS_EQUIPMENT));
+                result = Arrays.asList(SCHOOL_EQUIPMENT, OFFICE_EQUIPMENT, COMPUTER_EQUIPMENT,
+                        MEDICAL_EQUIPMENT, COOK_EQUIPMENT, EQUIPMENT_OF_CIVIL_DEFENCE, OTHERS_EQUIPMENT);
                 break;
             case 300:
-                result = new ArrayList<>(Arrays.asList(BUILDINGS, ROOMS, STRUCTURES, RESIDENTIAL_OBJECTS, LAND, MONUMENT));
+                result = Arrays.asList(BUILDINGS, ROOMS, STRUCTURES, RESIDENTIAL_OBJECTS, LAND, MONUMENT);
                 break;
             case 400:
-                result = new ArrayList<>(Arrays.asList(AUTOMOBILE, CAR, CARGO, DEJ_TRANSPORT, OFFICIAL_TRANSPORT, HOSPITAL_TRANSPORT,
-                        BUS, TROLLEYBUS, TRAM, TAXI, WATER_TRANSPORT, SPECIAL_EQUIPMENT, MOTORCYCLE));
+                result = Arrays.asList(AUTOMOBILE, CAR, CARGO, DEJ_TRANSPORT, OFFICIAL_TRANSPORT, HOSPITAL_TRANSPORT,
+                        BUS, TROLLEYBUS, TRAM, TAXI, WATER_TRANSPORT, SPECIAL_EQUIPMENT, MOTORCYCLE);
                 break;
             case 401:
-                result = new ArrayList<>(Arrays.asList(AUTOMOBILE, CAR, CARGO, DEJ_TRANSPORT, OFFICIAL_TRANSPORT, HOSPITAL_TRANSPORT,
-                        BUS, TROLLEYBUS, TRAM, TAXI, WATER_TRANSPORT));
+                result = Arrays.asList(AUTOMOBILE, CAR, CARGO, DEJ_TRANSPORT, OFFICIAL_TRANSPORT, HOSPITAL_TRANSPORT,
+                        BUS, TROLLEYBUS, TRAM, TAXI, WATER_TRANSPORT);
                 break;
             case 4016:
-                result = new ArrayList<>(Arrays.asList(BUS, TROLLEYBUS, TRAM, TAXI, WATER_TRANSPORT));
+                result = Arrays.asList(BUS, TROLLEYBUS, TRAM, TAXI, WATER_TRANSPORT);
                 break;
             case 500:
-                result = new ArrayList<>(Arrays.asList(OBJECT_RESERVED_FUND, BOMBPROOF, FACTORY, COMBINES, AIRPORT, TRANSITIONS));
+                result = Arrays.asList(OBJECT_RESERVED_FUND, BOMBPROOF, FACTORY, COMBINES, AIRPORT, TRANSITIONS);
                 break;
             case 501:
-                result = new ArrayList<>(Arrays.asList(OBJECT_RESERVED_FUND));
+                result = Arrays.asList(OBJECT_RESERVED_FUND);
                 break;
             case 502:
-                result = new ArrayList<>(Arrays.asList(BOMBPROOF, FACTORY, COMBINES, AIRPORT, TRANSITIONS));
+                result = Arrays.asList(BOMBPROOF, FACTORY, COMBINES, AIRPORT, TRANSITIONS);
                 break;
             case 600:
-                result = new ArrayList<>(Arrays.asList(BILLBOARD, COLUMNS, ELECTRIC_NETWORKS, THERMAL_NETWORKS, GAS, WATER_SYSTEM, DRAIN, ROAD, PARKING));
+                result = Arrays.asList(BILLBOARD, COLUMNS, ELECTRIC_NETWORKS, THERMAL_NETWORKS, GAS, WATER_SYSTEM, DRAIN, ROAD, PARKING);
                 break;
             case 603:
-                result = new ArrayList<>(Arrays.asList(ELECTRIC_NETWORKS, THERMAL_NETWORKS, GAS, WATER_SYSTEM, DRAIN));
+                result = Arrays.asList(ELECTRIC_NETWORKS, THERMAL_NETWORKS, GAS, WATER_SYSTEM, DRAIN);
+                break;
+            default:
+                result = new ArrayList<>();
                 break;
         }
 
