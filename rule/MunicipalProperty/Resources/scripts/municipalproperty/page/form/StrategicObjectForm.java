@@ -41,7 +41,9 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
             StrategicObjectDAO dao = new StrategicObjectDAO(session);
             entity = dao.findById(UUID.fromString(id));
         } else {
-            entity = getDefaultEntity(user, KufType.TRANSITIONS, session);
+            int kuf = formData.getNumberValueSilently("kuf", -1);
+            KufType kufType = KufType.getType(kuf);
+            entity = getDefaultEntity(user, kufType, session);
         }
         addContent(entity);
         addContent(getActionBar(session, entity));

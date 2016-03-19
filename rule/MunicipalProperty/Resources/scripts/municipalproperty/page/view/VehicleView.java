@@ -32,6 +32,13 @@ public class VehicleView extends AbstractMunicipalPropertyView {
             }
         }
 
-        addContent(getSimpleActionBar(session, "vehicle-form", lang));
+        KufType kufParam;
+        if (kufType == KufType.UNKNOWN) {
+            kufParam = kufList.get(0);
+        } else {
+            kufParam = kufType;
+        }
+
+        addContent(getSimpleActionBar(session, "vehicle-form", kufParam, lang));
     }
 }

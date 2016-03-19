@@ -29,6 +29,13 @@ public class EngInfrastructureView extends AbstractMunicipalPropertyView {
             }
         }
 
-        addContent(getSimpleActionBar(session, "engineeringinfrastructure-form", lang));
+        KufType kufParam;
+        if (kufType == KufType.UNKNOWN) {
+            kufParam = kufList.get(0);
+        } else {
+            kufParam = kufType;
+        }
+
+        addContent(getSimpleActionBar(session, "engineeringinfrastructure-form", kufParam, lang));
     }
 }

@@ -41,7 +41,9 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
             PersonalEstateDAO dao = new PersonalEstateDAO(session);
             entity = dao.findById(UUID.fromString(id));
         } else {
-            entity = getDefaultEntity(user, KufType.SPORT_EQUIPMENT, session);
+            int kuf = formData.getNumberValueSilently("kuf", -1);
+            KufType kufType = KufType.getType(kuf);
+            entity = getDefaultEntity(user, kufType, session);
         }
         addContent(entity);
         addContent(getActionBar(session, entity));

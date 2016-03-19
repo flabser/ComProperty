@@ -39,7 +39,9 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
         if (!id.isEmpty()) {
             entity = getEntity(id, session);
         } else {
-            entity = getDefaultEntity(user, KufType.STRUCTURES, session);
+            int kuf = formData.getNumberValueSilently("kuf", -1);
+            KufType kufType = KufType.getType(kuf);
+            entity = getDefaultEntity(user, kufType, session);
         }
         addContent(entity);
         addContent(getActionBar(session, entity));

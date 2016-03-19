@@ -33,6 +33,13 @@ public class IntangibleAssetView extends AbstractMunicipalPropertyView {
                 break;
         }
 
-        addContent(getSimpleActionBar(session, "intangibleasset-form", lang));
+        KufType kufParam;
+        if (kufType == KufType.UNKNOWN) {
+            kufParam = KufType.SHARE_BLOCK;
+        } else {
+            kufParam = kufType;
+        }
+
+        addContent(getSimpleActionBar(session, "intangibleasset-form", kufParam, lang));
     }
 }

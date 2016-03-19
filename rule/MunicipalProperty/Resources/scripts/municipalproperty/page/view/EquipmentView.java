@@ -26,6 +26,13 @@ public class EquipmentView extends AbstractMunicipalPropertyView {
             addContent(getViewPage(session, formData, kufList, lang));
         }
 
-        addContent(getSimpleActionBar(session, "equipment-form", lang));
+        KufType kufParam;
+        if (kufType == KufType.UNKNOWN) {
+            kufParam = kufList.get(0);
+        } else {
+            kufParam = kufType;
+        }
+
+        addContent(getSimpleActionBar(session, "equipment-form", kufParam, lang));
     }
 }

@@ -37,6 +37,13 @@ public class PersonalEstateView extends AbstractMunicipalPropertyView {
                 break;
         }
 
-        addContent(getSimpleActionBar(session, "personalestate-form", lang));
+        KufType kufParam;
+        if (kufType == KufType.UNKNOWN) {
+            kufParam = KufType.FURNITURE;
+        } else {
+            kufParam = kufType;
+        }
+
+        addContent(getSimpleActionBar(session, "personalestate-form", kufParam, lang));
     }
 }

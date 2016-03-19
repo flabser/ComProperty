@@ -7,6 +7,9 @@ import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.nextbase.script.actions._Action;
+import kz.nextbase.script.actions._ActionBar;
+import kz.nextbase.script.actions._ActionType;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;
@@ -39,6 +42,15 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
         PropertyDAO dao = new PropertyDAO(session);
         ViewPage<Property> result = dao.findAllin("kuf", set, pageNum, pageSize);
         return new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), session);
+    }
+
+    protected _ActionBar getSimpleActionBar(_Session session, String type, KufType kufType, LanguageCode lang) {
+        _ActionBar actionBar = new _ActionBar(session);
+        _Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_" + type);
+        newDocAction.setURL("Provider?id=" + type + "&kuf=" + kufType.getCode());
+        actionBar.addAction(newDocAction);
+        actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+        return actionBar;
     }
 
     @Override

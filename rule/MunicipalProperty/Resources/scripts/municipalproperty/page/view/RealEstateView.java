@@ -26,6 +26,13 @@ public class RealEstateView extends AbstractMunicipalPropertyView {
             addContent(getViewPage(session, formData, kufList, lang));
         }
 
-        addContent(getSimpleActionBar(session, "realestate-form", lang));
+        KufType kufParam;
+        if (kufType == KufType.UNKNOWN) {
+            kufParam = kufList.get(0);
+        } else {
+            kufParam = kufType;
+        }
+
+        addContent(getSimpleActionBar(session, "realestate-form", kufParam, lang));
     }
 }

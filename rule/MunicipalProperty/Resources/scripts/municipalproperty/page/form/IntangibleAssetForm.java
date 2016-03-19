@@ -41,7 +41,9 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
             IntangibleAssetDAO dao = new IntangibleAssetDAO(session);
             entity = dao.findById(UUID.fromString(id));
         } else {
-            entity = getDefaultEntity(user, KufType.SHARE_BLOCK, session);
+            int kuf = formData.getNumberValueSilently("kuf", -1);
+            KufType kufType = KufType.getType(kuf);
+            entity = getDefaultEntity(user, kufType, session);
         }
         addContent(entity);
         addContent(getActionBar(session, entity));

@@ -41,7 +41,9 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
             EngInfrastructureDAO dao = new EngInfrastructureDAO(session);
             entity = dao.findById(UUID.fromString(id));
         } else {
-            entity = getDefaultEntity(user, KufType.BILLBOARD, session);
+            int kuf = formData.getNumberValueSilently("kuf", -1);
+            KufType kufType = KufType.getType(kuf);
+            entity = getDefaultEntity(user, kufType, session);
         }
         addContent(entity);
         addContent(getActionBar(session, entity));
