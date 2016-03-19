@@ -5,8 +5,7 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 
 public class EngInfrastructureView extends AbstractMunicipalPropertyView {
@@ -14,9 +13,16 @@ public class EngInfrastructureView extends AbstractMunicipalPropertyView {
     @Override
     public void doGET(_Session session, _WebFormData formData) {
         LanguageCode lang = session.getLang();
-        ArrayList<KufType> params = new ArrayList<KufType>(Arrays.asList(KufType.BILLBOARD, KufType.COLUMNS, KufType.ELECTRIC_NETWORKS,
-                KufType.THERMAL_NETWORKS, KufType.GAS, KufType.WATER_SYSTEM, KufType.DRAIN, KufType.ROAD, KufType.PARKING));
-        addContent(getViewPage(session, formData, params, lang));
+        int kuf = formData.getNumberValueSilently("kuf", -1);
+        KufType kufType = KufType.getType(kuf);
+        List<KufType> kufList = KufType.getListByGroupId(600);
+
+        if (kufList.contains(kufType)) {
+            addContent(getViewPage(session, formData, kufType, lang));
+        } else {
+            addContent(getViewPage(session, formData, kufList, lang));
+        }
+
         addContent(getSimpleActionBar(session, "engineeringinfrastructure-form", lang));
     }
 }

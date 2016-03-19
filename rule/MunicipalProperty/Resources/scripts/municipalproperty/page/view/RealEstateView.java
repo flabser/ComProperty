@@ -5,8 +5,7 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Kayra created 06-01-2016
@@ -17,9 +16,16 @@ public class RealEstateView extends AbstractMunicipalPropertyView {
     @Override
     public void doGET(_Session session, _WebFormData formData) {
         LanguageCode lang = session.getLang();
-        ArrayList<KufType> params = new ArrayList<KufType>(Arrays.asList(KufType.BUILDINGS, KufType.ROOMS, KufType.STRUCTURES,
-                KufType.RESIDENTIAL_OBJECTS, KufType.LAND, KufType.MONUMENT));
-        addContent(getViewPage(session, formData, params, lang));
+        int kuf = formData.getNumberValueSilently("kuf", -1);
+        KufType kufType = KufType.getType(kuf);
+        List<KufType> kufList = KufType.getListByGroupId(300);
+
+        if (kufList.contains(kufType)) {
+            addContent(getViewPage(session, formData, kufType, lang));
+        } else {
+            addContent(getViewPage(session, formData, kufList, lang));
+        }
+
         addContent(getSimpleActionBar(session, "realestate-form", lang));
     }
 }

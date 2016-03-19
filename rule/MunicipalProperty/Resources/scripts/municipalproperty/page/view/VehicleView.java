@@ -8,17 +8,17 @@ import municipalproperty.model.constants.KufType;
 import java.util.List;
 
 /**
- * @author Kayra created 05-01-2016
+ * @author Kayra created 06-01-2016
  */
 
-public class EquipmentView extends AbstractMunicipalPropertyView {
+public class VehicleView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
         LanguageCode lang = session.getLang();
         int kuf = formData.getNumberValueSilently("kuf", -1);
         KufType kufType = KufType.getType(kuf);
-        List<KufType> kufList = KufType.getListByGroupId(200);
+        List<KufType> kufList = KufType.getListByGroupId(400);
 
         if (kufList.contains(kufType)) {
             addContent(getViewPage(session, formData, kufType, lang));
@@ -26,6 +26,6 @@ public class EquipmentView extends AbstractMunicipalPropertyView {
             addContent(getViewPage(session, formData, kufList, lang));
         }
 
-        addContent(getSimpleActionBar(session, "equipment-form", lang));
+        addContent(getSimpleActionBar(session, "vehicle-form", lang));
     }
 }

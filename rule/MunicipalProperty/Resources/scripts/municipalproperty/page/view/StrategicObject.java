@@ -5,7 +5,6 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import municipalproperty.model.constants.KufType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,14 +13,16 @@ public class StrategicObject extends AbstractMunicipalPropertyView {
     @Override
     public void doGET(_Session session, _WebFormData formData) {
         LanguageCode lang = session.getLang();
-        List<KufType> params = new ArrayList<KufType>();
-        params.add(KufType.OBJECT_RESERVED_FUND);
-        params.add(KufType.BOMBPROOF);
-        params.add(KufType.FACTORY);
-        params.add(KufType.COMBINES);
-        params.add(KufType.AIRPORT);
-        params.add(KufType.TRANSITIONS);
-        addContent(getViewPage(session, formData, params, lang));
+        int kuf = formData.getNumberValueSilently("kuf", -1);
+        KufType kufType = KufType.getType(kuf);
+        List<KufType> kufList = KufType.getListByGroupId(500);
+
+        if (kufList.contains(kufType)) {
+            addContent(getViewPage(session, formData, kufType, lang));
+        } else {
+            addContent(getViewPage(session, formData, kufList, lang));
+        }
+
         addContent(getSimpleActionBar(session, "strategicobject-form", lang));
     }
 }
