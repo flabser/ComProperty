@@ -8,7 +8,7 @@ import municipalproperty.dao.ReportTemplateDAO;
  * @author Kayra created 06-01-2016
  */
 
-public class ReportTemplateView extends MunicipalPropertyView {
+public class ReportTemplateView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

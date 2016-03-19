@@ -12,7 +12,7 @@ import java.util.List;
  * @author Kayra created 05-01-2016
  */
 
-public class PersonalEstateView extends MunicipalPropertyView {
+public class PersonalEstateView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

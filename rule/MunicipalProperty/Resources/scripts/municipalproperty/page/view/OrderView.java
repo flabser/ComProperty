@@ -9,7 +9,7 @@ import municipalproperty.dao.OrderDAO;
  * @author Kayra created 27-01-2016
  */
 
-public class OrderView extends MunicipalPropertyView {
+public class OrderView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

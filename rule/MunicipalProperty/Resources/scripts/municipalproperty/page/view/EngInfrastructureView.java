@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class EngInfrastructureView extends MunicipalPropertyView {
+public class EngInfrastructureView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author Kayra created 05-01-2016
  */
 
-public class IntangibleAssetView extends MunicipalPropertyView {
+public class IntangibleAssetView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {

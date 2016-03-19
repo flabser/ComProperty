@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author Kayra created 06-01-2016
  */
 
-public class RealEstateView extends MunicipalPropertyView {
+public class RealEstateView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
