@@ -15,17 +15,18 @@ public class StrategicObject extends AbstractMunicipalPropertyView {
         LanguageCode lang = session.getLang();
         int kuf = formData.getNumberValueSilently("kuf", -1);
         KufType kufType = KufType.getType(kuf);
-        List<KufType> kufList = KufType.getListByGroupId(500);
+        List<KufType> kufList;
 
-        if (kufList.contains(kufType)) {
-            if (kuf == 502) {
-                kufList = KufType.getListByGroupId(kuf);
-                addContent(getViewPage(session, formData, kufList, lang));
-            } else {
-                addContent(getViewPage(session, formData, kufType, lang));
-            }
-        } else {
+        if (kuf == 502) {
+            kufList = KufType.getListByGroupId(kuf);
             addContent(getViewPage(session, formData, kufList, lang));
+        } else {
+            kufList = KufType.getListByGroupId(500);
+            if (kufList.contains(kufType)) {
+                addContent(getViewPage(session, formData, kufType, lang));
+            } else {
+                addContent(getViewPage(session, formData, kufList, lang));
+            }
         }
 
         addContent(getSimpleActionBar(session, "strategicobject-form", lang));
