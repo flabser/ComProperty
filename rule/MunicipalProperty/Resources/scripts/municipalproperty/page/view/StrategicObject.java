@@ -18,7 +18,12 @@ public class StrategicObject extends AbstractMunicipalPropertyView {
         List<KufType> kufList = KufType.getListByGroupId(500);
 
         if (kufList.contains(kufType)) {
-            addContent(getViewPage(session, formData, kufType, lang));
+            if (kuf == 502) {
+                kufList = KufType.getListByGroupId(kuf);
+                addContent(getViewPage(session, formData, kufList, lang));
+            } else {
+                addContent(getViewPage(session, formData, kufType, lang));
+            }
         } else {
             addContent(getViewPage(session, formData, kufList, lang));
         }

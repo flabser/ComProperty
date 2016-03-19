@@ -21,7 +21,12 @@ public class VehicleView extends AbstractMunicipalPropertyView {
         List<KufType> kufList = KufType.getListByGroupId(400);
 
         if (kufList.contains(kufType)) {
-            addContent(getViewPage(session, formData, kufType, lang));
+            if (kuf == 401 || kuf == 4016) {
+                kufList = KufType.getListByGroupId(kuf);
+                addContent(getViewPage(session, formData, kufList, lang));
+            } else {
+                addContent(getViewPage(session, formData, kufType, lang));
+            }
         } else {
             addContent(getViewPage(session, formData, kufList, lang));
         }

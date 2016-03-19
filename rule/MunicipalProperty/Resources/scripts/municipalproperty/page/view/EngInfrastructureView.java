@@ -18,7 +18,12 @@ public class EngInfrastructureView extends AbstractMunicipalPropertyView {
         List<KufType> kufList = KufType.getListByGroupId(600);
 
         if (kufList.contains(kufType)) {
-            addContent(getViewPage(session, formData, kufType, lang));
+            if (kuf == 603) {
+                kufList = KufType.getListByGroupId(kuf);
+                addContent(getViewPage(session, formData, kufList, lang));
+            } else {
+                addContent(getViewPage(session, formData, kufType, lang));
+            }
         } else {
             addContent(getViewPage(session, formData, kufList, lang));
         }
