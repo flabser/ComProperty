@@ -7,6 +7,8 @@ import java.util.List;
 
 import kz.flabs.localization.Vocabulary;
 import kz.flabs.util.Util;
+import kz.lof.administrator.dao.UserDAO;
+import kz.lof.administrator.model.User;
 import kz.lof.dataengine.jpa.deploying.InitialDataAdapter;
 import kz.lof.env.EnvConst;
 import kz.lof.localization.LanguageCode;
@@ -20,8 +22,6 @@ import staff.dao.RoleDAO;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
-import administrator.dao.UserDAO;
-import administrator.model.User;
 
 /**
  * 

@@ -8,11 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 import kz.flabs.util.Util;
+import kz.lof.administrator.dao.LanguageDAO;
+import kz.lof.administrator.model.Language;
 import kz.lof.dataengine.jpa.AppEntity;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
-import administrator.dao.LanguageDAO;
-import administrator.model.Language;
 
 @MappedSuperclass
 public class Reference extends AppEntity<UUID> {

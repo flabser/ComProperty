@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -14,7 +15,6 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 
 import reference.dao.KufDAO;
 import reference.model.Kuf;
-import administrator.dao.LanguageDAO;
 
 public class KufForm extends ReferenceForm {
 

@@ -18,10 +18,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import kz.flabs.util.Util;
+import kz.lof.administrator.model.User;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.scripting._Session;
 import reference.model.Position;
-import administrator.model.User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

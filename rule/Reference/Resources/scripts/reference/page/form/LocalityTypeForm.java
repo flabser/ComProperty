@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -16,7 +17,6 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 import reference.dao.LocalityTypeDAO;
 import reference.model.LocalityType;
 import reference.model.constants.LocalityCode;
-import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016

@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -16,7 +17,6 @@ import reference.dao.LocalityDAO;
 import reference.dao.StreetDAO;
 import reference.model.Locality;
 import reference.model.Street;
-import administrator.dao.LanguageDAO;
 
 public class StreetForm extends ReferenceForm {
 

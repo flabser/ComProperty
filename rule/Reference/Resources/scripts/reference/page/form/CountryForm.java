@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
@@ -14,7 +15,6 @@ import kz.nextbase.script._Exception;
 import reference.dao.CountryDAO;
 import reference.model.Country;
 import reference.model.constants.CountryCode;
-import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016

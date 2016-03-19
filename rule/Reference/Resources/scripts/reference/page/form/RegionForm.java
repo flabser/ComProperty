@@ -3,6 +3,7 @@ package reference.page.form;
 import java.util.Date;
 import java.util.UUID;
 
+import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
@@ -22,7 +23,6 @@ import reference.model.Region;
 import reference.model.RegionType;
 import reference.model.constants.CountryCode;
 import reference.model.constants.RegionCode;
-import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016

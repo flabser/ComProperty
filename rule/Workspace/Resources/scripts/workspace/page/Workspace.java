@@ -2,6 +2,9 @@ package workspace.page;
 
 import java.util.List;
 
+import kz.lof.administrator.dao.LanguageDAO;
+import kz.lof.administrator.model.Application;
+import kz.lof.administrator.model.User;
 import kz.lof.env.Environment;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -10,9 +13,6 @@ import kz.lof.scripting.event._DoPage;
 import kz.lof.user.AnonymousUser;
 import kz.nextbase.script._AppEntourage;
 import kz.nextbase.script._Exception;
-import administrator.dao.LanguageDAO;
-import administrator.model.Application;
-import administrator.model.User;
 
 public class Workspace extends _DoPage {
 
