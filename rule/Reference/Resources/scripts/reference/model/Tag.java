@@ -15,9 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import kz.flabs.util.Util;
+import kz.lof.administrator.dao.LanguageDAO;
+import kz.lof.administrator.model.Language;
 import kz.lof.scripting._Session;
-import administrator.dao.LanguageDAO;
-import administrator.model.Language;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

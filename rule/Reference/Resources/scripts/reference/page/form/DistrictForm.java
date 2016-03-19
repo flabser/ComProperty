@@ -2,6 +2,7 @@ package reference.page.form;
 
 import java.util.UUID;
 
+import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -16,7 +17,6 @@ import reference.dao.DistrictDAO;
 import reference.dao.RegionDAO;
 import reference.model.District;
 import reference.model.Region;
-import administrator.dao.LanguageDAO;
 
 /**
  * @author Kayra created 03-01-2016

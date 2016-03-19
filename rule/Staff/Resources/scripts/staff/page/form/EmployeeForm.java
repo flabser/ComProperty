@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import kz.lof.administrator.dao.ApplicationDAO;
+import kz.lof.administrator.dao.UserDAO;
+import kz.lof.administrator.model.Application;
+import kz.lof.administrator.model.User;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -22,10 +26,6 @@ import staff.dao.RoleDAO;
 import staff.model.Employee;
 import staff.model.Organization;
 import staff.model.Role;
-import administrator.dao.ApplicationDAO;
-import administrator.dao.UserDAO;
-import administrator.model.Application;
-import administrator.model.User;
 
 /**
  * @author Kayra created 07-01-2016
@@ -60,7 +60,7 @@ public class EmployeeForm extends StaffForm {
 		 * ApplicationDAO(session).findAll(), session));
 		 */
 		addContent(getSimpleActionBar(session, session.getLang()));
-        addContent(new _POJOListWrapper<>(new RoleDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<>(new RoleDAO(session).findAll(), session));
 		startSaveFormTransact(entity);
 	}
 
