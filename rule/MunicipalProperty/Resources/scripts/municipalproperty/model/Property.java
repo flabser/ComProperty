@@ -342,10 +342,10 @@ public class Property extends SecureAppEntity {
         return getKuf().name().replace("_", "-").toLowerCase() + "-view";
     }
 
-    @Override
+    /*@Override
     public String getURL() {
         return "Provider?id=" + getForm() + "&amp;docid=" + getId();
-    }
+    }*/
 
     @Override
     public String getShortXMLChunk(_Session ses) {
