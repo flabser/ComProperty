@@ -38,7 +38,8 @@
                         <div class="controls">
                             <div class="span8">
                                 <xsl:for-each select="fields/propertytype/entry">
-                                    <label class="input">
+                                    <xsl:sort select="text()"/>
+                                    <label class="input" style="width:45%">
                                         <input type="checkbox" name="propertycode" value="{@id}"/>
                                         <span>
                                             <xsl:value-of select="text()"/>

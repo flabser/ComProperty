@@ -13,7 +13,7 @@
             </xsl:call-template>
         </div>
         <div class="content-body">
-            <div class="view view_furniture">
+            <div class="view">
                 <xsl:call-template name="view-table"/>
             </div>
         </div>

@@ -39,4 +39,22 @@
         </div>
     </xsl:template>
 
+    <xsl:template name="view-table-captions">
+        <span class="vw-inv-number">
+            <xsl:value-of select="//captions/inv_number/@caption"/>inv_number
+        </span>
+        <span class="vw-object-name">
+            <xsl:value-of select="//captions/object_name/@caption"/>object_name
+        </span>
+        <span class="vw-original-cost">
+            <xsl:value-of select="//captions/original_cost/@caption"/>original_cost
+        </span>
+        <span class="vw-balance-holder">
+            <xsl:value-of select="//captions/balance_holder/@caption"/>balance_holder
+        </span>
+        <span class="vw-tags">
+            <xsl:value-of select="//captions/tags/@caption"/>tags
+        </span>
+    </xsl:template>
+
 </xsl:stylesheet>
