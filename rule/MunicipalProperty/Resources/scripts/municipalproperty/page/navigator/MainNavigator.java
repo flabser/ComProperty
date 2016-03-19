@@ -131,6 +131,7 @@ public class MainNavigator extends _DoPage {
         list.add(orderOutline);
 
         addContent("outline_current", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("kuf"));
+        addContent("request_param", "kuf=" + formData.getValueSilently("kuf"));
         addContent(list);
     }
 }

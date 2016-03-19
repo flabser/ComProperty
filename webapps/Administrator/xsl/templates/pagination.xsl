@@ -22,17 +22,13 @@
     <xsl:variable name="pagination_maxpage" select="//view_content//query/@maxpage"/>
     <xsl:variable name="pagination_count" select="7"/>
     <xsl:variable name="pagination_center" select="3"/>
-
-    <xsl:variable name="refer_url">
-        <xsl:choose>
-            <xsl:when test="//query/@keyword != ''">
-                <xsl:value-of select="concat('?id=', //request/@id, '&amp;keyword=', //query/@keyword, '&amp;page=')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="concat('?id=', //request/@id, '&amp;page=')"/>
-            </xsl:otherwise>
-        </xsl:choose>
+    <xsl:variable name="request_param">
+        <xsl:call-template name="join">
+            <xsl:with-param name="valueList" select="//request_param"/>
+            <xsl:with-param name="separator" select="'&amp;'"/>
+        </xsl:call-template>
     </xsl:variable>
+    <xsl:variable name="refer_url" select="concat('?id=', //request/@id, '&amp;', $request_param, '&amp;page=')"/>
 
     <xsl:template match="view_content" mode="page-navigator">
         <xsl:call-template name="page-navigator"/>
@@ -253,6 +249,22 @@
                 </xsl:call-template>
             </xsl:when>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="join">
+        <xsl:param name="valueList" select="''"/>
+        <xsl:param name="separator" select="','"/>
+
+        <xsl:for-each select="$valueList">
+            <xsl:choose>
+                <xsl:when test="position() = 1">
+                    <xsl:value-of select="."/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat($separator, .) "/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>
