@@ -72,7 +72,7 @@ public class MainNavigator extends _DoPage {
         // TODO HOSPITAL_TRANSPORT(4015) ?
         transportEntry.addEntry(autoEntry);
 
-        _OutlineEntry passengerTransportEntry = new _OutlineEntry(getLocalizedWord("passenger_transport", lang), "", "vehicle-viewpassenger", trUrl + "passenger"); //
+        _OutlineEntry passengerTransportEntry = new _OutlineEntry(getLocalizedWord("passenger_transport", lang), "", "vehicle-view4016", trUrl + "4016"); // passenger transport group
         passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("buses", lang), "", "vehicle-view40161", trUrl + "40161")); // BUS(40161)
         passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trolleybuses", lang), "", "vehicle-view40162", trUrl + "40162")); // TROLLEYBUS(40162)
         passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trams", lang), "", "vehicle-view40163", trUrl + "40163")); // TRAM(40163)
@@ -86,9 +86,9 @@ public class MainNavigator extends _DoPage {
         // BOMBPROOF(5021), FACTORY(5022), COMBINES(5023), AIRPORT(5024), TRANSITIONS(5025)
         String soUrl = "Provider?id=strategicobject-view&kuf=";
         _OutlineEntry strategicObjectEntry = new _OutlineEntry(getLocalizedWord("strategic_objects", lang), "strategicobject-view");
-        strategicObjectEntry.addEntry(new _OutlineEntry(getLocalizedWord("object_reserved_fund", lang), "", "strategicobject-viewreserved", soUrl + "reserved"));
+        strategicObjectEntry.addEntry(new _OutlineEntry(getLocalizedWord("object_reserved_fund", lang), "", "strategicobject-view501", soUrl + "501"));
 
-        _OutlineEntry specialConstructionEntry = new _OutlineEntry(getLocalizedWord("special_constructions", lang), "", "strategicobject-viewspecial", soUrl + "special");
+        _OutlineEntry specialConstructionEntry = new _OutlineEntry(getLocalizedWord("special_constructions", lang), "", "strategicobject-view502", soUrl + "502");
         specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("bomb_proofs", lang), "", "strategicobject-view5021", soUrl + "5021"));
         specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("factory", lang), "", "strategicobject-view5022", soUrl + "5022"));
         specialConstructionEntry.addEntry(new _OutlineEntry(getLocalizedWord("combines", lang), "", "strategicobject-view5023", soUrl + "5023"));
@@ -102,7 +102,7 @@ public class MainNavigator extends _DoPage {
         engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("billboards", lang), "", "engineeringinfrastructure-view601", eiUrl + "601"));
         engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("columns", lang), "", "engineeringinfrastructure-view602", eiUrl + "602"));
 
-        _OutlineEntry networkEntry = new _OutlineEntry(getLocalizedWord("networks", lang), "", "engineeringinfrastructure-viewnetworks", eiUrl + "networks");
+        _OutlineEntry networkEntry = new _OutlineEntry(getLocalizedWord("networks", lang), "", "engineeringinfrastructure-view603", eiUrl + "603");
         networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("electric_networks", lang), "", "engineeringinfrastructure-view6031", eiUrl + "6031"));
         networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("thermal_networks", lang), "", "engineeringinfrastructure-view6032", eiUrl + "6032"));
         networkEntry.addEntry(new _OutlineEntry(getLocalizedWord("gas", lang), "", "engineeringinfrastructure-view6033", eiUrl + "6033"));
