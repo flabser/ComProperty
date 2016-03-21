@@ -15,7 +15,8 @@
         <form class="form form-edit-{@editable}" name="{@entity}" action="" enctype="application/x-www-form-urlencoded">
             <header class="content-header">
                 <h1 class="header-title">
-                    <xsl:value-of select="//captions/intangible_asset/@caption"/>
+                    <xsl:variable name="kufName" select="lower-case(fields/kuf/@name)"/>
+                    <xsl:value-of select="//captions/*[lower-case(name()) = $kufName]/@caption"/>
                 </h1>
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>

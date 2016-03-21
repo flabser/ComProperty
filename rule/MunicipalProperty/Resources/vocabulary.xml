@@ -315,7 +315,7 @@
         <entry lang="KAZ">Асүй құрал-жабдығы</entry>
         <entry lang="ENG">Cook equipment</entry>
     </sentence>
-    <sentence mode="on" keyword="equipment_of_civildefence">
+    <sentence mode="on" keyword="equipment_of_civil_defence">
         <entry lang="RUS">Оборудование гражданской обороны</entry>
         <entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығы</entry>
         <entry lang="ENG">Equipment of civil defence</entry>
@@ -1147,19 +1147,19 @@
         <entry lang="ENG"></entry>
     </sentence>
 
-    <sentence mode="on" keyword="UNKNOWN">
+    <sentence mode="on" keyword="unknown">
         <entry lang="ENG">Unknown</entry>
         <entry lang="RUS">Не определен</entry>
         <entry lang="KAZ">Не определен</entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="ON_BALANCE">
+    <sentence mode="on" keyword="on_balance">
         <entry lang="ENG">Balance</entry>
         <entry lang="RUS">На балансе</entry>
         <entry lang="KAZ">На балансе</entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="WRITTENOFF">
+    <sentence mode="on" keyword="writtenoff">
         <entry lang="ENG">Written off</entry>
         <entry lang="RUS">Списан</entry>
         <entry lang="KAZ">Списан</entry>

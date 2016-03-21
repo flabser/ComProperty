@@ -39,8 +39,8 @@
     <caption name="commissioning_year"/>
     <caption name="is_ready_to_use"/>
 
-    <caption name="estimatedcost">Оценочная стоимость</caption>
-    <caption name="residualcost">Остаточная стоимость</caption>
+    <caption name="estimated_cost">Оценочная стоимость</caption>
+    <caption name="residual_cost">Остаточная стоимость</caption>
     <caption name="receiving_reason"/>
     <caption name="deterioration">Износ</caption>
     <caption name="repair">Ремонт</caption>
@@ -55,7 +55,7 @@
     <caption name="yearrelease">Год выпуска</caption>
 
     <caption name="orderofremovalfrombalance">Основание снятия с баланса</caption>
-    <caption name="сhange_original_cost"/>
+    <caption name="change_original_cost"/>
     <caption name="capital">Капитальный</caption>
     <caption name="reconstruction">Реконструкция</caption>
     <caption name="depreciating">Обесценение</caption>
@@ -64,32 +64,6 @@
     <caption name="arrestingbyacourtdecision">Арест по решению суда</caption>
     <caption name="legalclaim">Юридическое притязание</caption>
     <caption name="limitdepreciation">Предельная норма амортизации</caption>
-    <caption name="limitdepreciationtitle">Введите предельную норму амортизации в % (Значение от 0 до 100)</caption>
-
-    <caption name="invnumbertitle">Введите инвентарный номер. Если значение поля «Количество» больше одного, введите
-        инвентарные номера каждого объекта через «;»
-    </caption>
-    <caption name="objectnametitle">Введите наименование оборудования</caption>
-    <caption name="descriptiontitle">Введите спецификацию(описание) объекта</caption>
-    <caption name="amounttitle">Введите кол-во однотипных объектов (1,2,3,4,5…)</caption>
-    <caption name="originalcosttitle">Введите стартовую(первоначальную) стоимость объекта</caption>
-    <caption name="balancecosttitle">Введите балансовую стоимость объекта</caption>
-    <caption name="estimatedcosttitle">Введите рыночную стоимость объекта</caption>
-    <caption name="residualcosttitle">Введите сумму остаточной стоимости</caption>
-    <caption name="receiptbasisingpropertytitle">Укажите документы, на основании которых объект поступил в
-        Гос.Собственность
-    </caption>
-    <caption name="receiptbasisinbalancetitle">Укажите документы, на основании которых объект поступил на баланс
-    </caption>
-    <caption name="orderofremovalfrombalancetitle">Укажите документы, на основании которых объект был снят с баланса
-    </caption>
-
-    <caption name="depreciatingtitle">Укажите процент обесценения</caption>
-    <caption name="cumulativedepreciationtitle">Введите значение накопленной амортизации</caption>
-    <caption name="deteriorationtitle">Укажите процент износа</caption>
-    <caption name="widthtitle">Укажите ширину объекта в милиметрах</caption>
-    <caption name="heighttitle">Укажите высоту объекта в милиметрах</caption>
-    <caption name="depthtitle">Укажите глубину объекта в милиметрах</caption>
 
     <caption name="documents_of_title"/>
     <caption name="tech_cert">Технический паспорт</caption>
@@ -97,7 +71,7 @@
     <caption name="decrees_acts">Постановление акимата и акт приема-передачи, передано в какое упраление</caption>
     <caption name="note">Примечание</caption>
 
-    <caption name="UNKNOWN"/>
-    <caption name="ON_BALANCE"/>
-    <caption name="WRITTENOFF"/>
+    <caption name="inknown"/>
+    <caption name="on_balance"/>
+    <caption name="writtenoff"/>
 </rule>

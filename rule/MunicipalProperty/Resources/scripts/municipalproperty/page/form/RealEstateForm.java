@@ -46,6 +46,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
         addContent(entity);
         addContent(getActionBar(session, entity));
         addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
+        addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
         startSaveFormTransact(entity);
     }
 
