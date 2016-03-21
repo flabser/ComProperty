@@ -22,6 +22,7 @@ import kz.lof.scripting._Session;
 import kz.lof.user.SuperUser;
 import municipalproperty.model.Property;
 import municipalproperty.model.constants.KufType;
+import staff.model.Organization;
 
 public class PropertyDAO extends DAO<Property, UUID> {
 
@@ -29,19 +30,23 @@ public class PropertyDAO extends DAO<Property, UUID> {
 		super(Property.class, session);
 	}
 
-	public ViewPage<Property> findAllBy(String fieldName, List value, int pageNum, int pageSize) {
+	public ViewPage<Property> findAllByKufAndBalanceHolder(List kuf, Organization bh, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
-			CriteriaQuery<Property> cq = cb.createQuery(getEntityClass());
+			CriteriaQuery<Property> cq = cb.createQuery(entityClass);
 			CriteriaQuery<Long> countCq = cb.createQuery(Long.class);
 			Root<Property> c = cq.from(entityClass);
 			cq.select(c);
 			countCq.select(cb.count(c));
-			Predicate condition = c.get(fieldName).in(value);
+			Predicate condition = c.get("kuf").in(kuf);
+			if (bh != null) {
+				condition = cb.and(cb.equal(c.get("balanceHolder"), bh), condition);
+			}
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);
 			}
+			cq.orderBy(cb.asc(c.get("regDate")));
 			cq.where(condition);
 			countCq.where(condition);
 			TypedQuery<Property> typedQuery = em.createQuery(cq);
@@ -63,7 +68,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 		}
 	}
 
-	public List<Property> findByInvNum(String invNum) {
+	public List<Property> findAllByInvNum(String invNum) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {

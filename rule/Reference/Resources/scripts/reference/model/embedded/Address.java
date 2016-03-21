@@ -18,24 +18,14 @@ import reference.model.constants.CountryCode;
 @Embeddable
 public class Address {
 
-	// @ManyToOne
-	// @JoinColumn(nullable = false)
 	private Country country;
 
-	// @ManyToOne
-	// @JoinColumn
 	private Region region;
 
-	// @ManyToOne
-	// @JoinColumn
 	private CityDistrict cityDistrict;
 
-	// @ManyToOne
-	// @JoinColumn
 	private Locality locality;
 
-	// @ManyToOne
-	// @JoinColumn
 	private Street street;
 
 	@Column(name = "house_number", length = 10)

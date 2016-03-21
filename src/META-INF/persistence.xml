@@ -15,8 +15,10 @@
 		<class>reference.model.Position</class>	
 	</persistence-unit>
 	<persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>
+		<!-- Obligatory the application module entities -->
+		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
+		<class>kz.lof.administrator.model.User</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Vehicle</class>
@@ -57,8 +59,10 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="PropertyLeasing" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>
+		<!-- Obligatory the application module entities -->
+		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
+		<class>kz.lof.administrator.model.User</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Vehicle</class>
@@ -93,14 +97,14 @@
 		<class>reference.model.BuildingMaterial</class>	
 		<class>reference.model.StructureType</class>	
 		<class>reference.model.ReceivingReason</class>
-		<class>reference.model.Kuf</class>
-		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
+		<class>reference.model.Kuf</class>		
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>
+		<!-- Obligatory the application module entities -->
+		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
+		<class>kz.lof.administrator.model.User</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Vehicle</class>
@@ -133,14 +137,14 @@
 		<class>reference.model.BuildingMaterial</class>	
 		<class>reference.model.StructureType</class>
 		<class>reference.model.ReceivingReason</class>	
-		<class>reference.model.Kuf</class>
-		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
+		<class>reference.model.Kuf</class>	
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>		
 	<persistence-unit name="Staff" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>		       
+		<!-- Obligatory the application module entities -->
+		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
+		<class>kz.lof.administrator.model.User</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -163,8 +167,10 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Registry" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>
+		<!-- Obligatory the application module entities -->
+		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
+		<class>kz.lof.administrator.model.User</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -187,8 +193,10 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Reference" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>
+		<!-- Obligatory the application module entities -->
+		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
+		<class>kz.lof.administrator.model.User</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -218,6 +226,7 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Workspace" transaction-type="RESOURCE_LOCAL">
+		<!-- Obligatory the application module entities -->
 		<class>kz.lof.administrator.model.User</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.Language</class>
@@ -230,8 +239,6 @@
 		<!-- Common Reference module entities -->
 		<class>reference.model.Position</class>	
 		<class>reference.model.OrgCategory</class>
-		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 </persistence>

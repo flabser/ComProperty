@@ -114,7 +114,7 @@ public class MPXLImporter {
 				rowErr.add(new CheVal("1, КОФ", kof).isNotEmpty(kof).getErr());
 				rowErr.add(new CheVal("2, КУФ", kuf).isNotEmpty(kuf).isKufType(kuf).getErr());
 				rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotEmpty(invNumber).getErr());
-				List<Property> pList = propertyDao.findByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
+				List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
 
 				for (Property p : pList) {
 					if (p.getObjectName().equalsIgnoreCase(name)) {
@@ -165,7 +165,7 @@ public class MPXLImporter {
 				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
 				CheVal cv = new CheVal();
-				List<Property> pList = propertyDao.findByInvNum(cv.getString(invNumber));
+				List<Property> pList = propertyDao.findAllByInvNum(cv.getString(invNumber));
 				for (Property p : pList) {
 					if (p.getBalanceHolder().equals(bh)) {
 						skipped++;
