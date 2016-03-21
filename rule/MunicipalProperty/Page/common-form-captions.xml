@@ -12,10 +12,8 @@
     <caption name="reg_date"/>
     <caption name="reg_number"/>
     <caption name="author"/>
-    <caption name="inv_number"/>
     <caption name="organization"/>
     <caption name="object"/>
-    <caption name="object_name"/>
     <caption name="order"/>
     <caption name="order_name"/>
     <caption name="description"/>
@@ -33,7 +31,6 @@
     <caption name="home"/>
     <caption name="appartament">Квартира</caption>
     <caption name="reg_documents"/>
-    <caption name="original_cost"/>
     <caption name="balance_cost"/>
     <caption name="cumulative_depreciation"/>
     <caption name="impairment_loss"/>
@@ -41,7 +38,6 @@
     <caption name="after_revaluation_amount"/>
     <caption name="commissioning_year"/>
     <caption name="is_ready_to_use"/>
-    <caption name="tags"/>
 
     <caption name="estimatedcost">Оценочная стоимость</caption>
     <caption name="residualcost">Остаточная стоимость</caption>
@@ -67,7 +63,6 @@
     <caption name="pledge">Залог</caption>
     <caption name="arrestingbyacourtdecision">Арест по решению суда</caption>
     <caption name="legalclaim">Юридическое притязание</caption>
-    <caption name="balance_holder"/>
     <caption name="limitdepreciation">Предельная норма амортизации</caption>
     <caption name="limitdepreciationtitle">Введите предельную норму амортизации в % (Значение от 0 до 100)</caption>
 
