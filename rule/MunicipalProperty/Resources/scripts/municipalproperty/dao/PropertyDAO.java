@@ -30,7 +30,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 		super(Property.class, session);
 	}
 
-	public ViewPage<Property> findAllByKufAndBalanceHolder(List kuf, Organization bh, int pageNum, int pageSize) {
+	public ViewPage<Property> findAllByKufAndBalanceHolder(List<KufType> kuf, Organization bh, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
@@ -78,7 +78,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			Predicate condition = c.get("invNumber").in(invNum);
 			cq.where(condition);
 			Query query = em.createQuery(cq);
-			if (!user.getUserID().equals(Const.sysUser)) {
+			if (user.getId() != SuperUser.ID) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);
 			}
 			List<Property> entities = query.getResultList();

@@ -54,8 +54,6 @@
 		<class>reference.model.StructureType</class>	
 		<class>reference.model.ReceivingReason</class>
 		<class>reference.model.Kuf</class>
-		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="PropertyLeasing" transaction-type="RESOURCE_LOCAL">
@@ -188,8 +186,6 @@
 		<class>reference.model.Street</class>	
 		<class>reference.model.Position</class>
 		<class>reference.model.OrgCategory</class>
-		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Reference" transaction-type="RESOURCE_LOCAL">
@@ -221,8 +217,6 @@
 		<class>reference.model.StructureType</class>
 		<class>reference.model.ReceivingReason</class>
 		<class>reference.model.Kuf</class>
-		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Workspace" transaction-type="RESOURCE_LOCAL">
