@@ -11,6 +11,12 @@
     <caption name="close"/>
     <caption name="wait_while_document_save"/>
 
+    <caption name="inv_number"/>
+    <caption name="object_name"/>
+    <caption name="original_cost"/>
+    <caption name="balance_holder"/>
+    <caption name="tags"/>
+                    
     <caption name="attach_file"/>
     <caption name="properties"/>
     <caption name="interface"/>

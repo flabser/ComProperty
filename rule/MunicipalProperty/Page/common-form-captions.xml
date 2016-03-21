@@ -12,8 +12,6 @@
     <caption name="reg_date"/>
     <caption name="reg_number"/>
     <caption name="author"/>
-    <caption name="namerus">Наименование Гос. учреждения (рус.)</caption>
-    <caption name="namekaz">Наименование Гос. учреждения (каз.)</caption>
     <caption name="inv_number"/>
     <caption name="organization"/>
     <caption name="object"/>
