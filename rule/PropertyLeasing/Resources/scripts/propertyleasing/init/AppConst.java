@@ -1,4 +1,4 @@
-package municipalproperty.init;
+package propertyleasing.init;
 
 public class AppConst {
 	public static String DEFAULT_URL = "p?id=personalestate-view&kuf=101";

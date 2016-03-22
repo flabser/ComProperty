@@ -93,7 +93,7 @@ public class ReportUtil {
 	}
 
 	public static String getOrgName(_Session ses, int code) {
-		IDatabase db = ses.getCurrentDatabase().getBaseObject();
+		IDatabase db = ses.getDatabase().getBaseObject();
 
 		IDBConnectionPool dbPool = db.getConnectionPool();
 		Connection conn = dbPool.getConnection();

@@ -31,7 +31,7 @@ public class FTSearch extends _DoPage {
         int pageNum = formData.getNumberValueSilently("page", 1);
         int pageSize = session.pageSize;
 
-        IDatabase db = session.getCurrentDatabase();
+        IDatabase db = session.getDatabase();
         IFTIndexEngine ftEngine = db.getFTSearchEngine();
         ViewPage<?> result = ftEngine.search(keyWord, session, pageNum, pageSize);
 
