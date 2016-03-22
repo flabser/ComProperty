@@ -11,7 +11,7 @@ import kz.lof.scripting._POJOObjectWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
-import kz.lof.webserver.servlet.IOutcomeObject;
+import kz.lof.scriptprocessor.page.IOutcomeObject;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
