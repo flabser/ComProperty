@@ -273,12 +273,13 @@ button.btn-side-nav-toggle {
     background: transparent;
     border: 0;
     display: none;
+    height: 28px;
     min-height: auto;
     padding: 0;
     position: absolute;
     right: 0px;
     text-align: center;
-    top: 16px;
+    top: 10px;
     width: 22px;
 }
 

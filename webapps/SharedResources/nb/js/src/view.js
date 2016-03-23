@@ -24,7 +24,7 @@ nb.resetSearchFromRefer = function() {
         sessionStorage.removeItem(nb.options.searchReferStorageName)
         location.href = refer;
     } else {
-        // history.back();
+        history.back();
     }
 };
 
@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
 
     $('form[name=ft-search]').on('reset', function() {
-        nb.resetSearchFromRefer();
+        $('[type=search]', this.form).attr('value', '');
     });
 
     $('[data-action=reset_search]').click(function(event) {
