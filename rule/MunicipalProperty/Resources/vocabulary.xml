@@ -693,7 +693,7 @@
         <entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық қорларының объектілері</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on" keyword="bombproofs">
+    <sentence mode="on" keyword="bomb_proofs">
         <entry lang="RUS">Бомбоубежища</entry>
         <entry lang="KAZ">Бомбадан сақтанатын жер</entry>
         <entry lang="ENG">Bomproofs</entry>
@@ -1163,6 +1163,18 @@
         <entry lang="ENG">Written off</entry>
         <entry lang="RUS">Списан</entry>
         <entry lang="KAZ">Списан</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="active">
+        <entry lang="ENG">Active</entry>
+        <entry lang="RUS">Активный</entry>
+        <entry lang="KAZ">Активный</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="inactive">
+        <entry lang="ENG">Inactive</entry>
+        <entry lang="RUS">Не активный</entry>
+        <entry lang="KAZ">Не активный</entry>
         <entry lang="CHO"></entry>
     </sentence>
 </vocabulary>

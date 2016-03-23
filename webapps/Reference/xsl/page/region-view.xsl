@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
@@ -27,9 +26,7 @@
                     <input type="checkbox" data-toggle="docid" class="all"/>
                 </label>
                 <div class="entry-captions">
-                    <span>
-                        <xsl:value-of select="//captions/viewtext/@caption"/>
-                    </span>
+                    <span></span>
                 </div>
             </div>
         </header>
@@ -46,16 +43,17 @@
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
-                        <span>
+                        <span class="vw-name">
                             <xsl:value-of select="viewcontent/name"/>
                         </span>
-                        <span>
+                        <span class="vw-region-type">
+                            <xsl:value-of select="viewcontent/type"/>
+                        </span>
+                        <span class="vw-country">
                             <xsl:value-of select="viewcontent/country"/>
                         </span>
                     </div>
-                    
-                </a> 
-                                
+                </a>
             </div>
         </div>
     </xsl:template>

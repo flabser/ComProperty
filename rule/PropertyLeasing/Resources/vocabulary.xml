@@ -53,7 +53,7 @@
     <sentence mode="on" keyword="documents_of_title">
         <entry lang="ENG">Documents of the title</entry>
         <entry lang="RUS">Правоустанавливающие документы</entry>
-        <entry lang="KAZ"></entry>
+        <entry lang="KAZ">Құқықтық құжаттар</entry>
     </sentence>
     <sentence mode="on" keyword="intangible_assets">
         <entry lang="RUS">Нематериальные активы</entry>
@@ -315,7 +315,7 @@
         <entry lang="KAZ">Асүй құрал-жабдығы</entry>
         <entry lang="ENG">Cook equipment</entry>
     </sentence>
-    <sentence mode="on" keyword="equipment_of_civildefence">
+    <sentence mode="on" keyword="equipment_of_civil_defence">
         <entry lang="RUS">Оборудование гражданской обороны</entry>
         <entry lang="KAZ">Азаматтық қорғаныс құрал-жабдығы</entry>
         <entry lang="ENG">Equipment of civil defence</entry>
@@ -693,7 +693,7 @@
         <entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық қорларының объектілері</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on" keyword="bombproofs">
+    <sentence mode="on" keyword="bomb_proofs">
         <entry lang="RUS">Бомбоубежища</entry>
         <entry lang="KAZ">Бомбадан сақтанатын жер</entry>
         <entry lang="ENG">Bomproofs</entry>
@@ -1147,22 +1147,34 @@
         <entry lang="ENG"></entry>
     </sentence>
 
-    <sentence mode="on" keyword="UNKNOWN">
+    <sentence mode="on" keyword="unknown">
         <entry lang="ENG">Unknown</entry>
         <entry lang="RUS">Не определен</entry>
         <entry lang="KAZ">Не определен</entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="ON_BALANCE">
+    <sentence mode="on" keyword="on_balance">
         <entry lang="ENG">Balance</entry>
         <entry lang="RUS">На балансе</entry>
         <entry lang="KAZ">На балансе</entry>
         <entry lang="CHO"></entry>
     </sentence>
-    <sentence mode="on" keyword="WRITTENOFF">
+    <sentence mode="on" keyword="writtenoff">
         <entry lang="ENG">Written off</entry>
         <entry lang="RUS">Списан</entry>
         <entry lang="KAZ">Списан</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="active">
+        <entry lang="ENG">Active</entry>
+        <entry lang="RUS">Активный</entry>
+        <entry lang="KAZ">Активный</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
+    <sentence mode="on" keyword="inactive">
+        <entry lang="ENG">Inactive</entry>
+        <entry lang="RUS">Не активный</entry>
+        <entry lang="KAZ">Не активный</entry>
         <entry lang="CHO"></entry>
     </sentence>
 </vocabulary>

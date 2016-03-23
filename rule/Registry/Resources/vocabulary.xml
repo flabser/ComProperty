@@ -15,12 +15,11 @@
         <entry lang="RUS">Организации</entry>
         <entry lang="KAZ">Кәсіпорындар</entry>
     </sentence>
-
     <sentence mode="on" keyword="labeled">
         <entry lang="ENG">Assign label</entry>
         <entry lang="RUS">Организации которым установлен признак</entry>
         <entry lang="KAZ"></entry>
-    </sentence>  
+    </sentence>
     <sentence mode="on" keyword="contractors">
         <entry lang="ENG">Contractors</entry>
         <entry lang="RUS">Контрагенты</entry>
@@ -51,7 +50,7 @@
         <entry lang="RUS">Удалить документ</entry>
         <entry lang="KAZ"></entry>
     </sentence>
-     <sentence mode="on" keyword="is_primary_organization">
+    <sentence mode="on" keyword="is_primary_organization">
         <entry lang="ENG">is Primary organization</entry>
         <entry lang="RUS">Первичная организация</entry>
         <entry lang="KAZ"></entry>
@@ -61,9 +60,14 @@
         <entry lang="RUS">БИН может состоять из 12 символов максимум</entry>
         <entry lang="KAZ"></entry>
     </sentence>
-     <sentence mode="on" keyword="name">
+    <sentence mode="on" keyword="name">
         <entry lang="ENG">Name</entry>
         <entry lang="RUS">Имя</entry>
         <entry lang="KAZ"></entry>
+    </sentence>
+    <sentence mode="on" keyword="organization_labels">
+        <entry lang="ENG">Organization labels</entry>
+        <entry lang="RUS">Признаки для организации</entry>
+        <entry lang="KAZ">Признаки для организации</entry>
     </sentence>
 </vocabulary>

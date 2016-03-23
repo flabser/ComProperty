@@ -28,7 +28,16 @@
             <xsl:with-param name="separator" select="'&amp;'"/>
         </xsl:call-template>
     </xsl:variable>
-    <xsl:variable name="refer_url" select="concat('?id=', //request/@id, '&amp;', $request_param, '&amp;page=')"/>
+    <xsl:variable name="refer_url">
+        <xsl:choose>
+            <xsl:when test="$request_param != ''">
+                <xsl:value-of select="concat('?id=', //request/@id, '&amp;', $request_param, '&amp;page=')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('?id=', //request/@id, '&amp;page=')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
 
     <xsl:template match="view_content" mode="page-navigator">
         <xsl:call-template name="page-navigator"/>

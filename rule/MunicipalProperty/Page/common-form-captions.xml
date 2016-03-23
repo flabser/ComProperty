@@ -71,7 +71,9 @@
     <caption name="decrees_acts">Постановление акимата и акт приема-передачи, передано в какое упраление</caption>
     <caption name="note">Примечание</caption>
 
-    <caption name="inknown"/>
+    <caption name="unknown"/>
     <caption name="on_balance"/>
     <caption name="writtenoff"/>
+    <caption name="active"/>
+    <caption name="inactive"/>
 </rule>
