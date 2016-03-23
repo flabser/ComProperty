@@ -584,8 +584,9 @@
         <xsl:param name="select"/>
         <xsl:param name="type" select="'checkbox'"/>
         <xsl:param name="name" select="$select/name()"/>
-        <xsl:variable name="attrval" select="lower-case(@attrval)"/>
-        <xsl:variable name="caption" select="//captions/*[lower-case(name()) = $attrval]/@caption"/>
+        <xsl:variable name="attrval" select="@attrval"/>
+        <xsl:variable name="lowerAttrval" select="lower-case(@attrval)"/>
+        <xsl:variable name="caption" select="//captions/*[lower-case(name()) = $lowerAttrval]/@caption"/>
 
         <label class="input">
             <input type="{$type}" name="{$name}" value="{@attrval}">
