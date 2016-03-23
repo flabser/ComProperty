@@ -14,16 +14,17 @@ nb.getSelectedEntityIDs = function(checkboxName) {
 
 nb.setSearchReferToSessionStorage = function() {
     if (location.href.indexOf('id=search') == -1) {
-        sessionStorage.setItem('search_refer', location.href);
+        sessionStorage.setItem(nb.options.searchReferStorageName, location.href);
     }
 };
 
 nb.resetSearchFromRefer = function() {
-    var refer = sessionStorage.getItem('search_refer');
+    var refer = sessionStorage.getItem(nb.options.searchReferStorageName);
     if (refer) {
+        sessionStorage.removeItem(nb.options.searchReferStorageName)
         location.href = refer;
     } else {
-        history.back();
+        // history.back();
     }
 };
 
@@ -34,8 +35,11 @@ $(document).ready(function() {
         return true;
     });
 
+    $('form[name=ft-search]').on('reset', function() {
+        nb.resetSearchFromRefer();
+    });
+
     $('[data-action=reset_search]').click(function(event) {
-        event.preventDefault();
         nb.resetSearchFromRefer();
     });
 });

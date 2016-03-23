@@ -1322,6 +1322,7 @@ return datepicker.regional.ru;
 
 var nb = {
     APP_NAME: location.hostname,
+    MODULE: location.pathname.split('/')[1],
     LANG_ID: (function() {
         var ck = document.cookie.match('(lang)=(.*?)($|;|,(?! ))');
         if (ck) {
@@ -1335,7 +1336,9 @@ var nb = {
         upload: 'UploadFile'
     },
     options: {
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'yy-mm-dd',
+        sideTreeStorageName: location.pathname.split('/')[1] + '-side-tree-toggle',
+        searchReferStorageName: location.pathname.split('/')[1] + '-search_refer'
     },
     translations: {
         yes: 'Да',
@@ -1465,12 +1468,12 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
 // init
 $(document).ready(function() {
     //
-    var oreo = localStorage.getItem('side-tree-toggle');
+    var oreo = localStorage.getItem(nb.options.sideTreeStorageName);
     var ary = [];
     if (oreo != null) {
         ary = oreo.split(',');
     } else {
-        localStorage.setItem('side-tree-toggle', '');
+        localStorage.setItem(nb.options.sideTreeStorageName, '');
     }
     $('[data-nav]', '.aside').each(function() {
         if (ary.indexOf($(this).data('nav')) != -1) {
@@ -1505,7 +1508,7 @@ $(document).ready(function() {
         var $parent = $(this).parent();
         $parent.toggleClass('nav-link-collapsed');
         //
-        var storageKey = 'side-tree-toggle';
+        var storageKey = nb.options.sideTreeStorageName;
         var navId = $parent.data('nav');
         var oreo = localStorage.getItem(storageKey);
         var ary = oreo.split(',');
@@ -2598,16 +2601,17 @@ nb.getSelectedEntityIDs = function(checkboxName) {
 
 nb.setSearchReferToSessionStorage = function() {
     if (location.href.indexOf('id=search') == -1) {
-        sessionStorage.setItem('search_refer', location.href);
+        sessionStorage.setItem(nb.options.searchReferStorageName, location.href);
     }
 };
 
 nb.resetSearchFromRefer = function() {
-    var refer = sessionStorage.getItem('search_refer');
+    var refer = sessionStorage.getItem(nb.options.searchReferStorageName);
     if (refer) {
+        sessionStorage.removeItem(nb.options.searchReferStorageName)
         location.href = refer;
     } else {
-        history.back();
+        // history.back();
     }
 };
 
@@ -2618,8 +2622,11 @@ $(document).ready(function() {
         return true;
     });
 
+    $('form[name=ft-search]').on('reset', function() {
+        nb.resetSearchFromRefer();
+    });
+
     $('[data-action=reset_search]').click(function(event) {
-        event.preventDefault();
         nb.resetSearchFromRefer();
     });
 });
