@@ -2541,7 +2541,7 @@ nb.upload = function(fileInput) {
             return _xhr;
         },
         success: function(result, xhr) {
-            $('[data-upload-files=' + inputName + ']').append(nb.template('attachments', result.files));
+            $('[data-upload-files=' + inputName + ']').append(nb.template('attachments', result));
             return result;
         },
         error: function(err) {
@@ -2571,7 +2571,9 @@ $(document).ready(function() {
         var uploadName = $(this).data('upload');
 
         if ($('[type=file][name=' + uploadName + ']').length === 0) {
-            var $fileForm = $('<form class=hidden><input type=file name="' + uploadName + '" /></form>').appendTo('body');
+            $('<input type=hidden name=fsid value="' + fsId + '"/>').appendTo(this.form);
+
+            var $fileForm = $('<form class=hidden><input type=file name="' + uploadName + '" /><input type=hidden name=fsid value="' + fsId + '"/></form>').appendTo('body');
             var $fileInput = $fileForm.find('input[type=file]');
 
             $fileInput.on('change', function() {
