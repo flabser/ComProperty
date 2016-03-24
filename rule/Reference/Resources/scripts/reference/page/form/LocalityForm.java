@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -73,8 +74,8 @@ public class LocalityForm extends ReferenceForm {
 
 			entity.setName(formData.getValue("name"));
 			LocalityTypeDAO localityTypeDAO = new LocalityTypeDAO(session);
-			entity.setType(localityTypeDAO.findById(formData.getValue("localitytype")));
-			entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("district"))));
+			entity.setType(localityTypeDAO.findById(formData.getValue("localitytypeid")));
+			entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("districtid"))));
 			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			if (isNew) {
@@ -87,5 +88,23 @@ public class LocalityForm extends ReferenceForm {
 		} catch (_Exception | DatabaseException | SecureException e) {
 			error(e);
 		}
+	}
+
+	@Override
+	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+		_Validation ve = new _Validation();
+		if (formData.getValueSilently("name").isEmpty()) {
+			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		if (formData.getValueSilently("districtidid").isEmpty()) {
+			ve.addError("code", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		if (formData.getValueSilently("localitytypeid").isEmpty()) {
+			ve.addError("code", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		return ve;
 	}
 }

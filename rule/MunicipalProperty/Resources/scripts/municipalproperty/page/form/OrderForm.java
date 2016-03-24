@@ -45,7 +45,7 @@ public class OrderForm extends _DoPage {
 		if (!id.isEmpty()) {
 			OrderDAO dao = new OrderDAO(session);
 			entity = dao.findById(UUID.fromString(id));
-			addContent("formsesid", Util.generateRandomAsText());
+			addValue("formsesid", Util.generateRandomAsText());
 		} else {
 			entity = getDefaultEntity(user);
 			String propertyId = formData.getValueSilently("propertyid");
@@ -54,7 +54,7 @@ public class OrderForm extends _DoPage {
 			entity.setProperty(property);
 
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
-			addContent("formsesid", fsid);
+			addValue("formsesid", fsid);
 			List<String> formFiles = null;
 			Object obj = session.getAttribute(fsid);
 			if (obj == null) {

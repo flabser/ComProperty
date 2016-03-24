@@ -19,10 +19,10 @@ public class Workspace extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) throws _Exception {
 		_AppEntourage ent = session.getAppEntourage();
-		publishElement("serverversion", ent.getServerVersion());
-		publishElement("build", ent.getBuildTime());
-		publishElement("org", Environment.orgName);
-		publishElement("appname", ent.getAppName());
+		addValue("serverversion", ent.getServerVersion());
+		addValue("build", ent.getBuildTime());
+		addValue("org", Environment.orgName);
+		addValue("appname", ent.getAppName());
 		if (!session.getUser().getUserID().equalsIgnoreCase(AnonymousUser.USER_NAME)) {
 			User user = (User) session.getUser();
 			List<Application> aa = user.getAllowedApps();
