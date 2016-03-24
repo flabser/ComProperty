@@ -3,10 +3,8 @@ package municipalproperty.page.view;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.constants.KufType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Kayra created 05-01-2016
@@ -19,27 +17,23 @@ public class IntangibleAssetView extends AbstractMunicipalPropertyView {
         LanguageCode lang = session.getLang();
         int kuf = formData.getNumberValueSilently("kuf", -1);
         KufType kufType = KufType.getType(kuf);
+        KufType kufParam;
+        PropertyFilter propertyFilter = new PropertyFilter();
 
         switch (kufType) {
             case SHARE_BLOCK:
             case EQUITY:
-                addContent(getViewPage(session, formData, kufType, lang));
+                kufParam = kufType;
+                propertyFilter.addKufType(kufType);
                 break;
             default:
-                List<KufType> params = new ArrayList<>();
-                params.add(KufType.SHARE_BLOCK);
-                params.add(KufType.EQUITY);
-                addContent(getViewPage(session, formData, params, lang));
+                kufParam = KufType.SHARE_BLOCK;
+                propertyFilter.addKufType(KufType.SHARE_BLOCK);
+                propertyFilter.addKufType(KufType.EQUITY);
                 break;
         }
 
-        KufType kufParam;
-        if (kufType == KufType.UNKNOWN) {
-            kufParam = KufType.SHARE_BLOCK;
-        } else {
-            kufParam = kufType;
-        }
-
+        addContent(getViewPage(session, formData, propertyFilter, lang));
         addContent(getSimpleActionBar(session, "intangibleasset-form", kufParam, lang));
     }
 }

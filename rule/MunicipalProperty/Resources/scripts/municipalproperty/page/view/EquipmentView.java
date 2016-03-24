@@ -3,6 +3,7 @@ package municipalproperty.page.view;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
+import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.constants.KufType;
 
 import java.util.List;
@@ -19,11 +20,12 @@ public class EquipmentView extends AbstractMunicipalPropertyView {
         int kuf = formData.getNumberValueSilently("kuf", -1);
         KufType kufType = KufType.getType(kuf);
         List<KufType> kufList = KufType.getListByGroupId(200);
+        PropertyFilter propertyFilter = new PropertyFilter();
 
         if (kufList.contains(kufType)) {
-            addContent(getViewPage(session, formData, kufType, lang));
+            propertyFilter.setKufType(kufType);
         } else {
-            addContent(getViewPage(session, formData, kufList, lang));
+            propertyFilter.setKufTypes(kufList);
         }
 
         KufType kufParam;
@@ -33,6 +35,7 @@ public class EquipmentView extends AbstractMunicipalPropertyView {
             kufParam = kufType;
         }
 
+        addContent(getViewPage(session, formData, propertyFilter, lang));
         addContent(getSimpleActionBar(session, "equipment-form", kufParam, lang));
     }
 }
