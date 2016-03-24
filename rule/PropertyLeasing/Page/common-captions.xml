@@ -9,6 +9,7 @@
     <caption name="cancel"/>
     <caption name="select"/>
     <caption name="close"/>
+    <caption name="filter"/>
     <caption name="wait_while_document_save"/>
 
     <caption name="inv_number"/>
