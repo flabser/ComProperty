@@ -1,17 +1,19 @@
 /**
  * submitForm
  */
-nb.submitForm = function(form) {
+nb.submitForm = function(form, options) {
 
     if (!nb.validateForm(form)) {
         var dfd = $.Deferred();
         return dfd.reject(false);
     }
 
+    options = options || {};
+
     var notify = nb.notify({
-        message: nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
+        message: options.notify || nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
         type: 'process'
-    }).show();
+    }).show();;
 
     var xhrArgs = {
         cache: false,

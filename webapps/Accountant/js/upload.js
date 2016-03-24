@@ -262,4 +262,5 @@ function initCachedUpdateForm() {
 
 $(document).ready(function() {
     initCachedUpdateForm();
+    nb.fetchTranslations();
 });

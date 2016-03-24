@@ -16,7 +16,7 @@ var nb = {
     })(),
     debug: false,
     api: {
-        translations: 'Provider?id=common-captions',
+        translations: 'p?id=common-captions',
         upload: 'UploadFile'
     },
     options: {
@@ -55,13 +55,18 @@ nb.getText = function(stringKey, defaultText) {
 };
 
 /**
- * getTranslations
+ * fetchTranslations
  */
-nb.getTranslations = function() {
+nb.fetchTranslations = function() {
     return $.ajax({
         type: 'get',
         dataType: 'json',
-        url: nb.api.translations
+        url: nb.api.translations,
+        success: function(response) {
+            for (var key in response.captions) {
+                nb.translations[key] = response.captions[key];
+            }
+        }
     });
 };
 
@@ -206,13 +211,6 @@ $(document).ready(function() {
         } else {
             ary.push(navId);
             localStorage.setItem(storageKey, ary.join(','));
-        }
-    });
-
-    // getTranslations
-    nb.getTranslations().then(function(response) {
-        for (var key in response.captions) {
-            nb.translations[key] = response.captions[key];
         }
     });
 

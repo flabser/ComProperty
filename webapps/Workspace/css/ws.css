@@ -243,11 +243,19 @@ img.ws-app-logo {
     text-align: center;
 }
 
+.sign-up label {
+    display: block;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.sign-up label span {
+    color: #555;
+}
+
 .sign-up input,
 .sign-up textarea {
-    font-size: 1.2em;
     padding: 8px;
-    margin-bottom: 8px;
 }
 
 .sign-up button[type=submit] {
