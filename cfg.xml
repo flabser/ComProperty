@@ -36,8 +36,12 @@
 		<entry>ENG</entry>
 	</langs>
     <mailagent mode="ON">
-        <smtphost>192.168.0.1</smtphost>
-        <defaultsender>info@flabs.kz</defaultsender>
+    	<smtphost>smtp.mail.ru</smtphost>
+		<defaultsender>mynameis.m@mail.ru</defaultsender>
+		<auth>true</auth>
+		<smtpport>465</smtpport>
+		<smtpuser>mynameis.m@mail.ru</smtpuser>
+		<smtppassword>mynameis.mmynameis.m</smtppassword>     
     </mailagent>
    <ssl mode="OFF">
         <port>38789</port>
