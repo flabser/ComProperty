@@ -87,6 +87,8 @@ function delFile(fileId, fsid) {
 
 function checkFile(fileId, fsid) {
     nb.uiBlock();
+    var stopiferror = $("input[name=stopiferror]").serialize();
+    if (stopiferror != '') stopiferror = "&" + stopiferror;
 
     var noty = nb.notify({
         type: 'info',
@@ -96,7 +98,7 @@ function checkFile(fileId, fsid) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
+        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopiferror,
         success: function(data) {
             return data;
         },
