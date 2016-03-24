@@ -2857,34 +2857,34 @@ $(function() {
 
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'Provider?id=get-organizations'
+        url: 'p?id=get-organizations'
     },
     orgcategory: {
-        url: 'Provider?id=get-org-categories'
+        url: 'p?id=get-org-categories'
     },
     department: {
-        url: 'Provider?id=get-departments',
+        url: 'p?id=get-departments',
         data: ['organization']
     },
     position: {
-        url: 'Provider?id=get-positions'
+        url: 'p?id=get-positions'
     },
     propertycode: {
-        url: 'Provider?id=get-property-codes'
+        url: 'p?id=get-property-codes'
     },
     receivingreason: {
-        url: 'Provider?id=get-receiving-reasons'
+        url: 'p?id=get-receiving-reasons'
     },
     district: {
-        url: 'Provider?id=get-districts',
+        url: 'p?id=get-districts',
         data: ['region']
     },
     street: {
-        url: 'Provider?id=get-streets',
+        url: 'p?id=get-streets',
         data: ['district']
     },
     tags: {
-        url: 'Provider?id=get-tags',
+        url: 'p?id=get-tags',
         fields: ['color'],
         templateResult: function(item) {
             if (!item.id || !item.color) {

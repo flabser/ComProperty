@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:import href="pagination.xsl"/>
 
     <xsl:template name="page-info">
         <xsl:param name="title" select="//captions/title/@caption"/>
@@ -23,7 +22,7 @@
                         <xsl:apply-templates select="//actionbar"/>
                     </div>
                     <label class="btn btn-filter-toggle">
-                        <input type="checkbox" data-toggle="panel" data-target="#property-filter"/>
+                        <input type="checkbox" data-toggle="filter" data-target="#property-filter"/>
                         <span>
                             <xsl:value-of select="//captions/filter/@caption"/>
                         </span>
@@ -43,14 +42,14 @@
                                 <select name="balanceholder" multiple="true"></select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <div class="control-label"></div>
                             <div class="controls">
                                 <button type="button" class="btn">
                                     <xsl:value-of select="//captions/apply/@caption"/>apply
                                 </button>
                             </div>
-                        </div>
+                        </div>-->
                     </fieldset>
                 </div>
             </div>

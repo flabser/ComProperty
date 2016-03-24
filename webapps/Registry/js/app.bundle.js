@@ -2856,16 +2856,16 @@ $(function() {
 
 nbApp.selectOptions = {
     organization: {
-        url: 'Provider?id=get-organizations'
+        url: 'p?id=get-organizations'
     },
     orgcategory: {
-        url: 'Provider?id=get-org-categories'
+        url: 'p?id=get-org-categories'
     },
     department: {
-        url: 'Provider?id=get-departments',
+        url: 'p?id=get-departments',
         data: ['organization']
     },
     position: {
-        url: 'Provider?id=get-positions'
+        url: 'p?id=get-positions'
     }
 };

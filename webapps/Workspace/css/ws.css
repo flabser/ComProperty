@@ -25,6 +25,13 @@ body {
     padding: 16px;
 }
 
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 4px 16px;
+    }
+}
+
 .navbar i.fa {
     color: #FFF;
 }

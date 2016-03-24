@@ -2840,24 +2840,24 @@ $(function() {
 
 nbApp.selectOptions = {
     country: {
-        url: 'Provider?id=get-countries'
+        url: 'p?id=get-countries'
     },
     district: {
-        url: 'Provider?id=get-districts'
+        url: 'p?id=get-districts'
     },
     region: {
-        url: 'Provider?id=get-regions'
+        url: 'p?id=get-regions'
     },
     regiontype: {
-        url: 'Provider?id=get-region-types'
+        url: 'p?id=get-region-types'
     },
     locality: {
-        url: 'Provider?id=get-localities'
+        url: 'p?id=get-localities'
     },
     localitytype: {
-        url: 'Provider?id=get-locality-types'
+        url: 'p?id=get-locality-types'
     },
     street: {
-        url: 'Provider?id=get-streets'
+        url: 'p?id=get-streets'
     }
 };

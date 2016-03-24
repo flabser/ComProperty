@@ -26,7 +26,7 @@ public class MainNavigator extends _DoPage {
 
         // -----
         // if(cuser.hasRole(["struct_keeper", "supervisor"])) {
-        String peUrl = "Provider?id=personalestate-view&kuf=";
+        String peUrl = "p?id=personalestate-view&kuf=";
         _OutlineEntry personalEstateEntry = new _OutlineEntry(getLocalizedWord("personal_estates", lang), "personalestate-view");
         personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("furniture", lang), "", "personalestate-view101", peUrl + "101")); // FURNITURE(101)
         personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("animals", lang), "", "personalestate-view102", peUrl + "102")); // ANIMALS(102)
@@ -34,13 +34,13 @@ public class MainNavigator extends _DoPage {
         personalEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "", "personalestate-view106", peUrl + "106")); // OTHERS(106)
 
         // -----
-        String iaUrl = "Provider?id=intangibleasset-view&kuf=";
+        String iaUrl = "p?id=intangibleasset-view&kuf=";
         _OutlineEntry intangibleAssetsEntry = new _OutlineEntry(getLocalizedWord("intangible_assets", lang), "intangibleasset-view");
         intangibleAssetsEntry.addEntry(new _OutlineEntry(getLocalizedWord("share_blocks", lang), "", "intangibleasset-view104", iaUrl + "104")); // SHARE_BLOCK(104)
         intangibleAssetsEntry.addEntry(new _OutlineEntry(getLocalizedWord("equities", lang), "", "intangibleasset-view105", iaUrl + "105")); // EQUITY(105)
 
         // -----
-        String eqUrl = "Provider?id=equipment-view&kuf=";
+        String eqUrl = "p?id=equipment-view&kuf=";
         _OutlineEntry equipmentEntry = new _OutlineEntry(getLocalizedWord("equipment", lang), "equipment-view");
         equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("school_equipment", lang), "", "equipment-view201", eqUrl + "201")); // SCHOOL_EQUIPMENT(201)
         equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("office_equipment", lang), "", "equipment-view202", eqUrl + "202")); // OFFICE_EQUIPMENT(202)
@@ -51,7 +51,7 @@ public class MainNavigator extends _DoPage {
         equipmentEntry.addEntry(new _OutlineEntry(getLocalizedWord("others", lang), "", "equipment-view207", eqUrl + "207")); // OTHERS_EQUIPMENT(207)
 
         // -----
-        String reUrl = "Provider?id=realestate-view&kuf=";
+        String reUrl = "p?id=realestate-view&kuf=";
         _OutlineEntry realEstateEntry = new _OutlineEntry(getLocalizedWord("real_estates", lang), "realestate-view");
         realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("buildings", lang), "", "realestate-view301", reUrl + "301")); // BUILDINGS(301)
         // TODO ROOMS(302) ?
@@ -61,7 +61,7 @@ public class MainNavigator extends _DoPage {
         realEstateEntry.addEntry(new _OutlineEntry(getLocalizedWord("monuments", lang), "", "realestate-view306", reUrl + "306")); // MONUMENT(306)
 
         // -----
-        String trUrl = "Provider?id=vehicle-view&kuf=";
+        String trUrl = "p?id=vehicle-view&kuf=";
         _OutlineEntry transportEntry = new _OutlineEntry(getLocalizedWord("transport", lang), "vehicle-view");
 
         _OutlineEntry autoEntry = new _OutlineEntry(getLocalizedWord("automobiles", lang), "", "vehicle-view401", trUrl + "401"); // AUTOMOBILE(401)
@@ -84,7 +84,7 @@ public class MainNavigator extends _DoPage {
         transportEntry.addEntry(new _OutlineEntry(getLocalizedWord("motorcycles", lang), "", "vehicle-view403", trUrl + "403")); // MOTORCYCLE(403)
 
         // -----
-        String soUrl = "Provider?id=strategicobject-view&kuf=";
+        String soUrl = "p?id=strategicobject-view&kuf=";
         _OutlineEntry strategicObjectEntry = new _OutlineEntry(getLocalizedWord("strategic_objects", lang), "strategicobject-view");
         strategicObjectEntry.addEntry(new _OutlineEntry(getLocalizedWord("object_reserved_fund", lang), "", "strategicobject-view501", soUrl + "501"));
 
@@ -97,7 +97,7 @@ public class MainNavigator extends _DoPage {
         strategicObjectEntry.addEntry(specialConstructionEntry);
 
         // -----
-        String eiUrl = "Provider?id=engineeringinfrastructure-view&kuf=";
+        String eiUrl = "p?id=engineeringinfrastructure-view&kuf=";
         _OutlineEntry engStructureEntry = new _OutlineEntry(getLocalizedWord("eng_infrastructure", lang), "engineeringinfrastructure-view");
         engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("billboards", lang), "", "engineeringinfrastructure-view601", eiUrl + "601")); // BILLBOARD(601)
         engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("columns", lang), "", "engineeringinfrastructure-view602", eiUrl + "602")); // COLUMNS(602)

@@ -2898,6 +2898,73 @@ nbApp.choiceStreet = function(el) {
     });
 };
 
+$(document).ready(function() {
+    $('[data-toggle=filter]').on('change', function(event) {
+        var targetSelector = $(this).data('target');
+        var $panel = $(targetSelector);
+
+        if (this.checked) {
+            $panel.addClass('open');
+        } else {
+            $panel.removeClass('open');
+        }
+    });
+
+    $('select', '#property-filter').on('change', function(e) {
+        if ($('[data-toggle=filter]')[0].checked) {
+            var url = location.href.split('&')[0];
+            url += '&page=' + $('.pagination a.page-active').text() + '&' + $(this).serialize();
+
+            location.href = url;
+        }
+    });
+
+    $('.pagination a').on('click', function(e) {
+        if ($('[data-toggle=filter]')[0].checked) {
+            e.preventDefault();
+
+            var url = location.href.split('&')[0];
+            url += '&' + $(this).serialize() + '&page=' + this.href.match('&page=(.*)')[1];
+
+            location.href = url;
+        }
+    });
+
+    $('.pagination select').on('change', function(e) {
+        if ($('[data-toggle=filter]')[0].checked) {
+            e.preventDefault();
+        }
+    });
+
+    var sbh = [];
+    var ubh = location.search.split('&');
+    for (var p in ubh) {
+        if (ubh[p].split('=')[0] === 'balanceholder') {
+            sbh.push('ids=' + ubh[p].split('=')[1]);
+        }
+    }
+    if (sbh.length) {
+        $('[data-toggle=filter]').attr('checked', true);
+        $('[data-toggle=filter]').trigger('change');
+
+        $.ajax({
+            url: 'p?id=get-organizations&' + sbh.join('&'),
+            dataType: 'json',
+            success: function(data) {
+                var list = data.objects[0].list;
+                if (list) {
+                    for (var m in list) {
+                        $('select[name=balanceholder]').append($('<option value="' + list[m].id + '" selected>' + list[m].name + '</option>'));
+                    }
+                    $('select[name=balanceholder]').select2(nb.getSelectOptions('balanceholder'));
+                }
+            }
+        });
+    }
+
+    console.log(sbh);
+});
+
 $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
     $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
@@ -2967,34 +3034,34 @@ $(document).ready(function() {
 
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'Provider?id=get-organizations'
+        url: 'p?id=get-organizations'
     },
     orgcategory: {
-        url: 'Provider?id=get-org-categories'
+        url: 'p?id=get-org-categories'
     },
     department: {
-        url: 'Provider?id=get-departments',
+        url: 'p?id=get-departments',
         data: ['organization']
     },
     position: {
-        url: 'Provider?id=get-positions'
+        url: 'p?id=get-positions'
     },
     propertycode: {
-        url: 'Provider?id=get-property-codes'
+        url: 'p?id=get-property-codes'
     },
     receivingreason: {
-        url: 'Provider?id=get-receiving-reasons'
+        url: 'p?id=get-receiving-reasons'
     },
     district: {
-        url: 'Provider?id=get-districts',
+        url: 'p?id=get-districts',
         data: ['region']
     },
     street: {
-        url: 'Provider?id=get-streets',
+        url: 'p?id=get-streets',
         data: ['district']
     },
     tags: {
-        url: 'Provider?id=get-tags',
+        url: 'p?id=get-tags',
         fields: ['color'],
         templateResult: function(item) {
             if (!item.id || !item.color) {

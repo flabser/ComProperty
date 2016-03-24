@@ -2951,8 +2951,13 @@ function delFile(fileId, fsid) {
     });
 }
 
-function checkFile(fileId, fsid) {
+function checkFile(fileId, fsid, $context) {
     nb.uiBlock();
+
+    var stopIfError = $('input[name=stopiferror]', $context).serialize();
+    if (stopIfError != '') {
+        stopIfError = '&' + stopIfError;
+    }
 
     var noty = nb.notify({
         type: 'info',
@@ -2962,7 +2967,7 @@ function checkFile(fileId, fsid) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
+        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError,
         success: function(data) {
             return data;
         },
@@ -3002,7 +3007,7 @@ function renderFilePanel(fileName, fsid) {
         $btn.attr('disabled', true);
         setLastFileToStorage(fileName);
         //
-        checkFile(fileName, fsid).then(function(result) {
+        checkFile(fileName, fsid, $tpl).then(function(result) {
             /*$btn.parents('.panel').addClass('open');
             if (result == '') {
                 $tpl.find('.js-load').removeAttr('disabled');

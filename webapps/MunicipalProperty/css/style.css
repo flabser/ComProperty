@@ -16,11 +16,4 @@
     height: 34px;
 }
 
-.property-filter {
-    max-height: 0px;
-    transition: max-height .15s;
-}
-
-.property-filter.open {
-    max-height: 300px;
-}
+.property-filter {}
