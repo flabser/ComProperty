@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
     <xsl:import href="templates/constants.xsl"/>
 
     <xsl:output method="html" encoding="utf-8" indent="no"/>
@@ -19,7 +18,6 @@
                     <xsl:call-template name="main-header"/>
                     <div class="container">
                         <section class="content">
-                            <xsl:call-template name="sign-in-form"/>
                             <xsl:call-template name="_content"/>
                         </section>
                     </div>
@@ -81,38 +79,6 @@
                 </xsl:if>
             </div>
         </header>
-    </xsl:template>
-
-    <xsl:template name="sign-in-form">
-        <xsl:if test="@userid = 'anonymous'">
-            <form class="sign-in" action="Login" method="post">
-                <h1>
-                    <xsl:value-of select="//captions/sign_in/@caption"/>
-                </h1>
-                <label class="login">
-                    <i class="fa fa-user"></i>
-                    <input type="text" name="login" value="" required="required">
-                        <xsl:attribute name="placeholder" select="//captions/user/@caption"/>
-                    </input>
-                </label>
-                <label class="pwd">
-                    <i class="fa fa-lock"></i>
-                    <input type="password" name="pwd" value="" required="required">
-                        <xsl:attribute name="placeholder" select="//captions/password/@caption"/>
-                    </input>
-                </label>
-                <label class="noauth">
-                    <input type="checkbox" name="noauth" value="1"/>
-                    <span>
-                        <xsl:value-of select="//captions/another_comp/@caption"/>
-                    </span>
-                </label>
-                <button class="btn" type="submit">
-                    <xsl:value-of select="//captions/login/@caption"/>
-                </button>
-                <div class="clearfix"></div>
-            </form>
-        </xsl:if>
     </xsl:template>
 
     <xsl:template name="main-footer">

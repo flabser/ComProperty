@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
@@ -8,10 +7,11 @@
     </xsl:template>
 
     <xsl:template name="_content">
+        <xsl:call-template name="sign-in-form"/>
         <section class="ws">
             <xsl:choose>
-                <xsl:when test="//query[@entity='application']">
-                    <xsl:apply-templates select="//query[@entity='application']"/>
+                <xsl:when test="//query[@entity = 'application']">
+                    <xsl:apply-templates select="//query[@entity = 'application']"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:call-template name="off-app"/>
@@ -52,6 +52,41 @@
                 <div class="ws-app off"></div>
             </div>
         </section>
+    </xsl:template>
+
+    <xsl:template name="sign-in-form">
+        <xsl:if test="@userid = 'anonymous'">
+            <form class="sign-in" action="Login" method="post">
+                <h1>
+                    <xsl:value-of select="//captions/sign_in/@caption"/>
+                </h1>
+                <label class="login">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="login" value="" required="required">
+                        <xsl:attribute name="placeholder" select="//captions/user/@caption"/>
+                    </input>
+                </label>
+                <label class="pwd">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="pwd" value="" required="required">
+                        <xsl:attribute name="placeholder" select="//captions/password/@caption"/>
+                    </input>
+                </label>
+                <label class="noauth">
+                    <input type="checkbox" name="noauth" value="1"/>
+                    <span>
+                        <xsl:value-of select="//captions/another_comp/@caption"/>
+                    </span>
+                </label>
+                <button class="btn" type="submit">
+                    <xsl:value-of select="//captions/login/@caption"/>
+                </button>
+                <div class="clearfix"></div>
+                <a href="?id=reg" class="btn-sign-up">
+                    <xsl:value-of select="//captions/sign_up/@caption"/>
+                </a>
+            </form>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

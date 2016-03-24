@@ -37,7 +37,7 @@ body {
 }
 
 .navbar .navbar-header {
-    max-width: 70%;
+    max-width: 80%;
 }
 
 .brand-title {
@@ -228,6 +228,37 @@ img.ws-app-logo {
 }
 
 
+/* .sign-up */
+
+.sign-up {
+    margin: 5% auto 0;
+    max-width: 98%;
+    width: 360px;
+}
+
+.sign-up h1 {
+    color: #666;
+    font-size: 22px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.sign-up input,
+.sign-up textarea {
+    font-size: 1.2em;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.sign-up button[type=submit] {
+    font-size: 14px;
+    line-height: 1;
+    margin: 0px;
+    padding: 16px;
+    width: 100%;
+}
+
+
 /* .sign-in */
 
 .sign-in {
@@ -241,7 +272,7 @@ img.ws-app-logo {
 
 .sign-in h1 {
     color: #666;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: normal;
     text-align: center;
 }
@@ -302,7 +333,24 @@ img.ws-app-logo {
     background-color: rgba(255, 255, 255, .3);
 }
 
+.btn-sign-in,
+a.btn-sign-up {
+    display: block;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+}
+
 @media (min-width: 970px) {
+    a.btn-sign-up {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 10px;
+        text-align: right;
+        top: 50px;
+    }
     .sign-in {
         margin: 4px 80px 0 0;
         position: fixed;

@@ -29,6 +29,12 @@
         <entry lang="ENG">Sign in</entry>
         <entry lang="CHN">Sign in</entry>
     </sentence>
+    <sentence mode="on" keyword="sign_up">
+        <entry lang="RUS">Регистрация</entry>
+        <entry lang="KAZ">Тіркелу</entry>
+        <entry lang="ENG">Sign up</entry>
+        <entry lang="CHN">Sign up</entry>
+    </sentence>
 
     <sentence mode="on" keyword="Мониторинг объектов коммунальной собственности">
         <entry lang="RUS"></entry>

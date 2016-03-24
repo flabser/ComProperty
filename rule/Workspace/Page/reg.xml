@@ -15,4 +15,9 @@
     <caption name="password"/>
     <caption name="login"/>
     <caption name="sign_in"/>
+    <caption name="sign_up"/>
+    <caption name="fio"/>
+    <caption name="org"/>
+    <caption name="bin"/>
+    <caption name="comment"/>
 </rule>

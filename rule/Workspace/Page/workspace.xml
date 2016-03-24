@@ -15,4 +15,5 @@
     <caption name="password"/>
     <caption name="login"/>
     <caption name="sign_in"/>
+    <caption name="sign_up"/>
 </rule>
