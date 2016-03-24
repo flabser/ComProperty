@@ -27,25 +27,21 @@
         <entry lang="RUS">Войти в систему</entry>
         <entry lang="KAZ">Жүйеге кіру</entry>
         <entry lang="ENG">Sign in</entry>
-        <entry lang="CHN">Sign in</entry>
     </sentence>
     <sentence mode="on" keyword="sign_up">
         <entry lang="RUS">Регистрация</entry>
         <entry lang="KAZ">Тіркелу</entry>
         <entry lang="ENG">Sign up</entry>
-        <entry lang="CHN">Sign up</entry>
     </sentence>
     <sentence mode="on" keyword="fio">
         <entry lang="RUS">ФИО</entry>
         <entry lang="KAZ">ФИО</entry>
         <entry lang="ENG">Full name</entry>
-        <entry lang="CHN">Full name</entry>
     </sentence>
     <sentence mode="on" keyword="org">
         <entry lang="RUS">Организация</entry>
         <entry lang="KAZ">Организация</entry>
         <entry lang="ENG">Organization</entry>
-        <entry lang="CHN">Organization</entry>
     </sentence>
     <sentence mode="on" keyword="comment">
         <entry lang="RUS">Комментарий</entry>
@@ -54,52 +50,25 @@
         <entry lang="CHN">Comment</entry>
     </sentence>
 
-    <sentence mode="on" keyword="Мониторинг объектов коммунальной собственности">
-        <entry lang="RUS"></entry>
-        <entry lang="KAZ">Коммуналды меншік объектілерін бақылау</entry>
-        <entry lang="ENG"></entry>
-        <entry lang="CHN"></entry>
-    </sentence>
     <sentence mode="on" keyword="reference">
         <entry lang="RUS">Справочник</entry>
         <entry lang="KAZ">Анықтамалар</entry>
         <entry lang="ENG">References</entry>
-        <entry lang="CHN">参考文献</entry>
     </sentence>
     <sentence mode="on" keyword="staff">
         <entry lang="RUS">Структура организации</entry>
         <entry lang="KAZ">Құрылым</entry>
         <entry lang="ENG">Structure</entry>
-        <entry lang="CHN">結構</entry>
-    </sentence>
-    <sentence mode="on" keyword="Подсистема реестродержателя">
-        <entry lang="RUS"></entry>
-        <entry lang="KAZ">Тізім иесінің қосалқы жүйесі</entry>
-        <entry lang="ENG"></entry>
-        <entry lang="CHN"></entry>
-    </sentence>
-    <sentence mode="on" keyword="Имущественный наем объектов коммунальной собственности">
-        <entry lang="RUS"></entry>
-        <entry lang="KAZ">Коммуналды меншікті мүліктік жалдау</entry>
-        <entry lang="ENG"></entry>
-        <entry lang="CHN"></entry>
-    </sentence>
+    </sentence>   
     <sentence mode="on" keyword="municipal_property">
         <entry lang="RUS">Мониторинг объектов коммунальной собственности</entry>
         <entry lang="KAZ">Коммуналды меншік объектілерін бақылау</entry>
         <entry lang="ENG"></entry>
-        <entry lang="CHN"></entry>
     </sentence>
-    <sentence mode="on" keyword="Имущественный наем объектов коммунальной собственности">
-        <entry lang="RUS"></entry>
-        <entry lang="KAZ">Коммуналды меншікті мүліктік жалдау</entry>
-        <entry lang="ENG"></entry>
-        <entry lang="CHN"></entry>
+    <sentence mode="on" keyword="bin_value_should_be_consist_from_12_symbols">
+        <entry lang="ENG">BIN value should be consist from 12 symbols maximum</entry>
+        <entry lang="RUS">БИН может состоять из 12 символов максимум</entry>
+        <entry lang="KAZ"></entry>
     </sentence>
-    <sentence mode="on" keyword="Подсистема реестродержателя">
-        <entry lang="RUS"></entry>
-        <entry lang="KAZ">Тізім иесінің қосалқы жүйесі</entry>
-        <entry lang="ENG"></entry>
-        <entry lang="CHN"></entry>
-    </sentence>
+  
 </vocabulary>

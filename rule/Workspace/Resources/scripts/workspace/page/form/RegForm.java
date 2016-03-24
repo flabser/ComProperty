@@ -70,9 +70,9 @@ public class RegForm extends _DoPage {
 		}
 
 		if (formData.getValueSilently("orgbin").isEmpty()) {
-			ve.addError("bin", "required", getLocalizedWord("field_is_empty", lang));
+			ve.addError("orgbin", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getValueSilently("orgbin").length() != 12) {
-			ve.addError("bin", "eq_12", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
+			ve.addError("orgbin", "eq_12", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
 		}
 
 		return ve;
