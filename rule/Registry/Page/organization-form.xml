@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="on">
     <description>Organization</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>default_Staff</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <events>
             <doscript source="JAVA_CLASS">staff.page.form.OrganizationForm</doscript>
