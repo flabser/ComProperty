@@ -44,8 +44,7 @@
                             <xsl:value-of select="//captions/position/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="number" name="position" value="{fields/position}" class="span6"
-                                   required="required"/>
+                            <input type="number" name="position" value="{fields/position}" class="span6"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,8 +52,7 @@
                             <xsl:value-of select="//captions/default_url/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="defaulturl" value="{fields/defaulturl}" class="span7"
-                                   required="required"/>
+                            <input type="text" name="defaulturl" value="{fields/defaulturl}" class="span7"/>
                         </div>
                     </div>
                 </fieldset>
