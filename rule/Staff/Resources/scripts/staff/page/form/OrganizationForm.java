@@ -32,7 +32,7 @@ public class OrganizationForm extends StaffForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Organization entity;
 		if (!id.isEmpty()) {
 			OrganizationDAO dao = new OrganizationDAO(session);
