@@ -36,8 +36,7 @@ $(document).ready(function() {
     });
 
     $('form[name=ft-search]').on('reset', function() {
-        $('[type=search]', this.form).attr('value', '');
-        $('[type=search]', this.form).focus();
+        $('[type=search]', this.form).attr('value', '').focus();
     });
 
     $('[data-action=reset_search]').click(function(event) {
