@@ -50,6 +50,14 @@
                             <i class="fa"></i>
                             <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link"></a>
                             <span class="update-file-panel-actions">
+                                <label class="btn btn-sm">
+                                    <input type="checkbox" name="stopiferror" value="1">
+                                        <xsl:attribute name="checked" select="checked"/>
+                                        <span>
+                                            Прервать проверку при ошибке
+                                        </span>
+                                    </input>
+                                </label>
                                 <button type="button" class="btn btn-sm js-check">
                                     <span>Проверить</span>
                                 </button>
@@ -100,6 +108,14 @@
                             <xsl:value-of select="viewcontent/name"/>
                         </a>
                         <span class="update-file-panel-actions">
+                            <label class="btn btn-sm">
+                                <input type="checkbox" name="stopiferror" value="1">
+                                    <xsl:attribute name="checked" select="checked"/>
+                                    <span>
+                                        Прервать проверку при ошибке
+                                    </span>
+                                </input>
+                            </label>
                             <button type="button" class="btn btn-sm js-check">
                                 <span>Проверить</span>
                             </button>
