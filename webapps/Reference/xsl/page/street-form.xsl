@@ -27,8 +27,7 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{fields/name}" class="span7" required="required"
-                                   autofocus="true"/>
+                            <input type="text" name="name" value="{fields/name}" class="span7" autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,7 +35,7 @@
                             <xsl:value-of select="//captions/locality/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="locality" class="span7" required="required" autocomplete="off">
+                            <select name="locality" class="span7" autocomplete="off">
                                 <xsl:apply-templates select="fields/locality" mode="selected_options"/>
                             </select>
                         </div>

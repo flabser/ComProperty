@@ -27,8 +27,7 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{fields/name}" class="span6" required="required"
-                                   autofocus="true"/>
+                            <input type="text" name="name" value="{fields/name}" class="span6" autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,8 +35,8 @@
                             <xsl:value-of select="//captions/code/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="appcode" value="{fields/appcode}" class="span6 disabled"
-                                  readonly="readonly" style="cursor:not-allowed" onfocus="javascript:blur()"/>
+                            <input type="text" name="appcode" value="{fields/appcode}" class="span6"
+                                   disabled="disabled"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,7 +44,8 @@
                             <xsl:value-of select="//captions/position/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="number" name="position" value="{fields/position}" class="span6" required="required" />
+                            <input type="number" name="position" value="{fields/position}" class="span6"
+                                   required="required"/>
                         </div>
                     </div>
                     <div class="form-group">

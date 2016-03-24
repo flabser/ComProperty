@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:import href="pagination.xsl"/>
+
+    <xsl:template name="page-info">
+        <xsl:param name="title" select="//captions/title/@caption"/>
+
+        <h1 class="header-title">
+            <xsl:value-of select="$title"/>
+
+            <xsl:if test="//view_content//query/@count">
+                <sup class="entry-count">
+                    <small>
+                        <xsl:value-of select="concat('(', //view_content//query/@count, ')')"/>
+                    </small>
+                </sup>
+            </xsl:if>
+        </h1>
+        <xsl:if test="//actionbar or //view_content//query/@maxpage > 1">
+            <div class="content-actions">
+                <div class="pull-left">
+                    <div class="inline">
+                        <xsl:apply-templates select="//actionbar"/>
+                    </div>
+                    <label class="btn btn-filter-toggle">
+                        <input type="checkbox" data-toggle="panel" data-target="#property-filter"/>
+                        <span>
+                            <xsl:value-of select="//captions/filter/@caption"/>
+                        </span>
+                    </label>
+                </div>
+                <div class="pull-right">
+                    <xsl:apply-templates select="//view_content" mode="page-navigator"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="filter property-filter" id="property-filter">
+                    <fieldset class="fieldset">
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/balance_holder/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <select name="balanceholder" multiple="true"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label"></div>
+                            <div class="controls">
+                                <button type="button" class="btn">
+                                    <xsl:value-of select="//captions/apply/@caption"/>apply
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
 
     <xsl:template match="entry" mode="view-table-body">
         <div class="entry-wrap">

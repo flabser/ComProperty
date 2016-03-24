@@ -1534,7 +1534,14 @@ $(document).ready(function() {
 
     // toggle=panel
     $(document).on('click', '[data-toggle=panel]', function() {
-        var $panel = $(this).parents('.panel');
+        var targetSelector = $(this).data('target');
+        var $panel;
+        if (targetSelector) {
+            $panel = $(targetSelector);
+        } else {
+            $panel = $(this).parents('.panel');
+        }
+
         $panel.toggleClass('open');
     });
 

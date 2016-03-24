@@ -47,6 +47,10 @@
     outline: 0;
 }
 
+.btn:active:focus {
+    outline: 0;
+}
+
 .tablet .btn,
 .phone .btn {
     line-height: 18px;

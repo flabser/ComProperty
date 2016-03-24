@@ -27,8 +27,7 @@
                             <xsl:value-of select="//captions/login_name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="login" value="{fields/login}" class="span4" required="required"
-                                   autofocus="true"/>
+                            <input type="text" name="login" value="{fields/login}" class="span4" autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">

@@ -27,8 +27,7 @@
                             <xsl:value-of select="//captions/name/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="name" value="{fields/name}" class="span4" required="required"
-                                   autofocus="true"/>
+                            <input type="text" name="name" value="{fields/name}" class="span4" autofocus="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,7 +35,7 @@
                             <xsl:value-of select="//captions/code/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="code" value="{fields/code}" class="span2" required="required"/>
+                            <input type="text" name="code" value="{fields/code}" class="span2"/>
                         </div>
                     </div>
                 </fieldset>
