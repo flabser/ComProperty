@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import kz.flabs.util.Util;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.exception.SecureException;
@@ -44,6 +45,7 @@ public class OrderForm extends _DoPage {
 		if (!id.isEmpty()) {
 			OrderDAO dao = new OrderDAO(session);
 			entity = dao.findById(UUID.fromString(id));
+			addContent("formsesid", Util.generateRandomAsText());
 		} else {
 			entity = getDefaultEntity(user);
 			String propertyId = formData.getValueSilently("propertyid");
