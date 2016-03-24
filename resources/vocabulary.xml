@@ -119,6 +119,12 @@
         <entry lang="ENG">Status</entry>
         <entry lang="CHI"></entry>
     </sentence>
+    <sentence mode="on" keyword="comment">
+        <entry lang="RUS">Комментарий</entry>
+        <entry lang="KAZ">Комментарий</entry>
+        <entry lang="ENG">Comment</entry>
+        <entry lang="CHN">Comment</entry>
+    </sentence>
     <sentence mode="on" keyword="Свойства пользователя">
         <entry lang="KAZ">Қолданушының қасиеттерi</entry>
         <entry lang="ENG">Properties of the user</entry>
@@ -681,7 +687,7 @@
         <entry lang="CHO"></entry>
     </sentence>
     <sentence mode="on" keyword="roles">
-     	<entry lang="RUS">Роли</entry>
+        <entry lang="RUS">Роли</entry>
         <entry lang="KAZ">Рөлдер</entry>
         <entry lang="ENG">Roles</entry>
         <entry lang="CHI">電郵通知</entry>

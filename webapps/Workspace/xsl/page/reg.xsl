@@ -11,28 +11,28 @@
             <h1>
                 <xsl:value-of select="//captions/sign_up/@caption"/>
             </h1>
-            <label class="fio">
-                <input type="text" name="fio" value="" required="required">
+            <label>
+                <input class="input" type="text" name="fio" value="" required="required">
                     <xsl:attribute name="placeholder" select="//captions/fio/@caption"/>
                 </input>
             </label>
-            <label class="org">
-                <input type="text" name="org" value="" required="required">
+            <label>
+                <input class="input" type="text" name="org" value="" required="required">
                     <xsl:attribute name="placeholder" select="//captions/org/@caption"/>
                 </input>
             </label>
-            <label class="orgbin">
-                <input type="text" name="orgbin" value="" required="required">
+            <label>
+                <input class="input" type="text" name="orgbin" value="" required="required">
                     <xsl:attribute name="placeholder" select="//captions/bin/@caption"/>
                 </input>
             </label>
-            <label class="login">
-                <input type="text" name="login" value="" required="required">
+            <label>
+                <input class="input" type="text" name="login" value="" required="required">
                     <xsl:attribute name="placeholder" select="//captions/user/@caption"/>
                 </input>
             </label>
-            <label class="comment">
-                <textarea name="comment">
+            <label>
+                <textarea class="input" name="comment">
                     <xsl:attribute name="placeholder" select="//captions/comment/@caption"/>
                 </textarea>
             </label>
