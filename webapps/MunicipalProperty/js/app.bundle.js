@@ -2694,9 +2694,20 @@ $(document).ready(function() {
 
     $('[data-upload]').each(function() {
         var uploadName = $(this).data('upload');
+        if (this.form.fsid && this.form.fsid.value) {
+            fsId = this.form.fsid.value;
+        }
+
+        if (!location.search.match('&fsid=')) {
+            history.replaceState(null, null, location.href + '&fsid=' + fsId);
+        }
 
         if ($('[type=file][name=' + uploadName + ']').length === 0) {
-            $('<input type=hidden name=fsid value="' + fsId + '"/>').appendTo(this.form);
+            if (this.form.fsid) {
+                this.form.fsid.value = fsId;
+            } else {
+                $('<input type=hidden name=fsid value="' + fsId + '"/>').appendTo(this.form);
+            }
 
             var $fileForm = $('<form class=hidden><input type=file name="' + uploadName + '" /><input type=hidden name=fsid value="' + fsId + '"/></form>').appendTo('body');
             var $fileInput = $fileForm.find('input[type=file]');
@@ -2761,9 +2772,13 @@ $(document).ready(function() {
 this["nb"] = this["nb"] || {};
 this["nb"]["templates"] = this["nb"]["templates"] || {};
 this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
-    return "    <div class=attachments-file>\r\n        "
-    + container.escapeExpression(container.lambda(blockParams[0][0], depth0))
-    + "\r\n    </div>\r\n";
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "    <div class=attachments-file>\r\n        "
+    + alias2(alias1(blockParams[0][0], depth0))
+    + "\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
+    + alias2(alias1(blockParams[0][0], depth0))
+    + "\"/>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
     return "    <div>files empty</div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
@@ -3086,7 +3101,7 @@ nbApp.selectOptions = {
     },
     street: {
         url: 'p?id=get-streets',
-        data: ['district']
+        data: ['locality']
     },
     tags: {
         url: 'p?id=get-tags',

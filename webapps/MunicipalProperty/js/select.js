@@ -24,7 +24,7 @@ nbApp.selectOptions = {
     },
     street: {
         url: 'p?id=get-streets',
-        data: ['district']
+        data: ['locality']
     },
     tags: {
         url: 'p?id=get-tags',

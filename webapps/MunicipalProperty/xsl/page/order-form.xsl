@@ -121,6 +121,7 @@
                     </div>
                 </div>
             </section>
+            <input type="hidden" name="fsid" value="{//formsesid}"/>
         </form>
     </xsl:template>
 

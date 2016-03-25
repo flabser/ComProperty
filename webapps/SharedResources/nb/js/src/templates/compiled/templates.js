@@ -1,9 +1,13 @@
 this["nb"] = this["nb"] || {};
 this["nb"]["templates"] = this["nb"]["templates"] || {};
 this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
-    return "    <div class=attachments-file>\r\n        "
-    + container.escapeExpression(container.lambda(blockParams[0][0], depth0))
-    + "\r\n    </div>\r\n";
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "    <div class=attachments-file>\r\n        "
+    + alias2(alias1(blockParams[0][0], depth0))
+    + "\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
+    + alias2(alias1(blockParams[0][0], depth0))
+    + "\"/>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
     return "    <div>files empty</div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {

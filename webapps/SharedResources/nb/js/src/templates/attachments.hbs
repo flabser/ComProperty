@@ -1,6 +1,7 @@
 {{#each files as |file|}}
     <div class=attachments-file>
         {{file}}
+        <input type="hidden" name="fileid" value="{{file}}"/>
     </div>
 {{else}}
     <div>files empty</div>

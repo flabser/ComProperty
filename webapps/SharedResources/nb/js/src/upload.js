@@ -45,9 +45,20 @@ $(document).ready(function() {
 
     $('[data-upload]').each(function() {
         var uploadName = $(this).data('upload');
+        if (this.form.fsid && this.form.fsid.value) {
+            fsId = this.form.fsid.value;
+        }
+
+        if (!location.search.match('&fsid=')) {
+            history.replaceState(null, null, location.href + '&fsid=' + fsId);
+        }
 
         if ($('[type=file][name=' + uploadName + ']').length === 0) {
-            $('<input type=hidden name=fsid value="' + fsId + '"/>').appendTo(this.form);
+            if (this.form.fsid) {
+                this.form.fsid.value = fsId;
+            } else {
+                $('<input type=hidden name=fsid value="' + fsId + '"/>').appendTo(this.form);
+            }
 
             var $fileForm = $('<form class=hidden><input type=file name="' + uploadName + '" /><input type=hidden name=fsid value="' + fsId + '"/></form>').appendTo('body');
             var $fileInput = $fileForm.find('input[type=file]');

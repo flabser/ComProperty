@@ -43,6 +43,6 @@ public class FTSearch extends _DoPage {
         } else {
             addContent(new _POJOListWrapper(getLocalizedWord("ft_search_resturn_null", lang) + ": '" + keyWord + "'", keyWord));
         }
-        addContent("request_param", "keyword=" + keyWord);
+        addValue("request_param", "keyword=" + keyWord);
     }
 }
