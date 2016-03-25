@@ -41,10 +41,10 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/position/@caption"/>
+                            Position
                         </div>
                         <div class="controls">
-                            <input type="number" name="position" value="{fields/position}" class="span6"/>
+                            <input type="number" name="position" value="{fields/position}" class="span1"/>
                         </div>
                     </div>
                     <div class="form-group">
