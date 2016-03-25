@@ -59,7 +59,7 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
         String[] orgIds = formData.getListOfValuesSilently("balanceholder");
         for (String oid : orgIds) {
             if (!oid.isEmpty()) {
-                addContent("request_param", "balanceholder=" + oid);
+                addValue("request_param", "balanceholder=" + oid);
             }
         }
     }

@@ -42,7 +42,7 @@ public class MainNavigator extends _DoPage {
         list.add(common_outline);
         list.add(specific_outline);
 
-        addContent("outline_current", formData.getValueSilently("id").replace("-form", "-view"));
+        addValue("outline_current", formData.getValueSilently("id").replace("-form", "-view"));
         addContent(list);
     }
 }
