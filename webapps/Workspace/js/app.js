@@ -19,7 +19,7 @@ nbApp.submitRegForm = function(form) {
         beforeSend: function() {
             nb.uiBlock();
             // clear errors
-            $('.required, .has-error', form).removeClass('required has-error');
+            $('.required, .has-error, [required]', form).removeClass('required has-error');
             $('.error-massage', form).remove();
         },
         success: function(response) {
@@ -27,6 +27,8 @@ nbApp.submitRegForm = function(form) {
                 text: response.captions.reg_request_accepted,
                 type: 'success notify-large'
             }).remove('click');
+
+            form.reset();
 
             if (response.redirectURL) {
                 if (response.redirectURL === '_back') {
