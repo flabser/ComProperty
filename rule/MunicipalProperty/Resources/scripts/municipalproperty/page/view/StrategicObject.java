@@ -13,6 +13,7 @@ public class StrategicObject extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
+        super.doGET(session, formData);
         LanguageCode lang = session.getLang();
         int kuf = formData.getNumberValueSilently("kuf", -1);
         KufType kufType = KufType.getType(kuf);

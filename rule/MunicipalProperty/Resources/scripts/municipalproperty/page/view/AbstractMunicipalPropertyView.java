@@ -55,6 +55,16 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
     }
 
     @Override
+    public void doGET(_Session session, _WebFormData formData) {
+        String[] orgIds = formData.getListOfValuesSilently("balanceholder");
+        for (String oid : orgIds) {
+            if (!oid.isEmpty()) {
+                addContent("request_param", "balanceholder=" + oid);
+            }
+        }
+    }
+
+    @Override
     public void doDELETE(_Session session, _WebFormData formData) {
         // println(formData);
 
