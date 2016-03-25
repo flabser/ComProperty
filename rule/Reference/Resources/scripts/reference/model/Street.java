@@ -1,46 +1,53 @@
 package reference.model;
 
-import kz.lof.scripting._Session;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import kz.lof.scripting._Session;
 
 @Entity
 @Table(name = "streets")
 @NamedQuery(name = "Street.findAll", query = "SELECT m FROM Street AS m ORDER BY m.regDate")
 public class Street extends Reference {
-    @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
-    private Locality locality;
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Locality locality;
 
-    @Column(name = "street_id")
-    private int streetId;
+	@Column(name = "street_id")
+	private int streetId;
 
-    public int getStreetId() {
-        return streetId;
-    }
+	public int getStreetId() {
+		return streetId;
+	}
 
-    public void setStreetId(int streetId) {
-        this.streetId = streetId;
-    }
+	public void setStreetId(int streetId) {
+		this.streetId = streetId;
+	}
 
-    public Locality getLocality() {
-        return locality;
-    }
+	public Locality getLocality() {
+		return locality;
+	}
 
-    public void setLocality(Locality city) {
-        this.locality = city;
-    }
+	public void setLocality(Locality city) {
+		this.locality = city;
+	}
 
-    @Override
-    public String getFullXMLChunk(_Session ses) {
-        StringBuilder chunk = new StringBuilder(1000);
-        chunk.append(super.getFullXMLChunk(ses));
-        if (locality != null && locality.getId() != null) {
-            chunk.append("<locality id=\"" + locality.getId() + "\">" + locality.getLocalizedName(ses.getLang()) + "</locality>");
-        }
-        return chunk.toString();
-    }
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append(super.getFullXMLChunk(ses));
+		if (locality != null) {
+			chunk.append("<localityid>" + locality.getId() + "</localityid>");
+		} else {
+			chunk.append("<localityid></localityid>");
+		}
+
+		return chunk.toString();
+	}
 }
