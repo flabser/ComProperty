@@ -1,7 +1,9 @@
 package accountant.page.action;
 
-import accountant.page.action.MPXLImporter.ErrorDescription;
-import accountant.page.form.UploadedFile;
+import java.io.File;
+import java.util.List;
+import java.util.Map;
+
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -13,74 +15,79 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
+
 import org.apache.commons.io.FilenameUtils;
+
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
-
-import java.io.File;
-import java.util.List;
-import java.util.Map;
-
+import accountant.page.action.MPXLImporter.ErrorDescription;
+import accountant.page.form.UploadedFile;
 
 public class ImportFileChecker extends _DoPage {
 
-    @Override
-    public void doGET(_Session session, _WebFormData formData) {
-        LanguageCode lang = session.getLang();
-        try {
-            String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
-            if (!fsid.isEmpty()) {
-                String fn = formData.getValueSilently("fileid");
-                UploadedFile uf = (UploadedFile) session.getAttribute(fsid + "_file" + fn);
-                if (uf == null) {
-                    uf = new UploadedFile();
-                    uf.setName(fn);
-                    uf.setStatus(UploadedFile.JUST_UPLOADED);
-                    session.setAttribute(fsid + "_file" + fn, uf);
-                }
+	@Override
+	public void doGET(_Session session, _WebFormData formData) {
+		boolean stopIfWrong = true;
+		String sie = formData.getValueSilently("stopiferror");
+		if (sie.equals("1")) {
+			stopIfWrong = false;
+		}
 
-                IUser<Long> user = session.getUser();
-                File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
+		LanguageCode lang = session.getLang();
+		try {
+			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
+			if (!fsid.isEmpty()) {
+				String fn = formData.getValueSilently("fileid");
+				UploadedFile uf = (UploadedFile) session.getAttribute(fsid + "_file" + fn);
+				if (uf == null) {
+					uf = new UploadedFile();
+					uf.setName(fn);
+					uf.setStatus(UploadedFile.JUST_UPLOADED);
+					session.setAttribute(fsid + "_file" + fn, uf);
+				}
 
-                String excelFile = userTmpDir + File.separator + fn;
-                String ext = FilenameUtils.getExtension(excelFile);
-                if (ext.equalsIgnoreCase("xls")) {
-                    File xlsFile = new File(excelFile);
+				IUser<Long> user = session.getUser();
+				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
-                    MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
-                    Workbook workbook = null;
-                    try {
-                        workbook = Workbook.getWorkbook(xlsFile);
-                    } catch (BiffException e) {
-                        uf.setStatus(UploadedFile.CHECKING_ERROR);
-                        uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
-                        return;
-                    }
-                    Sheet sheet = workbook.getSheet(0);
+				String excelFile = userTmpDir + File.separator + fn;
+				String ext = FilenameUtils.getExtension(excelFile);
+				if (ext.equalsIgnoreCase("xls")) {
+					File xlsFile = new File(excelFile);
 
-                    OrganizationDAO oDao = new OrganizationDAO(session);
-                    List<Organization> oList = oDao.findAll();
-                    Organization org = (Organization) Util.getRndListElement(oList);
-                    String[] readers = formData.getListOfValuesSilently("reader");
+					MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
+					Workbook workbook = null;
+					try {
+						workbook = Workbook.getWorkbook(xlsFile);
+					} catch (BiffException e) {
+						uf.setStatus(UploadedFile.CHECKING_ERROR);
+						uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
+						return;
+					}
+					Sheet sheet = workbook.getSheet(0);
 
-                    Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, false, org, readers);
+					OrganizationDAO oDao = new OrganizationDAO(session);
+					List<Organization> oList = oDao.findAll();
+					Organization org = (Organization) Util.getRndListElement(oList);
+					String[] readers = formData.getListOfValuesSilently("reader");
 
-                    if (sheetErrs.size() > 0) {
-                        uf.setStatus(UploadedFile.CHECKING_ERROR);
-                        uf.setLocalizedMsg(getLocalizedWord("file_data_is_incorrect", lang));
-                        uf.setSheetErrs(sheetErrs);
-                    } else {
-                        uf.setStatus(UploadedFile.CHECKED);
-                    }
-                } else {
-                    uf.setStatus(UploadedFile.CHECKING_ERROR);
-                    uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
-                    return;
-                }
-            }
-        } catch (Exception e) {
-            setBadRequest();
-            error(e);
-        }
-    }
+					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, stopIfWrong, org, readers);
+
+					if (sheetErrs.size() > 0) {
+						uf.setStatus(UploadedFile.CHECKING_ERROR);
+						uf.setLocalizedMsg(getLocalizedWord("file_data_is_incorrect", lang));
+						uf.setSheetErrs(sheetErrs);
+					} else {
+						uf.setStatus(UploadedFile.CHECKED);
+					}
+				} else {
+					uf.setStatus(UploadedFile.CHECKING_ERROR);
+					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
+					return;
+				}
+			}
+		} catch (Exception e) {
+			setBadRequest();
+			error(e);
+		}
+	}
 }
