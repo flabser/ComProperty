@@ -1,0 +1,49 @@
+.attachments {
+    padding: 8px;
+}
+
+.attachments-file {
+    margin-bottom: 2px;
+}
+
+.attachments-file .file-name {
+    display: inline-block;
+    min-width: 200px;
+    padding: 6px;
+}
+
+.file-name[data-file]:before {
+    background: transparent url(/SharedResources/nb/img/file-ext-sprite.png) no-repeat -22px -22px;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.file-name[data-file$='.png']:before,
+.file-name[data-file$='.jpg']:before,
+.file-name[data-file$='.jpeg']:before,
+.file-name[data-file$='.tif']:before {
+    background-position: 0 0;
+    height: 20px;
+    padding-left: 22px;
+}
+
+.file-name[data-file$='.pdf']:before {
+    background-position: 0 -44px;
+    height: 16px;
+    padding-left: 22px;
+}
+
+.file-name[data-file$='.doc']:before,
+.file-name[data-file$='.docx']:before {
+    background-position: 0 -24px;
+    height: 16px;
+    padding-left: 22px;
+}
+
+.file-name[data-file$='.xls']:before,
+.file-name[data-file$='.xlsx']:before {
+    background-position: 0 -84px;
+    height: 16px;
+    padding-left: 22px;
+}

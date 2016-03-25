@@ -3,13 +3,15 @@ this["nb"]["templates"] = this["nb"]["templates"] || {};
 this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "    <div class=attachments-file>\r\n        "
+  return "    <div class=\"attachments-file blink-anim\">\r\n        <span class=\"file-name\" data-file=\""
     + alias2(alias1(blockParams[0][0], depth0))
-    + "\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
+    + "\">"
+    + alias2(alias1(blockParams[0][0], depth0))
+    + "</span>\r\n        <span class=\"btn btn-sm btn-link btn-remove\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
     + alias2(alias1(blockParams[0][0], depth0))
     + "\"/>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "    <div>files empty</div>\r\n";
+    return "    <div class=\"blink-anim\">files empty</div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
     var stack1;
 

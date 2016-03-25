@@ -310,8 +310,13 @@
         <div class="form-group">
             <div class="attachments" data-upload-files="{$input-name}">
                 <xsl:for-each select="fields/attachments/attachment">
-                    <div>
-                        <xsl:value-of select="filename"/>
+                    <div class="attachments-file">
+                        <span class="file-name" data-file="{filename}">
+                            <xsl:value-of select="filename"/>
+                        </span>
+                        <span class="btn btn-sm btn-link btn-remove disabled">
+                            <i class="fa fa-times"></i>
+                        </span>
                     </div>
                 </xsl:for-each>
             </div>

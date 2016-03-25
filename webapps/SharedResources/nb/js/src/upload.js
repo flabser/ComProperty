@@ -17,7 +17,15 @@ nb.upload = function(fileInput) {
             return _xhr;
         },
         success: function(result, xhr) {
-            $('[data-upload-files=' + inputName + ']').append(nb.template('attachments', result));
+            var $attNode = $(nb.template('attachments', result));
+            $('[data-upload-files=' + inputName + ']').append($attNode);
+
+            // init
+            $('.btn-remove', $attNode).click(function() {
+                $attNode.remove();
+            });
+            //
+
             return result;
         },
         error: function(err) {
