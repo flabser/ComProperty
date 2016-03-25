@@ -52,6 +52,11 @@
                         <span class="vw-balance-holder">
                             <xsl:value-of select="viewcontent/balanceholder"/>
                         </span>
+                        <span class="vw-icon">
+                            <xsl:if test="viewcontent/attachments > 0">
+                                <i class="fa fa-paperclip"></i>
+                            </xsl:if>
+                        </span>
                         <span class="vw-tags">
                             <xsl:if test="viewcontent/tags">
                                 <xsl:for-each select="viewcontent/tags/tag">
@@ -82,6 +87,9 @@
         </span>
         <span class="vw-balance-holder">
             <xsl:value-of select="//captions/balance_holder/@caption"/>
+        </span>
+        <span class="vw-icon">
+            <i class="fa fa-paperclip"></i>
         </span>
         <span class="vw-tags">
             <xsl:value-of select="//captions/tags/@caption"/>
