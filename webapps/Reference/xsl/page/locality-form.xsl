@@ -35,18 +35,18 @@
                             <xsl:value-of select="//captions/type/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="localitytypeid" class="span7" autocomplete="off">
+                            <select name="localitytype" class="span7" autocomplete="off">
                                 <xsl:apply-templates select="fields/localitytype" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/district/@caption"/>
+                            <xsl:value-of select="//captions/region/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="districtid" class="span7" autocomplete="off">
-                                <xsl:apply-templates select="fields/district" mode="selected_options"/>
+                            <select name="region" class="span7" autocomplete="off">
+                                <xsl:apply-templates select="fields/region" mode="selected_options"/>
                             </select>
                         </div>
                     </div>
