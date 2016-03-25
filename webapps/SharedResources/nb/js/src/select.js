@@ -57,7 +57,7 @@ nb.getSelectOptions = function(optionId) {
         allowClear: true,
         minimumInputLength: 0,
         minimumResultsForSearch: 20,
-        placeholder: '',
+        placeholder: options.placeholder || '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
         ajax: {

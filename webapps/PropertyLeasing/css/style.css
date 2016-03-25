@@ -16,4 +16,7 @@
     height: 34px;
 }
 
-.property-filter {}
+.property-filter {
+    display: inline-block;
+    margin: 1px;
+}

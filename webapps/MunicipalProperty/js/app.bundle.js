@@ -2535,7 +2535,7 @@ nb.getSelectOptions = function(optionId) {
         allowClear: true,
         minimumInputLength: 0,
         minimumResultsForSearch: 20,
-        placeholder: '',
+        placeholder: options.placeholder || '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
         ajax: {
@@ -2918,29 +2918,29 @@ $(document).ready(function() {
     });
 
     $('select', '#property-filter').on('change', function(e) {
-        if ($('[data-toggle=filter]')[0].checked) {
-            var url = location.href.split('&')[0];
-            url += '&page=' + $('.pagination a.page-active').text() + '&' + $(this).serialize();
+        //if ($('[data-toggle=filter]')[0].checked) {
+        var url = location.href.split('&')[0];
+        url += '&page=' + $('.pagination a.page-active').text() + '&' + $(this).serialize();
 
-            location.href = url;
-        }
+        location.href = url;
+        //}
     });
 
     $('.pagination a').on('click', function(e) {
-        if ($('[data-toggle=filter]')[0].checked) {
-            e.preventDefault();
+        //if ($('[data-toggle=filter]')[0].checked) {
+        /*e.preventDefault();
 
-            var url = location.href.split('&')[0];
-            url += '&' + $(this).serialize() + '&page=' + this.href.match('&page=(.*)')[1];
+        var url = location.href.split('&')[0];
+        url += '&' + $(this).serialize() + '&page=' + this.href.match('&page=(.*)')[1];
 
-            location.href = url;
-        }
+        location.href = url;*/
+        //}
     });
 
     $('.pagination select').on('change', function(e) {
-        if ($('[data-toggle=filter]')[0].checked) {
-            e.preventDefault();
-        }
+        //if ($('[data-toggle=filter]')[0].checked) {
+        e.preventDefault();
+        //}
     });
 
     var sbh = [];
@@ -2963,13 +2963,13 @@ $(document).ready(function() {
                     for (var m in list) {
                         $('select[name=balanceholder]').append($('<option value="' + list[m].id + '" selected>' + list[m].name + '</option>'));
                     }
-                    $('select[name=balanceholder]').select2(nb.getSelectOptions('balanceholder'));
+                    var opt = nb.getSelectOptions('balanceholder');
+                    opt.placeholder = 'Балансодержатель';
+                    $('select[name=balanceholder]').select2(opt);
                 }
             }
         });
     }
-
-    console.log(sbh);
 });
 
 $(function() {

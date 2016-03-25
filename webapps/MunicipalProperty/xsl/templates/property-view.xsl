@@ -21,36 +21,19 @@
                     <div class="inline">
                         <xsl:apply-templates select="//actionbar"/>
                     </div>
-                    <label class="btn btn-filter-toggle">
+                    <!--<label class="btn btn-filter-toggle">
                         <input type="checkbox" data-toggle="filter" data-target="#property-filter"/>
                         <span>
                             <xsl:value-of select="//captions/filter/@caption"/>
                         </span>
-                    </label>
+                    </label>-->
                 </div>
                 <div class="pull-right">
                     <xsl:apply-templates select="//view_content" mode="page-navigator"/>
                 </div>
-                <div class="clearfix"></div>
-                <div class="filter property-filter" id="property-filter">
-                    <fieldset class="fieldset">
-                        <div class="form-group">
-                            <div class="control-label">
-                                <xsl:value-of select="//captions/balance_holder/@caption"/>
-                            </div>
-                            <div class="controls">
-                                <select name="balanceholder" multiple="true"></select>
-                            </div>
-                        </div>
-                        <!--<div class="form-group">
-                            <div class="control-label"></div>
-                            <div class="controls">
-                                <button type="button" class="btn">
-                                    <xsl:value-of select="//captions/apply/@caption"/>apply
-                                </button>
-                            </div>
-                        </div>-->
-                    </fieldset>
+                <!--<div class="clearfix"></div>-->
+                <div class="filter property-filter span5" id="property-filter">
+                    <select name="balanceholder" data-placeholder="Балансодержатель"></select>
                 </div>
             </div>
         </xsl:if>
