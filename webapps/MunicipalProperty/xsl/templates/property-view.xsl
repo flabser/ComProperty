@@ -33,7 +33,7 @@
                 </div>
                 <!--<div class="clearfix"></div>-->
                 <div class="filter property-filter span5" id="property-filter">
-                    <select name="balanceholder" data-placeholder="Балансодержатель"></select>
+                    <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
                 </div>
             </div>
         </xsl:if>

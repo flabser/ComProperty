@@ -57,7 +57,7 @@ $(document).ready(function() {
                         $('select[name=balanceholder]').append($('<option value="' + list[m].id + '" selected>' + list[m].name + '</option>'));
                     }
                     var opt = nb.getSelectOptions('balanceholder');
-                    opt.placeholder = 'Балансодержатель';
+                    // opt.placeholder = 'Балансодержатель';
                     $('select[name=balanceholder]').select2(opt);
                 }
             }
