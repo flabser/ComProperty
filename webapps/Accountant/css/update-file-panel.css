@@ -1,0 +1,166 @@
+/* progress */
+
+progress[value='0'] {
+    display: none;
+}
+
+
+/* .update-file-panel */
+
+.update-file-panel {
+    border: none;
+    border-radius: 0;
+    margin: 0 auto 9px;
+    width: 99%;
+}
+
+.update-file-panel.open {
+    box-shadow: 0 0 3px #777;
+}
+
+.update-file-panel.open > .panel__body {
+    max-height: 500px;
+}
+
+.update-file-panel .panel__header,
+.update-file-panel .panel-title {
+    font-size: 13px;
+    height: auto;
+}
+
+.update-file-panel .panel-title:hover {
+    background: #eee;
+}
+
+.update-file-panel .panel-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    padding: 4px 4px 4px 32px;
+    position: relative;
+    right: 0;
+    z-index: 2;
+}
+
+.update-file-panel:not(.open) .panel-toggle > i.fa.no-errs:before {
+    content: "\f1db";
+}
+
+.update-file-panel .panel-toggle i.fa {
+    font-size: 18px;
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    width: 32px;
+}
+
+.update-file-link {
+    background: #f7f7f7;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 0 3px;
+    padding: 4px 6px;
+    vertical-align: top;
+}
+
+@media ( min-width: 960px) {
+    .update-file-link {
+        min-width: 360px;
+    }
+}
+
+.update-file-panel-actions {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.update-file-panel-msg {
+    border-radius: 2px;
+    display: inline-block;
+    margin: 0 3px;
+    padding: 4px;
+    vertical-align: top;
+}
+
+.update-file-panel-msg:empty {
+    display: none;
+}
+
+.upload-checking-result {
+    margin: 1em;
+}
+
+.update-balance-holder {
+    display: block;
+    list-style: none;
+    padding: 4px 16px;
+}
+
+.update-readers {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.update-readers li {
+    padding: 4px 16px;
+}
+
+
+/* 
+JUST_UPLOADED = 1;
+CHECKED = 2;
+LOADED = 3;
+CHECKING_ERROR = 4;
+LOADING_ERROR = 5;
+*/
+
+.update-file-panel .panel__header {
+    border-bottom: 1px solid #ddd;
+}
+
+.update-status-1 .panel__header {
+    border-bottom: 1px solid #ddd;
+}
+
+.update-status-1 .update-file-link {}
+
+.update-status-2 .panel__header {
+    border-bottom: 1px solid #4CAF50;
+}
+
+.update-status-2 .update-file-link,
+.update-status-2 .update-file-panel-msg {
+    background: #C5E1A5;
+}
+
+.update-status-3 .panel__header {
+    border-bottom: 1px solid #4CAF50
+}
+
+.update-status-3 .update-file-link,
+.update-status-3 .update-file-panel-msg {
+    background: #BCD0FF;
+}
+
+.update-status-4 .panel__header {
+    border-bottom: 1px solid #F44336;
+}
+
+.update-status-4 .update-file-link,
+.update-status-4 .update-file-panel-msg {
+    background: #FFADA7;
+}
+
+.update-status-5 .panel__header {
+    border-bottom: 1px solid #FF9800;
+}
+
+.update-status-5 .update-file-link,
+.update-status-5 .update-file-panel-msg {
+    background: #FFC107;
+}
