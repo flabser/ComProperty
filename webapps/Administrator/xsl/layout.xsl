@@ -112,13 +112,13 @@
                             <xsl:attribute name="placeholder" select="//captions/search/@caption"/>
                             <xsl:attribute name="value" select="//query/@keyword"/>
                         </input>
+                        <button type="reset" class="resetwithselect">
+                            <i class="fa fa-times"></i>
+                        </button>
                         <select name="id" class="native search-target">
                             <option value="{//request/@id}" selected="selected">Здесь</option>
                             <option value="search">Везде</option>
                         </select>
-                        <button type="reset">
-                            <i class="fa fa-times"></i>
-                        </button>
                         <input type="submit" value="search"/>
                     </form>
                 </nav>

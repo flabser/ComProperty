@@ -283,6 +283,10 @@ button.btn-side-nav-toggle {
     width: 22px;
 }
 
+.navbar-search .resetwithselect{
+    margin-right: 80px;
+}
+
 .navbar-search [type=search]:valid + button[type=reset] {
     display: block;
 }
