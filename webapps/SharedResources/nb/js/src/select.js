@@ -122,17 +122,38 @@ nb.getSelectOptions = function(optionId) {
 $(document).ready(function() {
     $('select[name]:not(.native)').each(function() {
         if (nbApp.selectOptions && nbApp.selectOptions[this.name]) {
-            $(this).select2(nb.getSelectOptions(this.name));
+            $(this).select2(nb.getSelectOptions(this.name)).on('select2:unselecting', function() {
+                $(this).data('unselecting', true);
+            }).on('select2:opening', function(e) {
+                if ($(this).data('unselecting')) {
+                    $(this).removeData('unselecting');
+                    e.preventDefault();
+                }
+            });
         } else {
             if (nb.isMobile()) {
                 if (this.multiple) {
                     $(this).select2({
                         minimumResultsForSearch: 20
+                    }).on('select2:unselecting', function() {
+                        $(this).data('unselecting', true);
+                    }).on('select2:opening', function(e) {
+                        if ($(this).data('unselecting')) {
+                            $(this).removeData('unselecting');
+                            e.preventDefault();
+                        }
                     });
                 }
             } else {
                 $(this).select2({
                     minimumResultsForSearch: 20
+                }).on('select2:unselecting', function() {
+                    $(this).data('unselecting', true);
+                }).on('select2:opening', function(e) {
+                    if ($(this).data('unselecting')) {
+                        $(this).removeData('unselecting');
+                        e.preventDefault();
+                    }
                 });
             }
         }

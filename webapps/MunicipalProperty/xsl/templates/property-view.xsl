@@ -32,7 +32,7 @@
                     <xsl:apply-templates select="//view_content" mode="page-navigator"/>
                 </div>
                 <!--<div class="clearfix"></div>-->
-                <div class="filter property-filter span5" id="property-filter">
+                <div class="filter property-filter span8" id="property-filter">
                     <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
                 </div>
             </div>
