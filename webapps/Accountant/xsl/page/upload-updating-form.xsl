@@ -48,7 +48,7 @@
                     <div class="panel__header blink-anim">
                         <div class="panel-title panel-toggle" data-toggle="panel">
                             <i class="fa"></i>
-                            <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link"></a>
+                            <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link" style="vertical-align:top"></a>
                             <span class="update-file-panel-actions">
                                 <button type="button" class="btn btn js-check">
                                     <span>Проверить</span>
@@ -106,7 +106,7 @@
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
                             </xsl:if>
                         </i>
-                        <a href="Provider?id=update-file&amp;fileid=" class="update-file-link js-link">
+                        <a href="Provider?id=update-file&amp;fileid=" class="update-file-link js-link" style="vertical-align:top">
                             <xsl:value-of select="viewcontent/name"/>
                         </a>
                         <span class="update-file-panel-actions">
