@@ -135,17 +135,19 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
                 }
             }
 
-            String fn = formData.getValueSilently("fileid");
-            if (!fn.isEmpty()) {
+            String[] fileNames = formData.getListOfValuesSilently("fileid");
+            if (fileNames.length > 0) {
                 File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
-                File file = new File(userTmpDir + File.separator + fn);
-                InputStream is = new FileInputStream(file);
-                Attachment att = new Attachment();
-                att.setRealFileName(fn);
-                att.setFile(IOUtils.toByteArray(is));
-                att.setAuthor(session.getUser());
-                att.setForm("attachment");
-                entity.getAttachments().add(att);
+                for (String fn : fileNames) {
+                    File file = new File(userTmpDir + File.separator + fn);
+                    InputStream is = new FileInputStream(file);
+                    Attachment att = new Attachment();
+                    att.setRealFileName(fn);
+                    att.setFile(IOUtils.toByteArray(is));
+                    att.setAuthor(session.getUser());
+                    att.setForm("attachment");
+                    entity.getAttachments().add(att);
+                }
             }
 
             entity.getAddress().setRegion(new RegionDAO(session).findById(formData.getValueSilently("region")));
