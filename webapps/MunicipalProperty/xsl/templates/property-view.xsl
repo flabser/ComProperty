@@ -21,19 +21,12 @@
                     <div class="inline">
                         <xsl:apply-templates select="//actionbar"/>
                     </div>
-                    <!--<label class="btn btn-filter-toggle">
-                        <input type="checkbox" data-toggle="filter" data-target="#property-filter"/>
-                        <span>
-                            <xsl:value-of select="//captions/filter/@caption"/>
-                        </span>
-                    </label>-->
+                    <div class="filter property-filter span9" id="property-filter">
+                        <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
+                    </div>
                 </div>
                 <div class="pull-right">
                     <xsl:apply-templates select="//view_content" mode="page-navigator"/>
-                </div>
-                <!--<div class="clearfix"></div>-->
-                <div class="filter property-filter span8" id="property-filter">
-                    <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
                 </div>
             </div>
         </xsl:if>
