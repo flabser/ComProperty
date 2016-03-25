@@ -49,10 +49,6 @@ $(document).ready(function() {
             fsId = this.form.fsid.value;
         }
 
-        if (!location.search.match('&fsid=')) {
-            history.replaceState(null, null, location.href + '&fsid=' + fsId);
-        }
-
         if ($('[type=file][name=' + uploadName + ']').length === 0) {
             if (this.form.fsid) {
                 this.form.fsid.value = fsId;
@@ -65,6 +61,10 @@ $(document).ready(function() {
 
             $fileInput.on('change', function() {
                 nb.upload($fileInput[0]);
+
+                if (!location.search.match('&fsid=')) {
+                    history.replaceState(null, null, location.href + '&fsid=' + fsId);
+                }
             });
 
             $(this).click(function() {
