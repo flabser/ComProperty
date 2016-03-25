@@ -4,6 +4,7 @@ import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.administrator.model.Application;
 import kz.lof.administrator.model.User;
 import kz.lof.env.Environment;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
@@ -24,6 +25,12 @@ public class Workspace extends _DoPage {
         addValue("build", ent.getBuildTime());
         addValue("org", Environment.orgName);
         addValue("appname", ent.getAppName());
+
+        String lang = formData.getValueSilently("lang");
+        if (!lang.isEmpty()) {
+            session.setLang(LanguageCode.valueOf(lang));
+        }
+
         if (!session.getUser().getUserID().equalsIgnoreCase(AnonymousUser.USER_NAME)) {
             User user = (User) session.getUser();
             List<Application> aa = user.getAllowedApps();

@@ -89,7 +89,7 @@
         <div class="footer-spacer"></div>
         <footer class="footer">
             <div class="container">
-                <xsl:apply-templates select="//query[@entity='language']"/>
+                <!--<xsl:apply-templates select="//query[@entity = 'language']"/>-->
                 <div class="pull-left">
                     <span>v.</span>
                     <span>
@@ -104,7 +104,7 @@
         </footer>
     </xsl:template>
 
-    <xsl:template match="query[@entity='language']">
+    <xsl:template match="query[@entity = 'language']">
         <div class="lang pull-right">
             <a href="#" class="lang-title">
                 <xsl:value-of select="//@lang"/>
@@ -116,7 +116,7 @@
     </xsl:template>
 
     <xsl:template match="entry" mode="lang">
-        <a href="#{viewcontent/lang/@id}">
+        <a href="?id={//request/@id}&amp;lang={viewcontent/lang/@id}">
             <xsl:value-of select="viewcontent/lang"/>
         </a>
     </xsl:template>

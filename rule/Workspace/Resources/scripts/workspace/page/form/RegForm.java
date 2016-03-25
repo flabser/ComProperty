@@ -20,6 +20,12 @@ public class RegForm extends _DoPage {
         addValue("build", ent.getBuildTime());
         addValue("org", Environment.orgName);
         addValue("appname", ent.getAppName());
+
+        String lang = formData.getValueSilently("lang");
+        if (!lang.isEmpty()) {
+            session.setLang(LanguageCode.valueOf(lang));
+        }
+
         addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
     }
 

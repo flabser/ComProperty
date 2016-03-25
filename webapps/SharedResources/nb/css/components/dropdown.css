@@ -1,4 +1,6 @@
-.dropdown {}
+.dropdown {
+    position: relative;
+}
 
 .dropdown-toggle {
     cursor: pointer;
