@@ -140,6 +140,8 @@ public class OrderForm extends _DoPage {
             }
 
             if (isNew) {
+                IUser<Long> user = session.getUser();
+                entity.addReaderEditor(user);
                 entity = dao.add(entity);
             } else {
                 entity = dao.update(entity);
