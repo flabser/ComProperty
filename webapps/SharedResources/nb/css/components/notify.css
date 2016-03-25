@@ -15,6 +15,26 @@
     display: none;
 }
 
+.nb-notify .notify-large {
+    font-size: 1.2em;
+    padding: 16px;
+}
+
+.nb-notify .dismiss-click {
+    cursor: pointer;
+}
+
+.nb-notify .dismiss-click:after {
+    content: 'x';
+    color: #555;
+    font-size: 13px;
+    height: 16px;
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 16px;
+}
+
 [class^='nb-notify-entry'] {
     background: #55B4DE;
     border-top: 1px solid #0A8EC1;

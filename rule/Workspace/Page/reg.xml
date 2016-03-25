@@ -14,10 +14,12 @@
     <caption name="user"/>
     <caption name="password"/>
     <caption name="login"/>
+    <caption name="email"/>
     <caption name="sign_in"/>
     <caption name="sign_up"/>
     <caption name="fio"/>
     <caption name="org"/>
     <caption name="bin"/>
     <caption name="comment"/>
+    <caption name="reg_request_accepted"/>
 </rule>

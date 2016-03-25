@@ -37,6 +37,12 @@
             </label>
             <label>
                 <span>
+                    <xsl:value-of select="//captions/email/@caption"/>
+                </span>
+                <input class="input" type="email" name="email" value=""/>
+            </label>
+            <label>
+                <span>
                     <xsl:value-of select="//captions/comment/@caption"/>
                 </span>
                 <textarea class="input" name="comment"></textarea>
@@ -48,15 +54,6 @@
                 <xsl:value-of select="//captions/login/@caption"/>
             </a>
         </form>
-        <script><![CDATA[
-            document.addEventListener('DOMContentLoaded', function() {
-                var form = document.getElementById('sign-up');
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    nb.submitForm(this, { notify: '...' });
-                });
-            });]]>
-        </script>
     </xsl:template>
 
 </xsl:stylesheet>

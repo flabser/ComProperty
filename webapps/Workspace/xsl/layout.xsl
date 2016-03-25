@@ -46,6 +46,7 @@
             <script src="/SharedResources/vendor/jquery/jquery-2.1.4.min.js"></script>
             <script src="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
             <script src="/SharedResources/nb/js/nb.min.js"></script>
+            <script src="js/app.js"></script>
         </head>
     </xsl:template>
 

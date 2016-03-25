@@ -13,7 +13,7 @@ nb.submitForm = function(form, options) {
     var notify = nb.notify({
         message: options.notify || nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
         type: 'process'
-    }).show();;
+    }).show();
 
     var xhrArgs = {
         cache: false,

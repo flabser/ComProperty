@@ -14,6 +14,7 @@ import kz.pchelka.reminder.MailAgent;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RegForm extends _DoPage {
 
     @Override
@@ -53,8 +54,7 @@ public class RegForm extends _DoPage {
             recipients.add("biosubj@gmail.com");
 
             MailAgent ma = new MailAgent();
-            ma.sendMail("k-zone@ya.ru", recipients, "subject", fio + " " + org + "  " + orgbin + "  " + login + " " + comment);
-
+            ma.sendMail("k-zone@ya.ru", recipients, "subject", fio + " " + org + "  " + orgbin + "  " + login + " " + email + " " + comment);
         } catch (Exception e) {
             error(e);
         }

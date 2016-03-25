@@ -2000,7 +2000,7 @@ nb.submitForm = function(form, options) {
     var notify = nb.notify({
         message: options.notify || nb.getText('wait_while_document_save', 'Пожалуйста ждите... идет сохранение документа'),
         type: 'process'
-    }).show();;
+    }).show();
 
     var xhrArgs = {
         cache: false,
@@ -2324,7 +2324,7 @@ nb.notify = function(options) {
     return {
         show: function(timeout, callback) {
             $el.css('display', 'block');
-            if (timeout && timeout > 0) {
+            if (timeout) {
                 this.remove(timeout, callback);
                 return;
             }
@@ -2349,14 +2349,22 @@ nb.notify = function(options) {
                 return;
             }
 
-            if (timeout && timeout > 0) {
-                setTimeout(function() {
-                    $el.remove();
-                    $el = null;
-                    if (typeof(callback) === 'function') {
-                        callback();
-                    }
-                }, timeout);
+            if (timeout && (timeout === 'click' || timeout > 0)) {
+                if (timeout === 'click') {
+                    $el.addClass('dismiss-click');
+                    $el.on('click', function() {
+                        $el.remove();
+                        $el = null;
+                    });
+                } else {
+                    setTimeout(function() {
+                        $el.remove();
+                        $el = null;
+                        if (typeof(callback) === 'function') {
+                            callback();
+                        }
+                    }, timeout);
+                }
             } else {
                 $el.remove();
                 $el = null;
