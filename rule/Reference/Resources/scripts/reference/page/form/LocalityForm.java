@@ -18,6 +18,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 import reference.dao.DistrictDAO;
 import reference.dao.LocalityDAO;
 import reference.dao.LocalityTypeDAO;
+import reference.dao.RegionDAO;
 import reference.model.Locality;
 import reference.model.LocalityType;
 import reference.model.constants.LocalityCode;
@@ -45,6 +46,8 @@ public class LocalityForm extends ReferenceForm {
 			entity.setType(regionType);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new RegionDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper(new LocalityTypeDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
@@ -98,11 +101,11 @@ public class LocalityForm extends ReferenceForm {
 		}
 
 		if (formData.getValueSilently("districtidid").isEmpty()) {
-			ve.addError("code", "required", getLocalizedWord("field_is_empty", lang));
+			ve.addError("districtidid", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		if (formData.getValueSilently("localitytypeid").isEmpty()) {
-			ve.addError("code", "required", getLocalizedWord("field_is_empty", lang));
+			ve.addError("localitytypeid", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		return ve;

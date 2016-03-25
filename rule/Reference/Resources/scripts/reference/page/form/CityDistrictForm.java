@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.exception.SecureException;
+import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -14,6 +15,7 @@ import kz.nextbase.script._Exception;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import reference.dao.CityDistrictDAO;
+import reference.dao.LocalityDAO;
 import reference.model.CityDistrict;
 
 public class CityDistrictForm extends ReferenceForm {
@@ -30,6 +32,7 @@ public class CityDistrictForm extends ReferenceForm {
 			entity = (CityDistrict) getDefaultEntity(user, new CityDistrict());
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
@@ -58,6 +61,8 @@ public class CityDistrictForm extends ReferenceForm {
 
 			entity.setName(formData.getValue("name"));
 			entity.setLocalizedName(getLocalizedNames(session, formData));
+			LocalityDAO localityDAO = new LocalityDAO(session);
+			entity.setLocality(localityDAO.findById(formData.getValue("localityid")));
 
 			if (isNew) {
 				dao.add(entity);
@@ -70,4 +75,19 @@ public class CityDistrictForm extends ReferenceForm {
 			error(e);
 		}
 	}
+
+	@Override
+	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+		_Validation ve = new _Validation();
+		if (formData.getValueSilently("name").isEmpty()) {
+			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		if (formData.getValueSilently("localityid").isEmpty()) {
+			ve.addError("localityid", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		return ve;
+	}
+
 }

@@ -36,11 +36,15 @@
         <entry lang="KAZ">Районы</entry>
         <entry lang="CHO"></entry>
     </sentence>
+     <sentence mode="on" keyword="city_district">
+        <entry lang="ENG">City district</entry>
+        <entry lang="RUS">Район города </entry>
+        <entry lang="KAZ">Район города</entry>
+    </sentence>
     <sentence mode="on" keyword="city_districts">
-        <entry lang="ENG">Districts</entry>
-        <entry lang="RUS">Районы</entry>
-        <entry lang="KAZ">Районы</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="ENG">City districts</entry>
+        <entry lang="RUS">Районы города </entry>
+        <entry lang="KAZ">Районы города</entry>
     </sentence>
     <sentence mode="on" keyword="localities">
         <entry lang="ENG">Localities</entry>

@@ -35,7 +35,7 @@
                             <xsl:value-of select="//captions/type/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="localitytype" class="span7" autocomplete="off">
+                            <select name="localitytypeid" class="span7" autocomplete="off">
                                 <xsl:apply-templates select="fields/localitytype" mode="selected_options"/>
                             </select>
                         </div>
