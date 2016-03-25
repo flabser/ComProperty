@@ -2667,7 +2667,7 @@ nb.upload = function(fileInput) {
         },
         success: function(result, xhr) {
             var $attNode = $(nb.template('attachments', result));
-            $('[data-upload-files=' + inputName + ']').append($attNode);
+            $('[data-upload-files=' + inputName + ']').prepend($attNode);
 
             // init
             $('.btn-remove', $attNode).click(function() {
