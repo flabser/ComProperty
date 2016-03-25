@@ -21,6 +21,7 @@
 		<class>kz.lof.administrator.model.User</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
+		<class>municipalproperty.model.Attachment</class>
 		<class>municipalproperty.model.Vehicle</class>
 		<class>municipalproperty.model.RealEstate</class>
 		<class>municipalproperty.model.PersonalEstate</class>
@@ -63,6 +64,7 @@
 		<class>kz.lof.administrator.model.User</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
+		<class>municipalproperty.model.Attachment</class>
 		<class>municipalproperty.model.Vehicle</class>
 		<class>municipalproperty.model.RealEstate</class>
 		<class>municipalproperty.model.PersonalEstate</class>
@@ -105,6 +107,7 @@
 		<class>kz.lof.administrator.model.User</class>
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
+		<class>municipalproperty.model.Attachment</class>
 		<class>municipalproperty.model.Vehicle</class>
 		<class>municipalproperty.model.RealEstate</class>
 		<class>municipalproperty.model.PersonalEstate</class>

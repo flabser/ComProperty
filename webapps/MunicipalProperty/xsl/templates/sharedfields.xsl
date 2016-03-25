@@ -308,7 +308,13 @@
             <progress id="progress_{$input-name}" class="upload-progress" value="0"/>
         </div>
         <div class="form-group">
-            <div class="attachments" data-upload-files="{$input-name}"></div>
+            <div class="attachments" data-upload-files="{$input-name}">
+                <xsl:for-each select="fields/attachments/attachment">
+                    <div>
+                        <xsl:value-of select="filename"/>
+                    </div>
+                </xsl:for-each>
+            </div>
         </div>
     </xsl:template>
 

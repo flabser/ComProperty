@@ -1,6 +1,7 @@
 package municipalproperty.page.form;
 
 import kz.flabs.util.Util;
+import kz.lof.env.Environment;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
@@ -11,9 +12,11 @@ import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
 import municipalproperty.dao.VehicleDAO;
+import municipalproperty.model.Attachment;
 import municipalproperty.model.Vehicle;
 import municipalproperty.model.constants.KufType;
 import municipalproperty.model.constants.PropertyStatusType;
+import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import reference.dao.PropertyCodeDAO;
 import reference.dao.ReceivingReasonDAO;
@@ -24,6 +27,10 @@ import reference.model.Tag;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -130,13 +137,26 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
                 }
             }
 
+            String fn = formData.getValueSilently("fileid");
+            if (!fn.isEmpty()) {
+                File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
+                File file = new File(userTmpDir + File.separator + fn);
+                InputStream is = new FileInputStream(file);
+                Attachment att = new Attachment();
+                att.setRealFileName(fn);
+                att.setFile(IOUtils.toByteArray(is));
+                att.setAuthor(session.getUser());
+                att.setForm("attachment");
+                entity.getAttachments().add(att);
+            }
+
             IUser user = session.getUser();
             entity.addReaderEditor(user);
 
             save(entity, dao, isNew);
 
             finishSaveFormTransact(entity);
-        } catch (_Exception | DatabaseException | SecureException e) {
+        } catch (_Exception | DatabaseException | SecureException | IOException e) {
             error(e);
             setBadRequest();
         }

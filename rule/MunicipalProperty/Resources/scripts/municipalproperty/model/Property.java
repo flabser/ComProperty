@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -102,8 +103,11 @@ public class Property extends SecureAppEntity {
     @Column(name = "decrees_acts")
     private String decreesActs = "";
 
-    @Lob
-    protected byte[] attachment;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(name = "property_attachments", joinColumns = {
+            @JoinColumn(name = "parent_id", referencedColumnName = "id")}, inverseJoinColumns = {
+            @JoinColumn(name = "attachment_id", referencedColumnName = "id")})
+    private List<Attachment> attachments;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "property_tags")
@@ -324,12 +328,12 @@ public class Property extends SecureAppEntity {
         this.decreesActs = decreesActs;
     }
 
-    public byte[] getAttachment() {
-        return attachment;
+    public List<Attachment> getAttachments() {
+        return attachments;
     }
 
-    public void setAttachment(byte[] attachment) {
-        this.attachment = attachment;
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     @Override
@@ -359,6 +363,9 @@ public class Property extends SecureAppEntity {
                 chunk.append("</tag>");
             }
             chunk.append("</tags>");
+        }
+        if (!getAttachments().isEmpty()) {
+            chunk.append("<attachments>" + getAttachments().size() + "</attachments>");
         }
         return chunk.toString();
     }
@@ -425,6 +432,9 @@ public class Property extends SecureAppEntity {
         }
         chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
         chunk.append("<notes>" + notes + "</notes>");
+        if (!getAttachments().isEmpty()) {
+            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining("")) + "</attachments>");
+        }
         return chunk.toString();
     }
 }

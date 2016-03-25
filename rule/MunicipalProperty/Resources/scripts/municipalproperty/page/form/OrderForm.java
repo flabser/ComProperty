@@ -20,6 +20,7 @@ import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
 import municipalproperty.dao.OrderDAO;
 import municipalproperty.dao.PropertyDAO;
+import municipalproperty.model.Attachment;
 import municipalproperty.model.Order;
 import municipalproperty.model.Property;
 import org.apache.commons.io.IOUtils;
@@ -128,13 +129,18 @@ public class OrderForm extends _DoPage {
                 File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
                 File file = new File(userTmpDir + File.separator + fn);
                 InputStream is = new FileInputStream(file);
-                entity.setAttachment(IOUtils.toByteArray(is));
+                Attachment att = new Attachment();
+                att.setRealFileName(fn);
+                att.setFile(IOUtils.toByteArray(is));
+                att.setAuthor(session.getUser());
+                att.setForm("attachment");
+                entity.getAttachments().add(att);
             }
 
             if (isNew) {
-                dao.add(entity);
+                entity = dao.add(entity);
             } else {
-                dao.update(entity);
+                entity = dao.update(entity);
             }
 
             finishSaveFormTransact(entity);

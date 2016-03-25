@@ -6,6 +6,9 @@ import kz.lof.scripting._Session;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -23,8 +26,11 @@ public class Order extends SecureAppEntity {
     @JoinColumn(nullable = false)
     private Property property;
 
-    @Lob
-    protected byte[] attachment;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(name = "order_attachments", joinColumns = {
+            @JoinColumn(name = "parent_id", referencedColumnName = "id")}, inverseJoinColumns = {
+            @JoinColumn(name = "attachment_id", referencedColumnName = "id")})
+    private List<Attachment> attachments = new ArrayList<>();
 
     private String description;
 
@@ -48,12 +54,12 @@ public class Order extends SecureAppEntity {
         this.property = property;
     }
 
-    public byte[] getAttachment() {
-        return attachment;
+    public List<Attachment> getAttachments() {
+        return attachments;
     }
 
-    public void setAttachment(byte[] attachment) {
-        this.attachment = attachment;
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     public String getDescription() {
@@ -91,11 +97,34 @@ public class Order extends SecureAppEntity {
             chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
             chunk.append("</property>");
         }
+        if (!getAttachments().isEmpty()) {
+            chunk.append("<attachments>" + getAttachments().size() + "</attachments>");
+        }
         return chunk.toString();
     }
 
     @Override
     public String getFullXMLChunk(_Session ses) {
-        return getShortXMLChunk(ses);
+        StringBuilder chunk = new StringBuilder(1000);
+        chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+        if (regNumber != null) {
+            chunk.append("<regnumber>" + regNumber + "</regnumber>");
+        }
+        if (description != null) {
+            chunk.append("<description>" + description + "</description>");
+        }
+        chunk.append("<orderstatus>" + getOrderStatus() + "</orderstatus>");
+        if (getProperty() != null && getProperty().getId() != null) {
+            chunk.append("<property docid=\"" + property.getId() + "\">");
+            chunk.append("<url>" + property.getURL() + "</url>");
+            chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
+            chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
+            chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
+            chunk.append("</property>");
+        }
+        if (!getAttachments().isEmpty()) {
+            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining("")) + "</attachments>");
+        }
+        return chunk.toString();
     }
 }
