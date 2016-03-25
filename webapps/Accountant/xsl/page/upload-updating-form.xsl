@@ -50,29 +50,31 @@
                             <i class="fa"></i>
                             <a href="Provider?id=get-attach&amp;fileid=" class="update-file-link js-link"></a>
                             <span class="update-file-panel-actions">
-                                <label class="btn btn-sm">
-                                    <input type="checkbox" name="stopiferror" value="1">
-                                        <xsl:attribute name="checked" select="checked"/>
-                                        <span>
-                                            Прервать проверку при ошибке
-                                        </span>
-                                    </input>
-                                </label>
-                                <button type="button" class="btn btn-sm js-check">
+                                <button type="button" class="btn btn js-check">
                                     <span>Проверить</span>
                                 </button>
-                                <button type="button" class="btn btn-sm js-select-balance-holder" disabled="disabled">
+                                <button type="button" class="btn btn js-select-balance-holder" disabled="disabled">
                                     <span>Балансодержатель</span>
                                 </button>
-                                <button type="button" class="btn btn-sm js-select-readers" disabled="disabled">
+                                <button type="button" class="btn btn js-select-readers" disabled="disabled">
                                     <span>Читатели</span>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-primary js-load" disabled="disabled">
+                                <button type="button" class="btn btn btn-primary js-load" disabled="disabled">
                                     Загрузить
                                 </button>
-                                <button type="button" class="btn btn-sm js-delete">
+                                <button type="button" class="btn btn js-delete">
                                     <span>Удалить</span>
                                 </button>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" name="stopiferror" value="1">
+                                            <xsl:attribute name="checked" select="checked"/>
+                                            <span>
+                                                Прервать проверку при ошибке
+                                            </span>
+                                        </input>
+                                    </label>
+                                </div>
                             </span>
                         </div>
                     </div>
@@ -108,38 +110,40 @@
                             <xsl:value-of select="viewcontent/name"/>
                         </a>
                         <span class="update-file-panel-actions">
-                            <label class="btn btn-sm">
-                                <input type="checkbox" name="stopiferror" value="1">
-                                    <xsl:attribute name="checked" select="checked"/>
-                                    <span>
-                                        Прервать проверку при ошибке
-                                    </span>
-                                </input>
-                            </label>
-                            <button type="button" class="btn btn-sm js-check">
+                            <button type="button" class="btn btn js-check">
                                 <span>Проверить</span>
                             </button>
-                            <button type="button" class="btn btn-sm js-select-balance-holder">
+                            <button type="button" class="btn btn js-select-balance-holder">
                                 <xsl:if test="viewcontent/sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Балансодержатель</span>
                             </button>
-                            <button type="button" class="btn btn-sm js-select-readers">
+                            <button type="button" class="btn btn js-select-readers">
                                 <xsl:if test="viewcontent/sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Читатели</span>
                             </button>
-                            <button type="button" class="btn btn-sm btn-primary js-load">
+                            <button type="button" class="btn btn btn-primary js-load">
                                 <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
                             </button>
-                            <button type="button" class="btn btn-sm js-delete">
+                            <button type="button" class="btn btn js-delete">
                                 <span>Удалить</span>
                             </button>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="stopiferror" value="1">
+                                        <xsl:attribute name="checked" select="checked"/>
+                                        <span>
+                                            Прервать проверку при ошибке
+                                        </span>
+                                    </input>
+                                </label>
+                            </div>
                         </span>
                         <xsl:apply-templates select="viewcontent/msg"/>
                     </div>
