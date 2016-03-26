@@ -38,6 +38,7 @@ for (var i = 0; i < modules.length; i++) {
     // _scripts
     _scripts[module] = ['js/nb.build.js',
         '../vendor/select2/js/select2.full.min.js',
+        '../vendor/select2/js/i18n/ru.js',
         webAppsPath + module + '/js/**/*.js',
         '!' + webAppsPath + module + '/js/app.bundle.js'
     ];

@@ -60,6 +60,7 @@ nb.getSelectOptions = function(optionId) {
         placeholder: options.placeholder || '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
+        language: nb.LANG,
         ajax: {
             url: options.url,
             dataType: 'json',

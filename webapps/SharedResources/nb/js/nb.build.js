@@ -1323,12 +1323,22 @@ return datepicker.regional.ru;
 var nb = {
     APP_NAME: location.hostname,
     MODULE: location.pathname.split('/')[1],
-    LANG_ID: (function() {
+    LANG: (function() {
+        var lang;
         var ck = document.cookie.match('(lang)=(.*?)($|;|,(?! ))');
         if (ck) {
-            return ck[2];
+            lang = ck[2];
         }
-        return 'RUS';
+
+        if (lang === 'KAZ') {
+            lang = 'kk';
+        } else if (lang === 'ENG') {
+            lang = 'en';
+        } else {
+            lang = 'ru';
+        }
+
+        return lang;
     })(),
     debug: false,
     api: {
@@ -2538,6 +2548,7 @@ nb.getSelectOptions = function(optionId) {
         placeholder: options.placeholder || '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
+        language: nb.LANG,
         ajax: {
             url: options.url,
             dataType: 'json',
