@@ -19,9 +19,10 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
+		<!-- Common module entities -->
+		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
-		<class>municipalproperty.model.Property</class>
-		<class>municipalproperty.model.Attachment</class>
+		<class>municipalproperty.model.Property</class>	
 		<class>municipalproperty.model.Vehicle</class>
 		<class>municipalproperty.model.RealEstate</class>
 		<class>municipalproperty.model.PersonalEstate</class>
@@ -62,6 +63,8 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
+		<!-- Common module entities -->
+		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Attachment</class>
@@ -105,6 +108,8 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
+		<!-- Common module entities -->
+		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Attachment</class>
