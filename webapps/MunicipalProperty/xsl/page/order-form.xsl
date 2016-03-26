@@ -12,7 +12,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity]">
-        <form class="form form-edit-{@editable}" name="{@entity}" action="">
+        <form class="form" name="{@entity}" action="" data-edit="{@editable}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/order/@caption"/>

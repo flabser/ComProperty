@@ -29,6 +29,9 @@ $(function() {
 
     $('[name=docid]:checked').attr('checked', false);
 
+    // disable fieldset
+    $('form[data-edit=false] .fieldset').attr('disabled', true);
+
     // toggle theme
     $('[data-toggle-theme]').click(function() {
         var themeName = $(this).data('toggle-theme');

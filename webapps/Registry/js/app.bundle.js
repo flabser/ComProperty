@@ -2904,6 +2904,9 @@ $(function() {
 
     $('[name=docid]:checked').attr('checked', false);
 
+    // disable fieldset
+    $('form[data-edit=false] .fieldset').attr('disabled', true);
+
     // toogle user registration fields
     $('#reguser').on('change', function() {
         var fieldset = $(this).parents('fieldset');

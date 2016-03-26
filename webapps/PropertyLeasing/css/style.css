@@ -20,3 +20,9 @@
     display: inline-block;
     margin: 1px 6px;
 }
+
+form[data-edit=false] .on-edit,
+form[data-edit=false] [data-action=save_and_close],
+form[data-edit=false] [data-upload] {
+    display: none;
+}

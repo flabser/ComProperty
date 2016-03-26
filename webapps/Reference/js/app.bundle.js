@@ -2903,6 +2903,9 @@ $(function() {
     });
 
     $('[name=docid]:checked').attr('checked', false);
+
+    // disable fieldset
+    $('form[data-edit=false] .fieldset').attr('disabled', true);
 });
 
 nbApp.selectOptions = {

@@ -298,13 +298,13 @@
     <xsl:template name="upload-files">
         <xsl:param name="input-name"/>
 
-        <div class="form-group">
-            <label class="btn" data-upload="{$input-name}">
+        <div class="form-group on-edit">
+            <button type="button" class="btn btn-upload" data-upload="{$input-name}">
                 <i class="fa fa-paperclip"></i>
                 <span>
                     <xsl:value-of select="//captions/attach_file/@caption"/>
                 </span>
-            </label>
+            </button>
             <progress id="progress_{$input-name}" class="upload-progress" value="0"/>
         </div>
         <div class="form-group">
@@ -314,7 +314,7 @@
                         <a class="file-name" data-file="{filename}">
                             <xsl:value-of select="filename"/>
                         </a>
-                        <span class="btn btn-sm btn-link btn-remove disabled">
+                        <span class="btn btn-sm btn-link btn-remove on-edit">
                             <i class="fa fa-times"></i>
                         </span>
                     </div>

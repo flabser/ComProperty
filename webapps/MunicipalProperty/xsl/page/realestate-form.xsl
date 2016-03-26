@@ -12,7 +12,8 @@
     </xsl:template>
 
     <xsl:template match="document[@entity]">
-        <form class="form form-edit-{@editable}" name="{@entity}" action="" enctype="application/x-www-form-urlencoded">
+        <form class="form" name="{@entity}" action="" enctype="application/x-www-form-urlencoded"
+              data-edit="{@editable}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:variable name="kufName" select="lower-case(fields/kuf/@name)"/>

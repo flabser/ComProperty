@@ -36,7 +36,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity]">
-        <form name="{@entity}" action="">
+        <form name="{@entity}" action="" data-edit="{@editable}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/employee/@caption"/>

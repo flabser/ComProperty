@@ -11,8 +11,8 @@
     </xsl:template>
 
     <xsl:template match="document[@entity]">
-        <form class="form form-edit-{@editable}" name="{@entity}" action="" method="post"
-              enctype="application/x-www-form-urlencoded">
+        <form class="form" name="{@entity}" action="" method="post"
+              enctype="application/x-www-form-urlencoded" data-edit="{@editable}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="concat(//captions/report/@caption, ' / ', fields/name)"/>

@@ -3079,6 +3079,9 @@ $(function() {
     if (theme) {
         $('body').addClass(theme);
     }
+
+    // disable fieldset
+    $('form[data-edit=false] .fieldset').attr('disabled', true);
 });
 
 $(document).ready(function() {

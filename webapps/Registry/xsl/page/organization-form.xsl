@@ -11,7 +11,7 @@
     </xsl:template>
 
     <xsl:template match="document[@entity]">
-        <form name="{@entity}" action="">
+        <form name="{@entity}" action="" data-edit="{@editable}">
             <header class="content-header">
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/organization/@caption"/>
@@ -70,12 +70,12 @@
             <div>
                 <label class="input disabled">
                     <input type="checkbox" disabled="disabled">
-                       <xsl:attribute name="checked" select="checked"/>
+                        <xsl:attribute name="checked" select="checked"/>
                         <span>
                             <xsl:value-of select="viewcontent/name"/>
                         </span>
                     </input>
-                    <input type="hidden" name="labels" value="{@id}" />
+                    <input type="hidden" name="labels" value="{@id}"/>
                 </label>
             </div>
         </xsl:if>
