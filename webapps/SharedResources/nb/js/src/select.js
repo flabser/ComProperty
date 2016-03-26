@@ -1,5 +1,5 @@
-nb.getSelectOptions = function(optionId) {
-    var options = nbApp.selectOptions[optionId];
+nb.getSelectOptions = function(selectOptions) {
+    var options = selectOptions;
     var cacheDataSource = [];
     var allDataLoaded = false;
     var meta = {};
@@ -122,15 +122,30 @@ nb.getSelectOptions = function(optionId) {
 
 $(document).ready(function() {
     $('select[name]:not(.native)').each(function() {
-        if (nbApp.selectOptions && nbApp.selectOptions[this.name]) {
-            $(this).select2(nb.getSelectOptions(this.name)).on('select2:unselecting', function() {
+        var appSelectOptions = nbApp.selectOptions && nbApp.selectOptions[this.name];
+        if (appSelectOptions) {
+            var $select2El = $(this).select2(nb.getSelectOptions(appSelectOptions));
+
+            $select2El.on('select2:unselecting', function(e) {
                 $(this).data('unselecting', true);
+
+                if (typeof(appSelectOptions.onSelect) === 'function') {
+                    appSelectOptions.onSelect(e);
+                }
             }).on('select2:opening', function(e) {
                 if ($(this).data('unselecting')) {
                     $(this).removeData('unselecting');
                     e.preventDefault();
                 }
             });
+
+            if (typeof(appSelectOptions.onSelect) === 'function') {
+                $select2El.on('select2:select', function(e) {
+                    if (appSelectOptions.onSelect) {
+                        appSelectOptions.onSelect(e);
+                    }
+                });
+            }
         } else {
             if (nb.isMobile()) {
                 if (this.multiple) {

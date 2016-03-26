@@ -1,6 +1,12 @@
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'p?id=get-organizations'
+        url: 'p?id=get-organizations',
+        fields: ['bin'],
+        onSelect: function(e) {
+            if (e.target.form && e.target.form.balanceholderbin) {
+                e.target.form.balanceholderbin.value = (e.params.data) ? e.params.data.bin : '';
+            }
+        }
     },
     orgcategory: {
         url: 'p?id=get-org-categories'
