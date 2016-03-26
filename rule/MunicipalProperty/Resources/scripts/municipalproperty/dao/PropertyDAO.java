@@ -40,16 +40,30 @@ public class PropertyDAO extends DAO<Property, UUID> {
             Root<Property> c = cq.from(entityClass);
             cq.select(c);
             countCq.select(cb.count(c));
-            Predicate condition = c.get("kuf").in(filter.getKufTypes());
+
+            Predicate condition = null;
+            if (!filter.getKufTypes().isEmpty()) {
+                condition = c.get("kuf").in(filter.getKufTypes());
+            }
             if (!filter.getBalanceHolders().isEmpty()) {
-                condition = cb.and(c.get("balanceHolder").in(filter.getBalanceHolders()), condition);
+                if (condition == null) {
+                    condition = cb.and(c.get("balanceHolder").in(filter.getBalanceHolders()));
+                } else {
+                    condition = cb.and(c.get("balanceHolder").in(filter.getBalanceHolders()), condition);
+                }
             }
             if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
-                condition = cb.and(c.get("readers").in(user.getId()), condition);
+                if (condition == null) {
+                    condition = cb.and(c.get("readers").in(user.getId()));
+                } else {
+                    condition = cb.and(c.get("readers").in(user.getId()), condition);
+                }
             }
             cq.orderBy(cb.asc(c.get("regDate")));
-            cq.where(condition);
-            countCq.where(condition);
+            if (condition != null) {
+                cq.where(condition);
+                countCq.where(condition);
+            }
             TypedQuery<Property> typedQuery = em.createQuery(cq);
             Query query = em.createQuery(countCq);
             long count = (long) query.getSingleResult();

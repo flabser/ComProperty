@@ -2946,7 +2946,7 @@ $(document).ready(function() {
                     for (var m in list) {
                         $('select[name=balanceholder]').append($('<option value="' + list[m].id + '" selected>' + list[m].name + '</option>'));
                     }
-                    var opt = nb.getSelectOptions('balanceholder');
+                    var opt = nb.getSelectOptions(nbApp.selectOptions['balanceholder']);
                     // opt.placeholder = 'Балансодержатель';
                     $('select[name=balanceholder]').select2(opt);
                 }
