@@ -7,7 +7,7 @@ this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(conta
     + alias2(alias1(blockParams[0][0], depth0))
     + "\">"
     + alias2(alias1(blockParams[0][0], depth0))
-    + "</span>\r\n        <span class=\"btn btn-sm btn-link btn-remove\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
+    + "</span>\r\n        <span class=\"btn btn-sm btn-link btn-remove-file\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
     + alias2(alias1(blockParams[0][0], depth0))
     + "\"/>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {

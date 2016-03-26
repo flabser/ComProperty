@@ -2696,7 +2696,7 @@ nb.upload = function(fileInput) {
             $('[data-upload-files=' + inputName + ']').prepend($attNode);
 
             // init
-            $('.btn-remove', $attNode).click(function() {
+            $('.btn-remove-file', $attNode).click(function() {
                 $attNode.remove();
             });
             //
@@ -2727,6 +2727,7 @@ $(document).ready(function() {
     var fsId = new Date().getTime();
 
     $('[data-upload]').each(function() {
+        var uploadBtn = this;
         var uploadName = $(this).data('upload');
         if (this.form.fsid && this.form.fsid.value) {
             fsId = this.form.fsid.value;
@@ -2743,7 +2744,10 @@ $(document).ready(function() {
             var $fileInput = $fileForm.find('input[type=file]');
 
             $fileInput.on('change', function() {
-                nb.upload($fileInput[0]);
+                $(uploadBtn).attr('disabled', true);
+                nb.upload($fileInput[0]).always(function() {
+                    $(uploadBtn).attr('disabled', false);
+                });
 
                 if (!location.search.match('&fsid=')) {
                     history.replaceState(null, null, location.href + '&fsid=' + fsId);
@@ -2812,7 +2816,7 @@ this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(conta
     + alias2(alias1(blockParams[0][0], depth0))
     + "\">"
     + alias2(alias1(blockParams[0][0], depth0))
-    + "</span>\r\n        <span class=\"btn btn-sm btn-link btn-remove\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
+    + "</span>\r\n        <span class=\"btn btn-sm btn-link btn-remove-file\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
     + alias2(alias1(blockParams[0][0], depth0))
     + "\"/>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {

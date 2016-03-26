@@ -91,7 +91,9 @@
                                     <xsl:value-of select="//captions/reg_date/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="date" name="regdate" value="{fields/regdate}" class="span2"/>
+                                    <div class="input-placeholder">
+                                        <xsl:value-of select="fields/regdate"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

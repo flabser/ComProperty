@@ -298,7 +298,7 @@
     <xsl:template name="upload-files">
         <xsl:param name="input-name"/>
 
-        <div class="form-group on-edit">
+        <div class="form-group">
             <button type="button" class="btn btn-upload" data-upload="{$input-name}">
                 <i class="fa fa-paperclip"></i>
                 <span>
@@ -306,15 +306,13 @@
                 </span>
             </button>
             <progress id="progress_{$input-name}" class="upload-progress" value="0"/>
-        </div>
-        <div class="form-group">
             <div class="attachments" data-upload-files="{$input-name}">
                 <xsl:for-each select="fields/attachments/attachment">
                     <div class="attachments-file">
                         <a class="file-name" data-file="{filename}">
                             <xsl:value-of select="filename"/>
                         </a>
-                        <span class="btn btn-sm btn-link btn-remove on-edit">
+                        <span class="btn btn-sm btn-link btn-remove-file on-edit">
                             <i class="fa fa-times"></i>
                         </span>
                     </div>
