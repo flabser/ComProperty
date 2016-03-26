@@ -433,7 +433,7 @@ public class Property extends SecureAppEntity {
         chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
         chunk.append("<notes>" + notes + "</notes>");
         if (getAttachments() != null && !getAttachments().isEmpty()) {
-            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining("")) + "</attachments>");
+            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining()) + "</attachments>");
         }
         return chunk.toString();
     }

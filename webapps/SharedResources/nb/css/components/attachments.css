@@ -1,4 +1,5 @@
 .attachments {
+    margin-top: 10px;
     padding: 8px;
 }
 
@@ -8,8 +9,16 @@
 
 .attachments-file .file-name {
     display: inline-block;
-    min-width: 200px;
     padding: 6px;
+}
+
+.attachments-file .btn-remove-file {
+    margin-left: 6px;
+    opacity: .5;
+}
+
+.attachments-file:hover .btn-remove-file {
+    opacity: 1;
 }
 
 .file-name[data-file]:before {
@@ -17,12 +26,14 @@
     content: '';
     display: inline-block;
     vertical-align: middle;
+    width: 24px;
 }
 
 .file-name[data-file$='.png']:before,
 .file-name[data-file$='.jpg']:before,
 .file-name[data-file$='.jpeg']:before,
-.file-name[data-file$='.tif']:before {
+.file-name[data-file$='.tif']:before,
+.file-name[data-file$='.bmp']:before {
     background-position: 0 0;
     height: 20px;
     padding-left: 22px;

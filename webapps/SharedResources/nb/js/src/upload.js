@@ -21,7 +21,7 @@ nb.upload = function(fileInput) {
             $('[data-upload-files=' + inputName + ']').prepend($attNode);
 
             // init
-            $('.btn-remove', $attNode).click(function() {
+            $('.btn-remove-file', $attNode).click(function() {
                 $attNode.remove();
             });
             //
@@ -52,6 +52,7 @@ $(document).ready(function() {
     var fsId = new Date().getTime();
 
     $('[data-upload]').each(function() {
+        var uploadBtn = this;
         var uploadName = $(this).data('upload');
         if (this.form.fsid && this.form.fsid.value) {
             fsId = this.form.fsid.value;
@@ -68,7 +69,10 @@ $(document).ready(function() {
             var $fileInput = $fileForm.find('input[type=file]');
 
             $fileInput.on('change', function() {
-                nb.upload($fileInput[0]);
+                $(uploadBtn).attr('disabled', true);
+                nb.upload($fileInput[0]).always(function() {
+                    $(uploadBtn).attr('disabled', false);
+                });
 
                 if (!location.search.match('&fsid=')) {
                     history.replaceState(null, null, location.href + '&fsid=' + fsId);
