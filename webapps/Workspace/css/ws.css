@@ -252,7 +252,6 @@ img.ws-app-logo {
 .sign-up label span {
     color: #555;
     display: block;
-    width: 100%;
 }
 
 .sign-up input,
@@ -272,15 +271,16 @@ img.ws-app-logo {
 @media (min-width: 970px) {
     .sign-up label span {
         position: absolute;
-        left: -365px;
+        left: -205px;
         text-align: right;
         top: 6px;
+        width: 200px;
     }
     .sign-up .error-massage {
         position: absolute;
-        right: -365px;
+        right: -225px;
         top: 6px;
-        width: 100%;
+        width: 220px;
     }
 }
 
