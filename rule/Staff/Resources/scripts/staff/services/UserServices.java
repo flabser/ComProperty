@@ -68,6 +68,7 @@ public class UserServices {
 				entity.setPwd(oldUser.getPassword());
 				entity.setPwdHash(oldUser.getPasswordHash());
 				entity.setAllowedApps(appList);
+
 				entities.add(entity);
 			}
 

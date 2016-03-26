@@ -5,19 +5,20 @@ import java.util.UUID;
 
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.user.IUser;
-import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
+import reference.dao.DepartmentTypeDAO;
+import reference.model.DepartmentType;
 import staff.dao.DepartmentDAO;
 import staff.dao.OrganizationDAO;
 import staff.model.Department;
-import staff.model.constants.DepartmentType;
 
 /**
  * @author Kayra created 07-01-2016
@@ -38,9 +39,12 @@ public class DepartmentForm extends StaffForm {
 			entity.setRegDate(new Date());
 			entity.setAuthor(user);
 			entity.setName("");
+			DepartmentType dt = new DepartmentType();
+			dt.setName("");
+			entity.setType(dt);
 		}
 		addContent(entity);
-		addContent(new _EnumWrapper<>(DepartmentType.class.getEnumConstants()));
+		addContent(new _POJOListWrapper<>(new DepartmentTypeDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);
 	}
@@ -67,9 +71,11 @@ public class DepartmentForm extends StaffForm {
 			}
 
 			entity.setName(formData.getValue("name"));
-			entity.setType(DepartmentType.valueOf(formData.getValueSilently("type", "UNKNOWN")));
+			DepartmentTypeDAO dtDao = new DepartmentTypeDAO(session);
+			DepartmentType dt = dtDao.findById(formData.getValueSilently("departmenttypeid"));
+			entity.setType(dt);
 			OrganizationDAO orgDAO = new OrganizationDAO(session);
-			entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organization"))));
+			entity.setOrganization(orgDAO.findById(formData.getValue("organizationid")));
 
 			if (isNew) {
 				dao.add(entity);
@@ -90,8 +96,13 @@ public class DepartmentForm extends StaffForm {
 		if (formData.getValueSilently("name").isEmpty()) {
 			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		if (formData.getValueSilently("organization").isEmpty()) {
-			ve.addError("organization", "required", getLocalizedWord("field_is_empty", lang));
+
+		if (formData.getValueSilently("organizationid").isEmpty()) {
+			ve.addError("organizationid", "required", getLocalizedWord("field_is_empty", lang));
+		}
+
+		if (formData.getValueSilently("departmenttypeid").isEmpty()) {
+			ve.addError("departmenttypeid", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		return ve;

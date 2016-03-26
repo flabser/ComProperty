@@ -14,7 +14,7 @@ import kz.flabs.util.Util;
 import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.administrator.model.Language;
 import kz.lof.scripting._Session;
-import staff.model.constants.DepartmentType;
+import reference.model.DepartmentType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "departments")
 @NamedQuery(name = "Department.findAll", query = "SELECT m FROM Department AS m ORDER BY m.regDate")
 public class Department extends Staff {
+
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
 	private DepartmentType type;
 
 	@NotNull

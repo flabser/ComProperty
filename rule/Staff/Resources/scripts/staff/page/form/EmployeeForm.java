@@ -55,10 +55,6 @@ public class EmployeeForm extends StaffForm {
 			entity.setRoles(new ArrayList<Role>());
 		}
 		addContent(entity);
-		/*
-		 * addContent(new _POJOListWrapper(new
-		 * ApplicationDAO(session).findAll(), session));
-		 */
 		addContent(getSimpleActionBar(session, session.getLang()));
 		addContent(new _POJOListWrapper<>(new RoleDAO(session).findAll(), session));
 		startSaveFormTransact(entity);
