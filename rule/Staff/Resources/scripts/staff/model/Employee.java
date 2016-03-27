@@ -1,6 +1,7 @@
 package staff.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,17 +36,17 @@ public class Employee extends Staff implements IEmployee {
 	private User user;
 
 	@Column(name = "birth_date")
-	private String birthDate;
+	private Date birthDate;
 
 	private String iin = "";
 
 	@NotNull
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(nullable = false)
 	private Organization organization;
 
 	@NotNull
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(nullable = false)
 	private Department department;
 
@@ -84,11 +85,11 @@ public class Employee extends Staff implements IEmployee {
 		this.position = position;
 	}
 
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -144,18 +145,18 @@ public class Employee extends Staff implements IEmployee {
 			chunk.append("<email>" + user.getEmail() + "</email>");
 			chunk.append("<login>" + user.getLogin() + "</login>");
 		}
-		if (birthDate != null) {
-			chunk.append("<birthdate>" + Util.simpleDateTimeFormat.format(birthDate) + "</birthdate>");
-		}
-		if (organization != null && organization.getId() != null) {
+
+		chunk.append("<birthdate>" + Util.convertDateToStringSilently(birthDate) + "</birthdate>");
+
+		if (organization != null) {
 			chunk.append("<organization id=\"" + organization.getId() + "\">" + organization.getLocalizedName(ses.getLang()) + "</organization>");
 		}
-		if (department != null && department.getId() != null) {
+		if (department != null) {
 			chunk.append("<department id=\"" + department.getId() + "\">" + department.getLocalizedName(ses.getLang()) + "</department>");
 		}
-		if (position != null && position.getId() != null) {
-			chunk.append("<position id=\"" + position.getId() + "\">" + position.getLocalizedName(ses.getLang()) + "</position>");
-		}
+
+		chunk.append("<position id=\"" + position.getId() + "\">" + position.getLocalizedName(ses.getLang()) + "</position>");
+
 		chunk.append("<roles>");
 		if (roles != null) {
 			for (Role l : roles) {

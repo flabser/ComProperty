@@ -34,6 +34,7 @@ public class RoleForm extends StaffForm {
 			entity.setRegDate(new Date());
 			entity.setAuthor(user);
 			entity.setName("");
+			entity.setDescription("");
 		}
 		addContent(entity);
 		addContent(getSimpleActionBar(session, session.getLang()));

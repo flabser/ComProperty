@@ -40,7 +40,11 @@
         <entry lang="RUS">Признак организации</entry>
         <entry lang="KAZ">Признак организации</entry>
     </sentence>
-
+ 	<sentence mode="on" keyword="role">
+        <entry lang="ENG">Role</entry>
+        <entry lang="RUS">Роль</entry>
+        <entry lang="KAZ">Роль</entry>
+    </sentence>
     <sentence mode="on" keyword="labeled">
         <entry lang="ENG">Assign label</entry>
         <entry lang="RUS">Организации которым установлен признак</entry>

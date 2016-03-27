@@ -84,21 +84,28 @@ public class EmployeeForm extends StaffForm {
 			entity.setName(formData.getValue("name"));
 			entity.setIin(formData.getValue("iin"));
 			OrganizationDAO orgDAO = new OrganizationDAO(session);
-			entity.setOrganization(orgDAO.findById(UUID.fromString(formData.getValue("organization"))));
-			String di = formData.getValueSilently("department");
-			if (!di.isEmpty()) {
+
+			String depId = formData.getValueSilently("department");
+			if (!depId.isEmpty()) {
 				DepartmentDAO depDAO = new DepartmentDAO(session);
-				entity.setDepartment(depDAO.findById(UUID.fromString(di)));
+				entity.setDepartment(depDAO.findById(depId));
+			} else {
+				String orgId = formData.getValueSilently("organization");
+				if (!orgId.isEmpty()) {
+					Organization org = orgDAO.findById(orgId);
+					entity.setOrganization(org);
+				}
 			}
+
 			PositionDAO posDAO = new PositionDAO(session);
-			entity.setPosition(posDAO.findById(UUID.fromString(formData.getValue("position"))));
+			entity.setPosition(posDAO.findById(formData.getValue("position")));
 			String[] roles = formData.getListOfValuesSilently("role");
 			if (roles != null) {
 				RoleDAO roleDAO = new RoleDAO(session);
 				List<Role> roleList = new ArrayList<>();
 				for (String roleId : roles) {
 					if (!roleId.isEmpty()) {
-						Role role = roleDAO.findById(UUID.fromString(roleId));
+						Role role = roleDAO.findById(roleId);
 						roleList.add(role);
 					}
 				}
@@ -156,12 +163,16 @@ public class EmployeeForm extends StaffForm {
 		if (formData.getValueSilently("name").isEmpty()) {
 			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
 		}
+
 		if (formData.getValueSilently("iin").isEmpty()) {
 			ve.addError("iin", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		if (formData.getValueSilently("organization").isEmpty()) {
+
+		if (formData.getValueSilently("organization").isEmpty() && formData.getValueSilently("department").isEmpty()) {
 			ve.addError("organization", "required", getLocalizedWord("field_is_empty", lang));
+			ve.addError("department", "required", getLocalizedWord("field_is_empty", lang));
 		}
+
 		if (formData.getValueSilently("position").isEmpty()) {
 			ve.addError("position", "required", getLocalizedWord("field_is_empty", lang));
 		}
