@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import kz.lof.scripting._Session;
@@ -15,7 +16,7 @@ import kz.lof.scripting._Session;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "localities")
+@Table(name = "localities", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "type_id", "region_id" }))
 @NamedQuery(name = "Locality.findAll", query = "SELECT m FROM Locality AS m ORDER BY m.regDate")
 public class Locality extends Reference {
 
@@ -29,12 +30,12 @@ public class Locality extends Reference {
 	private LocalityType type;
 
 	@NotNull
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(nullable = false)
 	private District district;
 
 	@NotNull
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(nullable = false)
 	private Region region;
 

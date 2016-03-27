@@ -3,6 +3,7 @@ package reference.model;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * 
@@ -11,7 +12,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "receiving_reason")
+@Table(name = "receiving_reason", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
 @NamedQuery(name = "ReceivingReason.findAll", query = "SELECT m FROM ReceivingReason AS m ORDER BY m.regDate")
 public class ReceivingReason extends Reference {
 

@@ -6,12 +6,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import kz.lof.scripting._Session;
 
 @Entity
-@Table(name = "streets")
+@Table(name = "streets", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "locality_id" }))
 @NamedQuery(name = "Street.findAll", query = "SELECT m FROM Street AS m ORDER BY m.regDate")
 public class Street extends Reference {
 	@NotNull
@@ -42,12 +43,8 @@ public class Street extends Reference {
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append(super.getFullXMLChunk(ses));
-		if (locality != null) {
-			chunk.append("<localityid>" + locality.getId() + "</localityid>");
-		} else {
-			chunk.append("<localityid></localityid>");
-		}
-
+		chunk.append("<streetid>" + streetId + "</streetid>");
+		chunk.append("<locality id=\"" + locality.getId() + "\">" + locality.getLocalizedName(ses.getLang()) + "</locality>");
 		return chunk.toString();
 	}
 }

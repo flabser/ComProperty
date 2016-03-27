@@ -21,6 +21,7 @@ import reference.dao.LocalityTypeDAO;
 import reference.dao.RegionDAO;
 import reference.model.Locality;
 import reference.model.LocalityType;
+import reference.model.Region;
 import reference.model.constants.LocalityCode;
 
 /**
@@ -42,12 +43,13 @@ public class LocalityForm extends ReferenceForm {
 			entity.setAuthor(user);
 			entity.setRegDate(new Date());
 			entity.setName("");
+			Region region = new Region();
+			region.setName("");
+			entity.setRegion(region);
 			LocalityType regionType = new LocalityTypeDAO(session).findByCode(LocalityCode.CITY);
 			entity.setType(regionType);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new RegionDAO(session).findAll(), session));
-		addContent(new _POJOListWrapper(new LocalityTypeDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
@@ -65,7 +67,7 @@ public class LocalityForm extends ReferenceForm {
 
 			String id = formData.getValueSilently("docid");
 			LocalityDAO dao = new LocalityDAO(session);
-			DistrictDAO districtDAO = new DistrictDAO(session);
+
 			Locality entity;
 			boolean isNew = id.isEmpty();
 
@@ -77,8 +79,18 @@ public class LocalityForm extends ReferenceForm {
 
 			entity.setName(formData.getValue("name"));
 			LocalityTypeDAO localityTypeDAO = new LocalityTypeDAO(session);
-			entity.setType(localityTypeDAO.findById(formData.getValue("localitytypeid")));
-			entity.setDistrict(districtDAO.findById(UUID.fromString(formData.getValue("districtid"))));
+			entity.setType(localityTypeDAO.findById(formData.getValue("localitytype")));
+			RegionDAO regionDAO = new RegionDAO(session);
+			entity.setRegion(regionDAO.findById(formData.getValueSilently("region")));
+
+			String districtId = formData.getValueSilently("district");
+			if (!districtId.isEmpty()) {
+				DistrictDAO districtDAO = new DistrictDAO(session);
+				entity.setDistrict(districtDAO.findById(districtId));
+			} else {
+
+			}
+
 			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			if (isNew) {
@@ -100,12 +112,12 @@ public class LocalityForm extends ReferenceForm {
 			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
-		if (formData.getValueSilently("districtidid").isEmpty()) {
-			ve.addError("districtidid", "required", getLocalizedWord("field_is_empty", lang));
+		if (formData.getValueSilently("region").isEmpty()) {
+			ve.addError("region", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
-		if (formData.getValueSilently("localitytypeid").isEmpty()) {
-			ve.addError("localitytypeid", "required", getLocalizedWord("field_is_empty", lang));
+		if (formData.getValueSilently("localitytype").isEmpty()) {
+			ve.addError("localitytype", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		return ve;

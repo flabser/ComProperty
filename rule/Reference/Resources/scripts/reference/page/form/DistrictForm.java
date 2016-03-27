@@ -71,7 +71,7 @@ public class DistrictForm extends ReferenceForm {
 			entity.setLocalizedName(getLocalizedNames(session, formData));
 
 			District foundEntity = dao.findByName(entity.getName());
-			if (foundEntity != null && !foundEntity.equals(entity)) {
+			if (foundEntity != null && !foundEntity.equals(entity) && foundEntity.getRegion().equals(entity.getRegion())) {
 				ve = new _Validation();
 				ve.addError("name", "unique", getLocalizedWord("name_is_not_unique", session.getLang()));
 				setBadRequest();

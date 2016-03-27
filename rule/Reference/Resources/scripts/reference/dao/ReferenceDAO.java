@@ -33,11 +33,15 @@ public abstract class ReferenceDAO<T extends IAppEntity, K> extends DAO<T, K> {
 
 	public T findByName(String name) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
-			String jpql = "SELECT m FROM " + getEntityClass().getName() + " AS m WHERE m.name = :name";
-			TypedQuery<T> q = em.createQuery(jpql, getEntityClass());
-			q.setParameter("name", name);
-			return q.getSingleResult();
+			CriteriaQuery<T> cq = cb.createQuery(getEntityClass());
+			Root<T> c = cq.from(getEntityClass());
+			cq.select(c);
+			Predicate condition = cb.equal(cb.lower(c.<String> get("name")), name.toLowerCase());
+			cq.where(condition);
+			TypedQuery<T> typedQuery = em.createQuery(cq);
+			return typedQuery.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		} finally {

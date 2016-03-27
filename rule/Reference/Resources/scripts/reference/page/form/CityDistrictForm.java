@@ -17,6 +17,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 import reference.dao.CityDistrictDAO;
 import reference.dao.LocalityDAO;
 import reference.model.CityDistrict;
+import reference.model.Locality;
 
 public class CityDistrictForm extends ReferenceForm {
 
@@ -30,9 +31,11 @@ public class CityDistrictForm extends ReferenceForm {
 			entity = dao.findById(UUID.fromString(id));
 		} else {
 			entity = (CityDistrict) getDefaultEntity(user, new CityDistrict());
+			Locality locality = new Locality();
+			locality.setName("");
+			entity.setLocality(locality);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
@@ -62,7 +65,16 @@ public class CityDistrictForm extends ReferenceForm {
 			entity.setName(formData.getValue("name"));
 			entity.setLocalizedName(getLocalizedNames(session, formData));
 			LocalityDAO localityDAO = new LocalityDAO(session);
-			entity.setLocality(localityDAO.findById(formData.getValue("localityid")));
+			entity.setLocality(localityDAO.findById(formData.getValue("locality")));
+
+			CityDistrict foundEntity = dao.findByName(entity.getName());
+			if (foundEntity != null && !foundEntity.equals(entity) && foundEntity.getLocality().equals(entity.getLocality())) {
+				ve = new _Validation();
+				ve.addError("name", "unique", getLocalizedWord("name_is_not_unique", session.getLang()));
+				setBadRequest();
+				setValidation(ve);
+				return;
+			}
 
 			if (isNew) {
 				dao.add(entity);
@@ -83,8 +95,8 @@ public class CityDistrictForm extends ReferenceForm {
 			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
-		if (formData.getValueSilently("localityid").isEmpty()) {
-			ve.addError("localityid", "required", getLocalizedWord("field_is_empty", lang));
+		if (formData.getValueSilently("locality").isEmpty()) {
+			ve.addError("locality", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		return ve;

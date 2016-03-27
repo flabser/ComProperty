@@ -36,7 +36,6 @@ public class StreetForm extends ReferenceForm {
 			entity.setLocality(city);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper(new LocalityDAO(session).findAll(), session));
 		addContent(new _POJOListWrapper(new LanguageDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session));
 		startSaveFormTransact(entity);
@@ -65,8 +64,30 @@ public class StreetForm extends ReferenceForm {
 			}
 
 			entity.setName(formData.getValue("name"));
-			entity.setLocality(localityDAO.findByName(formData.getValue("localityid")));
+			entity.setLocality(localityDAO.findById(formData.getValue("locality")));
+			entity.setStreetId(formData.getNumberValueSilently("streetid", 0));
 			entity.setLocalizedName(getLocalizedNames(session, formData));
+
+			Street foundEntity = dao.findByName(entity.getName());
+			if (foundEntity != null && !foundEntity.equals(entity) && foundEntity.getLocality().equals(entity.getLocality())) {
+				ve = new _Validation();
+				ve.addError("name", "unique", getLocalizedWord("name_is_not_unique", session.getLang()));
+				setBadRequest();
+				setValidation(ve);
+				return;
+			}
+
+			/*ViewPage<Street> foundEntityList = dao.findAllequal("streetId", Integer.toString(entity.getStreetId()), 1, 1);
+			if (foundEntityList.getCount() > 0) {
+				foundEntity = foundEntityList.getResult().get(0);
+				if (foundEntity != null && !foundEntity.equals(entity) && foundEntity.getLocality().equals(entity.getLocality())) {
+					ve = new _Validation();
+					ve.addError("streetid", "unique", getLocalizedWord("streetid_is_not_unique", session.getLang()));
+					setBadRequest();
+					setValidation(ve);
+					return;
+				}
+			}*/
 
 			if (isNew) {
 				dao.add(entity);
@@ -87,8 +108,14 @@ public class StreetForm extends ReferenceForm {
 			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
-		if (formData.getValueSilently("localityid").isEmpty()) {
-			ve.addError("localityid", "required", getLocalizedWord("field_is_empty", lang));
+		/*if (formData.getValueSilently("streetid").isEmpty()) {
+			ve.addError("streetid", "required", getLocalizedWord("field_is_empty", lang));
+		} else if (formData.getNumberValueSilently("streetid", 0) <= 0) {
+			ve.addError("streetid", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
+		}*/
+
+		if (formData.getValueSilently("locality").isEmpty()) {
+			ve.addError("locality", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		return ve;
