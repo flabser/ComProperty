@@ -9,6 +9,7 @@ import kz.lof.administrator.dao.ApplicationDAO;
 import kz.lof.administrator.dao.UserDAO;
 import kz.lof.administrator.model.Application;
 import kz.lof.administrator.model.User;
+import kz.lof.dataengine.jpa.constants.AppCode;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
@@ -124,13 +125,10 @@ public class EmployeeForm extends StaffForm {
 					user.setEmail(formData.getValueSilently("email"));
 					user.setLogin(login);
 					user.setPwd(formData.getValueSilently("pwd"));
-					// TODO need to make as settings
 					ApplicationDAO aDao = new ApplicationDAO(session);
-					List<Application> appList = new ArrayList<Application>();
-					appList.add(aDao.findByName("MunicipalProperty"));
-					appList.add(aDao.findByName("Accountant"));
-					appList.add(aDao.findByName("PropertyLeasing"));
-					appList.add(aDao.findByName("Registry"));
+					List<AppCode> list = new ArrayList<AppCode>();
+					list.add(AppCode.CUSTOM);
+					List<Application> appList = aDao.findAllin("code", list, 0, 0).getResult();
 					user.setAllowedApps(appList);
 					uDao.add(user);
 					user = uDao.findById(user.getId());

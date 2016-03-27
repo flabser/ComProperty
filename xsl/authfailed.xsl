@@ -52,7 +52,7 @@
 						</td>
 					</tr>
 				</table>
-				<div style="z-index:999; margin-top:-2%; margin-left:22.5%; font-size:0.7em; font-family:arial">&#xA0;<a href="http://www.flabs.kz" target="_blank">Lab of the Future</a>&#xA0; &#8226; &#xA0;<a href="http://www.smartdoc.kz" target="_blank">Feedback</a></div>
+				<div style="z-index:999; margin-top:-2%; margin-left:22.5%; font-size:0.7em; font-family:arial">&#xA0;<a href="http://www.flabs.kz" target="_blank">Lab of the Future</a>&#xA0; &#8226; &#xA0;<a href="http://flabser.com" target="_blank">Feedback</a></div>
 			</body>
 		</html>
 	</xsl:template>

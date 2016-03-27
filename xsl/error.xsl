@@ -78,6 +78,9 @@
 										<xsl:when test="error/@type = 'CLASS_NOT_FOUND_EXCEPTION'">
 											<font style="font-size:2em;">Class not found</font>
 										</xsl:when>
+										<xsl:when test="error/@type = 'application_was_restricted'">
+											<font style="font-size:2em;">The current user is limited in the current application</font>
+										</xsl:when>
 										<xsl:when test="error/@type = 'SERVER'">
 											<font style="font-size:2em;">Server error</font>
 										</xsl:when>
@@ -178,7 +181,7 @@
 						</td>
 					</tr>
 				</table>
-				<div style="z-index:999; margin-top:-2%; margin-left:22.5%; font-family:arial; font-size:0.71em">&#xA0;<a href="http://www.flabs.kz" target="_blank">Lab of the Future</a>&#xA0; &#8226; &#xA0;<a href="http://www.smartdoc.kz" target="_blank">Feedback</a></div>
+				<div style="z-index:999; margin-top:-2%; margin-left:22.5%; font-family:arial; font-size:0.71em">&#xA0;<a href="http://www.flabs.kz" target="_blank">Lab of the Future</a>&#xA0; &#8226; &#xA0;<a href="http://www.flabser.com" target="_blank">Feedback</a></div>
 			</body>
 		</html>
 	</xsl:template>

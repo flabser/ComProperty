@@ -18,6 +18,7 @@ import kz.lof.administrator.model.Application;
 import kz.lof.administrator.model.User;
 import kz.lof.appenv.AppEnv;
 import kz.lof.dataengine.jpa.ViewPage;
+import kz.lof.dataengine.jpa.constants.AppCode;
 import kz.lof.env.EnvConst;
 import kz.lof.env.Environment;
 import kz.lof.exception.SecureException;
@@ -55,12 +56,11 @@ public class UserServices {
 			if (showConsoleOutput) {
 				System.out.println("System users count = " + rCount);
 			}
+
 			ApplicationDAO aDao = new ApplicationDAO(new _Session(env, new AnonymousUser()));
-			List<Application> appList = new ArrayList<Application>();
-			appList.add(aDao.findByName("MunicipalProperty"));
-			appList.add(aDao.findByName("Accountant"));
-			appList.add(aDao.findByName("PropertyLeasing"));
-			appList.add(aDao.findByName("Registry"));
+			List<AppCode> list = new ArrayList<AppCode>();
+			list.add(AppCode.CUSTOM);
+			List<Application> appList = aDao.findAllin("code", list, 0, 0).getResult();
 
 			for (kz.flabs.users.User oldUser : users) {
 				User entity = new User();
