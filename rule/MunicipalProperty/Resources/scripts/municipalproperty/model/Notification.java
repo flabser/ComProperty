@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -20,6 +22,10 @@ public class Notification extends SecureAppEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type", nullable = false, length = 32)
 	private NotificationType type;
+
+	@ManyToOne
+	@JoinColumn
+	private Property property;
 
 	private String sender;
 
@@ -36,6 +42,14 @@ public class Notification extends SecureAppEntity {
 
 	public void setType(NotificationType type) {
 		this.type = type;
+	}
+
+	public Property getProperty() {
+		return property;
+	}
+
+	public void setProperty(Property property) {
+		this.property = property;
 	}
 
 	public String getSender() {

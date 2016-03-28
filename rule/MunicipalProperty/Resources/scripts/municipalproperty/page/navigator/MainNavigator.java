@@ -10,6 +10,7 @@ import kz.lof.scripting.event._DoPage;
 import kz.lof.scriptprocessor.page.IOutcomeObject;
 import kz.nextbase.script.outline._Outline;
 import kz.nextbase.script.outline._OutlineEntry;
+import municipalproperty.model.constants.NotificationType;
 import reference.dao.PropertyCodeDAO;
 import reference.model.PropertyCode;
 
@@ -142,6 +143,13 @@ public class MainNavigator extends _DoPage {
 		}
 
 		_Outline notificationOutline = new _Outline(getLocalizedWord("notifications", lang), "notification");
+		String nUrl = "p?id=objectregistered-view&type=";
+		for (NotificationType type : NotificationType.values()) {
+			if (type != NotificationType.UNKNOWN) {
+				String stringType = type.name().toLowerCase();
+				notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "objectregistered-view", nUrl + stringType));
+			}
+		}
 
 		list.add(reportOutline);
 		list.add(munPropOutline);

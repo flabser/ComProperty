@@ -477,6 +477,32 @@
         <entry lang="KAZ">Мотоциклдер</entry>
         <entry lang="ENG">Motorcycles</entry>
     </sentence>
+     <sentence mode="on" keyword="object_registered">
+        <entry lang="RUS">Объект зарегестрирован</entry>
+        <entry lang="KAZ">Объект зарегестрирован</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+     <sentence mode="on" keyword="contract_expired">
+        <entry lang="RUS">Срок действия договора истек</entry>
+        <entry lang="KAZ">Срок действия договора истек</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+     <sentence mode="on" keyword="order_registered">
+        <entry lang="RUS">Постановление зарегестрировано</entry>
+        <entry lang="KAZ">Постановление зарегестрированд</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+       <sentence mode="on" keyword="contract_registered">
+        <entry lang="RUS">Договор зарегестрирован</entry>
+        <entry lang="KAZ">Договор зарегестрирован</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+     <sentence mode="on" keyword="object_loaded">
+        <entry lang="RUS">Объекты загружены</entry>
+        <entry lang="KAZ">Объекты загружены</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+    
     <sentence mode="on" keyword="Номер двигателя">
         <entry lang="KAZ">Қозғалтқыш нөмірі</entry>
         <entry lang="ENG"></entry>
@@ -612,19 +638,6 @@
         <entry lang="KAZ">Көлік тұрақтар</entry>
         <entry lang="ENG">Parkings</entry>
     </sentence>
-    <sentence mode="on" keyword="Мониторинг объектов коммунальной собственности">
-        <entry lang="KAZ">Коммуналды меншік объектілерін бақылау</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="Регистрационные документы">
-        <entry lang="KAZ">Тіркеу құжаттары</entry>
-        <entry lang="ENG"></entry>
-
-    </sentence>
-    <sentence mode="on" keyword="Движимое имущество - мебель">
-        <entry lang="KAZ">Жылжымалы мүлік - жиһаз</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
     <sentence mode="on" keyword="animals">
         <entry lang="RUS">Животные</entry>
         <entry lang="KAZ">Жануарлар</entry>
@@ -632,10 +645,6 @@
     </sentence>
     <sentence mode="on" keyword="Вид">
         <entry lang="KAZ">Түр</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="Движимое имущество - Государственные пакеты акций">
-        <entry lang="KAZ">Жылжымалы мүлік - Мемлекеттік акциялар пакеті</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="others">
