@@ -176,7 +176,7 @@ $(document).ready(function() {
     }
     $('[data-nav]', '.aside').each(function() {
         if (ary.indexOf($(this).data('nav')) != -1) {
-            $(this).removeClass('nav-link-collapsed');
+            $(this).removeClass('side-tree-collapsed');
         }
     });
 
@@ -204,15 +204,15 @@ $(document).ready(function() {
     $('[data-role=side-tree-toggle]').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
-        var $parent = $(this).parent();
-        $parent.toggleClass('nav-link-collapsed');
+        var $parent = $(this).closest('.side-tree-collapsible');
+        $parent.toggleClass('side-tree-collapsed');
         //
         var storageKey = nb.options.sideTreeStorageName;
         var navId = $parent.data('nav');
         var oreo = localStorage.getItem(storageKey);
         var ary = oreo.split(',');
 
-        if ($parent.hasClass('nav-link-collapsed')) {
+        if ($parent.hasClass('side-tree-collapsed')) {
             var index = ary.indexOf(navId);
             if (index > -1) {
                 ary.splice(index, 1);

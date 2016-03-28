@@ -14,11 +14,10 @@
     <xsl:template match="outline" mode="outline">
         <xsl:param name="active-id" select="''"/>
 
-        <section>
+        <section data-nav="{@id}">
             <xsl:if test="@caption != ''">
-                <xsl:attribute name="class" select="'side-nav-collapsible'"/>
-                <xsl:attribute name="id" select="concat('side-nav-', @id)"/>
-                <header data-role="toggle">
+                <xsl:attribute name="class" select="'side-tree-collapsible side-tree-collapsed'"/>
+                <header data-role="side-tree-toggle">
                     <i class="side-tree-toggle fa"></i>
                     <span>
                         <xsl:value-of select="@caption"/>
@@ -36,16 +35,13 @@
     <xsl:template match="entry" mode="outline">
         <xsl:param name="active-id" select="''"/>
 
-        <li>
-            <a href="{@url}" title="{@hint}" class="nav-link" data-nav="{@id}{position()}">
-                <xsl:if test="./entry">
-                    <xsl:attribute name="class" select="'nav-link collapsible nav-link-collapsed'"/>
-                </xsl:if>
+        <li data-nav="{@id}{position()}">
+            <xsl:if test="./entry">
+                <xsl:attribute name="class" select="'side-tree-collapsible side-tree-collapsed'"/>
+            </xsl:if>
+            <a href="{@url}" title="{@hint}" class="nav-link">
                 <xsl:if test="@id = $active-id">
                     <xsl:attribute name="class" select="'nav-link active'"/>
-                    <xsl:if test="./entry">
-                        <xsl:attribute name="class" select="'nav-link active collapsible nav-link-collapsed'"/>
-                    </xsl:if>
                 </xsl:if>
                 <xsl:if test="./entry">
                     <i class="side-tree-toggle fa" data-role="side-tree-toggle"></i>
