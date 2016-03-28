@@ -15,21 +15,19 @@
                 </sup>
             </xsl:if>
         </h1>
-        <xsl:if test="//actionbar or //view_content//query/@maxpage > 1">
-            <div class="content-actions">
-                <div class="pull-left">
-                    <div class="inline">
-                        <xsl:apply-templates select="//actionbar"/>
-                    </div>
-                    <div class="filter property-filter span9" id="property-filter">
-                        <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
-                    </div>
+        <div class="content-actions">
+            <div class="pull-left">
+                <div class="inline">
+                    <xsl:apply-templates select="//actionbar"/>
                 </div>
-                <div class="pull-right">
-                    <xsl:apply-templates select="//view_content" mode="page-navigator"/>
+                <div class="filter property-filter span9" id="property-filter">
+                    <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
                 </div>
             </div>
-        </xsl:if>
+            <div class="pull-right">
+                <xsl:apply-templates select="//view_content" mode="page-navigator"/>
+            </div>
+        </div>
     </xsl:template>
 
     <xsl:template match="entry" mode="view-table-body">

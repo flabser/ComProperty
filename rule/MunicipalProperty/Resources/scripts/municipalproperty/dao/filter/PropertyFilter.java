@@ -1,6 +1,7 @@
 package municipalproperty.dao.filter;
 
 import municipalproperty.model.constants.KufType;
+import reference.model.PropertyCode;
 import staff.model.Organization;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class PropertyFilter {
 
     private List<Organization> balanceHolders;
     private List<KufType> kufTypes;
+    private PropertyCode propertyCode;
 
     public PropertyFilter() {
         balanceHolders = new ArrayList<>();
@@ -51,5 +53,14 @@ public class PropertyFilter {
 
     public List<Organization> getBalanceHolders() {
         return balanceHolders;
+    }
+
+
+    public PropertyCode getPropertyCode() {
+        return propertyCode;
+    }
+
+    public void setPropertyCode(PropertyCode propertyCode) {
+        this.propertyCode = propertyCode;
     }
 }
