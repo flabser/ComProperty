@@ -9,6 +9,8 @@ import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.user.IUser;
+import kz.lof.user.SuperUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
@@ -21,6 +23,7 @@ public class UploadUpdatingForm extends _DoPage {
 
 	@Override
 	public void doGET(_Session ses, _WebFormData formData) {
+		IUser<Long> user = ses.getUser();
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		if (fsid.isEmpty()) {
 			addContent("formsesid", Util.generateRandomAsText());
@@ -49,7 +52,7 @@ public class UploadUpdatingForm extends _DoPage {
 			addContent(new _POJOListWrapper(filesToPublish, ses));
 		}
 
-		if (ses.getUser().getRoles().contains("data_loader")) {
+		if (user.getId() == SuperUser.ID || user.getRoles().contains("data_loader")) {
 			_ActionBar actionBar = new _ActionBar(ses);
 			actionBar.addAction(new _Action(getLocalizedWord("attach_file", ses.getLang()), "", _ActionType.CUSTOM_ACTION));
 			addContent(actionBar);
