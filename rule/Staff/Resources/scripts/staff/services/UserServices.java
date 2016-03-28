@@ -26,6 +26,7 @@ import kz.lof.scripting._Session;
 import kz.lof.server.Server;
 import kz.lof.user.AnonymousUser;
 import reference.dao.PositionDAO;
+import reference.model.Position;
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
 import staff.dao.OrganizationLabelDAO;
@@ -184,6 +185,9 @@ public class UserServices {
 									}
 								}
 							}
+
+							Position tmpPos = posDAO.findByName("unknown");
+							entity.setPosition(tmpPos);
 
 							if (!roleList.isEmpty()) {
 								entity.setRoles(roleList);

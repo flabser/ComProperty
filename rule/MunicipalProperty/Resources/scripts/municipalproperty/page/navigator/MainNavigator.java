@@ -133,17 +133,20 @@ public class MainNavigator extends _DoPage {
 		_Outline reportOutline = new _Outline(getLocalizedWord("reports", lang), "report");
 		reportOutline.addEntry(new _OutlineEntry(getLocalizedWord("reports", lang), "report-template-view"));
 
-		_Outline mpByPropertyCodeOutline = new _Outline(getLocalizedWord("municipal_property_by_propertycode", lang), "report");
+		_Outline mpByPropertyCodeOutline = new _Outline(getLocalizedWord("municipal_property_by_propertycode", lang),
+		        "municipal_property_by_propertycode");
 		for (PropertyCode propCode : new PropertyCodeDAO(session).findAll()) {
-			mpByPropertyCodeOutline
-			        .addEntry(new _OutlineEntry(propCode.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : "
-			                + propCode.getLocalizedName(lang), "mpbypropertycode-view" + propCode.getId(), "p?id=mpbypropertycode-view&categoryid="
-			                + propCode.getId()));
+			mpByPropertyCodeOutline.addEntry(new _OutlineEntry(propCode.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : "
+			        + propCode.getLocalizedName(lang), "mpbypropertycode-view" + propCode.getId(), "p?id=mpbypropertycode-view&categoryid="
+			        + propCode.getId()));
 		}
+
+		_Outline notificationOutline = new _Outline(getLocalizedWord("notifications", lang), "notification");
 
 		list.add(reportOutline);
 		list.add(munPropOutline);
 		list.add(mpByPropertyCodeOutline);
+		list.add(notificationOutline);
 		list.add(orderOutline);
 
 		addValue("outline_current", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("kuf"));

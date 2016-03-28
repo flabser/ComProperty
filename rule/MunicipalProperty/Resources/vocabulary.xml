@@ -15,6 +15,11 @@
         <entry lang="RUS">Объекты по типу права на имущество</entry>
         <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
     </sentence>
+     <sentence mode="on" keyword="notifications">
+        <entry lang="ENG">Notifications</entry>
+        <entry lang="RUS">Уведомления</entry>
+        <entry lang="KAZ">Хабарламалар</entry>
+    </sentence>
     <sentence mode="on" keyword="kof">
         <entry lang="ENG">KOF</entry>
         <entry lang="RUS">КОФ</entry>
@@ -784,10 +789,7 @@
         <entry lang="KAZ">Келісім-шарттар мен қосымша келісулер</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on" keyword="Уведомления">
-        <entry lang="KAZ">Хабарламалар</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
+  
     <sentence mode="on" keyword="Регистрация объектов">
         <entry lang="KAZ">Объектілерді тіркеу</entry>
         <entry lang="ENG"></entry>
