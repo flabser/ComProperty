@@ -15,15 +15,17 @@
         <section class="content-body">
             <fieldset class="fieldset">
                 <div class="form-group">
-                    <label class="btn btn-lg" for="upfile">
-                        <i class="fa fa-file-excel-o"></i>
-                        <span>
-                            <xsl:value-of select="//captions/attach_file/@caption"/>
-                        </span>
-                    </label>
-                    <div>
-                        <progress id="upload-progress-bar" max="100" value="0"></progress>
-                    </div>
+                    <xsl:if test="//action[@id = 'attach_file']">
+                        <label class="btn btn-lg" for="upfile">
+                            <i class="fa fa-file-excel-o"></i>
+                            <span>
+                                <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
+                            </span>
+                        </label>
+                        <div>
+                            <progress id="upload-progress-bar" max="100" value="0"></progress>
+                        </div>
+                    </xsl:if>
                 </div>
             </fieldset>
             <div class="upload-result">

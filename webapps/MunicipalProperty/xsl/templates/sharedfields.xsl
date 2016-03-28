@@ -402,7 +402,9 @@
                 <xsl:value-of select="//captions/decrees_acts/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="decreesacts" value="{fields/decreesacts}" class="span8"/>
+                <textarea name="decreesacts" class="span8">
+                    <xsl:value-of select="fields/decreesacts"/>
+                </textarea>
             </div>
         </div>
     </xsl:template>
