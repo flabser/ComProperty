@@ -8,7 +8,7 @@
             </div>
             <div class="controls">
                 <xsl:choose>
-                    <xsl:when test="@docid eq ''">
+                    <xsl:when test="@docid eq '' or @docid eq 'null'">
                         <select name="balanceholder" class="span8">
                             <xsl:apply-templates select="fields/balanceholder" mode="selected_options"/>
                         </select>
