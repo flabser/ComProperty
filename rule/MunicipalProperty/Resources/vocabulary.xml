@@ -483,13 +483,18 @@
         <entry lang="ENG"></entry>
     </sentence>
      <sentence mode="on" keyword="contract_expired">
-        <entry lang="RUS">Договор зарегестрирован</entry>
-        <entry lang="KAZ">Договор зарегестрирован</entry>
+        <entry lang="RUS">Срок договора истек</entry>
+        <entry lang="KAZ">Срок договора истек</entry>
         <entry lang="ENG"></entry>
     </sentence>
      <sentence mode="on" keyword="order_registered">
         <entry lang="RUS">Постановление зарегестрировано</entry>
-        <entry lang="KAZ">Постановление зарегестрированд</entry>
+        <entry lang="KAZ">Постановление зарегестрировано</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+    <sentence mode="on" keyword="contract_registered">
+        <entry lang="RUS">Договор зарегестрирован</entry>
+        <entry lang="KAZ">Договор зарегестрирован</entry>
         <entry lang="ENG"></entry>
     </sentence>
      <sentence mode="on" keyword="object_loaded">
