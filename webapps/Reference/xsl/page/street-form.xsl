@@ -32,20 +32,20 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/identifier/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <input type="text" name="streetid" value="{fields/streetid}" class="span7" autofocus="true"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="control-label">
                             <xsl:value-of select="//captions/locality/@caption"/>
                         </div>
                         <div class="controls">
                             <select name="locality" class="span7" autocomplete="off">
                                 <xsl:apply-templates select="fields/locality" mode="selected_options"/>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/identifier/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <input type="text" name="streetid" value="{fields/streetid}" class="span7" autofocus="true"/>
                         </div>
                     </div>
                 </fieldset>
