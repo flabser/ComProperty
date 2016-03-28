@@ -166,4 +166,13 @@ public class Employee extends Staff implements IEmployee {
 		chunk.append("</roles>");
 		return chunk.toString();
 	}
+
+	@Override
+	public List<String> getAllRoles() {
+		List<String> list = new ArrayList<String>();
+		for (Role r : roles) {
+			list.add(r.getName());
+		}
+		return list;
+	}
 }

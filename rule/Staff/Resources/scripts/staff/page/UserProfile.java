@@ -17,6 +17,7 @@ import kz.nextbase.script._Validator;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
+import reference.model.Position;
 import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 
@@ -37,7 +38,13 @@ public class UserProfile extends _DoPage {
 		if (emp == null) {
 			emp = new Employee();
 			emp.setRegDate(new Date());
-			emp.setUser((User) user);
+			User userObj = new User();
+			userObj.setUserName(user.getUserName());
+			userObj.setLogin(user.getLogin());
+			Position tmpPos = new Position();
+			tmpPos.setName("");
+			emp.setPosition(tmpPos);
+			emp.setUser(userObj);
 			emp.setName(user.getLogin());
 
 		}

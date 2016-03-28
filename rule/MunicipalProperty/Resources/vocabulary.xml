@@ -1039,9 +1039,19 @@
         <entry lang="KAZ">Мем №</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on" keyword="№ тех. паспорта">
-        <entry lang="RUS">Добавить животное</entry>
-        <entry lang="KAZ">Тех. құжат №</entry>
+    <sentence mode="on" keyword="tech_cert">
+        <entry lang="RUS">Технический паспорт</entry>
+        <entry lang="KAZ">Тех. құжат</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+     <sentence mode="on" keyword="reg_cert">
+        <entry lang="RUS">Свидетельство о регистрации имущества </entry>
+        <entry lang="KAZ">Свидетельство о регистрации имущества </entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+     <sentence mode="on" keyword="decrees_acts">
+        <entry lang="RUS">Постановление акимата и акт приема-передачи, передано в какое упралени</entry>
+        <entry lang="KAZ">Постановление акимата и акт приема-передачи, передано в какое упралени</entry>
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Отличное">
