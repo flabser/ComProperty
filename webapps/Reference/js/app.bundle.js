@@ -2932,7 +2932,8 @@ nbApp.selectOptions = {
         url: 'p?id=get-countries'
     },
     district: {
-        url: 'p?id=get-districts'
+        url: 'p?id=get-districts',
+        data: ['region']
     },
     region: {
         url: 'p?id=get-regions'
