@@ -18,6 +18,13 @@
     <caption name="balance_holder"/>
     <caption name="tags"/>
 
+    <caption name="notification"/>
+    <caption name="type"/>
+    <caption name="sender"/>
+    <caption name="recipient"/>
+    <caption name="sendtime"/>
+    <caption name="content"/>
+
     <caption name="attach_file"/>
     <caption name="properties"/>
     <caption name="interface"/>

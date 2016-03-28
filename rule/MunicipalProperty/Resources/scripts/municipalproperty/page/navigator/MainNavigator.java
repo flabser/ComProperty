@@ -147,7 +147,7 @@ public class MainNavigator extends _DoPage {
         for (NotificationType type : NotificationType.values()) {
             if (type != NotificationType.UNKNOWN) {
                 String stringType = type.name().toLowerCase();
-                notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "notification-view", nUrl + stringType));
+                notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "notification-view_"+ stringType , nUrl + stringType));
             }
         }
 
@@ -160,7 +160,12 @@ public class MainNavigator extends _DoPage {
         String kuf = formData.getValueSilently("kuf");
         String type = formData.getValueSilently("type");
         String categoryId = formData.getValueSilently("categoryid");
-        addValue("outline_current", formData.getValueSilently("id").replace("-form", "-view") + kuf + categoryId);
+        String pageId = formData.getValueSilently("id").replace("-form", "-view") + kuf + categoryId;
+        if(formData.getValueSilently("id").equals("notification-view")){
+            pageId += '_'+ formData.getValueSilently("type");
+        }
+        addValue("outline_current", pageId);
+
         if (!kuf.isEmpty()) {
             addValue("request_param", "kuf=" + kuf);
         }
