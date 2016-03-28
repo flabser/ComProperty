@@ -1,17 +1,14 @@
 package reference.page.action;
 
-import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.ViewPage;
 import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import reference.dao.LocalityDAO;
+import reference.dao.StreetDAO;
 import reference.model.Locality;
-import reference.model.Region;
 import reference.model.Street;
-
-import java.util.List;
 
 /**
  * @author Kayra created 02-03-2016
@@ -26,16 +23,11 @@ public class GetStreetAction extends _DoPage {
         int pageSize = ses.pageSize;
 
         LocalityDAO lDao = new LocalityDAO(ses);
-        Locality city = lDao.findById(formData.getValueSilently("localityid"));
-        if (city != null) {
-            List<Street> list = city.getStreets();
-            long count = list.size();
-            int maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
-            if (pageNum == 0) {
-                pageNum = maxPage;
-            }
-            ViewPage<Region> vp = new ViewPage(list, count, maxPage, pageNum);
-            addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), ses));
+        Locality locality = lDao.findById(formData.getValueSilently("locality"));
+        if (locality != null) {
+            StreetDAO streetDAO = new StreetDAO(ses);
+            ViewPage<Street> streets = streetDAO.findAllInLocalityByKeyword(locality, keyword, pageNum, pageSize);
+            addContent(new _POJOListWrapper(streets.getResult(), streets.getMaxPage(), streets.getCount(), streets.getPageNum(), ses));
         } else {
             setValidation(getLocalizedWord("locality_has_not_found", ses.getLang()));
         }

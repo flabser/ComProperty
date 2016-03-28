@@ -2544,7 +2544,7 @@ nb.getSelectOptions = function(selectOptions) {
     return {
         allowClear: true,
         minimumInputLength: 0,
-        minimumResultsForSearch: 20,
+        minimumResultsForSearch: options.minimumResultsForSearch || 20,
         placeholder: options.placeholder || '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
@@ -3142,7 +3142,8 @@ nbApp.selectOptions = {
     },
     street: {
         url: 'p?id=get-streets',
-        data: ['locality']
+        data: ['locality'],
+        minimumResultsForSearch: 0
     },
     tags: {
         url: 'p?id=get-tags',

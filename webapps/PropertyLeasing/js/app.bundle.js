@@ -2544,7 +2544,7 @@ nb.getSelectOptions = function(selectOptions) {
     return {
         allowClear: true,
         minimumInputLength: 0,
-        minimumResultsForSearch: 20,
+        minimumResultsForSearch: options.minimumResultsForSearch || 20,
         placeholder: options.placeholder || '',
         templateResult: options.templateResult,
         // templateSelection: options.templateResult,
@@ -3002,7 +3002,13 @@ $(function() {
 
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'p?id=get-organizations'
+        url: 'p?id=get-organizations',
+        fields: ['bin'],
+        onSelect: function(e) {
+            if (e.target.form && e.target.form.balanceholderbin) {
+                e.target.form.balanceholderbin.value = (e.params.data) ? e.params.data.bin : '';
+            }
+        }
     },
     orgcategory: {
         url: 'p?id=get-org-categories'
@@ -3026,7 +3032,8 @@ nbApp.selectOptions = {
     },
     street: {
         url: 'p?id=get-streets',
-        data: ['district']
+        data: ['locality'],
+        minimumResultsForSearch: 0
     },
     tags: {
         url: 'p?id=get-tags',
