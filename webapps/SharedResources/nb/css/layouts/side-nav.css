@@ -56,9 +56,15 @@
 /* .side-nav tree */
 
 .side-nav section > header {
+    border-radius: 2px;
     font-weight: bold;
-    padding: 6px 12px;
+    padding: 6px 12px 6px 30px;
     position: relative;
+}
+
+.side-nav header[data-role=side-tree-toggle]:hover {
+    background-color: #DDD;
+    color: #303333;
 }
 
 .side-nav ul {
@@ -141,23 +147,27 @@
 }
 
 
-/* .collapsible */
+/* .side-tree-collapsible */
 
-.nav-link.collapsible {
-    padding-left: 30px;
+.side-nav .side-tree-collapsible {
+    padding: 0px;
 }
 
-.side-nav .collapsible + ul {
-    max-height: 1000px;
+.side-nav .side-tree-collapsible ul {
+    max-height: 3000px;
     transition: max-height .15s;
 }
 
-.side-nav .nav-link-collapsed + ul {
+.side-nav .side-tree-collapsible.side-tree-collapsed ul {
     max-height: 0px;
 }
 
 
 /* .side-tree-toggle */
+
+[data-role=side-tree-toggle] {
+    cursor: pointer;
+}
 
 .side-nav i.side-tree-toggle {
     height: 100%;
@@ -178,10 +188,18 @@
     color: inherit;
 }
 
-.side-nav .nav-link > i.side-tree-toggle:before {
+.side-nav header > i.side-tree-toggle:before {
+    content: "\f0d7";
+}
+
+.side-nav .side-tree-collapsed > header > i.side-tree-toggle:before {
+    content: "\f0da";
+}
+
+.side-nav i.side-tree-toggle:before {
     content: "\f147";
 }
 
-.side-nav .nav-link.nav-link-collapsed > i.side-tree-toggle:before {
+.side-nav .side-tree-collapsed > .nav-link > i.side-tree-toggle:before {
     content: "\f196";
 }
