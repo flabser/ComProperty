@@ -10,6 +10,11 @@
         <entry lang="RUS">Объекты коммунальной собственности</entry>
         <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
     </sentence>
+    <sentence mode="on" keyword="municipal_property_by_propertycode">
+        <entry lang="ENG">Municipal properties by property type</entry>
+        <entry lang="RUS">Объекты по типу права на имущество</entry>
+        <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
+    </sentence>
     <sentence mode="on" keyword="kof">
         <entry lang="ENG">KOF</entry>
         <entry lang="RUS">КОФ</entry>
@@ -672,22 +677,14 @@
         <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="buildings">
-        <entry lang="RUS">Здание</entry>
+        <entry lang="RUS">Здания (отдельностоящие)</entry>
         <entry lang="KAZ">Ғимараттар</entry>
         <entry lang="ENG">Buildings</entry>
     </sentence>
-    <sentence mode="on" keyword="Недвижимое имущество - Помещение">
-        <entry lang="KAZ">Жылжымайтын мүлік - Ғимараттар</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
     <sentence mode="on" keyword="structures">
-        <entry lang="RUS">Строение</entry>
+        <entry lang="RUS">Строения</entry>
         <entry lang="KAZ">Құрылыстар</entry>
         <entry lang="ENG">Structures</entry>
-    </sentence>
-    <sentence mode="on" keyword='Поле "Балансодержатель" не заполнено.'>
-        <entry lang="KAZ">"Теңгерім ұстаушы" жолы толтырылмады</entry>
-        <entry lang="ENG"></entry>
     </sentence>
     <sentence mode="on" keyword="Стратегические объекты - Объекты государственного природно-заповедного фонда">
         <entry lang="KAZ">Стратегиялық объектілер - Мемлекеттік табиғи-қорық қорларының объектілері</entry>
@@ -699,9 +696,9 @@
         <entry lang="ENG">Bomproofs</entry>
     </sentence>
     <sentence mode="on" keyword="factory">
-        <entry lang="RUS">Завод</entry>
+        <entry lang="RUS">Заводы</entry>
         <entry lang="KAZ">Зауыт</entry>
-        <entry lang="ENG">Factory</entry>
+        <entry lang="ENG">Factories</entry>
     </sentence>
     <sentence mode="on" keyword="columns">
         <entry lang="RUS">Электрические столбы</entry>

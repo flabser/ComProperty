@@ -33,6 +33,7 @@
 		<class>municipalproperty.model.IntangibleAsset</class>
 		<class>municipalproperty.model.ReportTemplate</class>
 		<class>municipalproperty.model.Order</class>
+		<class>municipalproperty.model.Contract</class>
 		<!-- Common Staff module entities -->
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -79,6 +80,7 @@
 		<class>municipalproperty.model.IntangibleAsset</class>
 		<class>municipalproperty.model.ReportTemplate</class>
 		<class>municipalproperty.model.Order</class>
+		<class>municipalproperty.model.Contract</class>
 		<!-- Common Staff module entities -->
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
