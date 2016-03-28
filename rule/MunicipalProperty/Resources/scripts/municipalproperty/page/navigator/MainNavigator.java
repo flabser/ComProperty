@@ -134,10 +134,11 @@ public class MainNavigator extends _DoPage {
 		reportOutline.addEntry(new _OutlineEntry(getLocalizedWord("reports", lang), "report-template-view"));
 
 		_Outline mpByPropertyCodeOutline = new _Outline(getLocalizedWord("municipal_property_by_propertycode", lang), "report");
-		for (PropertyCode label : new PropertyCodeDAO(session).findAll()) {
-			mpByPropertyCodeOutline.addEntry(new _OutlineEntry(label.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : "
-			        + label.getLocalizedName(lang), "organization-label-view" + label.getId(), "p?id=organization-label-view&categoryid="
-			        + label.getId()));
+		for (PropertyCode propCode : new PropertyCodeDAO(session).findAll()) {
+			mpByPropertyCodeOutline
+			        .addEntry(new _OutlineEntry(propCode.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : "
+			                + propCode.getLocalizedName(lang), "mpbypropertycode-view" + propCode.getId(), "p?id=mpbypropertycode-view&categoryid="
+			                + propCode.getId()));
 		}
 
 		list.add(reportOutline);
