@@ -2905,29 +2905,19 @@ $(document).ready(function() {
     });
 
     $('select', '#property-filter').on('change', function(e) {
-        //if ($('[data-toggle=filter]')[0].checked) {
-        var url = location.href.split('&')[0];
-        url += '&page=' + $('.pagination a.page-active').text() + '&' + $(this).serialize();
+        var urlParams = location.search.split('&');
+        for (var i in urlParams) {
+            if (urlParams[i].split('=')[0] == this.name) {
+                urlParams.splice(i, 1);
+            }
+        }
 
-        location.href = url;
-        //}
-    });
-
-    $('.pagination a').on('click', function(e) {
-        //if ($('[data-toggle=filter]')[0].checked) {
-        /*e.preventDefault();
-
-        var url = location.href.split('&')[0];
-        url += '&' + $(this).serialize() + '&page=' + this.href.match('&page=(.*)')[1];
-
-        location.href = url;*/
-        //}
+        var url = urlParams.join('&') + '&' + $(this).serialize();
+        location.href = location.pathname + url;
     });
 
     $('.pagination select').on('change', function(e) {
-        //if ($('[data-toggle=filter]')[0].checked) {
         e.preventDefault();
-        //}
     });
 
     var sbh = [];
@@ -2951,7 +2941,6 @@ $(document).ready(function() {
                         $('select[name=balanceholder]').append($('<option value="' + list[m].id + '" selected>' + list[m].name + '</option>'));
                     }
                     var opt = nb.getSelectOptions(nbApp.selectOptions['balanceholder']);
-                    // opt.placeholder = 'Балансодержатель';
                     $('select[name=balanceholder]').select2(opt);
                 }
             }
