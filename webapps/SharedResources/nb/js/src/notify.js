@@ -7,7 +7,7 @@ nb.notify = function(options) {
     if (!$nwrap.length) {
         $nwrap = $('<div id=nb-notify-wrapper class=nb-notify></div>').appendTo('body');
     }
-    var $el = $('<div class=nb-notify-entry-' + (options.type || 'info') + '>' + options.message + '</div>').appendTo($nwrap);
+    var $el = $('<div class="nb-notify-entry-' + (options.type || 'info') + '">' + options.message + '</div>').appendTo($nwrap);
 
     return {
         show: function(timeout, callback) {
