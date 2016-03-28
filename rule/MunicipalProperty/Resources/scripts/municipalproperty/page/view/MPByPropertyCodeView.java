@@ -11,6 +11,7 @@ public class MPByPropertyCodeView extends AbstractMunicipalPropertyView {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
+        super.doGET(session, formData);
         String cat = formData.getValueSilently("categoryid");
         PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
         PropertyCode propertyCode = pcDao.findById(cat);
