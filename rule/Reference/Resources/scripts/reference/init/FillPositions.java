@@ -20,7 +20,7 @@ public class FillPositions extends InitialDataAdapter<Position, PositionDAO> {
 	public List<Position> getData(_Session ses, LanguageCode lang, Vocabulary vocabulary) {
 		List<Position> entities = new ArrayList<Position>();
 		String[] data = { "Директор", "Менеджер", "Бухгалтер", "Инженер", "Специалист", "Секретарь-референт", "Администратор",
-		        "Руководитель подразделения", "Экспедитор" };
+		        "Руководитель подразделения", "Экспедитор", "unknown" };
 
 		for (int i = 0; i < data.length; i++) {
 			Position entity = new Position();
