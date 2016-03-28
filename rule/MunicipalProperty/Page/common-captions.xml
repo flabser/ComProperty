@@ -107,6 +107,6 @@
     <caption name="personal_estates"/>
     <caption name="real_estates"/>
     <caption name="reports"/>
-
+<caption name="municipal_property_by_propertycode"/>
     <caption name="new_order"/>
 </rule>
