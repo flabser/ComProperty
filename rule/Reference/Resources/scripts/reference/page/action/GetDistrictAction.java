@@ -24,7 +24,7 @@ public class GetDistrictAction extends _DoPage {
         int pageSize = ses.pageSize;
 
         RegionDAO rDao = new RegionDAO(ses);
-        Region region = rDao.findById(formData.getValueSilently("regionid"));
+        Region region = rDao.findById(formData.getValueSilently("region"));
         if (region != null) {
             List<District> list = region.getDistricts();
             long count = list.size();
