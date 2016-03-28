@@ -2581,7 +2581,7 @@ nb.getSelectOptions = function(selectOptions) {
             transport: function(params, success, failure) {
                 var cachedData,
                     key = params.url,
-                    checkCache = meta.totalPages == 1;
+                    checkCache = options.cache && meta.totalPages == 1;
 
                 if (checkCache) {
                     cachedData = cacheDataSource[key];
@@ -3033,7 +3033,17 @@ nbApp.selectOptions = {
     street: {
         url: 'p?id=get-streets',
         data: ['locality'],
-        minimumResultsForSearch: 0
+        fields: ['streetId'],
+        cache: false,
+        minimumResultsForSearch: 0,
+        templateResult: function(item) {
+            if (!item.id || !item.streetId) {
+                return item.text;
+            }
+
+            var $item = $('<span>' + item.text + '</span><span class=street-id>' + item.streetId + '</span>');
+            return $item;
+        }
     },
     tags: {
         url: 'p?id=get-tags',

@@ -26,3 +26,7 @@ form[data-edit=false] [data-action=save_and_close],
 form[data-edit=false] [data-upload] {
     display: none;
 }
+
+.select2-results .street-id {
+    float: right;
+}
