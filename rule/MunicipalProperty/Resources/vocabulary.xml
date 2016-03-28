@@ -129,15 +129,7 @@
         <entry lang="RUS">Метки</entry>
         <entry lang="KAZ">Метки</entry>
         <entry lang="ENG">Tags</entry>
-    </sentence>
-    <sentence mode="on" keyword="Наименование Гос. учреждения (каз.)">
-        <entry lang="KAZ">Мем. мекеменің атауы (қаз.)</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="БИН Коммунальных Гос. учреждений">
-        <entry lang="KAZ">Коммуналды Мем. мекемелердің БСН</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
+    </sentence>  
     <sentence mode="on" keyword="inv_number">
         <entry lang="RUS">Инвентарный номер</entry>
         <entry lang="KAZ">Инвентарлы нөмір</entry>
@@ -167,40 +159,16 @@
         <entry lang="KAZ">Балансқа алу датасы</entry>
         <entry lang="ENG">Acceptance date</entry>
     </sentence>
-    <sentence mode="on" keyword="Количество">
-        <entry lang="KAZ">Саны</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="original_cost">
+      <sentence mode="on" keyword="original_cost">
         <entry lang="RUS">Первоначальная стоимость</entry>
         <entry lang="KAZ">Бастапқы құны</entry>
         <entry lang="ENG">Original cost</entry>
-    </sentence>
-    <sentence mode="on" keyword="Оценочная стоимость">
-        <entry lang="KAZ">Бағалау құны</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="Остаточная стоимость">
-        <entry lang="KAZ">Қалдықтық құн</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="Предельная норма амортизации">
-        <entry lang="KAZ">Амортизацияның шекті мөлшері</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
-    <sentence mode="on" keyword="Основание поступления в Гос. собственность">
-        <entry lang="KAZ">Мемлекеттік меншікке өту негізі</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
+    </sentence>   
     <sentence mode="on" keyword="receiving_reason">
         <entry lang="RUS">Основание поступления на баланс</entry>
         <entry lang="KAZ">Балансқа өту негізі</entry>
         <entry lang="ENG">Receiving reason on the balance</entry>
-    </sentence>
-    <sentence mode="on" keyword="Основание снятия с баланса">
-        <entry lang="KAZ">Баланстан алу негізі</entry>
-        <entry lang="ENG"></entry>
-    </sentence>
+    </sentence>  
     <sentence mode="on" keyword="model">
         <entry lang="RUS">Модель</entry>
         <entry lang="KAZ">Үлгісі</entry>

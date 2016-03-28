@@ -25,7 +25,7 @@ import kz.lof.scripting._Session;
 
 @Entity
 @Table(name = "orders")
-@NamedQuery(name = "Order.findAll", query = "SELECT m FROM Order AS m Order BY m.regDate")
+@NamedQuery(name = "Order.findAll", query = "SELECT m FROM Order AS m ORDER BY m.regDate")
 public class Order extends SecureAppEntity {
 
 	public enum OrderStatus {

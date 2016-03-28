@@ -64,17 +64,17 @@ public class EmployeeForm extends StaffForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, session.getLang());
+			String id = formData.getValueSilently("docid");
+			EmployeeDAO dao = new EmployeeDAO(session);
+			Employee entity;
+			boolean isNew = id.isEmpty();
+
+			_Validation ve = validate(formData, session.getLang(), isNew);
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
 				return;
 			}
-
-			String id = formData.getValueSilently("docid");
-			EmployeeDAO dao = new EmployeeDAO(session);
-			Employee entity;
-			boolean isNew = id.isEmpty();
 
 			if (isNew) {
 				entity = new Employee();
@@ -114,8 +114,7 @@ public class EmployeeForm extends StaffForm {
 				}
 			}
 
-			String reguser = formData.getValueSilently("reguser");
-			if ("on".equals(reguser)) {
+			if (isNew && "on".equals(formData.getValueSilently("reguser"))) {
 				String login = formData.getValueSilently("login");
 				UserDAO uDao = new UserDAO();
 				User user = (User) uDao.findByLogin(login);
@@ -131,10 +130,6 @@ public class EmployeeForm extends StaffForm {
 					user.setAllowedApps(appList);
 					uDao.add(user);
 					user = uDao.findById(user.getId());
-				} else {
-					user.setEmail(formData.getValueSilently("email"));
-					user.setLogin(login);
-					user.setPwd(formData.getValueSilently("pwd"));
 				}
 
 				entity.setUser(user);
@@ -153,8 +148,7 @@ public class EmployeeForm extends StaffForm {
 		}
 	}
 
-	@Override
-	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+	protected _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
 		_Validation ve = new _Validation();
 
 		if (formData.getValueSilently("name").isEmpty()) {
@@ -174,8 +168,7 @@ public class EmployeeForm extends StaffForm {
 			ve.addError("position", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
-		String regUser = formData.getValueSilently("reguser");
-		if ("on".equals(regUser)) {
+		if (isNew && "on".equals(formData.getValueSilently("reguser"))) {
 			if (formData.getValueSilently("login").isEmpty()) {
 				ve.addError("login", "required", getLocalizedWord("field_is_empty", lang));
 			}
