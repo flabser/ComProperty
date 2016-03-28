@@ -2907,7 +2907,7 @@ $(document).ready(function() {
     $('select', '#property-filter').on('change', function(e) {
         var urlParams = location.search.split('&');
         for (var i in urlParams) {
-            if (urlParams[i].split('=')[0] == this.name) {
+            if (urlParams[i].split('=')[0] == this.name || urlParams[i].split('=')[0] == 'page') {
                 urlParams.splice(i, 1);
             }
         }
