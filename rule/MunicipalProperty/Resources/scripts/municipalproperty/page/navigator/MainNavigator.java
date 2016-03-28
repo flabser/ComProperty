@@ -143,11 +143,11 @@ public class MainNavigator extends _DoPage {
 		}
 
 		_Outline notificationOutline = new _Outline(getLocalizedWord("notifications", lang), "notification");
-		String nUrl = "p?id=objectregistered-view&type=";
+		String nUrl = "p?id=notification-view&type=";
 		for (NotificationType type : NotificationType.values()) {
 			if (type != NotificationType.UNKNOWN) {
 				String stringType = type.name().toLowerCase();
-				notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "objectregistered-view", nUrl + stringType));
+				notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "notification-view", nUrl + stringType));
 			}
 		}
 
