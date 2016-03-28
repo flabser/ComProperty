@@ -85,17 +85,16 @@ public class EmployeeForm extends StaffForm {
 			entity.setName(formData.getValue("name"));
 			entity.setIin(formData.getValue("iin"));
 			OrganizationDAO orgDAO = new OrganizationDAO(session);
+			String orgId = formData.getValueSilently("organization");
+			if (!orgId.isEmpty()) {
+				Organization org = orgDAO.findById(orgId);
+				entity.setOrganization(org);
+			}
 
 			String depId = formData.getValueSilently("department");
 			if (!depId.isEmpty()) {
 				DepartmentDAO depDAO = new DepartmentDAO(session);
 				entity.setDepartment(depDAO.findById(depId));
-			} else {
-				String orgId = formData.getValueSilently("organization");
-				if (!orgId.isEmpty()) {
-					Organization org = orgDAO.findById(orgId);
-					entity.setOrganization(org);
-				}
 			}
 
 			PositionDAO posDAO = new PositionDAO(session);
