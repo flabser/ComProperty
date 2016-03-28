@@ -53,6 +53,7 @@
     <caption name="structure_type"/>
     <caption name="tag"/>
     <caption name="color"/>
+    <caption name="identifier"/>
 
     <caption name="building_materials"/>
     <caption name="countries"/>
