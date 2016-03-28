@@ -48,8 +48,7 @@
                         <div class="controls">
                             <select name="type" class="span7">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//constants[@entity = 'departmenttype']/entry"
-                                                     mode="departmenttype_options">
+                                <xsl:apply-templates select="//constants[@entity = 'departmenttype']/entry" mode="departmenttype_options">
                                     <xsl:with-param name="select" select="fields/type"/>
                                 </xsl:apply-templates>
                             </select>
