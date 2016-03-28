@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
+import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
@@ -47,6 +48,7 @@ public class DepartmentForm extends StaffForm {
 			entity.setType(dt);
 		}
 		addContent(entity);
+		addContent(new _POJOListWrapper<>(new DepartmentTypeDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);
 	}

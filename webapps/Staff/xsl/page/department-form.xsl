@@ -46,24 +46,29 @@
                             <xsl:value-of select="//captions/type/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="type" class="span7">
+                            <select name="departmenttype" class="span7">
                                 <option value=""></option>
-                                <xsl:apply-templates select="//constants[@entity = 'departmenttype']/entry" mode="departmenttype_options">
+                                <xsl:apply-templates select="//query[@entity = 'departmenttype']/entry" mode="departmenttype_options">
                                     <xsl:with-param name="select" select="fields/type"/>
                                 </xsl:apply-templates>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="control-label">
-                            <xsl:value-of select="//captions/description/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <textarea name="description" class="span7">
-                                <xsl:value-of select="fields/description"/>
-                            </textarea>
-                        </div>
-                    </div>
+                    <fieldset class="fieldset">
+                        <legend class="legend">
+                            <xsl:value-of select="//captions/localized_names/@caption"/>
+                        </legend>
+                        <xsl:for-each select="fields/localizednames/entry">
+                            <div class="form-group">
+                                <div class="control-label">
+                                    <xsl:value-of select="./@id"/>
+                                </div>
+                                <div class="controls">
+                                    <input type="text" value="{.}" name="{lower-case(./@id)}localizedname" class="span7"/>
+                                </div>
+                            </div>
+                        </xsl:for-each>
+                    </fieldset>
                 </fieldset>
             </section>
         </form>
@@ -77,12 +82,13 @@
 
     <xsl:template match="entry" mode="departmenttype_options">
         <xsl:param name="select"/>
-        <option value="{@attrval}">
-            <xsl:if test="@attrval = $select">
+        <option value="{@id}">
+            <xsl:if test=". = $select">
                 <xsl:attribute name="selected" select="'selected'"/>
             </xsl:if>
             <xsl:value-of select="."/>
         </option>
+
     </xsl:template>
 
 </xsl:stylesheet>
