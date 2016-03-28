@@ -171,4 +171,10 @@
         <entry lang="KAZ">Федерация</entry>
         <entry lang="CHO"></entry>
     </sentence>
+    <sentence mode="on" keyword="identifier">
+        <entry lang="ENG">Identifier</entry>
+        <entry lang="RUS">Идентификатор</entry>
+        <entry lang="KAZ"></entry>
+        <entry lang="CHO"></entry>
+    </sentence>
 </vocabulary>
