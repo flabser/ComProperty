@@ -50,7 +50,7 @@ public class Contract extends SecureAppEntity {
 	private String description = "";
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "order_status")
+	@Column(name = "contract_status")
 	private ContractStatus contractStatus = ContractStatus.ACTIVE;
 
 	private Date expired;
