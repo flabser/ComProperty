@@ -16,21 +16,6 @@ body {
     box-sizing: border-box;
 }
 
-
-/* fix: content overflow */
-
-fieldset {
-    display: block;
-    min-width: inherit;
-}
-
-@-moz-document url-prefix () {
-    fieldset {
-        /* moz */
-        display: table-column !important;
-    }
-}
-
 a {
     color: #2222CC;
     margin: auto;
@@ -45,20 +30,6 @@ a:hover {
 img {
     max-width: 100%;
     max-height: 100%;
-    vertical-align: middle;
-}
-
-button+button {
-    margin-left: 3px;
-}
-
-button {
-    cursor: pointer;
-}
-
-button img {
-    margin-right: .3em;
-    max-height: 1.3em;
     vertical-align: middle;
 }
 
@@ -86,7 +57,7 @@ html body.phone .hidden-md {
 }
 
 
-/* fa */
+/* .fa */
 
 .fa {
     color: #666;
@@ -105,7 +76,7 @@ html body.phone .hidden-md {
 }
 
 
-/* clearfix */
+/* .clearfix */
 
 .clearfix:after {
     content: ' ';
@@ -146,12 +117,6 @@ html body.phone .hidden-md {
     display: none !important;
 }
 
-.hint {
-    color: #767676;
-    font-size: 13px;
-    margin: 2px 0;
-}
-
 .inline {
     display: inline-block;
     vertical-align: top;
@@ -169,10 +134,6 @@ html body.phone .hidden-md {
 
 .text-center {
     text-align: center;
-}
-
-.wsnowrap {
-    white-space: nowrap;
 }
 
 .img-thumbnail {

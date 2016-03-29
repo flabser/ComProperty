@@ -2842,7 +2842,7 @@ $(document).ready(function() {
     });
 
     $('form[name=ft-search]').on('reset', function() {
-        $('[type=search]', this.form).attr('value', '').focus();
+        $('[type=search]', this).attr('value', '').focus();
     });
 
     $('[data-action=reset_search]').click(function(event) {

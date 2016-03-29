@@ -14,7 +14,7 @@
                         </select>
                     </xsl:when>
                     <xsl:otherwise>
-                        <div class="input span8">
+                        <div class="input-placeholder span8">
                             <xsl:value-of select="fields/balanceholder"/>
                             <input type="hidden" name="balanceholder" value="{fields/balanceholder/@id}"
                                    disabled="disabled"/>
@@ -252,7 +252,7 @@
                 <xsl:value-of select="//captions/acquisition_year/@caption"/>
             </div>
             <div class="controls">
-                <input type="text" name="acquisitionyear" value="{fields/acquisitionyear}" class="span1"
+                <input type="text" name="acquisitionyear" value="{fields/acquisitionyear}" class="span1 disabled"
                        readonly="readonly"/>
             </div>
         </div>
