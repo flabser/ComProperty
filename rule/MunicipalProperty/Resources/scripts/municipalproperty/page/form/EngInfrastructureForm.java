@@ -62,7 +62,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		println(formData);
+		// println(formData);
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {

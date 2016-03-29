@@ -35,6 +35,9 @@ public class Contract extends SecureAppEntity {
 	@Column(name = "reg_number")
 	private String regNumber;
 
+	@Column(name = "reg_date")
+	private Date regDate;
+
 	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)

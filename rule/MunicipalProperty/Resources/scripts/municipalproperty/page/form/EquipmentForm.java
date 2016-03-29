@@ -43,7 +43,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		Equipment entity;
 		if (!id.isEmpty()) {
 			EquipmentDAO dao = new EquipmentDAO(session);

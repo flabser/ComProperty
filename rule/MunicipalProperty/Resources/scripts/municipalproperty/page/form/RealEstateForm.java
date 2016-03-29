@@ -48,7 +48,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		IUser user = session.getUser();
+		IUser<Long> user = session.getUser();
 		RealEstate entity;
 		if (!id.isEmpty()) {
 			entity = getEntity(id, session);
@@ -66,7 +66,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		println(formData);
+		// println(formData);
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
