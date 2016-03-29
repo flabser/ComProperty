@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rule type="page" mode="on" history="off">
-    <description>FTSearch</description>
+<rule type="page" mode="on" history="on">
+    <description></description>
     <caching>NO_CACHING</caching>
-    <xsltfile>default_MunicipalProperty</xsltfile>
+    <xsltfile>DEFAULT</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>
-            <doscript source="JAVA_CLASS">kz.lof.common.page.view.FTSearch</doscript>
+            <doscript source="JAVA_CLASS">kz.lof.administrator.page.view.SentenceView</doscript>
         </events>
     </element>
     <element mode="ON" type="INCLUDED_PAGE">
