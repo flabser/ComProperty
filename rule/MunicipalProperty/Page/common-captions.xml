@@ -18,7 +18,7 @@
     <caption name="balance_holder"/>
     <caption name="tags"/>
 
-    <caption name="notification"/>
+    <caption name="notifications"/>
     <caption name="type"/>
     <caption name="sender"/>
     <caption name="recipient"/>
@@ -113,7 +113,9 @@
 
     <caption name="personal_estates"/>
     <caption name="real_estates"/>
-    <caption name="reports"/>
-
+    <caption name="reports"/>	
     <caption name="new_order"/>
+    
+    <caption name="municipal_property_by_propertycode"/>
+     
 </rule>

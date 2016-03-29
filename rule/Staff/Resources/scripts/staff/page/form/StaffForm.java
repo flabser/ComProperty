@@ -11,6 +11,8 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.user.IUser;
+import kz.lof.user.SuperUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
@@ -33,11 +35,10 @@ public abstract class StaffForm extends _DoPage {
 
 	protected _ActionBar getSimpleActionBar(_Session ses, LanguageCode lang) {
 		_ActionBar actionBar = new _ActionBar(ses);
-		// _Employer user = ses.getCurrentAppUser();
-		// if (user.hasRole("supervisor")) {
-		actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
-		// }
-
+		IUser<Long> user = ses.getUser();
+		if (user.getId() == SuperUser.ID || user.getRoles().contains("staff_admin")) {
+			actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
+		}
 		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
 		return actionBar;
 	}

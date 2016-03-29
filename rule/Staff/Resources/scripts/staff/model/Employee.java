@@ -22,6 +22,10 @@ import kz.flabs.util.Util;
 import kz.lof.administrator.model.User;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.scripting._Session;
+
+import org.eclipse.persistence.annotations.Cache;
+import org.eclipse.persistence.config.CacheIsolationType;
+
 import reference.model.Position;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
+@Cache(isolation = CacheIsolationType.ISOLATED)
 public class Employee extends Staff implements IEmployee {
 
 	@OneToOne(cascade = { CascadeType.MERGE }, optional = false, fetch = FetchType.EAGER)
@@ -142,6 +147,7 @@ public class Employee extends Staff implements IEmployee {
 		chunk.append("<iin>" + iin + "</iin>");
 		if (user != null) {
 			chunk.append("<reguser>on</reguser>");
+			chunk.append("<userid>" + user.getId() + "</userid>");
 			chunk.append("<email>" + user.getEmail() + "</email>");
 			chunk.append("<login>" + user.getLogin() + "</login>");
 		}

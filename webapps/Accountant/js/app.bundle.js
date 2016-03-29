@@ -2581,7 +2581,7 @@ nb.getSelectOptions = function(selectOptions) {
             transport: function(params, success, failure) {
                 var cachedData,
                     key = params.url,
-                    checkCache = meta.totalPages == 1;
+                    checkCache = options.cache && meta.totalPages == 1;
 
                 if (checkCache) {
                     cachedData = cacheDataSource[key];

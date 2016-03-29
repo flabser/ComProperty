@@ -9,6 +9,8 @@ import kz.lof.scripting._POJOListWrapper;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.user.IUser;
+import kz.lof.user.SuperUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
@@ -32,13 +34,15 @@ public class OrganizationLabelView extends _DoPage {
 			List<Organization> emps = role.getLabels();
 			addContent(new _POJOListWrapper(emps, session));
 		} else {
-			_ActionBar actionBar = new _ActionBar(session);
-			_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization_label");
-			newDocAction.setURL("Provider?id=organization-label-form");
-			actionBar.addAction(newDocAction);
-			actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
-
-			addContent(actionBar);
+			IUser<Long> user = session.getUser();
+			if (user.getId() == SuperUser.ID || user.getRoles().contains("staff_admin")) {
+				_ActionBar actionBar = new _ActionBar(session);
+				_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization_label");
+				newDocAction.setURL("Provider?id=organization-label-form");
+				actionBar.addAction(newDocAction);
+				actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+				addContent(actionBar);
+			}
 			addContent(getViewPage(dao, formData));
 		}
 	}
