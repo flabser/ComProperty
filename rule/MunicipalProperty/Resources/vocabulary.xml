@@ -159,6 +159,11 @@
         <entry lang="KAZ">Балансқа алу датасы</entry>
         <entry lang="ENG">Acceptance date</entry>
     </sentence>
+    <sentence mode="on" keyword="expiry_date">
+        <entry lang="RUS">Срок истечения срока</entry>
+        <entry lang="KAZ">Срок истечения срока</entry>
+        <entry lang="ENG">Срок истечения срока</entry>
+    </sentence>
     <sentence mode="on" keyword="original_cost">
         <entry lang="RUS">Первоначальная стоимость</entry>
         <entry lang="KAZ">Бастапқы құны</entry>
@@ -790,8 +795,8 @@
         <entry lang="ENG">Contract</entry>
     </sentence>
     <sentence mode="on" keyword="new_contract">
-        <entry lang="RUS">+Контракт</entry>
-        <entry lang="KAZ">+Контракт</entry>
+        <entry lang="RUS">+Договор</entry>
+        <entry lang="KAZ">+Договор</entry>
         <entry lang="ENG">+Contract</entry>
     </sentence>
     <sentence mode="on" keyword="contract_name">

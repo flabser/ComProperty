@@ -76,7 +76,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/expired_date/@caption"/>
+                                    <xsl:value-of select="//captions/expiry_date/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <input type="date" name="expired" value="{fields/expired}" class="span2"/>

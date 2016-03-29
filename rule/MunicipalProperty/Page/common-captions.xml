@@ -17,6 +17,9 @@
     <caption name="original_cost"/>
     <caption name="balance_holder"/>
     <caption name="tags"/>
+    <caption name="reg_date"/>
+    <caption name="expiry_date"/>
+    <caption name="reg_number"/>
 
     <caption name="notifications"/>
     <caption name="type"/>

@@ -4,6 +4,7 @@ import kz.flabs.util.Util;
 import kz.lof.common.model.Attachment;
 import kz.lof.dataengine.jpa.SecureAppEntity;
 import kz.lof.scripting._Session;
+import municipalproperty.dao.ContractDAO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -129,6 +130,20 @@ public class Order extends SecureAppEntity {
             chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining())
                     + "</attachments>");
         }
+
+        ContractDAO contractDAO = new ContractDAO(ses);
+        List<Contract> contracts = contractDAO.findAllContractsByOrder(this);
+        if (!contracts.isEmpty()) {
+            chunk.append("<contracts>");
+            for (Contract contract : contracts) {
+                chunk.append("<contract>");
+                chunk.append("<url>" + contract.getURL() + "</url>");
+                chunk.append("<description>" + contract.getDescription() + "</description>");
+                chunk.append("</contract>");
+            }
+            chunk.append("</contracts>");
+        }
+
         return chunk.toString();
     }
 }

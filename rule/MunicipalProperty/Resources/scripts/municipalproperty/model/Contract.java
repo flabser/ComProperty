@@ -104,8 +104,8 @@ public class Contract extends SecureAppEntity {
     @Override
     public String getShortXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
-        chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
-        chunk.append("<expired>" + Util.simpleDateTimeFormat.format(expired) + "</expired>");
+        chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
+        chunk.append("<expired>" + Util.simpleDateFormat.format(expired) + "</expired>");
         chunk.append("<regnumber>" + regNumber + "</regnumber>");
         chunk.append("<description>" + description + "</description>");
         chunk.append("<contractstatus>" + ses.getAppEnv().vocabulary.getWord(getContractStatus().name().toLowerCase(), ses.getLang()) + "</contractstatus>");
@@ -123,8 +123,8 @@ public class Contract extends SecureAppEntity {
     @Override
     public String getFullXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
-        chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
-        chunk.append("<expired>" + Util.simpleDateTimeFormat.format(expired) + "</expired>");
+        chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
+        chunk.append("<expired>" + Util.simpleDateFormat.format(expired) + "</expired>");
         chunk.append("<regnumber>" + regNumber + "</regnumber>");
         chunk.append("<description>" + description + "</description>");
         chunk.append("<contractstatus>" + getContractStatus() + "</contractstatus>");
@@ -134,7 +134,7 @@ public class Contract extends SecureAppEntity {
         chunk.append("</order>");
 
         if (!getAttachments().isEmpty()) {
-            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining(""))
+            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining())
                     + "</attachments>");
         }
         return chunk.toString();

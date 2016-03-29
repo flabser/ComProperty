@@ -109,14 +109,32 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <fieldset class="fieldset">
-                            <legend class="legend">
-                                <xsl:value-of select="//captions/reg_documents/@caption"/>
-                            </legend>
-                            <xsl:call-template name="upload-files">
-                                <xsl:with-param name="input-name" select="'reg-files'"/>
-                            </xsl:call-template>
-                        </fieldset>
+                        <div>
+                            <fieldset class="fieldset fieldset1">
+                                <legend class="legend">
+                                    <xsl:value-of select="//captions/reg_documents/@caption"/>
+                                </legend>
+                                <xsl:call-template name="upload-files">
+                                    <xsl:with-param name="input-name" select="'reg-files'"/>
+                                </xsl:call-template>
+                            </fieldset>
+                            <fieldset class="fieldset fieldset2">
+                                <legend class="legend">
+                                    <xsl:value-of select="//captions/contracts/@caption"/>
+                                </legend>
+                                <div class="form-group">
+                                    <xsl:for-each select="fields/contracts/contract">
+                                        <ul>
+                                            <li>
+                                                <a href="{url}">
+                                                    <xsl:value-of select="description"/>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </xsl:for-each>
+                                </div>
+                            </fieldset>
+                        </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-3">
                         <xsl:call-template name="docinfo"/>
