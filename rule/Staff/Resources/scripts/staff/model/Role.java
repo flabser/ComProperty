@@ -7,6 +7,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "roles")
 @NamedQuery(name = "Role.findAll", query = "SELECT m FROM Role AS m ORDER BY m.regDate")
-public class Role extends Staff {
+public class Role extends SimpleEntity {
 
 	@ManyToMany(mappedBy = "roles")
 	private List<Employee> employees;

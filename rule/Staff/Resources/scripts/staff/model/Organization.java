@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 import reference.model.OrgCategory;
 
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "orgs")
 @NamedQuery(name = "Organization.findAll", query = "SELECT m FROM Organization AS m ORDER BY m.regDate")
-public class Organization extends Staff {
+public class Organization extends SimpleEntity {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)

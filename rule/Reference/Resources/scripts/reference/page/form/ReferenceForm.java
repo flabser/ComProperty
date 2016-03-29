@@ -2,7 +2,8 @@ package reference.page.form;
 
 import java.util.Date;
 
-import kz.lof.common.model.page.form.Form;
+import kz.lof.common.model.SimpleEntity;
+import kz.lof.common.page.form.Form;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
@@ -13,7 +14,6 @@ import kz.lof.user.SuperUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
-import reference.model.Reference;
 
 /**
  * @author Kayra created 03-01-2016
@@ -42,7 +42,7 @@ public abstract class ReferenceForm extends Form {
 
 	}
 
-	protected Reference getDefaultEntity(IUser<Long> user, Reference entity) {
+	protected SimpleEntity getDefaultEntity(IUser<Long> user, SimpleEntity entity) {
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());
 		entity.setName("");

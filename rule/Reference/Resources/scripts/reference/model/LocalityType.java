@@ -7,12 +7,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.lof.common.model.SimpleEntity;
 import reference.model.constants.LocalityCode;
 
 @Entity
 @Table(name = "locality_types")
 @NamedQuery(name = "LocalityType.findAll", query = "SELECT m FROM LocalityType AS m ORDER BY m.regDate")
-public class LocalityType extends Reference {
+public class LocalityType extends SimpleEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true, length = 32, unique = true)

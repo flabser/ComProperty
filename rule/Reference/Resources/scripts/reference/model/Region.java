@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "regions", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "country_id" }))
 @NamedQuery(name = "Region.findAll", query = "SELECT m FROM Region AS m ORDER BY m.regDate")
-public class Region extends Reference {
+public class Region extends SimpleEntity {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "region")

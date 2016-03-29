@@ -8,12 +8,13 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 
 @Entity
 @Table(name = "city_districts", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "locality_id" }))
 @NamedQuery(name = "CityDistrict.findAll", query = "SELECT m FROM CityDistrict AS m ORDER BY m.regDate")
-public class CityDistrict extends Reference {
+public class CityDistrict extends SimpleEntity {
 
 	@NotNull
 	@ManyToOne(optional = false)

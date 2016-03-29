@@ -5,6 +5,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import kz.lof.common.model.SimpleEntity;
+
 /**
  * 
  * 
@@ -14,6 +16,6 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "receiving_reason", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
 @NamedQuery(name = "ReceivingReason.findAll", query = "SELECT m FROM ReceivingReason AS m ORDER BY m.regDate")
-public class ReceivingReason extends Reference {
+public class ReceivingReason extends SimpleEntity {
 
 }

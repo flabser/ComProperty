@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 import reference.model.constants.CountryCode;
 
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreType;
 @Table(name = "countries", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "code" }))
 @NamedQuery(name = "Country.findAll", query = "SELECT m FROM Country AS m ORDER BY m.regDate")
 @JsonIgnoreType
-public class Country extends Reference {
+public class Country extends SimpleEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
 	private List<Region> regions;
