@@ -401,6 +401,11 @@
         <entry lang="ENG">Localized titles</entry>
         <entry lang="CHI">基本性能</entry>
     </sentence>
+     <sentence mode="on" keyword="iin">
+        <entry lang="RUS">ИИН</entry>
+        <entry lang="KAZ">ИИН</entry>
+        <entry lang="ENG">IIN</entry>
+    </sentence>
     <sentence mode="on" keyword="bin">
         <entry lang="RUS">БИН</entry>
         <entry lang="KAZ">БИН</entry>
@@ -692,7 +697,7 @@
         <entry lang="ENG">Code</entry>
         <entry lang="CHI">代码</entry>
     </sentence>    
-    <sentence mode="on" keyword="bin">
+    <sentence mode="on" keyword="recycle_bin">
         <entry lang="KAZ">Кәрзеңке</entry>
         <entry lang="ENG">Recycle Bin</entry>
         <entry lang="CHI">篮</entry>
