@@ -25,6 +25,7 @@
     <caption name="password"/>
     <caption name="password_confirm"/>
     <caption name="password_confirm_not_equals"/>
+    <caption name="iin"/>
     <caption name="email"/>
     <caption name="org_name"/>
     <caption name="countdocinview"/>
