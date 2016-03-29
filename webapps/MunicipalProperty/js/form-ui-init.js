@@ -1,6 +1,20 @@
 $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
-    $('[type=date]').datepicker({ dateFormat: nb.options.dateFormat });
+
+    $('input[type=number]').each(function() {
+        $(this).attr({
+            'type': 'text',
+            'data-type': 'number'
+        }).numericField();
+    });
+
+    $('input[type=date]').each(function() {
+        $(this).attr({
+            'type': 'text',
+            'data-type': 'date',
+            /*'readonly': 'readonly',*/
+        }).datepicker({ dateFormat: nb.options.dateFormat });
+    });
 
     // init action
     $('[data-action=save_and_close]').click(function(event) {

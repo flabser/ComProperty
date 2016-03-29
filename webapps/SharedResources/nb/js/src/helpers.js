@@ -89,3 +89,46 @@ nb.html.pagination = function(data) {
 
     return result;
 };
+
+jQuery.fn.numericField = function() {
+    var triadnum_p = /(\d)(?=(\d\d\d)+([^\d]|$))/g;
+
+    return this.each(function() {
+        var fv;
+        var $field = jQuery(this);
+
+        $field.each(function() {
+            fv = $(this).val();
+            $(this).val($(this).val().replace(triadnum_p, '$1 '));
+
+            if (!($(this).attr('readonly'))) {
+                // hidden field
+                /*var $di = $('<input type=hidden name="' + this.name + '" value="' + this.value + '" />');
+                $(this).removeAttr('name');
+                $di.appendTo(this.form);*/
+
+                $(this).keyup(function(e) {
+                    if ([37, 38, 39, 40].indexOf(e.keyCode) == -1) {
+                        var $val = $(this).val().replace(/[^0-9,\.]/g, '').replace(triadnum_p, '$1 ');
+                        $(this).val($val);
+                    } else {
+                        return true;
+                    }
+                }).keydown(function(e) {
+                    /*if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+                        return true;
+                    }
+                    if ([8, 9, 46, 37, 38, 39, 40, 116].indexOf(e.keyCode) !== -1) {
+                        return true;
+                    }*/
+                    return true;
+                });
+                /*.blur(function() {
+                    $di.val($(this).val().replace(/[^0-9,\.]/g, ''));
+                }).change(function() {
+                    $di.val($(this).val().replace(/[^0-9,\.]/g, ''));
+                });*/
+            }
+        });
+    });
+};
