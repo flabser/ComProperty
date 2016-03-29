@@ -2022,7 +2022,7 @@ nb.submitForm = function(form, options) {
             nb.uiBlock();
             // clear errors
             $('.required, .has-error', form).removeClass('required has-error');
-            $('.error-massage', form).remove();
+            $('.error-message', form).remove();
         },
         success: function(response) {
             notify.set({
@@ -2080,7 +2080,7 @@ nb.validateForm = function(form, validation) {
             }
             $('[name=' + er.field + ']', form).attr('required', 'required').addClass('required');
             var $di = $('[data-input=' + er.field + ']', form).addClass('required');
-            var $erms = $('<div class=error-massage>' + er.message + '</div>');
+            var $erms = $('<div class=error-message>' + er.message + '</div>');
             if ($di.length) {
                 $di.after($erms);
                 $di.parent().addClass('has-error');
@@ -2222,7 +2222,7 @@ $(document).ready(function() {
             if (this.validity && this.validity.valid) {
                 $(this).parent().removeClass('has-error');
                 $(this).removeClass('has-error');
-                $('.error-massage', $(this).parent()).remove();
+                $('.error-message', $(this).parent()).remove();
             }
         });
     });

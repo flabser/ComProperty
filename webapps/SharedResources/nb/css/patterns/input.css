@@ -151,13 +151,13 @@ select.invalid {
     border-color: #FF845D;
 }
 
-.error-massage {
+.error-message {
     color: #F00;
     display: none;
     padding: 2px;
 }
 
-.has-error > .error-massage {
+.has-error > .error-message {
     display: block;
 }
 

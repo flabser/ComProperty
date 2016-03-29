@@ -21,7 +21,7 @@ nbApp.submitRegForm = function(form) {
             $('[type=submit]').attr('disabled', true);
             // clear errors
             $('.required, .has-error, [required]', form).removeClass('required has-error');
-            $('.error-massage', form).remove();
+            $('.error-message', form).remove();
         },
         success: function(response, status, xhr) {
             if (xhr.status == '200') {
