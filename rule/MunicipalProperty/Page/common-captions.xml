@@ -117,6 +117,7 @@
     <caption name="orders"/>
     <caption name="contracts"/>
     <caption name="new_order"/>
+    <caption name="new_contract"/>
 
     <caption name="municipal_property_by_propertycode"/>
 </rule>

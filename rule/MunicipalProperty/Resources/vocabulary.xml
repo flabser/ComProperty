@@ -15,7 +15,7 @@
         <entry lang="RUS">Объекты по типу права на имущество</entry>
         <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
     </sentence>
-     <sentence mode="on" keyword="notifications">
+    <sentence mode="on" keyword="notifications">
         <entry lang="ENG">Notifications</entry>
         <entry lang="RUS">Уведомления</entry>
         <entry lang="KAZ">Хабарламалар</entry>
@@ -129,7 +129,7 @@
         <entry lang="RUS">Метки</entry>
         <entry lang="KAZ">Метки</entry>
         <entry lang="ENG">Tags</entry>
-    </sentence>  
+    </sentence>
     <sentence mode="on" keyword="inv_number">
         <entry lang="RUS">Инвентарный номер</entry>
         <entry lang="KAZ">Инвентарлы нөмір</entry>
@@ -159,16 +159,16 @@
         <entry lang="KAZ">Балансқа алу датасы</entry>
         <entry lang="ENG">Acceptance date</entry>
     </sentence>
-      <sentence mode="on" keyword="original_cost">
+    <sentence mode="on" keyword="original_cost">
         <entry lang="RUS">Первоначальная стоимость</entry>
         <entry lang="KAZ">Бастапқы құны</entry>
         <entry lang="ENG">Original cost</entry>
-    </sentence>   
+    </sentence>
     <sentence mode="on" keyword="receiving_reason">
         <entry lang="RUS">Основание поступления на баланс</entry>
         <entry lang="KAZ">Балансқа өту негізі</entry>
         <entry lang="ENG">Receiving reason on the balance</entry>
-    </sentence>  
+    </sentence>
     <sentence mode="on" keyword="model">
         <entry lang="RUS">Модель</entry>
         <entry lang="KAZ">Үлгісі</entry>
@@ -445,17 +445,17 @@
         <entry lang="KAZ">Мотоциклдер</entry>
         <entry lang="ENG">Motorcycles</entry>
     </sentence>
-     <sentence mode="on" keyword="object_registered">
+    <sentence mode="on" keyword="object_registered">
         <entry lang="RUS">Объект зарегестрирован</entry>
         <entry lang="KAZ">Объект зарегестрирован</entry>
         <entry lang="ENG"></entry>
     </sentence>
-     <sentence mode="on" keyword="contract_expired">
+    <sentence mode="on" keyword="contract_expired">
         <entry lang="RUS">Срок договора истек</entry>
         <entry lang="KAZ">Срок договора истек</entry>
         <entry lang="ENG"></entry>
     </sentence>
-     <sentence mode="on" keyword="order_registered">
+    <sentence mode="on" keyword="order_registered">
         <entry lang="RUS">Постановление зарегестрировано</entry>
         <entry lang="KAZ">Постановление зарегестрировано</entry>
         <entry lang="ENG"></entry>
@@ -465,12 +465,12 @@
         <entry lang="KAZ">Договор зарегестрирован</entry>
         <entry lang="ENG"></entry>
     </sentence>
-     <sentence mode="on" keyword="object_loaded">
+    <sentence mode="on" keyword="object_loaded">
         <entry lang="RUS">Объекты загружены</entry>
         <entry lang="KAZ">Объекты загружены</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    
+
     <sentence mode="on" keyword="Номер двигателя">
         <entry lang="KAZ">Қозғалтқыш нөмірі</entry>
         <entry lang="ENG"></entry>
@@ -779,11 +779,31 @@
         <entry lang="KAZ">Қаулы атауы</entry>
         <entry lang="ENG">Order name</entry>
     </sentence>
+    <sentence mode="on" keyword="contracts">
+        <entry lang="RUS">Договоры</entry>
+        <entry lang="KAZ">contract</entry>
+        <entry lang="ENG">Contracts</entry>
+    </sentence>
+    <sentence mode="on" keyword="contract">
+        <entry lang="RUS">Договор</entry>
+        <entry lang="KAZ">Договор</entry>
+        <entry lang="ENG">Contract</entry>
+    </sentence>
+    <sentence mode="on" keyword="new_contract">
+        <entry lang="RUS">+Контракт</entry>
+        <entry lang="KAZ">+Контракт</entry>
+        <entry lang="ENG">+Contract</entry>
+    </sentence>
+    <sentence mode="on" keyword="contract_name">
+        <entry lang="RUS">Наименование договора</entry>
+        <entry lang="KAZ">Наименование договора</entry>
+        <entry lang="ENG">Contract name</entry>
+    </sentence>
     <sentence mode="on" keyword="Договора и доп.соглашения">
         <entry lang="KAZ">Келісім-шарттар мен қосымша келісулер</entry>
         <entry lang="ENG"></entry>
     </sentence>
-  
+
     <sentence mode="on" keyword="Регистрация объектов">
         <entry lang="KAZ">Объектілерді тіркеу</entry>
         <entry lang="ENG"></entry>
@@ -1038,12 +1058,12 @@
         <entry lang="KAZ">Тех. құжат</entry>
         <entry lang="ENG"></entry>
     </sentence>
-     <sentence mode="on" keyword="reg_cert">
-        <entry lang="RUS">Свидетельство о регистрации имущества </entry>
-        <entry lang="KAZ">Свидетельство о регистрации имущества </entry>
+    <sentence mode="on" keyword="reg_cert">
+        <entry lang="RUS">Свидетельство о регистрации имущества</entry>
+        <entry lang="KAZ">Свидетельство о регистрации имущества</entry>
         <entry lang="ENG"></entry>
     </sentence>
-     <sentence mode="on" keyword="decrees_acts">
+    <sentence mode="on" keyword="decrees_acts">
         <entry lang="RUS">Постановление акимата и акт приема-передачи, передано в какое упралени</entry>
         <entry lang="KAZ">Постановление акимата и акт приема-передачи, передано в какое упралени</entry>
         <entry lang="ENG"></entry>
