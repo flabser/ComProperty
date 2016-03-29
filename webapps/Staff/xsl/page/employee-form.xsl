@@ -107,29 +107,30 @@
                         <legend class="legend">
                             <xsl:value-of select="//captions/credentials/@caption"/>
                         </legend>
-                        <div class="form-group">
-                            <div class="control-label"></div>
-                            <div class="controls">
-                                <label class="btn btn-sm">
-                                    <input type="checkbox" name="reguser" id="reguser" autocomplete="off">
-                                        <xsl:if test="fields/reguser = 'on'">
-                                            <xsl:attribute name="checked">checked</xsl:attribute>
-                                        </xsl:if>
-                                        <span>
-                                            Зарегистрировать учетную запись
-                                        </span>
-                                    </input>
-                                </label>
+                        <xsl:if test="@docid = 'null'">
+                            <div class="form-group">
+                                <div class="control-label"></div>
+                                <div class="controls">
+                                    <label class="btn btn-sm">
+                                        <input type="checkbox" name="reguser" id="reguser" autocomplete="off">
+                                            <xsl:if test="fields/reguser = 'on'">
+                                                <xsl:attribute name="checked">checked</xsl:attribute>
+                                            </xsl:if>
+                                            <span>
+                                                Зарегистрировать учетную запись
+                                            </span>
+                                        </input>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
+                        </xsl:if>
                         <div class="form-group">
                             <div class="control-label">
                                 <xsl:value-of select="//captions/login_name/@caption"/>
                             </div>
                             <div class="controls">
-                                <input type="text" name="login" value="{fields/login}" class="span7"
-                                       autocomplete="off">
-                                    <xsl:if test="not(fields/reguser)">
+                                <input type="text" name="login" value="{fields/login}" class="span7" autocomplete="off">
+                                    <xsl:if test="not(fields/reguser) or @docid != 'null'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -142,7 +143,7 @@
                             <div class="controls">
                                 <input type="email" name="email" value="{fields/email}" class="span4"
                                        autocomplete="off">
-                                    <xsl:if test="not(fields/reguser)">
+                                    <xsl:if test="not(fields/reguser) or @docid != 'null'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -155,7 +156,7 @@
                             <div class="controls">
                                 <input type="password" name="pwd" value="{fields/password}" class="span4"
                                        autocomplete="off">
-                                    <xsl:if test="not(fields/reguser)">
+                                    <xsl:if test="not(fields/reguser) or @docid != 'null'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
@@ -168,7 +169,7 @@
                             <div class="controls">
                                 <input type="password" name="pwd_confirm" value="{fields/reenterpassword}" class="span4"
                                        autocomplete="off">
-                                    <xsl:if test="not(fields/reguser)">
+                                    <xsl:if test="not(fields/reguser) or @docid != 'null'">
                                         <xsl:attribute name="disabled">disabled</xsl:attribute>
                                     </xsl:if>
                                 </input>
