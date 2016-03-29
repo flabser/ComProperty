@@ -132,16 +132,18 @@ public class Order extends SecureAppEntity {
         }
 
         ContractDAO contractDAO = new ContractDAO(ses);
-        List<Contract> contracts = contractDAO.findAllContractsByOrder(this);
-        if (!contracts.isEmpty()) {
-            chunk.append("<contracts>");
-            for (Contract contract : contracts) {
-                chunk.append("<contract>");
-                chunk.append("<url>" + contract.getURL() + "</url>");
-                chunk.append("<description>" + contract.getDescription() + "</description>");
-                chunk.append("</contract>");
+        if (this.getId() != null) {
+            List<Contract> contracts = contractDAO.findAllContractsByOrder(this);
+            if (!contracts.isEmpty()) {
+                chunk.append("<contracts>");
+                for (Contract contract : contracts) {
+                    chunk.append("<contract>");
+                    chunk.append("<url>" + contract.getURL() + "</url>");
+                    chunk.append("<description>" + contract.getDescription() + "</description>");
+                    chunk.append("</contract>");
+                }
+                chunk.append("</contracts>");
             }
-            chunk.append("</contracts>");
         }
 
         return chunk.toString();
