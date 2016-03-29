@@ -121,7 +121,7 @@ public class ContractForm extends _DoPage {
             entity.setDescription(formData.getValue("description"));
             entity.setRegNumber(formData.getValue("regnumber"));
             entity.setRegDate(_Helper.convertStringToDate(formData.getValue("regdate")));
-            entity.setExpired(_Helper.convertStringToDate(formData.getValue("expireddate")));
+            entity.setExpired(_Helper.convertStringToDate(formData.getValue("expired")));
 
             String[] fileNames = formData.getListOfValuesSilently("fileid");
             if (fileNames.length > 0) {
@@ -164,11 +164,11 @@ public class ContractForm extends _DoPage {
         if (formData.getValueSilently("regnumber").isEmpty()) {
             ve.addError("regnumber", "required", getLocalizedWord("field_is_empty", lang));
         }
-        if (formData.getValueSilently("expireddate").isEmpty()) {
-            ve.addError("expireddate", "required", getLocalizedWord("field_is_empty", lang));
-        }
         if (formData.getValueSilently("regdate").isEmpty()) {
             ve.addError("regdate", "required", getLocalizedWord("field_is_empty", lang));
+        }
+        if (formData.getValueSilently("expired").isEmpty()) {
+            ve.addError("expired", "required", getLocalizedWord("field_is_empty", lang));
         }
         if (formData.getValueSilently("description").isEmpty()) {
             ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));

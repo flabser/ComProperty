@@ -105,6 +105,7 @@ public class Contract extends SecureAppEntity {
     public String getShortXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
         chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+        chunk.append("<expired>" + Util.simpleDateTimeFormat.format(expired) + "</expired>");
         chunk.append("<regnumber>" + regNumber + "</regnumber>");
         chunk.append("<description>" + description + "</description>");
         chunk.append("<contractstatus>" + ses.getAppEnv().vocabulary.getWord(getContractStatus().name().toLowerCase(), ses.getLang()) + "</contractstatus>");
@@ -123,6 +124,7 @@ public class Contract extends SecureAppEntity {
     public String getFullXMLChunk(_Session ses) {
         StringBuilder chunk = new StringBuilder(1000);
         chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+        chunk.append("<expired>" + Util.simpleDateTimeFormat.format(expired) + "</expired>");
         chunk.append("<regnumber>" + regNumber + "</regnumber>");
         chunk.append("<description>" + description + "</description>");
         chunk.append("<contractstatus>" + getContractStatus() + "</contractstatus>");
