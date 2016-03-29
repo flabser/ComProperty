@@ -51,6 +51,7 @@ public class ContractForm extends _DoPage {
             entity = new Contract();
             entity.setAuthor(user);
             entity.setRegDate(new Date());
+            entity.setExpired(new Date());
             entity.setRegNumber("");
             String orderId = formData.getValueSilently("orderid");
             OrderDAO orderDAO = new OrderDAO(session);
