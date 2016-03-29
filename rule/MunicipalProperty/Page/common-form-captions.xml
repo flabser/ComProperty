@@ -16,9 +16,11 @@
     <caption name="object"/>
     <caption name="order"/>
     <caption name="order_name"/>
+    <caption name="contract"/>
+    <caption name="contract_name"/>
     <caption name="description"/>
     <caption name="property_code"/>
-    <caption name="property_type">Тип имущество</caption>
+    <caption name="property_type"/>
     <caption name="property_status"/>
     <caption name="acquisition_year"/>
     <caption name="acceptance_date"/>
@@ -66,10 +68,10 @@
     <caption name="limitdepreciation">Предельная норма амортизации</caption>
 
     <caption name="documents_of_title"/>
-    <caption name="tech_cert">Технический паспорт</caption>
-    <caption name="reg_cert">Свидетельство о регистрации имущества</caption>
-    <caption name="decrees_acts">Постановление акимата и акт приема-передачи, передано в какое упраление</caption>
-    <caption name="note">Примечание</caption>
+    <caption name="tech_cert"/>
+    <caption name="reg_cert"/>
+    <caption name="decrees_acts"/>
+    <caption name="note"/>
 
     <caption name="unknown"/>
     <caption name="on_balance"/>

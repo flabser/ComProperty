@@ -9,7 +9,7 @@
     <xsl:template name="_content">
         <div class="content-header">
             <xsl:call-template name="page-info">
-                <xsl:with-param name="title" select="//captions/orders/@caption"/>
+                <xsl:with-param name="title" select="//captions/contracts/@caption"/>
             </xsl:call-template>
         </div>
         <div class="content-body">
@@ -52,7 +52,7 @@
                             <xsl:value-of select="viewcontent/regdate"/>
                         </span>
                         <span class="vw-order-status">
-                            <xsl:value-of select="viewcontent/orderstatus"/>
+                            <xsl:value-of select="viewcontent/contractstatus"/>
                         </span>
                         <span class="vw-icon">
                             <xsl:if test="viewcontent/attachments > 0">

@@ -131,6 +131,9 @@ public class MainNavigator extends _DoPage {
         _Outline orderOutline = new _Outline(getLocalizedWord("orders", lang), "order");
         orderOutline.addEntry(new _OutlineEntry(getLocalizedWord("orders", lang), "order-view"));
 
+        _Outline contractOutline = new _Outline(getLocalizedWord("contracts", lang), "contract");
+        contractOutline.addEntry(new _OutlineEntry(getLocalizedWord("contracts", lang), "contract-view"));
+
         _Outline reportOutline = new _Outline(getLocalizedWord("reports", lang), "report");
         reportOutline.addEntry(new _OutlineEntry(getLocalizedWord("reports", lang), "report-template-view"));
 
@@ -147,7 +150,7 @@ public class MainNavigator extends _DoPage {
         for (NotificationType type : NotificationType.values()) {
             if (type != NotificationType.UNKNOWN) {
                 String stringType = type.name().toLowerCase();
-                notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "notification-view_"+ stringType , nUrl + stringType));
+                notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType, lang), "", "notification-view" + stringType, nUrl + stringType));
             }
         }
 
@@ -156,14 +159,13 @@ public class MainNavigator extends _DoPage {
         list.add(mpByPropertyCodeOutline);
         list.add(notificationOutline);
         list.add(orderOutline);
+        list.add(contractOutline);
 
         String kuf = formData.getValueSilently("kuf");
         String type = formData.getValueSilently("type");
         String categoryId = formData.getValueSilently("categoryid");
-        String pageId = formData.getValueSilently("id").replace("-form", "-view") + kuf + categoryId;
-        if(formData.getValueSilently("id").equals("notification-view")){
-            pageId += '_'+ formData.getValueSilently("type");
-        }
+        String pageId = formData.getValueSilently("id").replace("-form", "-view") + kuf + categoryId + type;
+
         addValue("outline_current", pageId);
 
         if (!kuf.isEmpty()) {

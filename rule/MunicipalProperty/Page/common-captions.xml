@@ -113,9 +113,10 @@
 
     <caption name="personal_estates"/>
     <caption name="real_estates"/>
-    <caption name="reports"/>	
+    <caption name="reports"/>
+    <caption name="orders"/>
+    <caption name="contracts"/>
     <caption name="new_order"/>
-    
+
     <caption name="municipal_property_by_propertycode"/>
-     
 </rule>
