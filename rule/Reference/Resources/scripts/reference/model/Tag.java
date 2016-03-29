@@ -17,6 +17,7 @@ import javax.persistence.UniqueConstraint;
 import kz.flabs.util.Util;
 import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.administrator.model.Language;
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "tags", uniqueConstraints = @UniqueConstraint(columnNames = { "parent", "name" }))
 @NamedQuery(name = "Tag.findAll", query = "SELECT m FROM Tag AS m WHERE m.parent IS NULL ORDER BY m.name")
-public class Tag extends Reference {
+public class Tag extends SimpleEntity {
 
 	@Column(length = 7)
 	private String color;

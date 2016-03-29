@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 
 import kz.flabs.util.Util;
 import kz.lof.administrator.model.User;
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.dataengine.system.IEmployee;
 import kz.lof.scripting._Session;
 
@@ -34,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "employees")
 @NamedQuery(name = "Employee.findAll", query = "SELECT m FROM Employee AS m ORDER BY m.regDate")
 @Cache(isolation = CacheIsolationType.ISOLATED)
-public class Employee extends Staff implements IEmployee {
+public class Employee extends SimpleEntity implements IEmployee {
 
 	@OneToOne(cascade = { CascadeType.MERGE }, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)

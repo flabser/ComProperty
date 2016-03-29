@@ -9,12 +9,13 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 
 @Entity
 @Table(name = "streets", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "locality_id" }))
 @NamedQuery(name = "Street.findAll", query = "SELECT m FROM Street AS m ORDER BY m.regDate")
-public class Street extends Reference {
+public class Street extends SimpleEntity {
 	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)

@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import kz.flabs.util.Util;
 import kz.lof.administrator.dao.LanguageDAO;
 import kz.lof.administrator.model.Language;
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 import reference.model.DepartmentType;
 
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "departments")
 @NamedQuery(name = "Department.findAll", query = "SELECT m FROM Department AS m ORDER BY m.regDate")
-public class Department extends Staff {
+public class Department extends SimpleEntity {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)

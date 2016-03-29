@@ -7,13 +7,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.lof.common.model.SimpleEntity;
 import kz.lof.scripting._Session;
 import municipalproperty.model.constants.KufType;
 
 @Entity
 @Table(name = "kufs")
 @NamedQuery(name = "Kuf.findAll", query = "SELECT m FROM Kuf AS m ORDER BY m.regDate")
-public class Kuf extends Reference {
+public class Kuf extends SimpleEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true, length = 32, unique = true)
