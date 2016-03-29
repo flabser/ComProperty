@@ -16,7 +16,7 @@
             <fieldset class="fieldset">
                 <div class="form-group">
                     <xsl:if test="//action[@id = 'attach_file']">
-                        <label class="btn btn-lg" for="upfile">
+                        <label class="btn btn-lg btn-update-file-excel" for="upfile">
                             <i class="fa fa-file-excel-o"></i>
                             <span>
                                 <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
