@@ -15,17 +15,16 @@ import kz.lof.user.IUser;
 import kz.lof.webserver.servlet.UploadedFile;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
+import kz.nextbase.script._Helper;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;
+import municipalproperty.dao.ContractDAO;
 import municipalproperty.dao.OrderDAO;
-import municipalproperty.dao.PropertyDAO;
+import municipalproperty.model.Contract;
 import municipalproperty.model.Order;
-import municipalproperty.model.Property;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
-import reference.model.PropertyCode;
-import staff.model.Organization;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,37 +36,30 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class OrderForm extends _DoPage {
+public class ContractForm extends _DoPage {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
         IUser<Long> user = session.getUser();
-        Order entity;
+        Contract entity;
         String id = formData.getValueSilently("docid");
         if (!id.isEmpty()) {
-            OrderDAO dao = new OrderDAO(session);
+            ContractDAO dao = new ContractDAO(session);
             entity = dao.findById(UUID.fromString(id));
             addValue("formsesid", Util.generateRandomAsText());
         } else {
-            entity = new Order();
+            entity = new Contract();
             entity.setAuthor(user);
             entity.setRegDate(new Date());
             entity.setRegNumber("");
-            String propertyId = formData.getValueSilently("propertyid");
-            PropertyDAO propertyDAO = new PropertyDAO(session);
-            Property property = propertyDAO.findById(propertyId);
-            if (property == null) {
-                property = new Property();
-                property.setObjectName("");
-                Organization org = new Organization();
-                org.setName("");
-                property.setBalanceHolder(org);
-                PropertyCode pc = new PropertyCode();
-                pc.setName("");
-                property.setPropertyCode(pc);
+            String orderId = formData.getValueSilently("orderid");
+            OrderDAO orderDAO = new OrderDAO(session);
+            Order order = orderDAO.findById(orderId);
+            if (order == null) {
+                order = new Order();
+                order.setDescription("");
             }
-
-            entity.setProperty(property);
+            entity.setOrder(order);
             String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
             addValue("formsesid", fsId);
             List<String> formFiles = null;
@@ -93,15 +85,10 @@ public class OrderForm extends _DoPage {
         }
 
         addContent(entity);
-        addContent(new _EnumWrapper<>(Order.OrderStatus.class.getEnumConstants()));
+        addContent(new _EnumWrapper<>(Contract.ContractStatus.class.getEnumConstants()));
         _ActionBar actionBar = new _ActionBar(session);
         actionBar.addAction(new _Action(getLocalizedWord("save_close", session.getLang()), "", _ActionType.SAVE_AND_CLOSE));
         actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
-        if (entity.getId() != null) {
-            _Action newOrderAction = new _Action(getLocalizedWord("new_contract", session.getLang()), "", "new_contract");
-            newOrderAction.setURL("Provider?id=contract-form&orderid=" + entity.getId());
-            actionBar.addAction(newOrderAction);
-        }
         addContent(actionBar);
         startSaveFormTransact(entity);
     }
@@ -116,24 +103,25 @@ public class OrderForm extends _DoPage {
                 return;
             }
 
-            OrderDAO dao = new OrderDAO(session);
-            Order entity;
+            ContractDAO dao = new ContractDAO(session);
+            Contract entity;
             String id = formData.getValueSilently("docid");
             boolean isNew = id.isEmpty();
 
             if (isNew) {
-                entity = new Order();
-                String propertyId = formData.getValueSilently("propertyid");
-                PropertyDAO propertyDAO = new PropertyDAO(session);
-                Property property = propertyDAO.findById(propertyId);
-                entity.setProperty(property);
+                entity = new Contract();
+                String orderId = formData.getValueSilently("orderid");
+                OrderDAO orderDAO = new OrderDAO(session);
+                Order order = orderDAO.findById(orderId);
+                entity.setOrder(order);
             } else {
                 entity = dao.findById(id);
             }
 
             entity.setDescription(formData.getValue("description"));
             entity.setRegNumber(formData.getValue("regnumber"));
-            entity.setOrderStatus(Order.OrderStatus.valueOf(formData.getValue("orderstatus")));
+            entity.setRegDate(_Helper.convertStringToDate(formData.getValue("regdate")));
+            entity.setExpired(_Helper.convertStringToDate(formData.getValue("expireddate")));
 
             String[] fileNames = formData.getListOfValuesSilently("fileid");
             if (fileNames.length > 0) {
@@ -170,19 +158,23 @@ public class OrderForm extends _DoPage {
     private _Validation validate(_WebFormData formData, LanguageCode lang) {
         _Validation ve = new _Validation();
 
+        if (formData.getValueSilently("orderid").isEmpty()) {
+            ve.addError("orderid", "required", getLocalizedWord("field_is_empty", lang));
+        }
         if (formData.getValueSilently("regnumber").isEmpty()) {
             ve.addError("regnumber", "required", getLocalizedWord("field_is_empty", lang));
         }
-
-        if (formData.getValueSilently("propertyid").isEmpty()) {
-            ve.addError("propertyid", "required", getLocalizedWord("field_is_empty", lang));
+        if (formData.getValueSilently("expireddate").isEmpty()) {
+            ve.addError("expireddate", "required", getLocalizedWord("field_is_empty", lang));
         }
-
+        if (formData.getValueSilently("regdate").isEmpty()) {
+            ve.addError("regdate", "required", getLocalizedWord("field_is_empty", lang));
+        }
         if (formData.getValueSilently("description").isEmpty()) {
             ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
         }
-        if (formData.getValueSilently("orderstatus").isEmpty()) {
-            ve.addError("orderstatus", "required", getLocalizedWord("field_is_empty", lang));
+        if (formData.getValueSilently("contractstatus").isEmpty()) {
+            ve.addError("contractstatus", "required", getLocalizedWord("field_is_empty", lang));
         }
 
         return ve;

@@ -51,7 +51,7 @@ public class UploadUpdatingForm extends _DoPage {
             addContent(new _POJOListWrapper(filesToPublish, ses));
         }
 
-        if (user.getId() == SuperUser.ID || user.getRoles().contains("data_loader")) {
+        if (user.getId() == SuperUser.ID || (user.getRoles() != null && user.getRoles().contains("data_loader"))) {
             _ActionBar actionBar = new _ActionBar(ses);
             actionBar.addAction(new _Action(getLocalizedWord("attach_file", ses.getLang()), "", "attach_file"));
             addContent(actionBar);
