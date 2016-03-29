@@ -63,17 +63,18 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
-			_Validation ve = validate(formData, session.getLang());
+			String id = formData.getValueSilently("docid");
+			boolean isNew = id.isEmpty();
+
+			_Validation ve = validate(formData, session.getLang(), isNew);
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
 				return;
 			}
 
-			String id = formData.getValueSilently("docid");
 			EquipmentDAO dao = new EquipmentDAO(session);
 			Equipment entity;
-			boolean isNew = id.isEmpty();
 
 			if (isNew) {
 				entity = new Equipment();
@@ -81,9 +82,11 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 				entity = dao.findById(id);
 			}
 
-			OrganizationDAO oDao = new OrganizationDAO(session);
-			Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
-			entity.setBalanceHolder(org);
+			if (formData.containsField("balanceholder")) {
+				OrganizationDAO oDao = new OrganizationDAO(session);
+				Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
+				entity.setBalanceHolder(org);
+			}
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
 			entity.setDescription(formData.getValueSilently("description"));
 			entity.setObjectName(formData.getValueSilently("objectname"));
@@ -164,11 +167,13 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 		}
 	}
 
-	private _Validation validate(_WebFormData formData, LanguageCode lang) {
+	private _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
 		_Validation ve = new _Validation();
 
-		if (formData.getValueSilently("balanceholder").isEmpty()) {
-			ve.addError("balanceholder", "required", getLocalizedWord("field_is_empty", lang));
+		if (isNew || formData.containsField("balanceholder")) {
+			if (formData.getValueSilently("balanceholder").isEmpty()) {
+				ve.addError("balanceholder", "required", getLocalizedWord("field_is_empty", lang));
+			}
 		}
 		if (formData.getValueSilently("kof").isEmpty()) {
 			ve.addError("kof", "required", getLocalizedWord("field_is_empty", lang));

@@ -16,7 +16,8 @@
                     <xsl:otherwise>
                         <div class="input span8">
                             <xsl:value-of select="fields/balanceholder"/>
-                            <input type="hidden" name="balanceholder" value="{fields/balanceholder/@id}"/>
+                            <input type="hidden" name="balanceholder" value="{fields/balanceholder/@id}"
+                                   disabled="disabled"/>
                         </div>
                     </xsl:otherwise>
                 </xsl:choose>
