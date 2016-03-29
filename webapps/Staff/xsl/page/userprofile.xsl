@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="controls">
                                     <ul class="input-placeholder list-style-none">
-                                        <xsl:for-each select="fields/roles">
+                                        <xsl:for-each select="fields/roles/entry">
                                             <li>
                                                 <xsl:value-of select="."/>
                                             </li>
