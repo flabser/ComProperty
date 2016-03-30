@@ -2719,6 +2719,11 @@ nb.upload = function(fileInput) {
     var inputName = fileInput.name;
     var formData = new FormData(fileInput.form);
 
+    var $attNode = $(nb.template('attachments', {
+        files: [fileInput.files[0].name]
+    }));
+    var $progress = $attNode.find('.upload-progress');
+
     return $.ajax({
         url: nb.api.upload + '?time=' + new Date().getTime(),
         method: 'POST',
@@ -2729,24 +2734,26 @@ nb.upload = function(fileInput) {
         xhr: function() {
             var _xhr = $.ajaxSettings.xhr();
             if (_xhr.upload) {
-                _xhr.upload.addEventListener('progress', function(e) { nb.uploadProgress(e, inputName); }, false);
+                _xhr.upload.addEventListener('progress', function(e) { nb.uploadProgress(e, $progress); }, false);
             }
             return _xhr;
         },
-        success: function(result, xhr) {
-            var $attNode = $(nb.template('attachments', result));
+        beforeSend: function() {
             $('[data-upload-files=' + inputName + ']').prepend($attNode);
-
+        },
+        success: function(result, xhr) {
+            $attNode.removeClass('uploading');
+            $attNode.find('.file-name').addClass('blink-anim');
+            $attNode.find('[name=fileid]').removeAttr('disabled');
             // init
             $('.btn-remove-file', $attNode).click(function() {
                 $attNode.remove();
             });
-            //
 
             return result;
         },
         error: function(err) {
-            $('[data-upload-files=' + inputName + ']').append("error");
+            $attNode.addClass('error');
             return err;
         },
         complete: function() {
@@ -2756,12 +2763,9 @@ nb.upload = function(fileInput) {
     });
 };
 
-nb.uploadProgress = function(e, inputName) {
+nb.uploadProgress = function(e, $progress) {
     if (e.lengthComputable) {
-        $('#progress_' + inputName).attr({
-            value: e.loaded,
-            max: e.total
-        });
+        $progress.css('width', ((e.loaded / e.total) * 100) + '%');
     }
 };
 
@@ -2869,13 +2873,13 @@ this["nb"]["templates"] = this["nb"]["templates"] || {};
 this["nb"]["templates"]["attachments"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "    <div class=\"attachments-file blink-anim\">\r\n        <span class=\"file-name\" data-file=\""
+  return "    <div class=\"attachments-file uploading\">\r\n        <span class=\"file-name\" data-file=\""
     + alias2(alias1(blockParams[0][0], depth0))
-    + "\">"
+    + "\">\r\n            "
     + alias2(alias1(blockParams[0][0], depth0))
-    + "</span>\r\n        <span class=\"btn btn-sm btn-link btn-remove-file\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
+    + "\r\n            <div class=\"upload-progress\"></div>\r\n        </span>\r\n        <span class=\"btn btn-sm btn-link btn-remove-file\">\r\n            <i class=\"fa fa-times\"></i>\r\n        </span>\r\n        <input type=\"hidden\" name=\"fileid\" value=\""
     + alias2(alias1(blockParams[0][0], depth0))
-    + "\"/>\r\n    </div>\r\n";
+    + "\" disabled/>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
     return "    <div class=\"blink-anim\">files empty</div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {

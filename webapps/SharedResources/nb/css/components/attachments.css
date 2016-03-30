@@ -8,8 +8,23 @@
 }
 
 .attachments-file .file-name {
+    border: 1px solid transparent;
     display: inline-block;
-    padding: 6px;
+    padding: 4px;
+    position: relative;
+}
+
+.attachments-file.uploading .file-name {
+    border: 1px solid #ccc;
+}
+
+.attachments-file.uploading .upload-progress {
+    background: rgba(0, 162, 7, 0.3);
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 0;
 }
 
 .attachments-file .btn-remove-file {
@@ -19,6 +34,10 @@
 
 .attachments-file:hover .btn-remove-file {
     opacity: 1;
+}
+
+.attachments-file.uploading .btn-remove-file {
+    display: none;
 }
 
 .file-name[data-file]:before {

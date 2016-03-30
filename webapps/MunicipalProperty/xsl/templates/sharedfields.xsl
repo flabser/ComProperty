@@ -316,7 +316,6 @@
                     <xsl:value-of select="//captions/attach_file/@caption"/>
                 </span>
             </button>
-            <progress id="progress_{$input-name}" class="upload-progress" value="0"/>
             <div class="attachments" data-upload-files="{$input-name}">
                 <xsl:for-each select="fields/attachments/attachment">
                     <div class="attachments-file">

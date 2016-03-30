@@ -2,6 +2,11 @@ nb.upload = function(fileInput) {
     var inputName = fileInput.name;
     var formData = new FormData(fileInput.form);
 
+    var $attNode = $(nb.template('attachments', {
+        files: [fileInput.files[0].name]
+    }));
+    var $progress = $attNode.find('.upload-progress');
+
     return $.ajax({
         url: nb.api.upload + '?time=' + new Date().getTime(),
         method: 'POST',
@@ -12,24 +17,26 @@ nb.upload = function(fileInput) {
         xhr: function() {
             var _xhr = $.ajaxSettings.xhr();
             if (_xhr.upload) {
-                _xhr.upload.addEventListener('progress', function(e) { nb.uploadProgress(e, inputName); }, false);
+                _xhr.upload.addEventListener('progress', function(e) { nb.uploadProgress(e, $progress); }, false);
             }
             return _xhr;
         },
-        success: function(result, xhr) {
-            var $attNode = $(nb.template('attachments', result));
+        beforeSend: function() {
             $('[data-upload-files=' + inputName + ']').prepend($attNode);
-
+        },
+        success: function(result, xhr) {
+            $attNode.removeClass('uploading');
+            $attNode.find('.file-name').addClass('blink-anim');
+            $attNode.find('[name=fileid]').removeAttr('disabled');
             // init
             $('.btn-remove-file', $attNode).click(function() {
                 $attNode.remove();
             });
-            //
 
             return result;
         },
         error: function(err) {
-            $('[data-upload-files=' + inputName + ']').append("error");
+            $attNode.addClass('error');
             return err;
         },
         complete: function() {
@@ -39,12 +46,9 @@ nb.upload = function(fileInput) {
     });
 };
 
-nb.uploadProgress = function(e, inputName) {
+nb.uploadProgress = function(e, $progress) {
     if (e.lengthComputable) {
-        $('#progress_' + inputName).attr({
-            value: e.loaded,
-            max: e.total
-        });
+        $progress.css('width', ((e.loaded / e.total) * 100) + '%');
     }
 };
 
