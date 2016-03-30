@@ -1,10 +1,12 @@
 package municipalproperty.page.form;
 
+import kz.lof.common.model.Attachment;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
+import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
 import kz.nextbase.script.actions._Action;
@@ -15,6 +17,7 @@ import municipalproperty.model.Property;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Common abstract class for form of the Municipal Property application. Use it
@@ -62,6 +65,30 @@ public abstract class AbstractMunicipalPropertyForm extends _DoPage {
             dao.add(entity);
         } else {
             dao.update(entity);
+        }
+    }
+
+    @Override
+    public void doDELETE(_Session session, _WebFormData formData) {
+        String id = formData.getValueSilently("docid");
+        String attachmentId = formData.getValueSilently("attachment");
+        String attachmentName = formData.getValueSilently("att-name");
+
+        if (id.isEmpty() || attachmentId.isEmpty() || attachmentName.isEmpty()) {
+            return;
+        }
+
+        PropertyDAO dao = new PropertyDAO(session);
+        Property entity = dao.findById(id);
+
+        List<Attachment> atts = entity.getAttachments();
+        List<Attachment> forRemove = atts.stream().filter(it -> attachmentId.equals(it.getIdentifier()) && it.getRealFileName().equals(attachmentName)).collect(Collectors.toList());
+        atts.removeAll(forRemove);
+
+        try {
+            dao.update(entity);
+        } catch (SecureException e) {
+            setError(e);
         }
     }
 }
