@@ -62,8 +62,8 @@ progress[value='0'] {
     background: #f7f7f7;
     border-radius: 2px;
     display: inline-block;
-    margin: 0 3px;
-    padding: 4px 6px;
+    margin: 1px 3px;
+    padding: 8px;
     vertical-align: top;
 }
 
@@ -81,8 +81,8 @@ progress[value='0'] {
 .update-file-panel-msg {
     border-radius: 2px;
     display: inline-block;
-    margin: 0 3px;
-    padding: 4px;
+    margin: 1px 50px;
+    padding: 8px;
     vertical-align: top;
 }
 
