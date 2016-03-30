@@ -90,15 +90,10 @@ $(document).ready(function() {
 
         $('.attachments-file', '[data-upload-files=' + uploadName + ']').each(function() {
             var $self = this;
-            var url = $('a[data-file]', $self).attr('href');
+            var resourceUrl = $('a[data-file]', $self).attr('href');
             $('.btn-remove-file', $self).on('click', function() {
-                return $.ajax({
-                    type: 'DELETE',
-                    dataType: 'json',
-                    url: url,
-                    success: function() {
-                        $self.remove();
-                    }
+                nb.xhrDelete(resourceUrl).then(function() {
+                    $self.remove();
                 });
             });
         });

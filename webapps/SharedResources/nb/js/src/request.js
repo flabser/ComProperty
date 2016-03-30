@@ -1,11 +1,11 @@
 /**
  * xhrDelete
  */
-nb.xhrDelete = function(data) {
+nb.xhrDelete = function(url) {
     return $.ajax({
         type: 'DELETE',
         dataType: 'json',
-        url: location.href + '&' + data
+        url: url
     });
 };
 
