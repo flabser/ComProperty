@@ -11,5 +11,8 @@ nbApp.selectOptions = {
     },
     position: {
         url: 'p?id=get-positions'
+    },
+    departmenttype: {
+        url: 'p?id=get-departmenttype'
     }
 };
