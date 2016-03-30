@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Entity
@@ -126,9 +125,16 @@ public class Order extends SecureAppEntity {
         chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
         chunk.append("</property>");
 
-        if (!getAttachments().isEmpty()) {
-            chunk.append("<attachments>" + getAttachments().stream().map(it -> it.getShortXMLChunk(ses)).collect(Collectors.joining())
-                    + "</attachments>");
+        if (getAttachments() != null && !attachments.isEmpty()) {
+            chunk.append("<attachments>");
+            for (Attachment att : attachments) {
+                String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name=" + att.getRealFileName();
+                chunk.append("<attachment id=\"" + att.getId() + "\">");
+                chunk.append("<url>" + downloadUrl + "</url>");
+                chunk.append(att.getShortXMLChunk(ses));
+                chunk.append("</attachment>");
+            }
+            chunk.append("</attachments>");
         }
 
         ContractDAO contractDAO = new ContractDAO(ses);
