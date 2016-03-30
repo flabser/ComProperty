@@ -6,7 +6,7 @@
 		<class>kz.lof.administrator.model.User</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
 		<class>staff.model.Employee</class>
@@ -21,7 +21,7 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common module entities -->
 		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
@@ -69,7 +69,7 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common module entities -->
 		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
@@ -118,7 +118,7 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common module entities -->
 		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
@@ -163,7 +163,7 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -191,7 +191,7 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -217,7 +217,7 @@
 		<class>kz.lof.administrator.model.Language</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -250,7 +250,7 @@
 		<class>kz.lof.administrator.model.User</class>
 		<class>kz.lof.administrator.model.Application</class>
 		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.common.model.Sentence</class>
+		<class>kz.lof.administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
