@@ -27,6 +27,11 @@
     width: 0;
 }
 
+.attachments-file.uploading.error .file-name {
+    background-color: rgba(255, 0, 0, 0.5);
+    border-color: #F00;
+}
+
 .attachments-file .btn-remove-file {
     margin-left: 6px;
     opacity: .5;
