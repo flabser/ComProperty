@@ -50,7 +50,7 @@ public class ContractForm extends _DoPage {
 		} else {
 			entity = new Contract();
 			entity.setAuthor(user);
-			entity.setRegDate(new Date());
+			entity.setAppliedRegDate(new Date());
 			entity.setExpired(new Date());
 			entity.setRegNumber("");
 			String orderId = formData.getValueSilently("orderid");
