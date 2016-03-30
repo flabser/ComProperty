@@ -30,6 +30,11 @@
         <entry lang="RUS">Физические лица</entry>
         <entry lang="KAZ">Физические лица</entry>
     </sentence>
+      <sentence mode="on" keyword="individual">
+        <entry lang="ENG">Individual</entry>
+        <entry lang="RUS">Физическое лицо</entry>
+        <entry lang="KAZ">Физическое лицо</entry>
+    </sentence>
     <sentence mode="on" keyword="legal_entities">
         <entry lang="ENG">Legal entities</entry>
         <entry lang="RUS">Юридические лица</entry>
@@ -49,12 +54,7 @@
         <entry lang="ENG">Delete document</entry>
         <entry lang="RUS">Удалить документ</entry>
         <entry lang="KAZ"></entry>
-    </sentence>
-    <sentence mode="on" keyword="is_primary_organization">
-        <entry lang="ENG">is Primary organization</entry>
-        <entry lang="RUS">Первичная организация</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>
+    </sentence>    
     <sentence mode="on" keyword="bin_value_should_be_consist_from_12_symbols">
         <entry lang="ENG">BIN value should be consist from 12 symbols maximum</entry>
         <entry lang="RUS">БИН может состоять из 12 символов максимум</entry>
@@ -65,9 +65,14 @@
         <entry lang="RUS">Имя</entry>
         <entry lang="KAZ"></entry>
     </sentence>
+     <sentence mode="on" keyword="org_category">
+        <entry lang="ENG">Category</entry>
+        <entry lang="RUS">Тип</entry>
+        <entry lang="KAZ">Тип</entry>
+    </sentence>
     <sentence mode="on" keyword="organization_labels">
-        <entry lang="ENG">Organization labels</entry>
-        <entry lang="RUS">Признаки для организации</entry>
-        <entry lang="KAZ">Признаки для организации</entry>
+        <entry lang="ENG">Labels</entry>
+        <entry lang="RUS">Признаки</entry>
+        <entry lang="KAZ">Признаки</entry>
     </sentence>
 </vocabulary>

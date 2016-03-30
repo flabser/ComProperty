@@ -14,7 +14,7 @@
     <caption name="logout"/>
     <caption name="user_profile"/>
     <caption name="search"/>
-
+<caption name="individual"/>
     <caption name="properties"/>
     <caption name="interface"/>
     <caption name="change_skin"/>

@@ -31,7 +31,7 @@ public class IndividualView extends _DoPage {
 		LanguageCode lang = session.getLang();
 		_ActionBar actionBar = new _ActionBar(session);
 		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_organization");
-		newDocAction.setURL("Provider?id=organization-form");
+		newDocAction.setURL("Provider?id=individual-form");
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 
