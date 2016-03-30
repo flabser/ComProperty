@@ -22,7 +22,7 @@ import kz.lof.scripting._Session;
 import kz.lof.user.SuperUser;
 import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.Property;
-import municipalproperty.model.constants.KufType;
+import reference.model.constants.KufType;
 import staff.model.Organization;
 
 public class PropertyDAO extends DAO<Property, UUID> {

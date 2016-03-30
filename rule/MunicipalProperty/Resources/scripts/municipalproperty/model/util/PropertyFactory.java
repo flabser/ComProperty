@@ -9,7 +9,7 @@ import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.StrategicObject;
 import municipalproperty.model.Vehicle;
-import municipalproperty.model.constants.KufType;
+import reference.model.constants.KufType;
 
 public class PropertyFactory {
 	public static Property getProperty(String kuf) {

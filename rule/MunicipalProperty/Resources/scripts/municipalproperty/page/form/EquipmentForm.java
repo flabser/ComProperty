@@ -23,7 +23,6 @@ import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
 import municipalproperty.dao.EquipmentDAO;
 import municipalproperty.model.Equipment;
-import municipalproperty.model.constants.KufType;
 import municipalproperty.model.constants.PropertyStatusType;
 
 import org.apache.commons.io.IOUtils;
@@ -35,6 +34,7 @@ import reference.dao.TagDAO;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.Tag;
+import reference.model.constants.KufType;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 

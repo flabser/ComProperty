@@ -9,9 +9,9 @@ import javax.persistence.Table;
 
 import kz.lof.dataengine.jpa.AppEntity;
 import kz.lof.scripting._Session;
-import municipalproperty.model.constants.KufType;
 import reference.dao.KufDAO;
 import reference.model.Kuf;
+import reference.model.constants.KufType;
 
 /**
  * 

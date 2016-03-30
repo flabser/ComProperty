@@ -25,7 +25,6 @@ import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
-import municipalproperty.model.constants.KufType;
 import municipalproperty.model.constants.PropertyStatusType;
 import municipalproperty.model.util.PropertyFactory;
 
@@ -48,6 +47,7 @@ import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.Region;
 import reference.model.Street;
+import reference.model.constants.KufType;
 import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 import staff.model.Organization;

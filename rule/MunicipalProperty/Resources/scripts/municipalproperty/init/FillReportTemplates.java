@@ -9,7 +9,7 @@ import kz.lof.localization.LanguageCode;
 import kz.lof.scripting._Session;
 import municipalproperty.dao.ReportTemplateDAO;
 import municipalproperty.model.ReportTemplate;
-import municipalproperty.model.constants.KufType;
+import reference.model.constants.KufType;
 
 /**
  * 

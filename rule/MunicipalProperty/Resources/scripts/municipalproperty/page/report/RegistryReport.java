@@ -15,7 +15,6 @@ import kz.lof.server.Server;
 import kz.nextbase.script._Exception;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
-import municipalproperty.model.constants.KufType;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JRStyle;
@@ -29,6 +28,7 @@ import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import reference.model.constants.KufType;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 

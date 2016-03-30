@@ -14,7 +14,7 @@ import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
 import kz.lof.scripting._Session;
 import kz.lof.server.Server;
-import municipalproperty.model.constants.KufType;
+import reference.model.constants.KufType;
 
 public class ReportUtil {
 
