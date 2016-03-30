@@ -48,7 +48,6 @@ public class DepartmentForm extends StaffForm {
 			entity.setType(dt);
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper<>(new DepartmentTypeDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
 		startSaveFormTransact(entity);
 	}

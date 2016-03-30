@@ -45,7 +45,7 @@
                             <xsl:value-of select="//captions/identifier/@caption"/>
                         </div>
                         <div class="controls">
-                            <input type="text" name="streetid" value="{fields/streetid}" class="span7" autofocus="true"/>
+                            <input type="text" name="streetid" value="{fields/streetid}" class="span1" autofocus="true"/>
                         </div>
                     </div>
                 </fieldset>
