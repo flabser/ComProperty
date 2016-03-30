@@ -166,7 +166,7 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
 
 // init
 $(document).ready(function() {
-    //
+
     var oreo = localStorage.getItem(nb.options.sideTreeStorageName);
     var ary = [];
     if (oreo != null) {
@@ -188,7 +188,7 @@ $(document).ready(function() {
         }
 
         var name = this.name || $checkbox.data('toggle');
-        var $el = $('[name=' + name + ']:checkbox:visible');
+        var $el = $('[name=' + name + ']:checkbox:visible:not([disabled])');
 
         if ($checkbox.is(':checked')) {
             $el.each(function() {
@@ -287,7 +287,6 @@ $(document).ready(function() {
         $('body').addClass('phone');
     }
 
-    //
     setTimeout(function() {
         $('body').removeClass('no_transition');
     }, 250);
