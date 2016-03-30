@@ -71,7 +71,8 @@
                                     <xsl:value-of select="//captions/reg_date/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="date" name="regdate" value="{fields/regdate}" class="span2"/>
+                                    <input type="date" name="appliedregdate" value="{fields/appliedregdate}"
+                                           class="span2"/>
                                 </div>
                             </div>
                             <div class="form-group">

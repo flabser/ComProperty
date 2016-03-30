@@ -122,7 +122,7 @@ public class ContractForm extends _DoPage {
 
             entity.setDescription(formData.getValue("description"));
             entity.setRegNumber(formData.getValue("regnumber"));
-            entity.setAppliedRegDate(_Helper.convertStringToDate(formData.getValue("regdate")));
+            entity.setAppliedRegDate(_Helper.convertStringToDate(formData.getValue("appliedregdate")));
             entity.setExpired(_Helper.convertStringToDate(formData.getValue("expired")));
 
             String[] fileNames = formData.getListOfValuesSilently("fileid");
