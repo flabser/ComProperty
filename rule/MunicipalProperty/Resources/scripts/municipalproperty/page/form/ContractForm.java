@@ -167,7 +167,7 @@ public class ContractForm extends _DoPage {
             ve.addError("regnumber", "required", getLocalizedWord("field_is_empty", lang));
         }
         if (formData.getValueSilently("regdate").isEmpty()) {
-            ve.addError("regdate", "required", getLocalizedWord("field_is_empty", lang));
+            ve.addError("appliedregdate", "required", getLocalizedWord("field_is_empty", lang));
         }
         if (formData.getValueSilently("expired").isEmpty()) {
             ve.addError("expired", "required", getLocalizedWord("field_is_empty", lang));
