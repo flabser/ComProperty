@@ -142,7 +142,7 @@ public class ReportTemplateForm extends _DoPage {
 
 			String fileName = reportName + type;
 			String filePath = getTmpDirPath() + File.separator + Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
-			if (type.equalsIgnoreCase(".pdf")) {
+			if (type.equals(".pdf")) {
 				JRStyle style = new JRDesignStyle();
 				style.setPdfFontName(repPath + File.separator + "templates" + File.separator + "fonts" + File.separator + "tahoma.ttf");
 				style.setPdfEncoding("Cp1251");
@@ -152,7 +152,7 @@ public class ReportTemplateForm extends _DoPage {
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
 				exporter.exportReport();
-			} else if (type.equalsIgnoreCase(".xlsx")) {
+			} else if (type.equals(".xlsx")) {
 				JRXlsxExporter exporter = new JRXlsxExporter();
 				exporter.setExporterInput(new SimpleExporterInput(print));
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));

@@ -11,6 +11,7 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.server.Server;
 import kz.lof.user.IUser;
 import kz.lof.webserver.servlet.UploadedFile;
 import kz.nextbase.script._EnumWrapper;
@@ -23,6 +24,7 @@ import municipalproperty.dao.ContractDAO;
 import municipalproperty.dao.OrderDAO;
 import municipalproperty.model.Contract;
 import municipalproperty.model.Order;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
@@ -48,6 +50,24 @@ public class ContractForm extends _DoPage {
             ContractDAO dao = new ContractDAO(session);
             entity = dao.findById(UUID.fromString(id));
             addValue("formsesid", Util.generateRandomAsText());
+
+            String attachmentId = formData.getValueSilently("attachment");
+            if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
+                Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
+
+                try {
+                    String filePath = getTmpDirPath() + File.separator + Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + att.getRealFileName();
+                    File attFile = new File(filePath);
+                    FileUtils.writeByteArrayToFile(attFile, att.getFile());
+                    showFile(filePath, att.getRealFileName());
+                    Environment.fileToDelete.add(filePath);
+                } catch (IOException ioe) {
+                    Server.logger.errorLogEntry(ioe);
+                }
+                return;
+            } else {
+                setBadRequest();
+            }
         } else {
             entity = new Contract();
             entity.setAuthor(user);

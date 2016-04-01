@@ -11,6 +11,7 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._Validation;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
+import kz.lof.server.Server;
 import kz.lof.user.IUser;
 import kz.lof.webserver.servlet.UploadedFile;
 import kz.nextbase.script._EnumWrapper;
@@ -22,6 +23,7 @@ import municipalproperty.dao.OrderDAO;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Order;
 import municipalproperty.model.Property;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 import reference.model.PropertyCode;
@@ -42,6 +44,7 @@ public class OrderForm extends _DoPage {
 
     @Override
     public void doGET(_Session session, _WebFormData formData) {
+
         IUser<Long> user = session.getUser();
         Order entity;
         String id = formData.getValueSilently("docid");
@@ -49,6 +52,24 @@ public class OrderForm extends _DoPage {
             OrderDAO dao = new OrderDAO(session);
             entity = dao.findById(UUID.fromString(id));
             addValue("formsesid", Util.generateRandomAsText());
+
+            String attachmentId = formData.getValueSilently("attachment");
+            if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
+                Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
+
+                try {
+                    String filePath = getTmpDirPath() + File.separator + Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + att.getRealFileName();
+                    File attFile = new File(filePath);
+                    FileUtils.writeByteArrayToFile(attFile, att.getFile());
+                    showFile(filePath, att.getRealFileName());
+                    Environment.fileToDelete.add(filePath);
+                } catch (IOException ioe) {
+                    Server.logger.errorLogEntry(ioe);
+                }
+                return;
+            } else {
+                setBadRequest();
+            }
         } else {
             entity = new Order();
             entity.setAuthor(user);
