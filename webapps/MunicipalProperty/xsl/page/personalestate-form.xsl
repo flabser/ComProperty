@@ -47,6 +47,11 @@
                     </li>
                     <li>
                         <a href="#tabs-5" role="tab" data-toggle="tab">
+                            <xsl:value-of select="//captions/orders/@caption"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tabs-6" role="tab" data-toggle="tab">
                             <xsl:value-of select="//captions/additional/@caption"/>
                         </a>
                     </li>
@@ -98,6 +103,9 @@
                         </fieldset>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-5">
+                        <div class="view" data-load="orders"></div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabs-6">
                         <xsl:call-template name="docinfo"/>
                     </div>
                 </div>

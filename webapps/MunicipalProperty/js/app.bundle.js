@@ -2231,6 +2231,10 @@ Handlebars.registerHelper('mapValue', function(context, options) {
     return context[options];
 });
 
+Handlebars.registerHelper('unescapeXml', function(data) {
+    return data.replace('&amp;', '&');
+});
+
 Handlebars.registerPartial('pagination', function(data) {
     return nb.html.pagination(data);
 });
@@ -3160,6 +3164,17 @@ $(function() {
 
     // disable fieldset
     $('form[data-edit=false] .fieldset').attr('disabled', true);
+
+    //
+    if ($('[data-load=orders]').length) {
+        $.ajax({
+            dataType: 'json',
+            url: 'p?id=order-view&propertyid=' + location.search.split('docid=')[1],
+            success: function(response) {
+                $('[data-load=orders]').html(nb.template('order-view', response.objects[0]));
+            }
+        });
+    }
 });
 
 $(document).ready(function() {
@@ -3238,3 +3253,19 @@ nbApp.selectOptions = {
         }
     }
 };
+
+this["nb"] = this["nb"] || {};
+this["nb"]["templates"] = this["nb"]["templates"] || {};
+this["nb"]["templates"]["order-view"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data,blockParams) {
+    var stack1, alias1=container.escapeExpression;
+
+  return "    <div>\r\n        <a href=\""
+    + alias1((helpers.unescapeXml || (depth0 && depth0.unescapeXml) || helpers.helperMissing).call(depth0 != null ? depth0 : {},((stack1 = blockParams[0][0]) != null ? stack1.url : stack1),{"name":"unescapeXml","hash":{},"data":data,"blockParams":blockParams}))
+    + "\">"
+    + alias1(container.lambda(((stack1 = blockParams[0][0]) != null ? stack1.description : stack1), depth0))
+    + "</a>\r\n    </div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
+    var stack1;
+
+  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.list : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams),"inverse":container.noop,"data":data,"blockParams":blockParams})) != null ? stack1 : "");
+},"useData":true,"useBlockParams":true});

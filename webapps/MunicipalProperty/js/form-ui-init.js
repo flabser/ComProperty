@@ -62,4 +62,15 @@ $(function() {
 
     // disable fieldset
     $('form[data-edit=false] .fieldset').attr('disabled', true);
+
+    //
+    if ($('[data-load=orders]').length) {
+        $.ajax({
+            dataType: 'json',
+            url: 'p?id=order-view&propertyid=' + location.search.split('docid=')[1],
+            success: function(response) {
+                $('[data-load=orders]').html(nb.template('order-view', response.objects[0]));
+            }
+        });
+    }
 });
