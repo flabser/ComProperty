@@ -14,7 +14,7 @@
     <caption name="logout"/>
     <caption name="user_profile"/>
     <caption name="search"/>
-<caption name="individual"/>
+    <caption name="individual"/>
     <caption name="properties"/>
     <caption name="interface"/>
     <caption name="change_skin"/>
@@ -27,7 +27,7 @@
     <caption name="password_confirm_not_equals"/>
     <caption name="email"/>
     <caption name="org_name"/>
-    <caption name="countdocinview"/>
+    <caption name="limit_view"/>
     <caption name="interface_lang"/>
 
     <caption name="structure"/>

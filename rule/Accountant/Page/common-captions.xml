@@ -8,7 +8,7 @@
     <caption name="select"/>
     <caption name="close"/>
     <caption name="wait_while_document_save"/>
-  	<caption name="readers_has_not_been_pointed"/>
+    <caption name="readers_has_not_been_pointed"/>
     <caption name="title"/>
     <caption name="logout"/>
     <caption name="user_profile"/>
@@ -28,6 +28,6 @@
     <caption name="org_name"/>
     <caption name="department"/>
     <caption name="roles"/>
-    <caption name="countdocinview"/>
+    <caption name="limit_view"/>
     <caption name="interface_lang"/>
 </rule>

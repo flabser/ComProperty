@@ -50,7 +50,7 @@
     <caption name="department"/>
     <caption name="iin"/>
     <caption name="status"/>
-    <caption name="countdocinview"/>
+    <caption name="limit_view"/>
     <caption name="interface_lang"/>
     <caption name="back_to_doc_list"/>
     <caption name="ft_search_result"/>
