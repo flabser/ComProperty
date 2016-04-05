@@ -67,6 +67,7 @@
             <script src="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
             <script src="/SharedResources/vendor/bootstrap/js/bootstrap.min.js"></script>
             <script src="js/app.bundle.js"></script>
+            <script src="/SharedResources/knca/knca.js"></script>
 
             <xsl:copy-of select="$include"/>
         </head>
