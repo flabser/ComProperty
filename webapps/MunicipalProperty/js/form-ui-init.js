@@ -73,7 +73,4 @@ $(function() {
             }
         });
     }
-
-    // knca
-    $('.action-bar').append('<a class=btn onClick="knca.init()">knca init</a>');
 });
