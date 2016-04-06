@@ -24,93 +24,43 @@
                 </div>
             </header>
             <section class="content-body">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="active">
-                        <a href="#tabs-1" role="tab" data-toggle="tab">
-                            <xsl:value-of select="//captions/properties/@caption"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#tabs-3" role="tab" data-toggle="tab">
-                            <xsl:value-of select="//captions/additional/@caption"/>
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tabs-1">
-                        <fieldset class="fieldset">
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/reg_number/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="text" name="regnumber" value="{fields/regnumber}" class="span4"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/order/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <a class="input-placeholder" href="{fields/order/url}">
-                                        <xsl:value-of select="fields/order/ordername"/>
+                <fieldset class="fieldset">
+                    <div class="form-group">
+                        <div class="control-label">
+                            <xsl:value-of select="//captions/contract_name/@caption"/>
+                        </div>
+                        <div class="controls">
+                            <textarea name="description" class="span8">
+                                <xsl:value-of select="fields/description"/>
+                            </textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset">
+                    <legend class="legend">
+                        <xsl:value-of select="//captions/reg_documents/@caption"/>
+                    </legend>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-upload" data-upload="att-sign">
+                            <i class="fa fa-paperclip"></i>
+                            <span>
+                                <xsl:value-of select="//captions/attach_file/@caption"/>
+                            </span>
+                        </button>
+                        <div class="attachments" data-upload-files="att-sign">
+                            <xsl:for-each select="fields/attachments/attachment">
+                                <div class="attachments-file">
+                                    <a class="file-name" data-file="{filename}" href="{url}">
+                                        <xsl:value-of select="filename"/>
                                     </a>
-                                    <input type="hidden" name="orderid" value="{fields/order/@docid}"/>
+                                    <span class="btn btn-sm btn-link btn-remove-file on-edit">
+                                        <i class="fa fa-times"></i>
+                                    </span>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/contract_name/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <textarea name="description" class="span8">
-                                        <xsl:value-of select="fields/description"/>
-                                    </textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/reg_date/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="date" name="appliedregdate" value="{fields/appliedregdate}"
-                                           class="span2"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/expiry_date/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <input type="date" name="expired" value="{fields/expired}" class="span2"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/status/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <xsl:apply-templates select="//constants[@entity = 'contractstatus']/entry"
-                                                         mode="constants">
-                                        <xsl:with-param name="select" select="fields/contractstatus"/>
-                                        <xsl:with-param name="type" select="'radio'"/>
-                                    </xsl:apply-templates>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset class="fieldset">
-                            <legend class="legend">
-                                <xsl:value-of select="//captions/reg_documents/@caption"/>
-                            </legend>
-                            <xsl:call-template name="upload-files">
-                                <xsl:with-param name="input-name" select="'reg-files'"/>
-                            </xsl:call-template>
-                        </fieldset>
+                            </xsl:for-each>
+                        </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="tabs-3">
-                        <xsl:call-template name="docinfo"/>
-                    </div>
-                </div>
+                </fieldset>
             </section>
             <input type="hidden" name="fsid" value="{//formsesid}"/>
         </form>
