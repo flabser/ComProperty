@@ -20,19 +20,22 @@
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
                     <a class="btn" onClick="knca.init()">knca init</a>
-                    <a class="btn" onClick="knca.signPlainData('hello world')">knca signPlainData('hello world')</a>
                 </div>
             </header>
             <section class="content-body">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
-                            <xsl:value-of select="//captions/contract_name/@caption"/>
+                            text for sign
                         </div>
                         <div class="controls">
-                            <textarea name="description" class="span8">
+                            <textarea id="text_for_sign" class="span8">
                                 <xsl:value-of select="fields/description"/>
                             </textarea>
+                            <a class="btn btn-lg btn-primary" data-action="sign">SIGN</a>
+                            <div>Sign
+                                <pre id="text_sign"></pre>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
