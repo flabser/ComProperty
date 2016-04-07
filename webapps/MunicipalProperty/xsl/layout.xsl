@@ -60,6 +60,7 @@
             <link rel="stylesheet" href="/SharedResources/vendor/font-awesome/css/font-awesome.min.css"/>
             <link rel="stylesheet" href="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
             <link rel="stylesheet" href="css/all.min.css"/>
+            <link rel="stylesheet" href="/SharedResources/knca/eds.css"/>
 
             <xsl:call-template name="STYLE_FIX_FIELDSET"/>
 

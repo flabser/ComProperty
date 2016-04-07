@@ -20,7 +20,7 @@
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
                     <a class="btn" onClick="knca.init()">knca init</a>
-                    <a class="btn" onClick="knca.chooseStoragePath()">knca chooseStoragePath</a>
+                    <a class="btn" onClick="knca.showPropertyModal()">knca showPropertyModal</a>
                 </div>
             </header>
             <section class="content-body">
