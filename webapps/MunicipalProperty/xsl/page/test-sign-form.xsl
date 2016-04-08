@@ -19,23 +19,32 @@
                 </h1>
                 <div class="content-actions">
                     <xsl:apply-templates select="//actionbar"/>
-                    <a class="btn" onClick="knca.init()">knca init</a>
+                    <a class="btn btn-warning" onClick="knca.init()">knca init</a>
                 </div>
             </header>
             <section class="content-body">
                 <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
-                            text for sign
+                            <div>Text for sign</div>
+                            <a class="btn btn-primary" data-action="sign">Sign</a>
                         </div>
                         <div class="controls">
-                            <textarea id="text_for_sign" class="span8">
+                            <textarea id="text_for_sign" class="span12">
                                 <xsl:value-of select="fields/description"/>
                             </textarea>
-                            <a class="btn btn-lg btn-primary" data-action="sign">SIGN</a>
-                            <div>Sign
-                                <pre id="text_sign"></pre>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <div>Sign</div>
+                            <a class="btn btn-primary" data-action="verify">Verify</a>
+                        </div>
+                        <div class="controls">
+                            <textarea id="text_sign" class="span12">
+                                <xsl:value-of select="fields/description"/>
+                            </textarea>
+                            <p id="verify-result"></p>
                         </div>
                     </div>
                 </fieldset>
