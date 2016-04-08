@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <div class="control-label">
                             <div>Text for sign</div>
-                            <a class="btn btn-primary" data-action="sign">Sign</a>
+                            <button type="button" class="btn btn-primary" data-action="sign">Sign</button>
                         </div>
                         <div class="controls">
                             <textarea id="text_for_sign" class="span12">
@@ -38,13 +38,37 @@
                     <div class="form-group">
                         <div class="control-label">
                             <div>Sign</div>
-                            <a class="btn btn-primary" data-action="verify">Verify</a>
+                            <button type="button" class="btn btn-primary" data-action="verify">Verify</button>
                         </div>
                         <div class="controls">
                             <textarea id="text_sign" class="span12">
                                 <xsl:value-of select="fields/description"/>
                             </textarea>
-                            <p id="verify-result"></p>
+                            <p id="verify-result" style="font-size:1.5em;color:blue;"></p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <div>XML for sign</div>
+                            <button type="button" class="btn btn-primary" data-action="sign-xml">Sign xml</button>
+                        </div>
+                        <div class="controls">
+                            <textarea id="xml_for_sign" readonly="readonly" class="disabled span12">
+                                <xsl:value-of select="fields/description"/>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label">
+                            <div>Xml sign</div>
+                            <button type="button" class="btn btn-primary" data-action="verify-xml">Verify</button>
+                        </div>
+                        <div class="controls">
+                            <textarea id="xml_sign" class="span12" style="height:300px">
+                                <xsl:value-of select="fields/description"/>
+                            </textarea>
+                            <p id="verify-xml-result" style="font-size:1.5em;color:blue;"></p>
                         </div>
                     </div>
                 </fieldset>
