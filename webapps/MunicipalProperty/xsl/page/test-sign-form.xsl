@@ -18,12 +18,12 @@
                     <xsl:value-of select="//captions/contract/@caption"/>
                 </h1>
                 <div class="content-actions">
-                    <xsl:apply-templates select="//actionbar"/>
+                    <!--<xsl:apply-templates select="//actionbar"/>-->
                     <a class="btn btn-warning" onClick="knca.init()">knca init</a>
                 </div>
             </header>
             <section class="content-body">
-                <fieldset class="fieldset">
+                <fieldset class="fieldset fieldset1">
                     <div class="form-group">
                         <div class="control-label">
                             <div>Text for sign</div>
@@ -39,19 +39,20 @@
                         <div class="control-label">
                             <div>Sign</div>
                             <button type="button" class="btn btn-primary" data-action="verify">Verify</button>
+                            <p id="verify-result" style="font-size:1.5em;color:blue;"></p>
                         </div>
                         <div class="controls">
                             <textarea id="text_sign" class="span12">
                                 <xsl:value-of select="fields/description"/>
                             </textarea>
-                            <p id="verify-result" style="font-size:1.5em;color:blue;"></p>
                         </div>
                     </div>
-                    <hr/>
+                </fieldset>
+                <fieldset class="fieldset fieldset2">
                     <div class="form-group">
                         <div class="control-label">
                             <div>XML for sign</div>
-                            <button type="button" class="btn btn-primary" data-action="sign-xml">Sign xml</button>
+                            <button type="button" class="btn btn-primary" data-action="sign-xml">Sign</button>
                         </div>
                         <div class="controls">
                             <textarea id="xml_for_sign" readonly="readonly" class="disabled span12">
@@ -61,14 +62,14 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label">
-                            <div>Xml sign</div>
+                            <div>XML sign</div>
                             <button type="button" class="btn btn-primary" data-action="verify-xml">Verify</button>
+                            <p id="verify-xml-result" style="font-size:1.5em;color:blue;"></p>
                         </div>
                         <div class="controls">
                             <textarea id="xml_sign" class="span12" style="height:300px">
                                 <xsl:value-of select="fields/description"/>
                             </textarea>
-                            <p id="verify-xml-result" style="font-size:1.5em;color:blue;"></p>
                         </div>
                     </div>
                 </fieldset>
@@ -82,6 +83,9 @@
                             <span>
                                 <xsl:value-of select="//captions/attach_file/@caption"/>
                             </span>
+                        </button>
+                        <button type="button" class="btn btn-primary" data-action="sign-files">
+                            Sign files (Пока только один)
                         </button>
                         <div class="attachments" data-upload-files="att-sign">
                             <xsl:for-each select="fields/attachments/attachment">
