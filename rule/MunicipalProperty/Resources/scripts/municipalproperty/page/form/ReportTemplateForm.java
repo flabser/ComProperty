@@ -34,6 +34,8 @@ import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.fill.JRFileVirtualizer;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 import reference.model.constants.KufType;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
@@ -73,7 +75,7 @@ public class ReportTemplateForm extends _DoPage {
 			reportName = entity.getType();
 		}
 
-		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
+		String addInfo = "";
 		println(formData);
 		// String reportName = formData.getValueSilently("id");
 
@@ -92,19 +94,24 @@ public class ReportTemplateForm extends _DoPage {
 		Date from = formData.getDateSilently("acceptancedatefrom");
 		Date to = formData.getDateSilently("acceptancedateto");
 		if (from != null && to != null) {
-			checkAcceptanceDate = true;
+			// checkAcceptanceDate = true;
 		}
 
 		UUID bhCat = null;
 		UUID bhId = null;
-		String bh = formData.getValueSilently("balanceholderid");
+		String bh = formData.getValueSilently("balanceholder");
 		if (!bh.isEmpty()) {
 			bhId = UUID.fromString(bh);
-			checkBalanceHolder = true;
+			OrganizationDAO orgDao = new OrganizationDAO(session);
+			Organization org = orgDao.findById(bhId);
+			addInfo = org.getName();
 		} else {
 			String oc = formData.getValueSilently("orgcategory");
 			if (!oc.isEmpty()) {
 				bhCat = UUID.fromString(oc);
+				OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+				OrgCategory orgCatEntity = ocDao.findById(oc);
+				addInfo = orgCatEntity.getName();
 			}
 		}
 
@@ -130,14 +137,7 @@ public class ReportTemplateForm extends _DoPage {
 			// checkAcceptanceDate, checkBalanceHolder, bc, from, to);
 
 			parameters.put("grandtotal", "");
-			if (checkBalanceHolder) {
-				OrganizationDAO orgDao = new OrganizationDAO(session);
-				Organization org = orgDao.findById(bhId);
-				parameters.put("balanceholder", org.getName());
-			} else {
-				parameters.put("balanceholder", "");
-
-			}
+			parameters.put("balanceholder", addInfo);
 
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
