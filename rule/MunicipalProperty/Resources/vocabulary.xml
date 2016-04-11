@@ -105,6 +105,11 @@
         <entry lang="KAZ">Теңгерім ұстаушы</entry>
         <entry lang="ENG">Balanceholder</entry>
     </sentence>
+    <sentence mode="on" keyword="balance_holder_cat">
+        <entry lang="RUS">Категория балансодержателя</entry>
+        <entry lang="KAZ">Теңгерім ұстаушы</entry>
+        <entry lang="ENG">Balanceholder category</entry>
+    </sentence>
     <sentence mode="on" keyword="balance_cost">
         <entry lang="RUS">Балансовая стоимость</entry>
         <entry lang="KAZ">Балансовая стоимость</entry>
