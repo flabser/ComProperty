@@ -1,5 +1,6 @@
 package municipalproperty.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +14,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import kz.flabs.dataengine.Const;
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import kz.lof.dataengine.jpa.DAO;
 import kz.lof.dataengine.jpa.SecureAppEntity;
@@ -22,7 +22,10 @@ import kz.lof.scripting._Session;
 import kz.lof.user.SuperUser;
 import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.Property;
+import reference.dao.OrgCategoryDAO;
+import reference.model.OrgCategory;
 import reference.model.constants.KufType;
+import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class PropertyDAO extends DAO<Property, UUID> {
@@ -172,7 +175,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 	}
 
 	// TODO it need adding dates checking in condition
-	public List<Property> find(List<KufType> value, UUID balanceHolder, Date from, Date to) {
+	public List<Property> find(List<KufType> value, UUID balanceHolder, UUID orgCat, Date from, Date to) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
@@ -186,7 +189,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 				condition = c.get("kuf").in(value);
 			}
 
-			if (!user.getUserID().equals(Const.sysUser)) {
+			if (user.getId() != SuperUser.ID) {
 				if (condition != null) {
 					condition = cb.and(c.get("readers").in(user.getId()), condition);
 				} else {
@@ -199,6 +202,19 @@ public class PropertyDAO extends DAO<Property, UUID> {
 					condition = cb.and(cb.equal(c.get("balanceHolder").get("id"), balanceHolder), condition);
 				} else {
 					condition = cb.equal(c.get("balanceHolder").get("id"), balanceHolder);
+				}
+			} else if (orgCat != null) {
+				OrgCategoryDAO ocDao = new OrgCategoryDAO(getSession());
+				OrgCategory orgCatEntity = ocDao.findById(orgCat);
+				OrganizationDAO oDao = new OrganizationDAO(getSession());
+				List<OrgCategory> cats = new ArrayList<OrgCategory>();
+				cats.add(orgCatEntity);
+				ViewPage<Organization> orgs = oDao.findAllByOrgCategory(cats, 0, 0);
+
+				if (condition != null) {
+					condition = cb.and(c.get("balanceHolder").in(orgs.getResult()), condition);
+				} else {
+					condition = c.get("balanceHolder").in(orgs);
 				}
 			}
 

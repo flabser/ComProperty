@@ -95,11 +95,16 @@ public class ReportTemplateForm extends _DoPage {
 			checkAcceptanceDate = true;
 		}
 
+		UUID bhCat = null;
 		UUID bhId = null;
-		if (formData.containsField("balanceholderid")) {
-			bhId = UUID.fromString(formData.getValueSilently("balanceholderid"));
-			if (bhId != null) {
-				checkBalanceHolder = true;
+		String bh = formData.getValueSilently("balanceholderid");
+		if (!bh.isEmpty()) {
+			bhId = UUID.fromString(bh);
+			checkBalanceHolder = true;
+		} else {
+			String oc = formData.getValueSilently("orgcategory");
+			if (!oc.isEmpty()) {
+				bhCat = UUID.fromString(oc);
 			}
 		}
 
@@ -119,7 +124,7 @@ public class ReportTemplateForm extends _DoPage {
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
 			PropertyDAO dao = new PropertyDAO(session);
-			List<Property> result = dao.find(cat, bhId, from, to);
+			List<Property> result = dao.find(cat, bhId, bhCat, from, to);
 
 			// ArrayList<IPropertyBean> result = fetchReportData(cat,
 			// checkAcceptanceDate, checkBalanceHolder, bc, from, to);

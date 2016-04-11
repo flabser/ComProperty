@@ -59,9 +59,13 @@ public class RegistryReport extends _DoPage {
 		if (from != null && to != null) {
 			checkAcceptanceDate = true;
 		}
+
+		UUID bhCat = null;
 		UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
 		if (bhId != null) {
 			checkBalanceHolder = true;
+		} else {
+			bhCat = UUID.fromString(formData.getValueSilently("orgcategory"));
 		}
 
 		try {
@@ -81,7 +85,7 @@ public class RegistryReport extends _DoPage {
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
 			PropertyDAO dao = new PropertyDAO(session);
-			List<Property> result = dao.find(cat, bhId, from, to);
+			List<Property> result = dao.find(cat, bhId, bhCat, from, to);
 
 			// ArrayList<IPropertyBean> result = fetchReportData(cat,
 			// checkAcceptanceDate, checkBalanceHolder, bc, from, to);
