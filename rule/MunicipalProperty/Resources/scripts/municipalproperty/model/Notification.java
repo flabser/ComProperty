@@ -9,7 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import kz.flabs.util.Util;
 import kz.lof.dataengine.jpa.SecureAppEntity;
+import kz.lof.scripting._Session;
 import municipalproperty.model.constants.NotificationType;
 
 @Entity
@@ -70,4 +72,14 @@ public class Notification extends SecureAppEntity {
 		this.sendingTime = sendingTime;
 	}
 
+	@Override
+	public String getShortXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<type>" + ses.getAppEnv().vocabulary.getWord(type.name().toLowerCase(), ses.getLang()) + "</type>");
+		chunk.append("<sender>" + sender + "</sender>");
+		chunk.append("<sendingtime>" + Util.convertDateToStringSilently(sendingTime) + "</sendingtime>");
+		chunk.append("<body>" + body + "</body>");
+		chunk.append("<recipient>" + recipient + "</recipient>");
+		return chunk.toString();
+	}
 }
