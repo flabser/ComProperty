@@ -60,7 +60,6 @@
             <link rel="stylesheet" href="/SharedResources/vendor/font-awesome/css/font-awesome.min.css"/>
             <link rel="stylesheet" href="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
             <link rel="stylesheet" href="css/all.min.css"/>
-            <link rel="stylesheet" href="/SharedResources/knca/eds.css"/>
 
             <xsl:call-template name="STYLE_FIX_FIELDSET"/>
 
@@ -68,7 +67,6 @@
             <script src="/SharedResources/vendor/jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
             <script src="/SharedResources/vendor/bootstrap/js/bootstrap.min.js"></script>
             <script src="js/app.bundle.js"></script>
-            <script src="/SharedResources/knca/knca.js"></script>
 
             <xsl:copy-of select="$include"/>
         </head>

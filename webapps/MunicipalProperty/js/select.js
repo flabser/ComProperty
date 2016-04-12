@@ -3,18 +3,20 @@ nbApp.selectOptions = {
         url: 'p?id=get-organizations',
         fields: ['bin'],
         onSelect: function(e) {
-            if (e.target.form && e.target.form.balanceholderbin) {
-                e.target.form.balanceholderbin.value = (e.params.data) ? e.params.data.bin : '';
-            }
-            if (e.target.form.name == 'reporttemplate') {
-                $('select[name=orgcategory]').val('').trigger('change');
+            if (e.target.form) {
+                if (e.target.form.balanceholderbin) {
+                    e.target.form.balanceholderbin.value = (e.params.data) ? e.params.data.bin : '';
+                }
+                if (e.target.form.name == 'reporttemplate') {
+                    $('select[name=orgcategory]').val('').trigger('change');
+                }
             }
         }
     },
     orgcategory: {
         url: 'p?id=get-org-categories',
         onSelect: function(e) {
-            if (e.target.form.name == 'reporttemplate') {
+            if (e.target.form && e.target.form.name == 'reporttemplate') {
                 $('select[name=balanceholder]').val('').trigger('change');
             }
         }
