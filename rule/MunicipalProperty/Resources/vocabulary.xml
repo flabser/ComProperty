@@ -15,6 +15,11 @@
         <entry lang="RUS">Объекты по типу права на имущество</entry>
         <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
     </sentence>
+     <sentence mode="on" keyword="all_municipal_property">
+        <entry lang="ENG">All municipal property</entry>
+        <entry lang="RUS">Все объекты</entry>
+        <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
+    </sentence>
     <sentence mode="on" keyword="notifications">
         <entry lang="ENG">Notifications</entry>
         <entry lang="RUS">Уведомления</entry>

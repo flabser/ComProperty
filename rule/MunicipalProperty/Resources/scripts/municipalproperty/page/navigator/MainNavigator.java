@@ -27,6 +27,8 @@ public class MainNavigator extends _DoPage {
 
 		_Outline munPropOutline = new _Outline(getLocalizedWord("municipal_property", lang), "municipal_property");
 
+		_OutlineEntry allPropertyEntry = new _OutlineEntry(getLocalizedWord("all_municipal_property", lang), "allproperty-view");
+
 		// -----
 		// if(cuser.hasRole(["struct_keeper", "supervisor"])) {
 		String peUrl = "p?id=personalestate-view&kuf=";
@@ -120,13 +122,14 @@ public class MainNavigator extends _DoPage {
 		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("roads", lang), "", "engineeringinfrastructure-view604", eiUrl + "604")); // ROAD(604)
 		engStructureEntry.addEntry(new _OutlineEntry(getLocalizedWord("parkings", lang), "", "engineeringinfrastructure-view605", eiUrl + "605")); // PARKING(605)
 
-		munPropOutline.addEntry(personalEstateEntry);
-		munPropOutline.addEntry(intangibleAssetsEntry);
-		munPropOutline.addEntry(equipmentEntry);
-		munPropOutline.addEntry(realEstateEntry);
-		munPropOutline.addEntry(transportEntry);
-		munPropOutline.addEntry(strategicObjectEntry);
-		munPropOutline.addEntry(engStructureEntry);
+		munPropOutline.addEntry(allPropertyEntry);
+		allPropertyEntry.addEntry(personalEstateEntry);
+		allPropertyEntry.addEntry(intangibleAssetsEntry);
+		allPropertyEntry.addEntry(equipmentEntry);
+		allPropertyEntry.addEntry(realEstateEntry);
+		allPropertyEntry.addEntry(transportEntry);
+		allPropertyEntry.addEntry(strategicObjectEntry);
+		allPropertyEntry.addEntry(engStructureEntry);
 
 		_Outline orderOutline = new _Outline(getLocalizedWord("orders", lang), "order");
 		orderOutline.addEntry(new _OutlineEntry(getLocalizedWord("orders", lang), "order-view"));
