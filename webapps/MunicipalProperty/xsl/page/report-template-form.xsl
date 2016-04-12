@@ -28,7 +28,7 @@
                             <xsl:value-of select="//captions/balance_holder/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="balanceholder" id="balanceholder" class="span8" data-placeholder="Все балансодержатели"></select>
+                            <select name="balanceholder" class="span8" data-placeholder="Все балансодержатели"></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,7 +36,7 @@
                             <xsl:value-of select="//captions/balance_holder_cat/@caption"/>
                         </div>
                         <div class="controls">
-                            <select name="orgcategory" id="orgcategory" class="span8" data-placeholder="Все категории"></select>
+                            <select name="orgcategory" class="span8" data-placeholder="Все категории"></select>
                         </div>
                     </div>
                     <div class="form-group">
