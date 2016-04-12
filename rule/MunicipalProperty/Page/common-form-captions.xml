@@ -3,6 +3,7 @@
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
     <caption name="notes"/>
+    <caption name="body"/>
     <caption name="files"/>
     <caption name="additional"/>
     <caption name="save_close"/>
