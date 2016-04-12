@@ -17,10 +17,9 @@
                 <h1 class="header-title">
                     <xsl:value-of select="//captions/contract/@caption"/>
                 </h1>
-                <div class="content-actions">
-                    <!--<xsl:apply-templates select="//actionbar"/>-->
-                    <a class="btn btn-warning" onClick="knca.init()">knca init</a>
-                </div>
+                <!--<div class="content-actions">
+                    <xsl:apply-templates select="//actionbar"/>
+                </div>-->
             </header>
             <section class="content-body">
                 <fieldset class="fieldset fieldset1">

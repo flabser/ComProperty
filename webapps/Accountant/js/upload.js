@@ -165,7 +165,9 @@ function renderFilePanel(fileName, fsid) {
         var $btn = $(this);
 
         knca.signFile().then(function(signText) {
-            $('<input type="text" name="sign" class="disabled" readonly value="' + signText + '" />').appendTo($tpl.find('.panel__body'));
+            if (signText !== 'cancel') {
+                $('<input type="text" name="sign" class="disabled" readonly value="' + signText + '" />').appendTo($tpl.find('.panel__body'));
+            }
         });
     });
 
@@ -273,5 +275,4 @@ function initCachedUpdateForm() {
 $(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
-    knca.init();
 });
