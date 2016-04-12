@@ -26,19 +26,19 @@
                     <input type="checkbox" data-toggle="docid" class="all"/>
                 </label>
                 <div class="entry-captions">
-                    <span class="vw-inv-number">
+                    <span class="vw-tags">
                         <xsl:value-of select="//captions/type/@caption"/>
                     </span>
-                    <span class="vw-object-name">
+                    <span class="vw-balance-holder">
                         <xsl:value-of select="//captions/sender/@caption"/>
                     </span>
-                    <span class="vw-original-cost">
+                    <span class="vw-balance-holder">
                         <xsl:value-of select="//captions/recipient/@caption"/>
                     </span>
-                    <span class="vw-balance-holder">
+                    <span class="vw-regdate">
                         <xsl:value-of select="//captions/sendtime/@caption"/>
                     </span>
-                    <span class="vw-balance-holder">
+                    <span class="vw-order-description">
                         <xsl:value-of select="//captions/content/@caption"/>
                     </span>
                 </div>
@@ -57,20 +57,20 @@
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
-                        <span class="vw-inv-number">
+                        <span class="vw-tags">
                             <xsl:value-of select="viewcontent/type"/>
                         </span>
-                        <span class="vw-object-name">
+                        <span class="vw-balance-holder">
                             <xsl:value-of select="viewcontent/sender"/>
                         </span>
-                        <span class="vw-original-cost">
+                        <span class="vw-balance-holder">
                             <xsl:value-of select="viewcontent/recipient"/>
                         </span>
-                        <span class="vw-balance-holder">
-                            <xsl:value-of select="viewcontent/sendtime"/>
+                        <span class="vw-regdate">
+                            <xsl:value-of select="viewcontent/sendingtime"/>
                         </span>
-                        <span class="vw-balance-holder">
-                            <xsl:value-of select="viewcontent/content"/>
+                        <span class="vw-order-description">
+                            <xsl:value-of select="viewcontent/body"/>
                         </span>
                     </div>
                 </a>
