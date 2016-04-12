@@ -2737,9 +2737,11 @@ nb.upload = function(fileInput) {
     var inputName = fileInput.name;
     var formData = new FormData(fileInput.form);
 
-    console.log(URL.createObjectURL(fileInput.files[0]));
+    // console.log(fileInput.files[0].mozFullPath);
+    // console.log(URL.createObjectURL(fileInput.files[0]));
+
     var $attNode = $(nb.template('attachments', {
-        files: [{ name: fileInput.files[0].name, path: URL.createObjectURL(fileInput.files[0]) }]
+        files: [{ name: fileInput.files[0].name, path: '' }]
     }));
     var $progress = $attNode.find('.upload-progress');
 
@@ -3451,6 +3453,15 @@ var knca = (function() {
             return resolveStorage('verify').then(function() {
                 return verifyCMSSignatureFromFile(signatureCMSFile, filePath);
             });
+        },
+        signFile: function() {
+            var filePath = appletResult(applet().showFileChooser('ALL', ''));
+            if (filePath) {
+                return knca.createCMSSignatureFromFile(filePath, false);
+            } else {
+                var promise = $.Deferred();
+                return promise.reject('cancel');
+            }
         }
     };
 })();
@@ -3738,6 +3749,16 @@ function renderFilePanel(fileName, fsid) {
         });
     });
 
+    $tpl.find('.js-sign').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $btn = $(this);
+
+        knca.signFile().then(function(signText) {
+            $('<input type="text" name="sign" class="disabled" readonly value="' + signText + '" />').appendTo($tpl.find('.panel__body'));
+        });
+    });
+
     $tpl.find('.js-delete').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -3842,4 +3863,5 @@ function initCachedUpdateForm() {
 $(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
+    knca.init();
 });

@@ -159,6 +159,16 @@ function renderFilePanel(fileName, fsid) {
         });
     });
 
+    $tpl.find('.js-sign').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $btn = $(this);
+
+        knca.signFile().then(function(signText) {
+            $('<input type="text" name="sign" class="disabled" readonly value="' + signText + '" />').appendTo($tpl.find('.panel__body'));
+        });
+    });
+
     $tpl.find('.js-delete').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -263,4 +273,5 @@ function initCachedUpdateForm() {
 $(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
+    knca.init();
 });

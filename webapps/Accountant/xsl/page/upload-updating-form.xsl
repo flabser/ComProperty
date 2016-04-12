@@ -55,6 +55,9 @@
                                 <button type="button" class="btn btn js-check">
                                     <span>Проверить</span>
                                 </button>
+                                <button type="button" class="btn btn js-sign">
+                                    <span>Подписать с ЭЦП</span>
+                                </button>
                                 <button type="button" class="btn btn js-select-balance-holder" disabled="disabled">
                                     <span>Балансодержатель</span>
                                 </button>
@@ -109,6 +112,9 @@
                         <span class="update-file-panel-actions">
                             <button type="button" class="btn btn js-check">
                                 <span>Проверить</span>
+                            </button>
+                            <button type="button" class="btn btn js-sign">
+                                <span>Подписать с ЭЦП</span>
                             </button>
                             <button type="button" class="btn btn js-select-balance-holder">
                                 <xsl:if test="viewcontent/sheeterrs != ''">
