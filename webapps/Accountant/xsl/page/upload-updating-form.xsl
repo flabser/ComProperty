@@ -79,6 +79,14 @@
                                             </span>
                                         </input>
                                     </label>
+                                    <label style="margin-left:5px">
+                                        <input type="checkbox" name="writeoff" value="1">
+                                            <xsl:attribute name="checked" select="checked"/>
+                                            <span>
+                                                Отметить имущество как списанное
+                                            </span>
+                                        </input>
+                                    </label>
                                 </div>
                             </span>
                         </div>
@@ -143,6 +151,14 @@
                                         <xsl:attribute name="checked" select="checked"/>
                                         <span>
                                             Прервать проверку при ошибке
+                                        </span>
+                                    </input>
+                                </label>
+                                <label style="margin-left:5px">
+                                    <input type="checkbox" name="writeoff" value="1">
+                                        <xsl:attribute name="checked" select="checked"/>
+                                        <span>
+                                            Отметить имущество как списанное
                                         </span>
                                     </input>
                                 </label>
