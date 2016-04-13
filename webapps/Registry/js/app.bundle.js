@@ -3237,7 +3237,10 @@ var knca = (function() {
             throw new Error('invalid_data');
         }
 
-        return signResult(applet().createCMSSignatureFromFile(storage.alias, storage.path, storage.keyAlias, storage.pwd, filePath, !!attached));
+        return {
+            filePath: filePath,
+            sign: signResult(applet().createCMSSignatureFromFile(storage.alias, storage.path, storage.keyAlias, storage.pwd, filePath, !!attached))
+        };
     }
 
     function verifyCMSSignatureFromFile(signatureCMSFile, filePath) {
@@ -3328,15 +3331,24 @@ var knca = (function() {
                 chooseStorageP12();
                 render();
             });
-            $(edsNode).find('[name=pwd]').on('change blur', function() {
+            $(edsNode).find('[name=pwd]').on('keyup blur', function() {
+                var el = this;
                 storage.pwd = this.value;
-                try {
-                    this.classList.remove('invalid');
-                    fillKeys();
-                    render();
-                } catch (e) {
-                    this.classList.add('invalid');
-                }
+
+                clearTimeout(t_o);
+                t_o = setTimeout(function() {
+                    try {
+                        if (storage.pwd) {
+                            el.classList.remove('invalid');
+                            fillKeys();
+                        }
+                        render();
+                    } catch (e) {
+                        el.classList.add('invalid');
+                        storage.pwd = '';
+                        render();
+                    }
+                }, 400);
             });
             $(edsNode).find('[name=cancel]').on('click', function() {
                 hidePropertyModal();

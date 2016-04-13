@@ -3237,7 +3237,10 @@ var knca = (function() {
             throw new Error('invalid_data');
         }
 
-        return signResult(applet().createCMSSignatureFromFile(storage.alias, storage.path, storage.keyAlias, storage.pwd, filePath, !!attached));
+        return {
+            filePath: filePath,
+            sign: signResult(applet().createCMSSignatureFromFile(storage.alias, storage.path, storage.keyAlias, storage.pwd, filePath, !!attached))
+        };
     }
 
     function verifyCMSSignatureFromFile(signatureCMSFile, filePath) {
@@ -3328,15 +3331,24 @@ var knca = (function() {
                 chooseStorageP12();
                 render();
             });
-            $(edsNode).find('[name=pwd]').on('change blur', function() {
+            $(edsNode).find('[name=pwd]').on('keyup blur', function() {
+                var el = this;
                 storage.pwd = this.value;
-                try {
-                    this.classList.remove('invalid');
-                    fillKeys();
-                    render();
-                } catch (e) {
-                    this.classList.add('invalid');
-                }
+
+                clearTimeout(t_o);
+                t_o = setTimeout(function() {
+                    try {
+                        if (storage.pwd) {
+                            el.classList.remove('invalid');
+                            fillKeys();
+                        }
+                        render();
+                    } catch (e) {
+                        el.classList.add('invalid');
+                        storage.pwd = '';
+                        render();
+                    }
+                }, 400);
             });
             $(edsNode).find('[name=cancel]').on('click', function() {
                 hidePropertyModal();
@@ -3678,6 +3690,7 @@ function renderFilePanel(fileName, fsid) {
     } else {
         template = $('#tpl_update_file_panel').clone();
         $tpl = $(template.html().trim());
+        $tpl.attr('data-file-name', fileName);
     }
 
     $tpl.attr('name', 'form' + (new Date().getTime()));
@@ -3715,10 +3728,20 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         var $btn = $(this);
 
-        knca.signFile().then(function(signText) {
-            if (signText !== 'cancel') {
-                $('<input type="text" name="sign" class="disabled" readonly value="' + signText + '" />').appendTo($tpl.find('.panel__body'));
+        knca.signFile().then(function(signData) {
+            if (signData !== 'cancel') {
+                if (signData.filePath.indexOf(fileName) != -1) {
+                    $('<input type="hidden" name="sign" class="disabled" readonly value="' + signData.sign + '" />').appendTo($tpl.find('.panel__body'));
+                    $('<span class=update-file-signed>' + nb.getText('signed', 'Подписан') + '</span>').appendTo($tpl.find('.js-link'));
+                    $btn.attr('disabled', true);
+                } else {
+                    nb.notify({
+                        type: 'error',
+                        message: 'Для подписи выберите файл: ' + fileName
+                    }).show('click');
+                }
             }
+            return signData;
         });
     });
 
