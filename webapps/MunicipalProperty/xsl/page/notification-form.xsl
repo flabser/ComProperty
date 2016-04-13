@@ -50,6 +50,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="control-label">
+                                    <xsl:value-of select="//captions/sender/@caption"/>
+                                </div>
+                                <div class="controls">
+                                    <input type="text" name="type" value="{fields/sender}" class="span4"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label">
                                     <xsl:value-of select="//captions/sendtime/@caption"/>
                                 </div>
                                 <div class="controls">
@@ -66,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="control-label">
-                                    <xsl:value-of select="//captions/body/@caption"/>
+                                    <xsl:value-of select="//captions/content/@caption"/>
                                 </div>
                                 <div class="controls">
                                     <textarea type="text" name="body" value="{fields/body}" class="span8">
