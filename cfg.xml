@@ -28,6 +28,9 @@
          <app>
             <name mode="on">Registry</name>
         </app>
+           <app>
+            <name mode="on">DataFixer</name>
+        </app>
     </applications>
     <langs>
     	<!-- https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes  -->

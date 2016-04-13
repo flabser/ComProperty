@@ -113,6 +113,55 @@
 		<class>reference.model.Kuf</class>		
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
+	<persistence-unit name="DataFixer" transaction-type="RESOURCE_LOCAL">
+		<!-- Obligatory the application module entities -->
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
+		<!-- Common module entities -->
+		<class>kz.lof.common.model.Attachment</class>		
+		<!-- Specific application entities -->
+		<class>municipalproperty.model.Property</class>
+		<class>municipalproperty.model.Attachment</class>
+		<class>municipalproperty.model.Vehicle</class>
+		<class>municipalproperty.model.RealEstate</class>
+		<class>municipalproperty.model.PersonalEstate</class>
+		<class>municipalproperty.model.Equipment</class>
+		<class>municipalproperty.model.EngineeringInfrastructure</class>
+		<class>municipalproperty.model.StrategicObject</class>
+		<class>municipalproperty.model.IntangibleAsset</class>
+		<class>municipalproperty.model.ReportTemplate</class>
+		<class>municipalproperty.model.Order</class>
+		<class>municipalproperty.model.Contract</class>
+		<class>municipalproperty.model.Notification</class>
+		<!-- Common Staff module entities -->
+		<class>staff.model.Organization</class>
+		<class>staff.model.Department</class>
+		<class>staff.model.Employee</class>
+		<class>staff.model.Role</class>
+		<class>staff.model.OrganizationLabel</class>
+		<!-- Common Reference module entities -->
+		<class>reference.model.RegionType</class>
+		<class>reference.model.LocalityType</class>
+		<class>reference.model.Country</class>	
+		<class>reference.model.Region</class>
+		<class>reference.model.District</class>
+		<class>reference.model.Locality</class>
+		<class>reference.model.CityDistrict</class>
+		<class>reference.model.Street</class>	
+		<class>reference.model.DepartmentType</class>			
+		<class>reference.model.Position</class>	
+		<class>reference.model.Tag</class>	
+		<class>reference.model.OrgCategory</class>
+		<!-- Specific Reference module entities -->
+		<class>reference.model.PropertyCode</class>	
+		<class>reference.model.BuildingMaterial</class>	
+		<class>reference.model.StructureType</class>	
+		<class>reference.model.ReceivingReason</class>
+		<class>reference.model.Kuf</class>		
+		<shared-cache-mode>NONE</shared-cache-mode>
+	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
 		<class>administrator.model.User</class>

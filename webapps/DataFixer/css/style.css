@@ -1,0 +1,32 @@
+.fieldset > .legend {
+    background: transparent;
+    padding-bottom: 0;
+}
+
+@media ( min-width: 1440px) {
+    .fieldset1,
+    .fieldset2 {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+    }
+}
+
+.btn-filter-toggle {
+    height: 34px;
+}
+
+.property-filter {
+    display: inline-block;
+    margin: 1px 6px;
+}
+
+form[data-edit=false] .on-edit,
+form[data-edit=false] [data-action=save_and_close],
+form[data-edit=false] [data-upload] {
+    display: none;
+}
+
+.select2-results .street-id {
+    float: right;
+}
