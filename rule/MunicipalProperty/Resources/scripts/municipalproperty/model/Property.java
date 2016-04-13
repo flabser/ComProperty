@@ -58,6 +58,9 @@ public class Property extends SecureAppEntity {
 	@Column(name = "residual_cost")
 	private float residualCost;
 
+	@Column(name = "after_revaluation_amount")
+	private float afterRevaluationAmount;
+
 	@ManyToOne
 	@JoinColumn
 	private ReceivingReason receivingReason;
@@ -123,6 +126,7 @@ public class Property extends SecureAppEntity {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
 	private List<Tag> tags;
+
 
 	public boolean isReadyToUse() {
 		return readyToUse;
@@ -275,6 +279,14 @@ public class Property extends SecureAppEntity {
 		this.revaluationAmount = revaluationAmount;
 	}
 
+	public float getAfterRevaluationAmount() {
+		return afterRevaluationAmount;
+	}
+
+	public void setAfterRevaluationAmount(float afterRevaluationAmount) {
+		this.afterRevaluationAmount = afterRevaluationAmount;
+	}
+
 	public float getResidualCost() {
 		return residualCost;
 	}
@@ -415,6 +427,7 @@ public class Property extends SecureAppEntity {
 		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
 		chunk.append("<residualcost>" + String.format("%.02f", residualCost) + "</residualcost>");
 		chunk.append("<revaluationamount>" + String.format("%.02f", revaluationAmount) + "</revaluationamount>");
+		chunk.append("<afterrevaluationamount>" + String.format("%.02f", afterRevaluationAmount) + "</afterrevaluationamount>");
 		try {
 			String tagsAsText = "";
 			for (Tag t : tags) {
@@ -439,4 +452,6 @@ public class Property extends SecureAppEntity {
 		}
 		return chunk.toString();
 	}
+
+
 }

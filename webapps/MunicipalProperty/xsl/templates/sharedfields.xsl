@@ -199,7 +199,7 @@
                 <xsl:value-of select="//captions/after_revaluation_amount/@caption"/>
             </div>
             <div class="controls">
-                <input type="number" name="afterrevaluationamount" value="{fields/afterevaluationamount}"
+                <input type="number" name="afterrevaluationamount" value="{fields/afterrevaluationamount}"
                        class="span3"/>
             </div>
         </div>

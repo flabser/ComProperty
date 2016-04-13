@@ -122,6 +122,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
             entity.setImpairmentLoss(Util.convertStringToFloat(formData.getValueSilently("impairmentloss")));
             entity.setBalanceCost(Util.convertStringToFloat(formData.getValueSilently("balancecost")));
             entity.setRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("revaluationamount")));
+            entity.setAfterRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("afterrevaluationamount")));
 
             ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
             ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
