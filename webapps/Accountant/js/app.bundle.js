@@ -3656,6 +3656,10 @@ function checkFile(fileId, fsid, $context) {
         stopIfError = '&' + stopIfError;
     }
 
+	var writeoff = $('input[name=writeoff]', $context).serialize();
+	if (writeoff != '') {
+		writeoff = '&' + writeoff;
+	}
     var noty = nb.notify({
         type: 'info',
         message: 'Идет проверка структуры файла. Пожалуйста подождите...'
@@ -3664,7 +3668,7 @@ function checkFile(fileId, fsid, $context) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError,
+        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + writeoff,
         success: function(data) {
             return data;
         },
