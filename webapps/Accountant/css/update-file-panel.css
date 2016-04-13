@@ -55,6 +55,7 @@
     display: inline-block;
     margin: 1px 3px;
     padding: 8px;
+    position: relative;
     vertical-align: top;
 }
 
@@ -62,6 +63,16 @@
     .update-file-link {
         min-width: 360px;
     }
+}
+
+.update-file-signed {
+    background: #e00000;
+    border-radius: 2px;
+    color: #fff;
+    line-height: 1;
+    padding: 3px;
+    position: absolute;
+    right: 8px;
 }
 
 .update-file-panel-actions {

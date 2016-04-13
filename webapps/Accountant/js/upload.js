@@ -127,6 +127,7 @@ function renderFilePanel(fileName, fsid) {
     } else {
         template = $('#tpl_update_file_panel').clone();
         $tpl = $(template.html().trim());
+        $tpl.attr('data-file-name', fileName);
     }
 
     $tpl.attr('name', 'form' + (new Date().getTime()));
@@ -164,10 +165,20 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         var $btn = $(this);
 
-        knca.signFile().then(function(signText) {
-            if (signText !== 'cancel') {
-                $('<input type="text" name="sign" class="disabled" readonly value="' + signText + '" />').appendTo($tpl.find('.panel__body'));
+        knca.signFile().then(function(signData) {
+            if (signData !== 'cancel') {
+                if (signData.filePath.indexOf(fileName) != -1) {
+                    $('<input type="hidden" name="sign" class="disabled" readonly value="' + signData.sign + '" />').appendTo($tpl.find('.panel__body'));
+                    $('<span class=update-file-signed>' + nb.getText('signed', 'Подписан') + '</span>').appendTo($tpl.find('.js-link'));
+                    $btn.attr('disabled', true);
+                } else {
+                    nb.notify({
+                        type: 'error',
+                        message: 'Для подписи выберите файл: ' + fileName
+                    }).show('click');
+                }
             }
+            return signData;
         });
     });
 
