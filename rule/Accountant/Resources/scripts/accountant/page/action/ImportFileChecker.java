@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FilenameUtils;
+
+import accountant.page.action.MPXLImporter.ErrorDescription;
+import accountant.page.form.UploadedFile;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -15,22 +19,21 @@ import kz.lof.scripting._Session;
 import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
-
-import org.apache.commons.io.FilenameUtils;
-
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
-import accountant.page.action.MPXLImporter.ErrorDescription;
-import accountant.page.form.UploadedFile;
 
 public class ImportFileChecker extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		boolean stopIfWrong = true;
+		boolean stopIfWrong = true, writeOff = false;
 		String sie = formData.getValueSilently("stopiferror");
 		if (sie.equals("1")) {
 			stopIfWrong = false;
+		}
+		String wo = formData.getValueSilently("writeoff");
+		if (wo.equals("1")) {
+			writeOff = true;
 		}
 
 		LanguageCode lang = session.getLang();
@@ -70,7 +73,7 @@ public class ImportFileChecker extends _DoPage {
 					Organization org = (Organization) Util.getRndListElement(oList);
 					String[] readers = formData.getListOfValuesSilently("reader");
 
-					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, stopIfWrong, org, readers);
+					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, stopIfWrong, writeOff, org, readers);
 
 					if (sheetErrs.size() > 0) {
 						uf.setStatus(UploadedFile.CHECKING_ERROR);

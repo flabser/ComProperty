@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
 import jxl.Cell;
 import jxl.CellType;
 import jxl.DateCell;
@@ -27,11 +31,6 @@ import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.PropertyStatusType;
 import municipalproperty.model.util.PropertyFactory;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.commons.lang3.time.DateUtils;
-
 import reference.dao.CityDistrictDAO;
 import reference.dao.CountryDAO;
 import reference.dao.LocalityDAO;
@@ -67,7 +66,8 @@ public class MPXLImporter {
 		this.mode = mode;
 	}
 
-	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh, String[] readers) {
+	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, boolean writeOff, Organization bh,
+	        String[] readers) {
 
 		/*
 		 * long start = System.currentTimeMillis(); ForkJoinPool forkJoinPool =
@@ -85,7 +85,7 @@ public class MPXLImporter {
 		int processed = 0, skipped = 0;
 		if (mode == MPXLImporter.LOAD) {
 			mode = MPXLImporter.CHECK;
-			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, bh, readers);
+			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, writeOff, bh, readers);
 			if (res.size() > 0) {
 				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 				return null;
@@ -151,15 +151,15 @@ public class MPXLImporter {
 				        .getErr());
 				rowErr.add(new CheVal("10, Адрес", address).isNotEmpty(address).getErr());
 				rowErr.add(new CheVal("11, Первоначальная стоимость", originalCostCell.getContents()).isFloatNumber(originalCostCell).getErr());
-				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents()).isFloatNumber(
-				        cumulativeDepreciationCell).getErr());
+				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents())
+				        .isFloatNumber(cumulativeDepreciationCell).getErr());
 				rowErr.add(new CheVal("13, Убыток от обесценения", impairmentLossCell.getContents()).isFloatNumber(impairmentLossCell).getErr());
 				rowErr.add(new CheVal("14, Балансовая стоимость", balanceCostCell.getContents()).isFloatNumber(balanceCostCell).getErr());
 				rowErr.add(new CheVal("15, Сумма переоценки", revaluationAmountCell.getContents()).isFloatNumber(revaluationAmountCell).getErr());
 				rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", residualCostCell.getContents()).isFloatNumber(residualCostCell)
 				        .getErr());
-				rowErr.add(new CheVal("17, Основание поступления на баланс", receiptBasisinBalance).isReferenceValue(new ReceivingReasonDAO(ses),
-				        receiptBasisinBalance).getErr());
+				rowErr.add(new CheVal("17, Основание поступления на баланс", receiptBasisinBalance)
+				        .isReferenceValue(new ReceivingReasonDAO(ses), receiptBasisinBalance).getErr());
 				rowErr.add(new CheVal("18 Модель", model).isOkAnyway().getErr());
 				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", commissioningYear.getContents()).isYear(commissioningYear).getErr());
 				rowErr.add(new CheVal("20, Год приобретения ", acquisitionYear.getContents()).isYear(acquisitionYear).getErr());
@@ -208,7 +208,11 @@ public class MPXLImporter {
 					accountant.page.action.util.AddressParser parser = new accountant.page.action.util.AddressParser();
 					parser.parseAddresses(addr, ses);
 
-					prop.setPropertyStatusType(PropertyStatusType.ON_BALANCE);
+					if (writeOff) {
+						prop.setPropertyStatusType(PropertyStatusType.WRITTENOFF);
+					} else {
+						prop.setPropertyStatusType(PropertyStatusType.ON_BALANCE);
+					}
 					prop.setOriginalCost(cv.getFloat(originalCostCell));
 					prop.setCumulativeDepreciation(cv.getFloat(cumulativeDepreciationCell));
 					prop.setCumulativeDepreciation(cv.getFloat(impairmentLossCell));
@@ -314,8 +318,8 @@ public class MPXLImporter {
 
 		CheVal isYear(Cell value) {
 			if (getYear(value) == null) {
-				errMsg.add(new ErrorDescription(info, sourceValue, "значение больше чем: " + Calendar.getInstance().get(Calendar.YEAR)
-				        + " or less than " + MPXLImporter.FROM_YEAR + ")"));
+				errMsg.add(new ErrorDescription(info, sourceValue,
+				        "значение больше чем: " + Calendar.getInstance().get(Calendar.YEAR) + " or less than " + MPXLImporter.FROM_YEAR + ")"));
 			}
 			return this;
 		}
@@ -383,8 +387,8 @@ public class MPXLImporter {
 
 		CheVal isValueOfList(String trueVal, String falseVal, String value) {
 			if (getBoolean(trueVal, falseVal, value) == null) {
-				errMsg.add(new ErrorDescription(info, sourceValue, "значение не корректно, оно должно быть равно: \"" + trueVal + "\" или \""
-				        + falseVal + "\""));
+				errMsg.add(new ErrorDescription(info, sourceValue,
+				        "значение не корректно, оно должно быть равно: \"" + trueVal + "\" или \"" + falseVal + "\""));
 			}
 			return this;
 		}

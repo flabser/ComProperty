@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
+
+import accountant.page.form.UploadedFile;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -16,12 +19,8 @@ import kz.lof.scripting._WebFormData;
 import kz.lof.scripting.event._DoPage;
 import kz.lof.user.IUser;
 import kz.nextbase.script._Exception;
-
-import org.apache.commons.io.FilenameUtils;
-
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
-import accountant.page.form.UploadedFile;
 
 public class UpdateFile extends _DoPage {
 
@@ -72,8 +71,15 @@ public class UpdateFile extends _DoPage {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		println(formData);
+		boolean writeOff = false;
+		devPrint(formData);
 		LanguageCode lang = session.getLang();
+
+		String wo = formData.getValueSilently("writeoff");
+		if (wo.equals("1")) {
+			writeOff = true;
+		}
+
 		try {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
@@ -105,7 +111,8 @@ public class UpdateFile extends _DoPage {
 								return;
 							}
 							Sheet sheet = workbook.getSheet(0);
-							Map<Integer, List<List<MPXLImporter.ErrorDescription>>> sheetErrs = id.process(sheet, session, true, org, readers);
+							Map<Integer, List<List<MPXLImporter.ErrorDescription>>> sheetErrs = id.process(sheet, session, true, writeOff, org,
+							        readers);
 
 							if (sheetErrs.size() > 0) {
 								uf.setStatus(UploadedFile.LOADING_ERROR);
