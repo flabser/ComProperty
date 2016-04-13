@@ -2,7 +2,7 @@
 <rule type="page" mode="on" history="off">
     <description>FTSearch</description>
     <caching>NO_CACHING</caching>
-    <xsltfile>DEFAULT</xsltfile>
+    <xsltfile>DEFAULT_municipalproperty</xsltfile>
     <element mode="ON" type="SCRIPT">
         <name>view_content</name>
         <events>

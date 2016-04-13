@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="Administrator" transaction-type="RESOURCE_LOCAL">
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
 		<class>staff.model.Employee</class>
@@ -18,10 +18,10 @@
 	</persistence-unit>
 	<persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
 		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
@@ -66,10 +66,10 @@
 	</persistence-unit>	
 	<persistence-unit name="PropertyLeasing" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
 		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
@@ -115,10 +115,10 @@
 	</persistence-unit>	
 	<persistence-unit name="Accountant" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
 		<class>kz.lof.common.model.Attachment</class>		
 		<!-- Specific application entities -->
@@ -160,10 +160,10 @@
 	</persistence-unit>		
 	<persistence-unit name="Staff" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -188,10 +188,10 @@
 	</persistence-unit>	
 	<persistence-unit name="Registry" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -214,10 +214,10 @@
 	</persistence-unit>	
 	<persistence-unit name="Reference" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>
@@ -247,10 +247,10 @@
 	</persistence-unit>	
 	<persistence-unit name="Workspace" transaction-type="RESOURCE_LOCAL">
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.User</class>
-		<class>kz.lof.administrator.model.Application</class>
-		<class>kz.lof.administrator.model.Language</class>
-		<class>kz.lof.administrator.model.Sentence</class>
+		<class>administrator.model.User</class>
+		<class>administrator.model.Application</class>
+		<class>administrator.model.Language</class>
+		<class>administrator.model.Sentence</class>
 		<!-- Common Staff module entities -->		
 		<class>staff.model.Organization</class>
 		<class>staff.model.Department</class>

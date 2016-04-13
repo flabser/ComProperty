@@ -52,6 +52,9 @@
                 </label>
                 <a href="{@url}" class="entry-link">
                     <div class="entry-fields">
+                     	<span class="vw-inv-number">
+                            <xsl:value-of select="viewcontent/name"/>
+                        </span>
                         <span class="vw-inv-number">
                             <xsl:value-of select="viewcontent/invnumber"/>
                         </span>

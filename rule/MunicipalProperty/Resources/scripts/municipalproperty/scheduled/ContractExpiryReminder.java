@@ -3,8 +3,8 @@ package municipalproperty.scheduled;
 import java.util.Date;
 import java.util.List;
 
-import kz.lof.administrator.dao.UserDAO;
-import kz.lof.administrator.model.User;
+import administrator.dao.UserDAO;
+import administrator.model.User;
 import kz.lof.env.EnvConst;
 import kz.lof.exception.SecureException;
 import kz.lof.localization.LanguageCode;
