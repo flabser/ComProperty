@@ -112,6 +112,14 @@
     padding: 4px 16px;
 }
 
+.update-extra-options{
+    margin-top:6px;
+}
+
+.update-extra-options > ul > li > label{
+    margin:0;
+}
+
 
 /* 
 JUST_UPLOADED = 1;
@@ -124,6 +132,7 @@ LOADING_ERROR = 5;
 .update-file-panel .panel__header {
     border-bottom: 1px solid #ddd;
 }
+
 
 .update-status-1 .panel__header {
     border-bottom: 1px solid #ddd;

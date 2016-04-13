@@ -70,7 +70,7 @@
                                 <button type="button" class="btn btn js-delete">
                                     <span>Удалить</span>
                                 </button>
-                                <div>
+                                <div class="update-extra-options">
                                     <ul class="nb-dialog-list">
                                         <li>
                                             <label>
@@ -150,7 +150,7 @@
                             <button type="button" class="btn btn js-delete">
                                 <span>Удалить</span>
                             </button>
-                            <div>
+                            <div class="update-extra-options">
                                 <ul class="nb-dialog-list">
                                     <li>
                                         <label>
