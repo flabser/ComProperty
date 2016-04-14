@@ -3736,7 +3736,7 @@ function renderFilePanel(fileName, fsid) {
         knca.signFile().then(function(signData) {
             if (signData !== 'cancel') {
                 if (signData.filePath.indexOf(fileName) != -1) {
-                    $('<input type="hidden" name="sign" class="disabled" readonly value="' + signData.sign + '" />').appendTo($tpl.find('.panel__body'));
+                    $('<input type="text" name="sign" class="disabled" readonly value="' + signData.sign + '" />').appendTo($tpl.find('.panel__body'));
                     $('<span class=update-file-signed>' + nb.getText('signed', 'Подписан') + '</span>').appendTo($tpl.find('.js-link'));
                     $btn.attr('disabled', true);
                 } else {

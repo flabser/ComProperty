@@ -152,8 +152,7 @@ public class MPXLImporter {
 				        .getErr());
 				rowErr.add(new CheVal("10, Адрес", address).isNotEmpty(address).getErr());
 				rowErr.add(new CheVal("11, Первоначальная стоимость", originalCostCell.getContents()).isFloatNumber(originalCostCell).getErr());
-				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents())
-				        .isFloatNumber(cumulativeDepreciationCell).getErr());
+				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents()).isFloatNumber(cumulativeDepreciationCell).getErr());
 				rowErr.add(new CheVal("13, Убыток от обесценения", impairmentLossCell.getContents()).isFloatNumber(impairmentLossCell).getErr());
 				rowErr.add(new CheVal("14, Балансовая стоимость", balanceCostCell.getContents()).isFloatNumber(balanceCostCell).getErr());
 				rowErr.add(new CheVal("15, Сумма переоценки", revaluationAmountCell.getContents()).isFloatNumber(revaluationAmountCell).getErr());
@@ -216,7 +215,7 @@ public class MPXLImporter {
 					}
 					prop.setOriginalCost(cv.getFloat(originalCostCell));
 					prop.setCumulativeDepreciation(cv.getFloat(cumulativeDepreciationCell));
-					prop.setCumulativeDepreciation(cv.getFloat(impairmentLossCell));
+					prop.setImpairmentLoss(cv.getFloat(impairmentLossCell));
 					prop.setBalanceCost(cv.getFloat(balanceCostCell));
 					prop.setRevaluationAmount(cv.getFloat(revaluationAmountCell));
 					prop.setResidualCost(cv.getFloat(residualCostCell));
