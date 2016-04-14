@@ -20,11 +20,12 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import com.exponentus.common.model.Attachment;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.scripting._Session;
+import com.exponentus.util.NumberUtil;
+
 import kz.flabs.util.Util;
-import kz.lof.common.model.Attachment;
-import kz.lof.dataengine.jpa.SecureAppEntity;
-import kz.lof.scripting._Session;
-import kz.lof.util.NumberUtil;
 import municipalproperty.model.constants.PropertyStatusType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
@@ -35,7 +36,7 @@ import staff.model.Employee;
 import staff.model.Organization;
 
 @Entity
-@Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }))
+@Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }) )
 @NamedQuery(name = "Property.findAll", query = "SELECT m FROM Property AS m ORDER BY m.regDate")
 public class Property extends SecureAppEntity {
 	@Column(length = 16)
@@ -120,13 +121,13 @@ public class Property extends SecureAppEntity {
 	private String decreesActs = "";
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinTable(name = "property_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
+	@JoinTable(name = "property_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
+	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
 	private List<Attachment> attachments;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
 	private List<Tag> tags;
-
 
 	public boolean isReadyToUse() {
 		return readyToUse;
@@ -422,8 +423,8 @@ public class Property extends SecureAppEntity {
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + String.format("%.02f", originalCost) + "</originalcost>");
 		chunk.append("<propertycode id=\"" + propertyCode.getId() + "\">" + propertyCode.getLocalizedName(ses.getLang()) + "</propertycode>");
-		chunk.append("<receivingreason id=\"" + receivingReason.getId() + "\">" + receivingReason.getLocalizedName(ses.getLang())
-		        + "</receivingreason>");
+		chunk.append(
+		        "<receivingreason id=\"" + receivingReason.getId() + "\">" + receivingReason.getLocalizedName(ses.getLang()) + "</receivingreason>");
 		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
 		chunk.append("<residualcost>" + String.format("%.02f", residualCost) + "</residualcost>");
 		chunk.append("<revaluationamount>" + String.format("%.02f", revaluationAmount) + "</revaluationamount>");
@@ -452,6 +453,5 @@ public class Property extends SecureAppEntity {
 		}
 		return chunk.toString();
 	}
-
 
 }

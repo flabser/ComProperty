@@ -1,9 +1,9 @@
 package municipalproperty.page.view;
 
-import kz.lof.dataengine.jpa.ViewPage;
-import kz.lof.scripting._POJOListWrapper;
-import kz.lof.scripting._Session;
-import kz.lof.scripting._WebFormData;
+import com.exponentus.dataengine.jpa.ViewPage;
+import com.exponentus.scripting._POJOListWrapper;
+import com.exponentus.scripting._Session;
+import com.exponentus.scripting._WebFormData;
 import municipalproperty.dao.NotificationDAO;
 import municipalproperty.model.Notification;
 import municipalproperty.model.constants.NotificationType;

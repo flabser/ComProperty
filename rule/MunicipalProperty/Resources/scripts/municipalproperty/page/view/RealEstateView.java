@@ -2,9 +2,9 @@ package municipalproperty.page.view;
 
 import java.util.List;
 
-import kz.lof.localization.LanguageCode;
-import kz.lof.scripting._Session;
-import kz.lof.scripting._WebFormData;
+import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting._Session;
+import com.exponentus.scripting._WebFormData;
 import municipalproperty.dao.filter.PropertyFilter;
 import reference.model.constants.KufType;
 

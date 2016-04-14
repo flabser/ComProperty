@@ -1,8 +1,8 @@
 package accountant.page.form;
 
 import accountant.page.action.MPXLImporter.ErrorDescription;
-import kz.lof.scripting.POJOObjectAdapter;
-import kz.lof.scripting._Session;
+import com.exponentus.scripting.POJOObjectAdapter;
+import com.exponentus.scripting._Session;
 
 import java.util.List;
 import java.util.Map;

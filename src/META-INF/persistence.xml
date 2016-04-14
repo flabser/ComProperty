@@ -23,7 +23,7 @@
 		<class>administrator.model.Language</class>
 		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
-		<class>kz.lof.common.model.Attachment</class>		
+		<class>com.exponentus.common.model.Attachment</class>		
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>	
 		<class>municipalproperty.model.Vehicle</class>
@@ -71,7 +71,7 @@
 		<class>administrator.model.Language</class>
 		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
-		<class>kz.lof.common.model.Attachment</class>		
+		<class>com.exponentus.common.model.Attachment</class>		
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Attachment</class>
@@ -120,7 +120,7 @@
 		<class>administrator.model.Language</class>
 		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
-		<class>kz.lof.common.model.Attachment</class>		
+		<class>com.exponentus.common.model.Attachment</class>		
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Attachment</class>
@@ -169,7 +169,7 @@
 		<class>administrator.model.Language</class>
 		<class>administrator.model.Sentence</class>
 		<!-- Common module entities -->
-		<class>kz.lof.common.model.Attachment</class>		
+		<class>com.exponentus.common.model.Attachment</class>		
 		<!-- Specific application entities -->
 		<class>municipalproperty.model.Property</class>
 		<class>municipalproperty.model.Attachment</class>
@@ -232,7 +232,7 @@
 		<class>reference.model.Position</class>
 		<class>reference.model.OrgCategory</class>
 		<!-- Obligatory the application module entities -->
-		<class>kz.lof.administrator.model.Language</class>
+		<class>administrator.model.Language</class>
 		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>	
 	<persistence-unit name="Registry" transaction-type="RESOURCE_LOCAL">

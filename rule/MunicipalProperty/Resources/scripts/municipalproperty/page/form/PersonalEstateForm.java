@@ -1,15 +1,15 @@
 package municipalproperty.page.form;
 
 import kz.flabs.util.Util;
-import kz.lof.common.model.Attachment;
-import kz.lof.env.Environment;
-import kz.lof.exception.SecureException;
-import kz.lof.localization.LanguageCode;
-import kz.lof.scripting._Session;
-import kz.lof.scripting._Validation;
-import kz.lof.scripting._WebFormData;
-import kz.lof.server.Server;
-import kz.lof.user.IUser;
+import com.exponentus.common.model.Attachment;
+import com.exponentus.env.Environment;
+import com.exponentus.exception.SecureException;
+import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting._Session;
+import com.exponentus.scripting._Validation;
+import com.exponentus.scripting._WebFormData;
+import com.exponentus.server.Server;
+import com.exponentus.user.IUser;
 import kz.nextbase.script._EnumWrapper;
 import kz.nextbase.script._Exception;
 import kz.nextbase.script._Helper;
@@ -167,7 +167,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
                 for (String fn : fileNames) {
                     File file = new File(userTmpDir + File.separator + fn);
                     InputStream is = new FileInputStream(file);
-                    Attachment att = new kz.lof.common.model.Attachment();
+                    Attachment att = new com.exponentus.common.model.Attachment();
                     att.setRealFileName(fn);
                     att.setFile(IOUtils.toByteArray(is));
                     att.setAuthor(session.getUser());

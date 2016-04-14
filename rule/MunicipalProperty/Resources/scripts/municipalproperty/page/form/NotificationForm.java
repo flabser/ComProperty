@@ -1,11 +1,11 @@
 package municipalproperty.page.form;
 
 import kz.flabs.util.Util;
-import kz.lof.exception.SecureException;
-import kz.lof.scripting._Session;
-import kz.lof.scripting._WebFormData;
-import kz.lof.scripting.event._DoPage;
-import kz.lof.user.IUser;
+import com.exponentus.exception.SecureException;
+import com.exponentus.scripting._Session;
+import com.exponentus.scripting._WebFormData;
+import com.exponentus.scripting.event._DoPage;
+import com.exponentus.user.IUser;
 import kz.nextbase.script.actions._Action;
 import kz.nextbase.script.actions._ActionBar;
 import kz.nextbase.script.actions._ActionType;

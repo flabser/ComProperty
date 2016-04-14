@@ -10,8 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import kz.flabs.util.Util;
-import kz.lof.dataengine.jpa.SecureAppEntity;
-import kz.lof.scripting._Session;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.scripting._Session;
 import municipalproperty.model.constants.NotificationType;
 
 @Entity

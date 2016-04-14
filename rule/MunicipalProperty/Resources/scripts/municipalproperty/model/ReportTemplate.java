@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.lof.dataengine.jpa.AppEntity;
-import kz.lof.scripting._Session;
+import com.exponentus.dataengine.jpa.AppEntity;
+import com.exponentus.scripting._Session;
 import reference.dao.KufDAO;
 import reference.model.Kuf;
 import reference.model.constants.KufType;

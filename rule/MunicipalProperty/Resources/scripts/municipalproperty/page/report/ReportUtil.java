@@ -12,8 +12,8 @@ import java.util.List;
 import kz.flabs.dataengine.DatabaseUtil;
 import kz.flabs.dataengine.IDBConnectionPool;
 import kz.flabs.dataengine.IDatabase;
-import kz.lof.scripting._Session;
-import kz.lof.server.Server;
+import com.exponentus.scripting._Session;
+import com.exponentus.server.Server;
 import reference.model.constants.KufType;
 
 public class ReportUtil {

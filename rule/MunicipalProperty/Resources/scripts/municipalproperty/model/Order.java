@@ -1,9 +1,9 @@
 package municipalproperty.model;
 
 import kz.flabs.util.Util;
-import kz.lof.common.model.Attachment;
-import kz.lof.dataengine.jpa.SecureAppEntity;
-import kz.lof.scripting._Session;
+import com.exponentus.common.model.Attachment;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.scripting._Session;
 import municipalproperty.dao.ContractDAO;
 
 import javax.persistence.*;

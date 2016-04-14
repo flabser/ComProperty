@@ -11,9 +11,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import kz.lof.dataengine.jpa.DAO;
-import kz.lof.scripting._Session;
-import kz.lof.user.SuperUser;
+import com.exponentus.dataengine.jpa.DAO;
+import com.exponentus.scripting._Session;
+import com.exponentus.user.SuperUser;
 import municipalproperty.model.Contract;
 import municipalproperty.model.Order;
 

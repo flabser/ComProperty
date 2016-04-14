@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.UUID;
 
 import kz.flabs.util.Util;
-import kz.lof.env.Environment;
-import kz.lof.scripting._Session;
-import kz.lof.scripting._WebFormData;
-import kz.lof.scripting.event._DoPage;
-import kz.lof.server.Server;
+import com.exponentus.env.Environment;
+import com.exponentus.scripting._Session;
+import com.exponentus.scripting._WebFormData;
+import com.exponentus.scripting.event._DoPage;
+import com.exponentus.server.Server;
 import kz.nextbase.script._Exception;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;

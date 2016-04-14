@@ -2,7 +2,7 @@
 <nextbase>
     <hostname>localhost</hostname>
     <port></port>  
-    <orgname>АИС "Коммунальное имущество"</orgname>
+    <orgname>Municipal agency</orgname>
     <applications>
        <app>
             <name mode="on">Administrator</name>

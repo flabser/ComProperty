@@ -19,9 +19,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import kz.flabs.util.Util;
-import kz.lof.common.model.Attachment;
-import kz.lof.dataengine.jpa.SecureAppEntity;
-import kz.lof.scripting._Session;
+import com.exponentus.common.model.Attachment;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.scripting._Session;
 
 @Entity
 @Table(name = "contracts")

@@ -6,7 +6,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.lof.scripting._Session;
+import com.exponentus.scripting._Session;
 
 @Entity
 @Table(name = "equipments")

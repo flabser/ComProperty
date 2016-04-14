@@ -14,12 +14,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.exponentus.dataengine.jpa.DAO;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.dataengine.jpa.ViewPage;
+import com.exponentus.scripting._Session;
+import com.exponentus.user.SuperUser;
+
 import kz.flabs.runtimeobj.RuntimeObjUtil;
-import kz.lof.dataengine.jpa.DAO;
-import kz.lof.dataengine.jpa.SecureAppEntity;
-import kz.lof.dataengine.jpa.ViewPage;
-import kz.lof.scripting._Session;
-import kz.lof.user.SuperUser;
 import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.Property;
 import reference.dao.OrgCategoryDAO;

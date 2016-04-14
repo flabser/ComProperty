@@ -2,8 +2,8 @@ package municipalproperty.dao;
 
 import java.util.UUID;
 
-import kz.lof.dataengine.jpa.DAO;
-import kz.lof.scripting._Session;
+import com.exponentus.dataengine.jpa.DAO;
+import com.exponentus.scripting._Session;
 import municipalproperty.model.Equipment;
 
 public class EquipmentDAO extends DAO<Equipment, UUID> {
