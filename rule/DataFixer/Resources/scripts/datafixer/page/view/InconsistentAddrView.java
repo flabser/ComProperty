@@ -1,11 +1,13 @@
 package datafixer.page.view;
 
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.dataengine.jpa.ViewPage;
+import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.event._DoPage;
-import municipalproperty.dao.filter.PropertyFilter;
-import reference.model.constants.KufType;
+
+import municipalproperty.dao.RealEstateDAO;
+import municipalproperty.model.RealEstate;
 
 /**
  * @author Kayra created 13-04-2016
@@ -15,31 +17,13 @@ public class InconsistentAddrView extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		LanguageCode lang = session.getLang();
-		int kuf = formData.getNumberValueSilently("kuf", -1);
-		KufType kufType = KufType.getType(kuf);
-		KufType kufParam;
-		PropertyFilter propertyFilter = new PropertyFilter();
-
-		switch (kufType) {
-		case FURNITURE:
-		case ANIMALS:
-		case SPORT_EQUIPMENT:
-		case OTHERS:
-			kufParam = kufType;
-			propertyFilter.addKufType(kufType);
-			break;
-		default:
-			kufParam = KufType.FURNITURE;
-			propertyFilter.addKufType(KufType.FURNITURE);
-			propertyFilter.addKufType(KufType.ANIMALS);
-			propertyFilter.addKufType(KufType.SPORT_EQUIPMENT);
-			propertyFilter.addKufType(KufType.OTHERS);
-			break;
+		int pageNum = 1;
+		int pageSize = session.pageSize;
+		if (formData.containsField("page")) {
+			pageNum = formData.getNumberValueSilently("page", pageNum);
 		}
-
-		// addContent(getViewPage(session, formData, propertyFilter, lang));
-		// addContent(getSimpleActionBar(session, "personalestate-form",
-		// kufParam, lang));
+		RealEstateDAO nDao = new RealEstateDAO(session);
+		ViewPage<RealEstate> vp = nDao.findAllInconsistAddr(pageNum, pageSize);
+		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}
 }

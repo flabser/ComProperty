@@ -131,7 +131,7 @@ public class ReportTemplateForm extends _DoPage {
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 
 			PropertyDAO dao = new PropertyDAO(session);
-			List<Property> result = dao.find(cat, bhId, bhCat, from, to);
+			List<Property> result = dao.findAllForReport(cat, bhId, bhCat, from, to);
 
 			// ArrayList<IPropertyBean> result = fetchReportData(cat,
 			// checkAcceptanceDate, checkBalanceHolder, bc, from, to);

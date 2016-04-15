@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
     <sentence mode="on" keyword="brand">
-        <entry lang="ENG">Municipal properties</entry>
-        <entry lang="RUS">АИС 'Коммунальное имущество'</entry>
-        <entry lang="KAZ">АИС 'Коммуналды меншік объектілерін бақылау'</entry>
+        <entry lang="ENG">Data fixing</entry>
+        <entry lang="RUS">Корректировка данных</entry>
+        <entry lang="KAZ">Корректировка данных</entry>
     </sentence>
-    <sentence mode="on" keyword="municipal_property">
-        <entry lang="ENG">Municipal property</entry>
-        <entry lang="RUS">Объекты коммунальной собственности</entry>
-        <entry lang="KAZ">Коммуналды меншіктің объектілері</entry>
+    <sentence mode="on" keyword="inconsistent_data">
+        <entry lang="ENG">Inconsistent data</entry>
+        <entry lang="RUS">Объекты для корректировки</entry>
+        <entry lang="KAZ">Объекты для корректировки</entry>
+    </sentence>
+       <sentence mode="on" keyword="inconsistent_addredd">
+        <entry lang="ENG">Inconsistent address</entry>
+        <entry lang="RUS">Объекты с неполным адресом</entry>
+        <entry lang="KAZ">Объекты с неполным адресом</entry>
     </sentence>
     <sentence mode="on" keyword="kof">
         <entry lang="ENG">KOF</entry>

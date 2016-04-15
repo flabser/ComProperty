@@ -156,7 +156,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 		}
 	}
 
-	public List<Property> findByInvNumAndName(String invNum, String name) {
+	public List<Property> findAllByInvNumAndName(String invNum, String name) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
@@ -176,7 +176,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 	}
 
 	// TODO it need adding dates checking in condition
-	public List<Property> find(List<KufType> value, UUID balanceHolder, UUID orgCat, Date from, Date to) {
+	public List<Property> findAllForReport(List<KufType> value, UUID balanceHolder, UUID orgCat, Date from, Date to) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		try {
@@ -227,4 +227,5 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			em.close();
 		}
 	}
+
 }
