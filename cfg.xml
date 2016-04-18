@@ -1,58 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <nextbase>
-    <hostname>localhost</hostname>
-    <port></port>  
-    <orgname>Municipal agency</orgname>
-    <applications>
-       <app>
-            <name mode="on">Administrator</name>
-        </app>
-         <app>
-            <name mode="on">Staff</name>
-        </app>
-         <app>
-            <name mode="on">Reference</name>
-        </app>
-        <app>
-            <name mode="on">Accountant</name>
-        </app>
-        <app>
-            <name mode="on">Workspace</name>
-        </app>
-         <app>
-            <name mode="on">MunicipalProperty</name>
-        </app>
-         <app>
-            <name mode="on">PropertyLeasing</name>
-        </app>
-         <app>
-            <name mode="on">Registry</name>
-        </app>
-           <app>
-            <name mode="on">DataFixer</name>
-        </app>
-    </applications>
-    <langs>
-    	<!-- https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes  -->
+	<hostname>localhost</hostname>
+	<port></port>
+	<orgname>Municipal agency</orgname>
+	<applications>
+		<app>
+			<name mode="on">Administrator</name>
+		</app>
+		<app>
+			<name mode="on">Staff</name>		
+		</app>
+		<app>
+			<name mode="on">Reference</name>
+		</app>
+		<app>
+			<name mode="on">Accountant</name>
+		</app>
+		<app>
+			<name mode="on">Workspace</name>
+		</app>
+		<app>
+			<name mode="on">MunicipalProperty</name>
+		</app>
+		<app>
+			<name mode="on">PropertyLeasing</name>
+		</app>
+		<app>
+			<name mode="on">Registry</name>
+		</app>
+		<app>
+			<name mode="on">DataFixer</name>
+		</app>
+		<app>
+			<name mode="on">GisServProvider</name>
+			<rest mode="on">
+				<type>jersey</type>
+				<urlmapping>/rest/*</urlmapping>
+				<services>
+					<class>gisservprovider.services.GisService</class>
+				</services>
+			</rest>
+		</app>
+	</applications>
+	<langs>
+		<!-- https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes -->
 		<entry>RUS</entry>
 		<entry>KAZ</entry>
 		<entry>ENG</entry>
 	</langs>
-    <mailagent mode="ON">
-    	<smtphost>smtp.mail.ru</smtphost>
+	<mailagent mode="ON">
+		<smtphost>smtp.mail.ru</smtphost>
 		<defaultsender>mynameis.m@mail.ru</defaultsender>
 		<auth>true</auth>
 		<smtpport>465</smtpport>
 		<smtpuser>mynameis.m@mail.ru</smtpuser>
-		<smtppassword>mynameis.mmynameis.m</smtppassword>     
-    </mailagent>
-   <ssl mode="OFF">
-        <port>38789</port>
-        <keypass>123456</keypass>
-        <keystore>c:\tmp\ssl\aikonamedia.jks</keystore>
-        <clientauth mode="OFF">
-            <truststorepass>123456</truststorepass>
-            <truststorefile>c:\tmp\ssl\truststore.jks</truststorefile>
-        </clientauth>
-    </ssl>
+		<smtppassword>mynameis.mmynameis.m</smtppassword>
+	</mailagent>
+	<ssl mode="OFF">
+		<port>38789</port>
+		<keypass>123456</keypass>
+		<keystore>c:\tmp\ssl\aikonamedia.jks</keystore>
+		<clientauth mode="OFF">
+			<truststorepass>123456</truststorepass>
+			<truststorefile>c:\tmp\ssl\truststore.jks</truststorefile>
+		</clientauth>
+	</ssl>
+
 </nextbase>
