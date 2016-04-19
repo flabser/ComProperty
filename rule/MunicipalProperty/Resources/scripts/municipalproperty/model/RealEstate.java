@@ -56,30 +56,25 @@ public class RealEstate extends Property {
 		chunk.append("<material>" + material + "</material>");
 
 		chunk.append("<address>");
-		if (address.getRegion().getType() != null) {
-			chunk.append("<regiontype id=\"" + address.getRegion().getType().getId() + "\">"
-			        + address.getRegion().getType().getLocalizedName(ses.getLang()) + "</regiontype>");
-		}
-		if (address.getRegion().getId() != null) {
-			chunk.append("<region id=\"" + address.getRegion().getId() + "\">" + address.getRegion().getLocalizedName(ses.getLang()) + "</region>");
-		}
+		chunk.append("<regiontype id=\"" + address.getRegion().getType().getId() + "\">"
+		        + address.getRegion().getType().getLocalizedName(ses.getLang()) + "</regiontype>");
+		chunk.append("<region id=\"" + address.getRegion().getId() + "\">" + address.getRegion().getLocalizedName(ses.getLang()) + "</region>");
+
 		if (address.getDistrict().getId() != null) {
 			chunk.append("<district id=\"" + address.getDistrict().getId() + "\">" + address.getDistrict().getLocalizedName(ses.getLang())
 			        + "</district>");
 		}
-		if (address.getLocality().getType() != null) {
-			chunk.append("<localitytype id=\"" + address.getLocality().getType().getId() + "\">"
-			        + address.getLocality().getType().getLocalizedName(ses.getLang()) + "</localitytype>");
-		}
-		if (address.getLocality().getId() != null) {
-			chunk.append("<locality id=\"" + address.getLocality().getId() + "\">" + address.getLocality().getLocalizedName(ses.getLang())
-			        + "</locality>");
-		}
+		chunk.append("<localitytype id=\"" + address.getLocality().getType().getId() + "\">"
+		        + address.getLocality().getType().getLocalizedName(ses.getLang()) + "</localitytype>");
+		chunk.append(
+		        "<locality id=\"" + address.getLocality().getId() + "\">" + address.getLocality().getLocalizedName(ses.getLang()) + "</locality>");
+
 		if (address.getStreet().getId() != null) {
 			chunk.append("<street id=\"" + address.getStreet().getId() + "\">" + address.getStreet().getLocalizedName(ses.getLang()) + "</street>");
 		}
 		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");
 		chunk.append("<additionalinfo>" + address.getAdditionalInfo() + "</additionalinfo>");
+		chunk.append("<coordiantes>" + address.getCoordiantes() + "</coordiantes>");
 		chunk.append("</address>");
 
 		return super.getFullXMLChunk(ses) + chunk;

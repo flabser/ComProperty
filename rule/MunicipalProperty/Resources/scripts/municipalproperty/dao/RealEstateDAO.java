@@ -4,15 +4,19 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.exponentus.dataengine.jpa.DAO;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.scripting._Session;
+import com.exponentus.user.SuperUser;
 
 import kz.flabs.runtimeobj.RuntimeObjUtil;
 import municipalproperty.model.RealEstate;
@@ -57,6 +61,36 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 			List<RealEstate> result = typedQuery.getResultList();
 
 			return new ViewPage<RealEstate>(result, count, maxPage, pageNum);
+		} finally {
+			em.close();
+		}
+
+	}
+
+	public RealEstate findByCoord(String coord) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		boolean isSecureEntity = false;
+		try {
+			CriteriaQuery<RealEstate> cq = cb.createQuery(RealEstate.class);
+			Root<RealEstate> c = cq.from(RealEstate.class);
+			cq.select(c);
+			Predicate condition = cb.notEqual(c.get("address").get("coordiantes"), coord);
+			cq.where(condition);
+			Query query = em.createQuery(cq);
+			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
+				condition = cb.and(c.get("readers").in(user.getId()), condition);
+				isSecureEntity = true;
+			}
+			RealEstate entity = (RealEstate) query.getSingleResult();
+			if (isSecureEntity) {
+				if (!entity.getEditors().contains(user.getId())) {
+					entity.setEditable(false);
+				}
+			}
+			return entity;
+		} catch (NoResultException e) {
+			return null;
 		} finally {
 			em.close();
 		}

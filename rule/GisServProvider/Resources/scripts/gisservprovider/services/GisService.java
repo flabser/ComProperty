@@ -6,9 +6,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import com.exponentus.rest.RestProvider;
+
+import municipalproperty.dao.RealEstateDAO;
+import municipalproperty.model.RealEstate;
 
 @Path("gis")
 public class GisService extends RestProvider {
@@ -21,16 +23,14 @@ public class GisService extends RestProvider {
 	}
 
 	@GET
-	@Path("/{id}")
+	@Path("/{coord}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response get(@PathParam("id") long id) {
-		System.out.println("test" + id);
-		// UNAUTHORIZED
-		if (!getSession().getUser().isAuthorized()) {
-			return Response.noContent().status(Status.UNAUTHORIZED).build();
-		}
+	public Response get(@PathParam("coord") String coord) {
+		System.out.println("test" + coord);
+		RealEstateDAO reDao = new RealEstateDAO(getSession());
+		RealEstate entity = reDao.findByCoord(coord);
 
-		return Response.ok().build();
+		return Response.ok(entity).build();
 	}
 
 }
