@@ -152,7 +152,8 @@ public class MPXLImporter {
 				        .getErr());
 				rowErr.add(new CheVal("10, Адрес", address).isNotEmpty(address).getErr());
 				rowErr.add(new CheVal("11, Первоначальная стоимость", originalCostCell.getContents()).isFloatNumber(originalCostCell).getErr());
-				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents()).isFloatNumber(cumulativeDepreciationCell).getErr());
+				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents())
+				        .isFloatNumber(cumulativeDepreciationCell).getErr());
 				rowErr.add(new CheVal("13, Убыток от обесценения", impairmentLossCell.getContents()).isFloatNumber(impairmentLossCell).getErr());
 				rowErr.add(new CheVal("14, Балансовая стоимость", balanceCostCell.getContents()).isFloatNumber(balanceCostCell).getErr());
 				rowErr.add(new CheVal("15, Сумма переоценки", revaluationAmountCell.getContents()).isFloatNumber(revaluationAmountCell).getErr());
@@ -537,11 +538,6 @@ public class MPXLImporter {
 			return "column=" + cellInfo + ", value=" + cellValue + ", error=" + errorMsg;
 		}
 
-	}
-
-	public static void main(String[] args) {
-		System.out.println(((int) new Character('�').charValue()));
-		System.out.println(((int) new Character(' ').charValue()));
 	}
 
 }
