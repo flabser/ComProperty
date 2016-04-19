@@ -24,7 +24,7 @@ public class MainNavigator extends _DoPage {
 		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
 
 		_Outline outline = new _Outline(getLocalizedWord("services", lang), "services");
-		outline.addEntry(new _OutlineEntry(getLocalizedWord("info", lang), "info-view"));
+		outline.addEntry(new _OutlineEntry(getLocalizedWord("info", lang), "info-form"));
 
 		list.add(outline);
 

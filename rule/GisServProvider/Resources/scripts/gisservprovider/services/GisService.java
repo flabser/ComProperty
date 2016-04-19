@@ -26,7 +26,7 @@ public class GisService extends RestProvider {
 	@Path("/{coord}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("coord") String coord) {
-		System.out.println("test" + coord);
+		System.out.println("coordinates = " + coord);
 		RealEstateDAO reDao = new RealEstateDAO(getSession());
 		RealEstate entity = reDao.findByCoord(coord);
 
