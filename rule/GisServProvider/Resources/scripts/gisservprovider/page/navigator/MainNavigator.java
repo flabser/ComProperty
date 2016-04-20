@@ -28,7 +28,7 @@ public class MainNavigator extends _DoPage {
 
 		list.add(outline);
 
-		addValue("outline_current", formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("kuf"));
+		addValue("outline_current", formData.getValueSilently("id").replace("-form", "-view"));
 
 		addContent(list);
 	}

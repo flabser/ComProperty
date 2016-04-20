@@ -4,6 +4,15 @@
         <entry lang="ENG">Gis services</entry>
         <entry lang="RUS">Гис сервис</entry>
         <entry lang="KAZ">Гис сервис</entry>
+    </sentence>    
+    <sentence mode="on" keyword="services">
+        <entry lang="ENG">Services</entry>
+        <entry lang="RUS">Сервисы</entry>
+        <entry lang="KAZ">Сервисы</entry>
     </sentence>
-    
+     <sentence mode="on" keyword="info">
+        <entry lang="ENG">Information</entry>
+        <entry lang="RUS">Информация о сервисах</entry>
+        <entry lang="KAZ">Информация о сервисах</entry>
+    </sentence>
 </vocabulary>
