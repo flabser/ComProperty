@@ -21,15 +21,26 @@
                 </div>
             </header>
             <section class="content-body">
-                <fieldset class="fieldset">                   
+                <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
-                            getproperty 
+                            getproperty
                         </div>
                         <div class="controls">
                             <input type="text" name="appcode" value="{content/getproperty}" class="span6"/>
+                            <!--<label>
+                                <input type="checkbox" name="data-type" value="json"/>
+                                json
+                            </label>-->
+                            <button type="button" data-action="do-get">
+                                get
+                            </button>
                         </div>
-                    </div>                 
+                    </div>
+                    <div class="form-group">
+                        <h3>request-result</h3>
+                        <pre id="request-result"></pre>
+                    </div>
                 </fieldset>
             </section>
         </form>
