@@ -32,8 +32,8 @@
                                 <input type="checkbox" name="data-type" value="json"/>
                                 json
                             </label>-->
-                            <button type="button" data-action="do-get">
-                                get
+                            <button type="button" class="btn" data-action="do-get">
+                                Проверить
                             </button>
                         </div>
                     </div>
