@@ -23,7 +23,7 @@ public class GisService extends RestProvider {
 	}
 
 	@GET
-	@Path("/{coord}")
+	@Path("/getproperty/{coord}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("coord") String coord) {
 		System.out.println("coordinates = " + coord);

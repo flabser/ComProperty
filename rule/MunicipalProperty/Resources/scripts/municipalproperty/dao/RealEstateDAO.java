@@ -75,8 +75,11 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 			CriteriaQuery<RealEstate> cq = cb.createQuery(RealEstate.class);
 			Root<RealEstate> c = cq.from(RealEstate.class);
 			cq.select(c);
-			Predicate condition = cb.notEqual(c.get("address").get("coordiantes"), coord);
-			cq.where(condition);
+			Predicate condition = null;
+			if (!coord.equalsIgnoreCase("0")) {
+				condition = cb.notEqual(c.get("address").get("coordiantes"), coord);
+				cq.where(condition);
+			}
 			Query query = em.createQuery(cq);
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);
