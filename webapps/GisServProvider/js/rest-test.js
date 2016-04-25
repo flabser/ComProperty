@@ -11,6 +11,7 @@ $(document).ready(function() {
         }).then(function(response) {
             if (response) {
                 $('pre', $scope).html(JSON.stringify(response, null, 2));
+                PR.prettyPrint();
             } else {
                 $('pre', $scope).html('empty response');
             }

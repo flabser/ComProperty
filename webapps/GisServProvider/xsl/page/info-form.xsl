@@ -3,7 +3,12 @@
     <xsl:import href="../layout.xsl"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout"/>
+        <xsl:call-template name="layout">
+            <xsl:with-param name="include_head">
+                <link rel="stylesheet" href="/SharedResources/vendor/google-code-prettify/prettify.css"/>
+                <script src="/SharedResources/vendor/google-code-prettify/prettify.js"></script>
+            </xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="_content">
@@ -35,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <h3>Ответ</h3>
-                        <pre class="prettify"></pre>
+                        <pre class="prettyprint lang-javascript"></pre>
                     </div>
                 </fieldset>
                 <fieldset class="fieldset">
@@ -52,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <h3>Ответ</h3>
-                        <pre class="prettify"></pre>
+                        <pre class="prettyprint lang-javascript"></pre>
                     </div>
                 </fieldset>
             </section>
