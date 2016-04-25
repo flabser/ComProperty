@@ -64,6 +64,7 @@ public class RealEstate extends Property {
 			chunk.append("<district id=\"" + address.getDistrict().getId() + "\">" + address.getDistrict().getLocalizedName(ses.getLang())
 			        + "</district>");
 		}
+
 		chunk.append("<localitytype id=\"" + address.getLocality().getType().getId() + "\">"
 		        + address.getLocality().getType().getLocalizedName(ses.getLang()) + "</localitytype>");
 		chunk.append(

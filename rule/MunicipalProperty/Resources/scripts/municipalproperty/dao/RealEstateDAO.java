@@ -67,36 +67,53 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 
 	}
 
-	public RealEstate findByCoord(String coord) {
+	public ViewPage<RealEstate> findByCoord(String coord, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		boolean isSecureEntity = false;
 		try {
 			CriteriaQuery<RealEstate> cq = cb.createQuery(RealEstate.class);
+			CriteriaQuery<Long> countCq = cb.createQuery(Long.class);
 			Root<RealEstate> c = cq.from(RealEstate.class);
 			cq.select(c);
+			countCq.select(cb.count(c));
 			Predicate condition = null;
 			if (!coord.equalsIgnoreCase("0")) {
 				condition = cb.notEqual(c.get("address").get("coordiantes"), coord);
-				cq.where(condition);
 			}
-			Query query = em.createQuery(cq);
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);
-				isSecureEntity = true;
 			}
-			RealEstate entity = (RealEstate) query.getSingleResult();
-			if (isSecureEntity) {
-				if (!entity.getEditors().contains(user.getId())) {
-					entity.setEditable(false);
+			if (condition != null) {
+				cq.where(condition);
+				countCq.where(condition);
+			}
+			cq.orderBy(cb.asc(c.get("regDate")));
+			TypedQuery<RealEstate> typedQuery = em.createQuery(cq);
+			Query query = em.createQuery(countCq);
+			long count = (long) query.getSingleResult();
+			int maxPage = 1;
+			if (pageNum != 0 || pageSize != 0) {
+				maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
+				if (pageNum == 0) {
+					pageNum = maxPage;
 				}
+				int firstRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
+				typedQuery.setFirstResult(firstRec);
+				typedQuery.setMaxResults(pageSize);
 			}
-			return entity;
+
+			List<RealEstate> result = typedQuery.getResultList();
+			return new ViewPage<RealEstate>(result, count, maxPage, pageNum);
 		} catch (NoResultException e) {
 			return null;
 		} finally {
 			em.close();
 		}
 
+	}
+
+	public RealEstate findByStreetAndHome(String streetId, String buildingNum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

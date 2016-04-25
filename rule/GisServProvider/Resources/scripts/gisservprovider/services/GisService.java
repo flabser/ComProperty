@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.rest.RestProvider;
 
 import municipalproperty.dao.RealEstateDAO;
@@ -23,12 +24,22 @@ public class GisService extends RestProvider {
 	}
 
 	@GET
-	@Path("/getproperty/{coord}")
+	@Path("/getbycoord/{coord}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("coord") String coord) {
 		System.out.println("coordinates = " + coord);
 		RealEstateDAO reDao = new RealEstateDAO(getSession());
-		RealEstate entity = reDao.findByCoord(coord);
+		ViewPage<RealEstate> viewPage = reDao.findByCoord(coord, 0, 0);
+
+		return Response.ok(viewPage).build();
+	}
+
+	@GET
+	@Path("/getbystreet/{street_id}//{building_num}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get(@PathParam("street_id") String streetId, @PathParam("building_num") String buildingNum) {
+		RealEstateDAO reDao = new RealEstateDAO(getSession());
+		RealEstate entity = reDao.findByStreetAndHome(streetId, buildingNum);
 
 		return Response.ok(entity).build();
 	}

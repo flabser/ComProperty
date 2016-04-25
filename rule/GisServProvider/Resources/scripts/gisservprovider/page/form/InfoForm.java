@@ -13,7 +13,8 @@ public class InfoForm extends AbstractMunicipalPropertyForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		addValue("getproperty", Environment.getFullHostName() + "/" + session.getAppEnv().appName + "/rest/gis/getproperty/0");
+		addValue("getbycoord", Environment.getFullHostName() + "/" + session.getAppEnv().appName + "/rest/gis/getbycoord/0");
+		addValue("getbystreet", Environment.getFullHostName() + "/" + session.getAppEnv().appName + "/rest/gis/getbystreet/0/0");
 		_ActionBar actionBar = new _ActionBar(session);
 		actionBar.addAction(new _Action("Close", "Just close the form", _ActionType.CLOSE));
 		addContent(actionBar);
