@@ -149,12 +149,12 @@ function renderFilePanel(fileName, fsid) {
         //
         checkFile(fileName, fsid, $tpl).then(function(result) {
             /*$btn.parents('.panel').addClass('open');
-            if (result == '') {
-                $tpl.find('.js-load').removeAttr('disabled');
-                $tpl.find('.js-select-balance-holder').removeAttr('disabled');
-                $tpl.find('.js-select-readers').removeAttr('disabled');
-            }
-            $tpl.find('.js-check-result').html(result);*/
+             if (result == '') {
+             $tpl.find('.js-load').removeAttr('disabled');
+             $tpl.find('.js-select-balance-holder').removeAttr('disabled');
+             $tpl.find('.js-select-readers').removeAttr('disabled');
+             }
+             $tpl.find('.js-check-result').html(result);*/
             //
             reloadPage();
         }, function(err) {
@@ -199,13 +199,24 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         setLastFileToStorage(fileName);
-        $(this).attr('disabled', true);
-        loadFile(fileName, $tpl.serialize(), fsid).then(function() {
-            // $tpl.addClass('upload-success');
-            reloadPage();
-        }, function() {
-            reloadPage();
-        });
+        if($('input[name=writeoff]').is(':checked')){
+            nbApp.confirmWriteOff(function() {
+                loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                    reloadPage();
+                }, function() {
+                    reloadPage();
+                });
+            });
+        }else{
+            $(this).attr('disabled', true);
+            loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                // $tpl.addClass('upload-success');
+                reloadPage();
+            }, function() {
+                reloadPage();
+            });
+        }
+
     });
 
     $tpl.find('.js-select-balance-holder').on('click', function(e) {

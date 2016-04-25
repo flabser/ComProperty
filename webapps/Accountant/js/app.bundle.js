@@ -1653,6 +1653,19 @@ nb.dialog = {
 
         return this.show(opt);
     },
+    confirm: function(options) {
+        options.className = 'dialog-warn';
+        options.width = options.width || 360;
+        options.height = options.height || 210;
+        options.message = options.message || null;
+        options.buttons = options.buttons || {
+                'Ok': function() {
+                    $(this).dialog('close');
+                }
+            };
+
+        return this.show(options);
+    },
     error: function(opt) {
         opt.className = 'dialog-error';
         opt.width = opt.width || 360;
@@ -3505,20 +3518,20 @@ function AppletIsReady() {
 
 /*
  @param fields
-    {
-        'целевое поле':
-            [
-                '* название поля модели от куда брать значение',
-                'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
-            ]
-    }
-    @example
-    {
-        balanceholderid: ['id', 'name'],
-        balanceholderbin: ['bin']
-    }
-*/
-nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback) {
+ {
+ 'целевое поле':
+ [
+ '* название поля модели от куда брать значение',
+ 'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
+ ]
+ }
+ @example
+ {
+ balanceholderid: ['id', 'name'],
+ balanceholderbin: ['bin']
+ }
+ */
+nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -3527,11 +3540,35 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback) {
         title: el.title,
         href: url,
         dataType: 'json',
+        message: message,
         buttons: {
             ok: {
                 text: nb.getText('ok'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
+                    callback && callback();
+                }
+            },
+            cancel: {
+                text: nb.getText('cancel'),
+                click: function() {
+                    dlg.dialog('close');
+                }
+            }
+        }
+    });
+    return dlg;
+};
+
+nbApp.defaultConfirmDialog = function(message, callback) {
+    var dlg = nb.dialog.confirm({
+        message: message,
+        height : 160,
+        buttons: {
+            ok: {
+                text: nb.getText('ok'),
+                click: function() {
+                    dlg.dialog('close');
                     callback && callback();
                 }
             },
@@ -3559,6 +3596,11 @@ nbApp.choiceReaders = function(el, callback) {
     return this.defaultChoiceDialog(el, url, {
         reader: ['id', 'name']
     }, true, callback);
+};
+
+nbApp.confirmWriteOff = function(callback) {
+    var message = 'Внимание! Загружаемое имущество будет списано, продолжить загрузку?';
+    return this.defaultConfirmDialog(message, callback);
 };
 
 function uploadUpdate(fileInput, fsid) {
@@ -3712,12 +3754,12 @@ function renderFilePanel(fileName, fsid) {
         //
         checkFile(fileName, fsid, $tpl).then(function(result) {
             /*$btn.parents('.panel').addClass('open');
-            if (result == '') {
-                $tpl.find('.js-load').removeAttr('disabled');
-                $tpl.find('.js-select-balance-holder').removeAttr('disabled');
-                $tpl.find('.js-select-readers').removeAttr('disabled');
-            }
-            $tpl.find('.js-check-result').html(result);*/
+             if (result == '') {
+             $tpl.find('.js-load').removeAttr('disabled');
+             $tpl.find('.js-select-balance-holder').removeAttr('disabled');
+             $tpl.find('.js-select-readers').removeAttr('disabled');
+             }
+             $tpl.find('.js-check-result').html(result);*/
             //
             reloadPage();
         }, function(err) {
@@ -3762,13 +3804,24 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         setLastFileToStorage(fileName);
-        $(this).attr('disabled', true);
-        loadFile(fileName, $tpl.serialize(), fsid).then(function() {
-            // $tpl.addClass('upload-success');
-            reloadPage();
-        }, function() {
-            reloadPage();
-        });
+        if($('input[name=writeoff]').is(':checked')){
+            nbApp.confirmWriteOff(function() {
+                loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                    reloadPage();
+                }, function() {
+                    reloadPage();
+                });
+            });
+        }else{
+            $(this).attr('disabled', true);
+            loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                // $tpl.addClass('upload-success');
+                reloadPage();
+            }, function() {
+                reloadPage();
+            });
+        }
+
     });
 
     $tpl.find('.js-select-balance-holder').on('click', function(e) {

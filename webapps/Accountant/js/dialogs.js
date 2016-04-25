@@ -1,19 +1,19 @@
 /*
  @param fields
-    {
-        'целевое поле':
-            [
-                '* название поля модели от куда брать значение',
-                'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
-            ]
-    }
-    @example
-    {
-        balanceholderid: ['id', 'name'],
-        balanceholderbin: ['bin']
-    }
-*/
-nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback) {
+ {
+ 'целевое поле':
+ [
+ '* название поля модели от куда брать значение',
+ 'название поля модели от куда брать значение для текста [data-input], иначе значение первого * [опционально]'
+ ]
+ }
+ @example
+ {
+ balanceholderid: ['id', 'name'],
+ balanceholderbin: ['bin']
+ }
+ */
+nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message) {
     var form = nb.getForm(el);
     var dlg = nb.dialog.show({
         targetForm: form.name,
@@ -22,11 +22,35 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback) {
         title: el.title,
         href: url,
         dataType: 'json',
+        message: message,
         buttons: {
             ok: {
                 text: nb.getText('ok'),
                 click: function() {
                     dlg[0].dialogOptions.onExecute();
+                    callback && callback();
+                }
+            },
+            cancel: {
+                text: nb.getText('cancel'),
+                click: function() {
+                    dlg.dialog('close');
+                }
+            }
+        }
+    });
+    return dlg;
+};
+
+nbApp.defaultConfirmDialog = function(message, callback) {
+    var dlg = nb.dialog.confirm({
+        message: message,
+        height : 160,
+        buttons: {
+            ok: {
+                text: nb.getText('ok'),
+                click: function() {
+                    dlg.dialog('close');
                     callback && callback();
                 }
             },
@@ -54,4 +78,9 @@ nbApp.choiceReaders = function(el, callback) {
     return this.defaultChoiceDialog(el, url, {
         reader: ['id', 'name']
     }, true, callback);
+};
+
+nbApp.confirmWriteOff = function(callback) {
+    var message = 'Внимание! Загружаемое имущество будет списано, продолжить загрузку?';
+    return this.defaultConfirmDialog(message, callback);
 };
