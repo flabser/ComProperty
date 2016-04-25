@@ -488,9 +488,11 @@ public class MPXLImporter {
 				DateCell dateCell = (DateCell) dCell;
 				dateVal = dateCell.getDate();
 			} else {
+				String val = dCell.getContents();
 				try {
-					dateVal = DateUtils.parseDate(dCell.getContents(), "yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd.MM.yy hh:mm:ss", "dd.MM.yyyy hh:mm:ss",
-					        "yyyy.MM.dd", "yyyy.MM.dd hh:mm:ss");
+
+					dateVal = DateUtils.parseDate(val, "yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd.MM.yy hh:mm:ss", "dd.MM.yyyy hh:mm:ss", "yyyy.MM.dd",
+					        "yyyy.MM.dd hh:mm:ss");
 					/*
 					 * String acceptancedateStr =
 					 * dCell.getContents().trim().replace("/", ".").replace("-",
@@ -505,7 +507,7 @@ public class MPXLImporter {
 					 * SimpleDateFormat("dd.MM.yyyy").parse(acceptancedateStr);
 					 */
 				} catch (ParseException e) {
-					e.printStackTrace();
+					errMsg.add(new ErrorDescription(info, val, "значение не возможно преобразовать в дату"));
 				}
 
 			}

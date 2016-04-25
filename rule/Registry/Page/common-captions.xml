@@ -47,7 +47,7 @@
     <caption name="employee"/>
     <caption name="organization_label"/>
     <caption name="role"/>
-
+    <caption name="iin"/>
     <caption name="bin"/>
     <caption name="name"/>
     <caption name="localized_names"/>
