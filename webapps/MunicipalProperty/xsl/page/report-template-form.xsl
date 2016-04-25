@@ -39,24 +39,26 @@
                             <select name="orgcategory" class="span8" data-placeholder="Все категории"></select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="control-label">
-                            <xsl:value-of select="//captions/property_type/@caption"/>
-                        </div>
-                        <div class="controls">
-                            <div class="span8">
-                                <xsl:for-each select="fields/propertytype/entry">
-                                    <xsl:sort select="text()"/>
-                                    <label class="input" style="vertical-align:top;width:47%">
-                                        <input type="checkbox" name="propertycode" value="{@id}"/>
-                                        <span>
-                                            <xsl:value-of select="text()"/>
-                                        </span>
-                                    </label>
-                                </xsl:for-each>
+                    <xsl:if test="fields/propertytype/entry">
+                        <div class="form-group">
+                            <div class="control-label">
+                                <xsl:value-of select="//captions/property_type/@caption"/>
+                            </div>
+                            <div class="controls">
+                                <div class="span8">
+                                    <xsl:for-each select="fields/propertytype/entry">
+                                        <xsl:sort select="text()"/>
+                                        <label class="input" style="vertical-align:top;width:47%">
+                                            <input type="checkbox" name="propertycode" value="{@id}"/>
+                                            <span>
+                                                <xsl:value-of select="text()"/>
+                                            </span>
+                                        </label>
+                                    </xsl:for-each>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </xsl:if>
                     <div class="form-group">
                         <div class="control-label">
                             <xsl:value-of select="//captions/report_file_type/@caption"/>
