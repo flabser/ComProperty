@@ -112,8 +112,54 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 
 	}
 
-	public RealEstate findByStreetAndHome(String streetId, String buildingNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public ViewPage<RealEstate> findByStreetAndHome(String streetId, String buildingNum, int pageNum, int pageSize) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		try {
+			CriteriaQuery<RealEstate> cq = cb.createQuery(RealEstate.class);
+			CriteriaQuery<Long> countCq = cb.createQuery(Long.class);
+			Root<RealEstate> c = cq.from(RealEstate.class);
+			cq.select(c);
+			countCq.select(cb.count(c));
+			Predicate condition = null;
+
+			try {
+				int id = Integer.parseInt(streetId);
+				condition = cb.notEqual(c.get("address").get("streetId"), id);
+			} catch (NumberFormatException e) {
+				condition = cb.notEqual(c.get("address").get("street"), streetId);
+			}
+
+			condition = cb.notEqual(c.get("address").get("houseNumber"), buildingNum);
+
+			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
+				condition = cb.and(c.get("readers").in(user.getId()), condition);
+			}
+
+			cq.where(condition);
+			countCq.where(condition);
+
+			cq.orderBy(cb.asc(c.get("regDate")));
+			TypedQuery<RealEstate> typedQuery = em.createQuery(cq);
+			Query query = em.createQuery(countCq);
+			long count = (long) query.getSingleResult();
+			int maxPage = 1;
+			if (pageNum != 0 || pageSize != 0) {
+				maxPage = RuntimeObjUtil.countMaxPage(count, pageSize);
+				if (pageNum == 0) {
+					pageNum = maxPage;
+				}
+				int firstRec = RuntimeObjUtil.calcStartEntry(pageNum, pageSize);
+				typedQuery.setFirstResult(firstRec);
+				typedQuery.setMaxResults(pageSize);
+			}
+
+			List<RealEstate> result = typedQuery.getResultList();
+			return new ViewPage<RealEstate>(result, count, maxPage, pageNum);
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			em.close();
+		}
 	}
 }

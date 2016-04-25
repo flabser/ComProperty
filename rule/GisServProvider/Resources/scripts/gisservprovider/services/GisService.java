@@ -39,9 +39,8 @@ public class GisService extends RestProvider {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("street_id") String streetId, @PathParam("building_num") String buildingNum) {
 		RealEstateDAO reDao = new RealEstateDAO(getSession());
-		RealEstate entity = reDao.findByStreetAndHome(streetId, buildingNum);
-
-		return Response.ok(entity).build();
+		ViewPage<RealEstate> viewPage = reDao.findByStreetAndHome(streetId, buildingNum, 0, 0);
+		return Response.ok(viewPage).build();
 	}
 
 }
