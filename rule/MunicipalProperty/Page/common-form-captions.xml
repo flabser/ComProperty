@@ -30,6 +30,7 @@
     <caption name="district"/>
     <caption name="street"/>
     <caption name="home"/>
+    <caption name="coordinates"/>
     <caption name="appartament">Квартира</caption>
     <caption name="reg_documents"/>
     <caption name="balance_cost"/>

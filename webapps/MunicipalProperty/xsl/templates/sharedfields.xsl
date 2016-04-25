@@ -465,6 +465,14 @@
             </div>
             <div class="form-group">
                 <div class="control-label">
+                    <xsl:value-of select="//captions/coordinates/@caption"/>
+                </div>
+                <div class="controls">
+                    <input type="text" name="coordinates" value="{fields/address/coordinates}" class="span4"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label">
                     <xsl:value-of select="//captions/additional/@caption"/>
                 </div>
                 <div class="controls">

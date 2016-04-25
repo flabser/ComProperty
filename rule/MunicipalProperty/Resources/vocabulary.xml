@@ -85,6 +85,11 @@
         <entry lang="KAZ">ЖШС-гі үлесі</entry>
         <entry lang="ENG">Equities</entry>
     </sentence>
+    <sentence mode="on" keyword="coordinates">
+        <entry lang="RUS">Координаты</entry>
+        <entry lang="KAZ">Координаты</entry>
+        <entry lang="ENG">Coordinates</entry>
+    </sentence>
     <sentence mode="on" keyword="transfer">
         <entry lang="RUS">Передать</entry>
         <entry lang="KAZ">Передать</entry>
