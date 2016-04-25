@@ -78,7 +78,7 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 			countCq.select(cb.count(c));
 			Predicate condition = null;
 			if (!coord.equalsIgnoreCase("0")) {
-				condition = cb.notEqual(c.get("address").get("coordiantes"), coord);
+				condition = cb.notEqual(c.get("address").get("coordinates"), coord);
 			}
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);
@@ -125,12 +125,12 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 
 			try {
 				int id = Integer.parseInt(streetId);
-				condition = cb.notEqual(c.get("address").get("streetId"), id);
+				condition = cb.equal(c.get("address").get("street").get("streetId"), id);
 			} catch (NumberFormatException e) {
-				condition = cb.notEqual(c.get("address").get("street"), streetId);
+				condition = cb.equal(cb.lower(c.get("address").get("street").get("name")), streetId.toLowerCase());
 			}
 
-			condition = cb.notEqual(c.get("address").get("houseNumber"), buildingNum);
+			condition = cb.and(cb.equal(c.get("address").get("houseNumber"), buildingNum), condition);
 
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				condition = cb.and(c.get("readers").in(user.getId()), condition);

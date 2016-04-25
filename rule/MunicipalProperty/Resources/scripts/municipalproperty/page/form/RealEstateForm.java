@@ -87,7 +87,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		println(formData);
+		devPrint(formData);
 		try {
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
@@ -187,7 +187,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			entity.getAddress().setStreet(new StreetDAO(session).findById(formData.getValueSilently("street")));
 			entity.getAddress().setHouseNumber(formData.getValueSilently("housenumber"));
 			entity.getAddress().setAdditionalInfo(formData.getValueSilently("additionalinfo"));
-			entity.getAddress().setCoordiantes(formData.getValueSilently("coordinates"));
+			entity.getAddress().setCoordinates(formData.getValueSilently("coordinates"));
 
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);

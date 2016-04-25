@@ -75,7 +75,7 @@ public class RealEstate extends Property {
 		}
 		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");
 		chunk.append("<additionalinfo>" + address.getAdditionalInfo() + "</additionalinfo>");
-		chunk.append("<coordiantes>" + address.getCoordiantes() + "</coordiantes>");
+		chunk.append("<coordinates>" + address.getCoordinates() + "</coordinates>");
 		chunk.append("</address>");
 
 		return super.getFullXMLChunk(ses) + chunk;
