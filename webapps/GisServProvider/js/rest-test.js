@@ -1,23 +1,22 @@
 $(document).ready(function() {
     $('[data-action=do-get]').click(function() {
-        var endPoint = $('[name=appcode]').val();
-        var dataType = $('[name=data-type]').val();
+        var $scope = $(this).parents('.fieldset');
+        var endPoint = $('input[type=text]', $scope).val();
+        var dataType = 'json';
 
         $.ajax({
             type: 'get',
             url: endPoint,
-            dataType: dataType || 'html'
+            dataType: dataType,
         }).then(function(response) {
-            console.log('ok', response);
-
             if (response) {
-                $('#request-result').html(response);
+                $('pre', $scope).html(JSON.stringify(response, null, 2));
             } else {
-                $('#request-result').html('empty response');
+                $('pre', $scope).html('empty response');
             }
         }, function(err) {
             console.log('error', err);
-            $('#request-result').html(err);
+            $('pre', $scope).html(err);
         });
     });
 });

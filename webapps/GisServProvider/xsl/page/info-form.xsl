@@ -27,11 +27,7 @@
                             getbycoord
                         </div>
                         <div class="controls">
-                            <input type="text" name="appcode" value="{content/getbycoord}" class="span6"/>
-                            <!--<label>
-                                <input type="checkbox" name="data-type" value="json"/>
-                                json
-                            </label>-->
+                            <input type="text" value="{content/getbycoord}" class="span6"/>
                             <button type="button" class="btn" data-action="do-get">
                                 Проверить
                             </button>
@@ -39,20 +35,16 @@
                     </div>
                     <div class="form-group">
                         <h3>Ответ</h3>
-                        <pre id="request-result"></pre>
+                        <pre class="prettify"></pre>
                     </div>
                 </fieldset>
-                 <fieldset class="fieldset">
+                <fieldset class="fieldset">
                     <div class="form-group">
                         <div class="control-label">
                             getbystreet
                         </div>
                         <div class="controls">
-                            <input type="text" name="appcode" value="{content/getbystreet}" class="span6"/>
-                            <!--<label>
-                                <input type="checkbox" name="data-type" value="json"/>
-                                json
-                            </label>-->
+                            <input type="text" value="{content/getbystreet}" class="span6"/>
                             <button type="button" class="btn" data-action="do-get">
                                 Проверить
                             </button>
@@ -60,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <h3>Ответ</h3>
-                        <pre id="request-result"></pre>
+                        <pre class="prettify"></pre>
                     </div>
                 </fieldset>
             </section>
