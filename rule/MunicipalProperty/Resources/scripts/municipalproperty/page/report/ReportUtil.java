@@ -9,19 +9,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import kz.flabs.dataengine.DatabaseUtil;
-import kz.flabs.dataengine.IDBConnectionPool;
-import kz.flabs.dataengine.IDatabase;
+import com.exponentus.dataengine.DatabaseUtil;
+import com.exponentus.dataengine.IDBConnectionPool;
+import com.exponentus.dataengine.IDatabase;
 import com.exponentus.scripting._Session;
 import com.exponentus.server.Server;
+
 import reference.model.constants.KufType;
 
 public class ReportUtil {
 
 	public static HashMap<String, List<KufType>> getCat() {
 		HashMap<String, List<KufType>> cat = new HashMap<String, List<KufType>>();
-		ArrayList<KufType> peList = new ArrayList<KufType>(Arrays.asList(KufType.FURNITURE, KufType.ANIMALS, KufType.SPORT_EQUIPMENT, KufType.OTHERS,
-		        KufType.SHARE_BLOCK, KufType.EQUITY));
+		ArrayList<KufType> peList = new ArrayList<KufType>(
+		        Arrays.asList(KufType.FURNITURE, KufType.ANIMALS, KufType.SPORT_EQUIPMENT, KufType.OTHERS, KufType.SHARE_BLOCK, KufType.EQUITY));
 		cat.put("personalstateCat", peList);
 		cat.put("personalestate_report", peList);
 
@@ -30,8 +31,8 @@ public class ReportUtil {
 		cat.put("equipmentCat", eList);
 		cat.put("equipment_report", eList);
 
-		ArrayList<KufType> reList = new ArrayList<KufType>(Arrays.asList(KufType.BUILDINGS, KufType.ROOMS, KufType.STRUCTURES,
-		        KufType.RESIDENTIAL_OBJECTS, KufType.LAND, KufType.MONUMENT));
+		ArrayList<KufType> reList = new ArrayList<KufType>(
+		        Arrays.asList(KufType.BUILDINGS, KufType.ROOMS, KufType.STRUCTURES, KufType.RESIDENTIAL_OBJECTS, KufType.LAND, KufType.MONUMENT));
 		cat.put("realestateCat", reList);
 		cat.put("realestate_report", reList);
 
@@ -45,8 +46,8 @@ public class ReportUtil {
 		cat.put("specialconstructionsCat", eiList);
 		cat.put("engineeringInfrastructure_report", eiList);
 
-		ArrayList<KufType> soList = new ArrayList<KufType>(Arrays.asList(KufType.BOMBPROOF, KufType.FACTORY, KufType.COMBINES, KufType.AIRPORT,
-		        KufType.LAND, KufType.TRANSITIONS));
+		ArrayList<KufType> soList = new ArrayList<KufType>(
+		        Arrays.asList(KufType.BOMBPROOF, KufType.FACTORY, KufType.COMBINES, KufType.AIRPORT, KufType.LAND, KufType.TRANSITIONS));
 		cat.put("strategicobjectsCat", soList);
 		cat.put("strategicobjects_report", soList);
 
