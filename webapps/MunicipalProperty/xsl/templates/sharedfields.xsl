@@ -14,7 +14,7 @@
                         </select>
                     </xsl:when>
                     <xsl:otherwise>
-                        <div class="input-placeholder span8">
+                        <div class="input-placeholder input span8 disabled">
                             <xsl:value-of select="fields/balanceholder"/>
                             <input type="hidden" name="balanceholder" value="{fields/balanceholder/@id}"
                                    disabled="disabled"/>
