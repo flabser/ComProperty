@@ -9,9 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import kz.flabs.util.Util;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
+import com.exponentus.util.Util;
+
 import municipalproperty.model.constants.NotificationType;
 
 @Entity

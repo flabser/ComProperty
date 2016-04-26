@@ -1,6 +1,7 @@
 package municipalproperty.model.util;
 
-import kz.flabs.util.Util;
+import com.exponentus.util.Util;
+
 import municipalproperty.model.EngineeringInfrastructure;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.IntangibleAsset;

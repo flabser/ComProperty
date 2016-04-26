@@ -1,6 +1,5 @@
 package accountant.page.form;
 
-import kz.flabs.util.Util;
 import com.exponentus.env.EnvConst;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
@@ -10,6 +9,7 @@ import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
 import com.exponentus.user.SuperUser;
+import com.exponentus.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;

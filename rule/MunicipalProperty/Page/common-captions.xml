@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rule  mode="on">
-    <!-- <caching>CACHING_IN_SERVER_SCOPE</caching> -->
-    <caching>NO_CACHING</caching>
+    <caching>CACHING_IN_SERVER_SCOPE</caching>
+  <!--   <caching>NO_CACHING</caching> -->
 
     <caption name="brand"/>
 

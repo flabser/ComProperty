@@ -18,13 +18,13 @@ import com.exponentus.dataengine.jpa.IAppEntity;
 import com.exponentus.exception.SecureException;
 import com.exponentus.scripting._Session;
 import com.exponentus.server.Server;
+import com.exponentus.util.Util;
 
 import jxl.Cell;
 import jxl.CellType;
 import jxl.DateCell;
 import jxl.NumberCell;
 import jxl.Sheet;
-import kz.flabs.util.Util;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;

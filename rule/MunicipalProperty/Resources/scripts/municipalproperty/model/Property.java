@@ -24,8 +24,8 @@ import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.NumberUtil;
+import com.exponentus.util.Util;
 
-import kz.flabs.util.Util;
 import municipalproperty.model.constants.PropertyStatusType;
 import reference.model.PropertyCode;
 import reference.model.ReceivingReason;

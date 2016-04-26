@@ -7,9 +7,10 @@ import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.event._DoPage;
+import com.exponentus.scripting.outline._Outline;
+import com.exponentus.scripting.outline._OutlineEntry;
 import com.exponentus.scriptprocessor.page.IOutcomeObject;
-import kz.nextbase.script.outline._Outline;
-import kz.nextbase.script.outline._OutlineEntry;
+
 import municipalproperty.model.constants.NotificationType;
 import reference.dao.PropertyCodeDAO;
 import reference.model.PropertyCode;

@@ -18,10 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import kz.flabs.util.Util;
 import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
+import com.exponentus.util.Util;
 
 @Entity
 @Table(name = "contracts")
