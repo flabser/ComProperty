@@ -37,14 +37,12 @@ public class RealEstateDAO extends DAO<RealEstate, UUID> {
 			cq.select(c);
 			countCq.select(cb.count(c));
 
-			// Predicate condition =
-			// cb.notEqual(c.get("address").get("additionalInfo"), "");
-			// condition = cb.and(cb.equal(c.get("address").get("houseNumber"),
-			// ""), condition);
+			Predicate condition = cb.notEqual(c.get("address").get("additionalInfo"), "");
+			condition = cb.and(cb.equal(c.get("address").get("street").get("name"), "unknown"), condition);
 
 			cq.orderBy(cb.asc(c.get("regDate")));
-			// cq.where(condition);
-			// countCq.where(condition);
+			cq.where(condition);
+			countCq.where(condition);
 			TypedQuery<RealEstate> typedQuery = em.createQuery(cq);
 			Query query = em.createQuery(countCq);
 			long count = (long) query.getSingleResult();

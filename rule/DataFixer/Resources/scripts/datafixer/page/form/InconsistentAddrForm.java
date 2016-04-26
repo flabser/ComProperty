@@ -6,6 +6,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scheduler._EnumWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
@@ -14,7 +15,6 @@ import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.user.IUser;
 
-import kz.nextbase.script._EnumWrapper;
 import municipalproperty.dao.RealEstateDAO;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.PropertyStatusType;
