@@ -1653,20 +1653,6 @@ nb.dialog = {
 
         return this.show(opt);
     },
-    confirm: function(options) {
-        options.className = 'dialog-confirm';
-
-        options.width = options.width || 360;
-        options.height = options.height || 210;
-        options.message = options.message || null;
-        options.buttons = options.buttons || {
-            'Ok': function() {
-                $(this).dialog('close');
-            }
-        };
-
-        return this.show(options);
-    },
     error: function(opt) {
         opt.className = 'dialog-error';
         opt.width = opt.width || 360;
@@ -3562,7 +3548,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
 };
 
 nbApp.defaultConfirmDialog = function(message, callback) {
-    var dlg = nb.dialog.confirm({
+    var dlg = nb.dialog.warn({
         message: message,
         height : 160,
         buttons: {
