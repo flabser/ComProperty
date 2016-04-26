@@ -7,6 +7,9 @@
             <xsl:with-param name="include_head">
                 <link rel="stylesheet" href="/SharedResources/vendor/google-code-prettify/prettify.css"/>
                 <script src="/SharedResources/vendor/google-code-prettify/prettify.js"></script>
+                <style>
+                    .controls .btn { vertical-align: middle; }
+                </style>
             </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
@@ -27,35 +30,27 @@
             </header>
             <section class="content-body">
                 <fieldset class="fieldset">
-                    <div class="form-group">
+                    <div class="form-group js-rest-scope">
                         <div class="control-label">
                             getbycoord
                         </div>
                         <div class="controls">
                             <input type="text" value="{content/getbycoord}" class="span6"/>
-                            <button type="button" class="btn" data-action="do-get">
-                                Проверить
-                            </button>
+                            <button type="button" class="btn" data-action="do-get">Проверить</button>
+                            <button type="button" class="btn" data-action="do-clear">Очистить</button>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <h3>Ответ</h3>
                         <pre class="prettyprint lang-javascript"></pre>
                     </div>
-                </fieldset>
-                <fieldset class="fieldset">
-                    <div class="form-group">
+                    <div class="form-group js-rest-scope">
                         <div class="control-label">
                             getbystreet
                         </div>
                         <div class="controls">
                             <input type="text" value="{content/getbystreet}" class="span6"/>
-                            <button type="button" class="btn" data-action="do-get">
-                                Проверить
-                            </button>
+                            <button type="button" class="btn" data-action="do-get">Проверить</button>
+                            <button type="button" class="btn" data-action="do-clear">Очистить</button>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <h3>Ответ</h3>
                         <pre class="prettyprint lang-javascript"></pre>
                     </div>
