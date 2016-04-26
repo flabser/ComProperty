@@ -43,7 +43,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
 };
 
 nbApp.defaultConfirmDialog = function(message, callback) {
-    var dlg = nb.dialog.confirm({
+    var dlg = nb.dialog.warn({
         message: message,
         height : 160,
         buttons: {
