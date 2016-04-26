@@ -3,10 +3,10 @@ package gisservprovider.page.form;
 import com.exponentus.env.Environment;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
+import com.exponentus.scripting.actions._Action;
+import com.exponentus.scripting.actions._ActionBar;
+import com.exponentus.scripting.actions._ActionType;
 
-import kz.nextbase.script.actions._Action;
-import kz.nextbase.script.actions._ActionBar;
-import kz.nextbase.script.actions._ActionType;
 import municipalproperty.page.form.AbstractMunicipalPropertyForm;
 
 public class InfoForm extends AbstractMunicipalPropertyForm {
