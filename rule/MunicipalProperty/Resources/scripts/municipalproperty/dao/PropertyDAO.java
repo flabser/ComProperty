@@ -23,6 +23,7 @@ import com.exponentus.user.SuperUser;
 
 import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.Property;
+import municipalproperty.model.constants.PropertyStatusType;
 import reference.dao.OrgCategoryDAO;
 import reference.model.OrgCategory;
 import reference.model.constants.KufType;
@@ -46,6 +47,11 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			countCq.select(cb.count(c));
 
 			Predicate condition = null;
+
+			if (filter.getStatus() != PropertyStatusType.UNKNOWN) {
+				condition = cb.equal(c.get("propertyStatusType"), filter.getStatus());
+			}
+
 			if (!filter.getKufTypes().isEmpty()) {
 				condition = c.get("kuf").in(filter.getKufTypes());
 			}

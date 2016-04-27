@@ -3,6 +3,7 @@ package municipalproperty.dao.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import municipalproperty.model.constants.PropertyStatusType;
 import reference.model.PropertyCode;
 import reference.model.constants.KufType;
 import staff.model.Organization;
@@ -15,6 +16,7 @@ public class PropertyFilter {
 	private List<Organization> balanceHolders;
 	private List<KufType> kufTypes;
 	private PropertyCode propertyCode;
+	private PropertyStatusType status = PropertyStatusType.UNKNOWN;
 
 	public PropertyFilter() {
 		balanceHolders = new ArrayList<>();
@@ -62,4 +64,13 @@ public class PropertyFilter {
 	public void setPropertyCode(PropertyCode propertyCode) {
 		this.propertyCode = propertyCode;
 	}
+
+	public PropertyStatusType getStatus() {
+		return status;
+	}
+
+	public void setStatus(PropertyStatusType status) {
+		this.status = status;
+	}
+
 }

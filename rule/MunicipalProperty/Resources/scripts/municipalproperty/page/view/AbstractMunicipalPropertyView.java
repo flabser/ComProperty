@@ -16,6 +16,7 @@ import com.exponentus.scripting.event._DoPage;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.dao.filter.PropertyFilter;
 import municipalproperty.model.Property;
+import municipalproperty.model.constants.PropertyStatusType;
 import reference.model.constants.KufType;
 import staff.model.Organization;
 
@@ -41,6 +42,11 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 			}
 		}
 
+		String status = formData.getValueSilently("status");
+		if (!status.isEmpty()) {
+			filter.setStatus(PropertyStatusType.valueOf(status.toUpperCase()));
+		}
+
 		PropertyDAO dao = new PropertyDAO(session);
 		ViewPage<Property> result = dao.findAll(filter, pageNum, pageSize);
 		return new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), session);
@@ -49,7 +55,7 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 	protected _ActionBar getSimpleActionBar(_Session session, String type, KufType kufType, LanguageCode lang) {
 		_ActionBar actionBar = new _ActionBar(session);
 		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_" + type);
-		newDocAction.setURL("Provider?id=" + type + "&kuf=" + kufType.getCode());
+		newDocAction.setURL("p?id=" + type + "&kuf=" + kufType.getCode());
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 		return actionBar;

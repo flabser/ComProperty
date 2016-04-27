@@ -50,11 +50,7 @@
         <entry lang="RUS">Добавить новую организацию</entry>
         <entry lang="KAZ"></entry>
     </sentence>
-    <sentence mode="on" keyword="del_document">
-        <entry lang="ENG">Delete document</entry>
-        <entry lang="RUS">Удалить документ</entry>
-        <entry lang="KAZ"></entry>
-    </sentence>    
+   
     <sentence mode="on" keyword="bin_value_should_be_consist_from_12_symbols">
         <entry lang="ENG">BIN value should be consist from 12 symbols maximum</entry>
         <entry lang="RUS">БИН может состоять из 12 символов максимум</entry>

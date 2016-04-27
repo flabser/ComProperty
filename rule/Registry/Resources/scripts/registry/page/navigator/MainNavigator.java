@@ -30,7 +30,9 @@ public class MainNavigator extends _DoPage {
 		common_outline.addEntry(orgEntry);
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("contractors", lang), "contractor-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("individuals", lang), "individual-view"));
-		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("legal_entities", lang), "legal-entity-view"));
+		// common_outline.addEntry(new
+		// _OutlineEntry(getLocalizedWord("legal_entities", lang),
+		// "legal-entity-view"));
 		common_outline.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible-person-view"));
 
 		list.add(common_outline);

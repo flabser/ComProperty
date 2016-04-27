@@ -8,7 +8,6 @@ import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
-import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.scripting.event._DoPage;
 
 import staff.dao.EmployeeDAO;
@@ -26,8 +25,9 @@ public class ResponsiblePersonView extends _DoPage {
 		_ActionBar actionBar = new _ActionBar(session);
 		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_employee");
 		newDocAction.setURL("Provider?id=employee-form");
-		actionBar.addAction(newDocAction);
-		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
+		// actionBar.addAction(newDocAction);
+		// actionBar.addAction(new _Action(getLocalizedWord("del_document",
+		// lang), "", _ActionType.DELETE_DOCUMENT));
 
 		addContent(actionBar);
 		addContent(getViewPage(new EmployeeDAO(session), formData));
