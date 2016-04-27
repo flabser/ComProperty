@@ -17,13 +17,6 @@ import municipalproperty.model.RealEstate;
 public class GisService extends RestProvider {
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response get() {
-		System.out.println("test");
-		return Response.ok().build();
-	}
-
-	@GET
 	@Path("/getbycoord/{coord}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("coord") String coord) {

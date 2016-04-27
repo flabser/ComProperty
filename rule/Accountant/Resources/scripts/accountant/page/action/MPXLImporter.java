@@ -230,6 +230,7 @@ public class MPXLImporter {
 						addr.setLocality((Locality) cv.getEntity(new LocalityDAO(ses), "Алматы"));
 						if (addr.getStreet() == null) {
 							addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "unknown"));
+							addr.setCoordinates("");
 						}
 						((RealEstate) prop).setAddress(addr);
 					}
