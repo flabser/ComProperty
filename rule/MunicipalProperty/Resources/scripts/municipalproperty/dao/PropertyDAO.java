@@ -52,9 +52,13 @@ public class PropertyDAO extends DAO<Property, UUID> {
 				condition = cb.equal(c.get("propertyStatusType"), filter.getStatus());
 			}
 
-			if (!filter.getKufTypes().isEmpty()) {
-				condition = c.get("kuf").in(filter.getKufTypes());
-			}
+            if (!filter.getKufTypes().isEmpty()) {
+                if (condition == null) {
+                    condition = c.get("kuf").in(filter.getKufTypes());
+                } else {
+                    condition = cb.and(c.get("kuf").in(filter.getKufTypes()), condition);
+                }
+            }
 
 			if (filter.getPropertyCode() != null) {
 				if (condition == null) {
