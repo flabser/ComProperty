@@ -12,19 +12,6 @@
     }
 }
 
-.btn-filter-toggle {
-    height: 34px;
-}
-
-.property-filter {
-    display: inline-block;
-    margin: 1px 6px;
-}
-
-.property-filter .select2 {
-    margin: 0 1px;
-}
-
 form[data-edit=false] .on-edit,
 form[data-edit=false] [data-action=save_and_close],
 form[data-edit=false] [data-upload] {
@@ -33,4 +20,51 @@ form[data-edit=false] [data-upload] {
 
 .select2-results .street-id {
     float: right;
+}
+
+.view-action-left {
+    width: 65%;
+}
+
+@media ( max-width: 1440px) {
+    .view-action-left {
+        width: 100%;
+    }
+}
+
+
+/* .property-filter */
+
+.property-filter {
+    display: inline-block;
+    margin: 0px 6px;
+    width: 75%;
+}
+
+.property-filter .select2 {
+    width: 100% !important;
+}
+
+.property-filter .filter-balanceholder {
+    display: inline-block;
+    padding: 1px;
+    width: 75%;
+}
+
+.property-filter .filter-status {
+    display: inline-block;
+    padding: 1px;
+    width: 25%;
+}
+
+@media ( max-width: 800px) {
+    .property-filter {
+        margin: 2px 0;
+        width: 100%;
+    }
+    .property-filter .filter-balanceholder,
+    .property-filter .filter-status {
+        padding: 1px;
+        width: 100%;
+    }
 }

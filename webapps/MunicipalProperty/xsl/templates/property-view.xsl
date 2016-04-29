@@ -14,17 +14,21 @@
             </xsl:if>
         </h1>
         <div class="content-actions">
-            <div class="pull-left">
+            <div class="inline view-action-left">
                 <div class="inline">
                     <xsl:apply-templates select="//actionbar"/>
                 </div>
                 <div class="filter property-filter span9" id="property-filter">
-                    <select name="balanceholder" class="span7" data-placeholder="Все балансодержатели"></select>
-                    <select name="status" class="span2" data-placeholder="Статус имущества" data-allow-clear="true">
-                        <option value=""></option>
-                        <option value="on_balance">На балансе</option>
-                        <option value="writtenoff">Списан</option>
-                    </select>
+                    <span class="filter-balanceholder">
+                        <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
+                    </span>
+                    <span class="filter-status">
+                        <select name="status" data-placeholder="Статус имущества" data-allow-clear="true">
+                            <option value=""></option>
+                            <option value="on_balance">На балансе</option>
+                            <option value="writtenoff">Списан</option>
+                        </select>
+                    </span>
                 </div>
             </div>
             <div class="pull-right">
