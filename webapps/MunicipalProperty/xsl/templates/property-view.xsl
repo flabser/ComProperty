@@ -18,8 +18,13 @@
                 <div class="inline">
                     <xsl:apply-templates select="//actionbar"/>
                 </div>
-                <div class="filter property-filter span9" id="property-filter">
-                    <select name="balanceholder" data-placeholder="Все балансодержатели"></select>
+                <div class="filter property-filter span10" id="property-filter">
+                    <select name="balanceholder" class="span7" data-placeholder="Все балансодержатели"></select>
+                    <select name="status" class="span3" data-placeholder="Статус имущества" data-allow-clear="true">
+                        <option value=""></option>
+                        <option value="on_balance">На балансе</option>
+                        <option value="writtenoff">Списан</option>
+                    </select>
                 </div>
             </div>
             <div class="pull-right">

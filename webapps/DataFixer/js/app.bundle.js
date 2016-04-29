@@ -3504,17 +3504,6 @@ function AppletIsReady() {
 }
 
 $(document).ready(function() {
-    $('[data-toggle=filter]').on('change', function(event) {
-        var targetSelector = $(this).data('target');
-        var $panel = $(targetSelector);
-
-        if (this.checked) {
-            $panel.addClass('open');
-        } else {
-            $panel.removeClass('open');
-        }
-    });
-
     $('select', '#property-filter').on('change', function(e) {
         var urlParams = location.search.split('&');
         for (var i in urlParams) {
@@ -3531,17 +3520,21 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    var sbh = [];
-    var ubh = location.search.split('&');
-    for (var p in ubh) {
-        if (ubh[p].split('=')[0] === 'balanceholder') {
+    //
+    var filterStatus,
+        sbh = [],
+        ubh = location.search.split('&'),
+        p,
+        param;
+    for (p in ubh) {
+        param = ubh[p].split('=')[0];
+        if (param === 'balanceholder') {
             sbh.push('ids=' + ubh[p].split('=')[1]);
+        } else if (param === 'status') {
+            filterStatus = ubh[p].split('=')[1];
         }
     }
     if (sbh.length) {
-        $('[data-toggle=filter]').attr('checked', true);
-        $('[data-toggle=filter]').trigger('change');
-
         $.ajax({
             url: 'p?id=get-organizations&' + sbh.join('&'),
             dataType: 'json',
@@ -3556,6 +3549,10 @@ $(document).ready(function() {
                 }
             }
         });
+    }
+    //
+    if (filterStatus) {
+        $('select[name=status]').val(filterStatus).trigger('change.select2');
     }
 });
 
