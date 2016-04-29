@@ -1,6 +1,6 @@
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'p?id=get-organizations',
+        url: '/Staff/p?id=get-organizations',
         fields: ['bin'],
         onSelect: function(e) {
             if (e.target.form && e.target.form.balanceholderbin) {

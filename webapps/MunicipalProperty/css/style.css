@@ -21,6 +21,10 @@
     margin: 1px 6px;
 }
 
+.property-filter .select2 {
+    margin: 0 1px;
+}
+
 form[data-edit=false] .on-edit,
 form[data-edit=false] [data-action=save_and_close],
 form[data-edit=false] [data-upload] {

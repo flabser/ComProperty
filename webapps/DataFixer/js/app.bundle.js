@@ -3536,7 +3536,7 @@ $(document).ready(function() {
     }
     if (sbh.length) {
         $.ajax({
-            url: 'p?id=get-organizations&' + sbh.join('&'),
+            url: '/Staff/p?id=get-organizations&' + sbh.join('&'),
             dataType: 'json',
             success: function(data) {
                 var list = data.objects[0].list;
@@ -3624,7 +3624,7 @@ $(function() {
 
 nbApp.selectOptions = {
     balanceholder: {
-        url: 'p?id=get-organizations',
+        url: '/Staff/p?id=get-organizations',
         fields: ['bin'],
         onSelect: function(e) {
             if (e.target.form && e.target.form.balanceholderbin) {

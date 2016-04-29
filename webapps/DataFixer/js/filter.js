@@ -31,7 +31,7 @@ $(document).ready(function() {
     }
     if (sbh.length) {
         $.ajax({
-            url: 'p?id=get-organizations&' + sbh.join('&'),
+            url: '/Staff/p?id=get-organizations&' + sbh.join('&'),
             dataType: 'json',
             success: function(data) {
                 var list = data.objects[0].list;
