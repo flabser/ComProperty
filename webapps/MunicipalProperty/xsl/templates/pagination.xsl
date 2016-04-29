@@ -20,8 +20,8 @@
     <xsl:variable name="select_always" select="true()"/>
     <xsl:variable name="current_page" select="//view_content//query/@currentpage"/>
     <xsl:variable name="pagination_maxpage" select="//view_content//query/@maxpage"/>
-    <xsl:variable name="pagination_count" select="7"/>
-    <xsl:variable name="pagination_center" select="3"/>
+    <xsl:variable name="pagination_count" select="5"/>
+    <xsl:variable name="pagination_center" select="2"/>
     <xsl:variable name="request_param">
         <xsl:call-template name="join">
             <xsl:with-param name="valueList" select="//request_param"/>
