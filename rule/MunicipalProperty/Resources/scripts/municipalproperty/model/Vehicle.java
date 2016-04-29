@@ -32,6 +32,8 @@ public class Vehicle extends Property {
 	@Column(name = "max_load")
 	private int maxLoad;
 
+	private String model;
+
 	@Column(name = "engine_number", length = 30)
 	private String engineNumber;
 
@@ -89,6 +91,14 @@ public class Vehicle extends Property {
 
 	public void setEngineNumber(String engineNumber) {
 		this.engineNumber = engineNumber;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 }
