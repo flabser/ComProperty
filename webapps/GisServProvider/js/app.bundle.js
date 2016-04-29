@@ -1653,20 +1653,6 @@ nb.dialog = {
 
         return this.show(opt);
     },
-    confirm: function(options) {
-        options.className = 'dialog-confirm';
-
-        options.width = options.width || 360;
-        options.height = options.height || 210;
-        options.message = options.message || null;
-        options.buttons = options.buttons || {
-            'Ok': function() {
-                $(this).dialog('close');
-            }
-        };
-
-        return this.show(options);
-    },
     error: function(opt) {
         opt.className = 'dialog-error';
         opt.width = opt.width || 360;
@@ -3640,10 +3626,18 @@ $(function() {
 });
 
 $(document).ready(function() {
-    $('.js-rest-scope [data-action=do-get]').click(function() {
-        var $scope = $(this).parents('.js-rest-scope');
-        var endPoint = $('input[type=text]', $scope).val();
+    $('[data-action=do-get]').click(function() {
+        var endPoint = $('[name=endpoint]').val();
         var dataType = 'json';
+        var template = $('#tpl_rest_result_panel').clone();
+        var $tpl = $(template.html().trim());
+        $('#rest-result').prepend($tpl);
+        $('.panel.open').removeClass('open');
+        $tpl.addClass('open');
+        $tpl.find('.js-remove').one('click', function() {
+            $tpl.remove();
+        });
+        $tpl.find('.js-title').html(endPoint);
 
         $.ajax({
             type: 'get',
@@ -3651,19 +3645,15 @@ $(document).ready(function() {
             dataType: dataType,
         }).then(function(response) {
             if (response) {
-                $('pre', $scope).html(JSON.stringify(response, null, 2)).removeClass('prettyprinted');
+                $('pre', $tpl).html(JSON.stringify(response, null, 2)).removeClass('prettyprinted');
                 PR.prettyPrint();
             } else {
-                $('pre', $scope).html('empty response');
+                $('pre', $tpl).html('empty response');
             }
         }, function(err) {
-            $('pre', $scope).html(err);
+            console.log(err);
+            $('pre', $tpl).html('Response status: ' + err.status);
         });
-    });
-
-    $('.js-rest-scope [data-action=do-clear]').click(function() {
-        var $scope = $(this).parents('.js-rest-scope');
-        $('pre', $scope).html('');
     });
 });
 

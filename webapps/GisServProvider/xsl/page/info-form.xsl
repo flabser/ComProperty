@@ -8,7 +8,11 @@
                 <link rel="stylesheet" href="/SharedResources/vendor/google-code-prettify/prettify.css"/>
                 <script src="/SharedResources/vendor/google-code-prettify/prettify.js"></script>
                 <style>
+                    .panel__body pre { margin: 0; }
                     .controls .btn { vertical-align: middle; }
+                    .panel { margin-bottom: 10px; }
+                    .panel .panel-toggle { font-size: 13px; position: relative; }
+                    .panel.open > .panel__body { max-height: 100%; }
                 </style>
             </xsl:with-param>
         </xsl:call-template>
@@ -30,33 +34,43 @@
             </header>
             <section class="content-body">
                 <fieldset class="fieldset">
-                    <div class="form-group js-rest-scope">
+                    <div class="form-group">
                         <div class="control-label">
-                            getbycoord
+                            Rest endpoint
                         </div>
                         <div class="controls">
-                            <input type="text" value="{content/getbycoord}" class="span6"/>
+                            <select class="native span2" onchange="this.nextElementSibling.value=this.value">
+                                <option value=""></option>
+                                <option value="{content/getbycoord}">
+                                    <xsl:value-of select="'getbycoord'"/>
+                                </option>
+                                <option value="{content/getbystreet}">
+                                    <xsl:value-of select="'getbystreet'"/>
+                                </option>
+                            </select>
+                            <input type="text" class="span7" name="endpoint" value=""/>
                             <button type="button" class="btn" data-action="do-get">Проверить</button>
-                            <button type="button" class="btn" data-action="do-clear">Очистить</button>
                         </div>
-                        <h3>Ответ</h3>
-                        <pre class="prettyprint lang-javascript"></pre>
                     </div>
-                    <div class="form-group js-rest-scope">
-                        <div class="control-label">
-                            getbystreet
-                        </div>
-                        <div class="controls">
-                            <input type="text" value="{content/getbystreet}" class="span6"/>
-                            <button type="button" class="btn" data-action="do-get">Проверить</button>
-                            <button type="button" class="btn" data-action="do-clear">Очистить</button>
-                        </div>
-                        <h3>Ответ</h3>
-                        <pre class="prettyprint lang-javascript"></pre>
-                    </div>
+                    <div class="form-group" id="rest-result"></div>
                 </fieldset>
             </section>
         </form>
+        <template id="tpl_rest_result_panel">
+            <div class="panel" data-endpoint="">
+                <div class="panel__header blink-anim">
+                    <div class="panel-title panel-toggle" data-toggle="panel">
+                        <div class="span8 pull-left" style="margin-top:1px;">
+                            <span class="input js-title"></span>
+                        </div>
+                        <button type="button" class="btn js-remove">Удалить</button>
+                    </div>
+                </div>
+                <div class="panel__body">
+                    <pre class="prettyprint lang-javascript">loading...</pre>
+                </div>
+            </div>
+        </template>
     </xsl:template>
 
 </xsl:stylesheet>
