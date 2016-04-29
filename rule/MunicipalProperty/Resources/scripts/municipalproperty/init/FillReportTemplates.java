@@ -126,9 +126,4 @@ public class FillReportTemplates extends InitialDataAdapter<ReportTemplate, Repo
 		return entities;
 	}
 
-	@Override
-	public Class<ReportTemplateDAO> getDAO() {
-		return ReportTemplateDAO.class;
-	}
-
 }
