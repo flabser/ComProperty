@@ -3590,6 +3590,25 @@ nbApp.confirmWriteOff = function(callback) {
     return this.defaultConfirmDialog(message, callback);
 };
 
+$(function() {
+    // toggle theme
+    $('[data-toggle-theme]').click(function() {
+        var themeName = $(this).data('toggle-theme');
+        if ($('body').hasClass('theme1')) {
+            $('body').removeClass(themeName);
+            localStorage.setItem('theme', '');
+        } else {
+            $('body').addClass(themeName);
+            localStorage.setItem('theme', themeName);
+        }
+    });
+
+    var theme = localStorage.getItem('theme');
+    if (theme) {
+        $('body').addClass(theme);
+    }
+});
+
 function uploadUpdate(fileInput, fsid) {
     var formData = new FormData();
     formData.append('file', fileInput.files[0]);
