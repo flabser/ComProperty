@@ -3,6 +3,7 @@ package municipalproperty.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,7 +39,7 @@ import staff.model.Organization;
 @Entity
 @Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }) )
 @NamedQuery(name = "Property.findAll", query = "SELECT m FROM Property AS m ORDER BY m.regDate")
-public class Property extends SecureAppEntity {
+public class Property extends SecureAppEntity<UUID> {
 	@Column(length = 16)
 	private String kof;
 

@@ -3,8 +3,6 @@ package municipalproperty.scheduled;
 import java.util.Date;
 import java.util.List;
 
-import administrator.dao.UserDAO;
-import administrator.model.User;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
@@ -12,6 +10,9 @@ import com.exponentus.scripting._Session;
 import com.exponentus.scripting.event._DoScheduledTask;
 import com.exponentus.server.Server;
 import com.exponentus.user.AnonymousUser;
+
+import administrator.dao.UserDAO;
+import administrator.model.User;
 import municipalproperty.dao.ContractDAO;
 import municipalproperty.dao.NotificationDAO;
 import municipalproperty.model.Contract;
@@ -43,7 +44,7 @@ public class ContractExpiryReminder extends _DoScheduledTask {
 			if (current.after(c.getExpired())) {
 				Notification entity = new Notification();
 				entity.setSender(new AnonymousUser().getUserName());
-				User user = uDao.findById(c.getReaders().iterator().next());
+				User user = uDao.findById((long) c.getReaders().iterator().next());
 				if (user != null) {
 					entity.setRecipient(user.getLogin());
 					lang = user.getDefaultLang();

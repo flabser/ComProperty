@@ -1,5 +1,24 @@
 package municipalproperty.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
@@ -7,154 +26,148 @@ import com.exponentus.util.Util;
 
 import municipalproperty.dao.ContractDAO;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-
 @Entity
 @Table(name = "orders")
 @NamedQuery(name = "Order.findAll", query = "SELECT m FROM Order AS m ORDER BY m.regDate")
-public class Order extends SecureAppEntity {
+public class Order extends SecureAppEntity<UUID> {
 
-    public enum OrderStatus {
-        INACTIVE, ACTIVE
-    }
+	public enum OrderStatus {
+		INACTIVE, ACTIVE
+	}
 
-    @Column(name = "reg_number")
-    private String regNumber;
+	@Column(name = "reg_number")
+	private String regNumber;
 
-    @Column(name = "applied_reg_date")
-    private Date appliedRegDate;
+	@Column(name = "applied_reg_date")
+	private Date appliedRegDate;
 
-    @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
-    private Property property;
+	@NotNull
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Property property;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name = "order_attachments", joinColumns = {@JoinColumn(name = "parent_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "attachment_id", referencedColumnName = "id")})
-    private List<Attachment> attachments = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinTable(name = "order_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
+	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
+	private List<Attachment> attachments = new ArrayList<>();
 
-    private String description = "";
+	private String description = "";
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "order_status")
-    private OrderStatus orderStatus = OrderStatus.ACTIVE;
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "order_status")
+	private OrderStatus orderStatus = OrderStatus.ACTIVE;
 
-    public String getRegNumber() {
-        return regNumber;
-    }
+	public String getRegNumber() {
+		return regNumber;
+	}
 
-    public void setRegNumber(String regNumber) {
-        this.regNumber = regNumber;
-    }
+	public void setRegNumber(String regNumber) {
+		this.regNumber = regNumber;
+	}
 
-    public Date getAppliedRegDate() {
-        return appliedRegDate;
-    }
+	public Date getAppliedRegDate() {
+		return appliedRegDate;
+	}
 
-    public void setAppliedRegDate(Date appliedRegDate) {
-        this.appliedRegDate = appliedRegDate;
-    }
+	public void setAppliedRegDate(Date appliedRegDate) {
+		this.appliedRegDate = appliedRegDate;
+	}
 
-    public Property getProperty() {
-        return property;
-    }
+	public Property getProperty() {
+		return property;
+	}
 
-    public void setProperty(Property property) {
-        this.property = property;
-    }
+	public void setProperty(Property property) {
+		this.property = property;
+	}
 
-    public List<Attachment> getAttachments() {
-        return attachments;
-    }
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
 
-    public void setAttachments(List<Attachment> attachments) {
-        this.attachments = attachments;
-    }
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
-    @Override
-    public String getShortXMLChunk(_Session ses) {
-        StringBuilder chunk = new StringBuilder(1000);
-        chunk.append("<regdate>" + Util.convertDateToStringSilently(regDate) + "</regdate>");
-        chunk.append("<regnumber>" + regNumber + "</regnumber>");
-        chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
-        chunk.append("<description>" + description + "</description>");
-        chunk.append("<orderstatus>" + ses.getAppEnv().vocabulary.getWord(getOrderStatus().name().toLowerCase(), ses.getLang()) + "</orderstatus>");
-        chunk.append("<property docid=\"" + property.getId() + "\">");
-        chunk.append("<url>" + property.getURL() + "</url>");
-        chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
-        chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
-        chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
-        chunk.append("</property>");
+	@Override
+	public String getShortXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.convertDateToStringSilently(regDate) + "</regdate>");
+		chunk.append("<regnumber>" + regNumber + "</regnumber>");
+		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
+		chunk.append("<description>" + description + "</description>");
+		chunk.append("<orderstatus>" + ses.getAppEnv().vocabulary.getWord(getOrderStatus().name().toLowerCase(), ses.getLang()) + "</orderstatus>");
+		chunk.append("<property docid=\"" + property.getId() + "\">");
+		chunk.append("<url>" + property.getURL() + "</url>");
+		chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
+		chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
+		chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
+		chunk.append("</property>");
 
-        if (!getAttachments().isEmpty()) {
-            chunk.append("<attachments>" + getAttachments().size() + "</attachments>");
-        }
-        return chunk.toString();
-    }
+		if (!getAttachments().isEmpty()) {
+			chunk.append("<attachments>" + getAttachments().size() + "</attachments>");
+		}
+		return chunk.toString();
+	}
 
-    @Override
-    public String getFullXMLChunk(_Session ses) {
-        StringBuilder chunk = new StringBuilder(1000);
-        chunk.append("<regdate>" + Util.convertDateToStringSilently(regDate) + "</regdate>");
-        chunk.append("<regnumber>" + regNumber + "</regnumber>");
-        chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
-        chunk.append("<description>" + description + "</description>");
-        chunk.append("<orderstatus>" + getOrderStatus() + "</orderstatus>");
-        chunk.append("<property docid=\"" + property.getId() + "\">");
-        chunk.append("<url>" + property.getURL() + "</url>");
-        chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
-        chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
-        chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
-        chunk.append("</property>");
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.convertDateToStringSilently(regDate) + "</regdate>");
+		chunk.append("<regnumber>" + regNumber + "</regnumber>");
+		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
+		chunk.append("<description>" + description + "</description>");
+		chunk.append("<orderstatus>" + getOrderStatus() + "</orderstatus>");
+		chunk.append("<property docid=\"" + property.getId() + "\">");
+		chunk.append("<url>" + property.getURL() + "</url>");
+		chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
+		chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
+		chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
+		chunk.append("</property>");
 
-        if (getAttachments() != null && !attachments.isEmpty()) {
-            chunk.append("<attachments>");
-            for (Attachment att : attachments) {
-                String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name=" + att.getRealFileName();
-                chunk.append("<attachment id=\"" + att.getId() + "\">");
-                chunk.append("<url>" + downloadUrl + "</url>");
-                chunk.append(att.getShortXMLChunk(ses));
-                chunk.append("</attachment>");
-            }
-            chunk.append("</attachments>");
-        }
+		if (getAttachments() != null && !attachments.isEmpty()) {
+			chunk.append("<attachments>");
+			for (Attachment att : attachments) {
+				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name=" + att.getRealFileName();
+				chunk.append("<attachment id=\"" + att.getId() + "\">");
+				chunk.append("<url>" + downloadUrl + "</url>");
+				chunk.append(att.getShortXMLChunk(ses));
+				chunk.append("</attachment>");
+			}
+			chunk.append("</attachments>");
+		}
 
-        ContractDAO contractDAO = new ContractDAO(ses);
-        if (this.getId() != null) {
-            List<Contract> contracts = contractDAO.findAllContractsByOrder(this);
-            if (!contracts.isEmpty()) {
-                chunk.append("<contracts>");
-                for (Contract contract : contracts) {
-                    chunk.append("<contract>");
-                    chunk.append("<url>" + contract.getURL() + "</url>");
-                    chunk.append("<description>" + contract.getDescription() + "</description>");
-                    chunk.append("</contract>");
-                }
-                chunk.append("</contracts>");
-            }
-        }
+		ContractDAO contractDAO = new ContractDAO(ses);
+		if (this.getId() != null) {
+			List<Contract> contracts = contractDAO.findAllContractsByOrder(this);
+			if (!contracts.isEmpty()) {
+				chunk.append("<contracts>");
+				for (Contract contract : contracts) {
+					chunk.append("<contract>");
+					chunk.append("<url>" + contract.getURL() + "</url>");
+					chunk.append("<description>" + contract.getDescription() + "</description>");
+					chunk.append("</contract>");
+				}
+				chunk.append("</contracts>");
+			}
+		}
 
-        return chunk.toString();
-    }
+		return chunk.toString();
+	}
 }
