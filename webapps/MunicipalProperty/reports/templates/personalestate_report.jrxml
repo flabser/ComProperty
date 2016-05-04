@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-11T11:56:21 -->
+<!-- 2016-05-04T10:39:41 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personalstate_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bddc9a65-2e73-4165-a459-73b469e9625c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="balanceholder" class="java.lang.String"/>
@@ -114,13 +114,6 @@
 				</textElement>
 				<text><![CDATA[Год выпуска]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="750" y="0" width="51" height="33" uuid="cf00ce15-0d22-46da-8c08-49a9f9655a15"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
-				</textElement>
-				<text><![CDATA[Цвет]]></text>
-			</staticText>
 			<line>
 				<reportElement x="0" y="34" width="801" height="1" uuid="9d56fea3-fa76-475e-ba4c-2cf0e7a71c11"/>
 			</line>
@@ -163,13 +156,6 @@
 					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{yearrelease}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="750" y="0" width="51" height="53" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="78d164a9-3a6c-4a04-90d9-ad65f9e0d3d4"/>
-				<textElement textAlignment="Left">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{countfloors}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="0" width="118" height="53" uuid="39fa41b2-e401-4f15-ade0-337dbe559f96"/>
