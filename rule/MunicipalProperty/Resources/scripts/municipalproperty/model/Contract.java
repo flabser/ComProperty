@@ -3,6 +3,7 @@ package municipalproperty.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ import com.exponentus.util.Util;
 @Entity
 @Table(name = "contracts")
 @NamedQuery(name = "Contract.findAll", query = "SELECT m FROM Contract AS m ORDER BY m.regDate")
-public class Contract extends SecureAppEntity {
+public class Contract extends SecureAppEntity<UUID> {
 
 	public enum ContractStatus {
 		INACTIVE, ACTIVE
@@ -44,7 +45,8 @@ public class Contract extends SecureAppEntity {
 	private Order order;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinTable(name = "contract_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
+	@JoinTable(name = "contract_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
+	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
 	private List<Attachment> attachments = new ArrayList<>();
 
 	private String description = "";
