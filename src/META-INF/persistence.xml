@@ -14,6 +14,9 @@
         <class>reference.model.OrgCategory</class>
         <class>reference.model.DepartmentType</class>
         <class>reference.model.Position</class>
+        <!-- Common module entities -->
+        <class>com.exponentus.common.model.Attachment</class>
+        <class>com.exponentus.common.model.ReadingMark</class>
     </persistence-unit>
     <persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
         <!-- Obligatory the application module entities -->
