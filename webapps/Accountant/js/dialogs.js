@@ -73,6 +73,13 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     }, false, callback);
 };
 
+nbApp.choicePropertyRecipient = function(el, callback) {
+    var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
+    return this.defaultChoiceDialog(el, url, {
+        propertyrecipient: ['id', 'name'],
+    }, false, callback);
+};
+
 nbApp.choiceReaders = function(el, callback) {
     var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {

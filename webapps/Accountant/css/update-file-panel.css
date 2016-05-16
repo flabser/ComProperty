@@ -120,6 +120,9 @@
     margin:0;
 }
 
+.js-select-property-recipient, .js-attach-order{
+    display: none;
+}
 
 /* 
 JUST_UPLOADED = 1;

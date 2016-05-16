@@ -91,6 +91,23 @@
                                                 </input>
                                             </label>
                                         </li>
+                                        <li>
+                                            <label>
+                                                <input type="checkbox" name="transferproperty" class="transferproperty" value="1" autocomplete="off">
+                                                    <span>
+                                                        Передать имущество
+                                                    </span>
+                                                </input>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn btn js-select-property-recipient">
+                                                <span>Получатель имущества</span>
+                                            </button>
+                                            <button type="button" class="btn btn js-attach-order">
+                                                <span>Прикрепить постановление</span>
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
                             </span>
@@ -170,6 +187,25 @@
                                                 </span>
                                             </input>
                                         </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" name="transferproperty" class="transferproperty" value="1" autocomplete="off">
+                                                <span>
+                                                    Передать имущество
+                                                </span>
+                                            </input>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn js-select-property-recipient">
+                                            <xsl:attribute name="display" select="'none'"/>
+                                            <span>Получатель имущества</span>
+                                        </button>
+                                        <button type="button" class="btn btn js-attach-order">
+                                            <xsl:attribute name="display" select="'none'"/>
+                                            <span>Прикрепить постановление</span>
+                                        </button>
                                     </li>
                                 </ul>
                             </div>

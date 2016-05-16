@@ -3578,6 +3578,13 @@ nbApp.choiceBalanceHolder = function(el, callback) {
     }, false, callback);
 };
 
+nbApp.choicePropertyRecipient = function(el, callback) {
+    var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
+    return this.defaultChoiceDialog(el, url, {
+        propertyrecipient: ['id', 'name'],
+    }, false, callback);
+};
+
 nbApp.choiceReaders = function(el, callback) {
     var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
@@ -3848,6 +3855,24 @@ function renderFilePanel(fileName, fsid) {
             toggleLoadButtonState($tpl);
         });
         $tpl.find('.errormsg').remove();
+    });
+
+    $tpl.find('.js-select-property-recipient').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).parents('.panel').addClass('open');
+        nbApp.choicePropertyRecipient(this, function() {
+            toggleLoadButtonState($tpl);
+        });
+        $tpl.find('.errormsg').remove();
+    });
+
+    $tpl.find('.transferproperty').on('change', function(e) {
+        if($(this).prop("checked") == true){
+            $(".js-select-property-recipient, .js-attach-order").css("display","inline-block")
+        }else{
+            $(".js-select-property-recipient, .js-attach-order").css("display","none")
+        }
     });
 
     if (activeFile == fileName) {

@@ -239,6 +239,24 @@ function renderFilePanel(fileName, fsid) {
         $tpl.find('.errormsg').remove();
     });
 
+    $tpl.find('.js-select-property-recipient').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).parents('.panel').addClass('open');
+        nbApp.choicePropertyRecipient(this, function() {
+            toggleLoadButtonState($tpl);
+        });
+        $tpl.find('.errormsg').remove();
+    });
+
+    $tpl.find('.transferproperty').on('change', function(e) {
+        if($(this).prop("checked") == true){
+            $(".js-select-property-recipient, .js-attach-order").css("display","inline-block")
+        }else{
+            $(".js-select-property-recipient, .js-attach-order").css("display","none")
+        }
+    });
+
     if (activeFile == fileName) {
         $tpl.find('.panel').addClass('open');
         $tpl.find('.panel-title').addClass('blink-anim');
