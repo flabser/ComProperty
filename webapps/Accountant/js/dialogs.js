@@ -76,7 +76,7 @@ nbApp.choiceBalanceHolder = function(el, callback) {
 nbApp.choicePropertyRecipient = function(el, callback) {
     var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
-        propertyrecipient: ['id', 'name'],
+        recipient: ['id', 'name'],
     }, false, callback);
 };
 

@@ -120,7 +120,7 @@
     margin:0;
 }
 
-.js-select-property-recipient, .js-attach-order{
+.js-select-recipients, .js-attach-order{
     display: none;
 }
 

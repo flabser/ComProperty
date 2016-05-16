@@ -198,7 +198,7 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn js-select-property-recipient">
+                                        <button type="button" class="btn btn js-select-recipients">
                                             <xsl:attribute name="display" select="'none'"/>
                                             <span>Получатель имущества</span>
                                         </button>
@@ -218,6 +218,7 @@
                     <div>
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>
                         <ul class="update-readers" data-input="reader"></ul>
+                        <ul class="update-recipients" data-input="recipient"></ul>
                     </div>
                     <div class="js-check-result">
                         <xsl:apply-templates select="viewcontent/sheeterrs"/>
