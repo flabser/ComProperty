@@ -85,6 +85,7 @@
                                         <li>
                                             <label>
                                                 <input type="checkbox" name="writeoff" value="1">
+                                                    <xsl:attribute name="disabled" select="'disabled'"/>
                                                     <span>
                                                         Отметить имущество как списанное
                                                     </span>
@@ -94,6 +95,7 @@
                                         <li>
                                             <label>
                                                 <input type="checkbox" name="transferproperty" class="transferproperty" value="1" autocomplete="off">
+                                                    <xsl:attribute name="disabled" select="'disabled'"/>
                                                     <span>
                                                         Передать имущество
                                                     </span>
@@ -101,23 +103,18 @@
                                             </label>
                                         </li>
                                         <li>
-                                            <button type="button" class="btn btn js-select-recipients" disabled="disabled">
+                                            <xsl:attribute name="class" select="'disabled'"/>
+                                            <button type="button" class="btn btn-lg js-select-recipients">
+                                                <xsl:attribute name="display" select="'none'"/>
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                                <i class="fa fa-file-text-o visibility-hidden"></i>
                                                 <span>Получатель имущества</span>
                                             </button>
-                                            <!--<button type="button" class="btn btn js-attach-order">
-                                            <xsl:attribute name="display" select="'none'"/>
-                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
-                                                <xsl:attribute name="disabled" select="'disabled'"/>
-                                            </xsl:if>
-                                            <span>Прикрепить постановление</span>
-                                        </button>-->
                                             <xsl:variable name="fsid" select="//fields/formsesid"/>
-                                            <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-word">
-                                                <xsl:attribute name="display" select="'none'"/>
-                                                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
-                                                    <xsl:attribute name="disabled" select="'disabled'"/>
-                                                </xsl:if>
-                                            </input>
+                                            <label class="btn btn-lg btn-update-file-excel js-attach-order" for="uporder">
+                                                <i class="fa fa-file-text-o"></i>
+                                                <span>Прикрепить постановление</span>
+                                            </label>
                                         </li>
                                     </ul>
                                 </div>
@@ -134,6 +131,14 @@
                         <div class="js-check-result"></div>
                     </div>
                 </div>
+            </form>
+            <form class="hidden" method="POST" enctype="multipart/form-data">
+                <xsl:variable name="fsid" select="//fields/formsesid"/>
+                <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})">
+                    <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                        <xsl:attribute name="disabled" select="'disabled'"/>
+                    </xsl:if>
+                </input>
             </form>
         </template>
     </xsl:template>
@@ -210,27 +215,22 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn js-select-recipients">
+                                        <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                            <xsl:attribute name="class" select="'disabled'"/>
+                                        </xsl:if>
+                                        <button type="button" class="btn btn-lg js-select-recipients">
                                             <xsl:attribute name="display" select="'none'"/>
                                             <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                                 <xsl:attribute name="disabled" select="'disabled'"/>
                                             </xsl:if>
+                                            <i class="fa fa-file-text-o visibility-hidden"></i>
                                             <span>Получатель имущества</span>
                                         </button>
-                                        <!--<button type="button" class="btn btn js-attach-order">
-                                            <xsl:attribute name="display" select="'none'"/>
-                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
-                                                <xsl:attribute name="disabled" select="'disabled'"/>
-                                            </xsl:if>
-                                            <span>Прикрепить постановление</span>
-                                        </button>-->
                                         <xsl:variable name="fsid" select="//fields/formsesid"/>
-                                        <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-word">
-                                            <xsl:attribute name="display" select="'none'"/>
-                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
-                                                <xsl:attribute name="disabled" select="'disabled'"/>
-                                            </xsl:if>
-                                        </input>
+                                        <label class="btn btn-lg btn-update-file-excel js-attach-order" for="uporder">
+                                            <i class="fa fa-file-text-o"></i>
+                                            <span>Прикрепить постановление</span>
+                                        </label>
                                     </li>
                                 </ul>
                             </div>
@@ -251,6 +251,14 @@
                     </div>
                 </div>
             </div>
+        </form>
+        <form class="hidden" method="POST" enctype="multipart/form-data">
+            <xsl:variable name="fsid" select="//fields/formsesid"/>
+            <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})">
+                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                    <xsl:attribute name="disabled" select="'disabled'"/>
+                </xsl:if>
+            </input>
         </form>
     </xsl:template>
 

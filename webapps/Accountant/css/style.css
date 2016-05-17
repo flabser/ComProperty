@@ -3,6 +3,9 @@
     font-size: 1.6em;
     vertical-align: middle;
 }
+.visibility-hidden{
+    visibility: hidden;
+}
 
 progress[value='0'] {
     display: none;

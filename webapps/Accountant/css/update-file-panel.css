@@ -122,9 +122,30 @@
 
 .js-select-recipients, .js-attach-order{
     display: none;
+    margin-top:3px !important;
 }
 
-/* 
+.update-file-panel .panel-toggle .js-attach-order > i.fa,
+.update-file-panel .panel-toggle .js-select-recipients > i.fa
+{
+    position:inherit;
+    padding:0;
+    width: auto;
+    font-size: 1.6em;
+}
+
+li.disabled label, li.disabled label:hover{
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+li.disabled i.fa{
+    color: #ccc;
+}
+
+/*
 JUST_UPLOADED = 1;
 CHECKED = 2;
 LOADED = 3;
