@@ -21,6 +21,10 @@
 		</app>
 		<app>
 			<name mode="on">MunicipalProperty</name>
+			<rest mode="on">
+				<urlmapping>/rest/*</urlmapping>
+				
+			</rest>
 		</app>
 		<app>
 			<name mode="on">PropertyLeasing</name>
@@ -34,7 +38,6 @@
 		<app>
 			<name mode="on">GisServProvider</name>
 			<rest mode="on">
-				<type>jersey</type>
 				<urlmapping>/rest/*</urlmapping>
 				<services>
 					<class>gisservprovider.services.GisService</class>
