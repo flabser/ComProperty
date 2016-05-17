@@ -112,7 +112,7 @@
                                             <span>Прикрепить постановление</span>
                                         </button>-->
                                             <xsl:variable name="fsid" select="//fields/formsesid"/>
-                                            <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-excel">
+                                            <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-word">
                                                 <xsl:attribute name="display" select="'none'"/>
                                                 <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                                     <xsl:attribute name="disabled" select="'disabled'"/>
@@ -225,7 +225,7 @@
                                             <span>Прикрепить постановление</span>
                                         </button>-->
                                         <xsl:variable name="fsid" select="//fields/formsesid"/>
-                                        <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-excel">
+                                        <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-word">
                                             <xsl:attribute name="display" select="'none'"/>
                                             <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                                 <xsl:attribute name="disabled" select="'disabled'"/>
