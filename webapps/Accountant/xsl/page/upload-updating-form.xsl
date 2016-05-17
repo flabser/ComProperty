@@ -101,10 +101,10 @@
                                             </label>
                                         </li>
                                         <li>
-                                            <button type="button" class="btn btn js-select-property-recipient">
+                                            <button type="button" class="btn btn js-select-recipients" disabled="disabled">
                                                 <span>Получатель имущества</span>
                                             </button>
-                                            <button type="button" class="btn btn js-attach-order">
+                                            <button type="button" class="btn btn js-attach-order" disabled="disabled">
                                                 <span>Прикрепить постановление</span>
                                             </button>
                                         </li>
@@ -117,6 +117,7 @@
                         <input type="hidden" name="balanceholder" value=""/>
                         <div>
                             <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                            <ul class="update-recipient" data-input="recipient"></ul>
                             <ul class="update-readers" data-input="reader"></ul>
                         </div>
                         <div class="js-check-result"></div>
@@ -200,10 +201,16 @@
                                     <li>
                                         <button type="button" class="btn btn js-select-recipients">
                                             <xsl:attribute name="display" select="'none'"/>
+                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                            </xsl:if>
                                             <span>Получатель имущества</span>
                                         </button>
                                         <button type="button" class="btn btn js-attach-order">
                                             <xsl:attribute name="display" select="'none'"/>
+                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                            </xsl:if>
                                             <span>Прикрепить постановление</span>
                                         </button>
                                     </li>
