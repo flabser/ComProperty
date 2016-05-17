@@ -101,10 +101,10 @@
                                             </label>
                                         </li>
                                         <li>
-                                            <button type="button" class="btn btn js-select-property-recipient">
+                                            <button type="button" class="btn btn js-select-recipients" disabled="disabled">
                                                 <span>Получатель имущества</span>
                                             </button>
-                                            <button type="button" class="btn btn js-attach-order">
+                                            <button type="button" class="btn btn js-attach-order" disabled="disabled">
                                                 <span>Прикрепить постановление</span>
                                             </button>
                                         </li>
@@ -200,10 +200,16 @@
                                     <li>
                                         <button type="button" class="btn btn js-select-recipients">
                                             <xsl:attribute name="display" select="'none'"/>
+                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                            </xsl:if>
                                             <span>Получатель имущества</span>
                                         </button>
                                         <button type="button" class="btn btn js-attach-order">
                                             <xsl:attribute name="display" select="'none'"/>
+                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                            </xsl:if>
                                             <span>Прикрепить постановление</span>
                                         </button>
                                     </li>
