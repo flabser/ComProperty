@@ -117,6 +117,7 @@
                         <input type="hidden" name="balanceholder" value=""/>
                         <div>
                             <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                            <ul class="update-recipient" data-input="recipient"></ul>
                             <ul class="update-readers" data-input="reader"></ul>
                         </div>
                         <div class="js-check-result"></div>
