@@ -104,9 +104,20 @@
                                             <button type="button" class="btn btn js-select-recipients" disabled="disabled">
                                                 <span>Получатель имущества</span>
                                             </button>
-                                            <button type="button" class="btn btn js-attach-order" disabled="disabled">
-                                                <span>Прикрепить постановление</span>
-                                            </button>
+                                            <!--<button type="button" class="btn btn js-attach-order">
+                                            <xsl:attribute name="display" select="'none'"/>
+                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                            </xsl:if>
+                                            <span>Прикрепить постановление</span>
+                                        </button>-->
+                                            <xsl:variable name="fsid" select="//fields/formsesid"/>
+                                            <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-excel">
+                                                <xsl:attribute name="display" select="'none'"/>
+                                                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                                </xsl:if>
+                                            </input>
                                         </li>
                                     </ul>
                                 </div>
@@ -206,13 +217,20 @@
                                             </xsl:if>
                                             <span>Получатель имущества</span>
                                         </button>
-                                        <button type="button" class="btn btn js-attach-order">
+                                        <!--<button type="button" class="btn btn js-attach-order">
                                             <xsl:attribute name="display" select="'none'"/>
                                             <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                                 <xsl:attribute name="disabled" select="'disabled'"/>
                                             </xsl:if>
                                             <span>Прикрепить постановление</span>
-                                        </button>
+                                        </button>-->
+                                        <xsl:variable name="fsid" select="//fields/formsesid"/>
+                                        <input type="file" id="uporder" name="uporder" class="js-attach-order" onchange="uploadOrder(this, {$fsid})" accept="application/vnd.ms-excel">
+                                            <xsl:attribute name="display" select="'none'"/>
+                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                                <xsl:attribute name="disabled" select="'disabled'"/>
+                                            </xsl:if>
+                                        </input>
                                     </li>
                                 </ul>
                             </div>

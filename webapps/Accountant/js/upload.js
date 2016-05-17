@@ -77,6 +77,36 @@ function loadFile(fileId, data, fsid) {
     });
 }
 
+function loadOrder(fileId, data, fsid) {
+    nb.uiBlock();
+
+    var noty = nb.notify({
+        type: 'info',
+        message: 'Идет загрузка данных. Пожалуйста подождите...'
+    }).show();
+
+    return $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: 'Provider?id=update-order&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid,
+        data: data,
+        success: function(result) {
+            return result;
+        },
+        error: function(err) {
+            nb.notify({
+                type: 'error',
+                message: 'Ошибка загрузки'
+            }).show(2000);
+            return err;
+        },
+        complete: function() {
+            nb.uiUnblock();
+            noty.remove();
+        }
+    });
+}
+
 function delFile(fileId, fsid) {
     return $.ajax({
         type: 'delete',
