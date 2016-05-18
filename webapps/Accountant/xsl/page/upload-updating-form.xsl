@@ -104,14 +104,14 @@
                                         </li>
                                         <li>
                                             <xsl:attribute name="class" select="'disabled'"/>
-                                            <button type="button" class="btn btn-lg js-select-recipients">
+                                            <button type="button" class="btn btn-md js-select-recipients">
                                                 <xsl:attribute name="display" select="'none'"/>
                                                 <xsl:attribute name="disabled" select="'disabled'"/>
                                                 <i class="fa fa-file-text-o visibility-hidden"></i>
                                                 <span>Получатель имущества</span>
                                             </button>
                                             <xsl:variable name="fsid" select="//fields/formsesid"/>
-                                            <label class="btn btn-lg btn-update-file-excel js-attach-order" for="uporder">
+                                            <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                                 <i class="fa fa-file-text-o"></i>
                                                 <span>Прикрепить постановление</span>
                                             </label>
@@ -218,7 +218,7 @@
                                         <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                             <xsl:attribute name="class" select="'disabled'"/>
                                         </xsl:if>
-                                        <button type="button" class="btn btn-lg js-select-recipients">
+                                        <button type="button" class="btn btn-md js-select-recipients">
                                             <xsl:attribute name="display" select="'none'"/>
                                             <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
                                                 <xsl:attribute name="disabled" select="'disabled'"/>
@@ -227,7 +227,7 @@
                                             <span>Получатель имущества</span>
                                         </button>
                                         <xsl:variable name="fsid" select="//fields/formsesid"/>
-                                        <label class="btn btn-lg btn-update-file-excel js-attach-order" for="uporder">
+                                        <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                             <i class="fa fa-file-text-o"></i>
                                             <span>Прикрепить постановление</span>
                                         </label>
