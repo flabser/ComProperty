@@ -3620,6 +3620,7 @@ function uploadUpdate(fileInput, fsid) {
     var formData = new FormData();
     formData.append('file', fileInput.files[0]);
     formData.append('fsid', fsid);
+    formData.append('fieldname', fileInput.name);
     var time = new Date().getTime();
 
     return $.ajax({
