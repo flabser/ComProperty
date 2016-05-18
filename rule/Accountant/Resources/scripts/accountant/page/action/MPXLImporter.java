@@ -15,7 +15,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.exponentus.dataengine.jpa.IAppEntity;
-import com.exponentus.exception.SecureException;
 import com.exponentus.scripting._Session;
 import com.exponentus.server.Server;
 import com.exponentus.util.Util;
@@ -68,7 +67,7 @@ public class MPXLImporter {
 	}
 
 	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, boolean writeOff, Organization bh,
-	        String[] readers) {
+	        String[] readers, boolean isTransfer, Organization recipient) {
 
 		/*
 		 * long start = System.currentTimeMillis(); ForkJoinPool forkJoinPool =
@@ -86,7 +85,7 @@ public class MPXLImporter {
 		int processed = 0, skipped = 0;
 		if (mode == MPXLImporter.LOAD) {
 			mode = MPXLImporter.CHECK;
-			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, writeOff, bh, readers);
+			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, writeOff, bh, readers, isTransfer, recipient);
 			if (res.size() > 0) {
 				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 				return null;
@@ -183,6 +182,12 @@ public class MPXLImporter {
 
 				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
+				Organization oldBh = null;
+				if (isTransfer) {
+					oldBh = bh;
+					bh = recipient;
+				}
+
 				CheVal cv = new CheVal();
 				List<Property> pList = propertyDao.findAllByInvNum(cv.getString(invNumber));
 				for (Property p : pList) {
@@ -245,9 +250,9 @@ public class MPXLImporter {
 						prop.addReaderEditor(emp.getUser());
 					}
 					try {
-						propertyDao.add(prop);
+						// propertyDao.add(prop);
 						processed++;
-					} catch (SecureException e) {
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 

@@ -13,11 +13,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
@@ -41,10 +40,9 @@ public class Order extends SecureAppEntity<UUID> {
 	@Column(name = "applied_reg_date")
 	private Date appliedRegDate;
 
-	@NotNull
-	@ManyToOne(optional = false)
-	@JoinColumn(nullable = false)
-	private Property property;
+	@ManyToMany
+	@JoinTable(name = "property_orders")
+	private List<Property> properties;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinTable(name = "order_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
@@ -73,12 +71,12 @@ public class Order extends SecureAppEntity<UUID> {
 		this.appliedRegDate = appliedRegDate;
 	}
 
-	public Property getProperty() {
-		return property;
+	public List<Property> getProperties() {
+		return properties;
 	}
 
-	public void setProperty(Property property) {
-		this.property = property;
+	public void setProperties(List<Property> properties) {
+		this.properties = properties;
 	}
 
 	public List<Attachment> getAttachments() {
@@ -113,12 +111,6 @@ public class Order extends SecureAppEntity<UUID> {
 		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<orderstatus>" + ses.getAppEnv().vocabulary.getWord(getOrderStatus().name().toLowerCase(), ses.getLang()) + "</orderstatus>");
-		chunk.append("<property docid=\"" + property.getId() + "\">");
-		chunk.append("<url>" + property.getURL() + "</url>");
-		chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
-		chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
-		chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
-		chunk.append("</property>");
 
 		if (!getAttachments().isEmpty()) {
 			chunk.append("<attachments>" + getAttachments().size() + "</attachments>");
@@ -134,12 +126,19 @@ public class Order extends SecureAppEntity<UUID> {
 		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<orderstatus>" + getOrderStatus() + "</orderstatus>");
-		chunk.append("<property docid=\"" + property.getId() + "\">");
-		chunk.append("<url>" + property.getURL() + "</url>");
-		chunk.append("<objectname>" + property.getObjectName() + "</objectname>");
-		chunk.append("<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang()) + "</balanceholder>");
-		chunk.append("<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>");
-		chunk.append("</property>");
+
+		try {
+			String entryAsText = "";
+			for (Property property : properties) {
+				entryAsText += "<entry id=\"" + property.getId() + "\">" + "<url>" + property.getURL() + "</url>" + "<objectname>"
+				        + property.getObjectName() + "</objectname>" + "<balanceholder>" + property.getBalanceHolder().getLocalizedName(ses.getLang())
+				        + "</balanceholder>" + "<propertycode>" + property.getPropertyCode().getLocalizedName(ses.getLang()) + "</propertycode>"
+				        + "</entry>";
+			}
+			chunk.append("<properties>" + entryAsText + "</properties>");
+		} catch (NullPointerException e) {
+			chunk.append("<properties></properties>");
+		}
 
 		if (getAttachments() != null && !attachments.isEmpty()) {
 			chunk.append("<attachments>");

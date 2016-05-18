@@ -40,6 +40,7 @@
         <class>municipalproperty.model.Order</class>
         <class>municipalproperty.model.Contract</class>
         <class>municipalproperty.model.Notification</class>
+        <class>municipalproperty.model.PrevBalanceHolder</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -89,6 +90,7 @@
         <class>municipalproperty.model.Order</class>
         <class>municipalproperty.model.Contract</class>
         <class>municipalproperty.model.Notification</class>
+        <class>municipalproperty.model.PrevBalanceHolder</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -138,6 +140,7 @@
         <class>municipalproperty.model.Order</class>
         <class>municipalproperty.model.Contract</class>
         <class>municipalproperty.model.Notification</class>
+        <class>municipalproperty.model.PrevBalanceHolder</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -187,6 +190,7 @@
         <class>municipalproperty.model.Order</class>
         <class>municipalproperty.model.Contract</class>
         <class>municipalproperty.model.Notification</class>
+        <class>municipalproperty.model.PrevBalanceHolder</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -232,6 +236,7 @@
         <class>municipalproperty.model.EngineeringInfrastructure</class>
         <class>municipalproperty.model.StrategicObject</class>
         <class>municipalproperty.model.IntangibleAsset</class>
+        <class>municipalproperty.model.PrevBalanceHolder</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>

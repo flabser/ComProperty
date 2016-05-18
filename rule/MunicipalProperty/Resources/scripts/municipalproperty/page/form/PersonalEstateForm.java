@@ -25,6 +25,7 @@ import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
+import com.exponentus.util.StringUtil;
 import com.exponentus.util.Util;
 
 import municipalproperty.dao.PersonalEstateDAO;
@@ -55,8 +56,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
 
 				try {
-					String filePath = getTmpDirPath() + File.separator + Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10)
-					        + att.getRealFileName();
+					String filePath = getTmpDirPath() + File.separator + StringUtil.getRandomText() + att.getRealFileName();
 					File attFile = new File(filePath);
 					FileUtils.writeByteArrayToFile(attFile, att.getFile());
 					showFile(filePath, att.getRealFileName());
@@ -65,8 +65,6 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 					Server.logger.errorLogEntry(ioe);
 				}
 				return;
-			} else {
-				setBadRequest();
 			}
 		} else {
 			int kuf = formData.getNumberValueSilently("kuf", -1);
@@ -177,9 +175,6 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			// UserDAO ud = new UserDAO(session);
-			// entity.addReader(ud.findByLogin("kai"));
-
 			save(entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
@@ -189,6 +184,32 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			error(e);
 			setBadRequest();
 		}
+	}
+
+	@Override
+	public void doDELETE(_Session session, _WebFormData formData) {
+		String id = formData.getValueSilently("docid");
+		PersonalEstate entity;
+		if (!id.isEmpty()) {
+			PersonalEstateDAO dao = new PersonalEstateDAO(session);
+			entity = dao.findById(UUID.fromString(id));
+			String attachmentId = formData.getValueSilently("attachment");
+			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
+				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
+
+				try {
+					String filePath = getTmpDirPath() + File.separator + StringUtil.getRandomText() + att.getRealFileName();
+					File attFile = new File(filePath);
+					FileUtils.writeByteArrayToFile(attFile, att.getFile());
+					showFile(filePath, att.getRealFileName());
+					Environment.fileToDelete.add(filePath);
+				} catch (IOException ioe) {
+					Server.logger.errorLogEntry(ioe);
+				}
+				return;
+			}
+		}
+
 	}
 
 	private _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
@@ -239,7 +260,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		return ve;
 	}
 
-	protected PersonalEstate getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
+	private PersonalEstate getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		PersonalEstate entity = new PersonalEstate();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

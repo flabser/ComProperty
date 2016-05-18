@@ -30,13 +30,13 @@
             </fieldset>
             <div class="upload-result">
                 <div class="js-uploaded-files">
-                    <xsl:apply-templates select="//query[@entity = 'uploadedfile']/entry"/>
+                    <xsl:apply-templates select="//query[@entity = 'importfileentry']/entry"/>
                 </div>
             </div>
         </section>
 
         <form class="hidden" method="POST" enctype="multipart/form-data">
-            <xsl:variable name="fsid" select="//fields/formsesid"/>
+            <xsl:variable name="fsid" select="page/response/content/formsesid"/>
             <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this, {$fsid})"
                    accept="application/vnd.ms-excel"/>
         </form>

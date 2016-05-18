@@ -26,6 +26,7 @@ import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.NumberUtil;
 import com.exponentus.util.Util;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import municipalproperty.model.constants.PropertyStatusType;
 import reference.model.PropertyCode;
@@ -72,6 +73,10 @@ public class Property extends SecureAppEntity<UUID> {
 
 	@Column(name = "acquisition_year")
 	private int acquisitionYear;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "property")
+	private List<PrevBalanceHolder> prevBalanceHolders;
 
 	@NotNull
 	@ManyToOne(optional = false)
@@ -413,6 +418,15 @@ public class Property extends SecureAppEntity<UUID> {
 		chunk.append("<balancecost>" + String.format("%.02f", balanceCost) + "</balancecost>");
 		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getLocalizedName(ses.getLang()) + "</balanceholder>");
 		chunk.append("<balanceholderbin>" + balanceHolder.getBin() + "</balanceholderbin>");
+		try {
+			String prevBhAsText = "";
+			for (PrevBalanceHolder t : prevBalanceHolders) {
+				prevBhAsText += "<entry id=\"" + t.getId() + "\">" + t.getFullXMLChunk(ses) + "</entry>";
+			}
+			chunk.append("<prevbalanceholders>" + prevBhAsText + "</prevbalanceholders>");
+		} catch (NullPointerException e) {
+			chunk.append("<prevbalanceholders></prevbalanceholders>");
+		}
 		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
 		chunk.append("<cumulativedepreciation>" + String.format("%.02f", cumulativeDepreciation) + "</cumulativedepreciation>");
 		chunk.append("<description>" + description + "</description>");
