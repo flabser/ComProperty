@@ -3658,7 +3658,9 @@ function uploadUpdate(fileInput, fsid) {
             });
             fileInput.form.reset();
             insertParam('fsid', fsid);
-            reloadPage()
+            if(fileInput.name != 'uporder'){
+                reloadPage()
+            }
         }
     });
 }
@@ -3830,6 +3832,7 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         setLastFileToStorage(fileName);
+        alert($tpl.serialize())
         if($('input[name=writeoff]').is(':checked')){
             nbApp.confirmWriteOff(function() {
                 loadFile(fileName, $tpl.serialize(), fsid).then(function() {
