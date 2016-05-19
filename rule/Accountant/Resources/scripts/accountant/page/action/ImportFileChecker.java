@@ -55,7 +55,8 @@ public class ImportFileChecker extends _DoPage {
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
 
-				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(UploadUpdatingForm.getSesAttrName(fsid, fn));
+				String fileAttr = UploadUpdatingForm.getSesAttrName(fsid, fn);
+				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(fileAttr);
 
 				IUser<Long> user = session.getUser();
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
@@ -95,6 +96,8 @@ public class ImportFileChecker extends _DoPage {
 					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
 					return;
 				}
+				System.out.println(uf.getFullXMLChunk(session));
+				session.setAttribute(fileAttr, uf);
 			}
 		} catch (Exception e) {
 			setBadRequest();

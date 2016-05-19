@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
@@ -29,7 +28,6 @@ import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.scripting.event._DoPage;
-import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
 import com.exponentus.util.Util;
 import com.exponentus.webserver.servlet.UploadedFile;
@@ -58,17 +56,11 @@ public class OrderForm extends _DoPage {
 			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
 				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
 
-				try {
-					String filePath = getTmpDirPath() + File.separator + Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10)
-					        + att.getRealFileName();
-					File attFile = new File(filePath);
-					FileUtils.writeByteArrayToFile(attFile, att.getFile());
-					showFile(filePath, att.getRealFileName());
-					Environment.fileToDelete.add(filePath);
-				} catch (IOException ioe) {
-					Server.logger.errorLogEntry(ioe);
+				if (showAttachment(att)) {
+					return;
+				} else {
+					setBadRequest();
 				}
-				return;
 			}
 		} else {
 			entity = new Order();

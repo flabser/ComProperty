@@ -40,11 +40,11 @@ public class UploadUpdatingForm extends _DoPage {
 			ImportFileEntry uf = (ImportFileEntry) ses.getAttribute(fileAttr);
 			if (uf == null) {
 				uf = new ImportFileEntry();
-				ses.setAttribute(fileAttr, uf);
 			}
 			uf.setStatus(ImportFileEntry.JUST_UPLOADED);
 			uf.setFileName(fileName);
 			uf.setOrderFileName(orderFileName);
+			ses.setAttribute(fileAttr, uf);
 			addContent(uf);
 		}
 
@@ -56,6 +56,9 @@ public class UploadUpdatingForm extends _DoPage {
 	}
 
 	public static String getSesAttrName(String fsid, String fileName) {
-		return fsid + "_file_" + fileName;
+		// String key = fsid + "_file_" + fileName;
+		String key = "bla";
+		System.out.println(key);
+		return key;
 	}
 }
