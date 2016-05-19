@@ -60,9 +60,9 @@ public class UploadUpdatingForm extends _DoPage {
 				uf.setRecipient(oDao.findById(recipient));
 			}
 
-			uf.setStopIfWrong(formData.getBooleanSilently("stopifwrong"));
-			uf.setWriteOff(formData.getBooleanSilently("writeoff"));
-			uf.setTransfer(formData.getBooleanSilently("istransfer"));
+			// uf.setStopIfWrong(formData.getBooleanSilently("stopifwrong"));
+			// uf.setWriteOff(formData.getBooleanSilently("writeoff"));
+			// uf.setTransfer(formData.getBooleanSilently("istransfer"));
 
 			String[] readers = formData.getListOfValuesSilently("readers");
 
