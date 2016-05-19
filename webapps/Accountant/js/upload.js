@@ -214,7 +214,6 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         setLastFileToStorage(fileName);
-        alert($tpl.serialize())
         if($('input[name=writeoff]').is(':checked')){
             nbApp.confirmWriteOff(function() {
                 loadFile(fileName, $tpl.serialize(), fsid).then(function() {
@@ -315,7 +314,7 @@ function toggleLoadButtonState($form) {
     if($(".transferproperty").prop("checked") == true && $("input[name=recipient]").val() == ''){
         var rc = true;
     }
-    if (b && r && !rc) {
+    if (b != '' && r !='' && !rc) {
         $form.find('.js-load').attr('disabled', false);
     }else{
         $form.find('.js-load').attr('disabled', true);
