@@ -16,7 +16,10 @@
             <fieldset class="fieldset">
                 <div class="form-group">
                     <xsl:if test="//action[@id = 'attach_file']">
-                        <label class="btn btn-lg btn-update-file-excel" for="upfile">
+                        <label class="btn btn-lg btn-update-file-excel" id="btn-update-file-excel" for="upfile">
+                            <xsl:if test="//fields/filename and //fields/filename != ''">
+                                <xsl:attribute name="class">btn btn-lg btn-update-file-excel disabled</xsl:attribute>
+                            </xsl:if>
                             <i class="fa fa-file-excel-o"></i>
                             <span>
                                 <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
@@ -30,7 +33,7 @@
             </fieldset>
             <div class="upload-result">
                 <div class="js-uploaded-files">
-                    <xsl:apply-templates select="//document[@entity = 'importfileentry']/fields"/>
+                    <xsl:apply-templates select="//document[@entity = 'importfileentry']/fields[filename != '']"/>
                 </div>
             </div>
         </section>
@@ -245,6 +248,7 @@
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>
                         <ul class="update-readers" data-input="reader"></ul>
                         <ul class="update-recipients" data-input="recipient"></ul>
+                        <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
                     </div>
                     <div class="js-check-result">
                         <xsl:apply-templates select="sheeterrs"/>

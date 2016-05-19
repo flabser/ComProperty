@@ -134,7 +134,10 @@
     font-size: 1.3em;
 }
 
-li.disabled label, li.disabled label:hover{
+label.disabled,
+label.disabled:hover,
+li.disabled label,
+li.disabled label:hover{
     border: 1px solid #ccc;
     cursor: not-allowed;
     opacity: 0.65;
