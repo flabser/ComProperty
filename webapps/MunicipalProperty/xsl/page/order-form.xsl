@@ -50,19 +50,19 @@
                                     <xsl:value-of select="//captions/object/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <a class="input-placeholder" href="{fields/property/url}">
-                                        <xsl:value-of select="fields/property/objectname"/>
+                                    <a class="input-placeholder" href="{fields/properties/entry/url}">
+                                        <xsl:value-of select="fields/properties/entry/objectname"/>
                                     </a>
-                                    <input type="hidden" name="propertyid" value="{fields/property/@docid}"/>
+                                    <input type="hidden" name="propertyid" value="{fields/properties/entry/@docid}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/organization/@caption"/>
                                 </div>
-                                <div class="controls">
-                                    <div class="input-placeholder span8">
-                                        <xsl:value-of select="fields/property/balanceholder"/>
+                                <div class="controls span8">
+                                    <div class="input disabled">
+                                        <xsl:value-of select="fields/properties/entry/balanceholder"/>
                                     </div>
                                 </div>
                             </div>
@@ -70,9 +70,9 @@
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/property_code/@caption"/>
                                 </div>
-                                <div class="controls">
-                                    <div class="input-placeholder span8">
-                                        <xsl:value-of select="fields/property/propertycode"/>
+                                <div class="controls span8">
+                                    <div class="input disabled">
+                                        <xsl:value-of select="fields/properties/entry/propertycode"/>
                                     </div>
                                 </div>
                             </div>
