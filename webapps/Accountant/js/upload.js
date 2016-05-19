@@ -314,7 +314,7 @@ function toggleLoadButtonState($form) {
     if($(".transferproperty").prop("checked") == true && $("input[name=recipient]").val() == ''){
         var rc = true;
     }
-    if (b != '' && r !='' && !rc) {
+    if (b && r && b != '' && r !='' && !rc) {
         $form.find('.js-load').attr('disabled', false);
     }else{
         $form.find('.js-load').attr('disabled', true);
