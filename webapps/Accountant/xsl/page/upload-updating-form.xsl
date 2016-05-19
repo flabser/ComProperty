@@ -210,7 +210,7 @@
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="transferproperty" class="transferproperty" value="1" autocomplete="off">
+                                            <input type="checkbox" name="transferproperty" class="transferproperty" value="1">
                                                 <span>
                                                     Передать имущество
                                                 </span>

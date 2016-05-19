@@ -354,4 +354,7 @@ function initCachedUpdateForm() {
 $(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
+    if($(".transferproperty").prop("checked") == true){
+       $(".js-select-recipients, .js-attach-order").css("display","inline-block");
+    }
 });
