@@ -97,7 +97,7 @@
                                         </li>
                                         <li>
                                             <label>
-                                                <input type="checkbox" name="transferproperty" class="transferproperty" value="1" autocomplete="off">
+                                                <input type="checkbox" name="istransfer" class="transferproperty" value="1" autocomplete="off">
                                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                                     <span>
                                                         Передать имущество

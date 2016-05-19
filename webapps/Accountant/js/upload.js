@@ -40,6 +40,7 @@ function uploadUpdate(fileInput, fsid) {
             });
             fileInput.form.reset();
             insertParam('fsid', fsid);
+            reloadPage()
         }
     });
 }
@@ -104,6 +105,11 @@ function checkFile(fileId, fsid, $context) {
         writeoff = '&' + writeoff;
     }
 
+    var istransfer = $('input[name=istransfer]', $context).serialize();
+    if (istransfer != '') {
+        istransfer = '&' + istransfer;
+    }
+
     var noty = nb.notify({
         type: 'info',
         message: 'Идет проверка структуры файла. Пожалуйста подождите...'
@@ -112,7 +118,7 @@ function checkFile(fileId, fsid, $context) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + writeoff,
+        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + writeoff + istransfer,
         success: function(data) {
             return data;
         },
