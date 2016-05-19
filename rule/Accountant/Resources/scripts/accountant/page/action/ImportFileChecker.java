@@ -96,8 +96,7 @@ public class ImportFileChecker extends _DoPage {
 					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
 					return;
 				}
-				System.out.println(uf.getFullXMLChunk(session));
-				session.setAttribute(fileAttr, uf);
+
 			}
 		} catch (Exception e) {
 			setBadRequest();
