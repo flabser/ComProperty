@@ -91,3 +91,8 @@ nbApp.confirmWriteOff = function(callback) {
     var message = 'Внимание! Загружаемое имущество будет списано, продолжить загрузку?';
     return this.defaultConfirmDialog(message, callback);
 };
+
+nbApp.confirmTransfer = function(callback) {
+    var message = 'Внимание! Загружаемое имущество будет передано другому балансодержателю, продолжить?';
+    return this.defaultConfirmDialog(message, callback);
+};

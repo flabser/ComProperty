@@ -179,7 +179,7 @@
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn btn-primary js-load">
-                                <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
+                                <xsl:if test="status != 2 or sheeterrs != '' or msg != '' or balanceholder/@id = 'null' or readers = 'null'">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>

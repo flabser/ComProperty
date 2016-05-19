@@ -224,13 +224,23 @@ function renderFilePanel(fileName, fsid) {
                 });
             });
         }else{
-            $(this).attr('disabled', true);
-            loadFile(fileName, $tpl.serialize(), fsid).then(function() {
-                // $tpl.addClass('upload-success');
-                reloadPage();
-            }, function() {
-                reloadPage();
-            });
+            if($('input[name=istransfer]').is(':checked')){
+                nbApp.confirmTransfer(function() {
+                    loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                        reloadPage();
+                    }, function() {
+                        reloadPage();
+                    });
+                });
+            }else{
+                $(this).attr('disabled', true);
+                loadFile(fileName, $tpl.serialize(), fsid).then(function () {
+                    // $tpl.addClass('upload-success');
+                    reloadPage();
+                }, function () {
+                    reloadPage();
+                });
+            }
         }
 
     });
@@ -261,16 +271,20 @@ function renderFilePanel(fileName, fsid) {
         $(this).parents('.panel').addClass('open');
         nbApp.choicePropertyRecipient(this, function() {
             toggleLoadButtonState($tpl);
+            $('.js-load').attr('disabled', false);
         });
         $tpl.find('.errormsg').remove();
     });
 
     $tpl.find('.transferproperty').on('change', function(e) {
         if($(this).prop("checked") == true){
-            $(".js-select-recipients, .js-attach-order").css("display","inline-block")
+            $(".js-select-recipients, .js-attach-order").css("display","inline-block");
         }else{
-            $(".js-select-recipients, .js-attach-order").css("display","none")
+            $(".js-select-recipients, .js-attach-order").css("display","none");
+            $("input[name=recipent]").val("");
+            $(".update-recipients").text("");
         }
+        toggleLoadButtonState($tpl)
     });
 
     if (activeFile == fileName) {
@@ -298,8 +312,13 @@ function getLastFileFromStorage() {
 function toggleLoadButtonState($form) {
     var b = $form.find('[name=balanceholder]').val();
     var r = $form.find('[name=reader]').val();
-    if (b && r) {
+    if($(".transferproperty").prop("checked") == true && $("input[name=recipient]").val() == ''){
+        var rc = true;
+    }
+    if (b && r && !rc) {
         $form.find('.js-load').attr('disabled', false);
+    }else{
+        $form.find('.js-load').attr('disabled', true);
     }
 }
 
