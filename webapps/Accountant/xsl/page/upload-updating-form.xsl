@@ -30,7 +30,7 @@
             </fieldset>
             <div class="upload-result">
                 <div class="js-uploaded-files">
-                    <xsl:apply-templates select="//query[@entity = 'importfileentry']/entry"/>
+                    <xsl:apply-templates select="//document[@entity = 'importfileentry']/fields"/>
                 </div>
             </div>
         </section>
@@ -110,7 +110,7 @@
                                                 <i class="fa fa-file-text-o visibility-hidden"></i>
                                                 <span>Получатель имущества</span>
                                             </button>
-                                            <xsl:variable name="fsid" select="//fields/formsesid"/>
+                                            <xsl:variable name="fsid" select="//content/formsesid"/>
                                             <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                                 <i class="fa fa-file-text-o"></i>
                                                 <span>Прикрепить постановление</span>
@@ -133,9 +133,9 @@
                 </div>
             </form>
             <form class="hidden" method="POST" enctype="multipart/form-data">
-                <xsl:variable name="fsid" select="//fields/formsesid"/>
+                <xsl:variable name="fsid" select="//content/formsesid"/>
                 <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})">
-                    <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                    <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
                         <xsl:attribute name="disabled" select="'disabled'"/>
                     </xsl:if>
                 </input>
@@ -143,18 +143,18 @@
         </template>
     </xsl:template>
 
-    <xsl:template match="entry">
-        <form name="js-init-update-panel" data-file-name="{viewcontent/name}">
-            <div class="panel update-file-panel update-status-{viewcontent/status} js-file-panel">
+    <xsl:template match="fields">
+        <form name="js-init-update-panel" data-file-name="{filename}">
+            <div class="panel update-file-panel update-status-{status} js-file-panel">
                 <div class="panel__header">
                     <div class="panel-title panel-toggle" data-toggle="panel">
                         <i class="fa">
-                            <xsl:if test="viewcontent/sheeterrs = '' and viewcontent/msg = ''">
+                            <xsl:if test="sheeterrs = '' and msg = ''">
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
                             </xsl:if>
                         </i>
                         <a href="Provider?id=update-file&amp;fileid=" class="update-file-link js-link">
-                            <xsl:value-of select="viewcontent/name"/>
+                            <xsl:value-of select="filename"/>
                         </a>
                         <span class="update-file-panel-actions">
                             <button type="button" class="btn btn js-check">
@@ -164,19 +164,19 @@
                                 <span>Подписать с ЭЦП</span>
                             </button>
                             <button type="button" class="btn btn js-select-balance-holder">
-                                <xsl:if test="viewcontent/sheeterrs != ''">
+                                <xsl:if test="sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Балансодержатель</span>
                             </button>
                             <button type="button" class="btn btn js-select-readers">
-                                <xsl:if test="viewcontent/sheeterrs != ''">
+                                <xsl:if test="sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn btn-primary js-load">
-                                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
@@ -215,18 +215,18 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                        <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
                                             <xsl:attribute name="class" select="'disabled'"/>
                                         </xsl:if>
                                         <button type="button" class="btn btn-md js-select-recipients">
                                             <xsl:attribute name="display" select="'none'"/>
-                                            <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                                            <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
                                                 <xsl:attribute name="disabled" select="'disabled'"/>
                                             </xsl:if>
                                             <i class="fa fa-file-text-o visibility-hidden"></i>
                                             <span>Получатель имущества</span>
                                         </button>
-                                        <xsl:variable name="fsid" select="//fields/formsesid"/>
+                                        <xsl:variable name="fsid" select="//content/formsesid"/>
                                         <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                             <i class="fa fa-file-text-o"></i>
                                             <span>Прикрепить постановление</span>
@@ -235,7 +235,7 @@
                                 </ul>
                             </div>
                         </span>
-                        <xsl:apply-templates select="viewcontent/msg"/>
+                        <xsl:apply-templates select="msg"/>
                     </div>
                 </div>
                 <div class="panel__body scroll-shadow">
@@ -247,15 +247,15 @@
                         <ul class="update-recipients" data-input="recipient"></ul>
                     </div>
                     <div class="js-check-result">
-                        <xsl:apply-templates select="viewcontent/sheeterrs"/>
+                        <xsl:apply-templates select="sheeterrs"/>
                     </div>
                 </div>
             </div>
         </form>
         <form class="hidden" method="POST" enctype="multipart/form-data">
-            <xsl:variable name="fsid" select="//fields/formsesid"/>
+            <xsl:variable name="fsid" select="//content/formsesid"/>
             <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})">
-                <xsl:if test="viewcontent/status != 2 or viewcontent/sheeterrs != '' or viewcontent/msg != ''">
+                <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
                     <xsl:attribute name="disabled" select="'disabled'"/>
                 </xsl:if>
             </input>
