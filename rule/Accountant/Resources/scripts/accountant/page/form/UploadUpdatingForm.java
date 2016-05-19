@@ -12,6 +12,8 @@ import com.exponentus.user.IUser;
 import com.exponentus.user.SuperUser;
 import com.exponentus.util.Util;
 
+import staff.dao.OrganizationDAO;
+
 /**
  * @author Kayra created 30-01-2016
  */
@@ -21,11 +23,13 @@ public class UploadUpdatingForm extends _DoPage {
 	@Override
 	public void doGET(_Session ses, _WebFormData formData) {
 		IUser<Long> user = ses.getUser();
+		OrganizationDAO oDao = new OrganizationDAO(ses);
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		if (fsid.isEmpty()) {
 			addValue("formsesid", Util.generateRandomAsText());
 		} else {
 			addValue("formsesid", fsid);
+
 			_FormAttachments formFiles = ses.getAttachments(fsid);
 
 			String fileName = "", orderFileName = "";
@@ -45,6 +49,23 @@ public class UploadUpdatingForm extends _DoPage {
 				ses.setAttribute(fileAttr, uf);
 			}
 			uf.setOrderFileName(orderFileName);
+
+			String bh = formData.getValueSilently("balanceholder");
+			if (!bh.isEmpty()) {
+				uf.setBalanceHolder(oDao.findById(bh));
+			}
+
+			String recipient = formData.getValueSilently("recipient");
+			if (!recipient.isEmpty()) {
+				uf.setRecipient(oDao.findById(recipient));
+			}
+
+			uf.setStopIfWrong(formData.getBooleanSilently("stopifwrong"));
+			uf.setWriteOff(formData.getBooleanSilently("writeoff"));
+			uf.setTransfer(formData.getBooleanSilently("istransfer"));
+
+			String[] readers = formData.getListOfValuesSilently("readers");
+
 			addContent(uf);
 		}
 

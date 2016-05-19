@@ -267,10 +267,10 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		entity.setInvNumber("");
 		entity.setObjectName("");
 		PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
-		entity.setPropertyCode(pcDao.findByName("Собственность"));
+		entity.setPropertyCode(pcDao.findAll().get(0));
 		entity.setModel("");
 		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
-		entity.setReceivingReason(rrDao.findByName("Приобретено"));
+		entity.setReceivingReason(rrDao.findAll().get(0));
 		entity.setReadyToUse(true);
 		return entity;
 	}

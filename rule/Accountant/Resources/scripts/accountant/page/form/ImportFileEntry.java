@@ -20,8 +20,7 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 	public final static int LOADING_ERROR = 5;
 
 	private String fileName = "";
-	private String balanceHolderName = "";
-	private UUID balanceHolderId;
+	private Organization balanceHolder;
 	private List<String[]> readers;
 	private int status;
 	private boolean stopIfWrong;
@@ -40,12 +39,8 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		this.fileName = fileName;
 	}
 
-	public void setBalanceHolderName(String balanceHolderName) {
-		this.balanceHolderName = balanceHolderName;
-	}
-
-	public void setBalanceHolderId(UUID balanceHolderId) {
-		this.balanceHolderId = balanceHolderId;
+	public void setBalanceHolder(Organization balanceHolder) {
+		this.balanceHolder = balanceHolder;
 	}
 
 	public void setReaders(List<String[]> readers) {
@@ -105,12 +100,16 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		this.orderFileName = orderFileName;
 	}
 
+	public void setRecipient(Organization recipient) {
+		this.recipient = recipient;
+	}
+
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<filename>" + fileName + "</filename>");
 		chunk.append("<status>" + status + "</status>");
-		chunk.append("<balanceholder id=\"" + balanceHolderId + "\">" + balanceHolderName + "</balanceholder>");
+		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getName() + "</balanceholder>");
 		chunk.append("<stopifwrong>" + stopIfWrong + "</stopifwrong>");
 		chunk.append("<writeoff>" + writeOff + "</writeoff>");
 		chunk.append("<istransfer>" + isTransfer + "</istransfer>");
