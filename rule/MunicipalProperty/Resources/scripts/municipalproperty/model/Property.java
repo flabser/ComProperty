@@ -454,6 +454,9 @@ public class Property extends SecureAppEntity<UUID> {
 			chunk.append("<tags></tags>");
 		}
 		chunk.append("<yearrelease>" + yearRelease + "</yearrelease>");
+		chunk.append("<techcert>" + techCert + "</techcert>");
+		chunk.append("<regcert>" + regCert + "</regcert>");
+		chunk.append("<decreesacts>" + decreesActs + "</decreesacts>");
 		chunk.append("<notes>" + notes + "</notes>");
 		if (getAttachments() != null && !attachments.isEmpty()) {
 			chunk.append("<attachments>");

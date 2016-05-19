@@ -54,17 +54,11 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			String attachmentId = formData.getValueSilently("attachment");
 			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
 				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
-
-				try {
-					String filePath = getTmpDirPath() + File.separator + StringUtil.getRandomText() + att.getRealFileName();
-					File attFile = new File(filePath);
-					FileUtils.writeByteArrayToFile(attFile, att.getFile());
-					showFile(filePath, att.getRealFileName());
-					Environment.fileToDelete.add(filePath);
-				} catch (IOException ioe) {
-					Server.logger.errorLogEntry(ioe);
+				if (showAttachment(att)) {
+					return;
+				} else {
+					setBadRequest();
 				}
-				return;
 			}
 		} else {
 			int kuf = formData.getNumberValueSilently("kuf", -1);
@@ -80,7 +74,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		// println(formData);
+		devPrint(formData);
 		try {
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
