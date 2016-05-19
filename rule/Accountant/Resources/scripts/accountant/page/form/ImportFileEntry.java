@@ -109,7 +109,9 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<filename>" + fileName + "</filename>");
 		chunk.append("<status>" + status + "</status>");
-		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getName() + "</balanceholder>");
+		if (balanceHolder != null) {
+			chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getName() + "</balanceholder>");
+		}
 		chunk.append("<stopifwrong>" + stopIfWrong + "</stopifwrong>");
 		chunk.append("<writeoff>" + writeOff + "</writeoff>");
 		chunk.append("<istransfer>" + isTransfer + "</istransfer>");

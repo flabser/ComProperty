@@ -17,6 +17,7 @@ import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
 
 import accountant.page.form.ImportFileEntry;
+import accountant.page.form.UploadUpdatingForm;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -95,7 +96,7 @@ public class UpdateFile extends _DoPage {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
-				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(fsid + "_file" + fn);
+				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(UploadUpdatingForm.getSesAttrName(fsid, fn));
 				if (uf.geSheetErrs() != null && uf.geSheetErrs().size() > 0) {
 					return;
 				}

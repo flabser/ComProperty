@@ -250,7 +250,7 @@ public class MPXLImporter {
 						prop.addReaderEditor(emp.getUser());
 					}
 					try {
-						// propertyDao.add(prop);
+						propertyDao.add(prop);
 						processed++;
 					} catch (Exception e) {
 						e.printStackTrace();
