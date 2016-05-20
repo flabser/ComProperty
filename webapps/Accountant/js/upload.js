@@ -183,6 +183,7 @@ function renderFilePanel(fileName, fsid) {
     if(status == 1){
         $('.js-check').attr("disabled", false);
     }
+    
 
     $tpl.find('.js-sign').on('click', function(e) {
         e.stopPropagation();
