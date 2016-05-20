@@ -83,7 +83,7 @@ nbApp.choicePropertyRecipient = function(el, callback) {
 nbApp.choiceReaders = function(el, callback) {
     var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
-        reader: ['id', 'name']
+        readers: ['id', 'name']
     }, true, callback);
 };
 

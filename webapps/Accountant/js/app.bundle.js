@@ -3588,7 +3588,7 @@ nbApp.choicePropertyRecipient = function(el, callback) {
 nbApp.choiceReaders = function(el, callback) {
     var url = 'Provider?id=get-employees&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
-        reader: ['id', 'name']
+        readers: ['id', 'name']
     }, true, callback);
 };
 
@@ -3940,7 +3940,7 @@ function getLastFileFromStorage() {
 
 function setReaderToStorage(){
     var readers = [];
-    $("input[name=reader]").each(function(){
+    $("input[name=readers]").each(function(){
         readers.push($(this).val());
     });
     localStorage.setItem("reader", JSON.stringify(readers));
@@ -3959,7 +3959,7 @@ function setReaderNameToStorage(){
 }
 
 function setRecipientToStorage(){
-    localStorage.setItem("recipient", $("input[name=recipient]").val());
+    localStorage.setItem("recipient", $("input[name=recipients]").val());
     localStorage.setItem("recipientname", $(".update-recipients").html());
 }
 
@@ -3994,9 +3994,9 @@ function loadDataLocalStorage(){
     }
     if(getReaderNameFromStorage() != 'null'){
         $(".update-readers").html(getReaderNameFromStorage());
-        var r = getRecipientFromStorage();
+        var r = getReaderFromStorage();
         $(r).each(function(){
-            $(".js-init-update-panel").append("<input name='reader' val='"+this+"'/>")
+            $("input[name=balanceholder]").parent().append("<input type='hidden' name='readers' val='"+this+"'/>");
         });
     }
 }

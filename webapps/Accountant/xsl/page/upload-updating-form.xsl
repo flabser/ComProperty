@@ -246,7 +246,7 @@
                     <input type="hidden" name="recipient" value=""/>
                     <div>
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                        <ul class="update-readers" data-input="reader"></ul>
+                        <ul class="update-readers" data-input="readers"></ul>
                         <ul class="update-recipients" data-input="recipient"></ul>
                         <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
                     </div>
