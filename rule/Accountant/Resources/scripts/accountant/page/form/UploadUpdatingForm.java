@@ -1,7 +1,6 @@
 package accountant.page.form;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.exponentus.common.model.Attachment;
@@ -12,12 +11,13 @@ import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.event._DoPage;
-import com.exponentus.user.AnonymousUser;
 import com.exponentus.user.IUser;
 import com.exponentus.user.SuperUser;
 import com.exponentus.util.Util;
 
+import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
+import staff.model.Employee;
 
 /**
  * @author Kayra created 30-01-2016
@@ -69,9 +69,16 @@ public class UploadUpdatingForm extends _DoPage {
 			uf.setWriteOff(formData.getBoolSilently("writeoff"));
 			uf.setTransfer(formData.getBoolSilently("istransfer"));
 
-			Long[] readers = formData.getLongValuesSilently("readers", AnonymousUser.ID);
-			List<Long> r = new ArrayList(Collections.nCopies(readers.length, readers));
-			uf.setReaders(r);
+			String[] readers = formData.getListOfStringValues("readers", null);
+			List<Long> readersList = new ArrayList<Long>();
+			EmployeeDAO eDao = new EmployeeDAO(ses);
+			if (readers[0] != null) {
+				for (String r : readers) {
+					Employee entity = eDao.findById(r);
+					readersList.add(entity.getUser().getId());
+				}
+				uf.setReaders(readersList);
+			}
 			addContent(uf);
 		}
 

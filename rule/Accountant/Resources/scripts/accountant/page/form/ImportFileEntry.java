@@ -117,7 +117,17 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		chunk.append("<stopifwrong>" + stopIfWrong + "</stopifwrong>");
 		chunk.append("<writeoff>" + writeOff + "</writeoff>");
 		chunk.append("<istransfer>" + isTransfer + "</istransfer>");
-		chunk.append("<readers>" + readers + "</readers>");
+
+		try {
+			String rAsText = "";
+			for (Long t : readers) {
+				rAsText += "<entry id=\"" + t + "\">" + t + "</entry>";
+			}
+			chunk.append("<readers>" + rAsText + "</readers>");
+		} catch (NullPointerException e) {
+			chunk.append("<readers></readers>");
+		}
+
 		chunk.append("<orderfilename>" + orderFileName + "</orderfilename>");
 		if (recipient != null) {
 			chunk.append("<recipient id=\"" + recipient.getId() + "\">" + recipient.getName() + "</recipient>");
