@@ -15,6 +15,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.exponentus.dataengine.jpa.IAppEntity;
+import com.exponentus.exception.SecureException;
 import com.exponentus.scripting._Session;
 import com.exponentus.server.Server;
 import com.exponentus.util.Util;
@@ -24,9 +25,11 @@ import jxl.CellType;
 import jxl.DateCell;
 import jxl.NumberCell;
 import jxl.Sheet;
+import municipalproperty.dao.PrevBalanceHolderDAO;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
 import municipalproperty.model.PersonalEstate;
+import municipalproperty.model.PrevBalanceHolder;
 import municipalproperty.model.Property;
 import municipalproperty.model.RealEstate;
 import municipalproperty.model.constants.PropertyStatusType;
@@ -182,11 +185,6 @@ public class MPXLImporter {
 
 				processed++;
 			} else if (mode == MPXLImporter.LOAD) {
-				Organization oldBh = null;
-				if (isTransfer) {
-					oldBh = bh;
-					bh = recipient;
-				}
 
 				CheVal cv = new CheVal();
 				List<Property> pList = propertyDao.findAllByInvNum(cv.getString(invNumber));
@@ -249,8 +247,30 @@ public class MPXLImporter {
 						Employee emp = empDao.findById(UUID.fromString(uuid));
 						prop.addReaderEditor(emp.getUser());
 					}
+
+					Organization oldBh = null;
+					if (isTransfer) {
+						oldBh = bh;
+						List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
+						PrevBalanceHolder pbh = new PrevBalanceHolder();
+						pbh.setBalanceHolder(oldBh);
+						pbh.setProperty(prop);
+						pbh.setReaders(prop.getReaders());
+						pbh.setEditors(prop.getEditors());
+						pbhl.add(pbh);
+						PrevBalanceHolderDAO pbhDao = new PrevBalanceHolderDAO(ses);
+						try {
+							pbhDao.add(pbh);
+							prop.setPrevBalanceHolders(pbhl);
+							bh = recipient;
+						} catch (SecureException e) {
+							Server.logger.errorLogEntry(e);
+						}
+
+					}
+
 					try {
-						propertyDao.add(prop);
+						// propertyDao.add(prop);
 						processed++;
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -264,7 +284,7 @@ public class MPXLImporter {
 		}
 		long stop = System.currentTimeMillis();
 		long diff = stop - start;
-		System.out.println("Old method: " + diff);
+		// System.out.println("Old method: " + diff);
 		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
 		return sheetErr;
 	}

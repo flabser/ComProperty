@@ -30,4 +30,20 @@ public class PrevBalanceHolder extends SecureAppEntity<UUID> {
 	@JoinColumn(nullable = false)
 	private Organization balanceHolder;
 
+	public Property getProperty() {
+		return property;
+	}
+
+	public void setProperty(Property property) {
+		this.property = property;
+	}
+
+	public Organization getBalanceHolder() {
+		return balanceHolder;
+	}
+
+	public void setBalanceHolder(Organization balanceHolder) {
+		this.balanceHolder = balanceHolder;
+	}
+
 }

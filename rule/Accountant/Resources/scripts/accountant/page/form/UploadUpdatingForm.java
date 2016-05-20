@@ -1,5 +1,9 @@
 package accountant.page.form;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.exponentus.common.model.Attachment;
 import com.exponentus.env.EnvConst;
 import com.exponentus.scripting._FormAttachments;
@@ -8,6 +12,7 @@ import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.event._DoPage;
+import com.exponentus.user.AnonymousUser;
 import com.exponentus.user.IUser;
 import com.exponentus.user.SuperUser;
 import com.exponentus.util.Util;
@@ -64,8 +69,9 @@ public class UploadUpdatingForm extends _DoPage {
 			uf.setWriteOff(formData.getBoolSilently("writeoff"));
 			uf.setTransfer(formData.getBoolSilently("istransfer"));
 
-			String[] readers = formData.getListOfValuesSilently("readers");
-
+			Long[] readers = formData.getLongValuesSilently("readers", AnonymousUser.ID);
+			List<Long> r = new ArrayList(Collections.nCopies(readers.length, readers));
+			uf.setReaders(r);
 			addContent(uf);
 		}
 

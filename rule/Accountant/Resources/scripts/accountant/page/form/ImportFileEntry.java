@@ -21,7 +21,7 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 
 	private String fileName = "";
 	private Organization balanceHolder;
-	private List<String[]> readers;
+	private List<Long> readers;
 	private int status;
 	private boolean stopIfWrong;
 	private boolean writeOff;
@@ -43,8 +43,8 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		this.balanceHolder = balanceHolder;
 	}
 
-	public void setReaders(List<String[]> readers) {
-		this.readers = readers;
+	public void setReaders(List<Long> listr) {
+		this.readers = listr;
 	}
 
 	public void setStatus(int status) {
@@ -111,6 +111,8 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		chunk.append("<status>" + status + "</status>");
 		if (balanceHolder != null) {
 			chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getName() + "</balanceholder>");
+		} else {
+			chunk.append("<balanceholder id=\"null\"></balanceholder>");
 		}
 		chunk.append("<stopifwrong>" + stopIfWrong + "</stopifwrong>");
 		chunk.append("<writeoff>" + writeOff + "</writeoff>");
@@ -119,6 +121,8 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		chunk.append("<orderfilename>" + orderFileName + "</orderfilename>");
 		if (recipient != null) {
 			chunk.append("<recipient id=\"" + recipient.getId() + "\">" + recipient.getName() + "</recipient>");
+		} else {
+			chunk.append("<recipient id=\"null\"></recipient>");
 		}
 		chunk.append("<msg>" + localizedMsg + "</msg>");
 		chunk.append("<sheeterrs>");
