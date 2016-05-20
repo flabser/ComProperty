@@ -27,7 +27,6 @@ function uploadUpdate(fileInput, fsid) {
             }else {
                 renderFilePanel(fileName, fsid);
                 clearLocalStorage();
-                $(".js-check").attr("disabled", false);
                 $("#btn-update-file-excel").addClass("disabled");
             }
             return result;
@@ -142,7 +141,6 @@ function renderFilePanel(fileName, fsid) {
     var template;
     var $tpl;
     var activeFile = getLastFileFromStorage();
-
     if (initMode) {
         $tpl = $cacheUpdateForm;
     } else {
@@ -160,6 +158,7 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         var $btn = $(this);
+
         $btn.attr('disabled', true);
         setLastFileToStorage(fileName);
         //
@@ -180,6 +179,10 @@ function renderFilePanel(fileName, fsid) {
             reloadPage();
         });
     });
+    var status = $("input[name=status]").val();
+    if(status == 1){
+        $('.js-check').attr("disabled", false);
+    }
 
     $tpl.find('.js-sign').on('click', function(e) {
         e.stopPropagation();
@@ -208,7 +211,7 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         delFile(fileName, fsid).then(function() {
             $tpl.remove();
-            $("#btn-update-file-excel").removeClass("disabled");
+            $("#btn-update-file-excel, .js-check").removeClass("disabled");
             clearLocalStorage()
         });
     });

@@ -126,6 +126,7 @@
                     </div>
                     <div class="panel__body scroll-shadow">
                         <input type="hidden" name="balanceholder" value=""/>
+                        <input type="hidden" name="status" value="{status}"/>
                         <div>
                             <strong class="update-balance-holder" data-input="balanceholder"></strong>
                             <ul class="update-recipient" data-input="recipient"></ul>
@@ -244,6 +245,7 @@
                 <div class="panel__body scroll-shadow">
                     <input type="hidden" name="balanceholder" value=""/>
                     <input type="hidden" name="recipient" value=""/>
+                    <input type="hidden" name="status" value="{//fields/status}"/>
                     <div>
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>
                         <ul class="update-readers" data-input="readers"></ul>
