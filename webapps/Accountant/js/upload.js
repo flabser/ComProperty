@@ -327,7 +327,7 @@ function getReaderFromStorage() {
 }
 
 function getReaderNameFromStorage() {
-    return sessionStorage.getItem('readername');
+    return localStorage.getItem('readername');
 }
 
 function setReaderNameToStorage(){
@@ -360,14 +360,20 @@ function getBalanceholderNameFromStorage() {
     return localStorage.getItem('balanceholdername');
 }
 
-
 function loadDataLocalStorage(){
     if(getBalanceholderNameFromStorage() != 'null'){
         $(".update-balance-holder").html(getBalanceholderNameFromStorage());
     }
     if(getRecipientNameFromStorage() != 'null'){
         $(".update-recipients").html(getRecipientNameFromStorage());
-        $("input[name=recipient]").html(getRecipientFromStorage());
+        $("input[name=recipient]").val(getRecipientFromStorage());
+    }
+    if(getReaderNameFromStorage() != 'null'){
+        $(".update-readers").html(getReaderNameFromStorage());
+        var r = getRecipientFromStorage();
+        $(r).each(function(){
+            $(".js-init-update-panel").append("<input name='reader' val='"+this+"'/>")
+        });
     }
 }
 
