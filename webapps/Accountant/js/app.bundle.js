@@ -4016,7 +4016,7 @@ function clearLocalStorage(){
 
 function toggleLoadButtonState($form) {
     var b = $form.find('[name=balanceholder]').val();
-    var r = $form.find('[name=reader]').val();
+    var r = $form.find('[name=readers]').val();
     if($(".transferproperty").prop("checked") == true && $("input[name=recipient]").val() == ''){
         var rc = true;
     }
