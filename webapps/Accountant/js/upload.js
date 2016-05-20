@@ -179,6 +179,7 @@ function renderFilePanel(fileName, fsid) {
             reloadPage();
         });
     });
+    
     var status = $("input[name=status]").val();
     if(status == 1){
         $('.js-check').attr("disabled", false);
