@@ -56,7 +56,7 @@ public class UpdateFile extends _DoPage {
 		}
 
 		try {
-			session.removeAttribute(fsid + "_file" + fn);
+			session.removeAttribute(UploadUpdatingForm.getSesAttrName(fsid, fn));
 			session.removeAttribute(fsid);
 			IUser<Long> user = session.getUser();
 			File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
