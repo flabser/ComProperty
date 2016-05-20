@@ -360,6 +360,7 @@ function getBalanceholderNameFromStorage() {
     return localStorage.getItem('balanceholdername');
 }
 
+
 function loadDataLocalStorage(){
     if(getBalanceholderNameFromStorage() != 'null'){
         $(".update-balance-holder").html(getBalanceholderNameFromStorage());
