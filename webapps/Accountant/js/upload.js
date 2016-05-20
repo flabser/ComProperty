@@ -256,8 +256,8 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
         nbApp.choiceBalanceHolder(this, function() {
+            setBalanceholderToStorage();
             toggleLoadButtonState($tpl);
-            setBalanceholderToStorage()
         });
         $tpl.find('.errormsg').remove();
     });

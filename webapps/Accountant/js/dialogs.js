@@ -23,6 +23,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
         href: url,
         dataType: 'json',
         message: message,
+        onExecute: function(){if (nb.setFormValues(dlg)) { dlg.dialog('close');} callback && callback()},
         buttons: {
             ok: {
                 text: nb.getText('ok'),

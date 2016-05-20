@@ -3528,6 +3528,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
         href: url,
         dataType: 'json',
         message: message,
+        onExecute: function(){if (nb.setFormValues(dlg)) { dlg.dialog('close');} callback && callback()},
         buttons: {
             ok: {
                 text: nb.getText('ok'),
@@ -3879,8 +3880,8 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
         nbApp.choiceBalanceHolder(this, function() {
+            setBalanceholderToStorage();
             toggleLoadButtonState($tpl);
-            setBalanceholderToStorage()
         });
         $tpl.find('.errormsg').remove();
     });
