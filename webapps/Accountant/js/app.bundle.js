@@ -3651,6 +3651,7 @@ function uploadUpdate(fileInput, fsid) {
                 renderFilePanel(fileName, fsid);
             }
             $("#btn-update-file-excel").addClass("disabled");
+            clearLocalStorage();
             return result;
         },
         error: function(err) {
@@ -3830,6 +3831,7 @@ function renderFilePanel(fileName, fsid) {
         delFile(fileName, fsid).then(function() {
             $tpl.remove();
             $("#btn-update-file-excel").removeClass("disabled");
+            clearLocalStorage()
         });
     });
 
@@ -3873,6 +3875,7 @@ function renderFilePanel(fileName, fsid) {
         $(this).parents('.panel').addClass('open');
         nbApp.choiceBalanceHolder(this, function() {
             toggleLoadButtonState($tpl);
+            setBalanceholderToStorage()
         });
         $tpl.find('.errormsg').remove();
     });
@@ -3883,6 +3886,8 @@ function renderFilePanel(fileName, fsid) {
         $(this).parents('.panel').addClass('open');
         nbApp.choiceReaders(this, function() {
             toggleLoadButtonState($tpl);
+            setReaderToStorage();
+            setReaderNameToStorage();
         });
         $tpl.find('.errormsg').remove();
     });
@@ -3894,6 +3899,7 @@ function renderFilePanel(fileName, fsid) {
         nbApp.choicePropertyRecipient(this, function() {
             toggleLoadButtonState($tpl);
             $('.js-load').attr('disabled', false);
+            setRecipientToStorage();
         });
         $tpl.find('.errormsg').remove();
     });
@@ -3929,6 +3935,71 @@ function setLastFileToStorage(fileId) {
 
 function getLastFileFromStorage() {
     return sessionStorage.getItem('accountant_update_last_file');
+}
+
+function setReaderToStorage(){
+    var readers = [];
+    $("input[name=reader]").each(function(){
+        readers.push($(this).val());
+    });
+    localStorage.setItem("reader", JSON.stringify(readers));
+}
+
+function getReaderFromStorage() {
+   return JSON.parse(localStorage.getItem("reader"));
+}
+
+function getReaderNameFromStorage() {
+    return sessionStorage.getItem('readername');
+}
+
+function setReaderNameToStorage(){
+    localStorage.setItem("readername", $(".update-readers").html());
+}
+
+function setRecipientToStorage(){
+    localStorage.setItem("recipient", $("input[name=recipient]").val());
+    localStorage.setItem("recipientname", $(".update-recipients").html());
+}
+
+function getRecipientFromStorage() {
+    return localStorage.getItem('recipient');
+}
+
+function getRecipientNameFromStorage() {
+    return localStorage.getItem('recipientname');
+}
+
+function setBalanceholderToStorage(){
+    localStorage.setItem("balanceholder", $("input[name=balanceholder]").val());
+    localStorage.setItem("balanceholdername", $(".update-balance-holder").html());
+}
+
+function getBalanceholderFromStorage() {
+    return localStorage.getItem('balanceholder');
+}
+
+function getBalanceholderNameFromStorage() {
+    return localStorage.getItem('balanceholdername');
+}
+
+function loadDataLocalStorage(){
+    if(getBalanceholderNameFromStorage() != 'null'){
+        $(".update-balance-holder").html(getBalanceholderNameFromStorage());
+    }
+    if(getRecipientNameFromStorage() != 'null'){
+        $(".update-recipients").html(getRecipientNameFromStorage());
+        $("input[name=recipient]").html(getRecipientFromStorage());
+    }
+}
+
+function clearLocalStorage(){
+    localStorage.setItem("balanceholder", null);
+    localStorage.setItem("balanceholdername", null);
+    localStorage.setItem("recipient", null);
+    localStorage.setItem("recipientname", null);
+    localStorage.setItem("readername", null);
+    localStorage.setItem("reader", null);
 }
 
 function toggleLoadButtonState($form) {
@@ -3980,4 +4051,5 @@ $(document).ready(function() {
     if($(".transferproperty").prop("checked") == true){
        $(".js-select-recipients, .js-attach-order").css("display","inline-block");
     }
+    loadDataLocalStorage();
 });
