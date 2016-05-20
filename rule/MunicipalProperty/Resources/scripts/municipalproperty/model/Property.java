@@ -326,6 +326,14 @@ public class Property extends SecureAppEntity<UUID> {
 		this.acquisitionYear = acquisitionYear;
 	}
 
+	public List<PrevBalanceHolder> getPrevBalanceHolders() {
+		return prevBalanceHolders;
+	}
+
+	public void setPrevBalanceHolders(List<PrevBalanceHolder> prevBalanceHolders) {
+		this.prevBalanceHolders = prevBalanceHolders;
+	}
+
 	public String getNotes() {
 		return notes;
 	}
