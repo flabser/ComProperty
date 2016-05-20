@@ -3647,11 +3647,12 @@ function uploadUpdate(fileInput, fsid) {
             var fileName = result.files[0];
             if(fileInput.name == 'uporder'){
                 $(".update-order").text(fileName);
-            }else{
+            }else {
                 renderFilePanel(fileName, fsid);
+                clearLocalStorage();
+                $(".js-check").attr("disabled", false);
+                $("#btn-update-file-excel").addClass("disabled");
             }
-            $("#btn-update-file-excel").addClass("disabled");
-            clearLocalStorage();
             return result;
         },
         error: function(err) {
