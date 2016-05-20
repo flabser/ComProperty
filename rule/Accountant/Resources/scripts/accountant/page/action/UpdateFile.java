@@ -85,7 +85,7 @@ public class UpdateFile extends _DoPage {
 			writeOff = true;
 		}
 
-		String uo = formData.getValueSilently("uporder");
+		String uo = formData.getValueSilently("transferproperty");
 		if (uo.equals("1")) {
 			isTransfer = true;
 			UUID bhId = UUID.fromString(formData.getValueSilently("recipient"));
@@ -110,7 +110,7 @@ public class UpdateFile extends _DoPage {
 						try {
 							UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
 							org = dao.findById(bhId);
-							String[] readers = formData.getListOfValues("reader");
+							String[] readers = formData.getListOfValues("readers");
 							File xlsFile = new File(fileName);
 							MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
 							Workbook workbook = null;

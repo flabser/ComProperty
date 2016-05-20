@@ -29,26 +29,27 @@ public class ImportFileChecker extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		devPrint(formData);
-		boolean stopIfWrong = true, writeOff = false, isTransfer = false;
+		boolean stopIfWrong = false, writeOff = false, isTransfer = false;
 		Organization recipiеnt = null;
 		OrganizationDAO oDao = new OrganizationDAO(session);
 
 		String sie = formData.getValueSilently("stopiferror");
 		if (sie.equals("1")) {
-			stopIfWrong = false;
+			stopIfWrong = true;
 		}
 		String wo = formData.getValueSilently("writeoff");
 		if (wo.equals("1")) {
 			writeOff = true;
 		}
 
-		String uo = formData.getValueSilently("uporder");
+		String uo = formData.getValueSilently("transferproperty");
 		if (uo.equals("1")) {
 			isTransfer = true;
 			List<Organization> oList = oDao.findAll();
 			recipiеnt = (Organization) Util.getRndListElement(oList);
 		}
 
+		ImportFileEntry uf = null;
 		LanguageCode lang = session.getLang();
 		try {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
@@ -56,7 +57,7 @@ public class ImportFileChecker extends _DoPage {
 				String fn = formData.getValueSilently("fileid");
 
 				String fileAttr = UploadUpdatingForm.getSesAttrName(fsid, fn);
-				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(fileAttr);
+				uf = (ImportFileEntry) session.getAttribute(fileAttr);
 
 				IUser<Long> user = session.getUser();
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
@@ -79,7 +80,7 @@ public class ImportFileChecker extends _DoPage {
 
 					List<Organization> oList = oDao.findAll();
 					Organization org = (Organization) Util.getRndListElement(oList);
-					String[] readers = formData.getListOfValuesSilently("reader");
+					String[] readers = formData.getListOfValuesSilently("readers");
 
 					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, stopIfWrong, writeOff, org, readers, isTransfer,
 					        recipiеnt);
@@ -99,6 +100,10 @@ public class ImportFileChecker extends _DoPage {
 
 			}
 		} catch (Exception e) {
+			if (uf != null) {
+				uf.setStatus(ImportFileEntry.CHECKING_ERROR);
+				uf.setLocalizedMsg(e.toString());
+			}
 			setBadRequest();
 			error(e);
 		}
