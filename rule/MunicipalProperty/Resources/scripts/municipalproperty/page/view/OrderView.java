@@ -22,7 +22,7 @@ public class OrderView extends AbstractMunicipalPropertyView {
 		session.getLang();
 		OrderDAO orderDAO = new OrderDAO(session);
 
-		if (!propertyId.isEmpty()) {
+		if (!propertyId.isEmpty() && !propertyId.equals("undefined")) {
 			PropertyDAO propertyDAO = new PropertyDAO(session);
 			Property property = propertyDAO.findById(propertyId);
 			if (property != null) {
