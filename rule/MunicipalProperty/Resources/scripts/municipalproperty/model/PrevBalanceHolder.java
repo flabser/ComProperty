@@ -2,6 +2,7 @@ package municipalproperty.model;
 
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +22,7 @@ public class PrevBalanceHolder extends SecureAppEntity<UUID> {
 
 	@JsonIgnore
 	@NotNull
-	@ManyToOne(optional = false)
+	@ManyToOne(cascade = { CascadeType.MERGE }, optional = false)
 	@JoinColumn(nullable = false)
 	private Property property;
 
