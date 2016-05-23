@@ -165,7 +165,7 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			IUser user = session.getUser();
+			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
 
 			save(entity, dao, isNew);
@@ -197,14 +197,14 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		if (formData.getValueSilently("description").isEmpty()) {
+		/*if (formData.getValueSilently("description").isEmpty()) {
 			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}
+		}*/
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
 			try {
-				Date d = _Helper.convertStringToDate(formData.getValueSilently("acceptancedate"));
+				 _Helper.convertStringToDate(formData.getValueSilently("acceptancedate"));
 			} catch (_Exception e) {
 				ve.addError("acceptancedate", "date", getLocalizedWord("date_format_does_not_match_to", lang) + " dd.MM.YYYY");
 			}
@@ -225,7 +225,7 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 		return ve;
 	}
 
-	protected StrategicObject getDefaultEntity(IUser user, KufType type, _Session session) {
+	protected StrategicObject getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		StrategicObject entity = new StrategicObject();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

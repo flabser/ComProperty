@@ -210,14 +210,14 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		if (formData.getValueSilently("description").isEmpty()) {
+	/*	if (formData.getValueSilently("description").isEmpty()) {
 			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}
+		}*/
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
 			try {
-				Date d = _Helper.convertStringToDate(formData.getValueSilently("acceptancedate"));
+				_Helper.convertStringToDate(formData.getValueSilently("acceptancedate"));
 			} catch (_Exception e) {
 				ve.addError("acceptancedate", "date", getLocalizedWord("date_format_does_not_match_to", lang) + " dd.MM.YYYY");
 			}
@@ -250,7 +250,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 		return entity;
 	}
 
-	protected RealEstate getDefaultEntity(IUser user, KufType type, _Session session) {
+	protected RealEstate getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		RealEstate entity = new RealEstate();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

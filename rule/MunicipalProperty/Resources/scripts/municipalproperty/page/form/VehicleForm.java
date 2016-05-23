@@ -166,7 +166,7 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			IUser user = session.getUser();
+			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
 
 			save(entity, dao, isNew);
@@ -198,9 +198,9 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		if (formData.getValueSilently("description").isEmpty()) {
+		/*if (formData.getValueSilently("description").isEmpty()) {
 			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}
+		}*/
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
@@ -226,7 +226,7 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 		return ve;
 	}
 
-	protected Vehicle getDefaultEntity(IUser user, KufType type, _Session session) {
+	protected Vehicle getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		Vehicle entity = new Vehicle();
 		entity.setAuthor(user);
 		entity.setRegDate(new Date());

@@ -226,9 +226,9 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		if (formData.getValueSilently("description").isEmpty()) {
+		/*if (formData.getValueSilently("description").isEmpty()) {
 			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}
+		}*/
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
