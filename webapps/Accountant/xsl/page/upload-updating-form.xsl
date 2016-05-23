@@ -87,8 +87,16 @@
                                         </li>
                                         <li>
                                             <label>
-                                                <input type="checkbox" name="writeoff" value="1">
-                                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                                <input type="radio" name="uploadtype" value="upload" checked="checked">
+                                                    <span>
+                                                        Загрузка
+                                                    </span>
+                                                </input>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="uploadtype" value="writeoff">
                                                     <span>
                                                         Отметить имущество как списанное
                                                     </span>
@@ -97,8 +105,7 @@
                                         </li>
                                         <li>
                                             <label>
-                                                <input type="checkbox" name="istransfer" class="transferproperty" value="1" autocomplete="off">
-                                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                                <input type="radio" name="uploadtype" class="transferproperty" value="transfer">
                                                     <span>
                                                         Передать имущество
                                                     </span>
@@ -107,13 +114,6 @@
                                         </li>
                                         <li>
                                             <xsl:attribute name="class" select="'disabled'"/>
-                                            <button type="button" class="btn btn-md js-select-recipients">
-                                                <xsl:attribute name="display" select="'none'"/>
-                                                <xsl:attribute name="disabled" select="'disabled'"/>
-                                                <i class="fa fa-file-text-o visibility-hidden"></i>
-                                                <span>Получатель имущества</span>
-                                            </button>
-                                            <xsl:variable name="fsid" select="//content/formsesid"/>
                                             <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                                 <i class="fa fa-file-text-o"></i>
                                                 <span>Прикрепить постановление</span>
@@ -202,7 +202,16 @@
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="writeoff" value="1">
+                                            <input type="radio" name="uploadtype" value="upload" checked="checked">
+                                                <span>
+                                                    Загрузка
+                                                </span>
+                                            </input>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="uploadtype" value="writeoff">
                                                 <span>
                                                     Отметить имущество как списанное
                                                 </span>
@@ -211,7 +220,7 @@
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" name="transferproperty" class="transferproperty" value="1">
+                                            <input type="radio" name="uploadtype" class="transferproperty" value="transfer">
                                                 <span>
                                                     Передать имущество
                                                 </span>
@@ -222,14 +231,6 @@
                                         <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
                                             <xsl:attribute name="class" select="'disabled'"/>
                                         </xsl:if>
-                                        <button type="button" class="btn btn-md js-select-recipients">
-                                            <xsl:attribute name="display" select="'none'"/>
-                                            <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
-                                                <xsl:attribute name="disabled" select="'disabled'"/>
-                                            </xsl:if>
-                                            <i class="fa fa-file-text-o visibility-hidden"></i>
-                                            <span>Получатель имущества</span>
-                                        </button>
                                         <xsl:variable name="fsid" select="//content/formsesid"/>
                                         <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                             <i class="fa fa-file-text-o"></i>

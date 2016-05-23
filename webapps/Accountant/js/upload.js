@@ -103,14 +103,9 @@ function checkFile(fileId, fsid, $context) {
         stopIfError = '&' + stopIfError;
     }
 
-    var writeoff = $('input[name=writeoff]', $context).serialize();
-    if (writeoff != '') {
-        writeoff = '&' + writeoff;
-    }
-
-    var istransfer = $('input[name=istransfer]', $context).serialize();
-    if (istransfer != '') {
-        istransfer = '&' + istransfer;
+    var uploadtype = $('input[name=uploadtype]', $context).serialize();
+    if (uploadtype != '') {
+        uploadtype = '&' + uploadtype;
     }
 
     var noty = nb.notify({
@@ -121,7 +116,7 @@ function checkFile(fileId, fsid, $context) {
     return $.ajax({
         type: 'get',
         dataType: 'html',
-        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + writeoff + istransfer,
+        url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + uploadtype,
         success: function(data) {
             return data;
         },
@@ -286,8 +281,8 @@ function renderFilePanel(fileName, fsid) {
         $tpl.find('.errormsg').remove();
     });
 
-    $tpl.find('.transferproperty').on('change', function(e) {
-        if($(this).prop("checked") == true){
+    $tpl.find('input[name=uploadtype]').on('change', function(e) {
+        if($(this).val() == "transfer"){
             $(".js-select-recipients, .js-attach-order").css("display","inline-block");
         }else{
             $(".js-select-recipients, .js-attach-order").css("display","none");

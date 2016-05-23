@@ -66,6 +66,7 @@ nbApp.defaultConfirmDialog = function(message, callback) {
     return dlg;
 };
 
+
 nbApp.choiceBalanceHolder = function(el, callback) {
     var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
     return this.defaultChoiceDialog(el, url, {
