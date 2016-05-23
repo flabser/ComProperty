@@ -13,7 +13,7 @@ import municipalproperty.model.Vehicle;
 import reference.model.constants.KufType;
 
 public class PropertyFactory {
-	public static Property getProperty(String kuf) {
+	public static Property getPropertyInstance(String kuf) {
 		KufType kt = KufType.getType(Util.convertStringToInt(kuf));
 		switch (kt) {
 		case FURNITURE:

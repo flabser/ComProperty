@@ -55,22 +55,28 @@ import staff.model.Employee;
 import staff.model.Organization;
 
 public class MPXLImporter {
-	public final static int LOAD = 100;
+	public final static int PROCESS = 100;
 	public final static int CHECK = 99;
 	public final static int FROM_YEAR = 1930;
 	public Map<Integer, List<List<ErrorDescription>>> sheetErr = new HashMap<Integer, List<List<ErrorDescription>>>();
 
+	private final static String defaultCity = "Алматы";
+	private final static String undefinedStreet = "unknown";
 	private final static String trueVal = "годен";
 	private final static String falseVal = "не годен";
 
 	private int mode;
+	private _Session ses;
+	private PropertyDAO propertyDao;
+	private PrevBalanceHolderDAO pbhDao;
+	private int processed, skipped;
 
 	public MPXLImporter(int mode) {
 		this.mode = mode;
 	}
 
-	public Map<Integer, List<List<ErrorDescription>>> process(Sheet sheet, _Session ses, boolean stopIfWrong, boolean writeOff, Organization bh,
-	        String[] readers, boolean isTransfer, Organization recipient) {
+	public Outcome process(Sheet sheet, _Session ses, boolean stopIfWrong, boolean writeOff, Organization bh, String[] readers, boolean isTransfer,
+	        Organization recipient) {
 
 		/*
 		 * long start = System.currentTimeMillis(); ForkJoinPool forkJoinPool =
@@ -82,92 +88,102 @@ public class MPXLImporter {
 		 */
 		// return (Map<Integer, List<List<ErrorDescription>>>)
 		// forkJoinPool.invoke(is);
+		Outcome result = new Outcome();
 		long start = System.currentTimeMillis();
-		PropertyDAO propertyDao = new PropertyDAO(ses);
+		this.ses = ses;
+		propertyDao = new PropertyDAO(ses);
+		pbhDao = new PrevBalanceHolderDAO(ses);
+		processed = 0;
+		skipped = 0;
 		boolean skip = false;
-		int processed = 0, skipped = 0;
-		if (mode == MPXLImporter.LOAD) {
+
+		if (mode == MPXLImporter.PROCESS) {
 			mode = MPXLImporter.CHECK;
-			Map<Integer, List<List<ErrorDescription>>> res = process(sheet, ses, true, writeOff, bh, readers, isTransfer, recipient);
-			if (res.size() > 0) {
+
+			result = process(sheet, ses, true, writeOff, bh, readers, isTransfer, recipient);
+			if (result.sheetErr.size() > 0) {
 				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 				return null;
 			}
-			mode = MPXLImporter.LOAD;
+			mode = MPXLImporter.PROCESS;
 		}
 
 		for (int i = 1; i < sheet.getRows(); i++) {
-			String kof = sheet.getCell(0, i).getContents().trim();
+			XLRow row = new XLRow();
+			row.kof = sheet.getCell(0, i).getContents().trim();
 
-			if ("".equalsIgnoreCase(kof)) {
+			if ("".equalsIgnoreCase(row.kof)) {
 				if (checkForEmptyRow(sheet.getRow(i))) {
 					continue;
 				}
 			}
-
-			String kuf = sheet.getCell(1, i).getContents().trim();
-			String invNumber = sheet.getCell(2, i).getContents().trim();
-			String name = sheet.getCell(3, i).getContents().trim();
-			String propertyCode = normalizeString(sheet.getCell(4, i).getContents());
-			Cell acceptanceDateCell = sheet.getCell(5, i);
-			String country = normalizeString(sheet.getCell(6, i).getContents());
+			row.kuf = sheet.getCell(1, i).getContents().trim();
+			row.invNumber = sheet.getCell(2, i).getContents().trim();
+			row.name = sheet.getCell(3, i).getContents().trim();
+			row.propertyCode = normalizeString(sheet.getCell(4, i).getContents());
+			row.acceptanceDateCell = sheet.getCell(5, i);
+			row.country = normalizeString(sheet.getCell(6, i).getContents());
 			String region = normalizeString(sheet.getCell(7, i).getContents());
-			String preparedRegion = normalizeString(region.replace("г.а.", "").replace("область", ""));
+			row.preparedRegion = normalizeString(region.replace("г.а.", "").replace("область", ""));
 			String district = normalizeString(sheet.getCell(8, i).getContents());
-			String preparedDistrict = district.replaceAll("(район)|(р-н)", "").trim();
-			String address = sheet.getCell(9, i).getContents().trim();
-			Cell originalCostCell = sheet.getCell(10, i);
-			Cell cumulativeDepreciationCell = sheet.getCell(11, i);
-			Cell impairmentLossCell = sheet.getCell(12, i);
-			Cell balanceCostCell = sheet.getCell(13, i);
-			Cell revaluationAmountCell = sheet.getCell(14, i);
-			Cell residualCostCell = sheet.getCell(15, i);
-			String receiptBasisinBalance = normalizeString(sheet.getCell(16, i).getContents());
-			String model = sheet.getCell(17, i).getContents().trim();
-			Cell commissioningYear = sheet.getCell(18, i);
-			Cell acquisitionYear = sheet.getCell(19, i);
-			String isReadyToOperation = sheet.getCell(20, i).getContents().trim();
+			row.preparedDistrict = district.replaceAll("(район)|(р-н)", "").trim();
+			row.address = sheet.getCell(9, i).getContents().trim();
+			row.originalCostCell = sheet.getCell(10, i);
+			row.cumulativeDepreciationCell = sheet.getCell(11, i);
+			row.impairmentLossCell = sheet.getCell(12, i);
+			row.balanceCostCell = sheet.getCell(13, i);
+			row.revaluationAmountCell = sheet.getCell(14, i);
+			row.residualCostCell = sheet.getCell(15, i);
+			row.receiptBasisinBalance = normalizeString(sheet.getCell(16, i).getContents());
+			row.model = sheet.getCell(17, i).getContents().trim();
+			row.commissioningYear = sheet.getCell(18, i);
+			row.acquisitionYear = sheet.getCell(19, i);
+			row.isReadyToOperation = sheet.getCell(20, i).getContents().trim();
 
 			if (mode == MPXLImporter.CHECK) {
 				List<List<ErrorDescription>> rowErr = new ArrayList<List<ErrorDescription>>();
-				rowErr.add(new CheVal("1, КОФ", kof).isNotEmpty(kof).getErr());
-				rowErr.add(new CheVal("2, КУФ", kuf).isNotEmpty(kuf).isKufType(kuf).getErr());
-				rowErr.add(new CheVal("3, Инвентарный номер", invNumber).isNotEmpty(invNumber).getErr());
-				List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", invNumber).getString(invNumber));
+				rowErr.add(new CheVal("1, КОФ", row.kof).isNotEmpty(row.kof).getErr());
+				rowErr.add(new CheVal("2, КУФ", row.kuf).isNotEmpty(row.kuf).isKufType(row.kuf).getErr());
+				rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
+				List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
 
 				for (Property p : pList) {
-					if (p.getObjectName().equalsIgnoreCase(name)) {
-						rowErr.add(new CheVal("3, Инвентарный номер, наименование", invNumber + "," + name).isNotUniqueMessage().getErr());
+					if (p.getObjectName().equalsIgnoreCase(row.name)) {
+						rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name).isNotUniqueMessage().getErr());
 						skipped++;
 						break;
 					}
 
 				}
 
-				rowErr.add(new CheVal("4, Наименование", name).isNotEmpty(name).getErr());
-				rowErr.add(new CheVal("5, Код права на имущество", propertyCode).isNotEmpty(propertyCode)
-				        .isReferenceValue(new PropertyCodeDAO(ses), propertyCode).getErr());
-				rowErr.add(new CheVal("6, Дата принятия на баланс", acceptanceDateCell.getContents()).isDate(acceptanceDateCell).getErr());
-				rowErr.add(new CheVal("7, Страна", country).isReferenceValue(new CountryDAO(ses), country).getErr());
-				rowErr.add(new CheVal("8, Регион", region).isNotEmpty(preparedRegion).isReferenceValue(new RegionDAO(ses), preparedRegion).getErr());
-				rowErr.add(new CheVal("9, Район", district).isNotEmpty(preparedDistrict).isReferenceValue(new CityDistrictDAO(ses), preparedDistrict)
+				rowErr.add(new CheVal("4, Наименование", row.name).isNotEmpty(row.name).getErr());
+				rowErr.add(new CheVal("5, Код права на имущество", row.propertyCode).isNotEmpty(row.propertyCode)
+				        .isReferenceValue(new PropertyCodeDAO(ses), row.propertyCode).getErr());
+				rowErr.add(new CheVal("6, Дата принятия на баланс", row.acceptanceDateCell.getContents()).isDate(row.acceptanceDateCell).getErr());
+				rowErr.add(new CheVal("7, Страна", row.country).isReferenceValue(new CountryDAO(ses), row.country).getErr());
+				rowErr.add(new CheVal("8, Регион", region).isNotEmpty(row.preparedRegion).isReferenceValue(new RegionDAO(ses), row.preparedRegion)
 				        .getErr());
-				rowErr.add(new CheVal("10, Адрес", address).isNotEmpty(address).getErr());
-				rowErr.add(new CheVal("11, Первоначальная стоимость", originalCostCell.getContents()).isFloatNumber(originalCostCell).getErr());
-				rowErr.add(new CheVal("12, Накопленная амортизация", cumulativeDepreciationCell.getContents())
-				        .isFloatNumber(cumulativeDepreciationCell).getErr());
-				rowErr.add(new CheVal("13, Убыток от обесценения", impairmentLossCell.getContents()).isFloatNumber(impairmentLossCell).getErr());
-				rowErr.add(new CheVal("14, Балансовая стоимость", balanceCostCell.getContents()).isFloatNumber(balanceCostCell).getErr());
-				rowErr.add(new CheVal("15, Сумма переоценки", revaluationAmountCell.getContents()).isFloatNumber(revaluationAmountCell).getErr());
-				rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", residualCostCell.getContents()).isFloatNumber(residualCostCell)
+				rowErr.add(new CheVal("9, Район", district).isNotEmpty(row.preparedDistrict)
+				        .isReferenceValue(new CityDistrictDAO(ses), row.preparedDistrict).getErr());
+				rowErr.add(new CheVal("10, Адрес", row.address).isNotEmpty(row.address).getErr());
+				rowErr.add(
+				        new CheVal("11, Первоначальная стоимость", row.originalCostCell.getContents()).isFloatNumber(row.originalCostCell).getErr());
+				rowErr.add(new CheVal("12, Накопленная амортизация", row.cumulativeDepreciationCell.getContents())
+				        .isFloatNumber(row.cumulativeDepreciationCell).getErr());
+				rowErr.add(
+				        new CheVal("13, Убыток от обесценения", row.impairmentLossCell.getContents()).isFloatNumber(row.impairmentLossCell).getErr());
+				rowErr.add(new CheVal("14, Балансовая стоимость", row.balanceCostCell.getContents()).isFloatNumber(row.balanceCostCell).getErr());
+				rowErr.add(new CheVal("15, Сумма переоценки", row.revaluationAmountCell.getContents()).isFloatNumber(row.revaluationAmountCell)
 				        .getErr());
-				rowErr.add(new CheVal("17, Основание поступления на баланс", receiptBasisinBalance)
-				        .isReferenceValue(new ReceivingReasonDAO(ses), receiptBasisinBalance).getErr());
-				rowErr.add(new CheVal("18 Модель", model).isOkAnyway().getErr());
-				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", commissioningYear.getContents()).isYear(commissioningYear).getErr());
-				rowErr.add(new CheVal("20, Год приобретения ", acquisitionYear.getContents()).isYear(acquisitionYear).getErr());
-				rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", isReadyToOperation).isNotEmpty(isReadyToOperation)
-				        .isValueOfList(trueVal, falseVal, isReadyToOperation).getErr());
+				rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", row.residualCostCell.getContents())
+				        .isFloatNumber(row.residualCostCell).getErr());
+				rowErr.add(new CheVal("17, Основание поступления на баланс", row.receiptBasisinBalance)
+				        .isReferenceValue(new ReceivingReasonDAO(ses), row.receiptBasisinBalance).getErr());
+				rowErr.add(new CheVal("18 Модель", row.model).isOkAnyway().getErr());
+				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", row.commissioningYear.getContents()).isYear(row.commissioningYear).getErr());
+				rowErr.add(new CheVal("20, Год приобретения ", row.acquisitionYear.getContents()).isYear(row.acquisitionYear).getErr());
+				rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", row.isReadyToOperation).isNotEmpty(row.isReadyToOperation)
+				        .isValueOfList(trueVal, falseVal, row.isReadyToOperation).getErr());
 
 				rowErr.removeAll(Arrays.asList(null, ""));
 				if (!rowErr.isEmpty()) {
@@ -177,114 +193,145 @@ public class MPXLImporter {
 							System.out.println(vq);
 						}
 					}
-					sheetErr.put(i + 1, rowErr);
+					result.sheetErr.put(i + 1, rowErr);
 					if (stopIfWrong) {
 						break;
 					}
 				}
 
 				processed++;
-			} else if (mode == MPXLImporter.LOAD) {
-
-				CheVal cv = new CheVal();
-				List<Property> pList = propertyDao.findAllByInvNum(cv.getString(invNumber));
-				for (Property p : pList) {
-					if (p.getBalanceHolder().equals(bh)) {
-						skipped++;
-						skip = true;
-						break;
-					}
+			} else if (mode == MPXLImporter.PROCESS) {
+				if (load(row, bh, readers)) {
+					processed++;
 				}
-				if (!skip) {
-					Property prop = PropertyFactory.getProperty(kuf);
-					prop.setKof(kof);
-					prop.setKuf(cv.getKufType(kuf));
-					prop.setInvNumber(cv.getString(invNumber));
-					prop.setObjectName(cv.getString(name));
-					prop.setPropertyCode((PropertyCode) cv.getEntity(new PropertyCodeDAO(ses), propertyCode));
-					prop.setAcceptanceDate(cv.getDate(acceptanceDateCell));
-					reference.model.embedded.Address addr = new reference.model.embedded.Address();
-					addr.setCountry((Country) cv.getEntity(new CountryDAO(ses), country));
-					addr.setRegion((Region) cv.getEntity(new RegionDAO(ses), preparedRegion));
-					addr.setCityDistrict((CityDistrict) cv.getEntity(new CityDistrictDAO(ses), preparedDistrict));
-					addr.setAdditionalInfo(address);
-
-					accountant.page.action.util.AddressParser parser = new accountant.page.action.util.AddressParser();
-					parser.parseAddresses(addr, ses);
-
-					if (writeOff) {
-						prop.setPropertyStatusType(PropertyStatusType.WRITTENOFF);
-					} else {
-						prop.setPropertyStatusType(PropertyStatusType.ON_BALANCE);
-					}
-					prop.setOriginalCost(cv.getFloat(originalCostCell));
-					prop.setCumulativeDepreciation(cv.getFloat(cumulativeDepreciationCell));
-					prop.setImpairmentLoss(cv.getFloat(impairmentLossCell));
-					prop.setBalanceCost(cv.getFloat(balanceCostCell));
-					prop.setRevaluationAmount(cv.getFloat(revaluationAmountCell));
-					prop.setResidualCost(cv.getFloat(residualCostCell));
-					prop.setReceivingReason((ReceivingReason) cv.getEntity(new ReceivingReasonDAO(ses), receiptBasisinBalance));
-
-					if (prop instanceof PersonalEstate) {
-						((PersonalEstate) prop).setModel(model);
-					} else if (prop instanceof Equipment) {
-						((Equipment) prop).setModel(model);
-					} else if (prop instanceof RealEstate) {
-						addr.setLocality((Locality) cv.getEntity(new LocalityDAO(ses), "Алматы"));
-						if (addr.getStreet() == null) {
-							addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), "unknown"));
-							addr.setCoordinates("");
-						}
-						((RealEstate) prop).setAddress(addr);
-					}
-					prop.setCommissioningYear(cv.getYear(commissioningYear));
-					prop.setAcquisitionYear(cv.getYear(acquisitionYear));
-					prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, isReadyToOperation));
-					prop.setAuthor(ses.getUser());
-					EmployeeDAO empDao = new EmployeeDAO(ses);
-					for (String uuid : readers) {
-						Employee emp = empDao.findById(UUID.fromString(uuid));
-						prop.addReaderEditor(emp.getUser());
-					}
-
-					if (isTransfer) {
-						List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
-						PrevBalanceHolder pbh = new PrevBalanceHolder();
-						pbh.setBalanceHolder(bh);
-						pbh.setProperty(prop);
-						pbh.setReaders(prop.getReaders());
-						pbh.setEditors(prop.getEditors());
-						PrevBalanceHolderDAO pbhDao = new PrevBalanceHolderDAO(ses);
-						try {
-							pbhDao.add(pbh);
-							pbhl.add(pbhDao.findById(pbh.getId()));
-							prop.setPrevBalanceHolders(pbhl);
-							prop.setBalanceHolder(recipient);
-						} catch (SecureException e) {
-							Server.logger.errorLogEntry(e);
-						}
-					} else {
-						prop.setBalanceHolder(bh);
-					}
-
-					try {
-						// propertyDao.add(prop);
-						processed++;
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-				} else {
-					skip = false;
-				}
-
+				;
 			}
 		}
 		long stop = System.currentTimeMillis();
 		long diff = stop - start;
 		// System.out.println("Old method: " + diff);
 		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
-		return sheetErr;
+		result.processed = processed;
+		result.skipped = skipped;
+		return result;
+	}
+
+	private boolean load(XLRow row, Organization bh, String[] readers) {
+		CheVal cv = new CheVal();
+		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
+		for (Property p : pList) {
+			if (p.getBalanceHolder().equals(bh)) {
+				return false;
+			}
+		}
+
+		Property prop = PropertyFactory.getPropertyInstance(row.kuf);
+		prop.setKof(row.kof);
+		prop.setKuf(cv.getKufType(row.kuf));
+		prop.setInvNumber(cv.getString(row.invNumber));
+		prop.setObjectName(cv.getString(row.name));
+		prop.setPropertyCode((PropertyCode) cv.getEntity(new PropertyCodeDAO(ses), row.propertyCode));
+		prop.setAcceptanceDate(cv.getDate(row.acceptanceDateCell));
+		reference.model.embedded.Address addr = new reference.model.embedded.Address();
+		addr.setCountry((Country) cv.getEntity(new CountryDAO(ses), row.country));
+		addr.setRegion((Region) cv.getEntity(new RegionDAO(ses), row.preparedRegion));
+		addr.setCityDistrict((CityDistrict) cv.getEntity(new CityDistrictDAO(ses), row.preparedDistrict));
+		addr.setAdditionalInfo(row.address);
+		accountant.page.action.util.AddressParser parser = new accountant.page.action.util.AddressParser();
+		parser.parseAddresses(addr, ses);
+		prop.setPropertyStatusType(PropertyStatusType.ON_BALANCE);
+		prop.setOriginalCost(cv.getFloat(row.originalCostCell));
+		prop.setCumulativeDepreciation(cv.getFloat(row.cumulativeDepreciationCell));
+		prop.setImpairmentLoss(cv.getFloat(row.impairmentLossCell));
+		prop.setBalanceCost(cv.getFloat(row.balanceCostCell));
+		prop.setRevaluationAmount(cv.getFloat(row.revaluationAmountCell));
+		prop.setResidualCost(cv.getFloat(row.residualCostCell));
+		prop.setReceivingReason((ReceivingReason) cv.getEntity(new ReceivingReasonDAO(ses), row.receiptBasisinBalance));
+
+		if (prop instanceof PersonalEstate) {
+			((PersonalEstate) prop).setModel(row.model);
+		} else if (prop instanceof Equipment) {
+			((Equipment) prop).setModel(row.model);
+		} else if (prop instanceof RealEstate) {
+			addr.setLocality((Locality) cv.getEntity(new LocalityDAO(ses), defaultCity));
+			if (addr.getStreet() == null) {
+				addr.setStreet((Street) cv.getEntity(new StreetDAO(ses), undefinedStreet));
+				addr.setCoordinates("");
+			}
+			((RealEstate) prop).setAddress(addr);
+		}
+		prop.setCommissioningYear(cv.getYear(row.commissioningYear));
+		prop.setAcquisitionYear(cv.getYear(row.acquisitionYear));
+		prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, row.isReadyToOperation));
+		prop.setAuthor(ses.getUser());
+		EmployeeDAO empDao = new EmployeeDAO(ses);
+		for (String uuid : readers) {
+			Employee emp = empDao.findById(UUID.fromString(uuid));
+			prop.addReaderEditor(emp.getUser());
+		}
+
+		prop.setBalanceHolder(bh);
+
+		try {
+			// propertyDao.add(prop);
+			processed++;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return true;
+
+	}
+
+	private boolean writeOff(XLRow row, Organization bh) {
+		CheVal cv = new CheVal();
+		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
+		for (Property prop : pList) {
+			if (prop.getBalanceHolder().equals(bh)) {
+				prop.setPropertyStatusType(PropertyStatusType.WRITTENOFF);
+				try {
+					propertyDao.add(prop);
+					processed++;
+					return true;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean transfer(XLRow row, Organization bh) {
+
+		CheVal cv = new CheVal();
+		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
+		for (Property prop : pList) {
+			if (prop.getBalanceHolder().equals(bh)) {
+				List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
+				PrevBalanceHolder pbh = new PrevBalanceHolder();
+				pbh.setBalanceHolder(prop.getBalanceHolder());
+				pbh.setProperty(prop);
+				pbh.setReaders(prop.getReaders());
+				pbh.setEditors(prop.getEditors());
+
+				try {
+					pbhDao.add(pbh);
+					pbhl.add(pbhDao.findById(pbh.getId()));
+					prop.setPrevBalanceHolders(pbhl);
+					prop.setBalanceHolder(bh);
+				} catch (SecureException e) {
+					Server.logger.errorLogEntry(e);
+				}
+				try {
+					propertyDao.add(prop);
+					processed++;
+					return true;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return false;
 	}
 
 	private static boolean checkForEmptyRow(Cell[] cells) {

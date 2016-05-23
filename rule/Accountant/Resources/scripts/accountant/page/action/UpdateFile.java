@@ -1,8 +1,6 @@
 package accountant.page.action;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
@@ -112,7 +110,7 @@ public class UpdateFile extends _DoPage {
 							org = dao.findById(bhId);
 							String[] readers = formData.getListOfValues("readers");
 							File xlsFile = new File(fileName);
-							MPXLImporter id = new MPXLImporter(MPXLImporter.LOAD);
+							MPXLImporter id = new MPXLImporter(MPXLImporter.PROCESS);
 							Workbook workbook = null;
 							try {
 								workbook = Workbook.getWorkbook(xlsFile);
@@ -122,16 +120,16 @@ public class UpdateFile extends _DoPage {
 								return;
 							}
 							Sheet sheet = workbook.getSheet(0);
-							Map<Integer, List<List<MPXLImporter.ErrorDescription>>> sheetErrs = id.process(sheet, session, true, writeOff, org,
-							        readers, isTransfer, recipiеnt);
+							Outcome result = id.process(sheet, session, true, writeOff, org, readers, isTransfer, recipiеnt);
 
-							if (sheetErrs.size() > 0) {
+							if (result.sheetErr.size() > 0) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("file_has_been_not_loaded", lang));
-								uf.setSheetErrs(sheetErrs);
+								uf.setSheetErrs(result.sheetErr);
 							} else {
 								uf.setStatus(ImportFileEntry.LOADED);
-								uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang));
+								uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang) + ", "
+								        + Integer.toString(result.processed) + "(" + Integer.toString(result.skipped) + ")");
 							}
 						} catch (IllegalArgumentException e) {
 							uf.setStatus(ImportFileEntry.LOADING_ERROR);

@@ -2,7 +2,6 @@ package accountant.page.action;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -15,7 +14,6 @@ import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
 import com.exponentus.util.Util;
 
-import accountant.page.action.MPXLImporter.ErrorDescription;
 import accountant.page.form.ImportFileEntry;
 import accountant.page.form.UploadUpdatingForm;
 import jxl.Sheet;
@@ -82,15 +80,15 @@ public class ImportFileChecker extends _DoPage {
 					Organization org = (Organization) Util.getRndListElement(oList);
 					String[] readers = formData.getListOfValuesSilently("readers");
 
-					Map<Integer, List<List<ErrorDescription>>> sheetErrs = id.process(sheet, session, stopIfWrong, writeOff, org, readers, isTransfer,
-					        recipiеnt);
+					Outcome result = id.process(sheet, session, stopIfWrong, writeOff, org, readers, isTransfer, recipiеnt);
 
-					if (sheetErrs.size() > 0) {
+					if (result.sheetErr.size() > 0) {
 						uf.setStatus(ImportFileEntry.CHECKING_ERROR);
 						uf.setLocalizedMsg(getLocalizedWord("file_data_is_incorrect", lang));
-						uf.setSheetErrs(sheetErrs);
+						uf.setSheetErrs(result.sheetErr);
 					} else {
 						uf.setStatus(ImportFileEntry.CHECKED);
+						uf.setLocalizedMsg(Integer.toString(result.processed));
 					}
 				} else {
 					uf.setStatus(ImportFileEntry.CHECKING_ERROR);
