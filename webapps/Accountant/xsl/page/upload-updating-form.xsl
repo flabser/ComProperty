@@ -181,7 +181,7 @@
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn btn-primary js-load">
-                                <xsl:if test="status != 2 or sheeterrs != '' or balanceholder/@id = 'null' or readers = 'null'">
+                                <xsl:if test="status != 2 or sheeterrs != ''">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
@@ -246,7 +246,6 @@
                 </div>
                 <div class="panel__body scroll-shadow">
                     <input type="hidden" name="balanceholder" value=""/>
-                    <input type="hidden" name="recipient" value=""/>
                     <input type="hidden" name="status" value="{//fields/status}"/>
                     <div>
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>

@@ -262,9 +262,9 @@ function renderFilePanel(fileName, fsid) {
         e.preventDefault();
         $(this).parents('.panel').addClass('open');
         nbApp.choiceReaders(this, function() {
-            toggleLoadButtonState($tpl);
             setReaderToStorage();
             setReaderNameToStorage();
+            toggleLoadButtonState($tpl);
         });
         $tpl.find('.errormsg').remove();
     });
@@ -359,27 +359,21 @@ function getBalanceholderNameFromStorage() {
 }
 
 function loadDataLocalStorage(){
-    if(getBalanceholderNameFromStorage() != 'null'){
-        $(".update-balance-holder").html(getBalanceholderNameFromStorage());
-    }
-    if(getRecipientNameFromStorage() != 'null'){
-        $(".update-recipients").html(getRecipientNameFromStorage());
-        $("input[name=recipient]").val(getRecipientFromStorage());
-    }
     if(getReaderNameFromStorage() != 'null'){
         $(".update-readers").html(getReaderNameFromStorage());
-        var r = getReaderFromStorage();
-        $(r).each(function(){
-            $("input[name=balanceholder]").parent().append("<input type='hidden' name='readers' val='"+this+"'/>");
+        var readers = getReaderFromStorage();
+        $(readers).each(function(){
+            $("input[name=balanceholder]").parent().append("<input type='hidden' name='readers' value='"+this+"'></input>");
         });
+    }
+    if(getBalanceholderNameFromStorage() != 'null'){
+        $(".update-balance-holder").html(getBalanceholderNameFromStorage());
     }
 }
 
 function clearLocalStorage(){
     localStorage.setItem("balanceholder", null);
     localStorage.setItem("balanceholdername", null);
-    localStorage.setItem("recipient", null);
-    localStorage.setItem("recipientname", null);
     localStorage.setItem("readername", null);
     localStorage.setItem("reader", null);
 }
@@ -427,8 +421,9 @@ function initCachedUpdateForm() {
 $(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
-    if($(".transferproperty").prop("checked") == true){
-       $(".js-attach-order").css("display","inline-block");
-    }
     loadDataLocalStorage();
+    if($(".transferproperty").prop("checked") == true){
+        $(".js-attach-order").css("display","inline-block");
+    }
+    toggleLoadButtonState($(".transferproperty").closest("form"));
 });
