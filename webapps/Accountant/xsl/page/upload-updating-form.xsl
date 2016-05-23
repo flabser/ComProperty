@@ -262,7 +262,7 @@
         <form class="hidden" method="POST" enctype="multipart/form-data">
             <xsl:variable name="fsid" select="//content/formsesid"/>
             <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})">
-                <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
+                <xsl:if test="status != 2 or sheeterrs != ''">
                     <xsl:attribute name="disabled" select="'disabled'"/>
                 </xsl:if>
             </input>
