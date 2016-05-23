@@ -286,8 +286,6 @@ function renderFilePanel(fileName, fsid) {
             $(".js-select-recipients, .js-attach-order").css("display","inline-block");
         }else{
             $(".js-select-recipients, .js-attach-order").css("display","none");
-            $("input[name=recipent]").val("");
-            $(".update-recipients").text("");
         }
         toggleLoadButtonState($tpl)
     });
@@ -389,10 +387,7 @@ function clearLocalStorage(){
 function toggleLoadButtonState($form) {
     var b = $form.find('[name=balanceholder]').val();
     var r = $form.find('[name=readers]').val();
-    if($(".transferproperty").prop("checked") == true && $("input[name=recipient]").val() == ''){
-        var rc = true;
-    }
-    if (b && r && b != '' && r !='' && !rc) {
+    if (b && r && b != '' && r !='') {
         $form.find('.js-load').attr('disabled', false);
     }else{
         $form.find('.js-load').attr('disabled', true);
