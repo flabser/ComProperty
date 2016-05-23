@@ -283,9 +283,9 @@ function renderFilePanel(fileName, fsid) {
 
     $tpl.find('input[name=uploadtype]').on('change', function(e) {
         if($(this).val() == "transfer"){
-            $(".js-select-recipients, .js-attach-order").css("display","inline-block");
+            $(".js-attach-order").css("display","inline-block");
         }else{
-            $(".js-select-recipients, .js-attach-order").css("display","none");
+            $(".js-attach-order").css("display","none");
         }
         toggleLoadButtonState($tpl)
     });
@@ -428,7 +428,7 @@ $(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
     if($(".transferproperty").prop("checked") == true){
-       $(".js-select-recipients, .js-attach-order").css("display","inline-block");
+       $(".js-attach-order").css("display","inline-block");
     }
     loadDataLocalStorage();
 });
