@@ -157,6 +157,7 @@
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
                             </xsl:if>
                         </i>
+
                         <a href="Provider?id=update-file&amp;fileid=" class="update-file-link js-link">
                             <xsl:value-of select="filename"/>
                         </a>
