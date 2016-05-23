@@ -240,7 +240,6 @@ public class MPXLImporter {
 					prop.setCommissioningYear(cv.getYear(commissioningYear));
 					prop.setAcquisitionYear(cv.getYear(acquisitionYear));
 					prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, isReadyToOperation));
-					prop.setBalanceHolder(bh);
 					prop.setAuthor(ses.getUser());
 					EmployeeDAO empDao = new EmployeeDAO(ses);
 					for (String uuid : readers) {
@@ -248,29 +247,28 @@ public class MPXLImporter {
 						prop.addReaderEditor(emp.getUser());
 					}
 
-					Organization oldBh = null;
 					if (isTransfer) {
-						oldBh = bh;
 						List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
 						PrevBalanceHolder pbh = new PrevBalanceHolder();
-						pbh.setBalanceHolder(oldBh);
+						pbh.setBalanceHolder(bh);
 						pbh.setProperty(prop);
 						pbh.setReaders(prop.getReaders());
 						pbh.setEditors(prop.getEditors());
-						pbhl.add(pbh);
 						PrevBalanceHolderDAO pbhDao = new PrevBalanceHolderDAO(ses);
 						try {
 							pbhDao.add(pbh);
+							pbhl.add(pbhDao.findById(pbh.getId()));
 							prop.setPrevBalanceHolders(pbhl);
-							bh = recipient;
+							prop.setBalanceHolder(recipient);
 						} catch (SecureException e) {
 							Server.logger.errorLogEntry(e);
 						}
-
+					} else {
+						prop.setBalanceHolder(bh);
 					}
 
 					try {
-						propertyDao.add(prop);
+						// propertyDao.add(prop);
 						processed++;
 					} catch (Exception e) {
 						e.printStackTrace();
