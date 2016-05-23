@@ -89,7 +89,7 @@
 }
 
 .update-file-panel-msg:empty {
-    display: none;
+    display: block;
 }
 
 .upload-checking-result {

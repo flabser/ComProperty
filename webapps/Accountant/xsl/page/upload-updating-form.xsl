@@ -151,7 +151,7 @@
         <form name="js-init-update-panel" data-file-name="{filename}">
             <div class="panel update-file-panel update-status-{status} js-file-panel">
                 <div class="panel__header">
-                    <div class="panel-title panel-toggle" data-toggle="panel">
+                    <div class="panel-title">
                         <i class="fa">
                             <xsl:if test="sheeterrs = '' and msg = ''">
                                 <xsl:attribute name="class" select="'fa no-errs'"/>
