@@ -139,7 +139,7 @@
             <form class="hidden" method="POST" enctype="multipart/form-data">
                 <xsl:variable name="fsid" select="//content/formsesid"/>
                 <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})">
-                    <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
+                    <xsl:if test="status != 2 or sheeterrs != ''">
                         <xsl:attribute name="disabled" select="'disabled'"/>
                     </xsl:if>
                 </input>
@@ -168,19 +168,19 @@
                                 <span>Подписать с ЭЦП</span>
                             </button>
                             <button type="button" class="btn btn js-select-balance-holder">
-                                <xsl:if test="sheeterrs != ''">
+                                <xsl:if test="sheeterrs != '' or status = 3">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Балансодержатель</span>
                             </button>
                             <button type="button" class="btn btn js-select-readers">
-                                <xsl:if test="sheeterrs != ''">
+                                <xsl:if test="sheeterrs != '' or status = 3">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Читатели</span>
                             </button>
                             <button type="button" class="btn btn btn-primary js-load">
-                                <xsl:if test="status != 2 or sheeterrs != '' or msg != '' or balanceholder/@id = 'null' or readers = 'null'">
+                                <xsl:if test="status != 2 or sheeterrs != '' or balanceholder/@id = 'null' or readers = 'null'">
                                     <xsl:attribute name="disabled" select="'disabled'"/>
                                 </xsl:if>
                                 <span>Загрузить</span>
@@ -228,7 +228,7 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <xsl:if test="status != 2 or sheeterrs != '' or msg != ''">
+                                        <xsl:if test="status != 2 or sheeterrs != ''">
                                             <xsl:attribute name="class" select="'disabled'"/>
                                         </xsl:if>
                                         <xsl:variable name="fsid" select="//content/formsesid"/>
