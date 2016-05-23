@@ -427,4 +427,5 @@ $(document).ready(function() {
         $(".js-attach-order").css("display","inline-block");
     }
     toggleLoadButtonState($(".transferproperty").closest("form"));
+    $("button").attr("disabled", false);
 });
