@@ -123,6 +123,7 @@
     <caption name="new_order"/>
     <caption name="new_contract"/>
 
+    <caption name="municipal_property"/>
     <caption name="municipal_property_by_propertycode"/>
       <caption name="all_municipal_property"/>
 </rule>
