@@ -104,6 +104,21 @@
                             </div>
                             <div class="order-property-list">
                                 <div class="view">
+                                    <header class="entries-head">
+                                        <div class="head-wrap">
+                                            <div class="entry-captions">
+                                                <span class="order-property-list-objectname">
+                                                    <xsl:value-of select="//captions/object_name/@caption"/>
+                                                </span>
+                                                <span class="order-property-list-balanceholder">
+                                                    <xsl:value-of select="//captions/organization/@caption"/>
+                                                </span>
+                                                <span class="order-property-list-propertycode">
+                                                    <xsl:value-of select="//captions/property_code/@caption"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </header>
                                     <div class="entries">
                                         <xsl:for-each select="fields/properties/entry">
                                             <a class="entry-link" href="{url}">
