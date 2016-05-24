@@ -1,0 +1,33 @@
+.order-property-list {
+    border: 1px solid #ccc;
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    vertical-align: top;
+    width: 100%;
+}
+
+.order-property-list .entry-link {
+    border-bottom: 1px solid #eee;
+    padding: 6px;
+}
+
+.order-property-list .entry-link:hover {
+    background: #f5f5f5;
+}
+
+.order-property-list-objectname {
+    width: 40%;
+}
+
+.order-property-list-balanceholder {
+    color: #444;
+    width: 35%;
+}
+
+.order-property-list-propertycode {
+    color: #c55;
+    width: 25%;
+}

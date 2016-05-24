@@ -36,27 +36,16 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="tabs-1">
-                        <fieldset class="fieldset">
+                        <fieldset class="fieldset fieldset1">
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/reg_number/@caption"/>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" name="regnumber" value="{fields/regnumber}" class="span4"/>
+                                    <input type="text" name="regnumber" value="{fields/regnumber}" class="span8"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="control-label">
-                                    <xsl:value-of select="//captions/object/@caption"/>
-                                </div>
-                                <div class="controls">
-                                    <a class="input-placeholder" href="{fields/properties/entry/url}">
-                                        <xsl:value-of select="fields/properties/entry/objectname"/>
-                                    </a>
-                                    <input type="hidden" name="propertyid" value="{fields/properties/entry/@docid}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/organization/@caption"/>
                                 </div>
@@ -75,7 +64,7 @@
                                         <xsl:value-of select="fields/properties/entry/propertycode"/>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <div class="control-label">
                                     <xsl:value-of select="//captions/order_name/@caption"/>
@@ -109,7 +98,33 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <div>
+                        <section class="fieldset fieldset2">
+                            <div class="legend">
+                                <xsl:value-of select="//captions/municipal_property/@caption"/>
+                            </div>
+                            <div class="order-property-list">
+                                <div class="view">
+                                    <div class="entries">
+                                        <xsl:for-each select="fields/properties/entry">
+                                            <a class="entry-link" href="{url}">
+                                                <div class="entry-fields">
+                                                    <span class="order-property-list-objectname">
+                                                        <xsl:value-of select="objectname"/>
+                                                    </span>
+                                                    <span class="order-property-list-balanceholder">
+                                                        <xsl:value-of select="balanceholder"/>
+                                                    </span>
+                                                    <span class="order-property-list-propertycode">
+                                                        <xsl:value-of select="propertycode"/>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </xsl:for-each>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
                             <fieldset class="fieldset fieldset1">
                                 <legend class="legend">
                                     <xsl:value-of select="//captions/reg_documents/@caption"/>
@@ -134,7 +149,7 @@
                                     </xsl:for-each>
                                 </div>
                             </fieldset>
-                        </div>
+                        </section>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-3">
                         <xsl:call-template name="docinfo"/>
