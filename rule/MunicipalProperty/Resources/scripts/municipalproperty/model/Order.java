@@ -23,6 +23,7 @@ import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.Util;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import municipalproperty.dao.ContractDAO;
 
 @Entity
@@ -40,6 +41,7 @@ public class Order extends SecureAppEntity<UUID> {
 	@Column(name = "applied_reg_date")
 	private Date appliedRegDate;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "property_orders")
 	private List<Property> properties;
