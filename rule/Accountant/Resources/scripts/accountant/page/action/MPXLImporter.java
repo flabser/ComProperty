@@ -1,5 +1,9 @@
 package accountant.page.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,14 +14,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.IAppEntity;
 import com.exponentus.exception.SecureException;
 import com.exponentus.scripting._Session;
 import com.exponentus.server.Server;
+import com.exponentus.user.IUser;
 import com.exponentus.util.Util;
 
 import jxl.Cell;
@@ -25,9 +32,12 @@ import jxl.CellType;
 import jxl.DateCell;
 import jxl.NumberCell;
 import jxl.Sheet;
+import municipalproperty.dao.OrderDAO;
 import municipalproperty.dao.PrevBalanceHolderDAO;
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Equipment;
+import municipalproperty.model.Order;
+import municipalproperty.model.Order.OrderStatus;
 import municipalproperty.model.PersonalEstate;
 import municipalproperty.model.PrevBalanceHolder;
 import municipalproperty.model.Property;
@@ -69,14 +79,17 @@ public class MPXLImporter {
 	private _Session ses;
 	private PropertyDAO propertyDao;
 	private PrevBalanceHolderDAO pbhDao;
-	private int processed, skipped;
+	private OrderDAO orderDao;
+	private Order order;
+	private List<Property> propList = new ArrayList<Property>();
 
 	public MPXLImporter(int mode) {
 		this.mode = mode;
 	}
 
 	public Outcome process(Sheet sheet, _Session ses, boolean stopIfWrong, boolean writeOff, Organization bh, String[] readers, boolean isTransfer,
-	        Organization recipient) {
+	        String uploadtype, String addFilePath) {
+		int processed = 0, skipped = 0;
 
 		/*
 		 * long start = System.currentTimeMillis(); ForkJoinPool forkJoinPool =
@@ -95,17 +108,21 @@ public class MPXLImporter {
 		pbhDao = new PrevBalanceHolderDAO(ses);
 		processed = 0;
 		skipped = 0;
-		boolean skip = false;
 
 		if (mode == MPXLImporter.PROCESS) {
-			mode = MPXLImporter.CHECK;
+			if (uploadtype.equals("upload")) {
+				mode = MPXLImporter.CHECK;
 
-			result = process(sheet, ses, true, writeOff, bh, readers, isTransfer, recipient);
-			if (result.sheetErr.size() > 0) {
-				Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
-				return null;
+				result = process(sheet, ses, true, writeOff, bh, readers, isTransfer, uploadtype, addFilePath);
+				if (result.sheetErr.size() > 0) {
+					Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
+					return null;
+				}
+				mode = MPXLImporter.PROCESS;
+			} else if (uploadtype.equals("transfer")) {
+				orderDao = new OrderDAO(ses);
+				order = composeNewOrder(addFilePath);
 			}
-			mode = MPXLImporter.PROCESS;
 		}
 
 		for (int i = 1; i < sheet.getRows(); i++) {
@@ -141,49 +158,12 @@ public class MPXLImporter {
 			row.isReadyToOperation = sheet.getCell(20, i).getContents().trim();
 
 			if (mode == MPXLImporter.CHECK) {
-				List<List<ErrorDescription>> rowErr = new ArrayList<List<ErrorDescription>>();
-				rowErr.add(new CheVal("1, КОФ", row.kof).isNotEmpty(row.kof).getErr());
-				rowErr.add(new CheVal("2, КУФ", row.kuf).isNotEmpty(row.kuf).isKufType(row.kuf).getErr());
-				rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
-				List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
-
-				for (Property p : pList) {
-					if (p.getObjectName().equalsIgnoreCase(row.name)) {
-						rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name).isNotUniqueMessage().getErr());
-						skipped++;
-						break;
-					}
-
+				List<List<ErrorDescription>> rowErr = null;
+				if (uploadtype.equals("upload")) {
+					rowErr = preLoad(row, region, district);
+				} else {
+					rowErr = preProcess(row, bh);
 				}
-
-				rowErr.add(new CheVal("4, Наименование", row.name).isNotEmpty(row.name).getErr());
-				rowErr.add(new CheVal("5, Код права на имущество", row.propertyCode).isNotEmpty(row.propertyCode)
-				        .isReferenceValue(new PropertyCodeDAO(ses), row.propertyCode).getErr());
-				rowErr.add(new CheVal("6, Дата принятия на баланс", row.acceptanceDateCell.getContents()).isDate(row.acceptanceDateCell).getErr());
-				rowErr.add(new CheVal("7, Страна", row.country).isReferenceValue(new CountryDAO(ses), row.country).getErr());
-				rowErr.add(new CheVal("8, Регион", region).isNotEmpty(row.preparedRegion).isReferenceValue(new RegionDAO(ses), row.preparedRegion)
-				        .getErr());
-				rowErr.add(new CheVal("9, Район", district).isNotEmpty(row.preparedDistrict)
-				        .isReferenceValue(new CityDistrictDAO(ses), row.preparedDistrict).getErr());
-				rowErr.add(new CheVal("10, Адрес", row.address).isNotEmpty(row.address).getErr());
-				rowErr.add(
-				        new CheVal("11, Первоначальная стоимость", row.originalCostCell.getContents()).isFloatNumber(row.originalCostCell).getErr());
-				rowErr.add(new CheVal("12, Накопленная амортизация", row.cumulativeDepreciationCell.getContents())
-				        .isFloatNumber(row.cumulativeDepreciationCell).getErr());
-				rowErr.add(
-				        new CheVal("13, Убыток от обесценения", row.impairmentLossCell.getContents()).isFloatNumber(row.impairmentLossCell).getErr());
-				rowErr.add(new CheVal("14, Балансовая стоимость", row.balanceCostCell.getContents()).isFloatNumber(row.balanceCostCell).getErr());
-				rowErr.add(new CheVal("15, Сумма переоценки", row.revaluationAmountCell.getContents()).isFloatNumber(row.revaluationAmountCell)
-				        .getErr());
-				rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", row.residualCostCell.getContents())
-				        .isFloatNumber(row.residualCostCell).getErr());
-				rowErr.add(new CheVal("17, Основание поступления на баланс", row.receiptBasisinBalance)
-				        .isReferenceValue(new ReceivingReasonDAO(ses), row.receiptBasisinBalance).getErr());
-				rowErr.add(new CheVal("18 Модель", row.model).isOkAnyway().getErr());
-				rowErr.add(new CheVal("19, Год ввода в эксплуатацию", row.commissioningYear.getContents()).isYear(row.commissioningYear).getErr());
-				rowErr.add(new CheVal("20, Год приобретения ", row.acquisitionYear.getContents()).isYear(row.acquisitionYear).getErr());
-				rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", row.isReadyToOperation).isNotEmpty(row.isReadyToOperation)
-				        .isValueOfList(trueVal, falseVal, row.isReadyToOperation).getErr());
 
 				rowErr.removeAll(Arrays.asList(null, ""));
 				if (!rowErr.isEmpty()) {
@@ -198,22 +178,84 @@ public class MPXLImporter {
 						break;
 					}
 				}
-
 				processed++;
 			} else if (mode == MPXLImporter.PROCESS) {
-				if (load(row, bh, readers)) {
-					processed++;
+				if (uploadtype.equals("upload")) {
+					if (load(row, bh, readers)) {
+						processed++;
+					}
+				} else if (uploadtype.equals("writeoff")) {
+					if (writeOff(row, bh)) {
+						processed++;
+					}
+				} else if (uploadtype.equals("transfer")) {
+					if (transfer(row, bh, addFilePath)) {
+						processed++;
+					}
 				}
-				;
 			}
 		}
 		long stop = System.currentTimeMillis();
 		long diff = stop - start;
 		// System.out.println("Old method: " + diff);
+		if (uploadtype.equals("transfer") && mode == MPXLImporter.PROCESS) {
+			order.setProperties(propList);
+			try {
+				orderDao.update(order);
+			} catch (SecureException e) {
+				Server.logger.errorLogEntry(e);
+			}
+
+		}
+
 		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
 		result.processed = processed;
 		result.skipped = skipped;
 		return result;
+	}
+
+	private List<List<ErrorDescription>> preLoad(XLRow row, String region, String district) {
+		List<List<ErrorDescription>> rowErr = new ArrayList<List<ErrorDescription>>();
+		rowErr.add(new CheVal("1, КОФ", row.kof).isNotEmpty(row.kof).getErr());
+		rowErr.add(new CheVal("2, КУФ", row.kuf).isNotEmpty(row.kuf).isKufType(row.kuf).getErr());
+		rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
+		List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
+
+		for (Property p : pList) {
+			if (p.getObjectName().equalsIgnoreCase(row.name)) {
+				rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name).isNotUniqueMessage().getErr());
+				break;
+			}
+
+		}
+
+		rowErr.add(new CheVal("4, Наименование", row.name).isNotEmpty(row.name).getErr());
+		rowErr.add(new CheVal("5, Код права на имущество", row.propertyCode).isNotEmpty(row.propertyCode)
+		        .isReferenceValue(new PropertyCodeDAO(ses), row.propertyCode).getErr());
+		rowErr.add(new CheVal("6, Дата принятия на баланс", row.acceptanceDateCell.getContents()).isDate(row.acceptanceDateCell).getErr());
+		rowErr.add(new CheVal("7, Страна", row.country).isReferenceValue(new CountryDAO(ses), row.country).getErr());
+		rowErr.add(new CheVal("8, Регион", region).isNotEmpty(row.preparedRegion).isReferenceValue(new RegionDAO(ses), row.preparedRegion).getErr());
+		rowErr.add(new CheVal("9, Район", district).isNotEmpty(row.preparedDistrict).isReferenceValue(new CityDistrictDAO(ses), row.preparedDistrict)
+		        .getErr());
+		rowErr.add(new CheVal("10, Адрес", row.address).isNotEmpty(row.address).getErr());
+		rowErr.add(new CheVal("11, Первоначальная стоимость", row.originalCostCell.getContents()).isFloatNumber(row.originalCostCell).getErr());
+		rowErr.add(new CheVal("12, Накопленная амортизация", row.cumulativeDepreciationCell.getContents())
+		        .isFloatNumber(row.cumulativeDepreciationCell).getErr());
+		rowErr.add(new CheVal("13, Убыток от обесценения", row.impairmentLossCell.getContents()).isFloatNumber(row.impairmentLossCell).getErr());
+		rowErr.add(new CheVal("14, Балансовая стоимость", row.balanceCostCell.getContents()).isFloatNumber(row.balanceCostCell).getErr());
+		rowErr.add(new CheVal("15, Сумма переоценки", row.revaluationAmountCell.getContents()).isFloatNumber(row.revaluationAmountCell).getErr());
+		rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", row.residualCostCell.getContents()).isFloatNumber(row.residualCostCell)
+		        .getErr());
+		rowErr.add(new CheVal("17, Основание поступления на баланс", row.receiptBasisinBalance)
+		        .isReferenceValue(new ReceivingReasonDAO(ses), row.receiptBasisinBalance).getErr());
+		rowErr.add(new CheVal("18 Модель", row.model).isOkAnyway().getErr());
+		rowErr.add(new CheVal("19, Год ввода в эксплуатацию", row.commissioningYear.getContents()).isYear(row.commissioningYear).getErr());
+		rowErr.add(new CheVal("20, Год приобретения ", row.acquisitionYear.getContents()).isYear(row.acquisitionYear).getErr());
+		rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", row.isReadyToOperation).isNotEmpty(row.isReadyToOperation)
+		        .isValueOfList(trueVal, falseVal, row.isReadyToOperation).getErr());
+
+		return rowErr;
+
 	}
 
 	private boolean load(XLRow row, Organization bh, String[] readers) {
@@ -273,13 +315,24 @@ public class MPXLImporter {
 		prop.setBalanceHolder(bh);
 
 		try {
-			// propertyDao.add(prop);
-			processed++;
+			propertyDao.add(prop);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return true;
+
+	}
+
+	private List<List<ErrorDescription>> preProcess(XLRow row, Organization bh) {
+		List<List<ErrorDescription>> rowErr = new ArrayList<List<ErrorDescription>>();
+		rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
+		List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
+
+		if (pList.size() > 1) {
+			rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name).isNotUniqueMessage().getErr());
+		}
+		return rowErr;
 
 	}
 
@@ -290,8 +343,7 @@ public class MPXLImporter {
 			if (prop.getBalanceHolder().equals(bh)) {
 				prop.setPropertyStatusType(PropertyStatusType.WRITTENOFF);
 				try {
-					propertyDao.add(prop);
-					processed++;
+					propertyDao.update(prop);
 					return true;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -301,37 +353,74 @@ public class MPXLImporter {
 		return false;
 	}
 
-	private boolean transfer(XLRow row, Organization bh) {
+	private boolean transfer(XLRow row, Organization bh, String addFilePath) {
 
 		CheVal cv = new CheVal();
 		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
-		for (Property prop : pList) {
-			if (prop.getBalanceHolder().equals(bh)) {
-				List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
-				PrevBalanceHolder pbh = new PrevBalanceHolder();
-				pbh.setBalanceHolder(prop.getBalanceHolder());
-				pbh.setProperty(prop);
-				pbh.setReaders(prop.getReaders());
-				pbh.setEditors(prop.getEditors());
+		Property prop = null;
+		if (pList.size() > 1) {
+			return false;
+		} else {
+			prop = pList.get(0);
+		}
 
-				try {
-					pbhDao.add(pbh);
-					pbhl.add(pbhDao.findById(pbh.getId()));
-					prop.setPrevBalanceHolders(pbhl);
-					prop.setBalanceHolder(bh);
-				} catch (SecureException e) {
-					Server.logger.errorLogEntry(e);
-				}
-				try {
-					propertyDao.add(prop);
-					processed++;
-					return true;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		if (prop != null) {
+			List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
+			PrevBalanceHolder pbh = new PrevBalanceHolder();
+			pbh.setBalanceHolder(prop.getBalanceHolder());
+			pbh.setProperty(prop);
+			pbh.setReaders(prop.getReaders());
+			pbh.setEditors(prop.getEditors());
+
+			try {
+				pbhDao.add(pbh);
+				pbhl.add(pbhDao.findById(pbh.getId()));
+				prop.setPrevBalanceHolders(pbhl);
+				prop.setBalanceHolder(bh);
+			} catch (SecureException e) {
+				Server.logger.errorLogEntry(e);
 			}
+
+			try {
+				propertyDao.update(prop);
+				propList.add(prop);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
 		return false;
+	}
+
+	private Order composeNewOrder(String fn) {
+		Order entity = new Order();
+		IUser<Long> user = ses.getUser();
+		entity.setDescription("");
+		entity.setRegNumber("");
+		entity.setAppliedRegDate(new Date());
+		entity.setOrderStatus(OrderStatus.ACTIVE);
+
+		File file = new File(fn);
+		InputStream is;
+		try {
+			is = new FileInputStream(file);
+			Attachment att = new Attachment();
+			att.setRealFileName(fn);
+			att.setFile(IOUtils.toByteArray(is));
+			entity.getAttachments().add(att);
+		} catch (IOException e) {
+			Server.logger.errorLogEntry(e);
+		}
+
+		entity.addReaderEditor(user);
+		try {
+			entity = orderDao.add(entity);
+		} catch (SecureException e) {
+			e.printStackTrace();
+		}
+		return entity;
+
 	}
 
 	private static boolean checkForEmptyRow(Cell[] cells) {

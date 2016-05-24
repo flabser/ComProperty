@@ -28,7 +28,6 @@ public class ImportFileChecker extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData) {
 		devPrint(formData);
 		boolean stopIfWrong = false, writeOff = false, isTransfer = false;
-		Organization recipiеnt = null;
 		OrganizationDAO oDao = new OrganizationDAO(session);
 
 		String sie = formData.getValueSilently("stopiferror");
@@ -40,12 +39,7 @@ public class ImportFileChecker extends _DoPage {
 			writeOff = true;
 		}
 
-		String uo = formData.getValueSilently("transferproperty");
-		if (uo.equals("1")) {
-			isTransfer = true;
-			List<Organization> oList = oDao.findAll();
-			recipiеnt = (Organization) Util.getRndListElement(oList);
-		}
+		String uo = formData.getValueSilently("uploadtype");
 
 		ImportFileEntry uf = null;
 		LanguageCode lang = session.getLang();
@@ -53,7 +47,6 @@ public class ImportFileChecker extends _DoPage {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
-
 				String fileAttr = UploadUpdatingForm.getSesAttrName(fsid, fn);
 				uf = (ImportFileEntry) session.getAttribute(fileAttr);
 
@@ -61,6 +54,8 @@ public class ImportFileChecker extends _DoPage {
 				File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 
 				String excelFile = userTmpDir + File.separator + fn;
+				String addFileName = excelFile;
+
 				String ext = FilenameUtils.getExtension(excelFile);
 				if (ext.equalsIgnoreCase("xls")) {
 					File xlsFile = new File(excelFile);
@@ -75,12 +70,14 @@ public class ImportFileChecker extends _DoPage {
 						return;
 					}
 					Sheet sheet = workbook.getSheet(0);
+					Organization randomOrg = null;
 
 					List<Organization> oList = oDao.findAll();
-					Organization org = (Organization) Util.getRndListElement(oList);
+					randomOrg = (Organization) Util.getRndListElement(oList);
+
 					String[] readers = formData.getListOfValuesSilently("readers");
 
-					Outcome result = id.process(sheet, session, stopIfWrong, writeOff, org, readers, isTransfer, recipiеnt);
+					Outcome result = id.process(sheet, session, stopIfWrong, writeOff, randomOrg, readers, isTransfer, uo, addFileName);
 
 					if (result.sheetErr.size() > 0) {
 						uf.setStatus(ImportFileEntry.CHECKING_ERROR);
@@ -88,8 +85,9 @@ public class ImportFileChecker extends _DoPage {
 						uf.setSheetErrs(result.sheetErr);
 					} else {
 						uf.setStatus(ImportFileEntry.CHECKED);
-						uf.setLocalizedMsg(Integer.toString(result.processed));
+						uf.setLocalizedMsg(" Ok, проверено записей: " + Integer.toString(result.processed));
 					}
+
 				} else {
 					uf.setStatus(ImportFileEntry.CHECKING_ERROR);
 					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));

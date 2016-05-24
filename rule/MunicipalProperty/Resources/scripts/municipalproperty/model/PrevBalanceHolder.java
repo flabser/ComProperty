@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.scripting._Session;
+import com.exponentus.util.Util;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import staff.model.Organization;
@@ -45,6 +47,19 @@ public class PrevBalanceHolder extends SecureAppEntity<UUID> {
 
 	public void setBalanceHolder(Organization balanceHolder) {
 		this.balanceHolder = balanceHolder;
+	}
+
+	@Override
+	public String getShortXMLChunk(_Session ses) {
+		return getFullXMLChunk(ses);
+	}
+
+	@Override
+	public String getFullXMLChunk(_Session ses) {
+		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<regdate>" + Util.simpleDateTimeFormat.format(regDate) + "</regdate>");
+		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getLocalizedName(ses.getLang()) + "</balanceholder>");
+		return chunk.toString();
 	}
 
 }
