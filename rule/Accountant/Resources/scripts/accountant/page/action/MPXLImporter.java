@@ -10,8 +10,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -200,6 +202,11 @@ public class MPXLImporter {
 		// System.out.println("Old method: " + diff);
 		if (uploadtype.equals("transfer") && mode == MPXLImporter.PROCESS) {
 			order.setProperties(propList);
+			Set<Long> allReaders = new HashSet<Long>();
+			for (Property prop : propList) {
+				allReaders.addAll(prop.getReaders());
+			}
+			order.setReaders(allReaders);
 			try {
 				orderDao.update(order);
 			} catch (SecureException e) {
