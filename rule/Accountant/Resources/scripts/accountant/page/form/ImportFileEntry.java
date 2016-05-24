@@ -18,7 +18,10 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 	public final static int LOADED = 3;
 	public final static int CHECKING_ERROR = 4;
 	public final static int LOADING_ERROR = 5;
+	public static final int INIT = 0;
 
+	private String step = "";
+	private String loadType = "";
 	private String fileName = "";
 	private Organization balanceHolder;
 	private List<Long> readers;
@@ -30,6 +33,14 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 	private Map<Integer, List<List<ErrorDescription>>> sheetErrs;
 	private String orderFileName = "";
 	private Organization recipient;
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
 
 	public String getFileName() {
 		return fileName;
@@ -104,9 +115,19 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		this.recipient = recipient;
 	}
 
+	public String getLoadType() {
+		return loadType;
+	}
+
+	public void setLoadType(String loadType) {
+		this.loadType = loadType;
+	}
+
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
+		chunk.append("<step>" + step + "</step>");
+		chunk.append("<loadtype>" + loadType + "</loadtype>");
 		chunk.append("<filename>" + fileName + "</filename>");
 		chunk.append("<status>" + status + "</status>");
 		if (balanceHolder != null) {
