@@ -32,6 +32,11 @@ form[data-edit=false] [data-upload] {
     }
 }
 
+.view.property-orders {
+    margin: 0 auto;
+    width: 98%
+}
+
 
 /* .property-filter */
 

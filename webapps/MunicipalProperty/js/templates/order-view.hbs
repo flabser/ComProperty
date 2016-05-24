@@ -1,5 +1,16 @@
-{{#each list as |model|}}
-    <div>
-        <a href="{{unescapeXml model.url}}">{{model.description}}</a>
+<div class="view property-orders">
+    <div class="entries">
+        {{#each list as |model|}}
+            <div class="entry-wrap">
+                <div class="entry">
+                    <a class="entry-link" href="{{unescapeXml model.url}}">
+                        <div class="entry-fields">
+                            <span class="span2">{{model.regNumber}}</span>
+                            <span>{{model.description}}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {{/each}}
     </div>
-{{/each}}
+</div>
