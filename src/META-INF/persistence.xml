@@ -237,6 +237,7 @@
         <class>municipalproperty.model.StrategicObject</class>
         <class>municipalproperty.model.IntangibleAsset</class>
         <class>municipalproperty.model.PrevBalanceHolder</class>
+         <class>municipalproperty.model.Order</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>

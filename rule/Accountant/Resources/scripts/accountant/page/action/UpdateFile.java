@@ -72,23 +72,17 @@ public class UpdateFile extends _DoPage {
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		boolean writeOff = false, isTransfer = false;
-		;
+
 		devPrint(formData);
 		LanguageCode lang = session.getLang();
 		OrganizationDAO dao = new OrganizationDAO(session);
-		Organization recipiеnt = null;
 
 		String wo = formData.getValueSilently("writeoff");
 		if (wo.equals("1")) {
 			writeOff = true;
 		}
 
-		String uo = formData.getValueSilently("transferproperty");
-		if (uo.equals("1")) {
-			isTransfer = true;
-			UUID bhId = UUID.fromString(formData.getValueSilently("recipient"));
-			recipiеnt = dao.findById(bhId);
-		}
+		String uo = formData.getValueSilently("uploadtype");
 
 		try {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
@@ -102,6 +96,7 @@ public class UpdateFile extends _DoPage {
 					IUser<Long> user = session.getUser();
 					File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 					String fileName = userTmpDir + File.separator + fn;
+					String addFileName = fileName;
 					String ext = FilenameUtils.getExtension(fileName);
 					Organization org = null;
 					if (ext.equalsIgnoreCase("xls")) {
@@ -120,7 +115,7 @@ public class UpdateFile extends _DoPage {
 								return;
 							}
 							Sheet sheet = workbook.getSheet(0);
-							Outcome result = id.process(sheet, session, true, writeOff, org, readers, isTransfer, recipiеnt);
+							Outcome result = id.process(sheet, session, true, writeOff, org, readers, isTransfer, uo, addFileName);
 
 							if (result.sheetErr.size() > 0) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
@@ -128,7 +123,7 @@ public class UpdateFile extends _DoPage {
 								uf.setSheetErrs(result.sheetErr);
 							} else {
 								uf.setStatus(ImportFileEntry.LOADED);
-								uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang) + ", "
+								uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang) + ", обработано записей: "
 								        + Integer.toString(result.processed) + "(" + Integer.toString(result.skipped) + ")");
 							}
 						} catch (IllegalArgumentException e) {

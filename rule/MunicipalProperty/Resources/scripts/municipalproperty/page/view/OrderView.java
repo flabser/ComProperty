@@ -1,9 +1,15 @@
 package municipalproperty.page.view;
 
+import java.util.UUID;
+
 import com.exponentus.dataengine.jpa.ViewPage;
+import com.exponentus.exception.SecureException;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
+import com.exponentus.scripting.actions._Action;
+import com.exponentus.scripting.actions._ActionBar;
+import com.exponentus.scripting.actions._ActionType;
 
 import municipalproperty.dao.OrderDAO;
 import municipalproperty.dao.PropertyDAO;
@@ -30,8 +36,23 @@ public class OrderView extends AbstractMunicipalPropertyView {
 				addContent(new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(), session));
 			}
 		} else {
-			// addContent(getSimpleActionBar(session, "order-form", lang));
+			_ActionBar actionBar = new _ActionBar(session);
+			actionBar.addAction(new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
+			addContent(actionBar);
 			addContent(getViewPage(orderDAO, formData));
+		}
+	}
+
+	@Override
+	public void doDELETE(_Session session, _WebFormData formData) {
+		OrderDAO dao = new OrderDAO(session);
+		for (String id : formData.getListOfValuesSilently("docid")) {
+			Order c = dao.findById(UUID.fromString(id));
+			try {
+				dao.delete(c);
+			} catch (SecureException e) {
+				setError(e);
+			}
 		}
 	}
 }
