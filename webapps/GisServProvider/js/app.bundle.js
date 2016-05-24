@@ -3348,7 +3348,7 @@ var knca = (function() {
                         storage.pwd = '';
                         render();
                     }
-                }, 400);
+                }, 260);
             });
             $(edsNode).find('[name=cancel]').on('click', function() {
                 hidePropertyModal();
@@ -3504,6 +3504,9 @@ function AppletIsReady() {
 }
 
 $(function() {
+    // fix fox memorize checkbox, blyat'
+    $(':checkbox.all').attr('checked', false);
+
     // toggle theme
     $('[data-toggle-theme]').click(function() {
         var themeName = $(this).data('toggle-theme');

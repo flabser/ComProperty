@@ -3348,7 +3348,7 @@ var knca = (function() {
                         storage.pwd = '';
                         render();
                     }
-                }, 400);
+                }, 260);
             });
             $(edsNode).find('[name=cancel]').on('click', function() {
                 hidePropertyModal();
@@ -3558,6 +3558,9 @@ $(document).ready(function() {
 
 $(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
+
+    // fix fox memorize checkbox, blyat'
+    $(':checkbox.all').attr('checked', false);
 
     $('input[type=number]').each(function() {
         $(this).attr({

@@ -1,4 +1,7 @@
 $(function() {
+    // fix fox memorize checkbox, blyat'
+    $(':checkbox.all').attr('checked', false);
+
     // toggle theme
     $('[data-toggle-theme]').click(function() {
         var themeName = $(this).data('toggle-theme');
