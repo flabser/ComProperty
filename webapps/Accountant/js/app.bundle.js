@@ -3732,7 +3732,7 @@ function checkFile(fileId, fsid, $context) {
         stopIfError = '&' + stopIfError;
     }
 
-    var uploadtype = $('input[name=uploadtype]', $context).serialize();
+    var uploadtype = $('input[name=uploadtype]').serialize();
     if (uploadtype != '') {
         uploadtype = '&' + uploadtype;
     }
@@ -4063,6 +4063,11 @@ $(document).ready(function() {
     var $wizard = $(".wizard");
     $wizard.find('.js-step-1').on('click', function(e) {
         insertParam('step', 1);
+        reloadPage();
+    });
+    $wizard.find('.js-step-2').on('click', function(e) {
+        insertParam('step', 2);
+        insertParam('uploadtype', $("input[name=uploadtype]:checked").val());
         reloadPage();
     });
    $("body").find('.js-check').on('click', function(e) {

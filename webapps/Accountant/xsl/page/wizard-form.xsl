@@ -59,6 +59,7 @@
         </xsl:choose>
         <input type="hidden" name="filename" value="{//fields/filename}"/>
         <input type="hidden" name="fsid" value="{page/response/content/formsesid}"/>
+        <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
     </xsl:template>
 
     <xsl:template name="tpl_step_0">
@@ -88,39 +89,7 @@
     <xsl:template name="tpl_step_1">
         <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Проверка файла</p>
-            </div>
-            <div style="height:90px">
-                <ul class="nb-dialog-list">
-                    <li>
-                        <label>
-                            <input type="checkbox" name="stopiferror" value="1">
-                                <xsl:attribute name="checked" select="checked"/>
-                                <span>
-                                    Прервать проверку при ошибке
-                                </span>
-                            </input>
-                        </label>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn js-check">
-                            <span>Проверить</span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-           <div style="text-align:right;">
-                <button type="button" class="btn btn js-exit">
-                    <span>Выход</span>
-                </button>
-           </div>
-        </div>
-    </xsl:template>
-
-    <xsl:template name="tpl_step_2">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
-            <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Выберите тип обновления </p>
+                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Выберите тип обновления </p>
             </div>
             <div style="height:90px">
                 <ul class="nb-dialog-list">
@@ -151,21 +120,51 @@
                             </input>
                         </label>
                     </li>
-                    <li>
+                </ul>
+            </div>
+            <div style="text-align:right;">
+                <button type="button" class="btn btn js-step-back">
+                    <span>Назад</span>
+                </button>
+                <button type="button" class="btn btn js-step-2">
+                    <span>Далее</span>
+                </button>
+            </div>
+        </div>
+    </xsl:template>
 
+    <xsl:template name="tpl_step_2">
+        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+            <div>
+                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Проверка файла</p>
+            </div>
+            <div style="height:90px">
+                <ul class="nb-dialog-list">
+                    <li>
+                        <label>
+                            <input type="checkbox" name="stopiferror" value="1">
+                                <xsl:attribute name="checked" select="checked"/>
+                                <span>
+                                    Прервать проверку при ошибке
+                                </span>
+                            </input>
+                        </label>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn js-check">
+                            <span>Проверить</span>
+                        </button>
                     </li>
                 </ul>
             </div>
            <div style="text-align:right;">
-               <button type="button" class="btn btn js-step-back">
-                   <span>Назад</span>
-               </button>
-                <button type="button" class="btn btn js-step-2">
-                    <span>Далее</span>
+                <button type="button" class="btn btn js-exit">
+                    <span>Выход</span>
                 </button>
            </div>
         </div>
     </xsl:template>
+
 
     <xsl:template name="tpl_step_3">
         <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
