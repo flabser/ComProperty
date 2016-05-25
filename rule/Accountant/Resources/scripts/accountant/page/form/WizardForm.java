@@ -43,6 +43,9 @@ public class WizardForm extends _DoPage {
 		if (step.equals("0")) {
 			fsid = Util.generateRandomAsText();
 			uf.setStatus(ImportFileEntry.INIT);
+			uf.setLocalizedMsg("");
+			uf.setFileName("");
+			uf.setOrderFileName("");
 		} else if (step.equals("1")) {
 			String uo = formData.getValueSilently("uploadtype");
 			uf.setLoadType(uo);
