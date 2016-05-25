@@ -74,9 +74,12 @@ public class WizardForm extends _DoPage {
 			if (!bh.isEmpty()) {
 				uf.setBalanceHolder(oDao.findById(bh));
 			}
-			uf.setFileName(getFileNameByType(ses, fsid, "uporder"));
+			uf.setOrderFileName(getFileNameByType(ses, fsid, "uporder"));
 		} else if (step.equals("3")) {
 			uf.setStatus(ImportFileEntry.INIT);
+			uf.setLocalizedMsg("");
+			uf.setFileName("");
+			uf.setOrderFileName("");
 		}
 
 		addValue("formsesid", fsid);
