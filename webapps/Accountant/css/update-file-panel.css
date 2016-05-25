@@ -121,7 +121,7 @@
 }
 
 .js-select-recipients, .js-attach-order{
-    display: none;
+   /* display: none;*/
     margin-top:3px !important;
 }
 
