@@ -159,6 +159,7 @@
                     <span>Выход</span>
                 </button>
            </div>
+            <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
         </div>
     </xsl:template>
 

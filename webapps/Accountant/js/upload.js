@@ -104,7 +104,7 @@ function checkFile(fileId, fsid, $context) {
         stopIfError = '&' + stopIfError;
     }
 
-    var uploadtype = $('input[name=uploadtype]').serialize();
+    var uploadtype = $('input[name=uploadtype]', $context).serialize();
     if (uploadtype != '') {
         uploadtype = '&' + uploadtype;
     }
