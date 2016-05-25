@@ -25,9 +25,9 @@ function uploadUpdate(fileInput, fsid) {
             if(fileInput.name == 'uporder'){
                 $(".update-order").text(fileName);
             }else {
-                renderFilePanel(fileName, fsid);
-                clearLocalStorage();
-                $("#btn-update-file-excel").addClass("disabled");
+                //renderFilePanel(fileName, fsid);
+                //clearLocalStorage();
+                //$("#btn-update-file-excel").addClass("disabled");
             }
             return result;
         },
@@ -41,6 +41,7 @@ function uploadUpdate(fileInput, fsid) {
             });
             fileInput.form.reset();
             insertParam('fsid', fsid);
+            insertParam('step', 1);
             if(fileInput.name != 'uporder'){
                 reloadPage()
             }
@@ -419,7 +420,7 @@ function initCachedUpdateForm() {
     }
 }
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     initCachedUpdateForm();
     nb.fetchTranslations();
     loadDataLocalStorage();
@@ -428,4 +429,39 @@ $(document).ready(function() {
     }
     toggleLoadButtonState($(".transferproperty").closest("form"));
     $("button").attr("disabled", false);
+});*/
+
+$(document).ready(function() {
+    var $wizard = $(".wizard");
+    $wizard.find('.js-step-1').on('click', function(e) {
+        insertParam('step', 1);
+        reloadPage();
+    });
+   $("body").find('.js-check').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $btn = $(this);
+
+        $btn.attr('disabled', true);
+        var fileName= $("input[name=filename]").val();
+        var fsid= $("input[name=fsid]").val();
+       alert(fileName)
+        //
+        checkFile(fileName, fsid, $wizard).then(function(result) {
+            /*$btn.parents('.panel').addClass('open');
+             if (result == '') {
+             $tpl.find('.js-load').removeAttr('disabled');
+             $tpl.find('.js-select-balance-holder').removeAttr('disabled');
+             $tpl.find('.js-select-readers').removeAttr('disabled');
+             }
+             $tpl.find('.js-check-result').html(result);*/
+            //
+            //reloadPage();
+        }, function(err) {
+            // $btn.parents('.panel').addClass('open');
+            // $tpl.find('.js-check-result').html(err.statusText);
+            //
+            //reloadPage();
+        });
+    });
 });
