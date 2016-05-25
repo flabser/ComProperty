@@ -442,7 +442,7 @@ $(document).ready(function() {
         e.preventDefault();
         var $btn = $(this);
 
-        $btn.attr('disabled', true);
+        //$btn.attr('disabled', true);
         var fileName= $("input[name=filename]").val();
         var fsid= $("input[name=fsid]").val();
         //
