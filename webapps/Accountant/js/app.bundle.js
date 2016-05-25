@@ -3669,10 +3669,10 @@ function uploadUpdate(fileInput, fsid) {
             });
             fileInput.form.reset();
             insertParam('fsid', fsid);
-            insertParam('step', 1);
-            insertParam('uploadtype', $("input[name=uploadtype]:checked").val());
             if(fileInput.name != 'uporder'){
-                reloadPage()
+                insertParam('step', 1);
+                insertParam('uploadtype', $("input[name=uploadtype]:checked").val());
+                reloadPage();
             }
         }
     });
@@ -4062,13 +4062,15 @@ function initCachedUpdateForm() {
 
 $(document).ready(function() {
     var $wizard = $(".wizard");
+    $wizard.find('.js-step-0').on('click', function(e) {
+        window.location.href="/Accountant/p?id=wizard-form&step=0";
+    });
     $wizard.find('.js-step-1').on('click', function(e) {
         insertParam('step', 1);
         reloadPage();
     });
     $wizard.find('.js-step-2').on('click', function(e) {
         insertParam('step', 2);
-        insertParam('uploadtype', $("input[name=uploadtype]:checked").val());
         reloadPage();
     });
    $("body").find('.js-check').on('click', function(e) {
@@ -4089,12 +4091,82 @@ $(document).ready(function() {
              }
              $tpl.find('.js-check-result').html(result);*/
             //
-            //reloadPage();
+            reloadPage();
         }, function(err) {
             // $btn.parents('.panel').addClass('open');
             // $tpl.find('.js-check-result').html(err.statusText);
             //
-            //reloadPage();
+            reloadPage();
         });
     });
+    $("body").find('.js-select-balance-holder').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).parents('.panel').addClass('open');
+        nbApp.choiceBalanceHolder(this, function() {
+            //setBalanceholderToStorage();
+            //toggleLoadButtonState($tpl);
+        });
+        $("body").find('.errormsg').remove();
+    });
+
+    $("body").find('.js-select-readers').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).parents('.panel').addClass('open');
+        nbApp.choiceReaders(this, function() {
+            //setReaderToStorage();
+            //setReaderNameToStorage();
+            //toggleLoadButtonState($tpl);
+        });
+        $("body").find('.errormsg').remove();
+    });
+
+    $wizard.find('.js-load').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var fileName= $("input[name=filename]").val();
+        var fsid= $("input[name=fsid]").val();
+        //setLastFileToStorage(fileName);
+        if($('input[name=uploadtype]') == 'writeoff'){
+            nbApp.confirmWriteOff(function() {
+                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
+                    reloadPage();
+                }, function() {
+                    reloadPage();
+                });
+            });
+        }else{
+            if($('input[name=uploadtype]') == 'transfer'){
+                nbApp.confirmTransfer(function() {
+                    loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                        reloadPage();
+                    }, function() {
+                        reloadPage();
+                    });
+                });
+            }else{
+                $(this).attr('disabled', true);
+                loadFile(fileName, $tpl.serialize(), fsid).then(function () {
+                    // $tpl.addClass('upload-success');
+                    reloadPage();
+                }, function () {
+                    reloadPage();
+                });
+            }
+        }
+
+    });
+
+    $wizard.find('.js-select-recipients').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        nbApp.choicePropertyRecipient(this, function() {
+            toggleLoadButtonState($tpl);
+            //$('.js-load').attr('disabled', false);
+            //setRecipientToStorage();
+        });
+        $wizard.find('.errormsg').remove();
+    });
+
 });

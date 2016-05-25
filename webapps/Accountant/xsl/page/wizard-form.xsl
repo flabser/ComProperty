@@ -43,6 +43,10 @@
             <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this, {$fsid})"
                    accept="application/vnd.ms-excel"/>
         </form>
+        <form class="hidden" method="POST" enctype="multipart/form-data">
+            <xsl:variable name="fsid" select="//content/formsesid"/>
+            <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})"/>
+        </form>
         <xsl:choose>
             <xsl:when test="//fields/step =0">
                 <xsl:call-template name="tpl_step_0"/>
@@ -96,19 +100,11 @@
                             </input>
                         </label>
                     </li>
-                    <li>
-                        <label class="btn btn-lg btn-update-file-excel" id="btn-update-file-excel" for="upfile">
-                            <i class="fa fa-file-excel-o"></i>
-                            <span>
-                                <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
-                            </span>
-                        </label>
-                    </li>
                 </ul>
 
             </div>
            <div style="text-align:right;">
-                <button type="button" class="btn btn js-exit">
+                <button type="button" class="btn btn js-step-1">
                     <span>Выход</span>
                 </button>
            </div>
@@ -140,10 +136,13 @@
                 </ul>
             </div>
             <div style="text-align:right;">
-                <button type="button" class="btn btn js-back">
+                <button type="button" class="btn btn js-step-0">
                     <span>Назад</span>
                 </button>
                 <button type="button" class="btn btn js-step-2">
+                    <xsl:if test="//fields/status != 2">
+                        <xsl:attribute name="disabled"/>
+                    </xsl:if>
                     <span>Далее</span>
                 </button>
             </div>
@@ -153,34 +152,100 @@
 
     <xsl:template name="tpl_step_2">
         <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
-            <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Проверка файла</p>
-            </div>
-            <div style="height:90px">
-                <ul class="nb-dialog-list">
-                    <li>
-                        <label>
-                            <input type="checkbox" name="stopiferror" value="1">
-                                <xsl:attribute name="checked" select="checked"/>
-                                <span>
-                                    Прервать проверку при ошибке
-                                </span>
-                            </input>
-                        </label>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn js-check">
-                            <span>Проверить</span>
+            <xsl:if test="//fields/loadtype = 'upload'">
+                <form name="js-init-update-panel" data-file-name="{//fields/filename}">
+                    <div>
+                        <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
+                    </div>
+                    <div style="min-height:90px">
+
+                            <ul class="nb-dialog-list">
+                                <li>
+                                    <button type="button" class="btn btn js-select-balance-holder">
+                                        <span>Балансодержатель</span>
+                                    </button>
+                                    <button type="button" class="btn btn js-select-readers">
+                                        <span>Читатели</span>
+                                    </button>
+                                </li>
+                            </ul>
+                            <input type="hidden" name="balanceholder" value=""/>
+                            <input type="hidden" name="status" value="{//fields/status}"/>
+                            <div>
+                                <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                                <ul class="update-readers" data-input="readers"></ul>
+                                <ul class="update-recipients" data-input="recipient"></ul>
+                                <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
+                            </div>
+                            <div class="js-check-result">
+                                <xsl:apply-templates select="sheeterrs"/>
+                            </div>
+                    </div>
+                   <div style="text-align:right;">
+                        <button type="button" class="btn btn js-step-3">
+                            <span>Загрузить</span>
                         </button>
-                    </li>
-                </ul>
-            </div>
-           <div style="text-align:right;">
-                <button type="button" class="btn btn js-exit">
-                    <span>Выход</span>
-                </button>
-           </div>
-            <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
+                   </div>
+                    <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
+                </form>
+            </xsl:if>
+
+            <xsl:if test="//fields/loadtype = 'writeoff'">
+                <form name="js-init-update-panel" data-file-name="{//fields/filename}">
+                    <div>
+                        <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
+                    </div>
+                    <div style="min-height:90px">
+
+
+                    </div>
+                   <div style="text-align:right;">
+                        <button type="button" class="btn btn js-step-3">
+                            <span>Списать</span>
+                        </button>
+                   </div>
+                    <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
+                </form>
+            </xsl:if>
+
+            <xsl:if test="//fields/loadtype = 'transfer'">
+                <form name="js-init-update-panel" data-file-name="{//fields/filename}">
+                    <div>
+                        <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
+                    </div>
+                    <div style="min-height:90px">
+
+                            <ul class="nb-dialog-list">
+                                <li>
+                                    <button type="button" class="btn btn js-select-recipients" style="margin-top:3px; padding-bottom:11px">
+                                        <span>Получатели</span>
+                                    </button>
+                                    <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
+                                        <i class="fa fa-file-text-o"></i>
+                                        <span>Прикрепить постановление</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <input type="hidden" name="balanceholder" value=""/>
+                            <input type="hidden" name="status" value="{//fields/status}"/>
+                            <div>
+                                <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                                <ul class="update-readers" data-input="readers"></ul>
+                                <ul class="update-recipients" data-input="recipient"></ul>
+                                <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
+                            </div>
+                            <div class="js-check-result">
+                                <xsl:apply-templates select="sheeterrs"/>
+                            </div>
+                    </div>
+                   <div style="text-align:right;">
+                        <button type="button" class="btn btn js-step-3">
+                            <span>Передать</span>
+                        </button>
+                   </div>
+                    <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
+                </form>
+            </xsl:if>
         </div>
     </xsl:template>
 
@@ -188,29 +253,13 @@
     <xsl:template name="tpl_step_3">
         <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <div style="height:100px">
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 4</p>
+                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Результат</p>
             </div>
            <div style="text-align:right;">
                <button type="button" class="btn btn js-step-back">
                    <span>Назад</span>
                </button>
                 <button type="button" class="btn btn js-step-3">
-                    <span>Далее</span>
-                </button>
-           </div>
-        </div>
-    </xsl:template>
-
-    <xsl:template name="tpl_step_4">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
-            <div style="height:100px">
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 5</p>
-            </div>
-           <div style="text-align:right;">
-               <button type="button" class="btn btn js-step-back">
-                   <span>Назад</span>
-               </button>
-                <button type="button" class="btn btn js-step-4">
                     <span>Далее</span>
                 </button>
            </div>
