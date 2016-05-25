@@ -4102,7 +4102,7 @@ $(document).ready(function() {
     $("body").find('.js-select-balance-holder').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        $(this).parents('.panel').addClass('open');
+        //$(this).parents('.panel').addClass('open');
         nbApp.choiceBalanceHolder(this, function() {
             //setBalanceholderToStorage();
             //toggleLoadButtonState($tpl);
@@ -4113,7 +4113,7 @@ $(document).ready(function() {
     $("body").find('.js-select-readers').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        $(this).parents('.panel').addClass('open');
+        //$(this).parents('.panel').addClass('open');
         nbApp.choiceReaders(this, function() {
             //setReaderToStorage();
             //setReaderNameToStorage();
@@ -4122,7 +4122,7 @@ $(document).ready(function() {
         $("body").find('.errormsg').remove();
     });
 
-    $wizard.find('.js-load').on('click', function(e) {
+    $wizard.find('.js-step-3').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
         var fileName= $("input[name=filename]").val();
@@ -4139,15 +4139,15 @@ $(document).ready(function() {
         }else{
             if($('input[name=uploadtype]') == 'transfer'){
                 nbApp.confirmTransfer(function() {
-                    loadFile(fileName, $tpl.serialize(), fsid).then(function() {
+                    loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
                         reloadPage();
                     }, function() {
                         reloadPage();
                     });
                 });
             }else{
-                $(this).attr('disabled', true);
-                loadFile(fileName, $tpl.serialize(), fsid).then(function () {
+                //$(this).attr('disabled', true);
+                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function () {
                     // $tpl.addClass('upload-success');
                     reloadPage();
                 }, function () {
@@ -4162,7 +4162,7 @@ $(document).ready(function() {
         e.stopPropagation();
         e.preventDefault();
         nbApp.choicePropertyRecipient(this, function() {
-            toggleLoadButtonState($tpl);
+            //toggleLoadButtonState($tpl);
             //$('.js-load').attr('disabled', false);
             //setRecipientToStorage();
         });
