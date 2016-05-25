@@ -62,6 +62,10 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		this.status = status;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
 	public boolean isStopIfWrong() {
 		return stopIfWrong;
 	}
@@ -171,4 +175,5 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		chunk.append("</sheeterrs>");
 		return chunk.toString();
 	}
+
 }

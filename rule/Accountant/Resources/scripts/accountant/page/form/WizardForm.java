@@ -46,8 +46,12 @@ public class WizardForm extends _DoPage {
 		} else if (step.equals("1")) {
 			String uo = formData.getValueSilently("uploadtype");
 			uf.setLoadType(uo);
-			uf.setStatus(ImportFileEntry.JUST_UPLOADED);
-			uf.setFileName(getFileNameByType(ses, fsid, "upfile"));
+			String file = getFileNameByType(ses, fsid, "upfile");
+			if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
+				uf.setStatus(ImportFileEntry.JUST_UPLOADED);
+				uf.setFileName(file);
+			}
+
 		} else if (step.equals("2-upload")) {
 			String bh = formData.getValueSilently("balanceholder");
 			if (!bh.isEmpty()) {
