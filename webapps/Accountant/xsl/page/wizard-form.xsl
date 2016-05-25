@@ -68,27 +68,6 @@
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 1 - Выберите файл для обновления</p>
             </div>
             <div style="height:90px">
-                <label class="btn btn-lg btn-update-file-excel" id="btn-update-file-excel" for="upfile">
-                    <i class="fa fa-file-excel-o"></i>
-                    <span>
-                        <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
-                    </span>
-                </label>
-            </div>
-           <div style="text-align:right;">
-                <button type="button" class="btn btn js-exit">
-                    <span>Выход</span>
-                </button>
-           </div>
-        </div>
-    </xsl:template>
-
-    <xsl:template name="tpl_step_1">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
-            <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Выберите тип обновления </p>
-            </div>
-            <div style="height:90px">
                 <ul class="nb-dialog-list">
                     <li>
                         <label>
@@ -117,16 +96,58 @@
                             </input>
                         </label>
                     </li>
+                    <li>
+                        <label class="btn btn-lg btn-update-file-excel" id="btn-update-file-excel" for="upfile">
+                            <i class="fa fa-file-excel-o"></i>
+                            <span>
+                                <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+
+            </div>
+           <div style="text-align:right;">
+                <button type="button" class="btn btn js-exit">
+                    <span>Выход</span>
+                </button>
+           </div>
+        </div>
+    </xsl:template>
+
+    <xsl:template name="tpl_step_1">
+        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+            <div>
+                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Проверка файла</p>
+            </div>
+            <div style="height:90px">
+                <ul class="nb-dialog-list">
+                    <li>
+                        <label>
+                            <input type="checkbox" name="stopiferror" value="1">
+                                <xsl:attribute name="checked" select="checked"/>
+                                <span>
+                                    Прервать проверку при ошибке
+                                </span>
+                            </input>
+                        </label>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn js-check">
+                            <span>Проверить</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
             <div style="text-align:right;">
-                <button type="button" class="btn btn js-step-back">
+                <button type="button" class="btn btn js-back">
                     <span>Назад</span>
                 </button>
                 <button type="button" class="btn btn js-step-2">
                     <span>Далее</span>
                 </button>
             </div>
+            <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
         </div>
     </xsl:template>
 
