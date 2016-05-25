@@ -4073,7 +4073,6 @@ $(document).ready(function() {
         $btn.attr('disabled', true);
         var fileName= $("input[name=filename]").val();
         var fsid= $("input[name=fsid]").val();
-       alert(fileName)
         //
         checkFile(fileName, fsid, $wizard).then(function(result) {
             /*$btn.parents('.panel').addClass('open');
