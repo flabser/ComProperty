@@ -445,7 +445,10 @@ $(document).ready(function() {
         insertParam('step', 2);
         reloadPage();
     });
-    
+    $wizard.find('.js-back').on('click', function(e) {
+        window.history.back();
+    });
+
    $("body").find('.js-check').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();

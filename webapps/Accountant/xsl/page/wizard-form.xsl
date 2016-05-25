@@ -100,6 +100,14 @@
                             </input>
                         </label>
                     </li>
+                    <li>
+                        <label class="btn btn-lg btn-update-file-excel" id="btn-update-file-excel" for="upfile">
+                            <i class="fa fa-file-excel-o"></i>
+                            <span>
+                                <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
+                            </span>
+                        </label>
+                    </li>
                 </ul>
 
             </div>
@@ -238,6 +246,9 @@
                             </div>
                     </div>
                    <div style="text-align:right;">
+                        <button type="button" class="btn btn js-back()">
+                            <span>Назад</span>
+                        </button>
                         <button type="button" class="btn btn js-step-3">
                             <span>Передать</span>
                         </button>
