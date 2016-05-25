@@ -3670,6 +3670,7 @@ function uploadUpdate(fileInput, fsid) {
             fileInput.form.reset();
             insertParam('fsid', fsid);
             insertParam('step', 1);
+            insertParam('uploadtype', '');
             if(fileInput.name != 'uporder'){
                 reloadPage()
             }
