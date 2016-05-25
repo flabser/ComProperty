@@ -445,6 +445,7 @@ $(document).ready(function() {
         insertParam('step', 2);
         reloadPage();
     });
+    
    $("body").find('.js-check').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
