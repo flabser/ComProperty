@@ -69,9 +69,6 @@
             </div>
             <div style="height:90px">
                 <label class="btn btn-lg btn-update-file-excel" id="btn-update-file-excel" for="upfile">
-                    <xsl:if test="//fields/filename and //fields/filename != ''">
-                        <xsl:attribute name="class">btn btn-lg btn-update-file-excel disabled</xsl:attribute>
-                    </xsl:if>
                     <i class="fa fa-file-excel-o"></i>
                     <span>
                         <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
