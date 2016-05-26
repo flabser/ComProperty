@@ -299,6 +299,7 @@
                 </form>
             </xsl:if>
         </div>
+
         <div class="panel__body scroll-shadow update-status-{//fields/status}">
             <xsl:apply-templates select="//fields/msg"/>
             <div class="js-check-result">
