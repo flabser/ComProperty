@@ -16,6 +16,7 @@ import com.exponentus.user.IUser;
 
 import accountant.page.form.ImportFileEntry;
 import accountant.page.form.UploadUpdatingForm;
+import accountant.page.form.WizardForm;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -71,16 +72,10 @@ public class UpdateFile extends _DoPage {
 
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		boolean writeOff = false, isTransfer = false;
 
 		devPrint(formData);
 		LanguageCode lang = session.getLang();
 		OrganizationDAO dao = new OrganizationDAO(session);
-
-		String wo = formData.getValueSilently("writeoff");
-		if (wo.equals("1")) {
-			writeOff = true;
-		}
 
 		String uo = formData.getValueSilently("uploadtype");
 
@@ -88,7 +83,7 @@ public class UpdateFile extends _DoPage {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
-				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(UploadUpdatingForm.getSesAttrName(fsid, fn));
+				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(WizardForm.getSesAttrName());
 				if (uf.geSheetErrs() != null && uf.geSheetErrs().size() > 0) {
 					return;
 				}
@@ -115,7 +110,7 @@ public class UpdateFile extends _DoPage {
 								return;
 							}
 							Sheet sheet = workbook.getSheet(0);
-							Outcome result = id.process(sheet, session, true, writeOff, org, readers, isTransfer, uo, addFileName);
+							Outcome result = id.process(sheet, session, true, org, readers, uo, addFileName);
 
 							if (result.sheetErr.size() > 0) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);

@@ -89,8 +89,7 @@ public class MPXLImporter {
 		this.mode = mode;
 	}
 
-	public Outcome process(Sheet sheet, _Session ses, boolean stopIfWrong, boolean writeOff, Organization bh, String[] readers, boolean isTransfer,
-	        String uploadtype, String addFilePath) {
+	public Outcome process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh, String[] readers, String uploadtype, String addFilePath) {
 		int processed = 0, skipped = 0;
 
 		/*
@@ -115,7 +114,7 @@ public class MPXLImporter {
 			if (uploadtype.equals("upload")) {
 				mode = MPXLImporter.CHECK;
 
-				result = process(sheet, ses, true, writeOff, bh, readers, isTransfer, uploadtype, addFilePath);
+				result = process(sheet, ses, true, bh, readers, uploadtype, addFilePath);
 				if (result.sheetErr.size() > 0) {
 					Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 					return null;

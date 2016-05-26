@@ -66,8 +66,6 @@ public class UploadUpdatingForm extends _DoPage {
 			}
 
 			uf.setStopIfWrong(formData.getBoolSilently("stopifwrong"));
-			uf.setWriteOff(formData.getBoolSilently("writeoff"));
-			uf.setTransfer(formData.getBoolSilently("istransfer"));
 
 			String[] readers = formData.getListOfStringValues("readers", null);
 			List<Long> readersList = new ArrayList<Long>();

@@ -55,29 +55,32 @@ public class WizardForm extends _DoPage {
 				uf.setFileName(file);
 			}
 
-		} else if (step.equals("2-upload")) {
-			String bh = formData.getValueSilently("balanceholder");
-			if (!bh.isEmpty()) {
-				uf.setBalanceHolder(oDao.findById(bh));
-			}
-			String[] readers = formData.getListOfStringValues("readers", null);
-			List<Long> readersList = new ArrayList<Long>();
-			EmployeeDAO eDao = new EmployeeDAO(ses);
-			if (readers[0] != null) {
-				for (String r : readers) {
-					Employee entity = eDao.findById(r);
-					readersList.add(entity.getUser().getId());
+		} else if (step.equals("2")) {
+			uf.setLocalizedMsg("");
+			if (uf.getLoadType().equals("upload")) {
+				String bh = formData.getValueSilently("balanceholder");
+				if (!bh.isEmpty()) {
+					uf.setBalanceHolder(oDao.findById(bh));
 				}
-				uf.setReaders(readersList);
-			}
-		} else if (step.equals("2-writeoff")) {
+				String[] readers = formData.getListOfStringValues("readers", null);
+				List<Long> readersList = new ArrayList<Long>();
+				EmployeeDAO eDao = new EmployeeDAO(ses);
+				if (readers[0] != null) {
+					for (String r : readers) {
+						Employee entity = eDao.findById(r);
+						readersList.add(entity.getUser().getId());
+					}
+					uf.setReaders(readersList);
+				}
+			} else if (uf.getLoadType().equals("writeoff")) {
 
-		} else if (step.equals("2-transfer")) {
-			String bh = formData.getValueSilently("balanceholder");
-			if (!bh.isEmpty()) {
-				uf.setBalanceHolder(oDao.findById(bh));
+			} else if (uf.getLoadType().equals("transfer")) {
+				String bh = formData.getValueSilently("recipient");
+				if (!bh.isEmpty()) {
+					uf.setRecipient(oDao.findById(bh));
+				}
+				uf.setOrderFileName(getFileNameByType(ses, fsid, "uporder"));
 			}
-			uf.setOrderFileName(getFileNameByType(ses, fsid, "uporder"));
 		} else if (step.equals("3")) {
 
 		}

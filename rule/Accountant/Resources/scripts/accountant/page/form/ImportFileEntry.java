@@ -27,8 +27,6 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 	private List<Long> readers;
 	private int status;
 	private boolean stopIfWrong;
-	private boolean writeOff;
-	private boolean isTransfer;
 	private String localizedMsg = "";
 	private Map<Integer, List<List<ErrorDescription>>> sheetErrs;
 	private String orderFileName = "";
@@ -72,22 +70,6 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 
 	public void setStopIfWrong(boolean stopIfWrong) {
 		this.stopIfWrong = stopIfWrong;
-	}
-
-	public boolean isWriteOff() {
-		return writeOff;
-	}
-
-	public void setWriteOff(boolean writeOff) {
-		this.writeOff = writeOff;
-	}
-
-	public boolean isTransfer() {
-		return isTransfer;
-	}
-
-	public void setTransfer(boolean isTransfer) {
-		this.isTransfer = isTransfer;
 	}
 
 	public void setLocalizedMsg(String localizedErrorMsg) {
@@ -140,8 +122,6 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 			chunk.append("<balanceholder id=\"null\"></balanceholder>");
 		}
 		chunk.append("<stopifwrong>" + stopIfWrong + "</stopifwrong>");
-		chunk.append("<writeoff>" + writeOff + "</writeoff>");
-		chunk.append("<istransfer>" + isTransfer + "</istransfer>");
 
 		try {
 			String rAsText = "";

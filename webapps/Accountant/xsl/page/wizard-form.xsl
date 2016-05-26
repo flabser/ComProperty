@@ -47,6 +47,16 @@
             <xsl:variable name="fsid" select="//content/formsesid"/>
             <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})"/>
         </form>
+          <div style="width:100%; padding:100px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+             <div>
+             <xsl:variable name ="step_value">
+                <xsl:value-of select ="//fields/step"/>
+            </xsl:variable>
+             <xsl:variable name ="shift_value">
+                <xsl:value-of select ="1"/>
+            </xsl:variable>
+                <p style="font-size:64px;"><xsl:value-of select="$step_value + $shift_value"/></p>
+            </div>
         <xsl:choose>
             <xsl:when test="//fields/step =0">
                 <xsl:call-template name="tpl_step_0"/>
@@ -61,15 +71,15 @@
                 <xsl:call-template name="tpl_step_3"/>
             </xsl:when>
         </xsl:choose>
+        </div>
         <input type="hidden" name="filename" value="{//fields/filename}"/>
         <input type="hidden" name="fsid" value="{page/response/content/formsesid}"/>
         <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
     </xsl:template>
 
-    <xsl:template name="tpl_step_0">
-        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+    <xsl:template name="tpl_step_0">      
             <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 1 - Выберите файл для обновления</p>
+                <p style="font-size:16px; font-weight:bold">Выбoр файла и действия</p>
             </div>
             <div style="min-height:90px">
                 <ul class="nb-dialog-list wizard-fields-list">
@@ -117,13 +127,13 @@
                     <span>Выход</span>
                 </button>
            </div>
-        </div>
+       
     </xsl:template>
 
     <xsl:template name="tpl_step_1">
-        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+       
             <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Проверка файла </p>
+                <p style="font-size:16px; font-weight:bold">Проверка файла</p>
             </div>
             <div style="min-height:90px">
                 <ul class="nb-dialog-list wizard-fields-list">
@@ -160,14 +170,14 @@
                     <span>Назад</span>
                 </button>
                 <button type="button" class="btn btn js-step-2">
-                    <xsl:if test="//fields/status != 2">
+                   <!--  <xsl:if test="//fields/status != 2">
                         <xsl:attribute name="disabled"/>
-                    </xsl:if>
+                    </xsl:if> -->
                     <span>Далее</span>
                 </button>
             </div>
             <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
-        </div>
+     
         <div class="panel__body scroll-shadow update-status-{//fields/status}">
             <xsl:apply-templates select="//fields/msg"/>
             <div class="js-check-result">
@@ -177,11 +187,11 @@
     </xsl:template>
 
     <xsl:template name="tpl_step_2">
-        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+       
             <xsl:if test="//fields/loadtype = 'upload'">
                 <form name="js-init-update-panel" data-file-name="{//fields/filename}">
                     <div>
-                        <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
+                        <p style="font-size:16px; font-weight:bold">Выполнение выбранного действия</p>
                     </div>
                     <div style="min-height:90px">
                         <ul class="nb-dialog-list wizard-fields-list">
@@ -235,7 +245,7 @@
             <xsl:if test="//fields/loadtype = 'writeoff'">
                 <form name="js-init-update-panel" data-file-name="{//fields/filename}">
                     <div>
-                        <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
+                        <p style="font-size:16px; font-weight:bold">Результат</p>
                     </div>
                     <div style="min-height:90px">
 
@@ -265,7 +275,7 @@
                         <ul class="nb-dialog-list wizard-fields-list">
                             <li>
                                 <button type="button" class="btn btn js-select-recipients" style="margin-top:3px; padding-bottom:11px">
-                                    <span>Получатели</span>
+                                    <span>Получатель</span>
                                 </button>
                                 <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
                                     <i class="fa fa-file-text-o"></i>
@@ -289,16 +299,16 @@
                             <span>Назад</span>
                         </button>
                         <button type="button" class="btn btn js-step-3">
-                            <xsl:if test="//fields/status != 2">
+                           <!--  <xsl:if test="//fields/status != 2">
                                 <xsl:attribute name="disabled">disabled</xsl:attribute>
-                            </xsl:if>
+                            </xsl:if> -->
                             <span>Передать</span>
                         </button>
                    </div>
                     <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
                 </form>
             </xsl:if>
-        </div>
+        
 
         <div class="panel__body scroll-shadow update-status-{//fields/status}">
             <xsl:apply-templates select="//fields/msg"/>
@@ -310,7 +320,7 @@
 
 
     <xsl:template name="tpl_step_3">
-        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+      
             <div style="min-height:90px">
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Результат</p>
             </div>
@@ -322,7 +332,7 @@
                     <span>В начало</span>
                 </button>
            </div>
-        </div>
+        
     </xsl:template>
 
 
@@ -530,7 +540,7 @@
                     <div>
                         <strong class="update-balance-holder" data-input="balanceholder"></strong>
                         <ul class="update-readers" data-input="readers"></ul>
-                        <ul class="update-recipients" data-input="recipient"></ul>
+                        <ul class="update-recipients" data-input="balanceholder"></ul>
                         <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
                     </div>
                     <div class="js-check-result">

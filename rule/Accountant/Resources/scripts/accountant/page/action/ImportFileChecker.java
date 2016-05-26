@@ -27,16 +27,12 @@ public class ImportFileChecker extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		devPrint(formData);
-		boolean stopIfWrong = false, writeOff = false, isTransfer = false;
+		boolean stopIfWrong = false;
 		OrganizationDAO oDao = new OrganizationDAO(session);
 
 		String sie = formData.getValueSilently("stopiferror");
 		if (sie.equals("1")) {
 			stopIfWrong = true;
-		}
-		String wo = formData.getValueSilently("writeoff");
-		if (wo.equals("1")) {
-			writeOff = true;
 		}
 
 		String uo = formData.getValueSilently("uploadtype");
@@ -77,7 +73,7 @@ public class ImportFileChecker extends _DoPage {
 
 					String[] readers = formData.getListOfValuesSilently("readers");
 
-					Outcome result = id.process(sheet, session, stopIfWrong, writeOff, randomOrg, readers, isTransfer, uo, addFileName);
+					Outcome result = id.process(sheet, session, stopIfWrong, randomOrg, readers, uo, addFileName);
 
 					if (result.sheetErr.size() > 0) {
 						uf.setStatus(ImportFileEntry.CHECKING_ERROR);
@@ -85,6 +81,7 @@ public class ImportFileChecker extends _DoPage {
 						uf.setSheetErrs(result.sheetErr);
 					} else {
 						uf.setStatus(ImportFileEntry.CHECKED);
+						uf.setSheetErrs(null);
 						uf.setLocalizedMsg(" Ok, проверено записей: " + Integer.toString(result.processed));
 					}
 
