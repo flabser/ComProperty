@@ -148,6 +148,19 @@ li.disabled i.fa{
     color: #ccc;
 }
 
+.wizard-fields-list > li{
+    padding-top : 10px;
+}
+
+.update-file-msg {
+    border-radius: 2px;
+    display: inline-block;
+    margin: 10px 1px 1px 15px;
+    padding: 8px;
+    vertical-align: top;
+}
+
+
 /*
 JUST_UPLOADED = 1;
 CHECKED = 2;
@@ -172,7 +185,8 @@ LOADING_ERROR = 5;
 }
 
 .update-status-2 .update-file-link,
-.update-status-2 .update-file-panel-msg {
+.update-status-2 .update-file-panel-msg,
+.update-status-2 .update-file-msg{
     background: #C5E1A5;
 }
 
@@ -181,7 +195,8 @@ LOADING_ERROR = 5;
 }
 
 .update-status-3 .update-file-link,
-.update-status-3 .update-file-panel-msg {
+.update-status-3 .update-file-panel-msg,
+.update-status-3 .update-file-msg{
     background: #BCD0FF;
 }
 
@@ -190,7 +205,8 @@ LOADING_ERROR = 5;
 }
 
 .update-status-4 .update-file-link,
-.update-status-4 .update-file-panel-msg {
+.update-status-4 .update-file-panel-msg,
+.update-status-4 .update-file-msg{
     background: #FFADA7;
 }
 
@@ -199,6 +215,7 @@ LOADING_ERROR = 5;
 }
 
 .update-status-5 .update-file-link,
-.update-status-5 .update-file-panel-msg {
+.update-status-5 .update-file-panel-msg,
+.update-status-5 .update-file-msg{
     background: #FFC107;
 }

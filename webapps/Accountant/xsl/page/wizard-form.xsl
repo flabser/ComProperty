@@ -71,8 +71,8 @@
             <div>
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 1 - Выберите файл для обновления</p>
             </div>
-            <div style="height:90px">
-                <ul class="nb-dialog-list">
+            <div style="min-height:90px">
+                <ul class="nb-dialog-list wizard-fields-list">
                     <li>
                         <label>
                             <input type="radio" name="uploadtype" value="upload" checked="checked">
@@ -123,10 +123,10 @@
     <xsl:template name="tpl_step_1">
         <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <div>
-                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Проверка файла</p>
+                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Проверка файла </p>
             </div>
-            <div style="height:90px">
-                <ul class="nb-dialog-list">
+            <div style="min-height:90px">
+                <ul class="nb-dialog-list wizard-fields-list">
                     <li>
                         <b>Имя файла</b> - <xsl:value-of select="//fields/filename"/>
                     </li>
@@ -168,6 +168,12 @@
             </div>
             <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
         </div>
+        <div class="panel__body scroll-shadow update-status-{//fields/status}">
+            <xsl:apply-templates select="//fields/msg"/>
+            <div class="js-check-result">
+                <xsl:apply-templates select="//fields/sheeterrs"/>
+            </div>
+        </div>
     </xsl:template>
 
     <xsl:template name="tpl_step_2">
@@ -178,31 +184,41 @@
                         <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
                     </div>
                     <div style="min-height:90px">
-
-                            <ul class="nb-dialog-list">
-                                <li>
-                                    <button type="button" class="btn btn js-select-balance-holder">
-                                        <span>Балансодержатель</span>
-                                    </button>
-                                    <button type="button" class="btn btn js-select-readers">
-                                        <span>Читатели</span>
-                                    </button>
-                                </li>
-                            </ul>
-                            <input type="hidden" name="balanceholder" value=""/>
-                            <input type="hidden" name="status" value="{//fields/status}"/>
-                            <div>
-                                <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                                <ul class="update-readers" data-input="readers"></ul>
-                                <ul class="update-recipients" data-input="recipient"></ul>
-                                <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
-                            </div>
-                            <div class="js-check-result">
-                                <xsl:apply-templates select="sheeterrs"/>
-                            </div>
+                        <ul class="nb-dialog-list wizard-fields-list">
+                            <li>
+                                <button type="button" class="btn btn js-select-balance-holder">
+                                    <span>Балансодержатель</span>
+                                </button>
+                                <button type="button" class="btn btn js-select-readers">
+                                    <span>Читатели</span>
+                                </button>
+                            </li>
+                            <li>
+                                <b>Имя файла</b> - <xsl:value-of select="//fields/filename"/>
+                            </li>
+                            <li>
+                                <b>Тип загрузки</b> -
+                                <xsl:choose>
+                                    <xsl:when test="//fields/loadtype = 'writeoff'">Отметить имущество как списанное</xsl:when>
+                                    <xsl:when test="//fields/loadtype = 'transfer'">Передать имущество</xsl:when>
+                                    <xsl:when test="//fields/loadtype = 'upload'">Загрузка</xsl:when>
+                                </xsl:choose>
+                            </li>
+                        </ul>
+                        <input type="hidden" name="balanceholder" value=""/>
+                        <input type="hidden" name="status" value="{//fields/status}"/>
+                        <div style="margin-top:15px;">
+                            <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                            <ul class="update-readers" data-input="readers"></ul>
+                            <ul class="update-recipients" data-input="recipient"></ul>
+                            <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
+                        </div>
+                        <div class="js-check-result">
+                            <xsl:apply-templates select="sheeterrs"/>
+                        </div>
                     </div>
                    <div style="text-align:right;">
-                       <button type="button" class="btn btn js-back()">
+                       <button type="button" class="btn btn js-back">
                            <span>Назад</span>
                        </button>
                         <button type="button" class="btn btn js-step-3">
@@ -226,7 +242,7 @@
 
                     </div>
                    <div style="text-align:right;">
-                       <button type="button" class="btn btn js-back()">
+                       <button type="button" class="btn btn js-back">
                            <span>Назад</span>
                        </button>
                         <button type="button" class="btn btn js-step-3">
@@ -246,31 +262,30 @@
                         <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение загрузки</p>
                     </div>
                     <div style="min-height:90px">
-
-                            <ul class="nb-dialog-list">
-                                <li>
-                                    <button type="button" class="btn btn js-select-recipients" style="margin-top:3px; padding-bottom:11px">
-                                        <span>Получатели</span>
-                                    </button>
-                                    <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
-                                        <i class="fa fa-file-text-o"></i>
-                                        <span>Прикрепить постановление</span>
-                                    </label>
-                                </li>
-                            </ul>
-                            <input type="hidden" name="balanceholder" value=""/>
-                            <input type="hidden" name="status" value="{//fields/status}"/>
-                            <div>
-                                <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                                <ul class="update-recipients" data-input="recipient"></ul>
-                                <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
-                            </div>
-                            <div class="js-check-result">
-                                <xsl:apply-templates select="sheeterrs"/>
-                            </div>
+                        <ul class="nb-dialog-list wizard-fields-list">
+                            <li>
+                                <button type="button" class="btn btn js-select-recipients" style="margin-top:3px; padding-bottom:11px">
+                                    <span>Получатели</span>
+                                </button>
+                                <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
+                                    <i class="fa fa-file-text-o"></i>
+                                    <span>Прикрепить постановление</span>
+                                </label>
+                            </li>
+                        </ul>
+                        <input type="hidden" name="balanceholder" value=""/>
+                        <input type="hidden" name="status" value="{//fields/status}"/>
+                        <div style="margin-top:15px;">
+                            <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                            <ul class="update-recipients" data-input="recipient"></ul>
+                            <ul class="update-order" data-input="order"><xsl:value-of select="//fields/orderfilename"/></ul>
+                        </div>
+                        <div class="js-check-result">
+                            <xsl:apply-templates select="sheeterrs"/>
+                        </div>
                     </div>
                    <div style="text-align:right;">
-                        <button type="button" class="btn btn js-back()">
+                        <button type="button" class="btn btn js-back">
                             <span>Назад</span>
                         </button>
                         <button type="button" class="btn btn js-step-3">
@@ -284,20 +299,26 @@
                 </form>
             </xsl:if>
         </div>
+        <div class="panel__body scroll-shadow update-status-{//fields/status}">
+            <xsl:apply-templates select="//fields/msg"/>
+            <div class="js-check-result">
+                <xsl:apply-templates select="//fields/sheeterrs"/>
+            </div>
+        </div>
     </xsl:template>
 
 
     <xsl:template name="tpl_step_3">
         <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
-            <div style="height:100px">
+            <div style="min-height:90px">
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Результат</p>
             </div>
            <div style="text-align:right;">
-               <button type="button" class="btn btn js-step-back">
+               <button type="button" class="btn btn js-back">
                    <span>Назад</span>
                </button>
-                <button type="button" class="btn btn js-step-3">
-                    <span>Далее</span>
+                <button type="button" class="btn btn js-step-0">
+                    <span>В начало</span>
                 </button>
            </div>
         </div>
@@ -528,7 +549,7 @@
     </xsl:template>
 
     <xsl:template match="msg">
-        <p class="update-file-panel-msg">
+        <p class="update-file-msg">
             <xsl:value-of select="text()"/>
         </p>
     </xsl:template>
