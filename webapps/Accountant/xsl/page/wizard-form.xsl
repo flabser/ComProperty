@@ -67,7 +67,7 @@
     </xsl:template>
 
     <xsl:template name="tpl_step_0">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <div>
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 1 - Выберите файл для обновления</p>
             </div>
@@ -121,12 +121,23 @@
     </xsl:template>
 
     <xsl:template name="tpl_step_1">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <div>
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 2 - Проверка файла</p>
             </div>
             <div style="height:90px">
                 <ul class="nb-dialog-list">
+                    <li>
+                        <b>Имя файла</b> - <xsl:value-of select="//fields/filename"/>
+                    </li>
+                    <li>
+                        <b>Тип загрузки</b> -
+                        <xsl:choose>
+                            <xsl:when test="//fields/loadtype = 'writeoff'">Отметить имущество как списанное</xsl:when>
+                            <xsl:when test="//fields/loadtype = 'transfer'">Передать имущество</xsl:when>
+                            <xsl:when test="//fields/loadtype = 'upload'">Загрузка</xsl:when>
+                        </xsl:choose>
+                    </li>
                     <li>
                         <label>
                             <input type="checkbox" name="stopiferror" value="1">
@@ -160,7 +171,7 @@
     </xsl:template>
 
     <xsl:template name="tpl_step_2">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <xsl:if test="//fields/loadtype = 'upload'">
                 <form name="js-init-update-panel" data-file-name="{//fields/filename}">
                     <div>
@@ -191,7 +202,13 @@
                             </div>
                     </div>
                    <div style="text-align:right;">
+                       <button type="button" class="btn btn js-back()">
+                           <span>Назад</span>
+                       </button>
                         <button type="button" class="btn btn js-step-3">
+                            <xsl:if test="//fields/status != 2">
+                                <xsl:attribute name="disabled">disabled</xsl:attribute>
+                            </xsl:if>
                             <span>Загрузить</span>
                         </button>
                    </div>
@@ -209,7 +226,13 @@
 
                     </div>
                    <div style="text-align:right;">
+                       <button type="button" class="btn btn js-back()">
+                           <span>Назад</span>
+                       </button>
                         <button type="button" class="btn btn js-step-3">
+                            <xsl:if test="//fields/status != 2">
+                                <xsl:attribute name="disabled">disabled</xsl:attribute>
+                            </xsl:if>
                             <span>Списать</span>
                         </button>
                    </div>
@@ -251,6 +274,9 @@
                             <span>Назад</span>
                         </button>
                         <button type="button" class="btn btn js-step-3">
+                            <xsl:if test="//fields/status != 2">
+                                <xsl:attribute name="disabled">disabled</xsl:attribute>
+                            </xsl:if>
                             <span>Передать</span>
                         </button>
                    </div>
@@ -262,7 +288,7 @@
 
 
     <xsl:template name="tpl_step_3">
-        <div style="width:100%; padding:10px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
+        <div style="width:100%; padding:25px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
             <div style="height:100px">
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Результат</p>
             </div>
