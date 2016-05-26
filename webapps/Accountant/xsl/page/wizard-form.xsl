@@ -91,6 +91,7 @@
                             </input>
                         </label>
                     </li>
+
                     <li>
                         <label>
                             <input type="radio" name="uploadtype" class="transferproperty" value="transfer">
