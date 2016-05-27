@@ -256,9 +256,9 @@
                            <span>Назад</span>
                        </button>
                         <button type="button" class="btn btn js-step-3">
-                            <xsl:if test="//fields/status != 2">
+                          <!--   <xsl:if test="//fields/status != 2">
                                 <xsl:attribute name="disabled">disabled</xsl:attribute>
-                            </xsl:if>
+                            </xsl:if> -->
                             <span>Списать</span>
                         </button>
                    </div>

@@ -56,7 +56,6 @@ public class WizardForm extends _DoPage {
 			}
 
 		} else if (step.equals("2")) {
-			uf.setLocalizedMsg("");
 			if (uf.getLoadType().equals("upload")) {
 				String bh = formData.getValueSilently("balanceholder");
 				if (!bh.isEmpty()) {
