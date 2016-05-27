@@ -29,24 +29,24 @@ public class WizardForm extends _DoPage {
 	public void doGET(_Session ses, _WebFormData formData) {
 		IUser<Long> user = ses.getUser();
 		OrganizationDAO oDao = new OrganizationDAO(ses);
-		String step = formData.getValueSilently("step", "0");
+		String step = formData.getValueSilently("step", "1");
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		String fileAttr = getSesAttrName();
 		ImportFileEntry uf = (ImportFileEntry) ses.getAttribute(fileAttr);
 		if (uf == null) {
 			uf = new ImportFileEntry();
 			ses.setAttribute(fileAttr, uf);
-			step = "0";
+			step = "1";
 		}
 
 		uf.setStep(step);
-		if (step.equals("0")) {
+		if (step.equals("1")) {
 			fsid = Util.generateRandomAsText();
 			uf.setStatus(ImportFileEntry.INIT);
 			uf.setLocalizedMsg("");
 			uf.setFileName("");
 			uf.setOrderFileName("");
-		} else if (step.equals("1")) {
+		} else if (step.equals("2")) {
 			String uo = formData.getValueSilently("uploadtype");
 			uf.setLoadType(uo);
 			String file = getFileNameByType(ses, fsid, "upfile");
@@ -55,7 +55,7 @@ public class WizardForm extends _DoPage {
 				uf.setFileName(file);
 			}
 
-		} else if (step.equals("2")) {
+		} else if (step.equals("3")) {
 			if (uf.getLoadType().equals("upload")) {
 				String bh = formData.getValueSilently("balanceholder");
 				if (!bh.isEmpty()) {
@@ -80,7 +80,7 @@ public class WizardForm extends _DoPage {
 				}
 				uf.setOrderFileName(getFileNameByType(ses, fsid, "uporder"));
 			}
-		} else if (step.equals("3")) {
+		} else if (step.equals("4")) {
 
 		}
 
