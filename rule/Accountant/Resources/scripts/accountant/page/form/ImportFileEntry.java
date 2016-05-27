@@ -8,7 +8,7 @@ import java.util.UUID;
 import com.exponentus.scripting.POJOObjectAdapter;
 import com.exponentus.scripting._Session;
 
-import accountant.page.action.MPXLImporter.ErrorDescription;
+import accountant.page.action.XLImporter.ErrorDescription;
 import staff.model.Organization;
 
 public class ImportFileEntry extends POJOObjectAdapter<UUID> {

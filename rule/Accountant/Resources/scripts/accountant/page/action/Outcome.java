@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import accountant.page.action.MPXLImporter.ErrorDescription;
+import accountant.page.action.XLImporter.ErrorDescription;
 
 public class Outcome {
 	public int processed;

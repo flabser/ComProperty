@@ -23,7 +23,7 @@ import jxl.read.biff.BiffException;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
-public class UpdateFile extends _DoPage {
+public class ProcessXLFile extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
@@ -128,7 +128,7 @@ public class UpdateFile extends _DoPage {
 						}
 
 						File xlsFile = new File(fileName);
-						MPXLImporter id = new MPXLImporter(MPXLImporter.PROCESS);
+						XLImporter id = new XLImporter(XLImporter.PROCESS);
 						Workbook workbook = null;
 						try {
 							workbook = Workbook.getWorkbook(xlsFile);

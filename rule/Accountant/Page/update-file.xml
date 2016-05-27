@@ -4,7 +4,7 @@
     <caching>NO_CACHING</caching>
     <element mode="ON" type="SCRIPT">
         <events>
-            <doscript source="JAVA_CLASS">accountant.page.action.UpdateFile</doscript>
+            <doscript source="JAVA_CLASS">accountant.page.action.ProcessXLFile</doscript>
         </events>
     </element>
 </rule>

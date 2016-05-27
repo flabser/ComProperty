@@ -66,7 +66,7 @@ import staff.dao.EmployeeDAO;
 import staff.model.Employee;
 import staff.model.Organization;
 
-public class MPXLImporter {
+public class XLImporter {
 	public final static int PROCESS = 100;
 	public final static int CHECK = 99;
 	public final static int FROM_YEAR = 1930;
@@ -85,7 +85,7 @@ public class MPXLImporter {
 	private Order order;
 	private List<Property> propList = new ArrayList<Property>();
 
-	public MPXLImporter(int mode) {
+	public XLImporter(int mode) {
 		this.mode = mode;
 	}
 
@@ -110,16 +110,16 @@ public class MPXLImporter {
 		processed = 0;
 		skipped = 0;
 
-		if (mode == MPXLImporter.PROCESS) {
+		if (mode == XLImporter.PROCESS) {
 			if (uploadtype.equals("upload")) {
-				mode = MPXLImporter.CHECK;
+				mode = XLImporter.CHECK;
 
 				result = process(sheet, ses, true, bh, readers, uploadtype, addFilePath);
 				if (result.sheetErr.size() > 0) {
 					Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
 					return null;
 				}
-				mode = MPXLImporter.PROCESS;
+				mode = XLImporter.PROCESS;
 			} else if (uploadtype.equals("transfer")) {
 				orderDao = new OrderDAO(ses);
 				order = composeNewOrder(addFilePath);
@@ -158,7 +158,7 @@ public class MPXLImporter {
 			row.acquisitionYear = sheet.getCell(19, i);
 			row.isReadyToOperation = sheet.getCell(20, i).getContents().trim();
 
-			if (mode == MPXLImporter.CHECK) {
+			if (mode == XLImporter.CHECK) {
 				List<List<ErrorDescription>> rowErr = null;
 				if (uploadtype.equals("upload")) {
 					rowErr = preLoad(row, region, district);
@@ -180,7 +180,7 @@ public class MPXLImporter {
 					}
 				}
 				processed++;
-			} else if (mode == MPXLImporter.PROCESS) {
+			} else if (mode == XLImporter.PROCESS) {
 				if (uploadtype.equals("upload")) {
 					if (load(row, bh, readers)) {
 						processed++;
@@ -199,7 +199,7 @@ public class MPXLImporter {
 		long stop = System.currentTimeMillis();
 		long diff = stop - start;
 		// System.out.println("Old method: " + diff);
-		if (uploadtype.equals("transfer") && mode == MPXLImporter.PROCESS) {
+		if (uploadtype.equals("transfer") && mode == XLImporter.PROCESS) {
 			order.setProperties(propList);
 			Set<Long> allReaders = new HashSet<Long>();
 			for (Property prop : propList) {
@@ -486,7 +486,7 @@ public class MPXLImporter {
 		CheVal isYear(Cell value) {
 			if (getYear(value) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue,
-				        "значение больше чем: " + Calendar.getInstance().get(Calendar.YEAR) + " or less than " + MPXLImporter.FROM_YEAR + ")"));
+				        "значение больше чем: " + Calendar.getInstance().get(Calendar.YEAR) + " or less than " + XLImporter.FROM_YEAR + ")"));
 			}
 			return this;
 		}
@@ -512,7 +512,7 @@ public class MPXLImporter {
 						return null;
 					}
 				} else {
-					if (v > currentYear || v < MPXLImporter.FROM_YEAR) {
+					if (v > currentYear || v < XLImporter.FROM_YEAR) {
 						return null;
 					} else {
 						return v;

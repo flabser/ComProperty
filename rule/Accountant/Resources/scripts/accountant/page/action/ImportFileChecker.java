@@ -56,7 +56,7 @@ public class ImportFileChecker extends _DoPage {
 				if (ext.equalsIgnoreCase("xls")) {
 					File xlsFile = new File(excelFile);
 
-					MPXLImporter id = new MPXLImporter(MPXLImporter.CHECK);
+					XLImporter id = new XLImporter(XLImporter.CHECK);
 					Workbook workbook = null;
 					try {
 						workbook = Workbook.getWorkbook(xlsFile);
