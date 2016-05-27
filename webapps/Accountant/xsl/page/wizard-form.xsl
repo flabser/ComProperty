@@ -48,19 +48,10 @@
             <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})"/>
         </form>
           <div style="width:100%; padding:100px; background:#eeeeee; border:1px solid #ddd;" class="wizard">
-             <div>
-             <xsl:variable name ="step_value">
-                <xsl:value-of select ="//fields/step"/>
-            </xsl:variable>
-             <xsl:variable name ="shift_value">
-                <xsl:value-of select ="1"/>
-            </xsl:variable>
-                <p style="font-size:64px;"><xsl:value-of select="$step_value + $shift_value"/></p>
+             <div>                   
+                <p style="font-size:64px;"> <xsl:value-of select ="//fields/step"/></p>
             </div>
         <xsl:choose>
-            <xsl:when test="//fields/step =0">
-                <xsl:call-template name="tpl_step_0"/>
-            </xsl:when>
             <xsl:when test="//fields/step =1">
                 <xsl:call-template name="tpl_step_1"/>
             </xsl:when>
@@ -70,6 +61,9 @@
             <xsl:when test="//fields/step =3">
                 <xsl:call-template name="tpl_step_3"/>
             </xsl:when>
+            <xsl:when test="//fields/step =4">
+                <xsl:call-template name="tpl_step_4"/>
+            </xsl:when>
         </xsl:choose>
         </div>
         <input type="hidden" name="filename" value="{//fields/filename}"/>
@@ -77,7 +71,7 @@
         <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
     </xsl:template>
 
-    <xsl:template name="tpl_step_0">      
+    <xsl:template name="tpl_step_1">      
             <div>
                 <p style="font-size:16px; font-weight:bold">Выбoр файла и действия</p>
             </div>
@@ -130,7 +124,7 @@
        
     </xsl:template>
 
-    <xsl:template name="tpl_step_1">
+    <xsl:template name="tpl_step_2">
        
             <div>
                 <p style="font-size:16px; font-weight:bold">Проверка файла</p>
@@ -186,7 +180,7 @@
         </div>
     </xsl:template>
 
-    <xsl:template name="tpl_step_2">
+    <xsl:template name="tpl_step_3">
        
             <xsl:if test="//fields/loadtype = 'upload'">
                 <form name="js-init-update-panel" data-file-name="{//fields/filename}">
@@ -256,9 +250,9 @@
                            <span>Назад</span>
                        </button>
                         <button type="button" class="btn btn js-step-3">
-                            <xsl:if test="//fields/status != 2">
+                          <!--   <xsl:if test="//fields/status != 2">
                                 <xsl:attribute name="disabled">disabled</xsl:attribute>
-                            </xsl:if>
+                            </xsl:if> -->
                             <span>Списать</span>
                         </button>
                    </div>
@@ -319,7 +313,7 @@
     </xsl:template>
 
 
-    <xsl:template name="tpl_step_3">
+    <xsl:template name="tpl_step_4">
       
             <div style="min-height:90px">
                 <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Результат</p>

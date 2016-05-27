@@ -23,7 +23,7 @@ import jxl.read.biff.BiffException;
 import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
-public class UpdateFile extends _DoPage {
+public class ProcessXLFile extends _DoPage {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
@@ -84,6 +84,7 @@ public class UpdateFile extends _DoPage {
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
 				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(WizardForm.getSesAttrName());
+				uf.setLocalizedMsg("");
 				if (uf.geSheetErrs() != null && uf.geSheetErrs().size() > 0) {
 					return;
 				}
@@ -94,40 +95,61 @@ public class UpdateFile extends _DoPage {
 					String addFileName = fileName;
 					String ext = FilenameUtils.getExtension(fileName);
 					Organization org = null;
+					String[] readers = null;
 					if (ext.equalsIgnoreCase("xls")) {
-						try {
-							UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
-							org = dao.findById(bhId);
-							String[] readers = formData.getListOfValues("readers");
-							File xlsFile = new File(fileName);
-							MPXLImporter id = new MPXLImporter(MPXLImporter.PROCESS);
-							Workbook workbook = null;
+
+						if (uo.equals("transfer")) {
 							try {
-								workbook = Workbook.getWorkbook(xlsFile);
-							} catch (BiffException e) {
+								UUID bhId = UUID.fromString(formData.getValueSilently("recipient"));
+								org = dao.findById(bhId);
+								uf.setRecipient(org);
+							} catch (IllegalArgumentException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
-								uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
+								uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
 								return;
 							}
-							Sheet sheet = workbook.getSheet(0);
-							Outcome result = id.process(sheet, session, true, org, readers, uo, addFileName);
-
-							if (result.sheetErr.size() > 0) {
+						} else if (uo.equals("upload")) {
+							try {
+								UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));
+								org = dao.findById(bhId);
+								uf.setBalanceHolder(org);
+							} catch (IllegalArgumentException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
-								uf.setLocalizedMsg(getLocalizedWord("file_has_been_not_loaded", lang));
-								uf.setSheetErrs(result.sheetErr);
-							} else {
-								uf.setStatus(ImportFileEntry.LOADED);
-								uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang) + ", обработано записей: "
-								        + Integer.toString(result.processed) + "(" + Integer.toString(result.skipped) + ")");
+								uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
+								return;
 							}
-						} catch (IllegalArgumentException e) {
-							uf.setStatus(ImportFileEntry.LOADING_ERROR);
-							uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
-						} catch (_Exception e) {
-							uf.setStatus(ImportFileEntry.LOADING_ERROR);
-							uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
+							try {
+								readers = formData.getListOfValues("readers");
+							} catch (_Exception e) {
+								uf.setStatus(ImportFileEntry.LOADING_ERROR);
+								uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
+								return;
+							}
 						}
+
+						File xlsFile = new File(fileName);
+						XLImporter id = new XLImporter(XLImporter.PROCESS);
+						Workbook workbook = null;
+						try {
+							workbook = Workbook.getWorkbook(xlsFile);
+						} catch (BiffException e) {
+							uf.setStatus(ImportFileEntry.LOADING_ERROR);
+							uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
+							return;
+						}
+						Sheet sheet = workbook.getSheet(0);
+						Outcome result = id.process(sheet, session, true, org, readers, uo, addFileName);
+
+						if (result.sheetErr.size() > 0) {
+							uf.setStatus(ImportFileEntry.LOADING_ERROR);
+							uf.setLocalizedMsg(getLocalizedWord("file_has_been_not_loaded", lang));
+							uf.setSheetErrs(result.sheetErr);
+						} else {
+							uf.setStatus(ImportFileEntry.LOADED);
+							uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang) + ", обработано записей: "
+							        + Integer.toString(result.processed) + "(" + Integer.toString(result.skipped) + ")");
+						}
+
 					} else {
 						uf.setStatus(ImportFileEntry.LOADING_ERROR);
 						uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
