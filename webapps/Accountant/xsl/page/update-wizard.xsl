@@ -60,11 +60,11 @@
                             </a>
                         </li>
                         <li class="wizard_step">
-                            <xsl:if test="//fields/step = 0">
-                                <xsl:attribute name="class" select="'wizard_step disabled'"/>
-                            </xsl:if>
                             <xsl:if test="//fields/step = 2">
                                 <xsl:attribute name="class" select="'wizard_step active'"/>
+                            </xsl:if>
+                            <xsl:if test="//fields/loadtype = ''">
+                                <xsl:attribute name="class" select="'wizard_step disabled'"/>
                             </xsl:if>
                             <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype={//fields/loadtype}">
                                 <span class="wizard_step-title">
@@ -90,6 +90,8 @@
                                         <xsl:when test="//fields/loadtype = 'transfer'">Передать имущество</xsl:when>
                                         <xsl:when test="//fields/loadtype = 'upload'">Загрузка</xsl:when>
                                         <xsl:otherwise>
+                                            <xsl:attribute name="class"
+                                                           select="'wizard_step-description wizard_step-no-action'"/>
                                             <span class="text-muted">Выберите действие!</span>
                                         </xsl:otherwise>
                                     </xsl:choose>
@@ -123,34 +125,11 @@
                             <xsl:otherwise>Reset</xsl:otherwise>
                         </xsl:choose>
                     </a>
-                    <xsl:choose>
-                        <xsl:when test="//fields/step = 2">
-                            <a class="wizard_nav-btn active" href="#check">Проверить</a>
-                        </xsl:when>
-                        <xsl:when test="//fields/step = 3">
-                            <a class="wizard_nav-btn active" href="#">
-                                <xsl:choose>
-                                    <xsl:when test="//fields/loadtype = 'upload'">
-                                        <xsl:attribute name="data-action" select="'upload'"/>
-                                        Загрузить
-                                    </xsl:when>
-                                    <xsl:when test="//fields/loadtype = 'writeoff'">
-                                        <xsl:attribute name="data-action" select="'writeoff'"/>
-                                        Списать
-                                    </xsl:when>
-                                    <xsl:when test="//fields/loadtype = 'transfer'">
-                                        <xsl:attribute name="data-action" select="'transfer'"/>
-                                        Передать
-                                    </xsl:when>
-                                </xsl:choose>
-                            </a>
-                        </xsl:when>
-                    </xsl:choose>
                 </nav>
             </xsl:if>
-            <input type="text" name="filename" value="{//fields/filename}"/>
-            <input type="text" name="fsid" value="{page/response/content/formsesid}"/>
-            <input type="text" name="uploadtype" value="{//fields/loadtype}"/>
+            <input type="hidden" name="filename" value="{//fields/filename}"/>
+            <input type="hidden" name="fsid" value="{page/response/content/formsesid}"/>
+            <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
         </form>
 
         <xsl:if test="//fields/step = 2">
@@ -165,7 +144,7 @@
 
     <xsl:template name="tpl_step_1">
         <div class="wizard_content-gr">
-            <header>Выбoр файла</header>
+            <header>Файл</header>
             <section>
                 <label class="btn btn-lg btn-update-file-excel" for="upfile">
                     <i class="fa fa-file-excel-o"></i>
@@ -190,6 +169,7 @@
                         <span>Загрузка</span>
                         <i class="fa fa-angle-right"></i>
                     </a>
+                    <div></div>
                     <a class="link-next"
                        href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=writeoff">
                         <xsl:if test="//fields/loadtype = 'writeoff'">
@@ -198,6 +178,7 @@
                         <span>Отметить имущество как списанное</span>
                         <i class="fa fa-angle-right"></i>
                     </a>
+                    <div></div>
                     <a class="link-next"
                        href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=transfer">
                         <xsl:if test="//fields/loadtype = 'transfer'">
@@ -215,18 +196,26 @@
         <div class="wizard_content-gr">
             <header>Файл</header>
             <section>
+                <span class="update-file-name">
+                    <xsl:value-of select="//fields/filename"/>
+                </span>
+            </section>
+        </div>
+        <div class="wizard_content-gr">
+            <header>Действия</header>
+            <section>
                 <p>
-                    <span class="update-file-name">
-                        <xsl:value-of select="//fields/filename"/>
-                    </span>
+                    <label>
+                        <input type="checkbox" name="stopiferror" value="1">
+                            <xsl:attribute name="checked" select="checked"/>
+                            <span>Прервать проверку при ошибке</span>
+                        </input>
+                    </label>
                 </p>
-                <hr/>
-                <label>
-                    <input type="checkbox" name="stopiferror" value="1">
-                        <xsl:attribute name="checked" select="checked"/>
-                        <span>Прервать проверку при ошибке</span>
-                    </input>
-                </label>
+                <a class="link-next" href="#check">
+                    <span>Проверить файл</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
             </section>
         </div>
     </xsl:template>
@@ -238,6 +227,30 @@
                 <span class="update-file-name">
                     <xsl:value-of select="//fields/filename"/>
                 </span>
+            </section>
+        </div>
+        <div class="wizard_content-gr">
+            <header>Файл</header>
+            <section>
+                <a class="wizard_nav-btn" href="#">
+                    <xsl:choose>
+                        <xsl:when test="//fields/loadtype = 'upload'">
+                            <xsl:attribute name="data-action" select="'upload'"/>
+                            <span>Загрузить</span>
+                            <i class="fa fa-angle-right"></i>
+                        </xsl:when>
+                        <xsl:when test="//fields/loadtype = 'writeoff'">
+                            <xsl:attribute name="data-action" select="'writeoff'"/>
+                            <span>Списать</span>
+                            <i class="fa fa-angle-right"></i>
+                        </xsl:when>
+                        <xsl:when test="//fields/loadtype = 'transfer'">
+                            <xsl:attribute name="data-action" select="'transfer'"/>
+                            <span>Передать</span>
+                            <i class="fa fa-angle-right"></i>
+                        </xsl:when>
+                    </xsl:choose>
+                </a>
             </section>
         </div>
 

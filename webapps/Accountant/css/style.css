@@ -1,9 +1,14 @@
-.btn-update-file-excel .fa {
+.btn-update-file-excel > .fa {
     color: #26962B;
     font-size: 1.6em;
     vertical-align: middle;
 }
-.visibility-hidden{
+
+.btn-update-file-excel > span {
+    vertical-align: middle;
+}
+
+.visibility-hidden {
     visibility: hidden;
 }
 
