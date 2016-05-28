@@ -3643,7 +3643,7 @@ $(document).ready(function() {
         var fsid = $("input[name=fsid]").val();
         //
         checkFile(fileName, fsid, $wizard).then(function(result) {
-            if (result.objects[0].status === 2) {
+            if (result.objects.length && result.objects[0].status === 2) {
                 insertParam('step', 3);
             }
             reloadPage();
