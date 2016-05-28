@@ -97,7 +97,6 @@ public class ProcessXLFile extends _DoPage {
 					Organization org = null;
 					String[] readers = null;
 					if (ext.equalsIgnoreCase("xls")) {
-
 						if (uo.equals("transfer")) {
 							try {
 								UUID bhId = UUID.fromString(formData.getValueSilently("recipient"));
@@ -106,6 +105,7 @@ public class ProcessXLFile extends _DoPage {
 							} catch (IllegalArgumentException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
+								addContent(uf);
 								return;
 							}
 						} else if (uo.equals("upload")) {
@@ -116,6 +116,7 @@ public class ProcessXLFile extends _DoPage {
 							} catch (IllegalArgumentException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
+								addContent(uf);
 								return;
 							}
 							try {
@@ -123,6 +124,7 @@ public class ProcessXLFile extends _DoPage {
 							} catch (_Exception e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
+								addContent(uf);
 								return;
 							}
 						}
@@ -149,7 +151,6 @@ public class ProcessXLFile extends _DoPage {
 							uf.setLocalizedMsg(getLocalizedWord("data_has_been_loaded_succesfully", lang) + ", обработано записей: "
 							        + Integer.toString(result.processed) + "(" + Integer.toString(result.skipped) + ")");
 						}
-
 					} else {
 						uf.setStatus(ImportFileEntry.LOADING_ERROR);
 						uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));

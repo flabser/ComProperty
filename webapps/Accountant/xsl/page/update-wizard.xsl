@@ -166,7 +166,7 @@
                 </span>
             </section>
         </div>
-        <xsl:apply-templates select="//fields/msg"/>
+        <!--<xsl:apply-templates select="//fields/msg"/>-->
         <xsl:if test="//fields/filename != ''">
             <div class="wizard_content-gr">
                 <header>Действия</header>
@@ -241,10 +241,69 @@
             </section>
         </div>
         <xsl:apply-templates select="//fields/msg"/>
+        <xsl:if test="//fields/loadtype = 'upload' or //fields/loadtype = 'transfer'">
+            <div class="wizard_content-gr">
+                <header>Выберите балансодержателя и читателей</header>
+                <section>
+                    <xsl:if test="//fields/loadtype = 'upload'">
+                        <button type="button" class="btn btn js-select-balance-holder">
+                            <span>Балансодержатель</span>
+                        </button>
+                        <button type="button" class="btn btn js-select-readers">
+                            <span>Читатели</span>
+                        </button>
+
+                        <input type="hidden" name="balanceholder" value=""/>
+                        <input type="hidden" name="status" value="{//fields/status}"/>
+                        <div style="margin-top:15px;">
+                            <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                            <ul class="update-readers" data-input="readers"></ul>
+                            <ul class="update-recipients" data-input="recipient"></ul>
+                            <ul class="update-order" data-input="order">
+                                <xsl:value-of select="//fields/orderfilename"/>
+                            </ul>
+                        </div>
+                    </xsl:if>
+                    <xsl:if test="//fields/loadtype = 'transfer'">
+                        <div name="js-init-update-panel" data-file-name="{//fields/filename}">
+                            <div>
+                                <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 -
+                                    Завершение
+                                    загрузки
+                                </p>
+                            </div>
+                            <div style="min-height:90px">
+                                <ul class="nb-dialog-list wizard-fields-list">
+                                    <li>
+                                        <button type="button" class="btn btn js-select-recipients"
+                                                style="margin-top:3px; padding-bottom:11px">
+                                            <span>Получатель</span>
+                                        </button>
+                                        <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
+                                            <i class="fa fa-file-text-o"></i>
+                                            <span>Прикрепить постановление</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                                <input type="hidden" name="balanceholder" value=""/>
+                                <input type="hidden" name="status" value="{//fields/status}"/>
+                                <div style="margin-top:15px;">
+                                    <strong class="update-balance-holder" data-input="balanceholder"></strong>
+                                    <ul class="update-recipients" data-input="recipient"></ul>
+                                    <ul class="update-order" data-input="order">
+                                        <xsl:value-of select="//fields/orderfilename"/>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </xsl:if>
+                </section>
+            </div>
+        </xsl:if>
         <div class="wizard_content-gr">
             <header>Действия</header>
             <section>
-                <a class="wizard_action-btn" href="#">
+                <a class="wizard_action-btn js-step-3" href="#">
                     <xsl:choose>
                         <xsl:when test="//fields/loadtype = 'upload'">
                             <xsl:attribute name="data-action" select="'upload'"/>
@@ -252,100 +311,16 @@
                         </xsl:when>
                         <xsl:when test="//fields/loadtype = 'writeoff'">
                             <xsl:attribute name="data-action" select="'writeoff'"/>
-                            <span>Списать</span>
+                            <span>Отметить имущество как списанное</span>
                         </xsl:when>
                         <xsl:when test="//fields/loadtype = 'transfer'">
                             <xsl:attribute name="data-action" select="'transfer'"/>
-                            <span>Передать</span>
+                            <span>Передать имущество</span>
                         </xsl:when>
                     </xsl:choose>
                 </a>
             </section>
         </div>
-
-        <xsl:if test="//fields/loadtype = 'upload'">
-            <div name="js-init-update-panel" data-file-name="{//fields/filename}">
-                <div style="min-height:90px">
-                    <ul class="nb-dialog-list wizard-fields-list">
-                        <li>
-                            <button type="button" class="btn btn js-select-balance-holder">
-                                <span>Балансодержатель</span>
-                            </button>
-                            <button type="button" class="btn btn js-select-readers">
-                                <span>Читатели</span>
-                            </button>
-                        </li>
-                    </ul>
-                    <input type="hidden" name="balanceholder" value=""/>
-                    <input type="hidden" name="status" value="{//fields/status}"/>
-                    <div style="margin-top:15px;">
-                        <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                        <ul class="update-readers" data-input="readers"></ul>
-                        <ul class="update-recipients" data-input="recipient"></ul>
-                        <ul class="update-order" data-input="order">
-                            <xsl:value-of select="//fields/orderfilename"/>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </xsl:if>
-
-        <xsl:if test="//fields/loadtype = 'writeoff'">
-            <div name="js-init-update-panel" data-file-name="{//fields/filename}">
-                <div>
-                    <p style="font-size:16px; font-weight:bold">Результат</p>
-                </div>
-                <div style="min-height:90px">
-
-
-                </div>
-                <div style="text-align:right;">
-                    <button type="button" class="btn btn js-back">
-                        <span>Назад</span>
-                    </button>
-                    <button type="button" class="btn btn js-step-3">
-                        <xsl:if test="//fields/status != 2">
-                            <xsl:attribute name="disabled">disabled</xsl:attribute>
-                        </xsl:if>
-                        <span>Списать</span>
-                    </button>
-                </div>
-                <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
-            </div>
-        </xsl:if>
-
-        <xsl:if test="//fields/loadtype = 'transfer'">
-            <div name="js-init-update-panel" data-file-name="{//fields/filename}">
-                <div>
-                    <p style="font-size:16px; font-weight:bold">Мастер загрузки обновлений - Шаг 3 - Завершение
-                        загрузки
-                    </p>
-                </div>
-                <div style="min-height:90px">
-                    <ul class="nb-dialog-list wizard-fields-list">
-                        <li>
-                            <button type="button" class="btn btn js-select-recipients"
-                                    style="margin-top:3px; padding-bottom:11px">
-                                <span>Получатель</span>
-                            </button>
-                            <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
-                                <i class="fa fa-file-text-o"></i>
-                                <span>Прикрепить постановление</span>
-                            </label>
-                        </li>
-                    </ul>
-                    <input type="hidden" name="balanceholder" value=""/>
-                    <input type="hidden" name="status" value="{//fields/status}"/>
-                    <div style="margin-top:15px;">
-                        <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                        <ul class="update-recipients" data-input="recipient"></ul>
-                        <ul class="update-order" data-input="order">
-                            <xsl:value-of select="//fields/orderfilename"/>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </xsl:if>
     </xsl:template>
 
     <xsl:template name="tpl_step_4">
@@ -355,11 +330,17 @@
                 <xsl:value-of select="//fields/filename"/>
             </section>
         </div>
+        <div class="wizard_content-gr">
+            <header>Результат</header>
+            <section>
+                <xsl:apply-templates select="//fields/msg"/>
+            </section>
+        </div>
     </xsl:template>
 
     <xsl:template match="msg">
         <xsl:if test="text() != ''">
-            <p class="update-file-msg">
+            <p class="update-file-msg blink-anim">
                 <xsl:choose>
                     <!--<xsl:when test="//fields/status = 2">
                         <xsl:attribute name="class" select="'update-file-msg blink-anim'"/>

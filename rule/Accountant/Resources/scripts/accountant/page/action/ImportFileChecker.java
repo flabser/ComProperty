@@ -63,6 +63,7 @@ public class ImportFileChecker extends _DoPage {
 					} catch (BiffException e) {
 						uf.setStatus(ImportFileEntry.CHECKING_ERROR);
 						uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
+						addContent(uf);
 						return;
 					}
 					Sheet sheet = workbook.getSheet(0);
@@ -79,23 +80,24 @@ public class ImportFileChecker extends _DoPage {
 						uf.setStatus(ImportFileEntry.CHECKING_ERROR);
 						uf.setLocalizedMsg(getLocalizedWord("file_data_is_incorrect", lang));
 						uf.setSheetErrs(result.sheetErr);
+						addContent(uf);
 					} else {
 						uf.setStatus(ImportFileEntry.CHECKED);
 						uf.setSheetErrs(null);
 						uf.setLocalizedMsg(" Ok, проверено записей: " + Integer.toString(result.processed));
 					}
-
 				} else {
 					uf.setStatus(ImportFileEntry.CHECKING_ERROR);
 					uf.setLocalizedMsg(getLocalizedWord("incorrect_xls_file", lang));
+					addContent(uf);
 					return;
 				}
-
 			}
 		} catch (Exception e) {
 			if (uf != null) {
 				uf.setStatus(ImportFileEntry.CHECKING_ERROR);
 				uf.setLocalizedMsg(e.toString());
+				addContent(uf);
 			}
 			setBadRequest();
 			error(e);

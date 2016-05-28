@@ -229,6 +229,7 @@
 
 .wizard_action-btn > .fa {
     color: #9b59b6;
+    float: right;
     font-size: 1.8em;
     margin-left: 8px;
     vertical-align: top;
@@ -238,22 +239,25 @@
 /* .update-file-name */
 
 .wizard_content .update-file-name {
+    display: inline-block;
     padding: 0 16px;
     vertical-align: middle;
 }
 
 .update-file-msg {
+    background: #FFF070;
+    color: #333;
     display: block;
     margin: 0;
     padding: 8px;
 }
 
 .update-file-check-status-2 .update-file-msg {
-    background: #dff0d8;
+    background: #CEEAC2;
     color: #3c763d;
 }
 
 .update-file-check-status-4 .update-file-msg {
-    background: #f2dede;
+    background: #F3D4D4;
     color: #a94442;
 }

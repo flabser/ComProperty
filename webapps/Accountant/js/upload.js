@@ -117,7 +117,7 @@ function checkFile(fileId, fsid, $context) {
 
     return $.ajax({
         type: 'get',
-        dataType: 'html',
+        dataType: 'json',
         url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + uploadtype,
         success: function(data) {
             return data;

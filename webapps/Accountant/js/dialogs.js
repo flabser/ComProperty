@@ -23,7 +23,12 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
         href: url,
         dataType: 'json',
         message: message,
-        onExecute: function(){if (nb.setFormValues(dlg)) { dlg.dialog('close');} callback && callback()},
+        onExecute: function() {
+            if (nb.setFormValues(dlg)) {
+                dlg.dialog('close');
+            }
+            callback && callback()
+        },
         buttons: {
             ok: {
                 text: nb.getText('ok'),
@@ -46,7 +51,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
 nbApp.defaultConfirmDialog = function(message, callback) {
     var dlg = nb.dialog.warn({
         message: message,
-        height : 160,
+        height: 200,
         buttons: {
             ok: {
                 text: nb.getText('ok'),
@@ -65,7 +70,6 @@ nbApp.defaultConfirmDialog = function(message, callback) {
     });
     return dlg;
 };
-
 
 nbApp.choiceBalanceHolder = function(el, callback) {
     var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;

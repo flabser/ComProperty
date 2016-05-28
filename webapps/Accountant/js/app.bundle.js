@@ -3528,7 +3528,12 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
         href: url,
         dataType: 'json',
         message: message,
-        onExecute: function(){if (nb.setFormValues(dlg)) { dlg.dialog('close');} callback && callback()},
+        onExecute: function() {
+            if (nb.setFormValues(dlg)) {
+                dlg.dialog('close');
+            }
+            callback && callback()
+        },
         buttons: {
             ok: {
                 text: nb.getText('ok'),
@@ -3551,7 +3556,7 @@ nbApp.defaultChoiceDialog = function(el, url, fields, isMulti, callback, message
 nbApp.defaultConfirmDialog = function(message, callback) {
     var dlg = nb.dialog.warn({
         message: message,
-        height : 160,
+        height: 200,
         buttons: {
             ok: {
                 text: nb.getText('ok'),
@@ -3570,7 +3575,6 @@ nbApp.defaultConfirmDialog = function(message, callback) {
     });
     return dlg;
 };
-
 
 nbApp.choiceBalanceHolder = function(el, callback) {
     var url = 'Provider?id=get-organizations&_fn=' + nb.getForm(el).name;
@@ -3628,48 +3632,26 @@ $(function() {
 
 $(document).ready(function() {
     var $wizard = $(".wizard");
-    $wizard.find('.js-step-0').on('click', function(e) {
-        window.location.href="/Accountant/p?id=wizard-form&step=0";
-    });
-    $wizard.find('.js-step-1').on('click', function(e) {
-        insertParam('step', 1);
-        reloadPage();
-    });
-    $wizard.find('.js-step-2').on('click', function(e) {
-        insertParam('step', 2);
-        reloadPage();
-    });
-    $wizard.find('.js-back').on('click', function(e) {
-        window.history.back();
-    });
 
-   $("body").find('.js-check').on('click', function(e) {
+    $("body").find('.js-check').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
         var $btn = $(this);
 
         //$btn.attr('disabled', true);
-        var fileName= $("input[name=filename]").val();
-        var fsid= $("input[name=fsid]").val();
+        var fileName = $("input[name=filename]").val();
+        var fsid = $("input[name=fsid]").val();
         //
         checkFile(fileName, fsid, $wizard).then(function(result) {
-            /*$btn.parents('.panel').addClass('open');
-             if (result == '') {
-             $tpl.find('.js-load').removeAttr('disabled');
-             $tpl.find('.js-select-balance-holder').removeAttr('disabled');
-             $tpl.find('.js-select-readers').removeAttr('disabled');
-             }
-             $tpl.find('.js-check-result').html(result);*/
-            //
-            insertParam('step', 3);
+            if (result.objects[0].status === 2) {
+                insertParam('step', 3);
+            }
             reloadPage();
         }, function(err) {
-            // $btn.parents('.panel').addClass('open');
-            // $tpl.find('.js-check-result').html(err.statusText);
-            //
             reloadPage();
         });
     });
+
     $("body").find('.js-select-balance-holder').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -3696,37 +3678,43 @@ $(document).ready(function() {
     $wizard.find('.js-step-3').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        var fileName= $("input[name=filename]").val();
-        var fsid= $("input[name=fsid]").val();
-        //setLastFileToStorage(fileName);
-        if($('input[name=uploadtype]') == 'writeoff'){
+
+        var fileName = $('input[name=filename]').val();
+        var fsid = $('input[name=fsid]').val();
+        var uploadType = $('input[name=uploadtype]').val();
+
+        if (uploadType === 'writeoff') {
             nbApp.confirmWriteOff(function() {
-                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
+                loadFile(fileName, $wizard.serialize(), fsid).then(function(result) {
+                    if (result.type === 'OK') {
+                        insertParam('step', 4);
+                    }
                     reloadPage();
                 }, function() {
                     reloadPage();
                 });
             });
-        }else{
-            if($('input[name=uploadtype]') == 'transfer'){
-                nbApp.confirmTransfer(function() {
-                    loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
-                        reloadPage();
-                    }, function() {
-                        reloadPage();
-                    });
-                });
-            }else{
-                //$(this).attr('disabled', true);
-                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function () {
-                    // $tpl.addClass('upload-success');
+        } else if (uploadType === 'transfer') {
+            nbApp.confirmTransfer(function() {
+                loadFile(fileName, $wizard.serialize(), fsid).then(function(result) {
+                    if (result.type === 'OK') {
+                        insertParam('step', 4);
+                    }
                     reloadPage();
-                }, function () {
+                }, function() {
                     reloadPage();
                 });
-            }
+            });
+        } else if (uploadType === 'upload') {
+            loadFile(fileName, $wizard.serialize(), fsid).then(function(result) {
+                if (result.type === 'OK') {
+                    insertParam('step', 4);
+                }
+                reloadPage();
+            }, function() {
+                reloadPage();
+            });
         }
-
     });
 
     $wizard.find('.js-select-recipients').on('click', function(e) {
@@ -3739,7 +3727,6 @@ $(document).ready(function() {
         });
         $wizard.find('.errormsg').remove();
     });
-
 });
 
 function uploadUpdate(fileInput, fsid) {
@@ -3861,7 +3848,7 @@ function checkFile(fileId, fsid, $context) {
 
     return $.ajax({
         type: 'get',
-        dataType: 'html',
+        dataType: 'json',
         url: 'Provider?id=check-file-structure&fileid=' + encodeURIComponent(fileId) + '&fsid=' + fsid + stopIfError + uploadtype,
         success: function(data) {
             return data;
