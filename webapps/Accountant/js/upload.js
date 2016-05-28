@@ -433,6 +433,9 @@ function initCachedUpdateForm() {
 });*/
 
 $(document).ready(function() {
+    return;
+
+
     var $wizard = $(".wizard");
     $wizard.find('.js-step-0').on('click', function(e) {
         window.location.href="/Accountant/p?id=wizard-form&step=0";

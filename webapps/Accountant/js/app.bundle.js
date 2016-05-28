@@ -3626,6 +3626,121 @@ $(function() {
     }
 });
 
+$(document).ready(function() {
+    var $wizard = $(".wizard");
+    $wizard.find('.js-step-0').on('click', function(e) {
+        window.location.href="/Accountant/p?id=wizard-form&step=0";
+    });
+    $wizard.find('.js-step-1').on('click', function(e) {
+        insertParam('step', 1);
+        reloadPage();
+    });
+    $wizard.find('.js-step-2').on('click', function(e) {
+        insertParam('step', 2);
+        reloadPage();
+    });
+    $wizard.find('.js-back').on('click', function(e) {
+        window.history.back();
+    });
+
+   $("body").find('.js-check').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $btn = $(this);
+
+        //$btn.attr('disabled', true);
+        var fileName= $("input[name=filename]").val();
+        var fsid= $("input[name=fsid]").val();
+        //
+        checkFile(fileName, fsid, $wizard).then(function(result) {
+            /*$btn.parents('.panel').addClass('open');
+             if (result == '') {
+             $tpl.find('.js-load').removeAttr('disabled');
+             $tpl.find('.js-select-balance-holder').removeAttr('disabled');
+             $tpl.find('.js-select-readers').removeAttr('disabled');
+             }
+             $tpl.find('.js-check-result').html(result);*/
+            //
+            reloadPage();
+        }, function(err) {
+            // $btn.parents('.panel').addClass('open');
+            // $tpl.find('.js-check-result').html(err.statusText);
+            //
+            reloadPage();
+        });
+    });
+    $("body").find('.js-select-balance-holder').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        //$(this).parents('.panel').addClass('open');
+        nbApp.choiceBalanceHolder(this, function() {
+            //setBalanceholderToStorage();
+            //toggleLoadButtonState($tpl);
+        });
+        $("body").find('.errormsg').remove();
+    });
+
+    $("body").find('.js-select-readers').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        //$(this).parents('.panel').addClass('open');
+        nbApp.choiceReaders(this, function() {
+            //setReaderToStorage();
+            //setReaderNameToStorage();
+            //toggleLoadButtonState($tpl);
+        });
+        $("body").find('.errormsg').remove();
+    });
+
+    $wizard.find('.js-step-3').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var fileName= $("input[name=filename]").val();
+        var fsid= $("input[name=fsid]").val();
+        //setLastFileToStorage(fileName);
+        if($('input[name=uploadtype]') == 'writeoff'){
+            nbApp.confirmWriteOff(function() {
+                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
+                    reloadPage();
+                }, function() {
+                    reloadPage();
+                });
+            });
+        }else{
+            if($('input[name=uploadtype]') == 'transfer'){
+                nbApp.confirmTransfer(function() {
+                    loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
+                        reloadPage();
+                    }, function() {
+                        reloadPage();
+                    });
+                });
+            }else{
+                //$(this).attr('disabled', true);
+                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function () {
+                    // $tpl.addClass('upload-success');
+                    reloadPage();
+                }, function () {
+                    reloadPage();
+                });
+            }
+        }
+
+    });
+
+    $wizard.find('.js-select-recipients').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        nbApp.choicePropertyRecipient(this, function() {
+            //toggleLoadButtonState($tpl);
+            //$('.js-load').attr('disabled', false);
+            //setRecipientToStorage();
+        });
+        $wizard.find('.errormsg').remove();
+    });
+
+});
+
 function uploadUpdate(fileInput, fsid) {
     var formData = new FormData();
     formData.append('file', fileInput.files[0]);
@@ -4061,6 +4176,9 @@ function initCachedUpdateForm() {
 });*/
 
 $(document).ready(function() {
+    return;
+
+
     var $wizard = $(".wizard");
     $wizard.find('.js-step-0').on('click', function(e) {
         window.location.href="/Accountant/p?id=wizard-form&step=0";
