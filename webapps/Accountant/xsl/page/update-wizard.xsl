@@ -83,8 +83,8 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="wizard_step disabled">
-                            <xsl:if test="//fields/step = 0">
+                        <li class="wizard_step">
+                            <xsl:if test="//fields/status = 0 or //fields/status = 1 or //fields/status = 4">
                                 <xsl:attribute name="class" select="'wizard_step disabled'"/>
                             </xsl:if>
                             <xsl:if test="//fields/step = 3">
@@ -242,24 +242,21 @@
         </div>
         <xsl:apply-templates select="//fields/msg"/>
         <div class="wizard_content-gr">
-            <header>Файл</header>
+            <header>Действия</header>
             <section>
-                <a class="wizard_nav-btn" href="#">
+                <a class="wizard_action-btn" href="#">
                     <xsl:choose>
                         <xsl:when test="//fields/loadtype = 'upload'">
                             <xsl:attribute name="data-action" select="'upload'"/>
                             <span>Загрузить</span>
-                            <i class="fa fa-angle-right"></i>
                         </xsl:when>
                         <xsl:when test="//fields/loadtype = 'writeoff'">
                             <xsl:attribute name="data-action" select="'writeoff'"/>
                             <span>Списать</span>
-                            <i class="fa fa-angle-right"></i>
                         </xsl:when>
                         <xsl:when test="//fields/loadtype = 'transfer'">
                             <xsl:attribute name="data-action" select="'transfer'"/>
                             <span>Передать</span>
-                            <i class="fa fa-angle-right"></i>
                         </xsl:when>
                     </xsl:choose>
                 </a>
@@ -353,7 +350,7 @@
 
     <xsl:template name="tpl_step_4">
         <div class="wizard_content-gr">
-            <header>Результат</header>
+            <header>Файл</header>
             <section>
                 <xsl:value-of select="//fields/filename"/>
             </section>
@@ -364,9 +361,9 @@
         <xsl:if test="text() != ''">
             <p class="update-file-msg">
                 <xsl:choose>
-                    <xsl:when test="//fields/status = 2">
+                    <!--<xsl:when test="//fields/status = 2">
                         <xsl:attribute name="class" select="'update-file-msg blink-anim'"/>
-                    </xsl:when>
+                    </xsl:when>-->
                     <xsl:when test="//fields/status = 4">
                         <xsl:attribute name="class" select="'update-file-msg blink-anim-error'"/>
                     </xsl:when>

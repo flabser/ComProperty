@@ -224,14 +224,14 @@
 
 .wizard_action-btn > span {
     display: inline-block;
-    margin-right: 8px;
-    vertical-align: middle;
+    line-height: 1.8;
 }
 
 .wizard_action-btn > .fa {
     color: #9b59b6;
     font-size: 1.8em;
-    vertical-align: middle;
+    margin-left: 8px;
+    vertical-align: top;
 }
 
 
