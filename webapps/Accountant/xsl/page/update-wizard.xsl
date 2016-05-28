@@ -127,7 +127,7 @@
                     </xsl:when>
                 </xsl:choose>
             </div>
-            <xsl:if test="//fields/step > 0">
+            <xsl:if test="//fields/filename != ''">
                 <nav class="wizard_nav">
                     <a class="wizard_nav-reset" href="?id=update-wizard">
                         <xsl:choose>
@@ -170,28 +170,28 @@
             <div class="wizard_content-gr">
                 <header>Действия</header>
                 <section>
-                    <a class="link-next"
+                    <a class="wizard_action-btn"
                        href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=upload">
                         <xsl:if test="//fields/loadtype = 'upload'">
-                            <xsl:attribute name="class" select="'link-next active'"/>
+                            <xsl:attribute name="class" select="'wizard_action-btn active'"/>
                         </xsl:if>
                         <span>Загрузка</span>
                         <i class="fa fa-angle-right"></i>
                     </a>
                     <div></div>
-                    <a class="link-next"
+                    <a class="wizard_action-btn"
                        href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=writeoff">
                         <xsl:if test="//fields/loadtype = 'writeoff'">
-                            <xsl:attribute name="class" select="'link-next active'"/>
+                            <xsl:attribute name="class" select="'wizard_action-btn active'"/>
                         </xsl:if>
                         <span>Отметить имущество как списанное</span>
                         <i class="fa fa-angle-right"></i>
                     </a>
                     <div></div>
-                    <a class="link-next"
+                    <a class="wizard_action-btn"
                        href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=transfer">
                         <xsl:if test="//fields/loadtype = 'transfer'">
-                            <xsl:attribute name="class" select="'link-next active'"/>
+                            <xsl:attribute name="class" select="'wizard_action-btn active'"/>
                         </xsl:if>
                         <span>Передать имущество</span>
                         <i class="fa fa-angle-right"></i>
@@ -222,7 +222,7 @@
                         </input>
                     </label>
                 </p>
-                <a class="link-next js-check" href="#check">
+                <a class="wizard_action-btn js-check" href="#check">
                     <span>Проверить файл</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
@@ -360,7 +360,7 @@
 
     <xsl:template match="msg">
         <xsl:if test="text() != ''">
-            <p class="update-file-msg">
+            <p class="update-file-msg blink-anim-error">
                 <xsl:value-of select="text()"/>
             </p>
         </xsl:if>
