@@ -3661,6 +3661,7 @@ $(document).ready(function() {
              }
              $tpl.find('.js-check-result').html(result);*/
             //
+            insertParam('step', 3);
             reloadPage();
         }, function(err) {
             // $btn.parents('.panel').addClass('open');

@@ -243,9 +243,17 @@
 }
 
 .update-file-msg {
-    background: #f2dede;
-    color: #a94442;
     display: block;
     margin: 0;
     padding: 8px;
+}
+
+.update-file-check-status-2 .update-file-msg {
+    background: #dff0d8;
+    color: #3c763d;
+}
+
+.update-file-check-status-4 .update-file-msg {
+    background: #f2dede;
+    color: #a94442;
 }

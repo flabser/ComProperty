@@ -166,6 +166,7 @@
                 </span>
             </section>
         </div>
+        <xsl:apply-templates select="//fields/msg"/>
         <xsl:if test="//fields/filename != ''">
             <div class="wizard_content-gr">
                 <header>Действия</header>
@@ -239,6 +240,7 @@
                 </span>
             </section>
         </div>
+        <xsl:apply-templates select="//fields/msg"/>
         <div class="wizard_content-gr">
             <header>Файл</header>
             <section>
@@ -360,7 +362,15 @@
 
     <xsl:template match="msg">
         <xsl:if test="text() != ''">
-            <p class="update-file-msg blink-anim-error">
+            <p class="update-file-msg">
+                <xsl:choose>
+                    <xsl:when test="//fields/status = 2">
+                        <xsl:attribute name="class" select="'update-file-msg blink-anim'"/>
+                    </xsl:when>
+                    <xsl:when test="//fields/status = 4">
+                        <xsl:attribute name="class" select="'update-file-msg blink-anim-error'"/>
+                    </xsl:when>
+                </xsl:choose>
                 <xsl:value-of select="text()"/>
             </p>
         </xsl:if>
