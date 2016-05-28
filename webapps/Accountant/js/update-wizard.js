@@ -11,6 +11,8 @@ $(document).ready(function() {
         var fsid = $("input[name=fsid]").val();
         //
         checkFile(fileName, fsid, $wizard).then(function(result) {
+            console.log('check', result);
+
             if (result.objects.length && result.objects[0].status === 2) {
                 insertParam('step', 3);
             }
@@ -54,6 +56,8 @@ $(document).ready(function() {
         if (uploadType === 'writeoff') {
             nbApp.confirmWriteOff(function() {
                 loadFile(fileName, $wizard.serialize(), fsid).then(function(result) {
+                    console.log('writeoff', result);
+
                     if (result.type === 'OK') {
                         insertParam('step', 4);
                     }
@@ -65,6 +69,8 @@ $(document).ready(function() {
         } else if (uploadType === 'transfer') {
             nbApp.confirmTransfer(function() {
                 loadFile(fileName, $wizard.serialize(), fsid).then(function(result) {
+                    console.log('transfer', result);
+
                     if (result.type === 'OK') {
                         insertParam('step', 4);
                     }
@@ -75,6 +81,8 @@ $(document).ready(function() {
             });
         } else if (uploadType === 'upload') {
             loadFile(fileName, $wizard.serialize(), fsid).then(function(result) {
+                console.log('upload', result);
+
                 if (result.type === 'OK') {
                     insertParam('step', 4);
                 }

@@ -41,7 +41,7 @@
                         <li class="wizard_step active">
                             <a href="#">
                                 <span class="wizard_step-title">
-                                    <xsl:value-of select="concat('Step', 4)"/>
+                                    <xsl:value-of select="concat('Step', ' ', 4)"/>
                                 </span>
                                 <span class="wizard_step-description">Результат</span>
                             </a>
@@ -54,7 +54,7 @@
                             </xsl:if>
                             <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=1&amp;uploadtype={//fields/loadtype}">
                                 <span class="wizard_step-title">
-                                    <xsl:value-of select="concat('Step', 1)"/>
+                                    <xsl:value-of select="concat('Step', ' ', 1)"/>
                                 </span>
                                 <span class="wizard_step-description">Выбoр файла и действия</span>
                             </a>
@@ -68,7 +68,7 @@
                             </xsl:if>
                             <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype={//fields/loadtype}">
                                 <span class="wizard_step-title">
-                                    <xsl:value-of select="concat('Step', 2)"/>
+                                    <xsl:value-of select="concat('Step', ' ', 2)"/>
                                 </span>
                                 <span class="wizard_step-description">
                                     Проверка файла
@@ -92,7 +92,7 @@
                             </xsl:if>
                             <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=3&amp;uploadtype={//fields/loadtype}">
                                 <span class="wizard_step-title">
-                                    <xsl:value-of select="concat('Step', 3)"/>
+                                    <xsl:value-of select="concat('Step', ' ', 3)"/>
                                 </span>
                                 <span class="wizard_step-description">
                                     <xsl:choose>

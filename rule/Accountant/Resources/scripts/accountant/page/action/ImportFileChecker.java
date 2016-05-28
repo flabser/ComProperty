@@ -85,6 +85,7 @@ public class ImportFileChecker extends _DoPage {
 						uf.setStatus(ImportFileEntry.CHECKED);
 						uf.setSheetErrs(null);
 						uf.setLocalizedMsg(" Ok, проверено записей: " + Integer.toString(result.processed));
+						addContent(uf);
 					}
 				} else {
 					uf.setStatus(ImportFileEntry.CHECKING_ERROR);
