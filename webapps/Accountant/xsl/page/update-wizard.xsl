@@ -34,7 +34,7 @@
     </xsl:template>
 
     <xsl:template name="wizard">
-        <form class="wizard" name="wizard" action="" method="get">
+        <form class="wizard update-file-check-status-{//fields/status}" name="wizard" action="" method="get">
             <ul class="wizard_steps">
                 <xsl:choose>
                     <xsl:when test="//fields/step = 4">
@@ -70,7 +70,17 @@
                                 <span class="wizard_step-title">
                                     <xsl:value-of select="concat('Step', 2)"/>
                                 </span>
-                                <span class="wizard_step-description">Проверка файла</span>
+                                <span class="wizard_step-description">
+                                    Проверка файла
+                                    <xsl:choose>
+                                        <xsl:when test="//fields/status = 2">
+                                            <i class="fa fa-check-circle-o"></i>
+                                        </xsl:when>
+                                        <xsl:when test="//fields/status = 4">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                </span>
                             </a>
                         </li>
                         <li class="wizard_step disabled">
@@ -121,8 +131,8 @@
                 <nav class="wizard_nav">
                     <a class="wizard_nav-reset" href="?id=update-wizard">
                         <xsl:choose>
-                            <xsl:when test="//fields/step = 4">New upload</xsl:when>
-                            <xsl:otherwise>Reset</xsl:otherwise>
+                            <xsl:when test="//fields/step = 4">New update</xsl:when>
+                            <xsl:otherwise>Reset update wizard</xsl:otherwise>
                         </xsl:choose>
                     </a>
                 </nav>
@@ -134,7 +144,6 @@
 
         <xsl:if test="//fields/step = 2">
             <div class="panel__body scroll-shadow update-status-{//fields/status}">
-                <xsl:apply-templates select="//fields/msg"/>
                 <div class="js-check-result">
                     <xsl:apply-templates select="//fields/sheeterrs"/>
                 </div>
@@ -201,6 +210,7 @@
                 </span>
             </section>
         </div>
+        <xsl:apply-templates select="//fields/msg"/>
         <div class="wizard_content-gr">
             <header>Действия</header>
             <section>
@@ -212,7 +222,7 @@
                         </input>
                     </label>
                 </p>
-                <a class="link-next" href="#check">
+                <a class="link-next js-check" href="#check">
                     <span>Проверить файл</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
@@ -349,9 +359,11 @@
     </xsl:template>
 
     <xsl:template match="msg">
-        <p class="update-file-msg">
-            <xsl:value-of select="text()"/>
-        </p>
+        <xsl:if test="text() != ''">
+            <p class="update-file-msg">
+                <xsl:value-of select="text()"/>
+            </p>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="sheeterrs">
