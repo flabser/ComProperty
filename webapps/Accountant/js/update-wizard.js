@@ -45,6 +45,7 @@ var updateWizard = function() {
         var uploadTypeName = $(this).parent().find('span').text();
         $lastStepDesc.removeClass('wizard_step-no-action').html(uploadTypeName);
         refreshUI();
+        insertParam('uploadtype', this.value);
     });
     $wizard.find('[name=_uploadtype][value=' + (wf.uploadtype.value || 'undef') + ']').attr('checked', true).trigger('change');
 
