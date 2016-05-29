@@ -122,7 +122,8 @@ public class XLImporter {
 				mode = XLImporter.PROCESS;
 			} else if (uploadtype.equals("transfer")) {
 				orderDao = new OrderDAO(ses);
-				order = composeNewOrder(addFilePath);
+				order = composeNewOrder(addFilePath, "... о передаче имущества " + bh.getName());
+
 			}
 		}
 
@@ -140,7 +141,11 @@ public class XLImporter {
 			row.name = sheet.getCell(3, i).getContents().trim();
 			row.propertyCode = normalizeString(sheet.getCell(4, i).getContents());
 			row.acceptanceDateCell = sheet.getCell(5, i);
-			row.country = normalizeString(sheet.getCell(6, i).getContents());
+			String country = normalizeString(sheet.getCell(6, i).getContents());
+			if (country.equalsIgnoreCase("казахстан")) {
+				country = "Kazakhstan";
+			}
+			row.country = country;
 			String region = normalizeString(sheet.getCell(7, i).getContents());
 			row.preparedRegion = normalizeString(region.replace("г.а.", "").replace("область", ""));
 			String district = normalizeString(sheet.getCell(8, i).getContents());
@@ -186,7 +191,7 @@ public class XLImporter {
 						processed++;
 					}
 				} else if (uploadtype.equals("writeoff")) {
-					if (writeOff(row, bh)) {
+					if (writeOff(row)) {
 						processed++;
 					}
 				} else if (uploadtype.equals("transfer")) {
@@ -342,18 +347,20 @@ public class XLImporter {
 
 	}
 
-	private boolean writeOff(XLRow row, Organization bh) {
+	private boolean writeOff(XLRow row) {
 		CheVal cv = new CheVal();
 		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
-		for (Property prop : pList) {
-			if (prop.getBalanceHolder().equals(bh)) {
-				prop.setPropertyStatusType(PropertyStatusType.WRITTENOFF);
-				try {
-					propertyDao.update(prop);
-					return true;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		Property prop = null;
+		if (pList.size() > 1) {
+			return false;
+		} else {
+			prop = pList.get(0);
+			prop.setPropertyStatusType(PropertyStatusType.WRITTENOFF);
+			try {
+				propertyDao.update(prop);
+				return true;
+			} catch (Exception e) {
+				Server.logger.errorLogEntry(e);
 			}
 		}
 		return false;
@@ -392,17 +399,17 @@ public class XLImporter {
 				propList.add(prop);
 				return true;
 			} catch (Exception e) {
-				e.printStackTrace();
+				Server.logger.errorLogEntry(e);
 			}
 
 		}
 		return false;
 	}
 
-	private Order composeNewOrder(String fn) {
+	private Order composeNewOrder(String fn, String descr) {
 		Order entity = new Order();
 		IUser<Long> user = ses.getUser();
-		entity.setDescription("");
+		entity.setDescription(descr);
 		entity.setRegNumber("");
 		entity.setAppliedRegDate(new Date());
 		entity.setOrderStatus(OrderStatus.ACTIVE);
