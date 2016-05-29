@@ -122,7 +122,8 @@ public class XLImporter {
 				mode = XLImporter.PROCESS;
 			} else if (uploadtype.equals("transfer")) {
 				orderDao = new OrderDAO(ses);
-				order = composeNewOrder(addFilePath);
+				order = composeNewOrder(addFilePath, "... о передаче имущества " + bh.getName());
+
 			}
 		}
 
@@ -405,10 +406,10 @@ public class XLImporter {
 		return false;
 	}
 
-	private Order composeNewOrder(String fn) {
+	private Order composeNewOrder(String fn, String descr) {
 		Order entity = new Order();
 		IUser<Long> user = ses.getUser();
-		entity.setDescription("");
+		entity.setDescription(descr);
 		entity.setRegNumber("");
 		entity.setAppliedRegDate(new Date());
 		entity.setOrderStatus(OrderStatus.ACTIVE);
