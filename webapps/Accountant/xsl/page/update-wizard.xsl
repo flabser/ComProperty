@@ -34,12 +34,13 @@
     </xsl:template>
 
     <xsl:template name="wizard">
-        <form class="wizard update-file-check-status-{//fields/status}" name="wizard" action="" method="get">
+        <form class="wizard update-file-check-status-{//fields/status}" name="wizard" action="p?id=update-wizard"
+              method="get">
             <ul class="wizard_steps">
                 <xsl:choose>
                     <xsl:when test="//fields/step = 4">
                         <li class="wizard_step active">
-                            <a href="#">
+                            <a href="#result" data-wizard-step="4">
                                 <span class="wizard_step-title">
                                     <xsl:value-of select="concat('Step', ' ', 4)"/>
                                 </span>
@@ -52,7 +53,7 @@
                             <xsl:if test="//fields/step = 0 or //fields/step = 1">
                                 <xsl:attribute name="class" select="'wizard_step active'"/>
                             </xsl:if>
-                            <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=1&amp;uploadtype={//fields/loadtype}">
+                            <a href="#step1" data-wizard-step="1">
                                 <span class="wizard_step-title">
                                     <xsl:value-of select="concat('Step', ' ', 1)"/>
                                 </span>
@@ -66,7 +67,7 @@
                             <xsl:if test="//fields/loadtype = ''">
                                 <xsl:attribute name="class" select="'wizard_step disabled'"/>
                             </xsl:if>
-                            <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype={//fields/loadtype}">
+                            <a href="#step2" data-wizard-step="2">
                                 <span class="wizard_step-title">
                                     <xsl:value-of select="concat('Step', ' ', 2)"/>
                                 </span>
@@ -90,13 +91,15 @@
                             <xsl:if test="//fields/step = 3">
                                 <xsl:attribute name="class" select="'wizard_step active'"/>
                             </xsl:if>
-                            <a href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=3&amp;uploadtype={//fields/loadtype}">
+                            <a href="#step3" data-wizard-step="3">
                                 <span class="wizard_step-title">
                                     <xsl:value-of select="concat('Step', ' ', 3)"/>
                                 </span>
                                 <span class="wizard_step-description">
                                     <xsl:choose>
-                                        <xsl:when test="//fields/loadtype = 'writeoff'">Списание</xsl:when>
+                                        <xsl:when test="//fields/loadtype = 'writeoff'">Отметить имущество как
+                                            списанное
+                                        </xsl:when>
                                         <xsl:when test="//fields/loadtype = 'transfer'">Передать имущество</xsl:when>
                                         <xsl:when test="//fields/loadtype = 'upload'">Загрузка</xsl:when>
                                         <xsl:otherwise>
@@ -135,15 +138,29 @@
                             <xsl:otherwise>Reset update wizard</xsl:otherwise>
                         </xsl:choose>
                     </a>
+                    <button type="button" class="wizard_nav-btn" data-wizard-step="prev">
+                        <i class="fa fa-angle-left"></i>
+                        <span>Prev step</span>
+                    </button>
+                    <button type="button" class="wizard_nav-btn" data-wizard-step="next">
+                        <span>Next step</span>
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                    <label class="wizard_nav-auto-btn">
+                        <input type="checkbox" name="wizard-auto" value="1"/>
+                        <span>Auto step</span>
+                    </label>
                 </nav>
             </xsl:if>
-            <input type="hidden" name="filename" value="{//fields/filename}"/>
-            <input type="hidden" name="fsid" value="{page/response/content/formsesid}"/>
+            <input type="hidden" name="fsid" value="{//formsesid}"/>
+            <input type="hidden" name="step" value="{//fields/step}"/>
             <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
+            <input type="hidden" name="filename" value="{//fields/filename}"/>
+            <input type="hidden" name="status" value="{//fields/status}"/>
         </form>
 
         <xsl:if test="//fields/step = 2">
-            <div class="panel__body scroll-shadow update-status-{//fields/status}">
+            <div class="scroll-shadow update-status-{//fields/status}">
                 <div class="js-check-result">
                     <xsl:apply-templates select="//fields/sheeterrs"/>
                 </div>
@@ -155,7 +172,7 @@
         <div class="wizard_content-gr">
             <header>Файл</header>
             <section>
-                <label class="btn btn-lg btn-update-file-excel" for="upfile">
+                <label class="btn btn-update-file-excel" for="upfile">
                     <i class="fa fa-file-excel-o"></i>
                     <span>
                         <xsl:value-of select="//action[@id = 'attach_file']/@caption"/>
@@ -171,32 +188,23 @@
             <div class="wizard_content-gr">
                 <header>Действия</header>
                 <section>
-                    <a class="wizard_action-btn"
-                       href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=upload">
-                        <xsl:if test="//fields/loadtype = 'upload'">
-                            <xsl:attribute name="class" select="'wizard_action-btn active'"/>
-                        </xsl:if>
+                    <label class="wizard_action-btn">
+                        <input type="radio" name="_uploadtype" value="upload"/>
                         <span>Загрузка</span>
                         <i class="fa fa-angle-right"></i>
-                    </a>
+                    </label>
                     <div></div>
-                    <a class="wizard_action-btn"
-                       href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=writeoff">
-                        <xsl:if test="//fields/loadtype = 'writeoff'">
-                            <xsl:attribute name="class" select="'wizard_action-btn active'"/>
-                        </xsl:if>
+                    <label class="wizard_action-btn">
+                        <input type="radio" name="_uploadtype" value="writeoff"/>
                         <span>Отметить имущество как списанное</span>
                         <i class="fa fa-angle-right"></i>
-                    </a>
+                    </label>
                     <div></div>
-                    <a class="wizard_action-btn"
-                       href="p?id=update-wizard&amp;fsid={//formsesid}&amp;step=2&amp;uploadtype=transfer">
-                        <xsl:if test="//fields/loadtype = 'transfer'">
-                            <xsl:attribute name="class" select="'wizard_action-btn active'"/>
-                        </xsl:if>
+                    <label class="wizard_action-btn">
+                        <input type="radio" name="_uploadtype" value="transfer"/>
                         <span>Передать имущество</span>
                         <i class="fa fa-angle-right"></i>
-                    </a>
+                    </label>
                 </section>
             </div>
         </xsl:if>
@@ -342,9 +350,6 @@
         <xsl:if test="text() != ''">
             <p class="update-file-msg blink-anim">
                 <xsl:choose>
-                    <!--<xsl:when test="//fields/status = 2">
-                        <xsl:attribute name="class" select="'update-file-msg blink-anim'"/>
-                    </xsl:when>-->
                     <xsl:when test="//fields/status = 4">
                         <xsl:attribute name="class" select="'update-file-msg blink-anim-error'"/>
                     </xsl:when>
