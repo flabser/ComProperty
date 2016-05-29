@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rule  mode="on">
+<rule mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
 
     <caption name="brand"/>
@@ -11,6 +11,11 @@
     <caption name="readers_has_not_been_pointed"/>
     <caption name="title"/>
     <caption name="logout"/>
+    <caption name="result"/>
+    <caption name="step"/>
+    <caption name="file"/>
+    <caption name="actions"/>
+    <caption name="no_access"/>
     <caption name="user_profile"/>
     <caption name="attach_file"/>
 
@@ -30,4 +35,23 @@
     <caption name="roles"/>
     <caption name="limit_view"/>
     <caption name="interface_lang"/>
+
+    <caption name="new_update"/>
+    <caption name="wizard_reset"/>
+    <caption name="wizard_auto_step"/>
+    <caption name="wizard_prev_step"/>
+    <caption name="wizard_next_step"/>
+    <caption name="wizard_step_select_file_and_action"/>
+    <caption name="wizard_step_check_file"/>
+    <caption name="wizard_no_action"/>
+    <caption name="wizard_action_writeoff"/>
+    <caption name="wizard_action_transfer"/>
+    <caption name="wizard_action_upload"/>
+    <caption name="stop_check_if_error"/>
+    <caption name="check_file"/>
+    <caption name="select_balanceholder_readers"/>
+    <caption name="balanceholder"/>
+    <caption name="readers"/>
+    <caption name="recipient"/>
+    <caption name="attach_order"/>
 </rule>

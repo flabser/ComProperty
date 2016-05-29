@@ -1,48 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vocabulary primary="ENG">
-	<sentence mode="on" keyword="brand">
-		<entry lang="RUS">АИС 'Коммунальное Имущество'</entry>
-		<entry lang="KAZ">АИС 'Коммунальное Имущество'</entry>
-		<entry lang="ENG"></entry>
-	</sentence>
-	<sentence mode="on" keyword="title">
-		<entry lang="RUS">Страница загрузки обновлений</entry>
-		<entry lang="KAZ">Страница загрузки обновлений</entry>
-		<entry lang="ENG"></entry>
-	</sentence>
-	<sentence mode="on" keyword="file_data_is_incorrect">
-		<entry lang="RUS">Не корректныe данные</entry>
-		<entry lang="KAZ">Не корректныe данные</entry>
-		<entry lang="ENG">File data is incorrect</entry>
-	</sentence>
+    <sentence mode="on" keyword="brand">
+        <entry lang="RUS">АИС 'Коммунальное Имущество'</entry>
+        <entry lang="KAZ">АИС 'Коммунальное Имущество'</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+    <sentence mode="on" keyword="title">
+        <entry lang="RUS">Страница загрузки обновлений</entry>
+        <entry lang="KAZ">Страница загрузки обновлений</entry>
+        <entry lang="ENG"></entry>
+    </sentence>
+    <sentence mode="on" keyword="file_data_is_incorrect">
+        <entry lang="RUS">Не корректныe данные</entry>
+        <entry lang="KAZ">Не корректныe данные</entry>
+        <entry lang="ENG">File data is incorrect</entry>
+    </sentence>
+    <sentence mode="on" keyword="incorrect_xls_file">
+        <entry lang="RUS">Не корректный файл Excel 97-2003</entry>
+        <entry lang="KAZ">Не корректный файл Excel 97-2003</entry>
+        <entry lang="ENG">Microsoft Excel 97-2003 file is not correct</entry>
+    </sentence>
+    <sentence mode="on" keyword="incorrect_balanceholder_org_field">
+        <entry lang="RUS">Организация-балансодержатель не указана или не найдена</entry>
+        <entry lang="KAZ">Организация-балансодержатель не указана или не найдена</entry>
+        <entry lang="ENG">Balance holder field is not correct</entry>
+    </sentence>
+    <sentence mode="on" keyword="incorrect_readers_field">
+        <entry lang="RUS">Не указаны читатели</entry>
+        <entry lang="KAZ">Не указаны читатели</entry>
+        <entry lang="ENG">Readers field is not correct</entry>
+    </sentence>
+    <sentence mode="on" keyword="data_has_been_loaded_succesfully">
+        <entry lang="RUS">Данные успешно загружены</entry>
+        <entry lang="KAZ">Данные успешно загружены</entry>
+        <entry lang="ENG">The data has been loaded successfully</entry>
+    </sentence>
+    <sentence mode="on" keyword="readers_has_not_been_pointed">
+        <entry lang="RUS">Читатели не выбраны</entry>
+        <entry lang="KAZ">Читатели не выбраны</entry>
+        <entry lang="ENG">readers has not been chosen</entry>
+    </sentence>
+    <!-- -->
+    <sentence mode="on" keyword="result">
+        <entry lang="RUS">Результат</entry>
+        <entry lang="KAZ">Результат</entry>
+        <entry lang="ENG">Result</entry>
+    </sentence>
+    <sentence mode="on" keyword="step">
+        <entry lang="RUS">Шаг</entry>
+        <entry lang="KAZ">Қадам</entry>
+        <entry lang="ENG">Step</entry>
+    </sentence>
+    <sentence mode="on" keyword="file">
+        <entry lang="RUS">Файл</entry>
+        <entry lang="KAZ">Файл</entry>
+        <entry lang="ENG">File</entry>
+    </sentence>
+    <sentence mode="on" keyword="actions">
+        <entry lang="RUS">Действия</entry>
+        <entry lang="KAZ">Действия</entry>
+        <entry lang="ENG">Actions</entry>
+    </sentence>
+    <sentence mode="on" keyword="no_access">
+        <entry lang="RUS">Нет доступа</entry>
+        <entry lang="KAZ">Нет доступа</entry>
+        <entry lang="ENG">No access</entry>
+    </sentence>
 
-	<sentence mode="on" keyword="incorrect_xls_file">
-		<entry lang="RUS">Не корректный файл Excel 97-2003</entry>
-		<entry lang="KAZ">Не корректный файл Excel 97-2003</entry>
-		<entry lang="ENG">Microsoft Excel 97-2003 file is not correct</entry>
-	</sentence>
-		<sentence mode="on" keyword="incorrect_balanceholder_org_field">
-		<entry lang="RUS">Организация-балансодержатель не указана или не найдена</entry>
-		<entry lang="KAZ">Организация-балансодержатель не указана или не найдена</entry>
-		<entry lang="ENG">Balance holder field is not correct</entry>
-	</sentence>
-	<sentence mode="on" keyword="incorrect_readers_field">
-		<entry lang="RUS">Не указаны читатели</entry>
-		<entry lang="KAZ">Не указаны читатели</entry>
-		<entry lang="ENG">Readers field is not correct</entry>
-	</sentence>
-	
-	<sentence mode="on" keyword="data_has_been_loaded_succesfully">
-		<entry lang="RUS">Данные успешно загружены</entry>
-		<entry lang="KAZ">Данные успешно загружены</entry>
-		<entry lang="ENG">The data has been loaded successfully</entry>
-	</sentence>
-	
-	<sentence mode="on" keyword="readers_has_not_been_pointed">
-		<entry lang="RUS">Читатели не выбраны</entry>
-		<entry lang="KAZ">Читатели не выбраны</entry>
-		<entry lang="ENG">readers has not been chosen</entry>
-	</sentence>
-	
-		   
+    <sentence mode="on" keyword="new_update">
+        <entry lang="RUS">Новое обновление</entry>
+        <entry lang="KAZ">Новое обновление</entry>
+        <entry lang="ENG">New update</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_reset">
+        <entry lang="RUS">Сброс</entry>
+        <entry lang="KAZ">Сброс</entry>
+        <entry lang="ENG">Reset update wizard</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_auto_step">
+        <entry lang="RUS">Авто переход</entry>
+        <entry lang="KAZ">Авто переход</entry>
+        <entry lang="ENG">Auto step</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_prev_step">
+        <entry lang="RUS">Назад</entry>
+        <entry lang="KAZ">Артқа</entry>
+        <entry lang="ENG">Prev step</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_next_step">
+        <entry lang="RUS">Далее</entry>
+        <entry lang="KAZ">Ары қарай</entry>
+        <entry lang="ENG">Next step</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_step_select_file_and_action">
+        <entry lang="RUS">Выбoр файла и действия</entry>
+        <entry lang="KAZ">Выбoр файла и действия</entry>
+        <entry lang="ENG">Выбoр файла и действия</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_step_check_file">
+        <entry lang="RUS">Проверка файла</entry>
+        <entry lang="KAZ">Проверка файла</entry>
+        <entry lang="ENG">Проверка файла</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_no_action">
+        <entry lang="RUS">Выберите действие!</entry>
+        <entry lang="KAZ">Выберите действие!</entry>
+        <entry lang="ENG">Выберите действие!</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_action_writeoff">
+        <entry lang="RUS">Отметить имущество как списанное</entry>
+        <entry lang="KAZ">Отметить имущество как списанное</entry>
+        <entry lang="ENG">Отметить имущество как списанное</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_action_transfer">
+        <entry lang="RUS">Передать имущество</entry>
+        <entry lang="KAZ">Передать имущество</entry>
+        <entry lang="ENG">Передать имущество</entry>
+    </sentence>
+    <sentence mode="on" keyword="wizard_action_upload">
+        <entry lang="RUS">Загрузка</entry>
+        <entry lang="KAZ">Загрузка</entry>
+        <entry lang="ENG">Загрузка</entry>
+    </sentence>
+    <sentence mode="on" keyword="stop_check_if_error">
+        <entry lang="RUS">Прервать проверку при ошибке</entry>
+        <entry lang="KAZ">Прервать проверку при ошибке</entry>
+        <entry lang="ENG">Прервать проверку при ошибке</entry>
+    </sentence>
+    <sentence mode="on" keyword="check_file">
+        <entry lang="RUS">Проверить файл</entry>
+        <entry lang="KAZ">Проверить файл</entry>
+        <entry lang="ENG">Проверить файл</entry>
+    </sentence>
+    <sentence mode="on" keyword="select_balanceholder_readers">
+        <entry lang="RUS">Выберите балансодержателя и читателей</entry>
+        <entry lang="KAZ">Выберите балансодержателя и читателей</entry>
+        <entry lang="ENG">Выберите балансодержателя и читателей</entry>
+    </sentence>
+    <sentence mode="on" keyword="balanceholder">
+        <entry lang="RUS">Балансодержатель</entry>
+        <entry lang="KAZ">Балансодержатель</entry>
+        <entry lang="ENG">Балансодержатель</entry>
+    </sentence>
+    <sentence mode="on" keyword="readers">
+        <entry lang="RUS">Читатели</entry>
+        <entry lang="KAZ">Читатели</entry>
+        <entry lang="ENG">Читатели</entry>
+    </sentence>
+    <sentence mode="on" keyword="recipient">
+        <entry lang="RUS">Получатель</entry>
+        <entry lang="KAZ">Получатель</entry>
+        <entry lang="ENG">Получатель</entry>
+    </sentence>
+    <sentence mode="on" keyword="attach_order">
+        <entry lang="RUS">Прикрепить постановление</entry>
+        <entry lang="KAZ">Прикрепить постановление</entry>
+        <entry lang="ENG">Прикрепить постановление</entry>
+    </sentence>
 </vocabulary>
