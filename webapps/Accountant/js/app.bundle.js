@@ -3844,9 +3844,9 @@ function uploadUpdate(fileInput, fsid) {
         },
         success: function(result) {
             var fileName = result.files[0];
-            if(fileInput.name == 'uporder'){
+            if (fileInput.name == 'uporder') {
                 $(".update-order").text(fileName);
-            }else {
+            } else {
                 //renderFilePanel(fileName, fsid);
                 //clearLocalStorage();
                 //$("#btn-update-file-excel").addClass("disabled");
@@ -3863,7 +3863,7 @@ function uploadUpdate(fileInput, fsid) {
             });
             fileInput.form.reset();
             insertParam('fsid', fsid);
-            if(fileInput.name != 'uporder'){
+            if (fileInput.name != 'uporder') {
                 insertParam('step', 1);
                 insertParam('uploadtype', $("input[name=uploadtype]:checked").val());
                 reloadPage();
@@ -4000,7 +4000,7 @@ function renderFilePanel(fileName, fsid) {
     });
 
     var status = $("input[name=status]").val();
-    if(status == 1){
+    if (status == 1) {
         $('.js-check').attr("disabled", false);
     }
 
@@ -4040,7 +4040,7 @@ function renderFilePanel(fileName, fsid) {
         e.stopPropagation();
         e.preventDefault();
         setLastFileToStorage(fileName);
-        if($('input[name=writeoff]').is(':checked')){
+        if ($('input[name=writeoff]').is(':checked')) {
             nbApp.confirmWriteOff(function() {
                 loadFile(fileName, $tpl.serialize(), fsid).then(function() {
                     reloadPage();
@@ -4048,8 +4048,8 @@ function renderFilePanel(fileName, fsid) {
                     reloadPage();
                 });
             });
-        }else{
-            if($('input[name=istransfer]').is(':checked')){
+        } else {
+            if ($('input[name=istransfer]').is(':checked')) {
                 nbApp.confirmTransfer(function() {
                     loadFile(fileName, $tpl.serialize(), fsid).then(function() {
                         reloadPage();
@@ -4057,12 +4057,12 @@ function renderFilePanel(fileName, fsid) {
                         reloadPage();
                     });
                 });
-            }else{
+            } else {
                 $(this).attr('disabled', true);
-                loadFile(fileName, $tpl.serialize(), fsid).then(function () {
+                loadFile(fileName, $tpl.serialize(), fsid).then(function() {
                     // $tpl.addClass('upload-success');
                     reloadPage();
-                }, function () {
+                }, function() {
                     reloadPage();
                 });
             }
@@ -4106,10 +4106,10 @@ function renderFilePanel(fileName, fsid) {
     });
 
     $tpl.find('input[name=uploadtype]').on('change', function(e) {
-        if($(this).val() == "transfer"){
-            $(".js-attach-order").css("display","inline-block");
-        }else{
-            $(".js-attach-order").css("display","none");
+        if ($(this).val() == "transfer") {
+            $(".js-attach-order").css("display", "inline-block");
+        } else {
+            $(".js-attach-order").css("display", "none");
         }
         toggleLoadButtonState($tpl)
     });
@@ -4136,27 +4136,27 @@ function getLastFileFromStorage() {
     return sessionStorage.getItem('accountant_update_last_file');
 }
 
-function setReaderToStorage(){
+function setReaderToStorage() {
     var readers = [];
-    $("input[name=readers]").each(function(){
+    $("input[name=readers]").each(function() {
         readers.push($(this).val());
     });
     localStorage.setItem("reader", JSON.stringify(readers));
 }
 
 function getReaderFromStorage() {
-   return JSON.parse(localStorage.getItem("reader"));
+    return JSON.parse(localStorage.getItem("reader"));
 }
 
 function getReaderNameFromStorage() {
     return localStorage.getItem('readername');
 }
 
-function setReaderNameToStorage(){
+function setReaderNameToStorage() {
     localStorage.setItem("readername", $(".update-readers").html());
 }
 
-function setRecipientToStorage(){
+function setRecipientToStorage() {
     localStorage.setItem("recipient", $("input[name=recipients]").val());
     localStorage.setItem("recipientname", $(".update-recipients").html());
 }
@@ -4169,7 +4169,7 @@ function getRecipientNameFromStorage() {
     return localStorage.getItem('recipientname');
 }
 
-function setBalanceholderToStorage(){
+function setBalanceholderToStorage() {
     localStorage.setItem("balanceholder", $("input[name=balanceholder]").val());
     localStorage.setItem("balanceholdername", $(".update-balance-holder").html());
 }
@@ -4182,20 +4182,20 @@ function getBalanceholderNameFromStorage() {
     return localStorage.getItem('balanceholdername');
 }
 
-function loadDataLocalStorage(){
-    if(getReaderNameFromStorage() != 'null'){
+function loadDataLocalStorage() {
+    if (getReaderNameFromStorage() != 'null') {
         $(".update-readers").html(getReaderNameFromStorage());
         var readers = getReaderFromStorage();
-        $(readers).each(function(){
-            $("input[name=balanceholder]").parent().append("<input type='hidden' name='readers' value='"+this+"'></input>");
+        $(readers).each(function() {
+            $("input[name=balanceholder]").parent().append("<input type='hidden' name='readers' value='" + this + "'></input>");
         });
     }
-    if(getBalanceholderNameFromStorage() != 'null'){
+    if (getBalanceholderNameFromStorage() != 'null') {
         $(".update-balance-holder").html(getBalanceholderNameFromStorage());
     }
 }
 
-function clearLocalStorage(){
+function clearLocalStorage() {
     localStorage.setItem("balanceholder", null);
     localStorage.setItem("balanceholdername", null);
     localStorage.setItem("readername", null);
@@ -4205,13 +4205,12 @@ function clearLocalStorage(){
 function toggleLoadButtonState($form) {
     var b = $form.find('[name=balanceholder]').val();
     var r = $form.find('[name=readers]').val();
-    if (b && r && b != '' && r !='') {
+    if (b && r && b != '' && r != '') {
         $form.find('.js-load').attr('disabled', false);
-    }else{
+    } else {
         $form.find('.js-load').attr('disabled', true);
     }
 }
-
 
 function insertParam(_key, _value) {
     var key = encodeURI(_key);
@@ -4253,121 +4252,3 @@ function initCachedUpdateForm() {
     toggleLoadButtonState($(".transferproperty").closest("form"));
     $("button").attr("disabled", false);
 });*/
-
-$(document).ready(function() {
-    return;
-
-
-    var $wizard = $(".wizard");
-    $wizard.find('.js-step-0').on('click', function(e) {
-        window.location.href="/Accountant/p?id=wizard-form&step=0";
-    });
-    $wizard.find('.js-step-1').on('click', function(e) {
-        insertParam('step', 1);
-        reloadPage();
-    });
-    $wizard.find('.js-step-2').on('click', function(e) {
-        insertParam('step', 2);
-        reloadPage();
-    });
-    $wizard.find('.js-back').on('click', function(e) {
-        window.history.back();
-    });
-
-   $("body").find('.js-check').on('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        var $btn = $(this);
-
-        //$btn.attr('disabled', true);
-        var fileName= $("input[name=filename]").val();
-        var fsid= $("input[name=fsid]").val();
-        //
-        checkFile(fileName, fsid, $wizard).then(function(result) {
-            /*$btn.parents('.panel').addClass('open');
-             if (result == '') {
-             $tpl.find('.js-load').removeAttr('disabled');
-             $tpl.find('.js-select-balance-holder').removeAttr('disabled');
-             $tpl.find('.js-select-readers').removeAttr('disabled');
-             }
-             $tpl.find('.js-check-result').html(result);*/
-            //
-            reloadPage();
-        }, function(err) {
-            // $btn.parents('.panel').addClass('open');
-            // $tpl.find('.js-check-result').html(err.statusText);
-            //
-            reloadPage();
-        });
-    });
-    $("body").find('.js-select-balance-holder').on('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        //$(this).parents('.panel').addClass('open');
-        nbApp.choiceBalanceHolder(this, function() {
-            //setBalanceholderToStorage();
-            //toggleLoadButtonState($tpl);
-        });
-        $("body").find('.errormsg').remove();
-    });
-
-    $("body").find('.js-select-readers').on('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        //$(this).parents('.panel').addClass('open');
-        nbApp.choiceReaders(this, function() {
-            //setReaderToStorage();
-            //setReaderNameToStorage();
-            //toggleLoadButtonState($tpl);
-        });
-        $("body").find('.errormsg').remove();
-    });
-
-    $wizard.find('.js-step-3').on('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        var fileName= $("input[name=filename]").val();
-        var fsid= $("input[name=fsid]").val();
-        //setLastFileToStorage(fileName);
-        if($('input[name=uploadtype]') == 'writeoff'){
-            nbApp.confirmWriteOff(function() {
-                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
-                    reloadPage();
-                }, function() {
-                    reloadPage();
-                });
-            });
-        }else{
-            if($('input[name=uploadtype]') == 'transfer'){
-                nbApp.confirmTransfer(function() {
-                    loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function() {
-                        reloadPage();
-                    }, function() {
-                        reloadPage();
-                    });
-                });
-            }else{
-                //$(this).attr('disabled', true);
-                loadFile(fileName, $wizard.find("form").serialize(), fsid).then(function () {
-                    // $tpl.addClass('upload-success');
-                    reloadPage();
-                }, function () {
-                    reloadPage();
-                });
-            }
-        }
-
-    });
-
-    $wizard.find('.js-select-recipients').on('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        nbApp.choicePropertyRecipient(this, function() {
-            //toggleLoadButtonState($tpl);
-            //$('.js-load').attr('disabled', false);
-            //setRecipientToStorage();
-        });
-        $wizard.find('.errormsg').remove();
-    });
-
-});
