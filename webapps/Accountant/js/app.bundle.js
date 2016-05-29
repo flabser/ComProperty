@@ -3679,7 +3679,7 @@ var updateWizard = function() {
         refreshUI();
         insertParam('uploadtype', this.value);
     });
-    $wizard.find('[name=_uploadtype][value=' + (wf.uploadtype.value || 'undef') + ']').attr('checked', true).trigger('change');
+    $wizard.find('[name=_uploadtype][value=' + (wf.uploadtype.value || 'upload') + ']').attr('checked', true).trigger('change');
 
     $wizard.find('[data-wizard-step]').on('click', function(e) {
         e.preventDefault();
