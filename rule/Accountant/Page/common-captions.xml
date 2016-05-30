@@ -50,6 +50,7 @@
     <caption name="stop_check_if_error"/>
     <caption name="check_file"/>
     <caption name="select_balanceholder_readers"/>
+    <caption name="select_recipient_attach_order"/>
     <caption name="balanceholder"/>
     <caption name="readers"/>
     <caption name="recipient"/>

@@ -137,6 +137,11 @@
         <entry lang="KAZ">Выберите балансодержателя и читателей</entry>
         <entry lang="ENG">Выберите балансодержателя и читателей</entry>
     </sentence>
+    <sentence mode="on" keyword="select_recipient_attach_order">
+        <entry lang="RUS">Выберите получателя и прикрепите постановление</entry>
+        <entry lang="KAZ">Выберите получателя и прикрепите постановление</entry>
+        <entry lang="ENG">Выберите получателя и прикрепите постановление</entry>
+    </sentence>
     <sentence mode="on" keyword="balanceholder">
         <entry lang="RUS">Балансодержатель</entry>
         <entry lang="KAZ">Балансодержатель</entry>

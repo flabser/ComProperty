@@ -281,7 +281,7 @@
                 </xsl:if>
                 <xsl:if test="$loadType = 'transfer'">
                     <header>
-                        <xsl:value-of select="//captions/select_balanceholder_readers/@caption"/>
+                        <xsl:value-of select="//captions/select_recipient_attach_order/@caption"/>
                     </header>
                     <section>
                         <button type="button" class="btn js-select-recipients">
