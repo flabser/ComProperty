@@ -2,6 +2,11 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:import href="../layout.xsl"/>
 
+    <xsl:variable name="wizardStep" select="//fields/step"/>
+    <xsl:variable name="loadType" select="//fields/loadtype"/>
+    <xsl:variable name="updateFileStatus" select="//fields/status"/>
+    <xsl:variable name="fsId" select="//formsesid"/>
+
     <xsl:template match="/request">
         <xsl:call-template name="layout"/>
     </xsl:template>
@@ -23,36 +28,34 @@
             </xsl:choose>
         </section>
         <form class="hidden" method="POST" enctype="multipart/form-data">
-            <xsl:variable name="fsid" select="page/response/content/formsesid"/>
-            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this, {$fsid})"
+            <input type="file" id="upfile" name="upfile" onchange="uploadUpdate(this, {$fsId})"
                    accept="application/vnd.ms-excel"/>
         </form>
         <form class="hidden" method="POST" enctype="multipart/form-data">
-            <xsl:variable name="fsid" select="//content/formsesid"/>
-            <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsid})"/>
+            <input type="file" id="uporder" name="uporder" onchange="uploadUpdate(this, {$fsId})"/>
         </form>
     </xsl:template>
 
     <xsl:template name="wizard">
-        <form class="wizard update-file-check-status-{//fields/status}" name="wizard" action="p?id=update-wizard"
+        <form class="wizard update-file-check-status-{$updateFileStatus}" name="wizard" action="p?id=update-wizard"
               method="get">
             <ul class="wizard_steps">
                 <xsl:choose>
-                    <xsl:when test="//fields/step = 4">
+                    <xsl:when test="$wizardStep = 4">
                         <li class="wizard_step active">
                             <a href="#result" data-wizard-step="4">
                                 <span class="wizard_step-title">
-                                    <xsl:value-of select="concat(//captions/step/@caption, ' ', 4)"/>
-                                </span>
-                                <span class="wizard_step-description">
                                     <xsl:value-of select="//captions/result/@caption"/>
+                                </span>
+                                <span class="wizard_step-description result">
+                                    <xsl:call-template name="wizard-action-name"/>
                                 </span>
                             </a>
                         </li>
                     </xsl:when>
                     <xsl:otherwise>
                         <li class="wizard_step">
-                            <xsl:if test="//fields/step = 0 or //fields/step = 1">
+                            <xsl:if test="$wizardStep = 0 or $wizardStep = 1">
                                 <xsl:attribute name="class" select="'wizard_step active'"/>
                             </xsl:if>
                             <a href="#step1" data-wizard-step="1">
@@ -65,10 +68,10 @@
                             </a>
                         </li>
                         <li class="wizard_step">
-                            <xsl:if test="//fields/step = 2">
+                            <xsl:if test="$wizardStep = 2">
                                 <xsl:attribute name="class" select="'wizard_step active'"/>
                             </xsl:if>
-                            <xsl:if test="//fields/loadtype = ''">
+                            <xsl:if test="$loadType = ''">
                                 <xsl:attribute name="class" select="'wizard_step disabled'"/>
                             </xsl:if>
                             <a href="#step2" data-wizard-step="2">
@@ -78,10 +81,10 @@
                                 <span class="wizard_step-description">
                                     <xsl:value-of select="//captions/wizard_step_check_file/@caption"/>
                                     <xsl:choose>
-                                        <xsl:when test="//fields/status = 2">
+                                        <xsl:when test="$updateFileStatus = 2">
                                             <i class="fa fa-check-circle-o"></i>
                                         </xsl:when>
-                                        <xsl:when test="//fields/status = 4">
+                                        <xsl:when test="$updateFileStatus = 4">
                                             <i class="fa fa-exclamation-circle"></i>
                                         </xsl:when>
                                     </xsl:choose>
@@ -89,10 +92,10 @@
                             </a>
                         </li>
                         <li class="wizard_step">
-                            <xsl:if test="//fields/status = 0 or //fields/status = 1 or //fields/status = 4">
+                            <xsl:if test="$updateFileStatus = 0 or $updateFileStatus = 1 or $updateFileStatus = 4">
                                 <xsl:attribute name="class" select="'wizard_step disabled'"/>
                             </xsl:if>
-                            <xsl:if test="//fields/step = 3">
+                            <xsl:if test="$wizardStep = 3">
                                 <xsl:attribute name="class" select="'wizard_step active'"/>
                             </xsl:if>
                             <a href="#step3" data-wizard-step="3">
@@ -101,14 +104,9 @@
                                 </span>
                                 <span class="wizard_step-description">
                                     <xsl:choose>
-                                        <xsl:when test="//fields/loadtype = 'writeoff'">
-                                            <xsl:value-of select="//captions/wizard_action_writeoff/@caption"/>
-                                        </xsl:when>
-                                        <xsl:when test="//fields/loadtype = 'transfer'">
-                                            <xsl:value-of select="//captions/wizard_action_transfer/@caption"/>
-                                        </xsl:when>
-                                        <xsl:when test="//fields/loadtype = 'upload'">
-                                            <xsl:value-of select="//captions/wizard_action_upload/@caption"/>
+                                        <xsl:when
+                                                test="$loadType = 'upload' or $loadType = 'transfer' or $loadType = 'writeoff'">
+                                            <xsl:call-template name="wizard-action-name"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:attribute name="class"
@@ -126,16 +124,16 @@
             </ul>
             <div class="wizard_content">
                 <xsl:choose>
-                    <xsl:when test="//fields/step = 0 or //fields/step = 1">
+                    <xsl:when test="$wizardStep = 0 or $wizardStep = 1">
                         <xsl:call-template name="tpl_step_1"/>
                     </xsl:when>
-                    <xsl:when test="//fields/step = 2">
+                    <xsl:when test="$wizardStep = 2">
                         <xsl:call-template name="tpl_step_2"/>
                     </xsl:when>
-                    <xsl:when test="//fields/step = 3">
+                    <xsl:when test="$wizardStep = 3">
                         <xsl:call-template name="tpl_step_3"/>
                     </xsl:when>
-                    <xsl:when test="//fields/step = 4">
+                    <xsl:when test="$wizardStep = 4">
                         <xsl:call-template name="tpl_step_4"/>
                     </xsl:when>
                 </xsl:choose>
@@ -144,7 +142,7 @@
                 <nav class="wizard_nav">
                     <a class="wizard_nav-reset" href="?id=update-wizard">
                         <xsl:choose>
-                            <xsl:when test="//fields/step = 4">
+                            <xsl:when test="$wizardStep = 4">
                                 <xsl:value-of select="//captions/new_update/@caption"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -172,18 +170,16 @@
                     </label>
                 </nav>
             </xsl:if>
-            <input type="hidden" name="fsid" value="{//formsesid}"/>
-            <input type="hidden" name="step" value="{//fields/step}"/>
-            <input type="hidden" name="uploadtype" value="{//fields/loadtype}"/>
+            <input type="hidden" name="fsid" value="{$fsId}"/>
+            <input type="hidden" name="step" value="{$wizardStep}"/>
+            <input type="hidden" name="uploadtype" value="{$loadType}"/>
             <input type="hidden" name="filename" value="{//fields/filename}"/>
-            <input type="hidden" name="status" value="{//fields/status}"/>
+            <input type="hidden" name="status" value="{$updateFileStatus}"/>
         </form>
 
-        <xsl:if test="//fields/step = 2">
-            <div class="scroll-shadow update-status-{//fields/status}">
-                <div class="js-check-result">
-                    <xsl:apply-templates select="//fields/sheeterrs"/>
-                </div>
+        <xsl:if test="$wizardStep = 2">
+            <div class="scroll-shadow update-status-{$updateFileStatus} js-check-result">
+                <xsl:apply-templates select="//fields/sheeterrs"/>
             </div>
         </xsl:if>
     </xsl:template>
@@ -200,7 +196,9 @@
                     <label class="wizard_action-btn">
                         <input type="radio" name="_uploadtype" value="upload"/>
                         <span>
-                            <xsl:value-of select="//captions/wizard_action_upload/@caption"/>
+                            <xsl:call-template name="wizard-action-name">
+                                <xsl:with-param name="load-type" select="'upload'"/>
+                            </xsl:call-template>
                         </span>
                         <i class="fa fa-angle-right"></i>
                     </label>
@@ -208,7 +206,9 @@
                     <label class="wizard_action-btn">
                         <input type="radio" name="_uploadtype" value="writeoff"/>
                         <span>
-                            <xsl:value-of select="//captions/wizard_action_writeoff/@caption"/>
+                            <xsl:call-template name="wizard-action-name">
+                                <xsl:with-param name="load-type" select="'writeoff'"/>
+                            </xsl:call-template>
                         </span>
                         <i class="fa fa-angle-right"></i>
                     </label>
@@ -216,7 +216,9 @@
                     <label class="wizard_action-btn">
                         <input type="radio" name="_uploadtype" value="transfer"/>
                         <span>
-                            <xsl:value-of select="//captions/wizard_action_transfer/@caption"/>
+                            <xsl:call-template name="wizard-action-name">
+                                <xsl:with-param name="load-type" select="'transfer'"/>
+                            </xsl:call-template>
                         </span>
                         <i class="fa fa-angle-right"></i>
                     </label>
@@ -254,66 +256,53 @@
     <xsl:template name="tpl_step_3">
         <xsl:call-template name="wizard-file-name"/>
         <xsl:apply-templates select="//fields/msg"/>
-        <xsl:if test="//fields/loadtype = 'upload' or //fields/loadtype = 'transfer'">
+        <xsl:if test="$loadType = 'upload' or $loadType = 'transfer'">
             <div class="wizard_content-gr">
-                <header>
-                    <xsl:value-of select="//captions/select_balanceholder_readers/@caption"/>
-                </header>
-                <section>
-                    <xsl:if test="//fields/loadtype = 'upload'">
+                <xsl:if test="$loadType = 'upload'">
+                    <header>
+                        <xsl:value-of select="//captions/select_balanceholder_readers/@caption"/>
+                    </header>
+                    <section>
                         <button type="button" class="btn btn js-select-balance-holder">
-                            <span>
-                                <xsl:value-of select="//captions/balanceholder/@caption"/>
-                            </span>
+                            <xsl:value-of select="//captions/balanceholder/@caption"/>
                         </button>
                         <button type="button" class="btn btn js-select-readers">
-                            <span>
-                                <xsl:value-of select="//captions/readers/@caption"/>
-                            </span>
+                            <xsl:value-of select="//captions/readers/@caption"/>
                         </button>
                         <input type="hidden" name="balanceholder" value=""/>
-                        <input type="hidden" name="status" value="{//fields/status}"/>
                         <div style="margin-top:15px;">
                             <strong class="update-balance-holder" data-input="balanceholder"></strong>
                             <ul class="update-readers" data-input="readers"></ul>
+                            <ul class="update-order" data-input="order">
+                                <xsl:value-of select="//fields/orderfilename"/>
+                            </ul>
+                        </div>
+                    </section>
+                </xsl:if>
+                <xsl:if test="$loadType = 'transfer'">
+                    <header>
+                        <xsl:value-of select="//captions/select_balanceholder_readers/@caption"/>
+                    </header>
+                    <section>
+                        <button type="button" class="btn js-select-recipients">
+                            <xsl:value-of select="//captions/recipient/@caption"/>
+                        </button>
+                        <label class="btn js-attach-order" for="uporder">
+                            <i class="fa fa-paperclip"></i>
+                            <span>
+                                <xsl:value-of select="//captions/attach_order/@caption"/>
+                            </span>
+                        </label>
+                        <input type="hidden" name="balanceholder" value=""/>
+                        <div style="margin-top:15px;">
+                            <strong class="update-balance-holder" data-input="balanceholder"></strong>
                             <ul class="update-recipients" data-input="recipient"></ul>
                             <ul class="update-order" data-input="order">
                                 <xsl:value-of select="//fields/orderfilename"/>
                             </ul>
                         </div>
-                    </xsl:if>
-                    <xsl:if test="//fields/loadtype = 'transfer'">
-                        <div name="js-init-update-panel" data-file-name="{//fields/filename}">
-                            <div style="min-height:90px">
-                                <ul class="nb-dialog-list wizard-fields-list">
-                                    <li>
-                                        <button type="button" class="btn btn js-select-recipients"
-                                                style="margin-top:3px; padding-bottom:11px">
-                                            <span>
-                                                <xsl:value-of select="//captions/recipient/@caption"/>
-                                            </span>
-                                        </button>
-                                        <label class="btn btn-md btn-update-file-excel js-attach-order" for="uporder">
-                                            <i class="fa fa-file-text-o"></i>
-                                            <span>
-                                                <xsl:value-of select="//captions/attach_order/@caption"/>
-                                            </span>
-                                        </label>
-                                    </li>
-                                </ul>
-                                <input type="hidden" name="balanceholder" value=""/>
-                                <input type="hidden" name="status" value="{//fields/status}"/>
-                                <div style="margin-top:15px;">
-                                    <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                                    <ul class="update-recipients" data-input="recipient"></ul>
-                                    <ul class="update-order" data-input="order">
-                                        <xsl:value-of select="//fields/orderfilename"/>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </xsl:if>
-                </section>
+                    </section>
+                </xsl:if>
             </div>
         </xsl:if>
         <div class="wizard_content-gr">
@@ -321,41 +310,15 @@
                 <xsl:value-of select="//captions/actions/@caption"/>
             </header>
             <section>
-                <a class="wizard_action-btn js-step-3" href="#">
-                    <xsl:choose>
-                        <xsl:when test="//fields/loadtype = 'upload'">
-                            <xsl:attribute name="data-action" select="'upload'"/>
-                            <span>
-                                <xsl:value-of select="//captions/wizard_action_upload/@caption"/>
-                            </span>
-                        </xsl:when>
-                        <xsl:when test="//fields/loadtype = 'writeoff'">
-                            <xsl:attribute name="data-action" select="'writeoff'"/>
-                            <span>
-                                <xsl:value-of select="//captions/wizard_action_writeoff/@caption"/>
-                            </span>
-                        </xsl:when>
-                        <xsl:when test="//fields/loadtype = 'transfer'">
-                            <xsl:attribute name="data-action" select="'transfer'"/>
-                            <span>
-                                <xsl:value-of select="//captions/wizard_action_transfer/@caption"/>
-                            </span>
-                        </xsl:when>
-                    </xsl:choose>
+                <a class="wizard_action-btn js-step-3" href="#" data-action="$loadType">
+                    <xsl:call-template name="wizard-action-name"/>
                 </a>
             </section>
         </div>
     </xsl:template>
 
     <xsl:template name="tpl_step_4">
-        <div class="wizard_content-gr">
-            <header>
-                <xsl:value-of select="//captions/file/@caption"/>
-            </header>
-            <section>
-                <xsl:value-of select="//fields/filename"/>
-            </section>
-        </div>
+        <xsl:call-template name="wizard-file-name"/>
         <div class="wizard_content-gr">
             <header>
                 <xsl:value-of select="//captions/result/@caption"/>
@@ -372,7 +335,7 @@
                 <xsl:value-of select="//captions/file/@caption"/>
             </header>
             <section>
-                <xsl:if test="//fields/step = 1 or //fields/step = 0">
+                <xsl:if test="$wizardStep = 1 or $wizardStep = 0">
                     <label class="btn btn-update-file-excel" for="upfile">
                         <i class="fa fa-file-excel-o"></i>
                         <span>
@@ -385,6 +348,21 @@
                 </span>
             </section>
         </div>
+    </xsl:template>
+
+    <xsl:template name="wizard-action-name">
+        <xsl:param name="load-type" select="$loadType"/>
+        <xsl:choose>
+            <xsl:when test="$load-type = 'upload'">
+                <xsl:value-of select="//captions/wizard_action_upload/@caption"/>
+            </xsl:when>
+            <xsl:when test="$load-type = 'writeoff'">
+                <xsl:value-of select="//captions/wizard_action_writeoff/@caption"/>
+            </xsl:when>
+            <xsl:when test="$load-type = 'transfer'">
+                <xsl:value-of select="//captions/wizard_action_transfer/@caption"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="msg">
