@@ -20,11 +20,7 @@
 			<name mode="on">Workspace</name>
 		</app>
 		<app>
-			<name mode="on">MunicipalProperty</name>
-			<rest mode="on">
-				<urlmapping>/rest/*</urlmapping>
-				
-			</rest>
+			<name mode="on">MunicipalProperty</name>			
 		</app>
 		<app>
 			<name mode="on">PropertyLeasing</name>
@@ -39,6 +35,7 @@
 			<name mode="on">GisServProvider</name>
 			<rest mode="on">
 				<urlmapping>/rest/*</urlmapping>
+				<allowcors>*</allowcors>
 				<services>
 					<class>gisservprovider.services.GisService</class>
 				</services>
