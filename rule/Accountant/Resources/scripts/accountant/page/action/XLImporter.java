@@ -103,7 +103,7 @@ public class XLImporter {
 		// return (Map<Integer, List<List<ErrorDescription>>>)
 		// forkJoinPool.invoke(is);
 		Outcome result = new Outcome();
-		long start = System.currentTimeMillis();
+		// long start = System.currentTimeMillis();
 		this.ses = ses;
 		propertyDao = new PropertyDAO(ses);
 		pbhDao = new PrevBalanceHolderDAO(ses);
@@ -201,8 +201,8 @@ public class XLImporter {
 				}
 			}
 		}
-		long stop = System.currentTimeMillis();
-		long diff = stop - start;
+		// long stop = System.currentTimeMillis();
+		// long diff = stop - start;
 		// System.out.println("Old method: " + diff);
 		if (uploadtype.equals("transfer") && mode == XLImporter.PROCESS) {
 			order.setProperties(propList);

@@ -92,16 +92,17 @@ public class ProcessXLFile extends _DoPage {
 					IUser<Long> user = session.getUser();
 					File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 					String fileName = userTmpDir + File.separator + fn;
-					String addFileName = fileName;
 					String ext = FilenameUtils.getExtension(fileName);
 					Organization org = null;
 					String[] readers = null;
+					String addFileName = "";
 					if (ext.equalsIgnoreCase("xls")) {
 						if (uo.equals("transfer")) {
 							try {
 								UUID bhId = UUID.fromString(formData.getValueSilently("recipient"));
 								org = dao.findById(bhId);
 								uf.setRecipient(org);
+								addFileName = fileName;
 							} catch (IllegalArgumentException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));
