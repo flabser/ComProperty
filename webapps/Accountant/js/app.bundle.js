@@ -3671,6 +3671,15 @@ var updateWizard = function() {
         return true;
     }
 
+    $('#sign-text').focus(function() {
+        $(this).select();
+    });
+
+    // parse help message
+    $wizard.find('.sign-help').each(function() {
+        $(this).html($(this).text().replace('{{file}}', wf.filename.value));
+    });
+
     var $lastStepDesc = $('[data-wizard-step=' + maxStepCount + ']').find('.wizard_step-description');
     $wizard.find('[name=_uploadtype]').on('change', function() {
         $wizard.find('[name=uploadtype]').val(this.value);
@@ -3729,15 +3738,39 @@ var updateWizard = function() {
         });
     });
 
+    $wizard.find('.js-sign').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $btn = $(this);
+
+        knca.signFile().then(function(signData) {
+            if (signData !== 'cancel') {
+                if (signData.filePath.indexOf(fileName) != -1) {
+                    $('#sign').val(signData.sign);
+                    $('<span class=update-file-signed>' + nb.getText('signed', 'Подписан') + '</span>').appendTo($tpl.find('.js-link'));
+                    $btn.attr('disabled', true);
+                } else {
+                    nb.notify({
+                        type: 'error',
+                        message: 'Для подписи выберите файл: ' + fileName
+                    }).show('click');
+                }
+            }
+            return signData;
+        }, function(error) {
+            console.log(error); //java_unavailable
+        });
+    });
+
     $wizard.find('.js-select-balance-holder').on('click', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        //$(this).parents('.panel').addClass('open');
+
         nbApp.choiceBalanceHolder(this, function() {
             //setBalanceholderToStorage();
             //toggleLoadButtonState($tpl);
         });
-        $("body").find('.errormsg').remove();
+        $wizard.find('.errormsg').remove();
     });
 
     $wizard.find('.js-select-readers').on('click', function(e) {
@@ -3749,7 +3782,7 @@ var updateWizard = function() {
             //setReaderNameToStorage();
             //toggleLoadButtonState($tpl);
         });
-        $("body").find('.errormsg').remove();
+        $wizard.find('.errormsg').remove();
     });
 
     $wizard.find('.js-step-3').on('click', function(e) {

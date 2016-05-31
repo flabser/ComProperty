@@ -243,12 +243,27 @@
                         </span>
                     </label>
                 </p>
-                <a class="wizard_action-btn js-check" href="#check">
+                <button type="button" class="wizard_action-btn js-check">
                     <span>
                         <xsl:value-of select="//captions/check_file/@caption"/>
                     </span>
                     <i class="fa fa-angle-right"></i>
-                </a>
+                </button>
+            </section>
+        </div>
+        <div class="wizard_content-gr">
+            <p class="sign-help">
+                <xsl:value-of select="//captions/sign_help/@caption"/>
+            </p>
+            <div class="sign-msg"></div>
+            <section>
+                <button type="button" class="wizard_action-btn js-sign">
+                    <span>
+                        <xsl:value-of select="//captions/sign_file/@caption"/>
+                    </span>
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <textarea id="sign-text" readonly="readonly"></textarea>
             </section>
         </div>
     </xsl:template>
@@ -310,9 +325,9 @@
                 <xsl:value-of select="//captions/actions/@caption"/>
             </header>
             <section>
-                <a class="wizard_action-btn js-step-3" href="#" data-action="$loadType">
+                <button type="button" class="wizard_action-btn js-step-3" data-action="$loadType">
                     <xsl:call-template name="wizard-action-name"/>
-                </a>
+                </button>
             </section>
         </div>
     </xsl:template>

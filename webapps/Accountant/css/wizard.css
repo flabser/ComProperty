@@ -1,5 +1,5 @@
 .wizard {
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin: 20px auto;
     max-width: 1024px;
 }
@@ -243,8 +243,13 @@
     color: #444;
     display: inline-block;
     font-size: 1.2em;
+    line-height: 1.8;
     margin: 4px 0;
     padding: 2px 8px;
+}
+
+.wizard_action-btn:hover {
+    color: #e00;
 }
 
 .wizard:not(.wizard_nav-auto) .wizard_action-btn .fa {
@@ -257,7 +262,6 @@
 
 .wizard_action-btn > span {
     display: inline-block;
-    line-height: 1.8;
 }
 
 .wizard_action-btn > .fa {
@@ -279,6 +283,7 @@
 
 .update-file-msg {
     background: #FFF070;
+    border-radius: 0;
     color: #333;
     display: block;
     margin: 0;
@@ -293,4 +298,15 @@
 .update-file-check-status-4 .update-file-msg {
     background: #F3D4D4;
     color: #a94442;
+}
+
+.sign-help {
+    background: #D2EAFF;
+    font-size: .9em;
+    margin: 0;
+    padding: 8px;
+}
+
+#sign-text:empty {
+    display: none;
 }
