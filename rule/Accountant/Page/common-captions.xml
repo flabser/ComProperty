@@ -55,4 +55,7 @@
     <caption name="readers"/>
     <caption name="recipient"/>
     <caption name="attach_order"/>
+
+    <caption name="sign_help"/>
+    <caption name="sign_file"/>
 </rule>

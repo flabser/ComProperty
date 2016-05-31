@@ -113,8 +113,9 @@ var updateWizard = function() {
 
         knca.signFile().then(function(signData) {
             if (signData !== 'cancel') {
+                var fileName = $('input[name=filename]').val();
                 if (signData.filePath.indexOf(fileName) != -1) {
-                    $('#sign').val(signData.sign);
+                    $('#sign-text').text(signData.sign);
                     $('<span class=update-file-signed>' + nb.getText('signed', 'Подписан') + '</span>').appendTo($tpl.find('.js-link'));
                     $btn.attr('disabled', true);
                 } else {
