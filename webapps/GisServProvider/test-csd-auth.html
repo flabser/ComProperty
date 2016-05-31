@@ -46,8 +46,8 @@
                 };
 
                 $.ajax({
-                    //url: 'http://185.48.125.159:8175/GisServProvider/rest/session',
-                    url: 'http://192.168.1.4:38700/GisServProvider/rest/session',
+                    url: 'http://185.48.125.159:8175/GisServProvider/rest/session',
+                    //url: 'http://192.168.1.4:38700/GisServProvider/rest/session',
                     type: 'post',
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
@@ -75,11 +75,10 @@
                 };
 
                 $.ajax({
-                    //url: 'http://185.48.125.159:8175/GisServProvider/rest/session',
-                    url: 'http://192.168.1.4:38700/GisServProvider/rest/gis/getbystreet/%D0%BA%D0%BE%D0%B6%D0%B5%D0%B4%D1%83%D0%B1%D0%B0/158?t=' + token,
+                    url: 'http://185.48.125.159:8175/GisServProvider/rest/gis/getbystreet/%D0%BA%D0%BE%D0%B6%D0%B5%D0%B4%D1%83%D0%B1%D0%B0/158?t=' + token,
+                   // url: 'http://192.168.1.4:38700/GisServProvider/rest/gis/getbystreet/%D0%BA%D0%BE%D0%B6%D0%B5%D0%B4%D1%83%D0%B1%D0%B0/158?t=' + token,
                     type: 'get',
-                  //  contentType: 'application/json; charset=utf-8',
-                 //   dataType: 'json',
+                
                    
                     success: function(data) {
                         $('#check-result').html(JSON.stringify(data));
