@@ -103,9 +103,9 @@
         <entry lang="ENG">Проверка файла</entry>
     </sentence>
     <sentence mode="on" keyword="wizard_no_action">
-        <entry lang="RUS">Выберите действие!</entry>
-        <entry lang="KAZ">Выберите действие!</entry>
-        <entry lang="ENG">Выберите действие!</entry>
+        <entry lang="RUS">Выберите действие</entry>
+        <entry lang="KAZ">Выберите действие</entry>
+        <entry lang="ENG">Выберите действие</entry>
     </sentence>
     <sentence mode="on" keyword="wizard_action_writeoff">
         <entry lang="RUS">Отметить имущество как списанное</entry>
@@ -162,6 +162,11 @@
         <entry lang="KAZ">Прикрепить постановление</entry>
         <entry lang="ENG">Прикрепить постановление</entry>
     </sentence>
+     <sentence mode="on" keyword="sign_file">
+        <entry lang="RUS">Подписать с ЭЦП</entry>
+        <entry lang="KAZ">Подписать с ЭЦП</entry>
+        <entry lang="ENG">To sign...</entry>
+    </sentence>
     <sentence mode="on" keyword="sign_help">
         <entry lang="RUS">При подписи сначала откроется диалог выбора файла для подписи (выберите {{file}}),
             затем откроется диалог опций ЭЦП
@@ -169,13 +174,8 @@
         <entry lang="KAZ">При подписи сначала откроется диалог выбора файла для подписи (выберите {{file}}),
             затем откроется диалог опций ЭЦП
         </entry>
-        <entry lang="ENG">При подписи сначала откроется диалог выбора файла для подписи (выберите {{file}}),
-            затем откроется диалог опций ЭЦП
+        <entry lang="ENG">To sign you should choose a file (choose {{file}} then you can set up some options
         </entry>
     </sentence>
-    <sentence mode="on" keyword="sign_file">
-        <entry lang="RUS">Подписать с ЭЦП</entry>
-        <entry lang="KAZ">Подписать с ЭЦП</entry>
-        <entry lang="ENG">Подписать с ЭЦП</entry>
-    </sentence>
+   
 </vocabulary>
