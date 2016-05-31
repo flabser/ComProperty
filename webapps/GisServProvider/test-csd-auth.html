@@ -33,6 +33,7 @@
 
     </style>
     <script>
+    var token;
         $(document).ready(function() {
             $('form[name=login-form]').submit(function(e) {
                 e.preventDefault();
@@ -46,11 +47,13 @@
 
                 $.ajax({
                     url: 'http://185.48.125.159:8175/GisServProvider/rest/session',
+                    //url: 'http://192.168.1.4:38700/GisServProvider/rest/session',
                     type: 'post',
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
                     // crossDomain: true,
                     success: function(data) {
+                    	token = data.token;
                         $('#auth-result').html(JSON.stringify(data));
                     },
                     //data: {Credentials: JSON.stringify(loginData)}
@@ -60,6 +63,33 @@
             });
         });
 
+        $(document).ready(function() {
+            $('form[name=check-form]').submit(function(e) {
+                e.preventDefault();
+                //
+                // console.log(this.login.value, this.pwd.value);
+                //
+                var loginData = {
+                    login: this.street.value,
+                    pwd: this.hose.value
+                };
+
+                $.ajax({
+                    url: 'http://185.48.125.159:8175/GisServProvider/rest/gis/getbystreet/%D0%BA%D0%BE%D0%B6%D0%B5%D0%B4%D1%83%D0%B1%D0%B0/158?t=' + token,
+                   // url: 'http://192.168.1.4:38700/GisServProvider/rest/gis/getbystreet/%D0%BA%D0%BE%D0%B6%D0%B5%D0%B4%D1%83%D0%B1%D0%B0/158?t=' + token,
+                    type: 'get',
+                
+                   
+                    success: function(data) {
+                        $('#check-result').html(JSON.stringify(data));
+                    },
+                    
+
+                });
+            });
+        });
+
+        
     </script>
 </head>
 
@@ -71,6 +101,14 @@
         <button type="submit">Login</button>
     </form>
     <div id="auth-result"></div>
+    <br/>
+     <h1>Check (GisServProvider/rest/gis/getbystreet/)</h1>
+     <form name="check-form">
+        <input type="text" name="street" placeholder="Street ID or name"  />
+        <input type="text" name="hose" placeholder="House number"  />
+        <button type="submit">Check</button>
+    </form>
+    <div id="check-result"></div>
 </body>
 
 </html>
