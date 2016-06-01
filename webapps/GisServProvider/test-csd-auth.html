@@ -33,8 +33,24 @@
 
     </style>
     <script>
-   // var host = '192.168.1.4:38700';
-    var host = '185.48.125.159:8175';
+    var host = '192.168.1.4:38700';
+    //var host = '185.48.125.159:8175';
+    var xxx = {};
+    window.onload = function() {
+        xxx.login = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open ( 'POST', 'http://' + host + '/GisServProvider/rest/session', false );
+            xhr.setRequestHeader ( 'Content-Type', 'application/json; charset=UTF-8' );
+            xhr.send ( '{"login":"admin","pwd":"secret"}' );
+            xxx.token = JSON.parse(xhr.responseText).token;
+        };
+        xxx.test = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open ( 'GET', 'http://' + host + '/GisServProvider/rest/gis/getbystreet/кожедуба/158?token='+xxx.token, false );
+            xhr.send ();
+        };
+    };
+  
     
     var token;
         $(document).ready(function() {

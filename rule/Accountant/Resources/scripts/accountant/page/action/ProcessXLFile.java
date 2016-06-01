@@ -15,8 +15,7 @@ import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
 
 import accountant.page.form.ImportFileEntry;
-import accountant.page.form.UploadUpdatingForm;
-import accountant.page.form.WizardForm;
+import accountant.page.form.UpdateWizardForm;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -55,7 +54,7 @@ public class ProcessXLFile extends _DoPage {
 		}
 
 		try {
-			session.removeAttribute(UploadUpdatingForm.getSesAttrName(fsid, fn));
+			session.removeAttribute(UpdateWizardForm.getSesAttrName());
 			session.removeAttribute(fsid);
 			IUser<Long> user = session.getUser();
 			File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
@@ -83,7 +82,7 @@ public class ProcessXLFile extends _DoPage {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
-				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(WizardForm.getSesAttrName());
+				ImportFileEntry uf = (ImportFileEntry) session.getAttribute(UpdateWizardForm.getSesAttrName());
 				uf.setLocalizedMsg("");
 				if (uf.geSheetErrs() != null && uf.geSheetErrs().size() > 0) {
 					return;
@@ -102,7 +101,12 @@ public class ProcessXLFile extends _DoPage {
 								UUID bhId = UUID.fromString(formData.getValueSilently("recipient"));
 								org = dao.findById(bhId);
 								uf.setRecipient(org);
-								addFileName = fileName;
+								String ofn = uf.getOrderFileName();
+								if (ofn.equals("")) {
+									ofn = UpdateWizardForm.getFileNameByType(session, fsid, "uporder");
+									uf.setOrderFileName(ofn);
+								}
+								addFileName = userTmpDir + File.separator + ofn;
 							} catch (IllegalArgumentException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("incorrect_balanceholder_org_field", lang));

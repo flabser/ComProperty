@@ -19,6 +19,7 @@ import com.exponentus.env.Environment;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
+import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
@@ -41,6 +42,7 @@ import staff.model.Organization;
 
 public class OrderForm extends _DoPage {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 
@@ -94,7 +96,7 @@ public class OrderForm extends _DoPage {
 				formFiles = (List<String>) obj;
 			}
 
-			List<UploadedFile> filesToPublish = new ArrayList<UploadedFile>();
+			List<IPOJOObject> filesToPublish = new ArrayList<IPOJOObject>();
 
 			for (String fn : formFiles) {
 				UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
@@ -105,7 +107,7 @@ public class OrderForm extends _DoPage {
 				}
 				filesToPublish.add(uf);
 			}
-			addContent(new _POJOListWrapper(filesToPublish, session));
+			addContent(new _POJOListWrapper<IPOJOObject>(filesToPublish, session));
 		}
 
 		addContent(entity);
@@ -193,9 +195,11 @@ public class OrderForm extends _DoPage {
 			ve.addError("regnumber", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
-		if (formData.getValueSilently("propertyid").isEmpty()) {
-			ve.addError("propertyid", "required", getLocalizedWord("field_is_empty", lang));
-		}
+		/*
+		 * if (formData.getValueSilently("propertyid").isEmpty()) {
+		 * ve.addError("propertyid", "required",
+		 * getLocalizedWord("field_is_empty", lang)); }
+		 */
 
 		if (formData.getValueSilently("description").isEmpty()) {
 			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));

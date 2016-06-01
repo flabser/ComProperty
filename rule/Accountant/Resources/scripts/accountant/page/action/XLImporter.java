@@ -410,7 +410,7 @@ public class XLImporter {
 		Order entity = new Order();
 		IUser<Long> user = ses.getUser();
 		entity.setDescription(descr);
-		entity.setRegNumber("");
+		entity.setRegNumber("#");
 		entity.setAppliedRegDate(new Date());
 		entity.setOrderStatus(OrderStatus.ACTIVE);
 
@@ -419,7 +419,7 @@ public class XLImporter {
 		try {
 			is = new FileInputStream(file);
 			Attachment att = new Attachment();
-			att.setRealFileName(fn);
+			att.setRealFileName(file.getName());
 			att.setFile(IOUtils.toByteArray(is));
 			entity.getAttachments().add(att);
 		} catch (IOException e) {

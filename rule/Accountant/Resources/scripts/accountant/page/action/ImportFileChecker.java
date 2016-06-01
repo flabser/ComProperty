@@ -15,7 +15,7 @@ import com.exponentus.user.IUser;
 import com.exponentus.util.Util;
 
 import accountant.page.form.ImportFileEntry;
-import accountant.page.form.WizardForm;
+import accountant.page.form.UpdateWizardForm;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -43,7 +43,7 @@ public class ImportFileChecker extends _DoPage {
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
-				String fileAttr = WizardForm.getSesAttrName();
+				String fileAttr = UpdateWizardForm.getSesAttrName();
 				uf = (ImportFileEntry) session.getAttribute(fileAttr);
 
 				IUser<Long> user = session.getUser();

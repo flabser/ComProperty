@@ -19,6 +19,7 @@ import com.exponentus.env.Environment;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
+import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._Helper;
 import com.exponentus.scripting._POJOListWrapper;
@@ -40,6 +41,7 @@ import municipalproperty.model.Order;
 
 public class ContractForm extends _DoPage {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		IUser<Long> user = session.getUser();
@@ -83,7 +85,7 @@ public class ContractForm extends _DoPage {
 				formFiles = (List<String>) obj;
 			}
 
-			List<UploadedFile> filesToPublish = new ArrayList<UploadedFile>();
+			List<IPOJOObject> filesToPublish = new ArrayList<IPOJOObject>();
 
 			for (String fn : formFiles) {
 				UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
@@ -94,7 +96,7 @@ public class ContractForm extends _DoPage {
 				}
 				filesToPublish.add(uf);
 			}
-			addContent(new _POJOListWrapper(filesToPublish, session));
+			addContent(new _POJOListWrapper<IPOJOObject>(filesToPublish, session));
 		}
 
 		addContent(entity);
