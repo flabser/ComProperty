@@ -49,6 +49,25 @@
         </div>
     </xsl:template>
 
+    <xsl:template name="prevbalanceholders">
+        <!-- Предыдущие балансодержатели-->
+        <xsl:if test="//fields/prevbalanceholders/entry">
+            <div class="form-group">
+                <div class="control-label">
+                    <xsl:value-of select="//captions/prev_balanceholders/@caption"/>
+                </div>
+                <div class="controls">
+                    <xsl:for-each select="//fields/prevbalanceholders/entry">
+                        <p class="prevbalanceholder">
+                            <input type="text" name="prevbalanceholder" value="{balanceholder}" readonly="readonly" class="disabled span5"/>
+                            <input type="text" name="regdate" value="до {regdate}" readonly="readonly" class="disabled span3"/>
+                        </p>
+                    </xsl:for-each>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+
     <xsl:template name="property_status_type">
         <!-- property_status -->
         <div class="form-group">

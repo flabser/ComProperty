@@ -67,6 +67,8 @@
     <caption name="legalclaim">Юридическое притязание</caption>
     <caption name="limitdepreciation">Предельная норма амортизации</caption>
 
+    <caption name="prev_balanceholders">Предыдущие балансодержатели</caption>
+
     <caption name="documents_of_title"/>
     <caption name="tech_cert"/>
     <caption name="reg_cert"/>

@@ -1220,4 +1220,10 @@
         <entry lang="KAZ">Не активный</entry>
         <entry lang="CHO"></entry>
     </sentence>
+    <sentence mode="on" keyword="prev_balanceholders">
+        <entry lang="ENG">Previos balanceholders</entry>
+        <entry lang="RUS">Предыдущие балансодержатели</entry>
+        <entry lang="KAZ">Предыдущие балансодержатели</entry>
+        <entry lang="CHO"></entry>
+    </sentence>
 </vocabulary>

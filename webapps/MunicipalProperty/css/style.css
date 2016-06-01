@@ -73,3 +73,16 @@ form[data-edit=false] [data-upload] {
         width: 100%;
     }
 }
+
+.prevbalanceholder input[name=prevbalanceholder]  {
+    border-right-color: transparent;
+}
+
+.prevbalanceholder input[name=regdate], .prevbalanceholder input[name=regdate]:hover{
+    text-align: center;
+    margin-left: -2px;
+}
+
+.prevbalanceholder input:hover{
+    border-color: #ccc;
+}

@@ -35,6 +35,13 @@
                             <xsl:value-of select="//captions/documents_of_title/@caption"/>
                         </a>
                     </li>
+                    <xsl:if test="//fields/prevbalanceholders/entry">
+                        <li>
+                            <a href="#tabs-7" role="tab" data-toggle="tab">
+                                <xsl:value-of select="//captions/prev_balanceholders/@caption"/>
+                            </a>
+                        </li>
+                    </xsl:if>
                     <li>
                         <a href="#tabs-3" role="tab" data-toggle="tab">
                             <xsl:value-of select="//captions/notes/@caption"/>
@@ -106,6 +113,11 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabs-6">
                         <xsl:call-template name="docinfo"/>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabs-7">
+                        <fieldset class="fieldset">
+                            <xsl:call-template name="prevbalanceholders"/>
+                        </fieldset>
                     </div>
                 </div>
             </section>
