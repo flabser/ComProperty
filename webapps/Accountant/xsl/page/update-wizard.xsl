@@ -278,13 +278,12 @@
                         <xsl:value-of select="//captions/select_balanceholder_readers/@caption"/>
                     </header>
                     <section>
-                        <button type="button" class="btn btn js-select-balance-holder">
+                        <button type="button" class="btn js-select-balance-holder">
                             <xsl:value-of select="//captions/balanceholder/@caption"/>
                         </button>
-                        <button type="button" class="btn btn js-select-readers">
+                        <button type="button" class="btn js-select-readers">
                             <xsl:value-of select="//captions/readers/@caption"/>
                         </button>
-                        <input type="hidden" name="balanceholder" value=""/>
                         <div style="margin-top:15px;">
                             <strong class="update-balance-holder" data-input="balanceholder"></strong>
                             <ul class="update-readers" data-input="readers"></ul>
@@ -308,13 +307,17 @@
                                 <xsl:value-of select="//captions/attach_order/@caption"/>
                             </span>
                         </label>
-                        <input type="hidden" name="balanceholder" value=""/>
+                        <button type="button" class="btn js-select-readers">
+                            <xsl:value-of select="//captions/readers/@caption"/>
+                        </button>
                         <div style="margin-top:15px;">
-                            <strong class="update-balance-holder" data-input="balanceholder"></strong>
-                            <ul class="update-recipients" data-input="recipient"></ul>
+                            <ul class="update-recipients" data-input="recipient">
+                                <xsl:value-of select="//fields/recipient"/>
+                            </ul>
                             <ul class="update-order" data-input="order">
                                 <xsl:value-of select="//fields/orderfilename"/>
                             </ul>
+                            <ul class="update-readers" data-input="readers"></ul>
                         </div>
                     </section>
                 </xsl:if>
