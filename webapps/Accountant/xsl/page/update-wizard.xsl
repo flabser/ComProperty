@@ -8,7 +8,14 @@
     <xsl:variable name="fsId" select="//formsesid"/>
 
     <xsl:template match="/request">
-        <xsl:call-template name="layout"/>
+        <xsl:call-template name="layout">
+            <xsl:with-param name="include_head">
+                <link rel="stylesheet" href="/SharedResources/knca/eds.css"/>
+                <!-- <script src="/SharedResources/knca/sjcl.js"></script>
+                <script src="/SharedResources/knca/knca_ws.js"></script> -->
+                <script src="/SharedResources/knca/knca.js"></script>
+            </xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="_content">
