@@ -103,7 +103,7 @@ public class ProcessXLFile extends _DoPage {
 								uf.setRecipient(org);
 								String ofn = uf.getOrderFileName();
 								if (ofn.equals("")) {
-									ofn = UpdateWizardForm.getFileNameByType(session, fsid, "uporder");
+									ofn = UpdateWizardForm.getFileNameByType(session, fsid, "uporder", uf);
 									uf.setOrderFileName(ofn);
 								}
 								addFileName = userTmpDir + File.separator + ofn;

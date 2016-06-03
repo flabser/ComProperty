@@ -46,6 +46,9 @@
     <xsl:template name="wizard">
         <form class="wizard update-file-check-status-{$updateFileStatus}" name="wizard" action="p?id=update-wizard"
               method="get">
+            <xsl:if test="//fields/sign = 'invalid'">
+                <h1 class="sign-invalid-msg">SIGN INVALID</h1>
+            </xsl:if>
             <ul class="wizard_steps">
                 <xsl:choose>
                     <xsl:when test="$wizardStep = 4">
@@ -392,10 +395,10 @@
                 </xsl:if>
                 <span class="update-file-name">
                     <xsl:if test="//fields/sign = 'valid'">
-                        <i class="fa fa-check-circle-ok" style="color:green"></i>
+                        <i class="fa fa-check-circle-o sign-valid"></i>
                     </xsl:if>
                     <xsl:if test="//fields/sign = 'invalid'">
-                        <i class="fa fa-exclamation-triangle" style="color:red"></i>
+                        <i class="fa fa-exclamation-triangle sign-invalid"></i>
                     </xsl:if>
                     <xsl:value-of select="//fields/filename"/>
                 </span>

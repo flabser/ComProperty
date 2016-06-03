@@ -57,13 +57,13 @@ public class UpdateWizardForm extends _DoPage {
 		uf.setStep(step);
 
 		if (step.equals("1")) {
-			String file = getFileNameByType(ses, fsId, "upfile");
+			String file = getFileNameByType(ses, fsId, "upfile", uf);
 			if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
 				uf.setStatus(ImportFileEntry.JUST_UPLOADED);
 				uf.setFileName(file);
 			}
 		} else if (step.equals("2")) {
-			String file = getFileNameByType(ses, fsId, "upfile");
+			String file = getFileNameByType(ses, fsId, "upfile", uf);
 			if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
 				uf.setStatus(ImportFileEntry.JUST_UPLOADED);
 				uf.setFileName(file);
@@ -91,7 +91,7 @@ public class UpdateWizardForm extends _DoPage {
 				if (!bh.isEmpty()) {
 					uf.setRecipient(oDao.findById(bh));
 				}
-				uf.setOrderFileName(getFileNameByType(ses, fsId, "uporder"));
+				uf.setOrderFileName(getFileNameByType(ses, fsId, "uporder", uf));
 			}
 		} else if (step.equals("4")) {
 
@@ -111,11 +111,16 @@ public class UpdateWizardForm extends _DoPage {
 		return "wizard_form";
 	}
 
-	public static String getFileNameByType(_Session ses, String fsid, String type) {
+	public static String getFileNameByType(_Session ses, String fsid, String type, ImportFileEntry uf) {
 		_FormAttachments formFiles = ses.getAttachments(fsid);
 
 		for (Attachment fn : formFiles.getFiles()) {
 			if (fn.getFieldName().equalsIgnoreCase(type)) {
+				// fake sign result
+				// if has sign > set sign valid
+				if(!fn.getSign().isEmpty()) {
+					uf.setUploadFileSignStatus("valid");
+				}
 				return fn.getRealFileName();
 			}
 		}

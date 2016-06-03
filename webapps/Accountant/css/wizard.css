@@ -310,3 +310,9 @@
 #sign-text:empty {
     display: none;
 }
+
+.sign-invalid-msg {
+    background: red;
+    color: white;
+    padding: 8px
+}

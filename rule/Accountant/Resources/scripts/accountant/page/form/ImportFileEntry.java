@@ -23,6 +23,7 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 	private String step = "";
 	private String loadType = "";
 	private String fileName = "";
+	private String uploadFileSignStatus = "";
 	private Organization balanceHolder;
 	private List<Long> readers;
 	private int status;
@@ -46,6 +47,14 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public String getUploadFileSignStatus() {
+		return uploadFileSignStatus;
+	}
+
+	public void setUploadFileSignStatus(String st) {
+		this.uploadFileSignStatus = st;
 	}
 
 	public void setBalanceHolder(Organization balanceHolder) {
@@ -115,6 +124,7 @@ public class ImportFileEntry extends POJOObjectAdapter<UUID> {
 		chunk.append("<step>" + step + "</step>");
 		chunk.append("<loadtype>" + loadType + "</loadtype>");
 		chunk.append("<filename>" + fileName + "</filename>");
+		chunk.append("<sign>" + uploadFileSignStatus + "</sign>");
 		chunk.append("<status>" + status + "</status>");
 		if (balanceHolder != null) {
 			chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getName() + "</balanceholder>");
