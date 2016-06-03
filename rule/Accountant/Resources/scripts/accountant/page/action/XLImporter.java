@@ -108,6 +108,7 @@ public class XLImporter {
 		this.ses = ses;
 		propertyDao = new PropertyDAO(ses);
 		pbhDao = new PrevBalanceHolderDAO(ses);
+		empDao = new EmployeeDAO(ses);
 		processed = 0;
 		skipped = 0;
 
@@ -123,7 +124,6 @@ public class XLImporter {
 				mode = XLImporter.PROCESS;
 			} else if (uploadtype.equals("transfer")) {
 				orderDao = new OrderDAO(ses);
-				empDao = new EmployeeDAO(ses);
 				order = composeNewOrder(addFilePath, "... о передаче имущества " + bh.getName());
 
 			}
