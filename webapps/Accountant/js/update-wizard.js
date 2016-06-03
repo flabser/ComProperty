@@ -111,7 +111,7 @@ var updateWizard = function() {
         e.preventDefault();
         var $btn = $(this);
 
-        knca.signFile().then(function(signData) {
+        knca.signXml().then(function(signData) {
             if (signData !== 'cancel') {
                 var fileName = $('input[name=filename]').val();
                 if (signData.filePath.indexOf(fileName) != -1) {

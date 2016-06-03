@@ -11,9 +11,9 @@
         <xsl:call-template name="layout">
             <xsl:with-param name="include_head">
                 <link rel="stylesheet" href="/SharedResources/knca/eds.css"/>
-                <!-- <script src="/SharedResources/knca/sjcl.js"></script>
-                <script src="/SharedResources/knca/knca_ws.js"></script> -->
-                <script src="/SharedResources/knca/knca.js"></script>
+                <script src="/SharedResources/knca/sjcl.js"></script>
+                <script src="/SharedResources/knca/knca_ws.js"></script>
+                <!-- <script src="/SharedResources/knca/knca.js"></script> -->
             </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
@@ -193,7 +193,7 @@
 
     <xsl:template name="tpl_step_1">
         <xsl:call-template name="wizard-file-name"/>
-        <!--<xsl:apply-templates select="//fields/msg"/>-->
+        <xsl:apply-templates select="//fields/msg"/>
         <xsl:if test="//fields/filename != ''">
             <div class="wizard_content-gr">
                 <header>
@@ -258,7 +258,7 @@
                 </button>
             </section>
         </div>
-        <div class="wizard_content-gr">
+        <!--<div class="wizard_content-gr">
             <p class="sign-help">
                 <xsl:value-of select="//captions/sign_help/@caption"/>
             </p>
@@ -272,7 +272,7 @@
                 </button>
                 <textarea id="sign-text" readonly="readonly"></textarea>
             </section>
-        </div>
+        </div>-->
     </xsl:template>
 
     <xsl:template name="tpl_step_3">
@@ -305,6 +305,14 @@
                         <xsl:value-of select="//captions/select_recipient_attach_order/@caption"/>
                     </header>
                     <section>
+                        <!--<p>
+                            <label>
+                                <input type="checkbox" name="sign-file" value="1" checked="checked"/>
+                                <span>
+                                    <xsl:value-of select="//captions/sign_file/@caption"/>
+                                </span>
+                            </label>
+                        </p>-->
                         <button type="button" class="btn js-select-recipients">
                             <xsl:value-of select="//captions/recipient/@caption"/>
                         </button>
@@ -360,7 +368,21 @@
                 <xsl:value-of select="//captions/file/@caption"/>
             </header>
             <section>
-                <xsl:if test="$wizardStep = 1 or $wizardStep = 0">
+                <xsl:if test="$wizardStep = 0">
+                    <p>
+                        <label>
+                            <input type="checkbox" name="sign-file" value="1" checked="checked">
+                                <xsl:if test="//fields/filename != ''">
+                                    <xsl:attribute name="disabled" select="'disabled'"/>
+                                </xsl:if>
+                            </input>
+                            <span>
+                                <xsl:value-of select="//captions/sign_file/@caption"/>
+                            </span>
+                        </label>
+                    </p>
+                </xsl:if>
+                <xsl:if test="$wizardStep = 0">
                     <label class="btn btn-update-file-excel" for="upfile">
                         <i class="fa fa-file-excel-o"></i>
                         <span>
@@ -369,6 +391,12 @@
                     </label>
                 </xsl:if>
                 <span class="update-file-name">
+                    <xsl:if test="//fields/sign = 'valid'">
+                        <i class="fa fa-check-circle-ok" style="color:green"></i>
+                    </xsl:if>
+                    <xsl:if test="//fields/sign = 'invalid'">
+                        <i class="fa fa-exclamation-triangle" style="color:red"></i>
+                    </xsl:if>
                     <xsl:value-of select="//fields/filename"/>
                 </span>
             </section>

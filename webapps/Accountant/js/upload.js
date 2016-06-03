@@ -1,8 +1,51 @@
+// ugg
 function uploadUpdate(fileInput, fsid) {
+    if ($('[name=sign-file]:checked').length) {
+        handleFileSelect(fileInput, fsid);
+    } else {
+        uploadFile(fileInput, fsid);
+    }
+}
+
+function handleFileSelect(fileInput, fsid) {
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = function(readerEvt) {
+        var binaryString = readerEvt.target.result;
+        var resultHash = btoa(sjcl.hash.sha256.hash(btoa(binaryString)));
+        makeSign(fileInput, fsid, resultHash);
+    };
+}
+
+function makeSign(fileInput, fsid, fileHash) {
+    knca.signXml(fileHash).then(function(signData) {
+        if (signData !== 'cancel') {
+            var fileName = $('input[name=filename]').val();
+            if (signData.filePath.indexOf(fileName) != -1) {
+                // $('#sign-text').text(signData.sign);
+                // $('<span class=update-file-signed>' + nb.getText('signed', 'Подписан') + '</span>').appendTo($tpl.find('.js-link'));
+                uploadFile(fileInput, fsid, signData.sign);
+            } else {
+                nb.notify({
+                    type: 'error',
+                    message: 'Для подписи выберите файл: ' + fileName
+                }).show('click');
+            }
+        }
+        return signData;
+    }, function(error) {
+        console.log(error);
+        fileInput.form.reset();
+    });
+}
+
+function uploadFile(fileInput, fsid, sign) {
     var formData = new FormData();
     formData.append('file', fileInput.files[0]);
     formData.append('fsid', fsid);
     formData.append('fieldname', fileInput.name);
+    formData.append('sign', sign);
     var time = new Date().getTime();
 
     return $.ajax({
