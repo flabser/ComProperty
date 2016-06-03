@@ -113,6 +113,14 @@ public class ProcessXLFile extends _DoPage {
 								addContent(uf);
 								return;
 							}
+							try {
+								readers = formData.getListOfValues("readers");
+							} catch (_Exception e) {
+								uf.setStatus(ImportFileEntry.LOADING_ERROR);
+								uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
+								addContent(uf);
+								return;
+							}
 						} else if (uo.equals("upload")) {
 							try {
 								UUID bhId = UUID.fromString(formData.getValueSilently("balanceholder"));

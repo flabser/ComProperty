@@ -82,6 +82,7 @@ public class XLImporter {
 	private PropertyDAO propertyDao;
 	private PrevBalanceHolderDAO pbhDao;
 	private OrderDAO orderDao;
+	private EmployeeDAO empDao;
 	private Order order;
 	private List<Property> propList = new ArrayList<Property>();
 
@@ -122,6 +123,7 @@ public class XLImporter {
 				mode = XLImporter.PROCESS;
 			} else if (uploadtype.equals("transfer")) {
 				orderDao = new OrderDAO(ses);
+				empDao = new EmployeeDAO(ses);
 				order = composeNewOrder(addFilePath, "... о передаче имущества " + bh.getName());
 
 			}
@@ -195,7 +197,7 @@ public class XLImporter {
 						processed++;
 					}
 				} else if (uploadtype.equals("transfer")) {
-					if (transfer(row, bh, addFilePath)) {
+					if (transfer(row, bh, addFilePath, readers)) {
 						processed++;
 					}
 				}
@@ -317,7 +319,6 @@ public class XLImporter {
 		prop.setAcquisitionYear(cv.getYear(row.acquisitionYear));
 		prop.setReadyToUse(cv.getBoolean(trueVal, falseVal, row.isReadyToOperation));
 		prop.setAuthor(ses.getUser());
-		EmployeeDAO empDao = new EmployeeDAO(ses);
 		for (String uuid : readers) {
 			Employee emp = empDao.findById(UUID.fromString(uuid));
 			prop.addReaderEditor(emp.getUser());
@@ -366,7 +367,7 @@ public class XLImporter {
 		return false;
 	}
 
-	private boolean transfer(XLRow row, Organization bh, String addFilePath) {
+	private boolean transfer(XLRow row, Organization bh, String addFilePath, String[] readers) {
 
 		CheVal cv = new CheVal();
 		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
@@ -390,6 +391,11 @@ public class XLImporter {
 				pbhl.add(pbhDao.findById(pbh.getId()));
 				prop.setPrevBalanceHolders(pbhl);
 				prop.setBalanceHolder(bh);
+				prop.resetReaderEditor();
+				for (String uuid : readers) {
+					Employee emp = empDao.findById(UUID.fromString(uuid));
+					prop.addReaderEditor(emp.getUser());
+				}
 			} catch (SecureException e) {
 				Server.logger.errorLogEntry(e);
 			}
