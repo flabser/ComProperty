@@ -126,8 +126,8 @@ public class Contract extends SecureAppEntity<UUID> {
 	@Override
 	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
-		chunk.append("<regdate>" + Util.simpleDateFormat.format(regDate) + "</regdate>");
-		chunk.append("<expired>" + Util.simpleDateFormat.format(expired) + "</expired>");
+		chunk.append("<regdate>" + Util.dateFormat.format(regDate) + "</regdate>");
+		chunk.append("<expired>" + Util.dateFormat.format(expired) + "</expired>");
 		chunk.append("<regnumber>" + regNumber + "</regnumber>");
 		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
 		chunk.append("<description>" + description + "</description>");
