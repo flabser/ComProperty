@@ -3369,7 +3369,9 @@ function uploadFile(fileInput, fsid, sign) {
     formData.append('file', fileInput.files[0]);
     formData.append('fsid', fsid);
     formData.append('fieldname', fileInput.name);
-    formData.append('sign', sign);
+    if (sign) {
+        formData.append('sign', sign);
+    }
     var time = new Date().getTime();
 
     return $.ajax({
