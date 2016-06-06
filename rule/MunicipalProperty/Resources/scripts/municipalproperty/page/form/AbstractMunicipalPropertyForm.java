@@ -1,14 +1,17 @@
 package municipalproperty.page.form;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.DAO;
+import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
@@ -45,6 +48,10 @@ public abstract class AbstractMunicipalPropertyForm extends _DoPage {
 		}
 
 		return actionBar;
+	}
+
+	protected IPOJOObject getACL(_Session ses, SecureAppEntity<UUID> entity) {
+		return entity.getACL(ses);
 	}
 
 	protected void save(Property entity, DAO dao, boolean isNew) throws DatabaseException, SecureException {
