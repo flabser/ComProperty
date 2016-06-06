@@ -66,6 +66,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity = getDefaultEntity(user, kufType, session);
 		}
 		addContent(entity);
+		addContent(entity.getACL(session));
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
@@ -226,9 +227,11 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		/*if (formData.getValueSilently("description").isEmpty()) {
-			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}*/
+		/*
+		 * if (formData.getValueSilently("description").isEmpty()) {
+		 * ve.addError("description", "required",
+		 * getLocalizedWord("field_is_empty", lang)); }
+		 */
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {

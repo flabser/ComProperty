@@ -23,6 +23,9 @@ import javax.validation.constraints.NotNull;
 
 import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.dataengine.system.IEmployee;
+import com.exponentus.dataengine.system.IExtUserDAO;
+import com.exponentus.env.Environment;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.NumberUtil;
 import com.exponentus.util.Util;
@@ -33,8 +36,6 @@ import reference.model.PropertyCode;
 import reference.model.ReceivingReason;
 import reference.model.Tag;
 import reference.model.constants.KufType;
-import staff.dao.EmployeeDAO;
-import staff.model.Employee;
 import staff.model.Organization;
 
 @Entity
@@ -74,7 +75,6 @@ public class Property extends SecureAppEntity<UUID> {
 	@Column(name = "acquisition_year")
 	private int acquisitionYear;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "property")
 	private List<PrevBalanceHolder> prevBalanceHolders;
 
@@ -126,6 +126,7 @@ public class Property extends SecureAppEntity<UUID> {
 	@Column(name = "decrees_acts")
 	private String decreesActs = "";
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinTable(name = "property_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
 	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
@@ -412,12 +413,12 @@ public class Property extends SecureAppEntity<UUID> {
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.convertDataTimeToString(regDate) + "</regdate>");
-		EmployeeDAO eDao = new EmployeeDAO(ses);
-		Employee user = eDao.findByUserId(author);
+		IExtUserDAO eDao = Environment.getExtUserDAO();
+		IEmployee user = eDao.getEmployee(author);
 		if (user != null) {
 			chunk.append("<author>" + user.getName() + "</author>");
 		} else {
-			chunk.append("<author></author>");
+			chunk.append("<author>" + author + "</author>");
 		}
 
 		chunk.append("<acceptancedate>" + Util.convertDateToStringSilently(acceptanceDate) + "</acceptancedate>");

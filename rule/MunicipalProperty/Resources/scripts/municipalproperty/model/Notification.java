@@ -1,6 +1,7 @@
 package municipalproperty.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import municipalproperty.model.constants.NotificationType;
 @Entity
 @Table(name = "notifications")
 @NamedQuery(name = "Notification.findAll", query = "SELECT m FROM Notification AS m Order BY m.regDate")
-public class Notification extends SecureAppEntity {
+public class Notification extends SecureAppEntity<UUID> {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type", nullable = false, length = 32)
