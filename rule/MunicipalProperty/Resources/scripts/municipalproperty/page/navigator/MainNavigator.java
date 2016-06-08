@@ -1,7 +1,6 @@
 package municipalproperty.page.navigator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Session;
@@ -24,7 +23,7 @@ public class MainNavigator extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
-		List<IOutcomeObject> list = new ArrayList<IOutcomeObject>();
+		LinkedList<IOutcomeObject> list = new LinkedList<IOutcomeObject>();
 
 		_Outline munPropOutline = new _Outline(getLocalizedWord("municipal_property", lang), "municipal_property");
 
@@ -78,8 +77,8 @@ public class MainNavigator extends _DoPage {
 		autoEntry.addEntry(new _OutlineEntry(getLocalizedWord("hospital_transport", lang), "", "vehicle-view4015", trUrl + "4015")); // HOSPITAL_TRANSPORT(4015)
 		transportEntry.addEntry(autoEntry);
 
-		_OutlineEntry passengerTransportEntry = new _OutlineEntry(getLocalizedWord("passenger_transport", lang), "", "vehicle-view4016", trUrl
-		        + "4016"); // passenger transport group
+		_OutlineEntry passengerTransportEntry = new _OutlineEntry(getLocalizedWord("passenger_transport", lang), "", "vehicle-view4016",
+		        trUrl + "4016"); // passenger transport group
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("buses", lang), "", "vehicle-view40161", trUrl + "40161")); // BUS(40161)
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trolleybuses", lang), "", "vehicle-view40162", trUrl + "40162")); // TROLLEYBUS(40162)
 		passengerTransportEntry.addEntry(new _OutlineEntry(getLocalizedWord("trams", lang), "", "vehicle-view40163", trUrl + "40163")); // TRAM(40163)
@@ -144,9 +143,9 @@ public class MainNavigator extends _DoPage {
 		_Outline mpByPropertyCodeOutline = new _Outline(getLocalizedWord("municipal_property_by_propertycode", lang),
 		        "municipal_property_by_propertycode");
 		for (PropertyCode propCode : new PropertyCodeDAO(session).findAll()) {
-			mpByPropertyCodeOutline.addEntry(new _OutlineEntry(propCode.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : "
-			        + propCode.getLocalizedName(lang), "mpbypropertycode-view" + propCode.getId(), "p?id=mpbypropertycode-view&categoryid="
-			        + propCode.getId()));
+			mpByPropertyCodeOutline.addEntry(
+			        new _OutlineEntry(propCode.getLocalizedName(lang), getLocalizedWord("labeled", lang) + " : " + propCode.getLocalizedName(lang),
+			                "mpbypropertycode-view" + propCode.getId(), "p?id=mpbypropertycode-view&categoryid=" + propCode.getId()));
 		}
 
 		_Outline notificationOutline = new _Outline(getLocalizedWord("notifications", lang), "notification");
@@ -154,8 +153,8 @@ public class MainNavigator extends _DoPage {
 		for (NotificationType type : NotificationType.values()) {
 			if (type != NotificationType.UNKNOWN) {
 				String stringType = type.name();
-				notificationOutline.addEntry(new _OutlineEntry(getLocalizedWord(stringType.toLowerCase(), lang), "",
-				        "notification-view" + stringType, nUrl + stringType));
+				notificationOutline.addEntry(
+				        new _OutlineEntry(getLocalizedWord(stringType.toLowerCase(), lang), "", "notification-view" + stringType, nUrl + stringType));
 			}
 		}
 
