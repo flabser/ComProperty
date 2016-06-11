@@ -48,14 +48,13 @@
 		<entry>KAZ</entry>
 		<entry>ENG</entry>
 	</langs>
-	<mailagent mode="ON">
+	<mail mode="ON">
 		<smtphost>smtp.mail.ru</smtphost>
-		<defaultsender>mynameis.m@mail.ru</defaultsender>
-		<auth>true</auth>
+		<smtpauth>true</smtpauth>
 		<smtpport>465</smtpport>
 		<smtpuser>mynameis.m@mail.ru</smtpuser>
 		<smtppassword>mynameis.mmynameis.m</smtppassword>
-	</mailagent>
+	</mail>
 	
 	<tls mode="OFF">
         <port>38700</port>

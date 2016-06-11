@@ -159,8 +159,6 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 					Attachment att = new Attachment();
 					att.setRealFileName(fn);
 					att.setFile(IOUtils.toByteArray(is));
-					att.setAuthor(session.getUser());
-					att.setForm("attachment");
 					entity.getAttachments().add(att);
 				}
 			}
@@ -197,9 +195,11 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		/*if (formData.getValueSilently("description").isEmpty()) {
-			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}*/
+		/*
+		 * if (formData.getValueSilently("description").isEmpty()) {
+		 * ve.addError("description", "required",
+		 * getLocalizedWord("field_is_empty", lang)); }
+		 */
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
