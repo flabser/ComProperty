@@ -116,7 +116,7 @@ public class ReportUtil {
 			conn.commit();
 
 		} catch (SQLException e) {
-			DatabaseUtil.errorPrint("", e);
+			DatabaseUtil.errorPrint(e);
 		} catch (Exception e) {
 			Server.logger.errorLogEntry(e);
 		} finally {

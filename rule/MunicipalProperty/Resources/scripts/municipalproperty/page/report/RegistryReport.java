@@ -45,7 +45,7 @@ public class RegistryReport extends _DoPage {
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		long start_time = System.currentTimeMillis();
-		boolean checkAcceptanceDate = false, checkBalanceHolder = false;
+		boolean checkBalanceHolder = false;
 		println(formData);
 		String reportName = formData.getValueSilently("id");
 
@@ -58,7 +58,6 @@ public class RegistryReport extends _DoPage {
 		Date from = formData.getDateSilently("acceptancedatefrom");
 		Date to = formData.getDateSilently("acceptancedateto");
 		if (from != null && to != null) {
-			checkAcceptanceDate = true;
 		}
 
 		UUID bhCat = null;
