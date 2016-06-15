@@ -22,8 +22,8 @@ import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.Util;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import municipalproperty.dao.ContractDAO;
 
 @Entity
@@ -142,7 +142,7 @@ public class Order extends SecureAppEntity<UUID> {
 			chunk.append("<properties></properties>");
 		}
 
-		if (getAttachments() != null && !attachments.isEmpty()) {
+		if (getAttachments() != null) {
 			chunk.append("<attachments>");
 			for (Attachment att : attachments) {
 				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name=" + att.getRealFileName();

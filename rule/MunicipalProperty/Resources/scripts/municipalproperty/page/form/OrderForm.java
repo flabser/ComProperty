@@ -165,8 +165,6 @@ public class OrderForm extends _DoPage {
 					Attachment att = new Attachment();
 					att.setRealFileName(fn);
 					att.setFile(IOUtils.toByteArray(is));
-					att.setAuthor(session.getUser());
-					att.setForm("attachment");
 					entity.getAttachments().add(att);
 				}
 			}

@@ -3,7 +3,7 @@ package accountant.page.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.exponentus.common.model.Attachment;
+import com.exponentus.common.model.EntityFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Session;
@@ -114,11 +114,11 @@ public class UpdateWizardForm extends _DoPage {
 	public static String getFileNameByType(_Session ses, String fsid, String type, ImportFileEntry uf) {
 		_FormAttachments formFiles = ses.getAttachments(fsid);
 
-		for (Attachment fn : formFiles.getFiles()) {
+		for (EntityFile fn : formFiles.getFiles()) {
 			if (fn.getFieldName().equalsIgnoreCase(type)) {
 				// fake sign result
 				// if has sign > set sign valid
-				if(!fn.getSign().isEmpty()) {
+				if (!fn.getSign().isEmpty()) {
 					uf.setUploadFileSignStatus("valid");
 				}
 				return fn.getRealFileName();
