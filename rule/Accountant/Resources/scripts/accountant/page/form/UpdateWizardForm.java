@@ -112,7 +112,7 @@ public class UpdateWizardForm extends _DoPage {
 	}
 
 	public static String getFileNameByType(_Session ses, String fsid, String type, ImportFileEntry uf) {
-		_FormAttachments formFiles = ses.getAttachments(fsid);
+		_FormAttachments formFiles = ses.getFormAttachments(fsid);
 
 		for (EntityFile fn : formFiles.getFiles()) {
 			if (fn.getFieldName().equalsIgnoreCase(type)) {

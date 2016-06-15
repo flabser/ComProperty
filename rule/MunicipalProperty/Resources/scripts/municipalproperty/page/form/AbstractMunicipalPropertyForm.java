@@ -15,7 +15,7 @@ import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
-import com.exponentus.scripting.event._DoPage;
+import com.exponentus.scripting.event._DoForm;
 import com.exponentus.user.IUser;
 
 import municipalproperty.dao.PropertyDAO;
@@ -28,7 +28,7 @@ import municipalproperty.model.Property;
  * @author Kayra created 27-01-2016
  */
 
-public abstract class AbstractMunicipalPropertyForm extends _DoPage {
+public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 
 	protected _ActionBar getActionBar(_Session ses, Property entity) {
 		LanguageCode lang = ses.getLang();

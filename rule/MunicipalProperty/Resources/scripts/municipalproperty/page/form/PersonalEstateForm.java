@@ -1,31 +1,22 @@
 package municipalproperty.page.form;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.eclipse.persistence.exceptions.DatabaseException;
-
 import com.exponentus.common.model.Attachment;
-import com.exponentus.env.Environment;
+import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
 import com.exponentus.scripting._Exception;
+import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Helper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
-import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
-import com.exponentus.util.StringUtil;
 import com.exponentus.util.Util;
 
 import municipalproperty.dao.PersonalEstateDAO;
@@ -155,27 +146,14 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			String[] fileNames = formData.getListOfValuesSilently("fileid");
-			if (fileNames.length > 0) {
-				File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
-				for (String fn : fileNames) {
-					File file = new File(userTmpDir + File.separator + fn);
-					InputStream is = new FileInputStream(file);
-					Attachment att = new com.exponentus.common.model.Attachment();
-					att.setRealFileName(fn);
-					att.setFile(IOUtils.toByteArray(is));
-					att.setAuthor(session.getUser());
-					att.setForm("attachment");
-					entity.getAttachments().add(att);
-				}
-			}
+			entity.setAttachments(getActualAttachments("fileid", entity.getAttachments()));
 
 			save(entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
 		} catch (SecureException e) {
 			setError(e);
-		} catch (_Exception | DatabaseException | IOException e) {
+		} catch (_Exception e) {
 			error(e);
 			setBadRequest();
 		}
@@ -183,28 +161,15 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
-		String id = formData.getValueSilently("docid");
-		PersonalEstate entity;
-		if (!id.isEmpty()) {
-			PersonalEstateDAO dao = new PersonalEstateDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
-				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
-
-				try {
-					String filePath = getTmpDirPath() + File.separator + StringUtil.getRandomText() + att.getRealFileName();
-					File attFile = new File(filePath);
-					FileUtils.writeByteArrayToFile(attFile, att.getFile());
-					showFile(filePath, att.getRealFileName());
-					Environment.fileToDelete.add(filePath);
-				} catch (IOException ioe) {
-					Server.logger.errorLogEntry(ioe);
-				}
-				return;
+		devPrint(formData);
+		String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
+		_FormAttachments formFiles = session.getFormAttachments(fsId);
+		String[] fileNames = formData.getListOfValuesSilently("att-name");
+		if (fileNames.length > 0) {
+			for (String fn : fileNames) {
+				formFiles.removeFile("", fn);
 			}
 		}
-
 	}
 
 	private _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
