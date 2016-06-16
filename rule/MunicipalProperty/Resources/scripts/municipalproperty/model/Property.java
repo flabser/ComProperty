@@ -470,7 +470,7 @@ public class Property extends SecureAppEntity<UUID> {
 		if (getAttachments() != null && !attachments.isEmpty()) {
 			chunk.append("<attachments>");
 			for (Attachment att : attachments) {
-				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name=" + att.getRealFileName();
+				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;fileid=" + att.getRealFileName();
 				chunk.append("<attachment id=\"" + att.getId() + "\">");
 				chunk.append("<url>" + downloadUrl + "</url>");
 				chunk.append(att.getShortXMLChunk(ses));
