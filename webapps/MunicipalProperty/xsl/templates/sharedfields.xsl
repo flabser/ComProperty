@@ -338,7 +338,7 @@
             <div class="attachments" data-upload-files="{$input-name}">
                 <xsl:for-each select="fields/attachments/attachment">
                     <div class="attachments-file">
-                        <a class="file-name" data-file="{filename}" href="{url}">
+                        <a class="file-name" data-file="{filename}" href="{url}&amp;fsid={//formsesid}">
                             <xsl:value-of select="filename"/>
                         </a>
                         <span class="btn btn-sm btn-link btn-remove-file on-edit">
