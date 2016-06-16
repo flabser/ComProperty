@@ -336,6 +336,7 @@
                 </span>
             </button>
             <div class="attachments" data-upload-files="{$input-name}">
+                <input type="hidden" id="fsid" name="formsesid" value="{//formsesid}"/>
                 <xsl:for-each select="fields/attachments/attachment">
                     <div class="attachments-file">
                         <a class="file-name" data-file="{filename}" href="{url}&amp;fsid={//formsesid}">
