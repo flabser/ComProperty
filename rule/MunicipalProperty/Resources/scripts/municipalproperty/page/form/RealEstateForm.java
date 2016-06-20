@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.exponentus.common.dao.AttachmentDAO;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
@@ -54,8 +55,9 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			entity = getEntity(id, session);
 
 			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
-				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
+			if (!attachmentId.isEmpty()) {
+				AttachmentDAO attachmentDAO = new AttachmentDAO(session);
+				Attachment att = attachmentDAO.findById(attachmentId);
 				if (showAttachment(att)) {
 					return;
 				} else {
