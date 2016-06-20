@@ -8,13 +8,12 @@ import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
-import com.exponentus.scripting.event._DoPage;
-import com.exponentus.util.Util;
+import com.exponentus.scripting.event._DoForm;
 
 import municipalproperty.dao.NotificationDAO;
 import municipalproperty.model.Notification;
 
-public class NotificationForm extends _DoPage {
+public class NotificationForm extends _DoForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
@@ -22,7 +21,6 @@ public class NotificationForm extends _DoPage {
 		String id = formData.getValueSilently("docid");
 		NotificationDAO dao = new NotificationDAO(session);
 		entity = dao.findById(UUID.fromString(id));
-		addValue("formsesid", Util.generateRandomAsText());
 
 		addContent(entity);
 		_ActionBar actionBar = new _ActionBar(session);

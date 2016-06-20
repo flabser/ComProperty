@@ -327,7 +327,7 @@
 
     <xsl:template name="upload-files">
         <xsl:param name="input-name"/>
-
+    <xsl:value-of select="//fsid"/>
         <div class="form-group">
             <button type="button" class="btn btn-upload" data-upload="{$input-name}">
                 <i class="fa fa-paperclip"></i>
@@ -339,7 +339,7 @@
                 <input type="hidden" id="fsid" name="fsid" value="{//fsid}"/>
                 <xsl:for-each select="fields/attachments/attachment">
                     <div class="attachments-file">
-                        <a class="file-name" data-file="{filename}" href="{url}&amp;fsid={fsid}">
+                        <a class="file-name" data-file="{filename}" href="{url}&amp;fsid={//fsid}">
                             <xsl:value-of select="filename"/>
                         </a>
                         <span class="btn btn-sm btn-link btn-remove-file on-edit">

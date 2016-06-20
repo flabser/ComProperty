@@ -42,9 +42,8 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 			EngInfrastructureDAO dao = new EngInfrastructureDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 
-			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty()) {
-				if (showAttachment(attachmentId, entity)) {
+			if (formData.containsField("attachment")) {
+				if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 					return;
 				} else {
 					setBadRequest();
@@ -143,7 +142,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			entity.setAttachments(getActualAttachments("fileid", entity.getAttachments()));
+			entity.setAttachments(getActualAttachments(entity.getAttachments()));
 
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);

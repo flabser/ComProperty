@@ -1,20 +1,12 @@
 package municipalproperty.page.form;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.exponentus.common.dao.AttachmentDAO;
-import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
-import com.exponentus.common.model.Attachment;
-import com.exponentus.env.Environment;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
@@ -50,11 +42,8 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 			EquipmentDAO dao = new EquipmentDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 
-			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty()) {
-				AttachmentDAO attachmentDAO = new AttachmentDAO(session);
-				Attachment att = attachmentDAO.findById(attachmentId);
-				if (showAttachment(att)) {
+			if (formData.containsField("attachment")) {
+				if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 					return;
 				} else {
 					setBadRequest();
@@ -152,18 +141,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			String[] fileNames = formData.getListOfValuesSilently("fileid");
-			if (fileNames.length > 0) {
-				File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
-				for (String fn : fileNames) {
-					File file = new File(userTmpDir + File.separator + fn);
-					InputStream is = new FileInputStream(file);
-					Attachment att = new Attachment();
-					att.setRealFileName(fn);
-					att.setFile(IOUtils.toByteArray(is));
-					entity.getAttachments().add(att);
-				}
-			}
+			entity.setAttachments(getActualAttachments(entity.getAttachments()));
 
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
@@ -171,7 +149,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 			save(entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
-		} catch (_Exception | DatabaseException | SecureException | IOException e) {
+		} catch (_Exception | DatabaseException | SecureException e) {
 			error(e);
 			setBadRequest();
 		}
