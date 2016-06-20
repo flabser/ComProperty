@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.exponentus.common.model.Attachment;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
@@ -43,9 +42,8 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
 			entity = dao.findById(UUID.fromString(id));
 			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
-				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
-				if (showAttachment(att)) {
+			if (!attachmentId.isEmpty()) {
+				if (showAttachment(attachmentId, entity)) {
 					return;
 				} else {
 					setBadRequest();

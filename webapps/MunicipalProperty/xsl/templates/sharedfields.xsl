@@ -336,10 +336,10 @@
                 </span>
             </button>
             <div class="attachments" data-upload-files="{$input-name}">
-                <input type="hidden" id="fsid" name="fsid" value="{//formsesid}"/>
+                <input type="hidden" id="fsid" name="fsid" value="{//fsid}"/>
                 <xsl:for-each select="fields/attachments/attachment">
                     <div class="attachments-file">
-                        <a class="file-name" data-file="{filename}" href="{url}&amp;fsid={//formsesid}">
+                        <a class="file-name" data-file="{filename}" href="{url}&amp;fsid={fsid}">
                             <xsl:value-of select="filename"/>
                         </a>
                         <span class="btn btn-sm btn-link btn-remove-file on-edit">
@@ -607,7 +607,7 @@
 
     <!-- <form action="Uploader" name="upload" id="upload" method="post" enctype="multipart/form-data">
         <input type="hidden" name="type" value="rtfcontent" /> <input type="hidden"
-        name="formsesid" value="{formsesid}" /> Секция "Вложения" <div display="block"
+        name="fsid" value="{fsid}" /> Секция "Вложения" <div display="block"
         id="att"> <br /> <xsl:call-template name="attach" /> </div> </form> -->
 
     <xsl:template match="*" mode="selected_options">

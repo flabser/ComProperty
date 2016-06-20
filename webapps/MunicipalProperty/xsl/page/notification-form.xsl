@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </section>
-            <input type="hidden" name="fsid" value="{//formsesid}"/>
+            <input type="hidden" name="fsid" value="{//fsid}"/>
         </form>
     </xsl:template>
 

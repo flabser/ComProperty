@@ -5,7 +5,7 @@
     <xsl:variable name="wizardStep" select="//fields/step"/>
     <xsl:variable name="loadType" select="//fields/loadtype"/>
     <xsl:variable name="updateFileStatus" select="//fields/status"/>
-    <xsl:variable name="fsId" select="//formsesid"/>
+    <xsl:variable name="fsId" select="//fsid"/>
 
     <xsl:template match="/request">
         <xsl:call-template name="layout">

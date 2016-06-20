@@ -1,19 +1,12 @@
 package municipalproperty.page.form;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
-import com.exponentus.common.model.Attachment;
-import com.exponentus.env.Environment;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
@@ -50,9 +43,8 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 			entity = dao.findById(UUID.fromString(id));
 
 			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
-				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
-				if (showAttachment(att)) {
+			if (!attachmentId.isEmpty()) {
+				if (showAttachment(attachmentId, entity)) {
 					return;
 				} else {
 					setBadRequest();
@@ -151,20 +143,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 				}
 			}
 
-			String[] fileNames = formData.getListOfValuesSilently("fileid");
-			if (fileNames.length > 0) {
-				File userTmpDir = new File(Environment.tmpDir + File.separator + session.getUser().getUserID());
-				for (String fn : fileNames) {
-					File file = new File(userTmpDir + File.separator + fn);
-					InputStream is = new FileInputStream(file);
-					Attachment att = new Attachment();
-					att.setRealFileName(fn);
-					att.setFile(IOUtils.toByteArray(is));
-					att.setAuthor(session.getUser());
-					att.setForm("attachment");
-					entity.getAttachments().add(att);
-				}
-			}
+			entity.setAttachments(getActualAttachments("fileid", entity.getAttachments()));
 
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
@@ -172,7 +151,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 			save(entity, dao, isNew);
 
 			finishSaveFormTransact(entity);
-		} catch (_Exception | DatabaseException | SecureException | IOException e) {
+		} catch (_Exception | DatabaseException | SecureException e) {
 			error(e);
 			setBadRequest();
 		}
@@ -198,9 +177,11 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("objectname").isEmpty()) {
 			ve.addError("objectname", "required", getLocalizedWord("field_is_empty", lang));
 		}
-	/*	if (formData.getValueSilently("description").isEmpty()) {
-			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
-		}*/
+		/*
+		 * if (formData.getValueSilently("description").isEmpty()) {
+		 * ve.addError("description", "required",
+		 * getLocalizedWord("field_is_empty", lang)); }
+		 */
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
