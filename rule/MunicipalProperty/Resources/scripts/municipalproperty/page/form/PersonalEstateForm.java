@@ -43,7 +43,9 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity = dao.findById(UUID.fromString(id));
 			String attachmentId = formData.getValueSilently("attachment");
 			if (!attachmentId.isEmpty()) {
+
 				if (showAttachment(attachmentId, entity)) {
+
 					return;
 				} else {
 					setBadRequest();

@@ -3,6 +3,7 @@ package municipalproperty.page.form;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.exponentus.common.dao.AttachmentDAO;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.common.model.Attachment;
@@ -74,19 +75,18 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 	public void doDELETE(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		String attachmentId = formData.getValueSilently("attachment");
-		String attachmentName = formData.getValueSilently("att-name");
+		// String attachmentName = formData.getValueSilently("att-name");
 
-		if (id.isEmpty() || attachmentId.isEmpty() || attachmentName.isEmpty()) {
+		if (id.isEmpty() || attachmentId.isEmpty()/* || attachmentName.isEmpty()*/) {
 			return;
 		}
 
 		PropertyDAO dao = new PropertyDAO(session);
 		Property entity = dao.findById(id);
 
-		List<Attachment> atts = entity.getAttachments();
-		List<Attachment> forRemove = atts.stream()
-		        .filter(it -> attachmentId.equals(it.getIdentifier()) && it.getRealFileName().equals(attachmentName)).collect(Collectors.toList());
-		atts.removeAll(forRemove);
+		AttachmentDAO attachmentDAO = new AttachmentDAO(session);
+		Attachment att = attachmentDAO.findById(attachmentId);
+		entity.getAttachments().remove(att);
 
 		try {
 			dao.update(entity);

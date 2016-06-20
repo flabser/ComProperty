@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.exponentus.common.dao.AttachmentDAO;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
@@ -55,9 +56,9 @@ public class OrderForm extends _DoPage {
 			addValue("formsesid", Util.generateRandomAsText());
 
 			String attachmentId = formData.getValueSilently("attachment");
-			if (!attachmentId.isEmpty() && entity.getAttachments() != null) {
-				Attachment att = entity.getAttachments().stream().filter(it -> it.getIdentifier().equals(attachmentId)).findFirst().get();
-
+			if (!attachmentId.isEmpty()) {
+				AttachmentDAO attachmentDAO = new AttachmentDAO(session);
+				Attachment att = attachmentDAO.findById(attachmentId);
 				if (showAttachment(att)) {
 					return;
 				} else {
@@ -213,19 +214,18 @@ public class OrderForm extends _DoPage {
 	public void doDELETE(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		String attachmentId = formData.getValueSilently("attachment");
-		String attachmentName = formData.getValueSilently("att-name");
+		// String attachmentName = formData.getValueSilently("att-name");
 
-		if (id.isEmpty() || attachmentId.isEmpty() || attachmentName.isEmpty()) {
+		if (id.isEmpty() || attachmentId.isEmpty()/* || attachmentName.isEmpty()*/) {
 			return;
 		}
 
 		OrderDAO dao = new OrderDAO(session);
 		Order entity = dao.findById(id);
 
-		List<Attachment> atts = entity.getAttachments();
-		List<Attachment> forRemove = atts.stream()
-		        .filter(it -> attachmentId.equals(it.getIdentifier()) && it.getRealFileName().equals(attachmentName)).collect(Collectors.toList());
-		atts.removeAll(forRemove);
+		AttachmentDAO attachmentDAO = new AttachmentDAO(session);
+		Attachment att = attachmentDAO.findById(attachmentId);
+		entity.getAttachments().remove(att);
 
 		try {
 			dao.update(entity);
