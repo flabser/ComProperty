@@ -327,7 +327,6 @@
 
     <xsl:template name="upload-files">
         <xsl:param name="input-name"/>
-    <xsl:value-of select="//fsid"/>
         <div class="form-group">
             <button type="button" class="btn btn-upload" data-upload="{$input-name}">
                 <i class="fa fa-paperclip"></i>
