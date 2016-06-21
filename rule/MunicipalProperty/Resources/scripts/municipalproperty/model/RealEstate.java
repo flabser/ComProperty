@@ -18,7 +18,7 @@ import reference.model.embedded.Address;
 @NamedQuery(name = "RealEstate.findAll", query = "SELECT m FROM RealEstate AS m ORDER BY m.regDate")
 public class RealEstate extends Property {
 	@Embedded
-	private Address address;
+	private Address address = new Address();
 
 	@Column(name = "count_floors")
 	private int countFloors;

@@ -148,13 +148,14 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
 
-			entity.getAddress().setRegion(new RegionDAO(session).findById(formData.getValueSilently("region")));
-			entity.getAddress().setLocality(new LocalityDAO(session).findById(formData.getValueSilently("locality")));
-			entity.getAddress().setCityDistrict(new CityDistrictDAO(session).findById(formData.getValueSilently("district")));
-			entity.getAddress().setStreet(new StreetDAO(session).findById(formData.getValueSilently("street")));
-			entity.getAddress().setHouseNumber(formData.getValueSilently("housenumber"));
-			entity.getAddress().setAdditionalInfo(formData.getValueSilently("additionalinfo"));
-			entity.getAddress().setCoordinates(formData.getValueSilently("coordinates"));
+			Address addr = entity.getAddress();
+			addr.setRegion(new RegionDAO(session).findById(formData.getValueSilently("region")));
+			addr.setLocality(new LocalityDAO(session).findById(formData.getValueSilently("locality")));
+			addr.setCityDistrict(new CityDistrictDAO(session).findById(formData.getValueSilently("district")));
+			addr.setStreet(new StreetDAO(session).findById(formData.getValueSilently("street")));
+			addr.setHouseNumber(formData.getValueSilently("housenumber"));
+			addr.setAdditionalInfo(formData.getValueSilently("additionalinfo"));
+			addr.setCoordinates(formData.getValueSilently("coordinates"));
 
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
@@ -213,6 +214,10 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			ve.addError("balancecost", "required", getLocalizedWord("required", lang));
 		} else if (formData.getFloatValueSilently("balancecost", 0) <= 0) {
 			ve.addError("balancecost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
+		}
+
+		if (formData.getValueSilently("region").isEmpty()) {
+			ve.addError("region", "required", getLocalizedWord("field_is_empty", lang));
 		}
 
 		return ve;

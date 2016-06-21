@@ -1,15 +1,14 @@
 package municipalproperty.page.form;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.exponentus.common.dao.AttachmentDAO;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
-import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.DAO;
+import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
@@ -73,25 +72,15 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
-		String id = formData.getValueSilently("docid");
-		String attachmentId = formData.getValueSilently("attachment");
-		// String attachmentName = formData.getValueSilently("att-name");
-
-		if (id.isEmpty() || attachmentId.isEmpty()/* || attachmentName.isEmpty()*/) {
-			return;
-		}
-
-		PropertyDAO dao = new PropertyDAO(session);
-		Property entity = dao.findById(id);
-
-		AttachmentDAO attachmentDAO = new AttachmentDAO(session);
-		Attachment att = attachmentDAO.findById(attachmentId);
-		entity.getAttachments().remove(att);
-
-		try {
-			dao.update(entity);
-		} catch (SecureException e) {
-			setError(e);
+		devPrint(formData);
+		String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
+		_FormAttachments formFiles = session.getFormAttachments(fsId);
+		String fieldName = formData.getValueSilently("fieldname");
+		String[] fileNames = formData.getListOfValuesSilently("fileid");
+		if (fileNames.length > 0) {
+			for (String fn : fileNames) {
+				formFiles.removeFile(fieldName, fn);
+			}
 		}
 	}
 }
