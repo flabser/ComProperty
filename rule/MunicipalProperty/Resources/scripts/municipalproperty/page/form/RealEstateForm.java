@@ -229,8 +229,6 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 		Address addr = entity.getAddress();
 		if (addr == null) {
 			entity.setAddress(Address.getStub(session));
-		} else if (addr.getStreet().getName().equalsIgnoreCase("unknown")) {
-			entity.getAddress().getStreet().setName("");
 		}
 		return entity;
 	}

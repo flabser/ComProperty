@@ -60,7 +60,7 @@ public class RealEstate extends Property {
 		        + address.getRegion().getType().getLocalizedName(ses.getLang()) + "</regiontype>");
 		chunk.append("<region id=\"" + address.getRegion().getId() + "\">" + address.getRegion().getLocalizedName(ses.getLang()) + "</region>");
 
-		if (address.getDistrict().getId() != null) {
+		if (address.getDistrict() != null) {
 			chunk.append("<district id=\"" + address.getDistrict().getId() + "\">" + address.getDistrict().getLocalizedName(ses.getLang())
 			        + "</district>");
 		}
@@ -70,7 +70,7 @@ public class RealEstate extends Property {
 		chunk.append(
 		        "<locality id=\"" + address.getLocality().getId() + "\">" + address.getLocality().getLocalizedName(ses.getLang()) + "</locality>");
 
-		if (address.getStreet().getId() != null) {
+		if (address.getStreet() != null) {
 			chunk.append("<street id=\"" + address.getStreet().getId() + "\">" + address.getStreet().getLocalizedName(ses.getLang()) + "</street>");
 		}
 		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");

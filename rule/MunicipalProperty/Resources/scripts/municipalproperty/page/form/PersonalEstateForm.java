@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
 import com.exponentus.scripting._Exception;
-import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Helper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
@@ -154,19 +152,6 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		} catch (_Exception e) {
 			error(e);
 			setBadRequest();
-		}
-	}
-
-	@Override
-	public void doDELETE(_Session session, _WebFormData formData) {
-		devPrint(formData);
-		String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
-		_FormAttachments formFiles = session.getFormAttachments(fsId);
-		String[] fileNames = formData.getListOfValuesSilently("att-name");
-		if (fileNames.length > 0) {
-			for (String fn : fileNames) {
-				formFiles.removeFile("", fn);
-			}
 		}
 	}
 

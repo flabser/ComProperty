@@ -75,11 +75,10 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 		devPrint(formData);
 		String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		_FormAttachments formFiles = session.getFormAttachments(fsId);
-		String fieldName = formData.getValueSilently("fieldname");
 		String[] fileNames = formData.getListOfValuesSilently("fileid");
 		if (fileNames.length > 0) {
 			for (String fn : fileNames) {
-				formFiles.removeFile(fieldName, fn);
+				formFiles.removeFile(fn);
 			}
 		}
 	}
