@@ -57,7 +57,6 @@ public class OrderForm extends _DoForm {
 		} else {
 			entity = new Order();
 			entity.setAuthor(user);
-			entity.setRegDate(new Date());
 			entity.setRegNumber("");
 			String propertyId = formData.getValueSilently("propertyid");
 			PropertyDAO propertyDAO = new PropertyDAO(session);

@@ -1,7 +1,6 @@
 package registry.page.form;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +42,6 @@ public class IndividualForm extends StaffForm {
 			entity.setAuthor(user);
 			entity.setName("");
 			entity.setBin("");
-			entity.setRegDate(new Date());
 			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
 			OrgCategory oc = ocDao.findByName("Частный предприниматель");
 			entity.setOrgCategory(oc);

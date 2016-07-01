@@ -81,10 +81,12 @@ public class Contract extends SecureAppEntity<UUID> {
 		this.order = order;
 	}
 
+	@Override
 	public List<Attachment> getAttachments() {
 		return attachments;
 	}
 
+	@Override
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
 	}
@@ -108,11 +110,6 @@ public class Contract extends SecureAppEntity<UUID> {
 	@Override
 	public Date getRegDate() {
 		return regDate;
-	}
-
-	@Override
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
 	}
 
 	public Date getExpired() {

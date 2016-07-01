@@ -1,7 +1,6 @@
 package municipalproperty.page.form;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -208,7 +207,6 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 	protected StrategicObject getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		StrategicObject entity = new StrategicObject();
 		entity.setAuthor(user);
-		entity.setRegDate(new Date());
 		Organization tempEmptyOrg = new Organization();
 		tempEmptyOrg.setName("");
 		tempEmptyOrg.setBin("");
