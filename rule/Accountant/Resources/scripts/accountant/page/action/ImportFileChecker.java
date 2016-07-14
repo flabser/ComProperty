@@ -101,7 +101,7 @@ public class ImportFileChecker extends _DoPage {
 				addContent(uf);
 			}
 			setBadRequest();
-			error(e);
+			logError(e);
 		}
 	}
 }

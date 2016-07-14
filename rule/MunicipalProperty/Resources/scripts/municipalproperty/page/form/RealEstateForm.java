@@ -163,7 +163,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 
 			finishSaveFormTransact(entity);
 		} catch (_Exception | DatabaseException | SecureException e) {
-			error(e);
+			logError(e);
 			setBadRequest();
 		}
 	}

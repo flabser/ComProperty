@@ -149,7 +149,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		} catch (SecureException e) {
 			setError(e);
 		} catch (_Exception e) {
-			error(e);
+			logError(e);
 			setBadRequest();
 		}
 	}

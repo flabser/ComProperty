@@ -79,7 +79,7 @@ public class InconsistentAddrForm extends AbstractMunicipalPropertyForm {
 
 			finishSaveFormTransact(entity);
 		} catch (DatabaseException | SecureException e) {
-			error(e);
+			logError(e);
 			setBadRequest();
 		}
 	}

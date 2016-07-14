@@ -40,7 +40,7 @@ public class ProcessXLFile extends _DoPage {
 				showFile(xlsFile.getAbsolutePath(), fn);
 			}
 		} catch (_Exception e) {
-			error(e);
+			logError(e);
 		}
 	}
 
@@ -65,7 +65,7 @@ public class ProcessXLFile extends _DoPage {
 			}
 		} catch (Exception e) {
 			setBadRequest();
-			error(e);
+			logError(e);
 		}
 	}
 
@@ -171,7 +171,7 @@ public class ProcessXLFile extends _DoPage {
 				}
 			}
 		} catch (Exception e) {
-			error(e);
+			logError(e);
 			setBadRequest();
 		}
 	}

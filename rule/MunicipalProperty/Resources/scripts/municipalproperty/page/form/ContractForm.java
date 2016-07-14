@@ -142,7 +142,7 @@ public class ContractForm extends _DoForm {
 		} catch (SecureException e) {
 			setError(e);
 		} catch (_Exception | DatabaseException e) {
-			error(e);
+			logError(e);
 			setBadRequest();
 		}
 	}

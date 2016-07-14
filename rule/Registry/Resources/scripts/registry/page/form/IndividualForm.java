@@ -104,7 +104,7 @@ public class IndividualForm extends StaffForm {
 			// finishSaveFormTransact(entity);
 			setRedirect("p?id=individual-view");
 		} catch (_Exception | DatabaseException | SecureException e) {
-			error(e);
+			logError(e);
 		}
 	}
 

@@ -17,6 +17,7 @@
         <!-- Common module entities -->
         <class>com.exponentus.common.model.Attachment</class>
         <class>com.exponentus.common.model.ReadingMark</class>
+        <class>com.exponentus.common.model.embedded.Avatar</class>
     </persistence-unit>
     <persistence-unit name="MunicipalProperty" transaction-type="RESOURCE_LOCAL">
         <!-- Obligatory the application module entities -->
@@ -27,6 +28,7 @@
         <!-- Common module entities -->
         <class>com.exponentus.common.model.Attachment</class>
         <class>com.exponentus.common.model.ReadingMark</class>
+         <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Specific application entities -->
         <class>municipalproperty.model.Property</class>
         <class>municipalproperty.model.Vehicle</class>
@@ -77,6 +79,7 @@
         <!-- Common module entities -->
         <class>com.exponentus.common.model.Attachment</class>
         <class>com.exponentus.common.model.ReadingMark</class>
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Specific application entities -->
         <class>municipalproperty.model.Property</class>
         <class>municipalproperty.model.Vehicle</class>
@@ -127,6 +130,7 @@
         <!-- Common module entities -->
         <class>com.exponentus.common.model.Attachment</class>
         <class>com.exponentus.common.model.ReadingMark</class>
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Specific application entities -->
         <class>municipalproperty.model.Property</class>
         <class>municipalproperty.model.Vehicle</class>
@@ -177,6 +181,7 @@
         <!-- Common module entities -->
         <class>com.exponentus.common.model.Attachment</class>
         <class>com.exponentus.common.model.ReadingMark</class>
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Specific application entities -->
         <class>municipalproperty.model.Property</class>
         <class>municipalproperty.model.Vehicle</class>
@@ -227,6 +232,7 @@
         <!-- Common module entities -->
         <class>com.exponentus.common.model.Attachment</class>
         <class>com.exponentus.common.model.ReadingMark</class>
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Specific application entities -->
         <class>municipalproperty.model.Property</class>
         <class>municipalproperty.model.Vehicle</class>
@@ -271,6 +277,8 @@
         <class>administrator.model.Application</class>
         <class>administrator.model.Language</class>
         <class>administrator.model.Sentence</class>
+        <!-- Common module entities -->
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -299,6 +307,8 @@
         <class>administrator.model.Application</class>
         <class>administrator.model.Language</class>
         <class>administrator.model.Sentence</class>
+        <!-- Common module entities -->
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -325,6 +335,8 @@
         <class>administrator.model.Application</class>
         <class>administrator.model.Language</class>
         <class>administrator.model.Sentence</class>
+         <!-- Common module entities -->
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
@@ -358,6 +370,8 @@
         <class>administrator.model.Application</class>
         <class>administrator.model.Language</class>
         <class>administrator.model.Sentence</class>
+         <!-- Common module entities -->
+        <class>com.exponentus.common.model.embedded.Avatar</class>
         <!-- Common Staff module entities -->
         <class>staff.model.Organization</class>
         <class>staff.model.Department</class>
