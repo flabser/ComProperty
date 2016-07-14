@@ -52,7 +52,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity = getDefaultEntity(user, kufType, session);
 		}
 		addContent(entity);
-		addContent(getACL(session, entity));
+		addContent(getACL(entity));
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
