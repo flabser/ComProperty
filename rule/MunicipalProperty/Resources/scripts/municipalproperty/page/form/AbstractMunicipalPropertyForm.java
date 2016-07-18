@@ -78,7 +78,7 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 		String[] fileNames = formData.getListOfValuesSilently("fileid");
 		if (fileNames.length > 0) {
 			for (String fn : fileNames) {
-				formFiles.removeFile(fn);
+				formFiles.removeFile("attachment", fn);
 			}
 		}
 	}
