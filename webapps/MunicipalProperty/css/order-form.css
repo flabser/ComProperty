@@ -9,13 +9,13 @@
     width: 100%;
 }
 
-.order-property-list .entry-captions {
-    padding: 8px;
+.order-property-list .entry-captions,
+.order-property-list .entry-link{
+    padding: 0 4px;
 }
 
 .order-property-list .entry-link {
     border-bottom: 1px solid #eee;
-    padding: 8px;
 }
 
 .order-property-list .entry-link:hover {
