@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.exponentus.common.model.ACL;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
@@ -52,7 +53,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity = getDefaultEntity(user, kufType, session);
 		}
 		addContent(entity);
-		addContent(getACL(entity));
+		addContent(new ACL(entity));
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
