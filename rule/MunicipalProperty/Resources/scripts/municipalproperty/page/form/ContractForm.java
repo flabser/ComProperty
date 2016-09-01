@@ -15,7 +15,6 @@ import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
 import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting._Exception;
-import com.exponentus.scripting._Helper;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
@@ -25,6 +24,7 @@ import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.scripting.event._DoForm;
 import com.exponentus.user.IUser;
+import com.exponentus.util.TimeUtil;
 import com.exponentus.webserver.servlet.UploadedFile;
 
 import municipalproperty.dao.ContractDAO;
@@ -125,8 +125,8 @@ public class ContractForm extends _DoForm {
 
 			entity.setDescription(formData.getValue("description"));
 			entity.setRegNumber(formData.getValue("regnumber"));
-			entity.setAppliedRegDate(_Helper.convertStringToDate(formData.getValue("appliedregdate")));
-			entity.setExpired(_Helper.convertStringToDate(formData.getValue("expired")));
+			entity.setAppliedRegDate(TimeUtil.convertStringToDate(formData.getValue("appliedregdate")));
+			entity.setExpired(TimeUtil.convertStringToDate(formData.getValue("expired")));
 
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
 

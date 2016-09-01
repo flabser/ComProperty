@@ -9,11 +9,11 @@ import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
 import com.exponentus.scripting._Exception;
-import com.exponentus.scripting._Helper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.user.IUser;
+import com.exponentus.util.TimeUtil;
 import com.exponentus.util.Util;
 
 import municipalproperty.dao.PersonalEstateDAO;
@@ -112,7 +112,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
-			entity.setAcceptanceDate(_Helper.convertStringToDate(formData.getValue("acceptancedate")));
+			entity.setAcceptanceDate(TimeUtil.convertStringToDate(formData.getValue("acceptancedate")));
 
 			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
 			if (rtu == 1) {
@@ -183,11 +183,9 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
-			try {
-				_Helper.convertStringToDate(formData.getValueSilently("acceptancedate"));
-			} catch (_Exception e) {
-				ve.addError("acceptancedate", "date", getLocalizedWord("date_format_does_not_match_to", lang) + " dd.MM.YYYY");
-			}
+
+			TimeUtil.convertStringToDate(formData.getValueSilently("acceptancedate"));
+
 		}
 
 		if (formData.getValueSilently("originalcost").isEmpty()) {
