@@ -391,7 +391,7 @@ public class XLImporter {
 				pbhl.add(pbhDao.findById(pbh.getId()));
 				prop.setPrevBalanceHolders(pbhl);
 				prop.setBalanceHolder(bh);
-				prop.resetReaderEditor();
+				prop.resetReadersEditors();
 				for (String uuid : readers) {
 					Employee emp = empDao.findById(UUID.fromString(uuid));
 					prop.addReaderEditor(emp.getUser());
