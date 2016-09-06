@@ -95,7 +95,7 @@ public class ContractForm extends _DoForm {
 		actionBar.addAction(new _Action(getLocalizedWord("save_close", session.getLang()), "", _ActionType.SAVE_AND_CLOSE));
 		actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
 		addContent(actionBar);
-		startSaveFormTransact(entity);
+
 	}
 
 	@Override
@@ -125,8 +125,8 @@ public class ContractForm extends _DoForm {
 
 			entity.setDescription(formData.getValue("description"));
 			entity.setRegNumber(formData.getValue("regnumber"));
-			entity.setAppliedRegDate(TimeUtil.convertStringToDate(formData.getValue("appliedregdate")));
-			entity.setExpired(TimeUtil.convertStringToDate(formData.getValue("expired")));
+			entity.setAppliedRegDate(TimeUtil.stringToDate(formData.getValue("appliedregdate")));
+			entity.setExpired(TimeUtil.stringToDate(formData.getValue("expired")));
 
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
 
@@ -138,7 +138,6 @@ public class ContractForm extends _DoForm {
 				entity = dao.update(entity);
 			}
 
-			finishSaveFormTransact(entity);
 		} catch (SecureException e) {
 			setError(e);
 		} catch (_Exception | DatabaseException e) {

@@ -115,7 +115,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
-			entity.setAcceptanceDate(TimeUtil.convertStringToDate(formData.getValue("acceptancedate")));
+			entity.setAcceptanceDate(TimeUtil.stringToDate(formData.getValue("acceptancedate")));
 
 			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
 			if (rtu == 1) {
@@ -197,7 +197,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
 
-			TimeUtil.convertStringToDate(formData.getValueSilently("acceptancedate"));
+			TimeUtil.stringToDate(formData.getValueSilently("acceptancedate"));
 
 		}
 

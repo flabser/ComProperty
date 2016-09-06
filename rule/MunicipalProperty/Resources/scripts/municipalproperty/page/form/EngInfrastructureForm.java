@@ -57,7 +57,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
-		startSaveFormTransact(entity);
+
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
-			entity.setAcceptanceDate(TimeUtil.convertStringToDate(formData.getValue("acceptancedate")));
+			entity.setAcceptanceDate(TimeUtil.stringToDate(formData.getValue("acceptancedate")));
 
 			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
 			if (rtu == 1) {
@@ -183,7 +183,7 @@ public class EngInfrastructureForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
-			TimeUtil.convertStringToDate(formData.getValueSilently("acceptancedate"));
+			TimeUtil.stringToDate(formData.getValueSilently("acceptancedate"));
 		}
 
 		if (formData.getValueSilently("originalcost").isEmpty()) {
