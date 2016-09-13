@@ -28,7 +28,7 @@ import com.exponentus.dataengine.system.IExtUserDAO;
 import com.exponentus.env.Environment;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.NumberUtil;
-import com.exponentus.util.Util;
+import com.exponentus.util.TimeUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import municipalproperty.model.constants.PropertyStatusType;
@@ -367,10 +367,12 @@ public class Property extends SecureAppEntity<UUID> {
 		this.decreesActs = decreesActs;
 	}
 
+	@Override
 	public List<Attachment> getAttachments() {
 		return attachments;
 	}
 
+	@Override
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
 	}
@@ -412,7 +414,7 @@ public class Property extends SecureAppEntity<UUID> {
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
-		chunk.append("<regdate>" + Util.convertDataTimeToString(regDate) + "</regdate>");
+		chunk.append("<regdate>" + TimeUtil.dateTimeToStringSilently(regDate) + "</regdate>");
 		IExtUserDAO eDao = Environment.getExtUserDAO();
 		IEmployee user = eDao.getEmployee(author);
 		if (user != null) {
@@ -421,7 +423,7 @@ public class Property extends SecureAppEntity<UUID> {
 			chunk.append("<author>" + author + "</author>");
 		}
 
-		chunk.append("<acceptancedate>" + Util.convertDateToStringSilently(acceptanceDate) + "</acceptancedate>");
+		chunk.append("<acceptancedate>" + TimeUtil.dateTimeToStringSilently(acceptanceDate) + "</acceptancedate>");
 		chunk.append("<acquisitionyear>" + acquisitionYear + "</acquisitionyear>");
 		chunk.append("<assignment>" + assignment + "</assignment>");
 		chunk.append("<balancecost>" + String.format("%.02f", balanceCost) + "</balancecost>");
