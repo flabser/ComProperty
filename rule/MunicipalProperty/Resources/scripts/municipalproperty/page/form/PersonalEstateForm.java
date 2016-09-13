@@ -57,7 +57,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
-		startSaveFormTransact(entity);
+
 	}
 
 	@Override
@@ -146,7 +146,6 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 
 			save(entity, dao, isNew);
 
-			finishSaveFormTransact(entity);
 		} catch (SecureException e) {
 			setError(e);
 		} catch (_Exception e) {

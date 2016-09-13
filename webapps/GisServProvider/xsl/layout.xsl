@@ -113,4 +113,24 @@
 
     <xsl:template name="main-footer"/>
 
+<xsl:template name="view-table-captions">
+        <span class="vw-inv-number">
+            <xsl:value-of select="//captions/inv_number/@caption"/>
+        </span>
+        <span class="vw-object-name">
+            <xsl:value-of select="//captions/object_name/@caption"/>
+        </span>
+        <span class="vw-original-cost">
+            <xsl:value-of select="//captions/original_cost/@caption"/>
+        </span>
+        <span class="vw-balance-holder">
+            <xsl:value-of select="//captions/balance_holder/@caption"/>
+        </span>
+        <span class="vw-icon">
+            <i class="fa fa-paperclip"></i>
+        </span>
+        <span class="vw-tags">
+            <xsl:value-of select="//captions/tags/@caption"/>
+        </span>
+    </xsl:template>
 </xsl:stylesheet>
