@@ -1,6 +1,7 @@
 package municipalproperty.model;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 
 import com.exponentus.dataengine.jpa.AppEntity;
 import com.exponentus.scripting._Session;
+
 import reference.dao.KufDAO;
 import reference.model.Kuf;
 import reference.model.constants.KufType;
@@ -22,11 +24,14 @@ import reference.model.constants.KufType;
 @Entity
 @Table(name = "reports_template")
 @NamedQuery(name = "ReportTemplate.findAll", query = "SELECT m FROM ReportTemplate AS m ORDER BY m.regDate")
-public class ReportTemplate extends AppEntity {
+public class ReportTemplate extends AppEntity<UUID> {
+
 	@Column(length = 32)
 	private String type;
+
 	@Column(name = "property_type")
 	private List<KufType> propertyType;
+
 	@Column(length = 128)
 	private String name;
 
