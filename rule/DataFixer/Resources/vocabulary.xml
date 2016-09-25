@@ -1155,30 +1155,30 @@
         <entry lang="ENG">Unknown</entry>
         <entry lang="RUS">Не определен</entry>
         <entry lang="KAZ">Не определен</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="on_balance">
         <entry lang="ENG">Balance</entry>
         <entry lang="RUS">На балансе</entry>
         <entry lang="KAZ">На балансе</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="writtenoff">
         <entry lang="ENG">Written off</entry>
         <entry lang="RUS">Списан</entry>
         <entry lang="KAZ">Списан</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="active">
         <entry lang="ENG">Active</entry>
         <entry lang="RUS">Активный</entry>
         <entry lang="KAZ">Активный</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="inactive">
         <entry lang="ENG">Inactive</entry>
         <entry lang="RUS">Не активный</entry>
         <entry lang="KAZ">Не активный</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
 </vocabulary>

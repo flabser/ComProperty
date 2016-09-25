@@ -123,7 +123,7 @@
         <entry lang="RUS">Комментарий</entry>
         <entry lang="KAZ">Комментарий</entry>
         <entry lang="ENG">Comment</entry>
-        <entry lang="CHN">Comment</entry>
+        <entry lang="CHI">Comment</entry>
     </sentence>
     <sentence mode="on" keyword="Свойства пользователя">
         <entry lang="KAZ">Қолданушының қасиеттерi</entry>
@@ -654,7 +654,7 @@
         <entry lang="ENG">Country</entry>
         <entry lang="RUS">Страна</entry>
         <entry lang="KAZ">Страна</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="region">
         <entry lang="RUS">Область</entry>
@@ -665,13 +665,13 @@
         <entry lang="ENG">Locality</entry>
         <entry lang="RUS">Населенный пункт</entry>
         <entry lang="KAZ">Населенный пункт</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="street">
         <entry lang="ENG">Street</entry>
         <entry lang="RUS">Улица</entry>
         <entry lang="KAZ">Улица</entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="Телефон">
         <entry lang="KAZ">Телефон</entry>
@@ -682,7 +682,7 @@
         <entry lang="ENG">District</entry>
         <entry lang="RUS">Район</entry>
         <entry lang="KAZ"></entry>
-        <entry lang="CHO"></entry>
+        <entry lang="CHI"></entry>
     </sentence>
     <sentence mode="on" keyword="roles">
         <entry lang="RUS">Роли</entry>
