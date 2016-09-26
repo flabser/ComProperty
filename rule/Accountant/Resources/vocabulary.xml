@@ -38,7 +38,7 @@
     <sentence mode="on" keyword="readers_has_not_been_pointed">
         <entry lang="RUS">Читатели не выбраны</entry>
         <entry lang="KAZ">Читатели не выбраны</entry>
-        <entry lang="ENG">readers has not been chosen</entry>
+        <entry lang="ENG">readers has not been CHIsen</entry>
     </sentence>
     <!-- -->
     <sentence mode="on" keyword="result">
@@ -174,7 +174,7 @@
         <entry lang="KAZ">При подписи сначала откроется диалог выбора файла для подписи (выберите {{file}}),
             затем откроется диалог опций ЭЦП
         </entry>
-        <entry lang="ENG">To sign you should choose a file (choose {{file}} then you can set up some options
+        <entry lang="ENG">To sign you should CHIose a file (CHIose {{file}} then you can set up some options
         </entry>
     </sentence>
    

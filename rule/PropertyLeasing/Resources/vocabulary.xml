@@ -290,10 +290,10 @@
         <entry lang="KAZ">Шығарылған жылы</entry>
         <entry lang="ENG"></entry>
     </sentence>
-    <sentence mode="on" keyword="school_equipment">
+    <sentence mode="on" keyword="sCHIol_equipment">
         <entry lang="RUS">Школьное оборудование</entry>
         <entry lang="KAZ">Мектеп құрал-жабдығы</entry>
-        <entry lang="ENG">School equipment</entry>
+        <entry lang="ENG">SCHIol equipment</entry>
     </sentence>
     <sentence mode="on" keyword="office_equipment">
         <entry lang="RUS">Офисное оборудование</entry>
