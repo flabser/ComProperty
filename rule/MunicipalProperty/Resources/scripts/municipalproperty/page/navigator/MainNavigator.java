@@ -2,6 +2,7 @@ package municipalproperty.page.navigator;
 
 import java.util.LinkedList;
 
+import com.exponentus.env.Environment;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
@@ -170,6 +171,7 @@ public class MainNavigator extends _DoPage {
 		String categoryId = formData.getValueSilently("categoryid");
 		String pageId = formData.getValueSilently("id").replace("-form", "-view") + kuf + categoryId + type;
 
+		addValue("workspaceUrl", Environment.getWorkspaceURL());
 		addValue("outline_current", pageId);
 
 		if (!kuf.isEmpty()) {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.exponentus.dataengine.jpa.IAppFile;
 import com.exponentus.env.EnvConst;
+import com.exponentus.env.Environment;
 import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
@@ -97,6 +98,7 @@ public class UpdateWizardForm extends _DoPage {
 
 		}
 
+		addValue("workspaceUrl", Environment.getWorkspaceURL());
 		addValue("formsesid", fsId);
 		addContent(uf);
 
