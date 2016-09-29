@@ -44,7 +44,6 @@ public class InconsistentAddrForm extends AbstractMunicipalPropertyForm {
 		addContent(actionBar);
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
-		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -76,8 +75,6 @@ public class InconsistentAddrForm extends AbstractMunicipalPropertyForm {
 			entity.addReaderEditor(user);
 
 			save(entity, dao, false);
-
-			finishSaveFormTransact(entity);
 		} catch (DatabaseException | SecureException e) {
 			logError(e);
 			setBadRequest();
@@ -105,5 +102,4 @@ public class InconsistentAddrForm extends AbstractMunicipalPropertyForm {
 		}
 		return entity;
 	}
-
 }

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+import com.exponentus.dataengine.jpa.TempFile;
+import com.exponentus.scripting.*;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.common.dao.AttachmentDAO;
@@ -13,12 +16,6 @@ import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scheduler._EnumWrapper;
-import com.exponentus.scripting.IPOJOObject;
-import com.exponentus.scripting._Exception;
-import com.exponentus.scripting._POJOListWrapper;
-import com.exponentus.scripting._Session;
-import com.exponentus.scripting._Validation;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
@@ -72,7 +69,9 @@ public class ContractForm extends _DoForm {
 			if (obj == null) {
 				formFiles = new ArrayList<String>();
 			} else {
-				formFiles = (List<String>) obj;
+				// formFiles = (List<String>) obj;
+				_FormAttachments fAtts = (_FormAttachments) obj;
+				formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
 			}
 
 			List<IPOJOObject> filesToPublish = new ArrayList<IPOJOObject>();
@@ -95,7 +94,6 @@ public class ContractForm extends _DoForm {
 		actionBar.addAction(new _Action(getLocalizedWord("save_close", session.getLang()), "", _ActionType.SAVE_AND_CLOSE));
 		actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
 		addContent(actionBar);
-
 	}
 
 	@Override

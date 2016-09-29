@@ -15,7 +15,6 @@ import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.user.IUser;
 import com.exponentus.util.TimeUtil;
-import com.exponentus.util.Util;
 
 import municipalproperty.dao.StrategicObjectDAO;
 import municipalproperty.model.StrategicObject;
@@ -57,7 +56,6 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
-		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -97,11 +95,11 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
 			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
 			entity.setPropertyCode(pcEntity);
-			entity.setOriginalCost(Util.convertStringToFloat(formData.getValueSilently("originalcost")));
-			entity.setCumulativeDepreciation(Util.convertStringToFloat(formData.getValueSilently("cumulativedepreciation")));
-			entity.setImpairmentLoss(Util.convertStringToFloat(formData.getValueSilently("impairmentloss")));
-			entity.setBalanceCost(Util.convertStringToFloat(formData.getValueSilently("balancecost")));
-			entity.setRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("revaluationamount")));
+			entity.setOriginalCost(formData.getFloatValueSilently("originalcost", 0));
+			entity.setCumulativeDepreciation(formData.getFloatValueSilently("cumulativedepreciation", 0));
+			entity.setImpairmentLoss(formData.getFloatValueSilently("impairmentloss", 0));
+			entity.setBalanceCost(formData.getFloatValueSilently("balancecost", 0));
+			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
 
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
@@ -146,8 +144,6 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 			entity.addReaderEditor(user);
 
 			save(entity, dao, isNew);
-
-			finishSaveFormTransact(entity);
 		} catch (_Exception | DatabaseException | SecureException e) {
 			logError(e);
 			setBadRequest();

@@ -26,7 +26,6 @@ public class NotificationForm extends _DoForm {
 		_ActionBar actionBar = new _ActionBar(session);
 		actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
 		addContent(actionBar);
-		startSaveFormTransact(entity);
 	}
 
 	@Override
