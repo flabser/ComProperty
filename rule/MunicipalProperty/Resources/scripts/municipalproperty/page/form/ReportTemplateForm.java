@@ -16,7 +16,8 @@ import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.scripting.event._DoPage;
 import com.exponentus.server.Server;
-import com.exponentus.util.Util;
+import com.exponentus.util.StringUtil;
+import com.exponentus.util.TimeUtil;
 
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.dao.ReportTemplateDAO;
@@ -123,7 +124,7 @@ public class ReportTemplateForm extends _DoPage {
 				type = ".pdf";
 			}
 
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
+			HashMap<String, Object> parameters = new HashMap<>();
 			log("Filling report \"" + reportName + "\"...");
 			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator + session.getAppEnv().appName
 			        + File.separator + "reports";
@@ -147,7 +148,7 @@ public class ReportTemplateForm extends _DoPage {
 			        parameters, dSource);
 
 			String fileName = reportName + type;
-			String filePath = getTmpDirPath() + File.separator + Util.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
+			String filePath = getTmpDirPath() + File.separator + StringUtil.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
 			if (type.equals(".pdf")) {
 				JRStyle style = new JRDesignStyle();
 				style.setPdfFontName(repPath + File.separator + "templates" + File.separator + "fonts" + File.separator + "tahoma.ttf");
@@ -167,7 +168,7 @@ public class ReportTemplateForm extends _DoPage {
 
 			showFile(filePath, fileName);
 			Environment.fileToDelete.add(filePath);
-			log("Report \"" + reportName + "\" is ready, estimated time is " + Util.getTimeDiffInMilSec(start_time));
+			log("Report \"" + reportName + "\" is ready, estimated time is " + TimeUtil.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {
 			Server.logger.errorLogEntry(e);
 		} catch (_Exception e) {

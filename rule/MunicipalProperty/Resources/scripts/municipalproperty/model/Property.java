@@ -39,7 +39,7 @@ import reference.model.constants.KufType;
 import staff.model.Organization;
 
 @Entity
-@Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }) )
+@Table(name = "properties", uniqueConstraints = @UniqueConstraint(columnNames = { "inv_number", "object_name" }))
 @NamedQuery(name = "Property.findAll", query = "SELECT m FROM Property AS m ORDER BY m.regDate")
 public class Property extends SecureAppEntity<UUID> {
 	@Column(length = 16)
@@ -130,7 +130,7 @@ public class Property extends SecureAppEntity<UUID> {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinTable(name = "property_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
 	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
-	private List<Attachment> attachments;
+	private List<Attachment> attachments = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
@@ -154,7 +154,7 @@ public class Property extends SecureAppEntity<UUID> {
 
 	public void addTag(Tag tag) {
 		if (tags == null) {
-			tags = new ArrayList<Tag>();
+			tags = new ArrayList<>();
 		}
 		tags.add(tag);
 	}
