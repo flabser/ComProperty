@@ -13,7 +13,7 @@ import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
 import com.exponentus.user.SuperUser;
-import com.exponentus.util.Util;
+import com.exponentus.util.StringUtil;
 
 import staff.dao.EmployeeDAO;
 import staff.dao.OrganizationDAO;
@@ -46,7 +46,7 @@ public class UpdateWizardForm extends _DoPage {
 		}
 
 		if (fsId.isEmpty()) {
-			fsId = Util.generateRandomAsText();
+			fsId = StringUtil.getRandomText();
 		}
 		String uploadType = formData.getValueSilently("uploadtype");
 		if (uploadType.equals("upload") || uploadType.equals("writeoff") || uploadType.equals("transfer")) {
@@ -57,6 +57,7 @@ public class UpdateWizardForm extends _DoPage {
 		uf.setStep(step);
 
 		if (step.equals("1")) {
+			// System.out.println(">>>" + ses.hashCode());
 			String file = getFileNameByType(ses, fsId, "upfile", uf);
 			if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
 				uf.setStatus(ImportFileEntry.JUST_UPLOADED);
@@ -75,7 +76,7 @@ public class UpdateWizardForm extends _DoPage {
 					uf.setBalanceHolder(oDao.findById(bh));
 				}
 				String[] readers = formData.getListOfStringValues("readers", null);
-				List<Long> readersList = new ArrayList<Long>();
+				List<Long> readersList = new ArrayList<>();
 				EmployeeDAO eDao = new EmployeeDAO(ses);
 				if (readers[0] != null) {
 					for (String r : readers) {
@@ -114,7 +115,7 @@ public class UpdateWizardForm extends _DoPage {
 	public static String getFileNameByType(_Session ses, String fsid, String type, ImportFileEntry uf) {
 		_FormAttachments formFiles = ses.getFormAttachments(fsid);
 
-		for (IAppFile fn : formFiles.getFiles()) {
+		for (IAppFile fn : formFiles.getFiles(type)) {
 			if (fn.getFieldName().equalsIgnoreCase(type)) {
 				// fake sign result
 				// if has sign > set sign valid
