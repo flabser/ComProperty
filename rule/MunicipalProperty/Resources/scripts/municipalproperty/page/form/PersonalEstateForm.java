@@ -14,7 +14,6 @@ import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
 import com.exponentus.user.IUser;
 import com.exponentus.util.TimeUtil;
-import com.exponentus.util.Util;
 
 import municipalproperty.dao.PersonalEstateDAO;
 import municipalproperty.model.PersonalEstate;
@@ -57,7 +56,6 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		addContent(getActionBar(session, entity));
 		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
 		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
-
 	}
 
 	@Override
@@ -98,12 +96,12 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
 			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
 			entity.setPropertyCode(pcEntity);
-			entity.setOriginalCost(Util.convertStringToFloat(formData.getValueSilently("originalcost")));
-			entity.setCumulativeDepreciation(Util.convertStringToFloat(formData.getValueSilently("cumulativedepreciation")));
-			entity.setImpairmentLoss(Util.convertStringToFloat(formData.getValueSilently("impairmentloss")));
-			entity.setBalanceCost(Util.convertStringToFloat(formData.getValueSilently("balancecost")));
-			entity.setRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("revaluationamount")));
-			entity.setAfterRevaluationAmount(Util.convertStringToFloat(formData.getValueSilently("afterrevaluationamount")));
+			entity.setOriginalCost(formData.getFloatValueSilently("originalcost", 0));
+			entity.setCumulativeDepreciation(formData.getFloatValueSilently("cumulativedepreciation", 0));
+			entity.setImpairmentLoss(formData.getFloatValueSilently("impairmentloss", 0));
+			entity.setBalanceCost(formData.getFloatValueSilently("balancecost", 0));
+			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
+			entity.setAfterRevaluationAmount(formData.getFloatValueSilently("afterrevaluationamount", 0));
 
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));

@@ -2,6 +2,7 @@ package gisservprovider.page.navigator;
 
 import java.util.LinkedList;
 
+import com.exponentus.env.Environment;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
@@ -26,6 +27,7 @@ public class MainNavigator extends _DoPage {
 
 		list.add(outline);
 
+		addValue("workspaceUrl", Environment.getWorkspaceURL());
 		addValue("outline_current", formData.getValueSilently("id").replace("-form", "-view"));
 
 		addContent(list);

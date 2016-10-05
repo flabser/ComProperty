@@ -49,9 +49,8 @@ public class IndividualForm extends StaffForm {
 
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<OrganizationLabel>(new OrganizationLabelDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
-		startSaveFormTransact(entity);
 	}
 
 	@Override
@@ -101,7 +100,6 @@ public class IndividualForm extends StaffForm {
 				dao.update(entity);
 			}
 
-			// finishSaveFormTransact(entity);
 			setRedirect("p?id=individual-view");
 		} catch (_Exception | DatabaseException | SecureException e) {
 			logError(e);

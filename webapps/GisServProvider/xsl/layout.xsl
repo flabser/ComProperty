@@ -99,7 +99,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a class="logout" href="Logout">
+                                    <a class="logout" href="{//workspaceUrl}">
                                         <xsl:value-of select="//captions/logout/@caption"/>
                                     </a>
                                 </li>
@@ -113,7 +113,7 @@
 
     <xsl:template name="main-footer"/>
 
-<xsl:template name="view-table-captions">
+    <xsl:template name="view-table-captions">
         <span class="vw-inv-number">
             <xsl:value-of select="//captions/inv_number/@caption"/>
         </span>
@@ -133,4 +133,5 @@
             <xsl:value-of select="//captions/tags/@caption"/>
         </span>
     </xsl:template>
+
 </xsl:stylesheet>
