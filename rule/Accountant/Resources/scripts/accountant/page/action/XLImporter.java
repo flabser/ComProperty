@@ -22,8 +22,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.exponentus.common.model.Attachment;
-import com.exponentus.dataengine.jpa.IAppEntity;
 import com.exponentus.exception.SecureException;
+import com.exponentus.runtimeobj.IAppEntity;
 import com.exponentus.scripting._Session;
 import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
@@ -70,7 +70,7 @@ public class XLImporter {
 	public final static int PROCESS = 100;
 	public final static int CHECK = 99;
 	public final static int FROM_YEAR = 1930;
-	public Map<Integer, List<List<ErrorDescription>>> sheetErr = new HashMap<Integer, List<List<ErrorDescription>>>();
+	public Map<Integer, List<List<ErrorDescription>>> sheetErr = new HashMap<>();
 
 	private final static String defaultCity = "Алматы";
 	private final static String undefinedStreet = "unknown";
@@ -84,7 +84,7 @@ public class XLImporter {
 	private OrderDAO orderDao;
 	private EmployeeDAO empDao;
 	private Order order;
-	private List<Property> propList = new ArrayList<Property>();
+	private List<Property> propList = new ArrayList<>();
 
 	public XLImporter(int mode) {
 		this.mode = mode;
@@ -208,7 +208,7 @@ public class XLImporter {
 		// System.out.println("Old method: " + diff);
 		if (uploadtype.equals("transfer") && mode == XLImporter.PROCESS) {
 			order.setProperties(propList);
-			Set<Long> allReaders = new HashSet<Long>();
+			Set<Long> allReaders = new HashSet<>();
 			for (Property prop : propList) {
 				allReaders.addAll(prop.getReaders());
 			}
@@ -228,7 +228,7 @@ public class XLImporter {
 	}
 
 	private List<List<ErrorDescription>> preLoad(XLRow row, String region, String district) {
-		List<List<ErrorDescription>> rowErr = new ArrayList<List<ErrorDescription>>();
+		List<List<ErrorDescription>> rowErr = new ArrayList<>();
 		rowErr.add(new CheVal("1, КОФ", row.kof).isNotEmpty(row.kof).getErr());
 		rowErr.add(new CheVal("2, КУФ", row.kuf).isNotEmpty(row.kuf).isKufType(row.kuf).getErr());
 		rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
@@ -337,7 +337,7 @@ public class XLImporter {
 	}
 
 	private List<List<ErrorDescription>> preProcess(XLRow row, Organization bh) {
-		List<List<ErrorDescription>> rowErr = new ArrayList<List<ErrorDescription>>();
+		List<List<ErrorDescription>> rowErr = new ArrayList<>();
 		rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
 		List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
 
@@ -379,7 +379,7 @@ public class XLImporter {
 		}
 
 		if (prop != null) {
-			List<PrevBalanceHolder> pbhl = new ArrayList<PrevBalanceHolder>();
+			List<PrevBalanceHolder> pbhl = new ArrayList<>();
 			PrevBalanceHolder pbh = new PrevBalanceHolder();
 			pbh.setBalanceHolder(prop.getBalanceHolder());
 			pbh.setProperty(prop);
@@ -462,7 +462,7 @@ public class XLImporter {
 	}
 
 	class CheVal {
-		private List<ErrorDescription> errMsg = new ArrayList<ErrorDescription>();;
+		private List<ErrorDescription> errMsg = new ArrayList<>();;
 		String info;
 		String sourceValue;
 
