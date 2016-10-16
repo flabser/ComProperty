@@ -6,16 +6,22 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.exponentus.dataengine.jpa.TempFile;
-import com.exponentus.scripting.*;
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.common.dao.AttachmentDAO;
 import com.exponentus.common.model.Attachment;
+import com.exponentus.dataengine.jpa.TempFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
-import com.exponentus.scheduler._EnumWrapper;
+import com.exponentus.scripting.IPOJOObject;
+import com.exponentus.scripting._EnumWrapper;
+import com.exponentus.scripting._Exception;
+import com.exponentus.scripting._FormAttachments;
+import com.exponentus.scripting._POJOListWrapper;
+import com.exponentus.scripting._Session;
+import com.exponentus.scripting._Validation;
+import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
@@ -69,7 +75,7 @@ public class OrderForm extends _DoForm {
 				property.setPropertyCode(pc);
 			}
 
-			List<Property> list = new ArrayList<Property>();
+			List<Property> list = new ArrayList<>();
 			list.add(property);
 			entity.setProperties(list);
 			String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
@@ -77,14 +83,14 @@ public class OrderForm extends _DoForm {
 			List<String> formFiles = null;
 			Object obj = session.getAttribute(fsId);
 			if (obj == null) {
-				formFiles = new ArrayList<String>();
+				formFiles = new ArrayList<>();
 			} else {
 				// formFiles = (List<String>) obj;
 				_FormAttachments fAtts = (_FormAttachments) obj;
 				formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
 			}
 
-			List<IPOJOObject> filesToPublish = new ArrayList<IPOJOObject>();
+			List<IPOJOObject> filesToPublish = new ArrayList<>();
 
 			for (String fn : formFiles) {
 				UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
@@ -95,7 +101,7 @@ public class OrderForm extends _DoForm {
 				}
 				filesToPublish.add(uf);
 			}
-			addContent(new _POJOListWrapper<IPOJOObject>(filesToPublish, session));
+			addContent(new _POJOListWrapper<>(filesToPublish, session));
 		}
 
 		addContent(entity);
@@ -131,7 +137,7 @@ public class OrderForm extends _DoForm {
 				String propertyId = formData.getValueSilently("propertyid");
 				PropertyDAO propertyDAO = new PropertyDAO(session);
 				Property property = propertyDAO.findById(propertyId);
-				List<Property> list = new ArrayList<Property>();
+				List<Property> list = new ArrayList<>();
 				list.add(property);
 				entity.setProperties(list);
 			} else {

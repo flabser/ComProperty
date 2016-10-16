@@ -7,7 +7,7 @@ import java.util.UUID;
 import com.exponentus.common.model.ACL;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
-import com.exponentus.scheduler._EnumWrapper;
+import com.exponentus.scripting._EnumWrapper;
 import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
