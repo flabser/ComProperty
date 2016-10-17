@@ -16,7 +16,6 @@ import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.scripting.event._DoForm;
-import com.exponentus.user.IUser;
 
 import municipalproperty.dao.PropertyDAO;
 import municipalproperty.model.Property;
@@ -62,8 +61,6 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 		}
 
 		if (isNew) {
-			IUser<Long> user = ses.getUser();
-			entity.addReaderEditor(user);
 			dao.add(entity);
 		} else {
 			dao.update(entity);
