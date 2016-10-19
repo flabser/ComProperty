@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.rest.RestProvider;
+import com.exponentus.rest.ServiceDescriptor;
 
 import municipalproperty.dao.RealEstateDAO;
 import municipalproperty.model.RealEstate;
@@ -34,6 +35,12 @@ public class GisService extends RestProvider {
 		RealEstateDAO reDao = new RealEstateDAO(getSession());
 		ViewPage<RealEstate> viewPage = reDao.findByStreetAndHome(streetId, buildingNum, 0, 0);
 		return Response.ok(viewPage).build();
+	}
+
+	@Override
+	public ServiceDescriptor updateDescription(ServiceDescriptor sd) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
