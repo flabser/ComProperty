@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._EnumWrapper;
@@ -145,7 +146,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 
 			save(entity, dao, isNew);
 
-		} catch (_Exception | DatabaseException | SecureException e) {
+		} catch (_Exception | DatabaseException | SecureException | DAOException e) {
 			logError(e);
 			setBadRequest();
 		}

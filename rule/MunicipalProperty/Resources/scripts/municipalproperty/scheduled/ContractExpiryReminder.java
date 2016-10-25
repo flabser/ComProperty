@@ -3,6 +3,7 @@ package municipalproperty.scheduled;
 import java.util.Date;
 import java.util.List;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
@@ -55,7 +56,7 @@ public class ContractExpiryReminder extends _DoScheduledTask {
 				entity.setRecipient("");
 				try {
 					nDao.add(entity);
-				} catch (SecureException e) {
+				} catch (SecureException | DAOException e) {
 					Server.logger.errorLogEntry(e);
 				}
 			}

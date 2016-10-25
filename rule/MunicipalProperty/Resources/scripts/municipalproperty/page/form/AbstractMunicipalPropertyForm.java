@@ -2,8 +2,7 @@ package municipalproperty.page.form;
 
 import java.util.List;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.DAO;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
@@ -46,7 +45,7 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 		return actionBar;
 	}
 
-	protected void save(Property entity, DAO dao, boolean isNew) throws DatabaseException, SecureException {
+	protected void save(Property entity, DAO dao, boolean isNew) throws SecureException, DAOException {
 		_Session ses = dao.getSession();
 		PropertyDAO pDao = new PropertyDAO(ses);
 		List<Property> list = pDao.findAllByInvNumAndName(entity.getInvNumber(), entity.getObjectName());

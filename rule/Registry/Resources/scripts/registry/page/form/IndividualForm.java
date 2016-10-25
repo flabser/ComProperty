@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Exception;
@@ -49,7 +50,7 @@ public class IndividualForm extends StaffForm {
 
 		}
 		addContent(entity);
-		addContent(new _POJOListWrapper<OrganizationLabel>(new OrganizationLabelDAO(session).findAll(), session));
+		addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
 		addContent(getSimpleActionBar(session, session.getLang()));
 	}
 
@@ -83,7 +84,7 @@ public class IndividualForm extends StaffForm {
 				entity.setBin(formData.getValue("bin"));
 			}
 			OrganizationLabelDAO olDao = new OrganizationLabelDAO(session);
-			List<OrganizationLabel> labels = new ArrayList<OrganizationLabel>();
+			List<OrganizationLabel> labels = new ArrayList<>();
 			for (String labelId : formData.getListOfValuesSilently("labels")) {
 				if (!labelId.isEmpty()) {
 					OrganizationLabel prgLabel = olDao.findById(labelId);
@@ -101,7 +102,7 @@ public class IndividualForm extends StaffForm {
 			}
 
 			setRedirect("p?id=individual-view");
-		} catch (_Exception | DatabaseException | SecureException e) {
+		} catch (_Exception | DatabaseException | SecureException | DAOException e) {
 			logError(e);
 		}
 	}

@@ -22,6 +22,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.exponentus.common.model.Attachment;
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.runtimeobj.IAppEntity;
 import com.exponentus.scripting._Session;
@@ -396,7 +397,7 @@ public class XLImporter {
 					Employee emp = empDao.findById(UUID.fromString(uuid));
 					prop.addReaderEditor(emp.getUser());
 				}
-			} catch (SecureException e) {
+			} catch (SecureException | DAOException e) {
 				Server.logger.errorLogEntry(e);
 			}
 
@@ -435,7 +436,7 @@ public class XLImporter {
 		entity.addReaderEditor(user);
 		try {
 			entity = orderDao.add(entity);
-		} catch (SecureException e) {
+		} catch (SecureException | DAOException e) {
 			e.printStackTrace();
 		}
 		return entity;

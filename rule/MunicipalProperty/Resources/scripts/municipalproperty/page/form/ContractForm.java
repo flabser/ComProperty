@@ -10,6 +10,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.common.dao.AttachmentDAO;
 import com.exponentus.common.model.Attachment;
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.TempFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
@@ -147,6 +148,9 @@ public class ContractForm extends _DoForm {
 		} catch (_Exception | DatabaseException e) {
 			logError(e);
 			setBadRequest();
+		} catch (DAOException e) {
+			setBadRequest();
+			logError(e);
 		}
 	}
 

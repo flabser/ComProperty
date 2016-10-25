@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.exponentus.common.model.ACL;
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._EnumWrapper;
@@ -149,6 +150,9 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		} catch (_Exception e) {
 			logError(e);
 			setBadRequest();
+		} catch (DAOException e) {
+			setBadRequest();
+			logError(e);
 		}
 	}
 
