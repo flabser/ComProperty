@@ -216,7 +216,7 @@ public class XLImporter {
 			order.setReaders(allReaders);
 			try {
 				orderDao.update(order);
-			} catch (SecureException e) {
+			} catch (SecureException | DAOException e) {
 				Server.logger.errorLogEntry(e);
 			}
 

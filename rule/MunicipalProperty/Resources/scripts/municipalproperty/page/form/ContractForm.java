@@ -199,7 +199,7 @@ public class ContractForm extends _DoForm {
 
 		try {
 			dao.update(entity);
-		} catch (SecureException e) {
+		} catch (SecureException | DAOException e) {
 			setError(e);
 		}
 	}

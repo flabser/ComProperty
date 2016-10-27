@@ -2,6 +2,7 @@ package municipalproperty.page.form;
 
 import java.util.UUID;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
@@ -41,7 +42,7 @@ public class NotificationForm extends _DoForm {
 
 		try {
 			dao.update(entity);
-		} catch (SecureException e) {
+		} catch (SecureException | DAOException e) {
 			setError(e);
 		}
 	}
