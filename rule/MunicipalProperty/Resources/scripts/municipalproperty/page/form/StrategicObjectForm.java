@@ -14,6 +14,7 @@ import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
+import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
 import com.exponentus.util.TimeUtil;
 
@@ -201,21 +202,25 @@ public class StrategicObjectForm extends AbstractMunicipalPropertyForm {
 
 	protected StrategicObject getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		StrategicObject entity = new StrategicObject();
-		entity.setAuthor(user);
-		Organization tempEmptyOrg = new Organization();
-		tempEmptyOrg.setName("");
-		tempEmptyOrg.setBin("");
-		entity.setBalanceHolder(tempEmptyOrg);
-		entity.setKuf(type);
-		entity.setKof("");
-		entity.setInvNumber("");
-		entity.setObjectName("");
-		PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
-		entity.setPropertyCode(pcDao.findByName("Собственность"));
-		// entity.setModel("");
-		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
-		entity.setReceivingReason(rrDao.findByName("Приобретено"));
-		entity.setReadyToUse(true);
+		try {
+			entity.setAuthor(user);
+			Organization tempEmptyOrg = new Organization();
+			tempEmptyOrg.setName("");
+			tempEmptyOrg.setBin("");
+			entity.setBalanceHolder(tempEmptyOrg);
+			entity.setKuf(type);
+			entity.setKof("");
+			entity.setInvNumber("");
+			entity.setObjectName("");
+			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
+			entity.setPropertyCode(pcDao.findByName("Собственность"));
+			// entity.setModel("");
+			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
+			entity.setReceivingReason(rrDao.findByName("Приобретено"));
+			entity.setReadyToUse(true);
+		} catch (DAOException e) {
+			Server.logger.errorLogEntry(e);
+		}
 		return entity;
 	}
 }

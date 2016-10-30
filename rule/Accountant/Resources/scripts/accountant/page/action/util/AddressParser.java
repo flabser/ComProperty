@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.scripting._Session;
+import com.exponentus.server.Server;
+
 import reference.dao.CityDistrictDAO;
 import reference.dao.StreetDAO;
 import reference.model.CityDistrict;
@@ -137,57 +140,47 @@ public class AddressParser {
 
 	private void checkForStreet(Unit unit, Unit nextUnit, StreetDAO dao) {
 		if (!unit.isDistrict()) {
-			Street street = dao.findByName(unit.name.toUpperCase());
-			if (street != null) {
-				unit.street = street;
-				street = dao.findByName(unit.name.toUpperCase() + " " + nextUnit.name.toUpperCase());
-
+			try {
+				Street street = dao.findByName(unit.name.toUpperCase());
 				if (street != null) {
-					unit.full = false;
-					// nextUnit.isStreet() = true;
-					nextUnit.street = street;
-					nextUnit.full = false;
-				}
-
-				// unit.street = true;
-
-			} else {
-				ViewPage streetViewPage = dao.findAllByKeyword(unit.name.toUpperCase(), 0, 100);
-				if (streetViewPage.getCount() > 0 && nextUnit != null) {
+					unit.street = street;
 					street = dao.findByName(unit.name.toUpperCase() + " " + nextUnit.name.toUpperCase());
+
 					if (street != null) {
-						// unit.street = true;
-						unit.street = street;
 						unit.full = false;
-						// nextUnit.street = true;
+						// nextUnit.isStreet() = true;
 						nextUnit.street = street;
 						nextUnit.full = false;
-					} else {
-						// unit.street = true;
-						unit.street = street;
-					}
-				}
-			}
-		}
-	}
-
-	private boolean isStreet(String firstValue, String secondValue, StreetDAO dao) {
-		Street street = dao.findByName(firstValue.toUpperCase());
-		if (street == null) {
-			street = dao.findByName(secondValue.toUpperCase());
-			if (street == null) {
-				street = dao.findByName(firstValue.toUpperCase() + " " + secondValue.toUpperCase());
-				if (street == null) {
-					ViewPage<Street> streetViewPage = dao.findAllByKeyword(firstValue + " " + secondValue, 0, 100);
-					if (streetViewPage.getCount() == 0) {
-						streetViewPage = dao.findAllByKeyword(firstValue, 0, 100);
-						return (streetViewPage.getCount() > 0);
 					}
 
+					// unit.street = true;
+
+				} else {
+					ViewPage streetViewPage = dao.findAllByKeyword(unit.name.toUpperCase(), 0, 100);
+					if (streetViewPage.getCount() > 0 && nextUnit != null) {
+						try {
+							street = dao.findByName(unit.name.toUpperCase() + " " + nextUnit.name.toUpperCase());
+						} catch (DAOException e) {
+							Server.logger.errorLogEntry(e);
+						}
+						if (street != null) {
+							// unit.street = true;
+							unit.street = street;
+							unit.full = false;
+							// nextUnit.street = true;
+							nextUnit.street = street;
+							nextUnit.full = false;
+						} else {
+							// unit.street = true;
+							unit.street = street;
+						}
+					}
 				}
+			} catch (DAOException e) {
+				Server.logger.errorLogEntry(e);
 			}
 		}
-		return street == null;
+
 	}
 
 	private List<Unit> joinStreet(List<Unit> parts) {

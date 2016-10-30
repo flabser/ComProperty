@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
@@ -38,10 +39,16 @@ public class LegalEntityView extends _DoPage {
 		addContent(actionBar);
 		OrganizationDAO dao = new OrganizationDAO(session);
 		OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-		List<OrgCategory> params = new ArrayList<OrgCategory>();
-		params.add(ocDao.findByName("ТОО"));
-		params.add(ocDao.findByName("АО"));
-		params.add(ocDao.findByName("Государственное ведомство"));
+		List<OrgCategory> params = new ArrayList<>();
+		try {
+			params.add(ocDao.findByName("ТОО"));
+			params.add(ocDao.findByName("АО"));
+			params.add(ocDao.findByName("Государственное ведомство"));
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1), session.pageSize);
 		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}

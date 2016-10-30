@@ -44,7 +44,13 @@ public class IndividualForm extends StaffForm {
 			entity.setName("");
 			entity.setBin("");
 			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-			OrgCategory oc = ocDao.findByName("Частный предприниматель");
+			OrgCategory oc = null;
+			try {
+				oc = ocDao.findByName("Частный предприниматель");
+			} catch (DAOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			entity.setOrgCategory(oc);
 			entity.setLabels(new ArrayList<>());
 

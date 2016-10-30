@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
@@ -39,7 +40,13 @@ public class IndividualView extends _DoPage {
 		addContent(actionBar);
 		OrganizationDAO dao = new OrganizationDAO(session);
 		OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-		List<OrgCategory> params = new ArrayList<OrgCategory>(Arrays.asList(ocDao.findByName("Частный предприниматель")));
+		List<OrgCategory> params = null;
+		try {
+			params = new ArrayList<>(Arrays.asList(ocDao.findByName("Частный предприниматель")));
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1), session.pageSize);
 		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}

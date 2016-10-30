@@ -558,7 +558,13 @@ public class XLImporter {
 
 		IAppEntity getEntity(ReferenceDAO<? extends IAppEntity, UUID> dao, String value) {
 			if (value != null && !value.equals("")) {
-				IAppEntity entity = dao.findByName(value);
+				IAppEntity entity = null;
+				try {
+					entity = dao.findByName(value);
+				} catch (DAOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				if (entity != null) {
 					return entity;
 				}
