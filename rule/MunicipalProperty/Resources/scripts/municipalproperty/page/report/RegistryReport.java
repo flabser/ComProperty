@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.exponentus.env.Environment;
+import com.exponentus.scheduler.tasks.TempFileCleaner;
 import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._WebFormData;
@@ -127,7 +128,7 @@ public class RegistryReport extends _DoPage {
 			}
 
 			showFile(filePath, fileName);
-			Environment.fileToDelete.add(filePath);
+			TempFileCleaner.addFileToDelete(filePath);
 			log("Report \"" + reportName + "\" is ready, estimated time is " + TimeUtil.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {
 			Server.logger.errorLogEntry(e);
