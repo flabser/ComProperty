@@ -32,7 +32,7 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class VehicleForm extends AbstractMunicipalPropertyForm {
-
+	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
@@ -41,7 +41,7 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 		if (!id.isEmpty()) {
 			VehicleDAO dao = new VehicleDAO(session);
 			entity = dao.findById(UUID.fromString(id));
-
+			
 			if (formData.containsField("attachment")) {
 				if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 					return;
@@ -56,33 +56,33 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 		}
 		addContent(entity);
 		addContent(getActionBar(session, entity));
-		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
-		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
+		addContent(new _EnumWrapper(PropertyStatusType.class.getEnumConstants()));
+		addContent(new _EnumWrapper(KufType.class.getEnumConstants()));
 	}
-
+	
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		println(formData);
 		try {
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
-
+			
 			_Validation ve = validate(formData, session.getLang(), isNew);
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
 				return;
 			}
-
+			
 			VehicleDAO dao = new VehicleDAO(session);
 			Vehicle entity;
-
+			
 			if (isNew) {
 				entity = new Vehicle();
 			} else {
 				entity = dao.findById(id);
 			}
-
+			
 			if (formData.containsField("balanceholder")) {
 				OrganizationDAO oDao = new OrganizationDAO(session);
 				Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
@@ -103,7 +103,7 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 			entity.setImpairmentLoss(formData.getFloatValueSilently("impairmentloss", 0));
 			entity.setBalanceCost(formData.getFloatValueSilently("balancecost", 0));
 			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
-
+			
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
@@ -112,7 +112,7 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
 			entity.setAcceptanceDate(TimeUtil.stringToDate(formData.getValue("acceptancedate")));
-
+			
 			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
 			if (rtu == 1) {
 				entity.setReadyToUse(true);
@@ -123,7 +123,7 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 			entity.setTechCert(formData.getValueSilently("techcert"));
 			entity.setRegCert(formData.getValueSilently("regcert"));
 			entity.setDecreesActs(formData.getValueSilently("decreesacts"));
-
+			
 			if (formData.containsField("tags")) {
 				String[] tagIds = formData.getListOfValuesSilently("tags");
 				if (tagIds.length > 0) {
@@ -140,22 +140,22 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 					entity.setTags(tags);
 				}
 			}
-
+			
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
-
+			
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
-
+			
 			save(entity, dao, isNew);
 		} catch (_Exception | DatabaseException | SecureException | DAOException e) {
 			logError(e);
 			setBadRequest();
 		}
 	}
-
+	
 	private _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
 		_Validation ve = new _Validation();
-
+		
 		if (isNew || formData.containsField("balanceholder")) {
 			if (formData.getValueSilently("balanceholder").isEmpty()) {
 				ve.addError("balanceholder", "required", getLocalizedWord("field_is_empty", lang));
@@ -181,26 +181,26 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
-
+			
 			TimeUtil.stringToDate(formData.getValueSilently("acceptancedate"));
-
+			
 		}
-
+		
 		if (formData.getValueSilently("originalcost").isEmpty()) {
 			ve.addError("originalcost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("originalcost", 0) <= 0) {
 			ve.addError("originalcost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
-
+		
 		if (formData.getValueSilently("balancecost").isEmpty()) {
 			ve.addError("balancecost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("balancecost", 0) <= 0) {
 			ve.addError("balancecost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
-
+		
 		return ve;
 	}
-
+	
 	protected Vehicle getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		Vehicle entity = new Vehicle();
 		try {

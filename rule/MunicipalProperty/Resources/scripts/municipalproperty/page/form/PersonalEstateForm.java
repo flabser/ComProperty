@@ -30,7 +30,7 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
-
+	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
@@ -39,7 +39,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		if (!id.isEmpty()) {
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
 			entity = dao.findById(UUID.fromString(id));
-
+			
 			if (formData.containsField("attachment")) {
 				if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 					return;
@@ -55,33 +55,33 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		addContent(entity);
 		addContent(new ACL(entity));
 		addContent(getActionBar(session, entity));
-		addContent(new _EnumWrapper<>(PropertyStatusType.class.getEnumConstants()));
-		addContent(new _EnumWrapper<>(KufType.class.getEnumConstants()));
+		addContent(new _EnumWrapper(PropertyStatusType.class.getEnumConstants()));
+		addContent(new _EnumWrapper(KufType.class.getEnumConstants()));
 	}
-
+	
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		devPrint(formData);
 		try {
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
-
+			
 			_Validation ve = validate(formData, session.getLang(), isNew);
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
 				return;
 			}
-
+			
 			PersonalEstateDAO dao = new PersonalEstateDAO(session);
 			PersonalEstate entity;
-
+			
 			if (isNew) {
 				entity = new PersonalEstate();
 			} else {
 				entity = dao.findById(id);
 			}
-
+			
 			if (formData.containsField("balanceholder")) {
 				OrganizationDAO oDao = new OrganizationDAO(session);
 				Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
@@ -103,7 +103,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setBalanceCost(formData.getFloatValueSilently("balancecost", 0));
 			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
 			entity.setAfterRevaluationAmount(formData.getFloatValueSilently("afterrevaluationamount", 0));
-
+			
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
@@ -112,7 +112,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
 			entity.setAcceptanceDate(TimeUtil.stringToDateWithPassion(formData.getValue("acceptancedate")));
-
+			
 			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
 			if (rtu == 1) {
 				entity.setReadyToUse(true);
@@ -123,7 +123,7 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setTechCert(formData.getValueSilently("techcert"));
 			entity.setRegCert(formData.getValueSilently("regcert"));
 			entity.setDecreesActs(formData.getValueSilently("decreesacts"));
-
+			
 			if (formData.containsField("tags")) {
 				String[] tagIds = formData.getListOfValuesSilently("tags");
 				if (tagIds.length > 0) {
@@ -140,11 +140,11 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 					entity.setTags(tags);
 				}
 			}
-
+			
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
-
+			
 			save(entity, dao, isNew);
-
+			
 		} catch (SecureException e) {
 			setError(e);
 		} catch (_Exception e) {
@@ -155,10 +155,10 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 			logError(e);
 		}
 	}
-
+	
 	private _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
 		_Validation ve = new _Validation();
-
+		
 		if (isNew || formData.containsField("balanceholder")) {
 			if (formData.getValueSilently("balanceholder").isEmpty()) {
 				ve.addError("balanceholder", "required", getLocalizedWord("field_is_empty", lang));
@@ -184,24 +184,25 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (TimeUtil.stringToDateWithPassion(formData.getValueSilently("acceptancedate")) == null) {
-			ve.addError("acceptancedate", "date_format_does_not_match_to", getLocalizedWord("date_format_does_not_match_to", lang));
+			ve.addError("acceptancedate", "date_format_does_not_match_to",
+					getLocalizedWord("date_format_does_not_match_to", lang));
 		}
-
+		
 		if (formData.getValueSilently("originalcost").isEmpty()) {
 			ve.addError("originalcost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("originalcost", 0) <= 0) {
 			ve.addError("originalcost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
-
+		
 		if (formData.getValueSilently("balancecost").isEmpty()) {
 			ve.addError("balancecost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("balancecost", 0) <= 0) {
 			ve.addError("balancecost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
-
+		
 		return ve;
 	}
-
+	
 	private PersonalEstate getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		PersonalEstate entity = new PersonalEstate();
 		entity.setAuthor(user);
