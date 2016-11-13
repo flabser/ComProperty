@@ -2,7 +2,6 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:import href="templates/constants.xsl"/>
     <xsl:import href="templates/outline.xsl"/>
-    <xsl:import href="templates/view.xsl"/>
     <xsl:import href="templates/actions.xsl"/>
 
     <xsl:output method="html" encoding="utf-8" indent="no"/>
@@ -89,18 +88,27 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
+                                <span>
+                                    <xsl:value-of select="@username"/>
+                                </span>
                             </a>
                             <ul class="dropdown-menu right">
                                 <li>
                                     <a class="user-profile" title="{//captions/user_profile/@caption}"
                                        href="Provider?id=userprofile">
-                                        <xsl:value-of select="@username"/>
+                                        <i class="fa fa-user"></i>
+                                        <span>
+                                            <xsl:value-of select="//captions/your_profile/@caption"/>
+                                        </span>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a class="logout" href="{//workspaceUrl}">
-                                        <xsl:value-of select="//captions/logout/@caption"/>
+                                        <i class="fa fa-th"></i>
+                                        <span>
+                                            <xsl:value-of select="//captions/workspace/@caption"/>
+                                        </span>
                                     </a>
                                 </li>
                             </ul>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rule  mode="on">
+<rule mode="on">
     <caching>CACHING_IN_SERVER_SCOPE</caching>
-  <!--   <caching>NO_CACHING</caching> -->
+    <!--   <caching>NO_CACHING</caching> -->
 
     <caption name="brand"/>
 
@@ -34,6 +34,7 @@
     <caption name="interface"/>
     <caption name="del_document"/>
     <caption name="logout"/>
+    <caption name="your_profile"/>
     <caption name="user_profile"/>
     <caption name="search"/>
     <caption name="change_skin"/>
@@ -125,5 +126,5 @@
 
     <caption name="municipal_property"/>
     <caption name="municipal_property_by_propertycode"/>
-      <caption name="all_municipal_property"/>
+    <caption name="all_municipal_property"/>
 </rule>
