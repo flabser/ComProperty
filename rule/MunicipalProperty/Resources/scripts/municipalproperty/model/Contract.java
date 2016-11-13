@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 
 import com.exponentus.common.model.Attachment;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
+import com.exponentus.env.Environment;
 import com.exponentus.scripting._Session;
 import com.exponentus.util.Util;
 
@@ -45,8 +46,9 @@ public class Contract extends SecureAppEntity<UUID> {
 	private Order order;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinTable(name = "contract_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
-	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
+	@JoinTable(name = "contract_attachments", joinColumns = {
+			@JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "attachment_id", referencedColumnName = "id") })
 	private List<Attachment> attachments = new ArrayList<>();
 
 	private String description = "";
@@ -128,8 +130,8 @@ public class Contract extends SecureAppEntity<UUID> {
 		chunk.append("<regnumber>" + regNumber + "</regnumber>");
 		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
 		chunk.append("<description>" + description + "</description>");
-		chunk.append("<contractstatus>" + ses.getAppEnv().vocabulary.getWord(getContractStatus().name().toLowerCase(), ses.getLang())
-		        + "</contractstatus>");
+		chunk.append("<contractstatus>" + Environment.getAppEnv(this).vocabulary
+				.getWord(getContractStatus().name().toLowerCase(), ses.getLang()) + "</contractstatus>");
 		chunk.append("<order docid=\"" + order.getId() + "\">");
 		chunk.append("<url>" + order.getURL() + "</url>");
 		chunk.append("<ordername>" + order.getDescription() + "</ordername>");
@@ -158,7 +160,8 @@ public class Contract extends SecureAppEntity<UUID> {
 		if (getAttachments() != null && !attachments.isEmpty()) {
 			chunk.append("<attachments>");
 			for (Attachment att : attachments) {
-				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name=" + att.getRealFileName();
+				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;att-name="
+						+ att.getRealFileName();
 				chunk.append("<attachment id=\"" + att.getId() + "\">");
 				chunk.append("<url>" + downloadUrl + "</url>");
 				chunk.append(att.getShortXMLChunk(ses));
