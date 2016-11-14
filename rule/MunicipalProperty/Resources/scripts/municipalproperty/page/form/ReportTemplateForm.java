@@ -55,7 +55,7 @@ public class ReportTemplateForm extends _DoPage {
 			addContent(entity);
 			_Action back = new _Action(_ActionType.CLOSE);
 			back.setURL("Provider?id=report-template-view");
-			addContent(new _ActionBar(session).addAction(back));
+			addContent(new _ActionBar(session, getCurrentAppEnv()).addAction(back));
 		} else {
 			setBadRequest();
 		}
@@ -127,8 +127,8 @@ public class ReportTemplateForm extends _DoPage {
 
 			HashMap<String, Object> parameters = new HashMap<>();
 			log("Filling report \"" + reportName + "\"...");
-			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator + session.getAppEnv().appName
-			        + File.separator + "reports";
+			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator
+					+ getCurrentAppEnv().appName + File.separator + "reports";
 
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, Environment.trash);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
@@ -145,14 +145,17 @@ public class ReportTemplateForm extends _DoPage {
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
 
 			JasperPrint print = JasperFillManager.fillReport(
-			        JasperCompileManager.compileReportToFile(repPath + File.separator + "templates" + File.separator + reportName + ".jrxml"),
-			        parameters, dSource);
+					JasperCompileManager.compileReportToFile(
+							repPath + File.separator + "templates" + File.separator + reportName + ".jrxml"),
+					parameters, dSource);
 
 			String fileName = reportName + type;
-			String filePath = getTmpDirPath() + File.separator + StringUtil.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
+			String filePath = getTmpDirPath() + File.separator
+					+ StringUtil.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
 			if (type.equals(".pdf")) {
 				JRStyle style = new JRDesignStyle();
-				style.setPdfFontName(repPath + File.separator + "templates" + File.separator + "fonts" + File.separator + "tahoma.ttf");
+				style.setPdfFontName(repPath + File.separator + "templates" + File.separator + "fonts" + File.separator
+						+ "tahoma.ttf");
 				style.setPdfEncoding("Cp1251");
 				style.setPdfEmbedded(true);
 				print.setDefaultStyle(style);
@@ -169,7 +172,8 @@ public class ReportTemplateForm extends _DoPage {
 
 			showFile(filePath, fileName);
 			TempFileCleaner.addFileToDelete(filePath);
-			log("Report \"" + reportName + "\" is ready, estimated time is " + TimeUtil.getTimeDiffInMilSec(start_time));
+			log("Report \"" + reportName + "\" is ready, estimated time is "
+					+ TimeUtil.getTimeDiffInMilSec(start_time));
 		} catch (JRException e) {
 			Server.logger.errorLogEntry(e);
 		} catch (_Exception e) {
