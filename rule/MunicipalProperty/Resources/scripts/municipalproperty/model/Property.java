@@ -44,349 +44,352 @@ import staff.model.Organization;
 public class Property extends SecureAppEntity<UUID> {
 	@Column(length = 16)
 	private String kof;
-
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "kuf", nullable = false, length = 32)
 	private KufType kuf;
-
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "property_status", nullable = false, length = 32)
 	private PropertyStatusType propertyStatusType = PropertyStatusType.ON_BALANCE;
-
+	
 	@Column(name = "balance_cost")
 	private float balanceCost;
-
+	
 	@Column(name = "revaluation_amount")
 	private float revaluationAmount;
-
+	
 	@Column(name = "residual_cost")
 	private float residualCost;
-
+	
 	@Column(name = "after_revaluation_amount")
 	private float afterRevaluationAmount;
-
+	
 	@ManyToOne
 	@JoinColumn
 	private ReceivingReason receivingReason;
-
+	
 	@Column(name = "commissioning_year")
 	private int commissioningYear;
-
+	
 	@Column(name = "acquisition_year")
 	private int acquisitionYear;
-
+	
 	@OneToMany(mappedBy = "property")
 	private List<PrevBalanceHolder> prevBalanceHolders;
-
+	
 	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)
 	private Organization balanceHolder;
-
+	
 	private String description = "";
-
+	
 	@Column(name = "inv_number")
 	private String invNumber;
-
+	
 	@Column(name = "object_name")
 	private String objectName;
-
+	
 	@Column(name = "original_cost")
 	private float originalCost;
-
+	
 	@Column(name = "cumulative_depreciation")
 	private float cumulativeDepreciation;
-
+	
 	@Column(name = "impairment_loss")
 	private float impairmentLoss;
-
+	
 	@ManyToOne
 	@JoinColumn
 	private PropertyCode propertyCode;
-
+	
 	private String assignment = "";
-
+	
 	@Column(name = "year_release")
 	private int yearRelease;
-
+	
 	@Column(name = "acceptance_date")
 	private Date acceptanceDate;
-
+	
 	@Column(name = "ready_to_use")
 	private boolean readyToUse;
-
+	
 	private String notes = "";
-
+	
 	@Column(name = "tech_cert")
 	private String techCert = "";
-
+	
 	@Column(name = "reg_cert")
 	private String regCert = "";
-
+	
 	@Column(name = "decrees_acts")
 	private String decreesActs = "";
-
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinTable(name = "property_attachments", joinColumns = { @JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
-	        @JoinColumn(name = "attachment_id", referencedColumnName = "id") })
+	@JoinTable(name = "property_attachments", joinColumns = {
+			@JoinColumn(name = "parent_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "attachment_id", referencedColumnName = "id") })
 	private List<Attachment> attachments = new ArrayList<>();
-
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "property_tags")
 	private List<Tag> tags;
-
+	
 	public boolean isReadyToUse() {
 		return readyToUse;
 	}
-
+	
 	public void setReadyToUse(boolean readyToUse) {
 		this.readyToUse = readyToUse;
 	}
-
+	
 	public List<Tag> getTags() {
 		return tags;
 	}
-
+	
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
-
+	
 	public void addTag(Tag tag) {
 		if (tags == null) {
 			tags = new ArrayList<>();
 		}
 		tags.add(tag);
 	}
-
+	
 	public String getKof() {
 		return kof;
 	}
-
+	
 	public void setKof(String kof) {
 		this.kof = kof;
 	}
-
+	
 	public KufType getKuf() {
 		return kuf;
 	}
-
+	
 	public void setKuf(KufType kuf) {
 		this.kuf = kuf;
 	}
-
+	
 	public PropertyStatusType getPropertyStatusType() {
 		return propertyStatusType;
 	}
-
+	
 	public void setPropertyStatusType(PropertyStatusType propertyStatusType) {
 		this.propertyStatusType = propertyStatusType;
 	}
-
+	
 	public float getBalanceCost() {
 		return balanceCost;
 	}
-
+	
 	public void setBalanceCost(float balanceCost) {
 		this.balanceCost = balanceCost;
 	}
-
+	
 	public float getCumulativeDepreciation() {
 		return cumulativeDepreciation;
 	}
-
+	
 	public void setCumulativeDepreciation(float cumulativeDepreciation) {
 		this.cumulativeDepreciation = cumulativeDepreciation;
 	}
-
+	
 	public float getImpairmentLoss() {
 		return impairmentLoss;
 	}
-
+	
 	public void setImpairmentLoss(float impairmentLoss) {
 		this.impairmentLoss = impairmentLoss;
 	}
-
+	
 	public Organization getBalanceHolder() {
 		return balanceHolder;
 	}
-
+	
 	public void setBalanceHolder(Organization balanceHolder) {
 		this.balanceHolder = balanceHolder;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
-
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	public String getInvNumber() {
 		return invNumber;
 	}
-
+	
 	public void setInvNumber(String invNumber) {
 		this.invNumber = invNumber;
 	}
-
+	
 	public String getObjectName() {
 		return objectName;
 	}
-
+	
 	public void setObjectName(String objectName) {
 		this.objectName = objectName;
 	}
-
+	
 	public float getOriginalCost() {
 		return originalCost;
 	}
-
+	
 	public void setOriginalCost(float originalCost) {
 		this.originalCost = originalCost;
 	}
-
+	
 	public PropertyCode getPropertyCode() {
 		return propertyCode;
 	}
-
+	
 	public void setPropertyCode(PropertyCode propertyCode) {
 		this.propertyCode = propertyCode;
 	}
-
+	
 	public String getAssignment() {
 		return assignment;
 	}
-
+	
 	public void setAssignment(String assignment) {
 		this.assignment = assignment;
 	}
-
+	
 	public int getYearRelease() {
 		return yearRelease;
 	}
-
+	
 	public void setYearRelease(int yearRelease) {
 		this.yearRelease = yearRelease;
 	}
-
+	
 	public Date getAcceptanceDate() {
 		return acceptanceDate;
 	}
-
+	
 	public void setAcceptanceDate(Date acceptanceDate) {
 		this.acceptanceDate = acceptanceDate;
 	}
-
+	
 	public float getRevaluationAmount() {
 		return revaluationAmount;
 	}
-
+	
 	public void setRevaluationAmount(float revaluationAmount) {
 		this.revaluationAmount = revaluationAmount;
 	}
-
+	
 	public float getAfterRevaluationAmount() {
 		return afterRevaluationAmount;
 	}
-
+	
 	public void setAfterRevaluationAmount(float afterRevaluationAmount) {
 		this.afterRevaluationAmount = afterRevaluationAmount;
 	}
-
+	
 	public float getResidualCost() {
 		return residualCost;
 	}
-
+	
 	public void setResidualCost(float residualCost) {
 		this.residualCost = residualCost;
 	}
-
+	
 	public ReceivingReason getReceivingReason() {
 		return receivingReason;
 	}
-
+	
 	public void setReceivingReason(ReceivingReason receivingReason) {
 		this.receivingReason = receivingReason;
 	}
-
+	
 	public int getCommissioningYear() {
 		return commissioningYear;
 	}
-
+	
 	public void setCommissioningYear(int commissioningYear) {
 		this.commissioningYear = commissioningYear;
 	}
-
+	
 	public int getAcquisitionYear() {
 		return acquisitionYear;
 	}
-
+	
 	public void setAcquisitionYear(int acquisitionYear) {
 		this.acquisitionYear = acquisitionYear;
 	}
-
+	
 	public List<PrevBalanceHolder> getPrevBalanceHolders() {
 		return prevBalanceHolders;
 	}
-
+	
 	public void setPrevBalanceHolders(List<PrevBalanceHolder> prevBalanceHolders) {
 		this.prevBalanceHolders = prevBalanceHolders;
 	}
-
+	
 	public String getNotes() {
 		return notes;
 	}
-
+	
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
+	
 	public String getTechCert() {
 		return techCert;
 	}
-
+	
 	public void setTechCert(String techCert) {
 		this.techCert = techCert;
 	}
-
+	
 	public String getRegCert() {
 		return regCert;
 	}
-
+	
 	public void setRegCert(String regCert) {
 		this.regCert = regCert;
 	}
-
+	
 	public String getDecreesActs() {
 		return decreesActs;
 	}
-
+	
 	public void setDecreesActs(String decreesActs) {
 		this.decreesActs = decreesActs;
 	}
-
+	
 	@Override
 	public List<Attachment> getAttachments() {
 		return attachments;
 	}
-
+	
 	@Override
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
 	}
-
+	
+	// TODO Warning! it will not work if you use new approach of ft search
+	// becuse this one use DAOFactory
 	@Override
 	public String getDefaultFormName() {
 		return getKuf().name().replace("_", "-").toLowerCase() + "-form";
 	}
-
+	
 	@Override
 	public String getDefaultViewName() {
 		return getClass().getSimpleName().toLowerCase() + "-view&kuf=" + getKuf().getCode();
 	}
-
+	
 	@Override
 	public String getShortXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
@@ -410,7 +413,7 @@ public class Property extends SecureAppEntity<UUID> {
 		}
 		return chunk.toString();
 	}
-
+	
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
@@ -422,12 +425,13 @@ public class Property extends SecureAppEntity<UUID> {
 		} else {
 			chunk.append("<author>" + author + "</author>");
 		}
-
+		
 		chunk.append("<acceptancedate>" + TimeUtil.dateTimeToStringSilently(acceptanceDate) + "</acceptancedate>");
 		chunk.append("<acquisitionyear>" + acquisitionYear + "</acquisitionyear>");
 		chunk.append("<assignment>" + assignment + "</assignment>");
 		chunk.append("<balancecost>" + String.format("%.02f", balanceCost) + "</balancecost>");
-		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getLocalizedName(ses.getLang()) + "</balanceholder>");
+		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">"
+				+ balanceHolder.getLocalizedName(ses.getLang()) + "</balanceholder>");
 		chunk.append("<balanceholderbin>" + balanceHolder.getBin() + "</balanceholderbin>");
 		try {
 			String prevBhAsText = "";
@@ -439,7 +443,8 @@ public class Property extends SecureAppEntity<UUID> {
 			chunk.append("<prevbalanceholders></prevbalanceholders>");
 		}
 		chunk.append("<commissioningyear>" + commissioningYear + "</commissioningyear>");
-		chunk.append("<cumulativedepreciation>" + String.format("%.02f", cumulativeDepreciation) + "</cumulativedepreciation>");
+		chunk.append("<cumulativedepreciation>" + String.format("%.02f", cumulativeDepreciation)
+				+ "</cumulativedepreciation>");
 		chunk.append("<description>" + description + "</description>");
 		chunk.append("<impairmentloss>" + String.format("%.02f", impairmentLoss) + "</impairmentloss>");
 		chunk.append("<invnumber>" + invNumber + "</invnumber>");
@@ -448,13 +453,15 @@ public class Property extends SecureAppEntity<UUID> {
 		chunk.append("<propertystatus>" + propertyStatusType + "</propertystatus>");
 		chunk.append("<objectname>" + objectName + "</objectname>");
 		chunk.append("<originalcost>" + String.format("%.02f", originalCost) + "</originalcost>");
-		chunk.append("<propertycode id=\"" + propertyCode.getId() + "\">" + propertyCode.getLocalizedName(ses.getLang()) + "</propertycode>");
-		chunk.append(
-		        "<receivingreason id=\"" + receivingReason.getId() + "\">" + receivingReason.getLocalizedName(ses.getLang()) + "</receivingreason>");
+		chunk.append("<propertycode id=\"" + propertyCode.getId() + "\">" + propertyCode.getLocalizedName(ses.getLang())
+				+ "</propertycode>");
+		chunk.append("<receivingreason id=\"" + receivingReason.getId() + "\">"
+				+ receivingReason.getLocalizedName(ses.getLang()) + "</receivingreason>");
 		chunk.append("<isreadytouse>" + readyToUse + "</isreadytouse>");
 		chunk.append("<residualcost>" + String.format("%.02f", residualCost) + "</residualcost>");
 		chunk.append("<revaluationamount>" + String.format("%.02f", revaluationAmount) + "</revaluationamount>");
-		chunk.append("<afterrevaluationamount>" + String.format("%.02f", afterRevaluationAmount) + "</afterrevaluationamount>");
+		chunk.append("<afterrevaluationamount>" + String.format("%.02f", afterRevaluationAmount)
+				+ "</afterrevaluationamount>");
 		try {
 			String tagsAsText = "";
 			for (Tag t : tags) {
@@ -472,7 +479,8 @@ public class Property extends SecureAppEntity<UUID> {
 		if (getAttachments() != null && !attachments.isEmpty()) {
 			chunk.append("<attachments>");
 			for (Attachment att : attachments) {
-				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;fileid=" + att.getRealFileName();
+				String downloadUrl = this.getURL() + "&amp;attachment=" + att.getId() + "&amp;fileid="
+						+ att.getRealFileName();
 				chunk.append("<attachment id=\"" + att.getId() + "\">");
 				chunk.append("<url>" + downloadUrl + "</url>");
 				chunk.append(att.getShortXMLChunk(ses));
@@ -482,5 +490,5 @@ public class Property extends SecureAppEntity<UUID> {
 		}
 		return chunk.toString();
 	}
-
+	
 }
