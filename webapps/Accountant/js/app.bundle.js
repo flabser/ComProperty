@@ -2796,7 +2796,7 @@ nb.upload = function(fileInput) {
 nb.uploadAvatar = function(fileInput) {
     var inputName = fileInput.name;
     var formData = new FormData(fileInput.form);
-    formData.append("fieldname","avatar");
+    formData.append("fieldname", "avatar");
     var $attNode = $(nb.template('attachments', {
         files: [{ name: fileInput.files[0].name, path: '' }]
     }));
@@ -2841,7 +2841,7 @@ nb.uploadAvatar = function(fileInput) {
             sessionStorage.setItem('organization', org_html);
             var dept_html = $("select[name=department]").html();
             sessionStorage.setItem('department', dept_html);
-            
+
             window.location.reload();
         }
     });
@@ -2854,7 +2854,7 @@ nb.uploadProgress = function(e, $progress) {
 };
 
 $(document).ready(function() {
-   // var fsId = new Date().getTime();
+    // var fsId = new Date().getTime();
     var fsId = $("#fsid").val();
 
     $('[data-upload]').each(function() {
@@ -2980,8 +2980,8 @@ nb.resetSearchFromRefer = function() {
 $(document).ready(function() {
     $('form[name=ft-search]').on('submit', function() {
         nb.setSearchReferToSessionStorage();
-        window.location.href = "api/view/ftsearch/"+$("input[type=search]").val()+"/1";
-        
+        window.location.href = "api/view/ftsearch/" + $("input[type=search]").val() + "/1";
+
         return false;
     });
 
