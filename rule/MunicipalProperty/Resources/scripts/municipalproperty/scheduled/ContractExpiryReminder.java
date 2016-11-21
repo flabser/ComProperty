@@ -9,7 +9,7 @@ import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting.event._DoScheduledTask;
+import com.exponentus.scripting.event._DoScheduled;
 import com.exponentus.server.Server;
 import com.exponentus.user.AnonymousUser;
 import com.exponentus.user.IUser;
@@ -21,18 +21,18 @@ import municipalproperty.model.Contract;
 import municipalproperty.model.Notification;
 import municipalproperty.model.constants.NotificationType;
 
-public class ContractExpiryReminder extends _DoScheduledTask {
-	
+public class ContractExpiryReminder extends _DoScheduled {
+
 	@Override
 	public void doEvery5Min(AppEnv env, _Session session) {
 		// doEveryNight(session);
 	}
-	
+
 	@Override
 	public void doEvery1Hour(AppEnv env, _Session session) {
-		
+
 	}
-	
+
 	@Override
 	public void doEveryNight(AppEnv env, _Session session) {
 		Server.logger.infoLogEntry("check the contracts expiration");
@@ -63,5 +63,5 @@ public class ContractExpiryReminder extends _DoScheduledTask {
 			}
 		}
 	}
-	
+
 }
