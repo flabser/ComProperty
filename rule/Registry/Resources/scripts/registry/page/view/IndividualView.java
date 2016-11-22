@@ -27,7 +27,7 @@ import staff.model.Organization;
  */
 
 public class IndividualView extends _DoPage {
-
+	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
@@ -36,7 +36,7 @@ public class IndividualView extends _DoPage {
 		newDocAction.setURL("Provider?id=individual-form");
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
-
+		
 		addContent(actionBar);
 		OrganizationDAO dao = new OrganizationDAO(session);
 		OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
@@ -47,20 +47,21 @@ public class IndividualView extends _DoPage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1), session.pageSize);
+		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1),
+				session.pageSize);
 		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}
-
+	
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		println(formData);
-
+		
 		OrganizationDAO dao = new OrganizationDAO(session);
 		for (String id : formData.getListOfValuesSilently("docid")) {
 			Organization m = dao.findById(UUID.fromString(id));
 			try {
 				dao.delete(m);
-			} catch (SecureException e) {
+			} catch (SecureException | DAOException e) {
 				setError(e);
 			}
 		}
