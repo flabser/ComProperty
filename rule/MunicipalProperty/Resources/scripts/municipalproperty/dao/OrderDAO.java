@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.DAO;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.dataengine.jpa.ViewPage;
@@ -21,11 +22,11 @@ import municipalproperty.model.Order;
 import municipalproperty.model.Property;
 
 public class OrderDAO extends DAO<Order, UUID> {
-
-	public OrderDAO(_Session session) {
+	
+	public OrderDAO(_Session session) throws DAOException {
 		super(Order.class, session);
 	}
-
+	
 	public ViewPage<Order> findAllByProperty(Property property) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -35,7 +36,7 @@ public class OrderDAO extends DAO<Order, UUID> {
 			Root<Order> c = cq.from(Order.class);
 			cq.select(c);
 			countCq.select(cb.count(c));
-
+			
 			Predicate condition = c.get("properties").in(property);
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				if (condition == null) {
@@ -50,9 +51,9 @@ public class OrderDAO extends DAO<Order, UUID> {
 			TypedQuery<Order> typedQuery = em.createQuery(cq);
 			Query query = em.createQuery(countCq);
 			long count = (long) query.getSingleResult();
-
+			
 			List<Order> result = typedQuery.getResultList();
-
+			
 			return new ViewPage<>(result, count, 0, 0);
 		} finally {
 			em.close();

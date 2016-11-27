@@ -11,18 +11,20 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.DAO;
 import com.exponentus.scripting._Session;
 import com.exponentus.user.SuperUser;
+
 import municipalproperty.model.Contract;
 import municipalproperty.model.Order;
 
 public class ContractDAO extends DAO<Contract, UUID> {
-
-	public ContractDAO(_Session session) {
+	
+	public ContractDAO(_Session session) throws DAOException {
 		super(Contract.class, session);
 	}
-
+	
 	public List<Contract> findAllContractsByOrder(Order order) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -43,5 +45,5 @@ public class ContractDAO extends DAO<Contract, UUID> {
 			em.close();
 		}
 	}
-
+	
 }

@@ -37,73 +37,81 @@ import municipalproperty.model.Contract;
 import municipalproperty.model.Order;
 
 public class ContractForm extends _DoForm {
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		IUser<Long> user = session.getUser();
-		Contract entity;
-		String id = formData.getValueSilently("docid");
-		if (!id.isEmpty()) {
-			ContractDAO dao = new ContractDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-			
-			if (formData.containsField("attachment")) {
-				if (showAttachment(formData.getValueSilently("attachment"), entity)) {
-					return;
-				} else {
-					setBadRequest();
+		try {
+			Contract entity;
+			String id = formData.getValueSilently("docid");
+			if (!id.isEmpty()) {
+				ContractDAO dao;
+				
+				dao = new ContractDAO(session);
+				
+				entity = dao.findById(UUID.fromString(id));
+				
+				if (formData.containsField("attachment")) {
+					if (showAttachment(formData.getValueSilently("attachment"), entity)) {
+						return;
+					} else {
+						setBadRequest();
+					}
 				}
-			}
-		} else {
-			entity = new Contract();
-			entity.setAuthor(user);
-			entity.setAppliedRegDate(new Date());
-			entity.setExpired(new Date());
-			entity.setRegNumber("");
-			String orderId = formData.getValueSilently("orderid");
-			OrderDAO orderDAO = new OrderDAO(session);
-			Order order = orderDAO.findById(orderId);
-			if (order == null) {
-				order = new Order();
-				order.setDescription("");
-			}
-			entity.setOrder(order);
-			String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
-			addValue("formsesid", fsId);
-			List<String> formFiles = null;
-			Object obj = session.getAttribute(fsId);
-			if (obj == null) {
-				formFiles = new ArrayList<>();
 			} else {
-				// formFiles = (List<String>) obj;
-				_FormAttachments fAtts = (_FormAttachments) obj;
-				formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
-			}
-			
-			List<IPOJOObject> filesToPublish = new ArrayList<>();
-			
-			for (String fn : formFiles) {
-				UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
-				if (uf == null) {
-					uf = new UploadedFile();
-					uf.setName(fn);
-					session.setAttribute(fsId + "_file" + fn, uf);
+				entity = new Contract();
+				entity.setAuthor(user);
+				entity.setAppliedRegDate(new Date());
+				entity.setExpired(new Date());
+				entity.setRegNumber("");
+				String orderId = formData.getValueSilently("orderid");
+				OrderDAO orderDAO = new OrderDAO(session);
+				Order order = orderDAO.findById(orderId);
+				if (order == null) {
+					order = new Order();
+					order.setDescription("");
 				}
-				filesToPublish.add(uf);
+				entity.setOrder(order);
+				String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
+				addValue("formsesid", fsId);
+				List<String> formFiles = null;
+				Object obj = session.getAttribute(fsId);
+				if (obj == null) {
+					formFiles = new ArrayList<>();
+				} else {
+					// formFiles = (List<String>) obj;
+					_FormAttachments fAtts = (_FormAttachments) obj;
+					formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
+				}
+				
+				List<IPOJOObject> filesToPublish = new ArrayList<>();
+				
+				for (String fn : formFiles) {
+					UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
+					if (uf == null) {
+						uf = new UploadedFile();
+						uf.setName(fn);
+						session.setAttribute(fsId + "_file" + fn, uf);
+					}
+					filesToPublish.add(uf);
+				}
+				addContent(new _POJOListWrapper<>(filesToPublish, session));
 			}
-			addContent(new _POJOListWrapper<>(filesToPublish, session));
+			
+			addContent(entity);
+			addContent(new _EnumWrapper(Contract.ContractStatus.class.getEnumConstants()));
+			_ActionBar actionBar = new _ActionBar(session);
+			actionBar.addAction(
+					new _Action(getLocalizedWord("save_close", session.getLang()), "", _ActionType.SAVE_AND_CLOSE));
+			actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
+			addContent(actionBar);
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
 		}
-		
-		addContent(entity);
-		addContent(new _EnumWrapper(Contract.ContractStatus.class.getEnumConstants()));
-		_ActionBar actionBar = new _ActionBar(session);
-		actionBar.addAction(
-				new _Action(getLocalizedWord("save_close", session.getLang()), "", _ActionType.SAVE_AND_CLOSE));
-		actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
-		addContent(actionBar);
 	}
-	
+
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		try {
@@ -113,12 +121,12 @@ public class ContractForm extends _DoForm {
 				setValidation(ve);
 				return;
 			}
-			
+
 			ContractDAO dao = new ContractDAO(session);
 			Contract entity;
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
-			
+
 			if (isNew) {
 				entity = new Contract();
 				String orderId = formData.getValueSilently("orderid");
@@ -128,14 +136,14 @@ public class ContractForm extends _DoForm {
 			} else {
 				entity = dao.findById(id);
 			}
-			
+
 			entity.setDescription(formData.getValue("description"));
 			entity.setRegNumber(formData.getValue("regnumber"));
 			entity.setAppliedRegDate(TimeUtil.stringToDate(formData.getValue("appliedregdate")));
 			entity.setExpired(TimeUtil.stringToDate(formData.getValue("expired")));
-			
+
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
-			
+
 			if (isNew) {
 				IUser<Long> user = session.getUser();
 				entity.addReaderEditor(user);
@@ -143,7 +151,7 @@ public class ContractForm extends _DoForm {
 			} else {
 				entity = dao.update(entity);
 			}
-			
+
 		} catch (SecureException e) {
 			setError(e);
 		} catch (_Exception | DatabaseException e) {
@@ -154,10 +162,10 @@ public class ContractForm extends _DoForm {
 			logError(e);
 		}
 	}
-	
+
 	private _Validation validate(_WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
-		
+
 		if (formData.getValueSilently("orderid").isEmpty()) {
 			ve.addError("orderid", "required", getLocalizedWord("field_is_empty", lang));
 		}
@@ -176,29 +184,29 @@ public class ContractForm extends _DoForm {
 		if (formData.getValueSilently("contractstatus").isEmpty()) {
 			ve.addError("contractstatus", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		
+
 		return ve;
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		String attachmentId = formData.getValueSilently("attachment");
 		// String attachmentName = formData.getValueSilently("att-name");
-		
+
 		if (id.isEmpty()
 				|| attachmentId.isEmpty()/* || attachmentName.isEmpty() */) {
 			return;
 		}
-		
-		ContractDAO dao = new ContractDAO(session);
-		Contract entity = dao.findById(id);
-		
-		AttachmentDAO attachmentDAO = new AttachmentDAO(session);
-		Attachment att = attachmentDAO.findById(attachmentId);
-		entity.getAttachments().remove(att);
-		
+
 		try {
+			ContractDAO dao = new ContractDAO(session);
+			Contract entity = dao.findById(id);
+			
+			AttachmentDAO attachmentDAO = new AttachmentDAO(session);
+			Attachment att = attachmentDAO.findById(attachmentId);
+			entity.getAttachments().remove(att);
+			
 			dao.update(entity);
 		} catch (SecureException | DAOException e) {
 			setError(e);

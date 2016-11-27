@@ -18,15 +18,20 @@ public class NotificationForm extends _DoForm {
 
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		Notification entity;
-		String id = formData.getValueSilently("docid");
-		NotificationDAO dao = new NotificationDAO(session);
-		entity = dao.findById(UUID.fromString(id));
+		try {
+			Notification entity;
+			String id = formData.getValueSilently("docid");
+			NotificationDAO dao = new NotificationDAO(session);
+			entity = dao.findById(UUID.fromString(id));
 
-		addContent(entity);
-		_ActionBar actionBar = new _ActionBar(session);
-		actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
-		addContent(actionBar);
+			addContent(entity);
+			_ActionBar actionBar = new _ActionBar(session);
+			actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
+			addContent(actionBar);
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
+		}
 	}
 
 	@Override
@@ -37,10 +42,10 @@ public class NotificationForm extends _DoForm {
 			return;
 		}
 
-		NotificationDAO dao = new NotificationDAO(session);
-		Notification entity = dao.findById(id);
-
 		try {
+			NotificationDAO dao = new NotificationDAO(session);
+			Notification entity = dao.findById(id);
+			
 			dao.update(entity);
 		} catch (SecureException | DAOException e) {
 			setError(e);

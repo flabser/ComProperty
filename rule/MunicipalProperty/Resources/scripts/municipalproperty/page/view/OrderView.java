@@ -25,37 +25,44 @@ public class OrderView extends AbstractMunicipalPropertyView {
 	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		String propertyId = formData.getValueSilently("propertyid");
-		session.getLang();
-		OrderDAO orderDAO = new OrderDAO(session);
-		
-		if (!propertyId.isEmpty() && !propertyId.equals("undefined")) {
-			PropertyDAO propertyDAO = new PropertyDAO(session);
-			Property property = propertyDAO.findById(propertyId);
-			if (property != null) {
-				ViewPage<Order> result = orderDAO.findAllByProperty(property);
-				addContent(new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(),
-						result.getPageNum(), session));
+		try {
+			String propertyId = formData.getValueSilently("propertyid");
+			session.getLang();
+			OrderDAO orderDAO = new OrderDAO(session);
+
+			if (!propertyId.isEmpty() && !propertyId.equals("undefined")) {
+				PropertyDAO propertyDAO = new PropertyDAO(session);
+				Property property = propertyDAO.findById(propertyId);
+				if (property != null) {
+					ViewPage<Order> result = orderDAO.findAllByProperty(property);
+					addContent(new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(),
+							result.getPageNum(), session));
+				}
+			} else {
+				_ActionBar actionBar = new _ActionBar(session);
+				actionBar.addAction(new _Action(getLocalizedWord("del_document", session.getLang()), "",
+						_ActionType.DELETE_DOCUMENT));
+				addContent(actionBar);
+				addContent(getViewPage(orderDAO, formData));
 			}
-		} else {
-			_ActionBar actionBar = new _ActionBar(session);
-			actionBar.addAction(
-					new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
-			addContent(actionBar);
-			addContent(getViewPage(orderDAO, formData));
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
 		}
 	}
 	
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
-		OrderDAO dao = new OrderDAO(session);
-		for (String id : formData.getListOfValuesSilently("docid")) {
-			Order c = dao.findById(UUID.fromString(id));
-			try {
+		try {
+			OrderDAO dao = new OrderDAO(session);
+			for (String id : formData.getListOfValuesSilently("docid")) {
+				Order c = dao.findById(UUID.fromString(id));
+				
 				dao.delete(c);
-			} catch (SecureException | DAOException e) {
-				setError(e);
 			}
+		} catch (SecureException | DAOException e) {
+			setError(e);
 		}
+		
 	}
 }

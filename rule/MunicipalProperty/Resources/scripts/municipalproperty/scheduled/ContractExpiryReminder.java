@@ -22,23 +22,31 @@ import municipalproperty.model.Notification;
 import municipalproperty.model.constants.NotificationType;
 
 public class ContractExpiryReminder extends _DoScheduled {
-
+	
 	@Override
 	public void doEvery5Min(AppEnv env, _Session session) {
 		// doEveryNight(session);
 	}
-
+	
 	@Override
 	public void doEvery1Hour(AppEnv env, _Session session) {
-
+		
 	}
-
+	
 	@Override
 	public void doEveryNight(AppEnv env, _Session session) {
 		Server.logger.infoLogEntry("check the contracts expiration");
 		UserDAO uDao = new UserDAO();
-		NotificationDAO nDao = new NotificationDAO(session);
-		ContractDAO cDao = new ContractDAO(session);
+		NotificationDAO nDao = null;
+		ContractDAO cDao = null;
+		try {
+			nDao = new NotificationDAO(session);
+			cDao = new ContractDAO(session);
+		} catch (DAOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		List<Contract> list = cDao.findAll();
 		Date current = new Date();
 		LanguageCode lang = LanguageCode.valueOf(EnvConst.DEFAULT_LANG);
@@ -63,5 +71,5 @@ public class ContractExpiryReminder extends _DoScheduled {
 			}
 		}
 	}
-
+	
 }

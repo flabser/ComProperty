@@ -72,12 +72,12 @@ public class XLImporter {
 	public final static int CHECK = 99;
 	public final static int FROM_YEAR = 1930;
 	public Map<Integer, List<List<ErrorDescription>>> sheetErr = new HashMap<>();
-
+	
 	private final static String defaultCity = "Алматы";
 	private final static String undefinedStreet = "unknown";
 	private final static String trueVal = "годен";
 	private final static String falseVal = "не годен";
-
+	
 	private int mode;
 	private _Session ses;
 	private PropertyDAO propertyDao;
@@ -86,14 +86,15 @@ public class XLImporter {
 	private EmployeeDAO empDao;
 	private Order order;
 	private List<Property> propList = new ArrayList<>();
-
+	
 	public XLImporter(int mode) {
 		this.mode = mode;
 	}
-
-	public Outcome process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh, String[] readers, String uploadtype, String addFilePath) {
+	
+	public Outcome process(Sheet sheet, _Session ses, boolean stopIfWrong, Organization bh, String[] readers,
+			String uploadtype, String addFilePath) {
 		int processed = 0, skipped = 0;
-
+		
 		/*
 		 * long start = System.currentTimeMillis(); ForkJoinPool forkJoinPool =
 		 * new ForkJoinPool(); ImportStream is = new ImportStream(sheet, 1,
@@ -112,11 +113,11 @@ public class XLImporter {
 		empDao = new EmployeeDAO(ses);
 		processed = 0;
 		skipped = 0;
-
+		
 		if (mode == XLImporter.PROCESS) {
 			if (uploadtype.equals("upload")) {
 				mode = XLImporter.CHECK;
-
+				
 				result = process(sheet, ses, true, bh, readers, uploadtype, addFilePath);
 				if (result.sheetErr.size() > 0) {
 					Server.logger.errorLogEntry("file " + sheet.getName() + " is incorrect, check it before");
@@ -124,16 +125,21 @@ public class XLImporter {
 				}
 				mode = XLImporter.PROCESS;
 			} else if (uploadtype.equals("transfer")) {
-				orderDao = new OrderDAO(ses);
+				try {
+					orderDao = new OrderDAO(ses);
+				} catch (DAOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				order = composeNewOrder(addFilePath, "... о передаче имущества " + bh.getName());
-
+				
 			}
 		}
-
+		
 		for (int i = 1; i < sheet.getRows(); i++) {
 			XLRow row = new XLRow();
 			row.kof = sheet.getCell(0, i).getContents().trim();
-
+			
 			if ("".equalsIgnoreCase(row.kof)) {
 				if (checkForEmptyRow(sheet.getRow(i))) {
 					continue;
@@ -165,7 +171,7 @@ public class XLImporter {
 			row.commissioningYear = sheet.getCell(18, i);
 			row.acquisitionYear = sheet.getCell(19, i);
 			row.isReadyToOperation = sheet.getCell(20, i).getContents().trim();
-
+			
 			if (mode == XLImporter.CHECK) {
 				List<List<ErrorDescription>> rowErr = null;
 				if (uploadtype.equals("upload")) {
@@ -173,7 +179,7 @@ public class XLImporter {
 				} else {
 					rowErr = preProcess(row, bh);
 				}
-
+				
 				rowErr.removeAll(Arrays.asList(null, ""));
 				if (!rowErr.isEmpty()) {
 					System.out.println("------" + (i + 1) + "---------");
@@ -219,59 +225,69 @@ public class XLImporter {
 			} catch (SecureException | DAOException e) {
 				Server.logger.errorLogEntry(e);
 			}
-
+			
 		}
-
+		
 		Server.logger.debugLogEntry("processed=" + processed + ", skipped=" + skipped);
 		result.processed = processed;
 		result.skipped = skipped;
 		return result;
 	}
-
+	
 	private List<List<ErrorDescription>> preLoad(XLRow row, String region, String district) {
 		List<List<ErrorDescription>> rowErr = new ArrayList<>();
 		rowErr.add(new CheVal("1, КОФ", row.kof).isNotEmpty(row.kof).getErr());
 		rowErr.add(new CheVal("2, КУФ", row.kuf).isNotEmpty(row.kuf).isKufType(row.kuf).getErr());
 		rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
-		List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
-
+		List<Property> pList = propertyDao
+				.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
+		
 		for (Property p : pList) {
 			if (p.getObjectName().equalsIgnoreCase(row.name)) {
-				rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name).isNotUniqueMessage().getErr());
+				rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name)
+						.isNotUniqueMessage().getErr());
 				break;
 			}
-
+			
 		}
-
+		
 		rowErr.add(new CheVal("4, Наименование", row.name).isNotEmpty(row.name).getErr());
 		rowErr.add(new CheVal("5, Код права на имущество", row.propertyCode).isNotEmpty(row.propertyCode)
-		        .isReferenceValue(new PropertyCodeDAO(ses), row.propertyCode).getErr());
-		rowErr.add(new CheVal("6, Дата принятия на баланс", row.acceptanceDateCell.getContents()).isDate(row.acceptanceDateCell).getErr());
+				.isReferenceValue(new PropertyCodeDAO(ses), row.propertyCode).getErr());
+		rowErr.add(new CheVal("6, Дата принятия на баланс", row.acceptanceDateCell.getContents())
+				.isDate(row.acceptanceDateCell).getErr());
 		rowErr.add(new CheVal("7, Страна", row.country).isReferenceValue(new CountryDAO(ses), row.country).getErr());
-		rowErr.add(new CheVal("8, Регион", region).isNotEmpty(row.preparedRegion).isReferenceValue(new RegionDAO(ses), row.preparedRegion).getErr());
-		rowErr.add(new CheVal("9, Район", district).isNotEmpty(row.preparedDistrict).isReferenceValue(new CityDistrictDAO(ses), row.preparedDistrict)
-		        .getErr());
+		rowErr.add(new CheVal("8, Регион", region).isNotEmpty(row.preparedRegion)
+				.isReferenceValue(new RegionDAO(ses), row.preparedRegion).getErr());
+		rowErr.add(new CheVal("9, Район", district).isNotEmpty(row.preparedDistrict)
+				.isReferenceValue(new CityDistrictDAO(ses), row.preparedDistrict).getErr());
 		rowErr.add(new CheVal("10, Адрес", row.address).isNotEmpty(row.address).getErr());
-		rowErr.add(new CheVal("11, Первоначальная стоимость", row.originalCostCell.getContents()).isFloatNumber(row.originalCostCell).getErr());
+		rowErr.add(new CheVal("11, Первоначальная стоимость", row.originalCostCell.getContents())
+				.isFloatNumber(row.originalCostCell).getErr());
 		rowErr.add(new CheVal("12, Накопленная амортизация", row.cumulativeDepreciationCell.getContents())
-		        .isFloatNumber(row.cumulativeDepreciationCell).getErr());
-		rowErr.add(new CheVal("13, Убыток от обесценения", row.impairmentLossCell.getContents()).isFloatNumber(row.impairmentLossCell).getErr());
-		rowErr.add(new CheVal("14, Балансовая стоимость", row.balanceCostCell.getContents()).isFloatNumber(row.balanceCostCell).getErr());
-		rowErr.add(new CheVal("15, Сумма переоценки", row.revaluationAmountCell.getContents()).isFloatNumber(row.revaluationAmountCell).getErr());
-		rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", row.residualCostCell.getContents()).isFloatNumber(row.residualCostCell)
-		        .getErr());
+				.isFloatNumber(row.cumulativeDepreciationCell).getErr());
+		rowErr.add(new CheVal("13, Убыток от обесценения", row.impairmentLossCell.getContents())
+				.isFloatNumber(row.impairmentLossCell).getErr());
+		rowErr.add(new CheVal("14, Балансовая стоимость", row.balanceCostCell.getContents())
+				.isFloatNumber(row.balanceCostCell).getErr());
+		rowErr.add(new CheVal("15, Сумма переоценки", row.revaluationAmountCell.getContents())
+				.isFloatNumber(row.revaluationAmountCell).getErr());
+		rowErr.add(new CheVal("16, Балансовая стоимость после переоценки", row.residualCostCell.getContents())
+				.isFloatNumber(row.residualCostCell).getErr());
 		rowErr.add(new CheVal("17, Основание поступления на баланс", row.receiptBasisinBalance)
-		        .isReferenceValue(new ReceivingReasonDAO(ses), row.receiptBasisinBalance).getErr());
+				.isReferenceValue(new ReceivingReasonDAO(ses), row.receiptBasisinBalance).getErr());
 		rowErr.add(new CheVal("18 Модель", row.model).isOkAnyway().getErr());
-		rowErr.add(new CheVal("19, Год ввода в эксплуатацию", row.commissioningYear.getContents()).isYear(row.commissioningYear).getErr());
-		rowErr.add(new CheVal("20, Год приобретения ", row.acquisitionYear.getContents()).isYear(row.acquisitionYear).getErr());
-		rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", row.isReadyToOperation).isNotEmpty(row.isReadyToOperation)
-		        .isValueOfList(trueVal, falseVal, row.isReadyToOperation).getErr());
-
+		rowErr.add(new CheVal("19, Год ввода в эксплуатацию", row.commissioningYear.getContents())
+				.isYear(row.commissioningYear).getErr());
+		rowErr.add(new CheVal("20, Год приобретения ", row.acquisitionYear.getContents()).isYear(row.acquisitionYear)
+				.getErr());
+		rowErr.add(new CheVal("21, Сведения о годности в эксплуатацию", row.isReadyToOperation)
+				.isNotEmpty(row.isReadyToOperation).isValueOfList(trueVal, falseVal, row.isReadyToOperation).getErr());
+		
 		return rowErr;
-
+		
 	}
-
+	
 	private boolean load(XLRow row, Organization bh, String[] readers) {
 		CheVal cv = new CheVal();
 		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
@@ -280,7 +296,7 @@ public class XLImporter {
 				return false;
 			}
 		}
-
+		
 		Property prop = PropertyFactory.getPropertyInstance(row.kuf);
 		prop.setKof(row.kof);
 		prop.setKuf(cv.getKufType(row.kuf));
@@ -303,7 +319,7 @@ public class XLImporter {
 		prop.setRevaluationAmount(cv.getFloat(row.revaluationAmountCell));
 		prop.setResidualCost(cv.getFloat(row.residualCostCell));
 		prop.setReceivingReason((ReceivingReason) cv.getEntity(new ReceivingReasonDAO(ses), row.receiptBasisinBalance));
-
+		
 		if (prop instanceof PersonalEstate) {
 			((PersonalEstate) prop).setModel(row.model);
 		} else if (prop instanceof Equipment) {
@@ -324,31 +340,33 @@ public class XLImporter {
 			Employee emp = empDao.findById(UUID.fromString(uuid));
 			prop.addReaderEditor(emp.getUser());
 		}
-
+		
 		prop.setBalanceHolder(bh);
-
+		
 		try {
 			propertyDao.add(prop);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return true;
-
+		
 	}
-
+	
 	private List<List<ErrorDescription>> preProcess(XLRow row, Organization bh) {
 		List<List<ErrorDescription>> rowErr = new ArrayList<>();
 		rowErr.add(new CheVal("3, Инвентарный номер", row.invNumber).isNotEmpty(row.invNumber).getErr());
-		List<Property> pList = propertyDao.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
-
+		List<Property> pList = propertyDao
+				.findAllByInvNum(new CheVal("3, Инвентарный номер", row.invNumber).getString(row.invNumber));
+		
 		if (pList.size() > 1) {
-			rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name).isNotUniqueMessage().getErr());
+			rowErr.add(new CheVal("3, Инвентарный номер, наименование", row.invNumber + "," + row.name)
+					.isNotUniqueMessage().getErr());
 		}
 		return rowErr;
-
+		
 	}
-
+	
 	private boolean writeOff(XLRow row) {
 		CheVal cv = new CheVal();
 		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
@@ -367,9 +385,9 @@ public class XLImporter {
 		}
 		return false;
 	}
-
+	
 	private boolean transfer(XLRow row, Organization bh, String addFilePath, String[] readers) {
-
+		
 		CheVal cv = new CheVal();
 		List<Property> pList = propertyDao.findAllByInvNum(cv.getString(row.invNumber));
 		Property prop = null;
@@ -378,7 +396,7 @@ public class XLImporter {
 		} else {
 			prop = pList.get(0);
 		}
-
+		
 		if (prop != null) {
 			List<PrevBalanceHolder> pbhl = new ArrayList<>();
 			PrevBalanceHolder pbh = new PrevBalanceHolder();
@@ -386,7 +404,7 @@ public class XLImporter {
 			pbh.setProperty(prop);
 			pbh.setReaders(prop.getReaders());
 			pbh.setEditors(prop.getEditors());
-
+			
 			try {
 				pbhDao.add(pbh);
 				pbhl.add(pbhDao.findById(pbh.getId()));
@@ -400,7 +418,7 @@ public class XLImporter {
 			} catch (SecureException | DAOException e) {
 				Server.logger.errorLogEntry(e);
 			}
-
+			
 			try {
 				propertyDao.update(prop);
 				propList.add(prop);
@@ -408,11 +426,11 @@ public class XLImporter {
 			} catch (Exception e) {
 				Server.logger.errorLogEntry(e);
 			}
-
+			
 		}
 		return false;
 	}
-
+	
 	private Order composeNewOrder(String fn, String descr) {
 		Order entity = new Order();
 		IUser<Long> user = ses.getUser();
@@ -420,7 +438,7 @@ public class XLImporter {
 		entity.setRegNumber("#");
 		entity.setAppliedRegDate(new Date());
 		entity.setOrderStatus(OrderStatus.ACTIVE);
-
+		
 		File file = new File(fn);
 		InputStream is;
 		try {
@@ -432,7 +450,7 @@ public class XLImporter {
 		} catch (IOException e) {
 			Server.logger.errorLogEntry(e);
 		}
-
+		
 		entity.addReaderEditor(user);
 		try {
 			entity = orderDao.add(entity);
@@ -440,9 +458,9 @@ public class XLImporter {
 			e.printStackTrace();
 		}
 		return entity;
-
+		
 	}
-
+	
 	private static boolean checkForEmptyRow(Cell[] cells) {
 		String cellContent = "";
 		boolean empty = true;
@@ -455,36 +473,36 @@ public class XLImporter {
 		}
 		return empty;
 	}
-
+	
 	private String normalizeString(String cap) {
 		cap = cap.trim().toLowerCase();
 		cap = StringUtils.capitalize(cap);
 		return cap;
 	}
-
+	
 	class CheVal {
 		private List<ErrorDescription> errMsg = new ArrayList<>();;
 		String info;
 		String sourceValue;
-
+		
 		CheVal(String column, String sv) {
 			info = column;
 			sourceValue = sv;
 		}
-
+		
 		public CheVal isNotUniqueMessage() {
 			errMsg.add(new ErrorDescription(info, sourceValue, "значение не уникально"));
 			return this;
 		}
-
+		
 		public CheVal() {
-
+			
 		}
-
+		
 		CheVal isOkAnyway() {
 			return this;
 		}
-
+		
 		CheVal isNotEmpty(String v) {
 			String value = getString(v);
 			if (value == null || value.equals("")) {
@@ -492,19 +510,19 @@ public class XLImporter {
 			}
 			return this;
 		}
-
+		
 		String getString(String value) {
 			return value.trim();
 		}
-
+		
 		CheVal isYear(Cell value) {
 			if (getYear(value) == null) {
-				errMsg.add(new ErrorDescription(info, sourceValue,
-				        "значение больше чем: " + Calendar.getInstance().get(Calendar.YEAR) + " or less than " + XLImporter.FROM_YEAR + ")"));
+				errMsg.add(new ErrorDescription(info, sourceValue, "значение больше чем: "
+						+ Calendar.getInstance().get(Calendar.YEAR) + " or less than " + XLImporter.FROM_YEAR + ")"));
 			}
 			return this;
 		}
-
+		
 		Integer getYear(Cell cell) {
 			if (cell.getType() == CellType.DATE) {
 				DateCell dateCell = (DateCell) cell;
@@ -533,29 +551,30 @@ public class XLImporter {
 					}
 				}
 			}
-
+			
 		}
-
+		
 		CheVal isKufType(String value) {
 			if (getKufType(value) == KufType.UNKNOWN) {
 				errMsg.add(new ErrorDescription(info, sourceValue, "значение КУФ не корректно "));
 			}
 			return this;
 		}
-
+		
 		KufType getKufType(String value) {
 			int v = Util.convertStringToInt(value);
 			return KufType.getType(v);
 		}
-
+		
 		CheVal isReferenceValue(ReferenceDAO<? extends IAppEntity, UUID> dao, String value) {
 			IAppEntity entity = getEntity(dao, value);
 			if (entity == null) {
-				errMsg.add(new ErrorDescription(info, sourceValue, "значение не соответствует значению из справочника "));
+				errMsg.add(
+						new ErrorDescription(info, sourceValue, "значение не соответствует значению из справочника "));
 			}
 			return this;
 		}
-
+		
 		IAppEntity getEntity(ReferenceDAO<? extends IAppEntity, UUID> dao, String value) {
 			if (value != null && !value.equals("")) {
 				IAppEntity entity = null;
@@ -571,15 +590,15 @@ public class XLImporter {
 			}
 			return null;
 		}
-
+		
 		CheVal isValueOfList(String trueVal, String falseVal, String value) {
 			if (getBoolean(trueVal, falseVal, value) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue,
-				        "значение не корректно, оно должно быть равно: \"" + trueVal + "\" или \"" + falseVal + "\""));
+						"значение не корректно, оно должно быть равно: \"" + trueVal + "\" или \"" + falseVal + "\""));
 			}
 			return this;
 		}
-
+		
 		Boolean getBoolean(String trueVal, String falseVal, String value) {
 			String nv = value.trim();
 			if (trueVal.trim().equalsIgnoreCase(nv)) {
@@ -590,21 +609,21 @@ public class XLImporter {
 				return null;
 			}
 		}
-
+		
 		CheVal isIntNumber(String value) {
 			if (getInt(value) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue, "значение не возможно преобразовать в число "));
 			}
-
+			
 			return this;
-
+			
 		}
-
+		
 		Integer getInt(String value) {
 			value = value.replace("\u00A0", "");
 			int intVal = 0;
 			if (value.equals("0") || value.equals("0,0") || value.equals("0,00")) {
-
+				
 			} else {
 				intVal = Util.convertStringToInt(value);
 				if (intVal == 0) {
@@ -613,23 +632,25 @@ public class XLImporter {
 			}
 			return intVal;
 		}
-
+		
 		CheVal isFloatNumber(Cell fCell) {
-			if (fCell.getType() == CellType.NUMBER || fCell.getType() == CellType.NUMBER_FORMULA || fCell.getType() == CellType.EMPTY
-			        || NumberUtils.isDigits(fCell.getContents().trim().replaceAll("[.|,|\\s|\\uFFFD]", ""))) {
+			if (fCell.getType() == CellType.NUMBER || fCell.getType() == CellType.NUMBER_FORMULA
+					|| fCell.getType() == CellType.EMPTY
+					|| NumberUtils.isDigits(fCell.getContents().trim().replaceAll("[.|,|\\s|\\uFFFD]", ""))) {
 				return this;
 			}
 			errMsg.add(new ErrorDescription(info, sourceValue, "значение не возможно преобразовать в число (float)"));
 			return this;
 		}
-
+		
 		CheVal isFloatNumber(String value) {
 			if (getFloat(value) == null) {
-				errMsg.add(new ErrorDescription(info, sourceValue, "значение не возможно преобразовать в число (float)"));
+				errMsg.add(
+						new ErrorDescription(info, sourceValue, "значение не возможно преобразовать в число (float)"));
 			}
 			return this;
 		}
-
+		
 		Float getFloat(Cell fCell) {
 			String cellValue = fCell.getContents().trim().replaceAll("[\\s|\\uFFFD]", "");
 			if (cellValue.contains(".")) {
@@ -646,12 +667,12 @@ public class XLImporter {
 				return NumberUtils.toFloat(cellValue, 0);
 			}
 		}
-
+		
 		Float getFloat(String value) {
 			value = value.replace("\u00A0", "");
 			float floatVal = 0;
 			if (value.equals("0") || value.equals("0,0") || value.equals("0,00")) {
-
+				
 			} else {
 				floatVal = Util.convertStringToFloat(value);
 				if (floatVal == 0) {
@@ -660,14 +681,14 @@ public class XLImporter {
 			}
 			return floatVal;
 		}
-
+		
 		CheVal isDate(Cell dCell) {
 			if (getDate(dCell) == null) {
 				errMsg.add(new ErrorDescription(info, sourceValue, "значение не возможно преобразовать в дату"));
 			}
 			return this;
 		}
-
+		
 		Date getDate(Cell dCell) {
 			Date dateVal = null;
 			if (dCell.getType() == CellType.DATE) {
@@ -676,9 +697,9 @@ public class XLImporter {
 			} else {
 				String val = dCell.getContents();
 				try {
-
-					dateVal = DateUtils.parseDate(val, "yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd.MM.yy hh:mm:ss", "dd.MM.yyyy hh:mm:ss", "yyyy.MM.dd",
-					        "yyyy.MM.dd hh:mm:ss");
+					
+					dateVal = DateUtils.parseDate(val, "yyyy", "dd.MM.yy", "dd.MM.yyyy", "dd.MM.yy hh:mm:ss",
+							"dd.MM.yyyy hh:mm:ss", "yyyy.MM.dd", "yyyy.MM.dd hh:mm:ss");
 					/*
 					 * String acceptancedateStr =
 					 * dCell.getContents().trim().replace("/", ".").replace("-",
@@ -688,18 +709,18 @@ public class XLImporter {
 					 * case 8: dateVal = new
 					 * SimpleDateFormat("dd.MM.yy").parse(acceptancedateStr);
 					 * break; case 10:
-					 * 
+					 *
 					 * dateVal = new
 					 * SimpleDateFormat("dd.MM.yyyy").parse(acceptancedateStr);
 					 */
 				} catch (ParseException e) {
 					errMsg.add(new ErrorDescription(info, val, "значение не возможно преобразовать в дату"));
 				}
-
+				
 			}
 			return dateVal;
 		}
-
+		
 		public List<ErrorDescription> getErr() {
 			errMsg.removeAll(Arrays.asList(null, ""));
 			if (errMsg.size() > 0) {
@@ -709,23 +730,23 @@ public class XLImporter {
 			}
 		}
 	}
-
+	
 	public class ErrorDescription {
 		String cellInfo;
 		String cellValue;
 		String errorMsg;
-
+		
 		public ErrorDescription(String cellInfo, String cellValue, String errorMsg) {
 			this.cellInfo = cellInfo;
 			this.cellValue = cellValue;
 			this.errorMsg = errorMsg;
 		}
-
+		
 		@Override
 		public String toString() {
 			return "column=" + cellInfo + ", value=" + cellValue + ", error=" + errorMsg;
 		}
-
+		
 	}
-
+	
 }
