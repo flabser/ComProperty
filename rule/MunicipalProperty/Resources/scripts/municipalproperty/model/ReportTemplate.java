@@ -8,16 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.AppEntity;
 import com.exponentus.scripting._Session;
+import com.exponentus.server.Server;
 
 import reference.dao.KufDAO;
 import reference.model.Kuf;
 import reference.model.constants.KufType;
 
 /**
- * 
- * 
+ *
+ *
  * @author Kayra created 06-01-2016
  */
 
@@ -72,20 +74,28 @@ public class ReportTemplate extends AppEntity<UUID> {
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder value = new StringBuilder(1000);
-		KufDAO kDao = new KufDAO(ses);
 		value.append("<name>" + name + "</name>");
-		String enumValue = "";
-		if (propertyType != null) {
-			for (KufType val : propertyType) {
-				Kuf kuf = kDao.findByCode(val);
-				if (kuf != null) {
-					enumValue += "<entry id=\"" + val + "\">" + kuf.getLocalizedName().get(ses.getLang()) + "</entry>";
-				} else {
-					enumValue += "<entry id=\"" + val + "\">" + val + "</entry>";
+		try {
+			KufDAO kDao = new KufDAO(ses);
+			
+			String enumValue = "";
+			
+			if (propertyType != null) {
+				for (KufType val : propertyType) {
+					Kuf kuf = kDao.findByCode(val);
+					if (kuf != null) {
+						enumValue += "<entry id=\"" + val + "\">" + kuf.getLocalizedName().get(ses.getLang())
+								+ "</entry>";
+					} else {
+						enumValue += "<entry id=\"" + val + "\">" + val + "</entry>";
+					}
 				}
 			}
+			value.append("<propertytype>" + enumValue + "</propertytype>");
+		} catch (DAOException e) {
+			Server.logger.errorLogEntry(e);
 		}
-		value.append("<propertytype>" + enumValue + "</propertytype>");
+		
 		value.append("<type>" + type + "</type>");
 		return value.toString();
 	}

@@ -15,10 +15,12 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.exponentus.dataengine.RuntimeObjUtil;
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.DAO;
 import com.exponentus.dataengine.jpa.SecureAppEntity;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.scripting._Session;
+import com.exponentus.server.Server;
 import com.exponentus.user.SuperUser;
 
 import municipalproperty.dao.filter.PropertyFilter;
@@ -31,11 +33,11 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class PropertyDAO extends DAO<Property, UUID> {
-	
+
 	public PropertyDAO(_Session session) {
 		super(Property.class, session);
 	}
-	
+
 	public ViewPage<Property> findAll(PropertyFilter filter, int pageNum, int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -45,13 +47,13 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			Root<Property> c = cq.from(getEntityClass());
 			cq.select(c);
 			countCq.select(cb.count(c));
-			
+
 			Predicate condition = null;
-			
+
 			if (filter.getStatus() != PropertyStatusType.UNKNOWN) {
 				condition = cb.equal(c.get("propertyStatusType"), filter.getStatus());
 			}
-			
+
 			if (!filter.getKufTypes().isEmpty()) {
 				if (condition == null) {
 					condition = c.get("kuf").in(filter.getKufTypes());
@@ -59,7 +61,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 					condition = cb.and(c.get("kuf").in(filter.getKufTypes()), condition);
 				}
 			}
-			
+
 			if (filter.getPropertyCode() != null) {
 				if (condition == null) {
 					condition = cb.and(c.get("propertyCode").in(filter.getPropertyCode()));
@@ -67,7 +69,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 					condition = cb.and(c.get("propertyCode").in(filter.getPropertyCode()), condition);
 				}
 			}
-			
+
 			if (!filter.getBalanceHolders().isEmpty()) {
 				if (condition == null) {
 					condition = cb.and(c.get("balanceHolder").in(filter.getBalanceHolders()));
@@ -75,7 +77,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 					condition = cb.and(c.get("balanceHolder").in(filter.getBalanceHolders()), condition);
 				}
 			}
-			
+
 			if (user.getId() != SuperUser.ID && SecureAppEntity.class.isAssignableFrom(getEntityClass())) {
 				if (condition == null) {
 					condition = cb.and(c.get("readers").in(user.getId()));
@@ -99,13 +101,13 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			typedQuery.setFirstResult(firstRec);
 			typedQuery.setMaxResults(pageSize);
 			List<Property> result = typedQuery.getResultList();
-			
+
 			return new ViewPage<>(result, count, maxPage, pageNum);
 		} finally {
 			em.close();
 		}
 	}
-	
+
 	public ViewPage<Property> findAllByKufAndBalanceHolder(List<KufType> kuf, Organization bh, int pageNum,
 			int pageSize) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
@@ -137,14 +139,14 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			typedQuery.setFirstResult(firstRec);
 			typedQuery.setMaxResults(pageSize);
 			List<Property> result = typedQuery.getResultList();
-			
+
 			ViewPage<Property> r = new ViewPage<Property>(result, count, maxPage, pageNum);
 			return r;
 		} finally {
 			em.close();
 		}
 	}
-	
+
 	public List<Property> findAllByInvNum(String invNum) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -166,7 +168,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			em.close();
 		}
 	}
-	
+
 	public List<Property> findAllByInvNumAndName(String invNum, String name) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -185,7 +187,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			em.close();
 		}
 	}
-	
+
 	// TODO it need adding dates checking in condition
 	public List<Property> findAllForReport(List<KufType> value, UUID balanceHolder, UUID orgCat, Date from, Date to) {
 		EntityManager em = getEntityManagerFactory().createEntityManager();
@@ -194,13 +196,13 @@ public class PropertyDAO extends DAO<Property, UUID> {
 			CriteriaQuery<Property> cq = cb.createQuery(Property.class);
 			Root<Property> c = cq.from(Property.class);
 			cq.select(c);
-			
+
 			Predicate condition = null;
-			
+
 			if (value != null) {
 				condition = c.get("kuf").in(value);
 			}
-			
+
 			if (user.getId() != SuperUser.ID) {
 				if (condition != null) {
 					condition = cb.and(c.get("readers").in(user.getId()), condition);
@@ -208,7 +210,7 @@ public class PropertyDAO extends DAO<Property, UUID> {
 					condition = c.get("readers").in(user.getId());
 				}
 			}
-			
+
 			if (balanceHolder != null) {
 				if (condition != null) {
 					condition = cb.and(cb.equal(c.get("balanceHolder").get("id"), balanceHolder), condition);
@@ -216,27 +218,31 @@ public class PropertyDAO extends DAO<Property, UUID> {
 					condition = cb.equal(c.get("balanceHolder").get("id"), balanceHolder);
 				}
 			} else if (orgCat != null) {
-				OrgCategoryDAO ocDao = new OrgCategoryDAO(getSession());
-				OrgCategory orgCatEntity = ocDao.findById(orgCat);
-				OrganizationDAO oDao = new OrganizationDAO(getSession());
-				List<OrgCategory> cats = new ArrayList<OrgCategory>();
-				cats.add(orgCatEntity);
-				ViewPage<Organization> orgs = oDao.findAllByOrgCategory(cats, 0, 0);
-				
-				if (condition != null) {
-					condition = cb.and(c.get("balanceHolder").in(orgs.getResult()), condition);
-				} else {
-					condition = c.get("balanceHolder").in(orgs);
+				try {
+					OrgCategoryDAO ocDao = new OrgCategoryDAO(getSession());
+					OrgCategory orgCatEntity = ocDao.findById(orgCat);
+					OrganizationDAO oDao = new OrganizationDAO(getSession());
+					List<OrgCategory> cats = new ArrayList<OrgCategory>();
+					cats.add(orgCatEntity);
+					ViewPage<Organization> orgs = oDao.findAllByOrgCategory(cats, 0, 0);
+					
+					if (condition != null) {
+						condition = cb.and(c.get("balanceHolder").in(orgs.getResult()), condition);
+					} else {
+						condition = c.get("balanceHolder").in(orgs);
+					}
+				} catch (DAOException e) {
+					Server.logger.errorLogEntry(e);
 				}
 			}
-			
+
 			cq.where(condition);
-			
+
 			Query query = em.createQuery(cq);
 			return query.getResultList();
 		} finally {
 			em.close();
 		}
 	}
-	
+
 }

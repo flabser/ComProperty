@@ -13,6 +13,7 @@ import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
+import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
 import com.exponentus.util.TimeUtil;
 
@@ -214,11 +215,16 @@ public class PersonalEstateForm extends AbstractMunicipalPropertyForm {
 		entity.setKof("");
 		entity.setInvNumber("");
 		entity.setObjectName("");
-		PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
-		entity.setPropertyCode(pcDao.findAll().get(0));
-		entity.setModel("");
-		ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
-		entity.setReceivingReason(rrDao.findAll().get(0));
+		try {
+			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
+			entity.setPropertyCode(pcDao.findAll().get(0));
+			entity.setModel("");
+			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
+			entity.setReceivingReason(rrDao.findAll().get(0));
+		} catch (DAOException e) {
+			Server.logger.errorLogEntry(e);
+		}
+
 		entity.setReadyToUse(true);
 		return entity;
 	}

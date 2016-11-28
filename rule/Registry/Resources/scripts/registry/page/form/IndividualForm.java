@@ -14,6 +14,7 @@ import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.scripting._WebFormData;
+import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
 
 import reference.dao.OrgCategoryDAO;
@@ -34,30 +35,35 @@ public class IndividualForm extends StaffForm {
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
-		Organization entity;
-		if (!id.isEmpty()) {
-			OrganizationDAO dao = new OrganizationDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		} else {
-			entity = new Organization();
-			entity.setAuthor(user);
-			entity.setName("");
-			entity.setBin("");
-			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-			OrgCategory oc = null;
-			try {
-				oc = ocDao.findByName("Частный предприниматель");
-			} catch (DAOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			entity.setOrgCategory(oc);
-			entity.setLabels(new ArrayList<>());
+		try {
+			Organization entity;
+			if (!id.isEmpty()) {
+				OrganizationDAO dao = new OrganizationDAO(session);
+				entity = dao.findById(UUID.fromString(id));
+			} else {
+				entity = new Organization();
+				entity.setAuthor(user);
+				entity.setName("");
+				entity.setBin("");
+				OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+				OrgCategory oc = null;
+				try {
+					oc = ocDao.findByName("Частный предприниматель");
+				} catch (DAOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				entity.setOrgCategory(oc);
+				entity.setLabels(new ArrayList<>());
 
+			}
+			addContent(entity);
+			addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
+			addContent(getSimpleActionBar(session, session.getLang()));
+		} catch (DAOException e) {
+			setBadRequest();
+			Server.logger.errorLogEntry(e);
 		}
-		addContent(entity);
-		addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll(), session));
-		addContent(getSimpleActionBar(session, session.getLang()));
 	}
 
 	@Override

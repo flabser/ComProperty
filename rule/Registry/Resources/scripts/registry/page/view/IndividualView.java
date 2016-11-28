@@ -16,6 +16,7 @@ import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
 import com.exponentus.scripting.event._DoPage;
+import com.exponentus.server.Server;
 
 import reference.dao.OrgCategoryDAO;
 import reference.model.OrgCategory;
@@ -27,7 +28,7 @@ import staff.model.Organization;
  */
 
 public class IndividualView extends _DoPage {
-	
+
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
@@ -36,26 +37,30 @@ public class IndividualView extends _DoPage {
 		newDocAction.setURL("Provider?id=individual-form");
 		actionBar.addAction(newDocAction);
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
-		
-		addContent(actionBar);
-		OrganizationDAO dao = new OrganizationDAO(session);
-		OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-		List<OrgCategory> params = null;
 		try {
-			params = new ArrayList<>(Arrays.asList(ocDao.findByName("Частный предприниматель")));
+			addContent(actionBar);
+			OrganizationDAO dao = new OrganizationDAO(session);
+			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
+			List<OrgCategory> params = null;
+			try {
+				params = new ArrayList<>(Arrays.asList(ocDao.findByName("Частный предприниматель")));
+			} catch (DAOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1),
+					session.pageSize);
+			addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			setBadRequest();
+			Server.logger.errorLogEntry(e);
 		}
-		ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1),
-				session.pageSize);
-		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		println(formData);
-		
+
 		OrganizationDAO dao = new OrganizationDAO(session);
 		for (String id : formData.getListOfValuesSilently("docid")) {
 			Organization m = dao.findById(UUID.fromString(id));
