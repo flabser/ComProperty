@@ -3,6 +3,7 @@ package accountant.page.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.IAppFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.env.Environment;
@@ -28,85 +29,91 @@ public class UpdateWizardForm extends _DoPage {
 	@Override
 	public void doGET(_Session ses, _WebFormData formData) {
 		IUser<Long> user = ses.getUser();
-		OrganizationDAO oDao = new OrganizationDAO(ses);
-		String step = formData.getValueSilently("step", "0");
-		String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
-		String fileAttr = getSesAttrName();
-
-		ImportFileEntry uf = (ImportFileEntry) ses.getAttribute(fileAttr);
-		if (uf == null) {
-			uf = new ImportFileEntry();
-			ses.setAttribute(fileAttr, uf);
-			step = "0";
-		} else if (uf != null && step.equals("0")) {
-			uf = new ImportFileEntry();
-			if (!fsId.isEmpty()) {
-				ses.removeAttribute(fsId);
-			}
-			ses.setAttribute(fileAttr, uf);
-		}
-
-		if (fsId.isEmpty()) {
-			fsId = StringUtil.getRandomText();
-		}
-		String uploadType = formData.getValueSilently("uploadtype");
-		if (uploadType.equals("upload") || uploadType.equals("writeoff") || uploadType.equals("transfer")) {
-			uf.setLoadType(uploadType);
-		} else {
-			uf.setLoadType("");
-		}
-		uf.setStep(step);
-
-		if (step.equals("1")) {
-			// System.out.println(">>>" + ses.hashCode());
-			String file = getFileNameByType(ses, fsId, "upfile", uf);
-			if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
-				uf.setStatus(ImportFileEntry.JUST_UPLOADED);
-				uf.setFileName(file);
-			}
-		} else if (step.equals("2")) {
-			String file = getFileNameByType(ses, fsId, "upfile", uf);
-			if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
-				uf.setStatus(ImportFileEntry.JUST_UPLOADED);
-				uf.setFileName(file);
-			}
-		} else if (step.equals("3")) {
-			if (uf.getLoadType().equals("upload")) {
-				String bh = formData.getValueSilently("balanceholder");
-				if (!bh.isEmpty()) {
-					uf.setBalanceHolder(oDao.findById(bh));
+		try {
+			OrganizationDAO oDao = new OrganizationDAO(ses);
+			String step = formData.getValueSilently("step", "0");
+			String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
+			String fileAttr = getSesAttrName();
+			
+			ImportFileEntry uf = (ImportFileEntry) ses.getAttribute(fileAttr);
+			if (uf == null) {
+				uf = new ImportFileEntry();
+				ses.setAttribute(fileAttr, uf);
+				step = "0";
+			} else if (uf != null && step.equals("0")) {
+				uf = new ImportFileEntry();
+				if (!fsId.isEmpty()) {
+					ses.removeAttribute(fsId);
 				}
-				String[] readers = formData.getListOfStringValues("readers", null);
-				List<Long> readersList = new ArrayList<>();
-				EmployeeDAO eDao = new EmployeeDAO(ses);
-				if (readers[0] != null) {
-					for (String r : readers) {
-						Employee entity = eDao.findById(r);
-						readersList.add(entity.getUser().getId());
+				ses.setAttribute(fileAttr, uf);
+			}
+
+			if (fsId.isEmpty()) {
+				fsId = StringUtil.getRandomText();
+			}
+			String uploadType = formData.getValueSilently("uploadtype");
+			if (uploadType.equals("upload") || uploadType.equals("writeoff") || uploadType.equals("transfer")) {
+				uf.setLoadType(uploadType);
+			} else {
+				uf.setLoadType("");
+			}
+			uf.setStep(step);
+
+			if (step.equals("1")) {
+				// System.out.println(">>>" + ses.hashCode());
+				String file = getFileNameByType(ses, fsId, "upfile", uf);
+				if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
+					uf.setStatus(ImportFileEntry.JUST_UPLOADED);
+					uf.setFileName(file);
+				}
+			} else if (step.equals("2")) {
+				String file = getFileNameByType(ses, fsId, "upfile", uf);
+				if (!file.isEmpty() && uf.getStatus() == ImportFileEntry.INIT) {
+					uf.setStatus(ImportFileEntry.JUST_UPLOADED);
+					uf.setFileName(file);
+				}
+			} else if (step.equals("3")) {
+				if (uf.getLoadType().equals("upload")) {
+					String bh = formData.getValueSilently("balanceholder");
+					if (!bh.isEmpty()) {
+						uf.setBalanceHolder(oDao.findById(bh));
 					}
-					uf.setReaders(readersList);
-				}
-			} else if (uf.getLoadType().equals("writeoff")) {
+					String[] readers = formData.getListOfStringValues("readers", null);
+					List<Long> readersList = new ArrayList<>();
+					EmployeeDAO eDao = new EmployeeDAO(ses);
+					if (readers[0] != null) {
+						for (String r : readers) {
+							Employee entity = eDao.findById(r);
+							readersList.add(entity.getUser().getId());
+						}
+						uf.setReaders(readersList);
+					}
+				} else if (uf.getLoadType().equals("writeoff")) {
 
-			} else if (uf.getLoadType().equals("transfer")) {
-				String bh = formData.getValueSilently("recipient");
-				if (!bh.isEmpty()) {
-					uf.setRecipient(oDao.findById(bh));
+				} else if (uf.getLoadType().equals("transfer")) {
+					String bh = formData.getValueSilently("recipient");
+					if (!bh.isEmpty()) {
+						uf.setRecipient(oDao.findById(bh));
+					}
+					uf.setOrderFileName(getFileNameByType(ses, fsId, "uporder", uf));
 				}
-				uf.setOrderFileName(getFileNameByType(ses, fsId, "uporder", uf));
+			} else if (step.equals("4")) {
+
 			}
-		} else if (step.equals("4")) {
 
-		}
+			addValue("workspaceUrl", Environment.getWorkspaceURL());
+			addValue("formsesid", fsId);
+			addContent(uf);
 
-		addValue("workspaceUrl", Environment.getWorkspaceURL());
-		addValue("formsesid", fsId);
-		addContent(uf);
-
-		if (user.getId() == SuperUser.ID || (user.getRoles() != null && user.getRoles().contains("data_loader"))) {
-			_ActionBar actionBar = new _ActionBar(ses);
-			actionBar.addAction(new _Action(getLocalizedWord("attach_file", ses.getLang()), "", "attach_file"));
-			addContent(actionBar);
+			if (user.getId() == SuperUser.ID || (user.getRoles() != null && user.getRoles().contains("data_loader"))) {
+				_ActionBar actionBar = new _ActionBar(ses);
+				actionBar.addAction(new _Action(getLocalizedWord("attach_file", ses.getLang()), "", "attach_file"));
+				addContent(actionBar);
+			}
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
+			return;
 		}
 	}
 

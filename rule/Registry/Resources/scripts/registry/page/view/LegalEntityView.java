@@ -27,7 +27,7 @@ import staff.model.Organization;
  */
 
 public class LegalEntityView extends _DoPage {
-
+	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
@@ -49,7 +49,7 @@ public class LegalEntityView extends _DoPage {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			ViewPage<Organization> vp = dao.findAllByOrgCategory(params, formData.getNumberValueSilently("page", 1),
 					session.pageSize);
 			addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
@@ -58,19 +58,23 @@ public class LegalEntityView extends _DoPage {
 			Server.logger.errorLogEntry(e);
 		}
 	}
-
+	
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		println(formData);
-
-		OrganizationDAO dao = new OrganizationDAO(session);
-		for (String id : formData.getListOfValuesSilently("docid")) {
-			Organization m = dao.findById(UUID.fromString(id));
-			try {
-				dao.delete(m);
-			} catch (SecureException | DAOException e) {
-				setError(e);
+		try {
+			OrganizationDAO dao = new OrganizationDAO(session);
+			for (String id : formData.getListOfValuesSilently("docid")) {
+				Organization m = dao.findById(UUID.fromString(id));
+				try {
+					dao.delete(m);
+				} catch (SecureException | DAOException e) {
+					setError(e);
+				}
 			}
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
 		}
 	}
 }

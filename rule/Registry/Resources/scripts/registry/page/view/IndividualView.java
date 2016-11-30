@@ -28,7 +28,7 @@ import staff.model.Organization;
  */
 
 public class IndividualView extends _DoPage {
-
+	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		LanguageCode lang = session.getLang();
@@ -56,19 +56,23 @@ public class IndividualView extends _DoPage {
 			Server.logger.errorLogEntry(e);
 		}
 	}
-
+	
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		println(formData);
-
-		OrganizationDAO dao = new OrganizationDAO(session);
-		for (String id : formData.getListOfValuesSilently("docid")) {
-			Organization m = dao.findById(UUID.fromString(id));
-			try {
-				dao.delete(m);
-			} catch (SecureException | DAOException e) {
-				setError(e);
+		try {
+			OrganizationDAO dao = new OrganizationDAO(session);
+			for (String id : formData.getListOfValuesSilently("docid")) {
+				Organization m = dao.findById(UUID.fromString(id));
+				try {
+					dao.delete(m);
+				} catch (SecureException | DAOException e) {
+					setError(e);
+				}
 			}
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
 		}
 	}
 }

@@ -23,15 +23,15 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class ProcessXLFile extends _DoPage {
-	
+
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		
+
 		String fn = formData.getValueSilently("fileid");
 		if (!validateFileName(fn)) {
 			return;
 		}
-		
+
 		IUser<Long> user = session.getUser();
 		File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
 		try {
@@ -43,22 +43,22 @@ public class ProcessXLFile extends _DoPage {
 			logError(e);
 		}
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
-		
+
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		String fn = formData.getValueSilently("fileid");
 		if (fsid.isEmpty() || !validateFileName(fn)) {
 			return;
 		}
-		
+
 		try {
 			session.removeAttribute(UpdateWizardForm.getSesAttrName());
 			session.removeAttribute(fsid);
 			IUser<Long> user = session.getUser();
 			File userTmpDir = new File(Environment.tmpDir + File.separator + user.getUserID());
-			
+
 			File xlsFile = new File(userTmpDir + File.separator + fn);
 			if (xlsFile.exists()) {
 				xlsFile.delete();
@@ -68,17 +68,17 @@ public class ProcessXLFile extends _DoPage {
 			logError(e);
 		}
 	}
-	
+
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
-		
+
 		devPrint(formData);
 		LanguageCode lang = session.getLang();
-		OrganizationDAO dao = new OrganizationDAO(session);
-		
-		String uo = formData.getValueSilently("uploadtype");
-		
 		try {
+			OrganizationDAO dao = new OrganizationDAO(session);
+			
+			String uo = formData.getValueSilently("uploadtype");
+			
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
@@ -141,7 +141,7 @@ public class ProcessXLFile extends _DoPage {
 								return;
 							}
 						}
-						
+
 						File xlsFile = new File(fileName);
 						XLImporter id = new XLImporter(XLImporter.PROCESS);
 						Workbook workbook = null;
@@ -154,7 +154,7 @@ public class ProcessXLFile extends _DoPage {
 						}
 						Sheet sheet = workbook.getSheet(0);
 						Outcome result = id.process(sheet, session, true, org, readers, uo, addFileName);
-						
+
 						if (result.sheetErr.size() > 0) {
 							uf.setStatus(ImportFileEntry.LOADING_ERROR);
 							uf.setLocalizedMsg(getLocalizedWord("file_has_been_not_loaded", lang));
@@ -176,14 +176,14 @@ public class ProcessXLFile extends _DoPage {
 			setBadRequest();
 		}
 	}
-	
+
 	private boolean validateFileName(String fn) {
 		if (fn.isEmpty()) {
 			return false;
 		} else if (fn.indexOf('/') > -1 || fn.indexOf('\\') > -1) {
 			return false;
 		}
-		
+
 		return true;
 	}
 }

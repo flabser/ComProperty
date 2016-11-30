@@ -24,33 +24,41 @@ public class ContractorView extends _DoPage {
 	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
-		_ActionBar actionBar = new _ActionBar(session);
-		_Action newDocAction = new _Action(getLocalizedWord("new_", session.getLang()), "", "new_organization");
-		newDocAction.setURL("Provider?id=organization-form");
-		actionBar.addAction(newDocAction);
-		actionBar.addAction(
-				new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
-		
-		addContent(actionBar);
-		
-		OrganizationDAO dao = new OrganizationDAO(session);
-		ViewPage<Organization> vp = dao.findAllByLabel("balance_holder", formData.getNumberValueSilently("page", 1),
-				session.pageSize);
-		addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
+		try {
+			_ActionBar actionBar = new _ActionBar(session);
+			_Action newDocAction = new _Action(getLocalizedWord("new_", session.getLang()), "", "new_organization");
+			newDocAction.setURL("Provider?id=organization-form");
+			actionBar.addAction(newDocAction);
+			actionBar.addAction(
+					new _Action(getLocalizedWord("del_document", session.getLang()), "", _ActionType.DELETE_DOCUMENT));
+			
+			addContent(actionBar);
+			
+			OrganizationDAO dao = new OrganizationDAO(session);
+			ViewPage<Organization> vp = dao.findAllByLabel("balance_holder", formData.getNumberValueSilently("page", 1),
+					session.pageSize);
+			addContent(new _POJOListWrapper(vp.getResult(), vp.getMaxPage(), vp.getCount(), vp.getPageNum(), session));
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
+		}
 	}
 	
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		println(formData);
-		
-		OrganizationDAO dao = new OrganizationDAO(session);
-		for (String id : formData.getListOfValuesSilently("docid")) {
-			Organization m = dao.findById(UUID.fromString(id));
-			try {
+		try {
+			OrganizationDAO dao = new OrganizationDAO(session);
+			for (String id : formData.getListOfValuesSilently("docid")) {
+				Organization m = dao.findById(UUID.fromString(id));
+
 				dao.delete(m);
-			} catch (SecureException | DAOException e) {
-				setError(e);
+
 			}
+		} catch (DAOException | SecureException e) {
+			logError(e);
+			setBadRequest();
+
 		}
 	}
 }

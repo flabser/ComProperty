@@ -28,18 +28,19 @@ public class ImportFileChecker extends _DoPage {
 	public void doGET(_Session session, _WebFormData formData) {
 		devPrint(formData);
 		boolean stopIfWrong = false;
-		OrganizationDAO oDao = new OrganizationDAO(session);
-
-		String sie = formData.getValueSilently("stopiferror");
-		if (sie.equals("1")) {
-			stopIfWrong = true;
-		}
-
-		String uo = formData.getValueSilently("uploadtype");
-
 		ImportFileEntry uf = null;
-		LanguageCode lang = session.getLang();
 		try {
+			OrganizationDAO oDao = new OrganizationDAO(session);
+
+			String sie = formData.getValueSilently("stopiferror");
+			if (sie.equals("1")) {
+				stopIfWrong = true;
+			}
+
+			String uo = formData.getValueSilently("uploadtype");
+			
+			LanguageCode lang = session.getLang();
+
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			if (!fsid.isEmpty()) {
 				String fn = formData.getValueSilently("fileid");
