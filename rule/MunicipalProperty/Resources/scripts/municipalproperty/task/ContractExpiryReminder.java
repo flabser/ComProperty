@@ -1,4 +1,4 @@
-package municipalproperty.scheduled;
+package municipalproperty.task;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +9,9 @@ import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting.event._DoScheduled;
+import com.exponentus.scripting.event._Do;
+import com.exponentus.scriptprocessor.constants.Trigger;
+import com.exponentus.scriptprocessor.tasks.Command;
 import com.exponentus.server.Server;
 import com.exponentus.user.AnonymousUser;
 import com.exponentus.user.IUser;
@@ -21,20 +23,11 @@ import municipalproperty.model.Contract;
 import municipalproperty.model.Notification;
 import municipalproperty.model.constants.NotificationType;
 
-public class ContractExpiryReminder extends _DoScheduled {
-	
+@Command(name = "contract_expiry_reminder", trigger = Trigger.EVERY_NIGHT)
+public class ContractExpiryReminder extends _Do {
+
 	@Override
-	public void doEvery5Min(AppEnv env, _Session session) {
-		// doEveryNight(session);
-	}
-	
-	@Override
-	public void doEvery1Hour(AppEnv env, _Session session) {
-		
-	}
-	
-	@Override
-	public void doEveryNight(AppEnv env, _Session session) {
+	public void doTask(AppEnv env, _Session session) {
 		Server.logger.infoLogEntry("check the contracts expiration");
 		UserDAO uDao = new UserDAO();
 		NotificationDAO nDao = null;
