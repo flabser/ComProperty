@@ -25,7 +25,7 @@ import municipalproperty.model.constants.NotificationType;
 
 @Command(name = "contract_expiry_reminder", trigger = Trigger.EVERY_NIGHT)
 public class ContractExpiryReminder extends _Do {
-
+	
 	@Override
 	public void doTask(AppEnv env, _Session session) {
 		Server.logger.infoLogEntry("check the contracts expiration");
@@ -39,8 +39,8 @@ public class ContractExpiryReminder extends _Do {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		List<Contract> list = cDao.findAll();
+
+		List<Contract> list = cDao.findAll().getResult();
 		Date current = new Date();
 		LanguageCode lang = LanguageCode.valueOf(EnvConst.DEFAULT_LANG);
 		for (Contract c : list) {
@@ -64,5 +64,5 @@ public class ContractExpiryReminder extends _Do {
 			}
 		}
 	}
-	
+
 }
