@@ -29,12 +29,12 @@ import staff.model.Organization;
  */
 
 public abstract class AbstractMunicipalPropertyView extends _DoPage {
-	
+
 	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, PropertyFilter filter,
 			LanguageCode lang) {
 		int pageNum = formData.getNumberValueSilently("page", 1);
 		int pageSize = session.getPageSize();
-		
+
 		String[] orgIds = formData.getListOfValuesSilently("balanceholder");
 		for (String oid : orgIds) {
 			if (!oid.isEmpty()) {
@@ -43,18 +43,24 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 				filter.addBalanceHolder(org);
 			}
 		}
-		
+
 		String status = formData.getValueSilently("status");
 		if (!status.isEmpty()) {
 			filter.setStatus(PropertyStatusType.valueOf(status.toUpperCase()));
 		}
-		
-		PropertyDAO dao = new PropertyDAO(session);
-		ViewPage<Property> result = dao.findAll(filter, pageNum, pageSize);
-		return new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(), result.getPageNum(),
-				session);
+
+		try {
+			PropertyDAO dao = new PropertyDAO(session);
+			ViewPage<Property> result = dao.findAll(filter, pageNum, pageSize);
+			return new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(),
+					result.getPageNum(), session);
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
+			return null;
+		}
 	}
-	
+
 	protected _ActionBar getSimpleActionBar(_Session session, String type, KufType kufType, LanguageCode lang) {
 		_ActionBar actionBar = new _ActionBar(session);
 		_Action newDocAction = new _Action(getLocalizedWord("new_", lang), "", "new_" + type);
@@ -63,7 +69,7 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 		actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
 		return actionBar;
 	}
-	
+
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String[] orgIds = formData.getListOfValuesSilently("balanceholder");
@@ -77,19 +83,23 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 			addValue("request_param", "status=" + propertyStatus);
 		}
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, _WebFormData formData) {
 		// println(formData);
-		
-		PropertyDAO dao = new PropertyDAO(session);
-		for (String id : formData.getListOfValuesSilently("docid")) {
-			Property c = dao.findById(UUID.fromString(id));
-			try {
+
+		try {
+			PropertyDAO dao = new PropertyDAO(session);
+			for (String id : formData.getListOfValuesSilently("docid")) {
+				Property c = dao.findById(UUID.fromString(id));
+
 				dao.delete(c);
-			} catch (SecureException | DAOException e) {
-				setError(e);
+
 			}
+		} catch (DAOException | SecureException e) {
+			logError(e);
+			setBadRequest();
+			return;
 		}
 	}
 }

@@ -45,66 +45,73 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class ReportTemplateForm extends _DoPage {
-
+	
 	@Override
 	public void doGET(_Session session, _WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		ReportTemplate entity;
-		if (!id.isEmpty()) {
-			ReportTemplateDAO dao = new ReportTemplateDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-			addContent(entity);
-			_Action back = new _Action(_ActionType.CLOSE);
-			back.setURL("Provider?id=report-template-view");
-			addContent(new _ActionBar(session, getCurrentAppEnv()).addAction(back));
-		} else {
+		try {
+			if (!id.isEmpty()) {
+				ReportTemplateDAO dao = new ReportTemplateDAO(session);
+				entity = dao.findById(UUID.fromString(id));
+				addContent(entity);
+				_Action back = new _Action(_ActionType.CLOSE);
+				back.setURL("Provider?id=report-template-view");
+				addContent(new _ActionBar(session, getCurrentAppEnv()).addAction(back));
+			} else {
+				setBadRequest();
+			}
+		} catch (DAOException e) {
+			logError(e);
 			setBadRequest();
+			return;
 		}
 	}
-
+	
 	@Override
 	public void doPOST(_Session session, _WebFormData formData) {
 		long start_time = System.currentTimeMillis();
-
+		
 		String id = formData.getValueSilently("docid");
 		ReportTemplate entity = null;
-		if (!id.isEmpty()) {
-			ReportTemplateDAO dao = new ReportTemplateDAO(session);
-			entity = dao.findById(UUID.fromString(id));
-		}
-
-		String reportName = formData.getValueSilently("id");
-
-		if (entity != null) {
-			reportName = entity.getType();
-		}
-
-		String addInfo = "";
-		println(formData);
-		// String reportName = formData.getValueSilently("id");
-
-		List<KufType> cat = new ArrayList<>();// ReportUtil.getCat().get(reportName);
-		if (formData.containsField("propertycode")) {
-			String[] propertyType = formData.getListOfValuesSilently("propertycode");
-			for (String value : propertyType) {
-				if (!"".equalsIgnoreCase(value)) {
-					cat.add(KufType.valueOf(value));
-				}
-			}
-		} else {
-			cat = entity.getPropertyType();
-		}
-
-		Date from = formData.getDateSilently("acceptancedatefrom");
-		Date to = formData.getDateSilently("acceptancedateto");
-		if (from != null && to != null) {
-			// checkAcceptanceDate = true;
-		}
-
-		UUID bhCat = null;
-		UUID bhId = null;
-		String bh = formData.getValueSilently("balanceholder");
 		try {
+			if (!id.isEmpty()) {
+				ReportTemplateDAO dao = new ReportTemplateDAO(session);
+				entity = dao.findById(UUID.fromString(id));
+			}
+
+			String reportName = formData.getValueSilently("id");
+
+			if (entity != null) {
+				reportName = entity.getType();
+			}
+
+			String addInfo = "";
+			println(formData);
+			// String reportName = formData.getValueSilently("id");
+
+			List<KufType> cat = new ArrayList<>();// ReportUtil.getCat().get(reportName);
+			if (formData.containsField("propertycode")) {
+				String[] propertyType = formData.getListOfValuesSilently("propertycode");
+				for (String value : propertyType) {
+					if (!"".equalsIgnoreCase(value)) {
+						cat.add(KufType.valueOf(value));
+					}
+				}
+			} else {
+				cat = entity.getPropertyType();
+			}
+
+			Date from = formData.getDateSilently("acceptancedatefrom");
+			Date to = formData.getDateSilently("acceptancedateto");
+			if (from != null && to != null) {
+				// checkAcceptanceDate = true;
+			}
+
+			UUID bhCat = null;
+			UUID bhId = null;
+			String bh = formData.getValueSilently("balanceholder");
+
 			if (!bh.isEmpty()) {
 				bhId = UUID.fromString(bh);
 				OrganizationDAO orgDao = new OrganizationDAO(session);
@@ -114,47 +121,44 @@ public class ReportTemplateForm extends _DoPage {
 				String oc = formData.getValueSilently("orgcategory");
 				if (!oc.isEmpty()) {
 					bhCat = UUID.fromString(oc);
-					
+
 					OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
 					OrgCategory orgCatEntity = ocDao.findById(oc);
 					addInfo = orgCatEntity.getName();
-					
+
 				}
 			}
-		} catch (DAOException e) {
-			Server.logger.errorLogEntry(e);
-		}
-		try {
+			
 			String type = ".xlsx";
 			String rType = formData.getValue("typefilereport");
 			if (rType.equals("1")) {
 				type = ".pdf";
 			}
-
+			
 			HashMap<String, Object> parameters = new HashMap<>();
 			log("Filling report \"" + reportName + "\"...");
 			String repPath = new File("").getAbsolutePath() + File.separator + "webapps" + File.separator
 					+ getCurrentAppEnv().appName + File.separator + "reports";
-
+			
 			JRFileVirtualizer virtualizer = new JRFileVirtualizer(10, Environment.trash);
 			parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
-
+			
 			PropertyDAO dao = new PropertyDAO(session);
 			List<Property> result = dao.findAllForReport(cat, bhId, bhCat, from, to);
-
+			
 			// ArrayList<IPropertyBean> result = fetchReportData(cat,
 			// checkAcceptanceDate, checkBalanceHolder, bc, from, to);
-
+			
 			parameters.put("grandtotal", "");
 			parameters.put("balanceholder", addInfo);
-
+			
 			JRBeanCollectionDataSource dSource = new JRBeanCollectionDataSource(result);
-
+			
 			JasperPrint print = JasperFillManager.fillReport(
 					JasperCompileManager.compileReportToFile(
 							repPath + File.separator + "templates" + File.separator + reportName + ".jrxml"),
 					parameters, dSource);
-
+			
 			String fileName = reportName + type;
 			String filePath = getTmpDirPath() + File.separator
 					+ StringUtil.generateRandomAsText("qwertyuiopasdfghjklzxcvbnm", 10) + type;
@@ -175,11 +179,14 @@ public class ReportTemplateForm extends _DoPage {
 				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(filePath));
 				exporter.exportReport();
 			}
-
+			
 			showFile(filePath, fileName);
 			TempFileCleaner.addFileToDelete(filePath);
 			log("Report \"" + reportName + "\" is ready, estimated time is "
 					+ TimeUtil.getTimeDiffInMilSec(start_time));
+		} catch (DAOException e) {
+			logError(e);
+			setBadRequest();
 		} catch (JRException e) {
 			Server.logger.errorLogEntry(e);
 		} catch (_Exception e) {

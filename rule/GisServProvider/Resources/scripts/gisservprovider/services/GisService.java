@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.rest.RestProvider;
 import com.exponentus.rest.ServiceDescriptor;
@@ -22,19 +23,27 @@ public class GisService extends RestProvider {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("coord") String coord) {
 		System.out.println("coordinates = " + coord);
-		RealEstateDAO reDao = new RealEstateDAO(getSession());
-		ViewPage<RealEstate> viewPage = reDao.findByCoord(coord, 0, 0);
+		try {
+			RealEstateDAO reDao = new RealEstateDAO(getSession());
+			ViewPage<RealEstate> viewPage = reDao.findByCoord(coord, 0, 0);
 
-		return Response.ok(viewPage).build();
+			return Response.ok(viewPage).build();
+		} catch (DAOException e) {
+			return responseException(e);
+		}
 	}
 
 	@GET
 	@Path("/getbystreet/{street_id}/{building_num}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("street_id") String streetId, @PathParam("building_num") String buildingNum) {
-		RealEstateDAO reDao = new RealEstateDAO(getSession());
-		ViewPage<RealEstate> viewPage = reDao.findByStreetAndHome(streetId, buildingNum, 0, 0);
-		return Response.ok(viewPage).build();
+		try {
+			RealEstateDAO reDao = new RealEstateDAO(getSession());
+			ViewPage<RealEstate> viewPage = reDao.findByStreetAndHome(streetId, buildingNum, 0, 0);
+			return Response.ok(viewPage).build();
+		} catch (DAOException e) {
+			return responseException(e);
+		}
 	}
 
 	@Override
