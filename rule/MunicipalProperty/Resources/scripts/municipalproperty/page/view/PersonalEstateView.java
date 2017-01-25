@@ -1,8 +1,9 @@
 package municipalproperty.page.view;
 
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
+
 import municipalproperty.dao.filter.PropertyFilter;
 import reference.model.constants.KufType;
 
@@ -11,16 +12,16 @@ import reference.model.constants.KufType;
  */
 
 public class PersonalEstateView extends AbstractMunicipalPropertyView {
-
+	
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		super.doGET(session, formData);
 		LanguageCode lang = session.getLang();
 		int kuf = formData.getNumberValueSilently("kuf", -1);
 		KufType kufType = KufType.getType(kuf);
 		KufType kufParam;
 		PropertyFilter propertyFilter = new PropertyFilter();
-
+		
 		switch (kufType) {
 		case FURNITURE:
 		case ANIMALS:
@@ -37,7 +38,7 @@ public class PersonalEstateView extends AbstractMunicipalPropertyView {
 			propertyFilter.addKufType(KufType.OTHERS);
 			break;
 		}
-
+		
 		addContent(getViewPage(session, formData, propertyFilter, lang));
 		addContent(getSimpleActionBar(session, "personalestate-form", kufParam, lang));
 	}

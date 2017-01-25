@@ -8,9 +8,9 @@ import org.apache.commons.io.FilenameUtils;
 import com.exponentus.env.EnvConst;
 import com.exponentus.env.Environment;
 import com.exponentus.localization.LanguageCode;
-import com.exponentus.scripting._Exception;
+import com.exponentus.scripting.WebFormData;
+import com.exponentus.scripting.WebFormException;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
 
@@ -25,7 +25,7 @@ import staff.model.Organization;
 public class ProcessXLFile extends _DoPage {
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 
 		String fn = formData.getValueSilently("fileid");
 		if (!validateFileName(fn)) {
@@ -39,13 +39,13 @@ public class ProcessXLFile extends _DoPage {
 			if (xlsFile.exists()) {
 				showFile(xlsFile.getAbsolutePath(), fn);
 			}
-		} catch (_Exception e) {
+		} catch (WebFormException e) {
 			logError(e);
 		}
 	}
 
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData) {
+	public void doDELETE(_Session session, WebFormData formData) {
 
 		String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		String fn = formData.getValueSilently("fileid");
@@ -70,7 +70,7 @@ public class ProcessXLFile extends _DoPage {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData) {
+	public void doPOST(_Session session, WebFormData formData) {
 
 		devPrint(formData);
 		LanguageCode lang = session.getLang();
@@ -115,7 +115,7 @@ public class ProcessXLFile extends _DoPage {
 							}
 							try {
 								readers = formData.getListOfValues("readers");
-							} catch (_Exception e) {
+							} catch (WebFormException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
 								addContent(uf);
@@ -134,7 +134,7 @@ public class ProcessXLFile extends _DoPage {
 							}
 							try {
 								readers = formData.getListOfValues("readers");
-							} catch (_Exception e) {
+							} catch (WebFormException e) {
 								uf.setStatus(ImportFileEntry.LOADING_ERROR);
 								uf.setLocalizedMsg(getLocalizedWord("readers_has_not_been_pointed", lang));
 								addContent(uf);

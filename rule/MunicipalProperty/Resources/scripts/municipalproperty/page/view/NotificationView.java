@@ -2,17 +2,17 @@ package municipalproperty.page.view;
 
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 
 import municipalproperty.dao.NotificationDAO;
 import municipalproperty.model.Notification;
 import municipalproperty.model.constants.NotificationType;
 
 public class NotificationView extends AbstractMunicipalPropertyView {
-	
+
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		try {
 			int pageNum = 1;
 			int pageSize = session.pageSize;

@@ -7,10 +7,10 @@ import com.exponentus.dataengine.jpa.DAO;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
@@ -27,7 +27,7 @@ import municipalproperty.model.Property;
  */
 
 public abstract class AbstractMunicipalPropertyForm extends _DoForm {
-
+	
 	protected _ActionBar getActionBar(_Session ses, Property entity) {
 		LanguageCode lang = ses.getLang();
 		_ActionBar actionBar = new _ActionBar(ses);
@@ -35,16 +35,16 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 			actionBar.addAction(new _Action(getLocalizedWord("save_close", lang), "", _ActionType.SAVE_AND_CLOSE));
 		}
 		actionBar.addAction(new _Action(getLocalizedWord("close", lang), "", _ActionType.CLOSE));
-
+		
 		if (entity.getId() != null) {
 			_Action newOrderAction = new _Action(getLocalizedWord("new_order", lang), "", "new_order");
 			newOrderAction.setURL("Provider?id=order-form&propertyid=" + entity.getId());
 			actionBar.addAction(newOrderAction);
 		}
-
+		
 		return actionBar;
 	}
-
+	
 	protected void save(Property entity, DAO dao, boolean isNew) throws SecureException, DAOException {
 		_Session ses = dao.getSession();
 		PropertyDAO pDao = new PropertyDAO(ses);
@@ -58,16 +58,16 @@ public abstract class AbstractMunicipalPropertyForm extends _DoForm {
 				return;
 			}
 		}
-
+		
 		if (isNew) {
 			dao.add(entity);
 		} else {
 			dao.update(entity);
 		}
 	}
-
+	
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData) {
+	public void doDELETE(_Session session, WebFormData formData) {
 		devPrint(formData);
 		String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 		_FormAttachments formFiles = session.getFormAttachments(fsId);

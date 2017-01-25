@@ -5,8 +5,8 @@ import java.util.UUID;
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
@@ -16,9 +16,9 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class OrganizationView extends _DoPage {
-	
+
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		try {
 			LanguageCode lang = session.getLang();
 			_ActionBar actionBar = new _ActionBar(session);
@@ -26,7 +26,7 @@ public class OrganizationView extends _DoPage {
 			newDocAction.setURL("Provider?id=organization-form");
 			actionBar.addAction(newDocAction);
 			actionBar.addAction(new _Action(getLocalizedWord("del_document", lang), "", _ActionType.DELETE_DOCUMENT));
-			
+
 			addContent(actionBar);
 			addContent(getViewPage(new OrganizationDAO(session), formData));
 		} catch (DAOException e) {
@@ -34,9 +34,9 @@ public class OrganizationView extends _DoPage {
 			setBadRequest();
 		}
 	}
-	
+
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData) {
+	public void doDELETE(_Session session, WebFormData formData) {
 		println(formData);
 		try {
 			OrganizationDAO dao = new OrganizationDAO(session);

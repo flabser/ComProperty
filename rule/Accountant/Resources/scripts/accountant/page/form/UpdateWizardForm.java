@@ -7,9 +7,9 @@ import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.IAppFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.env.Environment;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.event._DoPage;
@@ -22,19 +22,19 @@ import staff.dao.OrganizationDAO;
 import staff.model.Employee;
 
 public class UpdateWizardForm extends _DoPage {
-
+	
 	// хранить состояние пока шаг не 0 если есть состояние,
 	// что бы можно было ходить вперед-назад без потери состояния
-
+	
 	@Override
-	public void doGET(_Session ses, _WebFormData formData) {
+	public void doGET(_Session ses, WebFormData formData) {
 		IUser<Long> user = ses.getUser();
 		try {
 			OrganizationDAO oDao = new OrganizationDAO(ses);
 			String step = formData.getValueSilently("step", "0");
 			String fsId = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
 			String fileAttr = getSesAttrName();
-			
+
 			ImportFileEntry uf = (ImportFileEntry) ses.getAttribute(fileAttr);
 			if (uf == null) {
 				uf = new ImportFileEntry();
@@ -47,7 +47,7 @@ public class UpdateWizardForm extends _DoPage {
 				}
 				ses.setAttribute(fileAttr, uf);
 			}
-
+			
 			if (fsId.isEmpty()) {
 				fsId = StringUtil.getRandomText();
 			}
@@ -58,7 +58,7 @@ public class UpdateWizardForm extends _DoPage {
 				uf.setLoadType("");
 			}
 			uf.setStep(step);
-
+			
 			if (step.equals("1")) {
 				// System.out.println(">>>" + ses.hashCode());
 				String file = getFileNameByType(ses, fsId, "upfile", uf);
@@ -89,7 +89,7 @@ public class UpdateWizardForm extends _DoPage {
 						uf.setReaders(readersList);
 					}
 				} else if (uf.getLoadType().equals("writeoff")) {
-
+					
 				} else if (uf.getLoadType().equals("transfer")) {
 					String bh = formData.getValueSilently("recipient");
 					if (!bh.isEmpty()) {
@@ -98,13 +98,13 @@ public class UpdateWizardForm extends _DoPage {
 					uf.setOrderFileName(getFileNameByType(ses, fsId, "uporder", uf));
 				}
 			} else if (step.equals("4")) {
-
+				
 			}
-
+			
 			addValue("workspaceUrl", Environment.getWorkspaceURL());
 			addValue("formsesid", fsId);
 			addContent(uf);
-
+			
 			if (user.getId() == SuperUser.ID || (user.getRoles() != null && user.getRoles().contains("data_loader"))) {
 				_ActionBar actionBar = new _ActionBar(ses);
 				actionBar.addAction(new _Action(getLocalizedWord("attach_file", ses.getLang()), "", "attach_file"));
@@ -116,14 +116,14 @@ public class UpdateWizardForm extends _DoPage {
 			return;
 		}
 	}
-
+	
 	public static String getSesAttrName() {
 		return "wizard_form";
 	}
-
+	
 	public static String getFileNameByType(_Session ses, String fsid, String type, ImportFileEntry uf) {
 		_FormAttachments formFiles = ses.getFormAttachments(fsid);
-
+		
 		for (IAppFile fn : formFiles.getFiles(type)) {
 			if (fn.getFieldName().equalsIgnoreCase(type)) {
 				// fake sign result

@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.env.Environment;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.event._DoPage;
 import com.exponentus.scripting.outline._Outline;
 import com.exponentus.scripting.outline._OutlineEntry;
@@ -17,12 +17,12 @@ import reference.dao.OrgCategoryDAO;
 import reference.model.OrgCategory;
 
 public class MainNavigator extends _DoPage {
-
+	
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		LanguageCode lang = session.getLang();
 		LinkedList<IOutcomeObject> list = new LinkedList<IOutcomeObject>();
-
+		
 		_Outline common_outline = new _Outline(getLocalizedWord("common_staff_data", lang), "common");
 		_OutlineEntry orgEntry = new _OutlineEntry(getLocalizedWord("organizations", lang), "organization-view");
 		try {
@@ -43,9 +43,9 @@ public class MainNavigator extends _DoPage {
 		// "legal-entity-view"));
 		common_outline
 				.addEntry(new _OutlineEntry(getLocalizedWord("responsible_persons", lang), "responsible-person-view"));
-
+		
 		list.add(common_outline);
-
+		
 		addValue("workspaceUrl", Environment.getWorkspaceURL());
 		addValue("outline_current",
 				formData.getValueSilently("id").replace("-form", "-view") + formData.getValueSilently("categoryid"));

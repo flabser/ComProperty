@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
-import com.exponentus.scripting._Exception;
+import com.exponentus.scripting.WebFormData;
+import com.exponentus.scripting.WebFormException;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
 
@@ -30,9 +28,9 @@ import staff.page.form.StaffForm;
  */
 
 public class IndividualForm extends StaffForm {
-	
+
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		IUser<Long> user = session.getUser();
 		try {
@@ -55,7 +53,7 @@ public class IndividualForm extends StaffForm {
 				}
 				entity.setOrgCategory(oc);
 				entity.setLabels(new ArrayList<>());
-				
+
 			}
 			addContent(entity);
 			addContent(new _POJOListWrapper<>(new OrganizationLabelDAO(session).findAll().getResult(), session));
@@ -65,9 +63,9 @@ public class IndividualForm extends StaffForm {
 			Server.logger.errorLogEntry(e);
 		}
 	}
-	
+
 	@Override
-	public void doPOST(_Session session, _WebFormData formData) {
+	public void doPOST(_Session session, WebFormData formData) {
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
@@ -75,18 +73,18 @@ public class IndividualForm extends StaffForm {
 				setValidation(ve);
 				return;
 			}
-			
+
 			String id = formData.getValueSilently("docid");
 			OrganizationDAO dao = new OrganizationDAO(session);
 			Organization entity;
 			boolean isNew = id.isEmpty();
-			
+
 			if (isNew) {
 				entity = new Organization();
 			} else {
 				entity = dao.findById(UUID.fromString(id));
 			}
-			
+
 			entity.setName(formData.getValue("name"));
 			OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
 			OrgCategory oc = ocDao.findByName("Частный предприниматель");
@@ -106,23 +104,23 @@ public class IndividualForm extends StaffForm {
 				}
 			}
 			entity.setLabels(labels);
-			
+
 			if (isNew) {
 				dao.add(entity);
 			} else {
 				dao.update(entity);
 			}
-			
+
 			setRedirect("p?id=individual-view");
-		} catch (_Exception | DatabaseException | SecureException | DAOException e) {
+		} catch (WebFormException | SecureException | DAOException e) {
 			logError(e);
 		}
 	}
-	
+
 	@Override
-	protected _Validation validate(_WebFormData formData, LanguageCode lang) {
+	protected _Validation validate(WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
-		
+
 		if (formData.getValueSilently("name").isEmpty()) {
 			ve.addError("name", "required", getLocalizedWord("field_is_empty", lang));
 		}
@@ -131,11 +129,11 @@ public class IndividualForm extends StaffForm {
 		 * ve.addError("orgcategory", "required",
 		 * getLocalizedWord("field_is_empty", lang)); }
 		 */
-		
+
 		if (!formData.getValueSilently("bin").isEmpty() && formData.getValueSilently("bin").length() != 12) {
 			ve.addError("bin", "eq_12", getLocalizedWord("bin_value_should_be_consist_from_12_symbols", lang));
 		}
-		
+
 		return ve;
 	}
 }

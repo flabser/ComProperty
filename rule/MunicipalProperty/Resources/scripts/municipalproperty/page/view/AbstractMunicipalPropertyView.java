@@ -6,9 +6,9 @@ import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
@@ -30,7 +30,7 @@ import staff.model.Organization;
 
 public abstract class AbstractMunicipalPropertyView extends _DoPage {
 
-	protected _POJOListWrapper<Property> getViewPage(_Session session, _WebFormData formData, PropertyFilter filter,
+	protected _POJOListWrapper<Property> getViewPage(_Session session, WebFormData formData, PropertyFilter filter,
 			LanguageCode lang) {
 		int pageNum = formData.getNumberValueSilently("page", 1);
 		int pageSize = session.getPageSize();
@@ -71,7 +71,7 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 	}
 
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		String[] orgIds = formData.getListOfValuesSilently("balanceholder");
 		for (String oid : orgIds) {
 			if (!oid.isEmpty()) {
@@ -85,7 +85,7 @@ public abstract class AbstractMunicipalPropertyView extends _DoPage {
 	}
 
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData) {
+	public void doDELETE(_Session session, WebFormData formData) {
 		// println(formData);
 
 		try {

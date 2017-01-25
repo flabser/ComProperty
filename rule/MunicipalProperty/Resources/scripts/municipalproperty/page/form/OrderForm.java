@@ -16,13 +16,13 @@ import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
 import com.exponentus.scripting.IPOJOObject;
+import com.exponentus.scripting.WebFormData;
+import com.exponentus.scripting.WebFormException;
 import com.exponentus.scripting._EnumWrapper;
-import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.actions._Action;
 import com.exponentus.scripting.actions._ActionBar;
 import com.exponentus.scripting.actions._ActionType;
@@ -41,7 +41,7 @@ public class OrderForm extends _DoForm {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		try {
 			IUser<Long> user = session.getUser();
 			Order entity;
@@ -126,7 +126,7 @@ public class OrderForm extends _DoForm {
 	}
 
 	@Override
-	public void doPOST(_Session session, _WebFormData formData) {
+	public void doPOST(_Session session, WebFormData formData) {
 		try {
 			_Validation ve = validate(formData, session.getLang());
 			if (ve.hasError()) {
@@ -166,7 +166,7 @@ public class OrderForm extends _DoForm {
 			}
 		} catch (SecureException e) {
 			setError(e);
-		} catch (_Exception | DatabaseException e) {
+		} catch (WebFormException | DatabaseException e) {
 			logError(e);
 			setBadRequest();
 		} catch (DAOException e) {
@@ -175,7 +175,7 @@ public class OrderForm extends _DoForm {
 		}
 	}
 
-	private _Validation validate(_WebFormData formData, LanguageCode lang) {
+	private _Validation validate(WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
 
 		if (formData.getValueSilently("regnumber").isEmpty()) {
@@ -199,7 +199,7 @@ public class OrderForm extends _DoForm {
 	}
 
 	@Override
-	public void doDELETE(_Session session, _WebFormData formData) {
+	public void doDELETE(_Session session, WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		String attachmentId = formData.getValueSilently("attachment");
 		// String attachmentName = formData.getValueSilently("att-name");

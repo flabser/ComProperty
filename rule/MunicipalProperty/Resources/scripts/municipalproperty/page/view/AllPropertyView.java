@@ -1,8 +1,9 @@
 package municipalproperty.page.view;
 
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
+
 import municipalproperty.dao.filter.PropertyFilter;
 
 /**
@@ -10,13 +11,13 @@ import municipalproperty.dao.filter.PropertyFilter;
  */
 
 public class AllPropertyView extends AbstractMunicipalPropertyView {
-
+	
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		super.doGET(session, formData);
 		LanguageCode lang = session.getLang();
 		PropertyFilter propertyFilter = new PropertyFilter();
 		addContent(getViewPage(session, formData, propertyFilter, lang));
-
+		
 	}
 }

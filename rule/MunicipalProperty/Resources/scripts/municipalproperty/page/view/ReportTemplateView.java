@@ -1,8 +1,8 @@
 package municipalproperty.page.view;
 
 import com.exponentus.dataengine.exception.DAOException;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 
 import municipalproperty.dao.ReportTemplateDAO;
 
@@ -11,9 +11,9 @@ import municipalproperty.dao.ReportTemplateDAO;
  */
 
 public class ReportTemplateView extends AbstractMunicipalPropertyView {
-	
+
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		try {
 			addContent(getViewPage(new ReportTemplateDAO(session), formData));
 		} catch (DAOException e) {

@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.WebFormData;
+import com.exponentus.scripting.WebFormException;
 import com.exponentus.scripting._EnumWrapper;
-import com.exponentus.scripting._Exception;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.server.Server;
 import com.exponentus.user.IUser;
 import com.exponentus.util.TimeUtil;
@@ -32,9 +30,9 @@ import staff.dao.OrganizationDAO;
 import staff.model.Organization;
 
 public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
-
+	
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		try {
 			IUser<Long> user = session.getUser();
@@ -42,7 +40,7 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 			if (!id.isEmpty()) {
 				IntangibleAssetDAO dao = new IntangibleAssetDAO(session);
 				entity = dao.findById(UUID.fromString(id));
-				
+
 				if (formData.containsField("attachment")) {
 					if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 						return;
@@ -64,29 +62,29 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 			setBadRequest();
 		}
 	}
-
+	
 	@Override
-	public void doPOST(_Session session, _WebFormData formData) {
+	public void doPOST(_Session session, WebFormData formData) {
 		try {
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
-
+			
 			_Validation ve = validate(formData, session.getLang(), isNew);
 			if (ve.hasError()) {
 				setBadRequest();
 				setValidation(ve);
 				return;
 			}
-
+			
 			IntangibleAssetDAO dao = new IntangibleAssetDAO(session);
 			IntangibleAsset entity;
-
+			
 			if (isNew) {
 				entity = new IntangibleAsset();
 			} else {
 				entity = dao.findById(id);
 			}
-
+			
 			if (formData.containsField("balanceholder")) {
 				OrganizationDAO oDao = new OrganizationDAO(session);
 				Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
@@ -107,16 +105,16 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 			entity.setImpairmentLoss(formData.getFloatValueSilently("impairmentloss", 0));
 			entity.setBalanceCost(formData.getFloatValueSilently("balancecost", 0));
 			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
-
+			
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
 			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
-
+			
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
 			entity.setAcquisitionYear(formData.getNumberValueSilently("acquisitionyear", 0));
 			entity.setYearRelease(formData.getNumberValueSilently("yearrelease", 0));
 			entity.setAcceptanceDate(TimeUtil.stringToDate(formData.getValue("acceptancedate")));
-
+			
 			int rtu = formData.getNumberValueSilently("isreadytouse", 0);
 			if (rtu == 1) {
 				entity.setReadyToUse(true);
@@ -127,7 +125,7 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 			entity.setTechCert(formData.getValueSilently("techcert"));
 			entity.setRegCert(formData.getValueSilently("regcert"));
 			entity.setDecreesActs(formData.getValueSilently("decreesacts"));
-
+			
 			if (formData.containsField("tags")) {
 				String[] tagIds = formData.getListOfValuesSilently("tags");
 				if (tagIds.length > 0) {
@@ -144,22 +142,22 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 					entity.setTags(tags);
 				}
 			}
-
+			
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
-
+			
 			IUser<Long> user = session.getUser();
 			entity.addReaderEditor(user);
-
+			
 			save(entity, dao, isNew);
-		} catch (_Exception | DatabaseException | SecureException | DAOException e) {
+		} catch (WebFormException | SecureException | DAOException e) {
 			logError(e);
 			setBadRequest();
 		}
 	}
-
-	private _Validation validate(_WebFormData formData, LanguageCode lang, boolean isNew) {
+	
+	private _Validation validate(WebFormData formData, LanguageCode lang, boolean isNew) {
 		_Validation ve = new _Validation();
-
+		
 		if (isNew || formData.containsField("balanceholder")) {
 			if (formData.getValueSilently("balanceholder").isEmpty()) {
 				ve.addError("balanceholder", "required", getLocalizedWord("field_is_empty", lang));
@@ -185,26 +183,26 @@ public class IntangibleAssetForm extends AbstractMunicipalPropertyForm {
 		if (formData.getValueSilently("acceptancedate").isEmpty()) {
 			ve.addError("acceptancedate", "required", getLocalizedWord("field_is_empty", lang));
 		} else {
-
+			
 			TimeUtil.stringToDate(formData.getValueSilently("acceptancedate"));
-
+			
 		}
-
+		
 		if (formData.getValueSilently("originalcost").isEmpty()) {
 			ve.addError("originalcost", "required", getLocalizedWord("field_is_empty", lang));
 		} else if (formData.getFloatValueSilently("originalcost", 0) <= 0) {
 			ve.addError("originalcost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
-
+		
 		if (formData.getValueSilently("balancecost").isEmpty()) {
 			ve.addError("balancecost", "required", getLocalizedWord("required", lang));
 		} else if (formData.getFloatValueSilently("balancecost", 0) <= 0) {
 			ve.addError("balancecost", "gt_0", getLocalizedWord("should_be_contain_value_more_than_zero", lang));
 		}
-
+		
 		return ve;
 	}
-
+	
 	protected IntangibleAsset getDefaultEntity(IUser<Long> user, KufType type, _Session session) {
 		IntangibleAsset entity = new IntangibleAsset();
 		try {

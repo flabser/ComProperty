@@ -2,9 +2,9 @@ package datafixer.page.view;
 
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
+import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
-import com.exponentus.scripting._WebFormData;
 import com.exponentus.scripting.event._DoPage;
 
 import municipalproperty.dao.RealEstateDAO;
@@ -15,9 +15,9 @@ import municipalproperty.model.RealEstate;
  */
 
 public class InconsistentAddrView extends _DoPage {
-	
+
 	@Override
-	public void doGET(_Session session, _WebFormData formData) {
+	public void doGET(_Session session, WebFormData formData) {
 		int pageNum = 1;
 		int pageSize = session.pageSize;
 		try {
