@@ -1679,8 +1679,8 @@ nb.dialog = {
         }
         //
         var titleBarHeight = $('.ui-dialog-titlebar', $dlgw[0]).outerHeight();
-        var actionBarHeight = $('.ui-dialog-buttonpane', $dlgw[0]).outerHeight()
-        var searchBarHeight = $('.dialog-filter', $dlgw[0]).outerHeight()
+        var actionBarHeight = $('.ui-dialog-buttonpane', $dlgw[0]).outerHeight();
+        var searchBarHeight = $('.dialog-filter', $dlgw[0]).outerHeight();
         var barHeight = titleBarHeight + actionBarHeight + searchBarHeight;
         //
         var wh = window.innerHeight;
@@ -2029,7 +2029,7 @@ nb.submitForm = function(form, options) {
         cache: false,
         type: 'POST',
         dataType: 'json',
-        url: form.action || form.baseURI,
+        url: form.baseURI || window.location.href,
         data: $(form).serialize(),
         beforeSend: function() {
             nb.uiBlock();
@@ -2210,7 +2210,7 @@ nb.setFormValues = function(currentNode) {
                     }
                 } else {
                     $('[data-input=' + field.replace('id', '') + ']', form).html('<li>' + text + '</li>');
-                    
+
                 }
             }
         });
@@ -2558,7 +2558,11 @@ nb.getSelectOptions = function(selectOptions) {
             meta = {},
             list = {},
             buff = {};
-
+        var lang = 'ENG';
+        var ck = document.cookie.match('(lang)=(.*?)($|;|,(?! ))');
+        if (ck) {
+            lang = ck[2];
+        }
         var objects = data.objects;
         if (objects.length) {
             for (var i in objects) {
@@ -2568,14 +2572,13 @@ nb.getSelectOptions = function(selectOptions) {
                     break;
                 }
             }
-            // meta = data.objects[0].meta;
-            // list = data.objects[0].list;
 
             for (var k in list) {
                 buff = {
                     id: list[k].id,
-                    text: list[k].name
+                    text: list[k].localizedName[lang]
                 };
+
                 if (options.fields) {
                     for (var fi in options.fields) {
                         buff[options.fields[fi]] = list[k][options.fields[fi]];
@@ -2612,7 +2615,8 @@ nb.getSelectOptions = function(selectOptions) {
 
     return {
         allowClear: true,
-        minimumInputLength: 0,
+        minimumInputLength: options.minimumInputLength || 0,
+        tags: options.tags || false,
         minimumResultsForSearch: options.minimumResultsForSearch || 20,
         placeholder: options.placeholder || '',
         templateResult: options.templateResult,
