@@ -21,45 +21,46 @@ import staff.model.Organization;
 @Table(name = "prev_balance_holders")
 @NamedQuery(name = "PrevBalanceHolder.findAll", query = "SELECT m FROM PrevBalanceHolder AS m ORDER BY m.regDate")
 public class PrevBalanceHolder extends SecureAppEntity<UUID> {
-
+	
 	@JsonIgnore
 	@NotNull
 	@ManyToOne(cascade = { CascadeType.MERGE }, optional = false)
 	@JoinColumn(nullable = false)
 	private Property property;
-
+	
 	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(nullable = false)
 	private Organization balanceHolder;
-
+	
 	public Property getProperty() {
 		return property;
 	}
-
+	
 	public void setProperty(Property property) {
 		this.property = property;
 	}
-
+	
 	public Organization getBalanceHolder() {
 		return balanceHolder;
 	}
-
+	
 	public void setBalanceHolder(Organization balanceHolder) {
 		this.balanceHolder = balanceHolder;
 	}
-
+	
 	@Override
 	public String getShortXMLChunk(_Session ses) {
 		return getFullXMLChunk(ses);
 	}
-
+	
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + Util.convertDataTimeToString(regDate) + "</regdate>");
-		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getLocalizedName(ses.getLang()) + "</balanceholder>");
+		chunk.append("<balanceholder id=\"" + balanceHolder.getId() + "\">" + balanceHolder.getLocName(ses.getLang())
+				+ "</balanceholder>");
 		return chunk.toString();
 	}
-
+	
 }

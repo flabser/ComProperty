@@ -19,65 +19,67 @@ import reference.model.embedded.Address;
 public class RealEstate extends Property {
 	@Embedded
 	private Address address = new Address();
-
+	
 	@Column(name = "count_floors")
 	private int countFloors;
-
+	
 	private String material;
-
+	
 	public Address getAddress() {
 		return address;
 	}
-
+	
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
+	
 	public int getCountFloors() {
 		return countFloors;
 	}
-
+	
 	public void setCountFloors(int countFloors) {
 		this.countFloors = countFloors;
 	}
-
+	
 	public String getMaterial() {
 		return material;
 	}
-
+	
 	public void setMaterial(String material) {
 		this.material = material;
 	}
-
+	
 	@Override
 	public String getFullXMLChunk(_Session ses) {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<countfloors>" + countFloors + "</countfloors>");
 		chunk.append("<material>" + material + "</material>");
-
+		
 		chunk.append("<address>");
 		chunk.append("<regiontype id=\"" + address.getRegion().getType().getId() + "\">"
-		        + address.getRegion().getType().getLocalizedName(ses.getLang()) + "</regiontype>");
-		chunk.append("<region id=\"" + address.getRegion().getId() + "\">" + address.getRegion().getLocalizedName(ses.getLang()) + "</region>");
-
+				+ address.getRegion().getType().getLocName(ses.getLang()) + "</regiontype>");
+		chunk.append("<region id=\"" + address.getRegion().getId() + "\">"
+				+ address.getRegion().getLocName(ses.getLang()) + "</region>");
+		
 		if (address.getDistrict() != null) {
-			chunk.append("<district id=\"" + address.getDistrict().getId() + "\">" + address.getDistrict().getLocalizedName(ses.getLang())
-			        + "</district>");
+			chunk.append("<district id=\"" + address.getDistrict().getId() + "\">"
+					+ address.getDistrict().getLocName(ses.getLang()) + "</district>");
 		}
-
+		
 		chunk.append("<localitytype id=\"" + address.getLocality().getType().getId() + "\">"
-		        + address.getLocality().getType().getLocalizedName(ses.getLang()) + "</localitytype>");
-		chunk.append(
-		        "<locality id=\"" + address.getLocality().getId() + "\">" + address.getLocality().getLocalizedName(ses.getLang()) + "</locality>");
-
+				+ address.getLocality().getType().getLocName(ses.getLang()) + "</localitytype>");
+		chunk.append("<locality id=\"" + address.getLocality().getId() + "\">"
+				+ address.getLocality().getLocName(ses.getLang()) + "</locality>");
+		
 		if (address.getStreet() != null) {
-			chunk.append("<street id=\"" + address.getStreet().getId() + "\">" + address.getStreet().getLocalizedName(ses.getLang()) + "</street>");
+			chunk.append("<street id=\"" + address.getStreet().getId() + "\">"
+					+ address.getStreet().getLocName(ses.getLang()) + "</street>");
 		}
 		chunk.append("<housenumber>" + address.getHouseNumber() + "</housenumber>");
 		chunk.append("<additionalinfo>" + address.getAdditionalInfo() + "</additionalinfo>");
 		chunk.append("<coordinates>" + address.getCoordinates() + "</coordinates>");
 		chunk.append("</address>");
-
+		
 		return super.getFullXMLChunk(ses) + chunk;
 	}
 }
