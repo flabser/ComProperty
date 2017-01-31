@@ -7,6 +7,5 @@ public class AppConst {
 	public static String NAME_RUS = "Импорт объектов";
 	public static String NAME_KAZ = "Нысан импорт";
 	public static String DEFAULT_PAGE = "update-wizard";
-	public static String FT_INDEX_SCOPE = "[{\"tableName\":\"properties\",\"fieldNames\":"
-	        + "[\"object_name\",\"description\",\"notes\",\"inv_number\"],\"daoImpl\":\"municipalproperty.dao.PropertyDAO\"}]";
+	public static String[] ROLES = { "data_loader" };
 }
