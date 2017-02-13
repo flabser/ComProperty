@@ -7,9 +7,9 @@ import java.util.UUID;
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting.WebFormException;
-import com.exponentus.scripting._EnumWrapper;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting._Validation;
 import com.exponentus.server.Server;
@@ -55,8 +55,8 @@ public class VehicleForm extends AbstractMunicipalPropertyForm {
 			}
 			addContent(entity);
 			addContent(getActionBar(session, entity));
-			addContent(new _EnumWrapper(PropertyStatusType.class.getEnumConstants()));
-			addContent(new _EnumWrapper(KufType.class.getEnumConstants()));
+			addContent(new EnumWrapper(PropertyStatusType.class.getEnumConstants()));
+			addContent(new EnumWrapper(KufType.class.getEnumConstants()));
 		} catch (DAOException e) {
 			logError(e);
 			setBadRequest();

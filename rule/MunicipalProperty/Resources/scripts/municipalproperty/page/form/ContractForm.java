@@ -15,10 +15,10 @@ import com.exponentus.dataengine.jpa.TempFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
 import com.exponentus.localization.LanguageCode;
+import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting.WebFormException;
-import com.exponentus.scripting._EnumWrapper;
 import com.exponentus.scripting._FormAttachments;
 import com.exponentus.scripting._POJOListWrapper;
 import com.exponentus.scripting._Session;
@@ -37,7 +37,7 @@ import municipalproperty.model.Contract;
 import municipalproperty.model.Order;
 
 public class ContractForm extends _DoForm {
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doGET(_Session session, WebFormData formData) {
@@ -47,11 +47,11 @@ public class ContractForm extends _DoForm {
 			String id = formData.getValueSilently("docid");
 			if (!id.isEmpty()) {
 				ContractDAO dao;
-
+				
 				dao = new ContractDAO(session);
-
+				
 				entity = dao.findById(UUID.fromString(id));
-
+				
 				if (formData.containsField("attachment")) {
 					if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 						return;
@@ -84,9 +84,9 @@ public class ContractForm extends _DoForm {
 					_FormAttachments fAtts = (_FormAttachments) obj;
 					formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
 				}
-
+				
 				List<IPOJOObject> filesToPublish = new ArrayList<>();
-
+				
 				for (String fn : formFiles) {
 					UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
 					if (uf == null) {
@@ -98,9 +98,9 @@ public class ContractForm extends _DoForm {
 				}
 				addContent(new _POJOListWrapper<>(filesToPublish, session));
 			}
-
+			
 			addContent(entity);
-			addContent(new _EnumWrapper(Contract.ContractStatus.class.getEnumConstants()));
+			addContent(new EnumWrapper(Contract.ContractStatus.class.getEnumConstants()));
 			_ActionBar actionBar = new _ActionBar(session);
 			actionBar.addAction(
 					new _Action(getLocalizedWord("save_close", session.getLang()), "", _ActionType.SAVE_AND_CLOSE));
@@ -111,7 +111,7 @@ public class ContractForm extends _DoForm {
 			setBadRequest();
 		}
 	}
-	
+
 	@Override
 	public void doPOST(_Session session, WebFormData formData) {
 		try {
@@ -121,12 +121,12 @@ public class ContractForm extends _DoForm {
 				setValidation(ve);
 				return;
 			}
-			
+
 			ContractDAO dao = new ContractDAO(session);
 			Contract entity;
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
-			
+
 			if (isNew) {
 				entity = new Contract();
 				String orderId = formData.getValueSilently("orderid");
@@ -136,14 +136,14 @@ public class ContractForm extends _DoForm {
 			} else {
 				entity = dao.findById(id);
 			}
-			
+
 			entity.setDescription(formData.getValue("description"));
 			entity.setRegNumber(formData.getValue("regnumber"));
 			entity.setAppliedRegDate(TimeUtil.stringToDate(formData.getValue("appliedregdate")));
 			entity.setExpired(TimeUtil.stringToDate(formData.getValue("expired")));
-			
+
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
-			
+
 			if (isNew) {
 				IUser<Long> user = session.getUser();
 				entity.addReaderEditor(user);
@@ -151,7 +151,7 @@ public class ContractForm extends _DoForm {
 			} else {
 				entity = dao.update(entity);
 			}
-			
+
 		} catch (SecureException e) {
 			setError(e);
 		} catch (WebFormException | DatabaseException e) {
@@ -162,10 +162,10 @@ public class ContractForm extends _DoForm {
 			logError(e);
 		}
 	}
-	
+
 	private _Validation validate(WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
-		
+
 		if (formData.getValueSilently("orderid").isEmpty()) {
 			ve.addError("orderid", "required", getLocalizedWord("field_is_empty", lang));
 		}
@@ -184,29 +184,29 @@ public class ContractForm extends _DoForm {
 		if (formData.getValueSilently("contractstatus").isEmpty()) {
 			ve.addError("contractstatus", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		
+
 		return ve;
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		String attachmentId = formData.getValueSilently("attachment");
 		// String attachmentName = formData.getValueSilently("att-name");
-		
+
 		if (id.isEmpty()
 				|| attachmentId.isEmpty()/* || attachmentName.isEmpty() */) {
 			return;
 		}
-		
+
 		try {
 			ContractDAO dao = new ContractDAO(session);
 			Contract entity = dao.findById(id);
-
+			
 			AttachmentDAO attachmentDAO = new AttachmentDAO(session);
 			Attachment att = attachmentDAO.findById(attachmentId);
 			entity.getAttachments().remove(att);
-
+			
 			dao.update(entity);
 		} catch (SecureException | DAOException e) {
 			setError(e);
