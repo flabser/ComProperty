@@ -419,7 +419,7 @@ public class Property extends SecureAppEntity<UUID> {
 		StringBuilder chunk = new StringBuilder(1000);
 		chunk.append("<regdate>" + TimeUtil.dateTimeToStringSilently(regDate) + "</regdate>");
 		IExtUserDAO eDao = Environment.getExtUserDAO();
-		IEmployee user = eDao.getEmployee(author);
+		IEmployee user = eDao.getEmployee(author.getId());
 		if (user != null) {
 			chunk.append("<author>" + user.getName() + "</author>");
 		} else {
