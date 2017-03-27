@@ -10,7 +10,6 @@ import javax.ws.rs.core.Response;
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.ViewPage;
 import com.exponentus.rest.RestProvider;
-import com.exponentus.rest.ServiceDescriptor;
 
 import municipalproperty.dao.RealEstateDAO;
 import municipalproperty.model.RealEstate;
@@ -44,12 +43,6 @@ public class GisService extends RestProvider {
 		} catch (DAOException e) {
 			return responseException(e);
 		}
-	}
-
-	@Override
-	public ServiceDescriptor updateDescription(ServiceDescriptor sd) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
