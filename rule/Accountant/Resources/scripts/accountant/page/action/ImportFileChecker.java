@@ -12,7 +12,7 @@ import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
 import com.exponentus.scripting.event._DoPage;
 import com.exponentus.user.IUser;
-import com.exponentus.util.Util;
+import com.exponentus.util.EnumUtil;
 
 import accountant.page.form.ImportFileEntry;
 import accountant.page.form.UpdateWizardForm;
@@ -38,7 +38,7 @@ public class ImportFileChecker extends _DoPage {
 			}
 
 			String uo = formData.getValueSilently("uploadtype");
-			
+
 			LanguageCode lang = session.getLang();
 
 			String fsid = formData.getValueSilently(EnvConst.FSID_FIELD_NAME);
@@ -71,7 +71,7 @@ public class ImportFileChecker extends _DoPage {
 					Organization randomOrg = null;
 
 					List<Organization> oList = oDao.findAll().getResult();
-					randomOrg = (Organization) Util.getRndListElement(oList);
+					randomOrg = (Organization) EnumUtil.getRndElement(oList);
 
 					String[] readers = formData.getListOfValuesSilently("readers");
 
