@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting.WebFormException;
@@ -82,12 +82,12 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			if (isNew) {
 				entity = new RealEstate();
 			} else {
-				entity = dao.findById(id);
+				entity = dao.findByIdentefier(id);
 			}
 
 			if (formData.containsField("balanceholder")) {
 				OrganizationDAO oDao = new OrganizationDAO(session);
-				Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
+				Organization org = oDao.findByIdentefier(formData.getValueSilently("balanceholder"));
 				entity.setBalanceHolder(org);
 			}
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
@@ -98,7 +98,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setPropertyStatusType(PropertyStatusType.valueOf(formData.getValue("propertystatus")));
 			entity.setDescription(formData.getValueSilently("description"));
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
-			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
+			PropertyCode pcEntity = pcDao.findByIdentefier(formData.getValueSilently("propertycode"));
 			entity.setPropertyCode(pcEntity);
 			entity.setOriginalCost(formData.getFloatValueSilently("originalcost", 0));
 			entity.setCumulativeDepreciation(formData.getFloatValueSilently("cumulativedepreciation", 0));
@@ -107,7 +107,7 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
 
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
-			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
+			ReceivingReason rrEntity = rrDao.findByIdentefier(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
 
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));
@@ -146,10 +146,10 @@ public class RealEstateForm extends AbstractMunicipalPropertyForm {
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
 
 			Address addr = entity.getAddress();
-			addr.setRegion(new RegionDAO(session).findById(formData.getValueSilently("region")));
-			addr.setLocality(new LocalityDAO(session).findById(formData.getValueSilently("locality")));
-			addr.setCityDistrict(new CityDistrictDAO(session).findById(formData.getValueSilently("district")));
-			addr.setStreet(new StreetDAO(session).findById(formData.getValueSilently("street")));
+			addr.setRegion(new RegionDAO(session).findByIdentefier(formData.getValueSilently("region")));
+			addr.setLocality(new LocalityDAO(session).findByIdentefier(formData.getValueSilently("locality")));
+			addr.setCityDistrict(new CityDistrictDAO(session).findByIdentefier(formData.getValueSilently("district")));
+			addr.setStreet(new StreetDAO(session).findByIdentefier(formData.getValueSilently("street")));
 			addr.setHouseNumber(formData.getValueSilently("housenumber"));
 			addr.setAdditionalInfo(formData.getValueSilently("additionalinfo"));
 			addr.setCoordinates(formData.getValueSilently("coordinates"));

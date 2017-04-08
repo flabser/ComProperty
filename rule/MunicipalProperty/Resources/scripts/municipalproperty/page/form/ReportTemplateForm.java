@@ -56,7 +56,7 @@ public class ReportTemplateForm extends _DoPage {
 				entity = dao.findById(UUID.fromString(id));
 				addContent(entity);
 				_Action back = new _Action(_ActionType.CLOSE);
-				back.setURL("Provider?id=report-template-view");
+				back.setURL("p?id=report-template-view");
 				addContent(new _ActionBar(session, getCurrentAppEnv()).addAction(back));
 			} else {
 				setBadRequest();
@@ -79,17 +79,17 @@ public class ReportTemplateForm extends _DoPage {
 				ReportTemplateDAO dao = new ReportTemplateDAO(session);
 				entity = dao.findById(UUID.fromString(id));
 			}
-			
+
 			String reportName = formData.getValueSilently("id");
-			
+
 			if (entity != null) {
 				reportName = entity.getType();
 			}
-			
+
 			String addInfo = "";
 			println(formData);
 			// String reportName = formData.getValueSilently("id");
-			
+
 			List<KufType> cat = new ArrayList<>();// ReportUtil.getCat().get(reportName);
 			if (formData.containsField("propertycode")) {
 				String[] propertyType = formData.getListOfValuesSilently("propertycode");
@@ -101,17 +101,17 @@ public class ReportTemplateForm extends _DoPage {
 			} else {
 				cat = entity.getPropertyType();
 			}
-			
+
 			Date from = formData.getDateSilently("acceptancedatefrom");
 			Date to = formData.getDateSilently("acceptancedateto");
 			if (from != null && to != null) {
 				// checkAcceptanceDate = true;
 			}
-			
+
 			UUID bhCat = null;
 			UUID bhId = null;
 			String bh = formData.getValueSilently("balanceholder");
-			
+
 			if (!bh.isEmpty()) {
 				bhId = UUID.fromString(bh);
 				OrganizationDAO orgDao = new OrganizationDAO(session);
@@ -121,11 +121,11 @@ public class ReportTemplateForm extends _DoPage {
 				String oc = formData.getValueSilently("orgcategory");
 				if (!oc.isEmpty()) {
 					bhCat = UUID.fromString(oc);
-					
+
 					OrgCategoryDAO ocDao = new OrgCategoryDAO(session);
-					OrgCategory orgCatEntity = ocDao.findById(oc);
+					OrgCategory orgCatEntity = ocDao.findByIdentefier(oc);
 					addInfo = orgCatEntity.getName();
-					
+
 				}
 			}
 

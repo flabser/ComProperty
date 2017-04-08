@@ -7,7 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import com.exponentus.env.EnvConst;
 import com.exponentus.env.Environment;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting.WebFormException;
 import com.exponentus.scripting._Session;

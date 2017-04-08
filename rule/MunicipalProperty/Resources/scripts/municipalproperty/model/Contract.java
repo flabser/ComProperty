@@ -130,7 +130,7 @@ public class Contract extends SecureAppEntity<UUID> {
 		chunk.append("<regnumber>" + regNumber + "</regnumber>");
 		chunk.append("<appliedregdate>" + Util.convertDateToStringSilently(appliedRegDate) + "</appliedregdate>");
 		chunk.append("<description>" + description + "</description>");
-		chunk.append("<contractstatus>" + Environment.getAppEnv(this).vocabulary
+		chunk.append("<contractstatus>" + Environment.getAppEnvByAlias(this.getClass().getName()).vocabulary
 				.getWord(getContractStatus().name().toLowerCase(), ses.getLang()) + "</contractstatus>");
 		chunk.append("<order docid=\"" + order.getId() + "\">");
 		chunk.append("<url>" + order.getURL() + "</url>");

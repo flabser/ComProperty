@@ -17,7 +17,7 @@ public class MPByPropertyCodeView extends AbstractMunicipalPropertyView {
 		try {
 			String cat = formData.getValueSilently("categoryid");
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
-			PropertyCode propertyCode = pcDao.findById(cat);
+			PropertyCode propertyCode = pcDao.findByIdentefier(cat);
 			PropertyFilter propertyFilter = new PropertyFilter();
 
 			propertyFilter.setPropertyCode(propertyCode);

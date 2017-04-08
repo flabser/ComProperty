@@ -14,7 +14,7 @@ import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.TempFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting.WebFormData;
@@ -47,11 +47,11 @@ public class ContractForm extends _DoForm {
 			String id = formData.getValueSilently("docid");
 			if (!id.isEmpty()) {
 				ContractDAO dao;
-				
+
 				dao = new ContractDAO(session);
-				
+
 				entity = dao.findById(UUID.fromString(id));
-				
+
 				if (formData.containsField("attachment")) {
 					if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 						return;
@@ -67,7 +67,7 @@ public class ContractForm extends _DoForm {
 				entity.setRegNumber("");
 				String orderId = formData.getValueSilently("orderid");
 				OrderDAO orderDAO = new OrderDAO(session);
-				Order order = orderDAO.findById(orderId);
+				Order order = orderDAO.findByIdentefier(orderId);
 				if (order == null) {
 					order = new Order();
 					order.setDescription("");
@@ -84,9 +84,9 @@ public class ContractForm extends _DoForm {
 					_FormAttachments fAtts = (_FormAttachments) obj;
 					formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
 				}
-				
+
 				List<IPOJOObject> filesToPublish = new ArrayList<>();
-				
+
 				for (String fn : formFiles) {
 					UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
 					if (uf == null) {
@@ -98,7 +98,7 @@ public class ContractForm extends _DoForm {
 				}
 				addContent(new _POJOListWrapper<>(filesToPublish, session));
 			}
-			
+
 			addContent(entity);
 			addContent(new EnumWrapper(Contract.ContractStatus.class.getEnumConstants()));
 			_ActionBar actionBar = new _ActionBar(session);
@@ -131,10 +131,10 @@ public class ContractForm extends _DoForm {
 				entity = new Contract();
 				String orderId = formData.getValueSilently("orderid");
 				OrderDAO orderDAO = new OrderDAO(session);
-				Order order = orderDAO.findById(orderId);
+				Order order = orderDAO.findByIdentefier(orderId);
 				entity.setOrder(order);
 			} else {
-				entity = dao.findById(id);
+				entity = dao.findByIdentefier(id);
 			}
 
 			entity.setDescription(formData.getValue("description"));
@@ -201,12 +201,12 @@ public class ContractForm extends _DoForm {
 
 		try {
 			ContractDAO dao = new ContractDAO(session);
-			Contract entity = dao.findById(id);
-			
+			Contract entity = dao.findByIdentefier(id);
+
 			AttachmentDAO attachmentDAO = new AttachmentDAO(session);
-			Attachment att = attachmentDAO.findById(attachmentId);
+			Attachment att = attachmentDAO.findByIdentefier(attachmentId);
 			entity.getAttachments().remove(att);
-			
+
 			dao.update(entity);
 		} catch (SecureException | DAOException e) {
 			setError(e);

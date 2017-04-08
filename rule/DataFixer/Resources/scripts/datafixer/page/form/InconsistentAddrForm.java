@@ -6,7 +6,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
 
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
@@ -69,13 +69,14 @@ public class InconsistentAddrForm extends AbstractMunicipalPropertyForm {
 			RealEstateDAO dao = new RealEstateDAO(session);
 			RealEstate entity;
 
-			entity = dao.findById(id);
+			entity = dao.findByIdentefier(id);
 
-			entity.getAddress().setRegion(new RegionDAO(session).findById(formData.getValueSilently("region")));
-			entity.getAddress().setLocality(new LocalityDAO(session).findById(formData.getValueSilently("locality")));
+			entity.getAddress().setRegion(new RegionDAO(session).findByIdentefier(formData.getValueSilently("region")));
 			entity.getAddress()
-					.setCityDistrict(new CityDistrictDAO(session).findById(formData.getValueSilently("district")));
-			entity.getAddress().setStreet(new StreetDAO(session).findById(formData.getValueSilently("street")));
+					.setLocality(new LocalityDAO(session).findByIdentefier(formData.getValueSilently("locality")));
+			entity.getAddress().setCityDistrict(
+					new CityDistrictDAO(session).findByIdentefier(formData.getValueSilently("district")));
+			entity.getAddress().setStreet(new StreetDAO(session).findByIdentefier(formData.getValueSilently("street")));
 			entity.getAddress().setHouseNumber(formData.getValueSilently("housenumber"));
 			entity.getAddress().setAdditionalInfo(formData.getValueSilently("additionalinfo"));
 

@@ -15,7 +15,7 @@ import municipalproperty.dao.NotificationDAO;
 import municipalproperty.model.Notification;
 
 public class NotificationForm extends _DoForm {
-	
+
 	@Override
 	public void doGET(_Session session, WebFormData formData) {
 		try {
@@ -23,7 +23,7 @@ public class NotificationForm extends _DoForm {
 			String id = formData.getValueSilently("docid");
 			NotificationDAO dao = new NotificationDAO(session);
 			entity = dao.findById(UUID.fromString(id));
-			
+
 			addContent(entity);
 			_ActionBar actionBar = new _ActionBar(session);
 			actionBar.addAction(new _Action(getLocalizedWord("close", session.getLang()), "", _ActionType.CLOSE));
@@ -33,18 +33,18 @@ public class NotificationForm extends _DoForm {
 			setBadRequest();
 		}
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, WebFormData formData) {
 		String id = formData.getValueSilently("docid");
-		
+
 		if (id.isEmpty()) {
 			return;
 		}
-		
+
 		try {
 			NotificationDAO dao = new NotificationDAO(session);
-			Notification entity = dao.findById(id);
+			Notification entity = dao.findByIdentefier(id);
 
 			dao.update(entity);
 		} catch (SecureException | DAOException e) {

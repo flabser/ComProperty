@@ -2,7 +2,7 @@ package municipalproperty.page.view;
 
 import java.util.List;
 
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting._Session;
 

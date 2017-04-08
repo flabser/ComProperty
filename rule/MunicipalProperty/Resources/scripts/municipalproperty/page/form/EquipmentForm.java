@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting.WebFormException;
@@ -40,7 +40,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 			if (!id.isEmpty()) {
 				EquipmentDAO dao = new EquipmentDAO(session);
 				entity = dao.findById(UUID.fromString(id));
-				
+
 				if (formData.containsField("attachment")) {
 					if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 						return;
@@ -82,12 +82,12 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 			if (isNew) {
 				entity = new Equipment();
 			} else {
-				entity = dao.findById(id);
+				entity = dao.findByIdentefier(id);
 			}
 
 			if (formData.containsField("balanceholder")) {
 				OrganizationDAO oDao = new OrganizationDAO(session);
-				Organization org = oDao.findById(formData.getValueSilently("balanceholder"));
+				Organization org = oDao.findByIdentefier(formData.getValueSilently("balanceholder"));
 				entity.setBalanceHolder(org);
 			}
 			entity.setInvNumber(formData.getValueSilently("invnumber"));
@@ -98,7 +98,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 			entity.setPropertyStatusType(PropertyStatusType.valueOf(formData.getValue("propertystatus")));
 			entity.setDescription(formData.getValueSilently("description"));
 			PropertyCodeDAO pcDao = new PropertyCodeDAO(session);
-			PropertyCode pcEntity = pcDao.findById(formData.getValueSilently("propertycode"));
+			PropertyCode pcEntity = pcDao.findByIdentefier(formData.getValueSilently("propertycode"));
 			entity.setPropertyCode(pcEntity);
 			entity.setOriginalCost(formData.getFloatValueSilently("originalcost", 0));
 			entity.setCumulativeDepreciation(formData.getFloatValueSilently("cumulativedepreciation", 0));
@@ -107,7 +107,7 @@ public class EquipmentForm extends AbstractMunicipalPropertyForm {
 			entity.setRevaluationAmount(formData.getFloatValueSilently("revaluationamount", 0));
 
 			ReceivingReasonDAO rrDao = new ReceivingReasonDAO(session);
-			ReceivingReason rrEntity = rrDao.findById(formData.getValueSilently("receivingreason"));
+			ReceivingReason rrEntity = rrDao.findByIdentefier(formData.getValueSilently("receivingreason"));
 			entity.setReceivingReason(rrEntity);
 			entity.setModel(formData.getValueSilently("model"));
 			entity.setCommissioningYear(formData.getNumberValueSilently("commissioningyear", 0));

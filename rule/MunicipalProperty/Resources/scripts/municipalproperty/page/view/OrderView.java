@@ -22,7 +22,7 @@ import municipalproperty.model.Property;
  */
 
 public class OrderView extends AbstractMunicipalPropertyView {
-	
+
 	@Override
 	public void doGET(_Session session, WebFormData formData) {
 		try {
@@ -32,7 +32,7 @@ public class OrderView extends AbstractMunicipalPropertyView {
 
 			if (!propertyId.isEmpty() && !propertyId.equals("undefined")) {
 				PropertyDAO propertyDAO = new PropertyDAO(session);
-				Property property = propertyDAO.findById(propertyId);
+				Property property = propertyDAO.findByIdentefier(propertyId);
 				if (property != null) {
 					ViewPage<Order> result = orderDAO.findAllByProperty(property);
 					addContent(new _POJOListWrapper<>(result.getResult(), result.getMaxPage(), result.getCount(),
@@ -50,19 +50,19 @@ public class OrderView extends AbstractMunicipalPropertyView {
 			setBadRequest();
 		}
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, WebFormData formData) {
 		try {
 			OrderDAO dao = new OrderDAO(session);
 			for (String id : formData.getListOfValuesSilently("docid")) {
 				Order c = dao.findById(UUID.fromString(id));
-				
+
 				dao.delete(c);
 			}
 		} catch (SecureException | DAOException e) {
 			setError(e);
 		}
-		
+
 	}
 }

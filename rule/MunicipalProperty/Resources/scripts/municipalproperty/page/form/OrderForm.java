@@ -14,7 +14,7 @@ import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.dataengine.jpa.TempFile;
 import com.exponentus.env.EnvConst;
 import com.exponentus.exception.SecureException;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.EnumWrapper;
 import com.exponentus.scripting.IPOJOObject;
 import com.exponentus.scripting.WebFormData;
@@ -38,7 +38,7 @@ import reference.model.PropertyCode;
 import staff.model.Organization;
 
 public class OrderForm extends _DoForm {
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doGET(_Session session, WebFormData formData) {
@@ -49,7 +49,7 @@ public class OrderForm extends _DoForm {
 			if (!id.isEmpty()) {
 				OrderDAO dao = new OrderDAO(session);
 				entity = dao.findById(UUID.fromString(id));
-				
+
 				if (formData.containsField("attachment")) {
 					if (showAttachment(formData.getValueSilently("attachment"), entity)) {
 						return;
@@ -57,14 +57,14 @@ public class OrderForm extends _DoForm {
 						setBadRequest();
 					}
 				}
-				
+
 			} else {
 				entity = new Order();
 				entity.setAuthor(user);
 				entity.setRegNumber("");
 				String propertyId = formData.getValueSilently("propertyid");
 				PropertyDAO propertyDAO = new PropertyDAO(session);
-				Property property = propertyDAO.findById(propertyId);
+				Property property = propertyDAO.findByIdentefier(propertyId);
 				if (property == null) {
 					property = new Property();
 					property.setObjectName("");
@@ -75,7 +75,7 @@ public class OrderForm extends _DoForm {
 					pc.setName("");
 					property.setPropertyCode(pc);
 				}
-				
+
 				List<Property> list = new ArrayList<>();
 				list.add(property);
 				entity.setProperties(list);
@@ -90,9 +90,9 @@ public class OrderForm extends _DoForm {
 					_FormAttachments fAtts = (_FormAttachments) obj;
 					formFiles = fAtts.getFiles().stream().map(TempFile::getRealFileName).collect(Collectors.toList());
 				}
-				
+
 				List<IPOJOObject> filesToPublish = new ArrayList<>();
-				
+
 				for (String fn : formFiles) {
 					UploadedFile uf = (UploadedFile) session.getAttribute(fsId + "_file" + fn);
 					if (uf == null) {
@@ -103,9 +103,9 @@ public class OrderForm extends _DoForm {
 					filesToPublish.add(uf);
 				}
 				addContent(new _POJOListWrapper<>(filesToPublish, session));
-				
+
 			}
-			
+
 			addContent(entity);
 			addContent(new EnumWrapper(Order.OrderStatus.class.getEnumConstants()));
 			_ActionBar actionBar = new _ActionBar(session);
@@ -124,7 +124,7 @@ public class OrderForm extends _DoForm {
 			setBadRequest();
 		}
 	}
-	
+
 	@Override
 	public void doPOST(_Session session, WebFormData formData) {
 		try {
@@ -134,31 +134,31 @@ public class OrderForm extends _DoForm {
 				setValidation(ve);
 				return;
 			}
-			
+
 			OrderDAO dao = new OrderDAO(session);
 			Order entity;
 			String id = formData.getValueSilently("docid");
 			boolean isNew = id.isEmpty();
-			
+
 			if (isNew) {
 				entity = new Order();
 				String propertyId = formData.getValueSilently("propertyid");
 				PropertyDAO propertyDAO = new PropertyDAO(session);
-				Property property = propertyDAO.findById(propertyId);
+				Property property = propertyDAO.findByIdentefier(propertyId);
 				List<Property> list = new ArrayList<>();
 				list.add(property);
 				entity.setProperties(list);
 			} else {
-				entity = dao.findById(id);
+				entity = dao.findByIdentefier(id);
 			}
-			
+
 			entity.setDescription(formData.getValue("description"));
 			entity.setRegNumber(formData.getValue("regnumber"));
 			entity.setAppliedRegDate(new Date());
 			entity.setOrderStatus(Order.OrderStatus.valueOf(formData.getValue("orderstatus")));
-			
+
 			entity.setAttachments(getActualAttachments(entity.getAttachments()));
-			
+
 			if (isNew) {
 				entity = dao.add(entity);
 			} else {
@@ -174,47 +174,47 @@ public class OrderForm extends _DoForm {
 			logError(e);
 		}
 	}
-	
+
 	private _Validation validate(WebFormData formData, LanguageCode lang) {
 		_Validation ve = new _Validation();
-		
+
 		if (formData.getValueSilently("regnumber").isEmpty()) {
 			ve.addError("regnumber", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		
+
 		/*
 		 * if (formData.getValueSilently("propertyid").isEmpty()) {
 		 * ve.addError("propertyid", "required",
 		 * getLocalizedWord("field_is_empty", lang)); }
 		 */
-		
+
 		if (formData.getValueSilently("description").isEmpty()) {
 			ve.addError("description", "required", getLocalizedWord("field_is_empty", lang));
 		}
 		if (formData.getValueSilently("orderstatus").isEmpty()) {
 			ve.addError("orderstatus", "required", getLocalizedWord("field_is_empty", lang));
 		}
-		
+
 		return ve;
 	}
-	
+
 	@Override
 	public void doDELETE(_Session session, WebFormData formData) {
 		String id = formData.getValueSilently("docid");
 		String attachmentId = formData.getValueSilently("attachment");
 		// String attachmentName = formData.getValueSilently("att-name");
-		
+
 		if (id.isEmpty()
 				|| attachmentId.isEmpty()/* || attachmentName.isEmpty() */) {
 			return;
 		}
-		
+
 		try {
 			OrderDAO dao = new OrderDAO(session);
-			Order entity = dao.findById(id);
+			Order entity = dao.findByIdentefier(id);
 
 			AttachmentDAO attachmentDAO = new AttachmentDAO(session);
-			Attachment att = attachmentDAO.findById(attachmentId);
+			Attachment att = attachmentDAO.findByIdentefier(attachmentId);
 			entity.getAttachments().remove(att);
 
 			dao.update(entity);

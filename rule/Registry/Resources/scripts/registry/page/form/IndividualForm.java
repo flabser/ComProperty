@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import com.exponentus.dataengine.exception.DAOException;
 import com.exponentus.exception.SecureException;
-import com.exponentus.localization.LanguageCode;
+import com.exponentus.localization.constants.LanguageCode;
 import com.exponentus.scripting.WebFormData;
 import com.exponentus.scripting.WebFormException;
 import com.exponentus.scripting._POJOListWrapper;
@@ -97,7 +97,7 @@ public class IndividualForm extends StaffForm {
 			List<OrganizationLabel> labels = new ArrayList<>();
 			for (String labelId : formData.getListOfValuesSilently("labels")) {
 				if (!labelId.isEmpty()) {
-					OrganizationLabel prgLabel = olDao.findById(labelId);
+					OrganizationLabel prgLabel = olDao.findByIdentefier(labelId);
 					if (prgLabel != null) {
 						labels.add(prgLabel);
 					}

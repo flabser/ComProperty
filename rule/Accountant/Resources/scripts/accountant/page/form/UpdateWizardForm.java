@@ -22,10 +22,10 @@ import staff.dao.OrganizationDAO;
 import staff.model.Employee;
 
 public class UpdateWizardForm extends _DoPage {
-	
+
 	// хранить состояние пока шаг не 0 если есть состояние,
 	// что бы можно было ходить вперед-назад без потери состояния
-	
+
 	@Override
 	public void doGET(_Session ses, WebFormData formData) {
 		IUser<Long> user = ses.getUser();
@@ -47,7 +47,7 @@ public class UpdateWizardForm extends _DoPage {
 				}
 				ses.setAttribute(fileAttr, uf);
 			}
-			
+
 			if (fsId.isEmpty()) {
 				fsId = StringUtil.getRandomText();
 			}
@@ -58,7 +58,7 @@ public class UpdateWizardForm extends _DoPage {
 				uf.setLoadType("");
 			}
 			uf.setStep(step);
-			
+
 			if (step.equals("1")) {
 				// System.out.println(">>>" + ses.hashCode());
 				String file = getFileNameByType(ses, fsId, "upfile", uf);
@@ -76,35 +76,35 @@ public class UpdateWizardForm extends _DoPage {
 				if (uf.getLoadType().equals("upload")) {
 					String bh = formData.getValueSilently("balanceholder");
 					if (!bh.isEmpty()) {
-						uf.setBalanceHolder(oDao.findById(bh));
+						uf.setBalanceHolder(oDao.findByIdentefier(bh));
 					}
 					String[] readers = formData.getListOfStringValues("readers", null);
 					List<Long> readersList = new ArrayList<>();
 					EmployeeDAO eDao = new EmployeeDAO(ses);
 					if (readers[0] != null) {
 						for (String r : readers) {
-							Employee entity = eDao.findById(r);
+							Employee entity = eDao.findByIdentefier(r);
 							readersList.add(entity.getUser().getId());
 						}
 						uf.setReaders(readersList);
 					}
 				} else if (uf.getLoadType().equals("writeoff")) {
-					
+
 				} else if (uf.getLoadType().equals("transfer")) {
 					String bh = formData.getValueSilently("recipient");
 					if (!bh.isEmpty()) {
-						uf.setRecipient(oDao.findById(bh));
+						uf.setRecipient(oDao.findByIdentefier(bh));
 					}
 					uf.setOrderFileName(getFileNameByType(ses, fsId, "uporder", uf));
 				}
 			} else if (step.equals("4")) {
-				
+
 			}
-			
+
 			addValue("workspaceUrl", Environment.getWorkspaceURL());
 			addValue("formsesid", fsId);
 			addContent(uf);
-			
+
 			if (user.getId() == SuperUser.ID || (user.getRoles() != null && user.getRoles().contains("data_loader"))) {
 				_ActionBar actionBar = new _ActionBar(ses);
 				actionBar.addAction(new _Action(getLocalizedWord("attach_file", ses.getLang()), "", "attach_file"));
@@ -116,14 +116,14 @@ public class UpdateWizardForm extends _DoPage {
 			return;
 		}
 	}
-	
+
 	public static String getSesAttrName() {
 		return "wizard_form";
 	}
-	
+
 	public static String getFileNameByType(_Session ses, String fsid, String type, ImportFileEntry uf) {
 		_FormAttachments formFiles = ses.getFormAttachments(fsid);
-		
+
 		for (IAppFile fn : formFiles.getFiles(type)) {
 			if (fn.getFieldName().equalsIgnoreCase(type)) {
 				// fake sign result
